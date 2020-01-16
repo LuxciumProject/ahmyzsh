@@ -16,6 +16,3 @@
 [submodule "repls/python-repl"]
 	path = repls/python-repl
 	url = https://github.com/Luxcium/python-repl.git
-[submodule "repls/node-repl"]
-	path = repls/node-repl
-	url = https://github.com/Luxcium/node-repl.git
