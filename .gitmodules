@@ -1,4 +1,4 @@
-[submodule "powerline"]
+[submodule "POWERLINE"]
 path = powerline
 url = https://github.com/Luxcium/powerline.git
 [submodule "powerlevel10k"]
@@ -14,8 +14,8 @@ url = https://github.com/Luxcium/custom-zsh.git
 path = custom-tmux
 url = https://github.com/Luxcium/custom-tmux.git
 [submodule "python-repl"]
-	path = python-repl
-	url = https://github.com/Luxcium/python-repl.git
+path = python-repl
+url = https://github.com/Luxcium/python-repl.git
 [submodule "node-repl"]
-	path = node-repl
-	url = https://github.com/Luxcium/node-repl.git
+path = node-repl
+url = https://github.com/Luxcium/node-repl.git
