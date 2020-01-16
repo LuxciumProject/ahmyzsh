@@ -1,0 +1,13 @@
+echo -n "\u001b[0m\u001b[34m# First INIT ~> ${PATH} \u001b[31;1m\n"
+echo -n "\u001b[0m\u001b[34m# LOADING... (!   SYSTEM  zshenv)\u001b[31;1m\n"
+export PATH="/usr/local/sbin:/usr/local/bin:${PATH}"
+source "~/envs"
+source "${HOME}/ahmyzsh/paths.sh"
+eval "$(fnm env --multi)"
+source /Users/neb_401/.oh-my-zsh/custom/luxcium/bin/etc/zshenv.zsh
+
+
+if [[ ! -o norcs ]]; then
+#  ... <commands to run if NO_RCS is not set,
+#       such as setting options> ...
+fi
