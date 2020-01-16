@@ -1,4 +1,4 @@
-[submodule "POWERLINE"]
+[submodule "powerline"]
 path = powerline
 url = https://github.com/Luxcium/powerline.git
 [submodule "powerlevel10k"]
