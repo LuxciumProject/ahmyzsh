@@ -1,13 +1,6 @@
-echo -n "\u001b[0m\u001b[34m# First INIT ~> ${PATH} \u001b[31;1m\n"
-echo -n "\u001b[0m\u001b[34m# LOADING... (!   SYSTEM  zshenv)\u001b[31;1m\n"
-export PATH="/usr/local/sbin:/usr/local/bin:${PATH}"
-source "~/envs"
-source "${HOME}/ahmyzsh/paths.sh"
-eval "$(fnm env --multi)"
-source /Users/neb_401/.oh-my-zsh/custom/luxcium/bin/etc/zshenv.zsh
+#!/usr/bin/env zsh
+echo "${BEGIN_LOADING:=\u001b[0m\u001b[34m #} ${0} ZSHENV ${END_LOADING:=\u001b[31;1m}"
+# echo -n "\u001b[0m\u001b[34m# LOADING... $0 ZSHENV \u001b[31;1m\n"
 
-
-if [[ ! -o norcs ]]; then
-#  ... <commands to run if NO_RCS is not set,
-#       such as setting options> ...
-fi
+export AHMYZSH="${HOME}/ahmyzsh"
+source "${AHMYZSH}/LOAD_ENV.zsh"

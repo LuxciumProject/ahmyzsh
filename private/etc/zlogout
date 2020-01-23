@@ -1,2 +1,0 @@
-echo -n "\u001b[0m\u001b[34m# LOADING... (!   SYSTEM  zlogout)\u001b[31;1m\n"
-hardcls

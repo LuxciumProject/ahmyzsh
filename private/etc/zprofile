@@ -1,6 +1,0 @@
-echo -n "\u001b[0m\u001b[34m# LOADING... (!   SYSTEM  zprofile)\u001b[31;1m\n"
-
-# system-wide environment settings for zsh(1)
-# if [ -x /usr/libexec/path_helper ]; then
-# 	eval `/usr/libexec/path_helper -s`
-# fi

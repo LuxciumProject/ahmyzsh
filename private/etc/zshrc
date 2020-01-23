@@ -1,2 +1,0 @@
-echo -n "\u001b[0m\u001b[34m# LOADING... (!   SYSTEM  zshrc)\u001b[31;1m\n"
-source /Users/neb_401/.oh-my-zsh/custom/luxcium/bin/etc/zshrc.zsh
