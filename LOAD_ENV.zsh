@@ -9,6 +9,8 @@ echo "${BEGIN_LOADING} ${0} ${END_LOADING}"
 # export ZSH_BIN="${ZSH_LUXCIUM}/bin"
 # export BASH_BIN="${ZSH_BIN}/bash"
 # /Users/neb_401/ahmyzsh/node-repl/repl.js
+ENV_LOADED='false'
+
 export NODELATEST="${HOME}/.fnm/aliases/latest/bin"
 
 export AHMYZSH="${HOME}/ahmyzsh"
