@@ -1,65 +1,70 @@
 echo "${BEGIN_LOADING} ${0} ${END_LOADING}"
-# echo -n "\u001b[0m\u001b[34m# LOADING... $0 \u001b[31;1m\n"
-
 # Path aliases  for diferent part of this Z shell system implementation
 
-# export ZSH="${HOME}/.oh-my-zsh"
-# export ZSH_CUSTOM="${ZSH}/custom"
-# export ZSH_LUXCIUM="${ZSH_CUSTOM}/luxcium"
-# export ZSH_BIN="${ZSH_LUXCIUM}/bin"
-# export BASH_BIN="${ZSH_BIN}/bash"
-# /Users/neb_401/ahmyzsh/node-repl/repl.js
 ENV_LOADED='false'
+if [ "$LOAD_LATER" != 'true' ]; then
 
-export NODELATEST="${HOME}/.fnm/aliases/latest/bin"
-
-export AHMYZSH="${HOME}/ahmyzsh"
-{
-    export POWERLINE="${AHMYZSH}/powerline"
-    export POWERLEVEL10K="${AHMYZSH}/powerlevel10k"
-    export NODE_REPL="${AHMYZSH}/node-repl"
+    export AHMYZSH="${HOME}/ahmyzsh"
     {
-        export NODE_REPL_SCRIPT="${NODE_REPL}/repl.js"
-    }
-    export PYTHON_REPL="${AHMYZSH}/python-repl"
-    export OHMYZSH="${AHMYZSH}/ohmyzsh"
-    {
-        export ZSH="${OHMYZSH}"
-    }
-
-    export CUSTOM_TMUX="${AHMYZSH}/custom-tmux"
-    export CUSTOM_ZSH="${AHMYZSH}/custom-zsh"
-    {
-        export MY_ALIASES="${CUSTOM_ZSH}/.aliases.sh"
-        export ZSH_CUSTOM="${CUSTOM_ZSH}"
-        export ZSH_BIN="${CUSTOM_ZSH}/bin"
+        export POWERLINE="${AHMYZSH}/powerline"
         {
-            export ZSH_BIN_ETC="${ZSH_BIN}/etc"
-            export BASH_BIN="${ZSH_BIN}/bash"
-        }
-        export ZSH_SOURCES="${CUSTOM_ZSH}/sources"
-        {
-            export ZSH_LUXCIUM="${ZSH_SOURCES}"
+            export PWRLN_BINDINGS="${POWERLINE}/powerline/bindings"
             {
-                export ZSH_SRC="${ZSH_LUXCIUM}/sources"
+                export PWRLN_TMUX_CONF="${PWRLN_BINDINGS}/tmux/powerline.conf"
+                export PWRLN_ZSH_CONF="${PWRLN_BINDINGS}/zsh/powerline.zsh"
+
             }
         }
+        export POWERLEVEL10K="${AHMYZSH}/powerlevel10k"
+        export NODE_REPL="${AHMYZSH}/node-repl"
+        {
+            export NODE_REPL_SCRIPT="${NODE_REPL}/repl.js"
+        }
+        export PYTHON_REPL="${AHMYZSH}/python-repl"
+        export OHMYZSH="${AHMYZSH}/ohmyzsh"
+        {
+            export ZSH="${OHMYZSH}"
+        }
+
+        export CUSTOM_TMUX="${AHMYZSH}/custom-tmux"
+        {
+            export TMUX_BIN="${CUSTOM_TMUX}/bin"
+            export TMUX_CONFIGS="${CUSTOM_TMUX}/configs"
+        }
+        export CUSTOM_ZSH="${AHMYZSH}/custom-zsh"
+        {
+            export MY_ALIASES="${CUSTOM_ZSH}/.aliases.sh"
+            export ZSH_CUSTOM="${CUSTOM_ZSH}"
+            export ZSH_BIN="${CUSTOM_ZSH}/bin"
+            {
+                export ZSH_BIN_ETC="${ZSH_BIN}/etc"
+                export BASH_BIN="${ZSH_BIN}/bash"
+            }
+            export ZSH_SOURCES="${CUSTOM_ZSH}/sources"
+            {
+                export SOURCE_ALL="${ZSH_SOURCES}/.source_all.sh"
+                export ZSH_FLAGS="${ZSH_SOURCES}/flags"
+                export ZSH_LUXCIUM="${ZSH_SOURCES}"
+                export ZSH_COMPLETION="${ZSH_SOURCES}/completion"
+                {
+                    export ZSH_SRC="${ZSH_LUXCIUM}"
+                }
+            }
+
+        }
 
     }
-
-}
-
+fi
 if [[ ! -o norcs ]]; then
 #  ... <commands to run if NO_RCS is not set,
 #       such as setting options> ...
 fi
 
-# source "${ZSH_LUXCIUM}/.source_all.sh"
-# # source /Users/neb_401/.oh-my-zsh/custom/luxcium/bin/all.profile.sh
-
-# export /Users/neb_401/.oh-my-zsh/custom/luxcium/bin/etc/zshenv.zsh
+# |----------------|-----------|-----------|------|
 # |                |Interactive|Interactive|Script|
+# |----------------|-----------|-----------|------|
 # |                |login      |non-login  |      |
+# |----------------|-----------|-----------|------|
 # |/etc/zshenv     |    A      |    A      |  A   |
 # |~/.zshenv       |    B      |    B      |  B   |
 # |/etc/zprofile   |    C      |           |      |
@@ -72,6 +77,7 @@ fi
 # |                |           |           |      |
 # |~/.zlogout      |    I      |           |      |
 # |/etc/zlogout    |    J      |           |      |
+# |----------------|-----------|-----------|------|
 
 # /bin/bash ~ The bash executable
 # /etc/profile ~ The systemwide initialization file, executed for login shells
