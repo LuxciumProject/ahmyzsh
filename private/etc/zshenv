@@ -1,6 +1,3 @@
-#!/usr/bin/env zsh
 echo "${BEGIN_LOADING:=\u001b[0m\u001b[34m #} ${0} ZSHENV ${END_LOADING:=\u001b[31;1m}"
-# echo -n "\u001b[0m\u001b[34m# LOADING... $0 ZSHENV \u001b[31;1m\n"
-
 export AHMYZSH="${HOME}/ahmyzsh"
-source "${AHMYZSH}/LOAD_ENV.zsh"
+. "${AHMYZSH}/custom-zsh/sources/init-all.zsh"
