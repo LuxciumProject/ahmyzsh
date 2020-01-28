@@ -29,6 +29,8 @@ function init_all() {
 
     . "${AHMYZSH}/PATHS.zsh"
 
+    . "${AHMYZSH}/MYENVS.sh"
+
     . "${CUSTOM_ZSH}/notice.sh"
 
     export MY_ALIASES="${CUSTOM_ZSH}/aliases.sh"

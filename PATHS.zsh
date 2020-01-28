@@ -76,13 +76,15 @@ if [ "$LOAD_ONCE_00" != 'true' ]; then
 
             {
                 export NODE_REPL_SCRIPT="${NODE_REPL}/repl.js"
+
                 export TMUX_BIN="${CUSTOM_TMUX}/bin"
-                export TMUX_CONFIGS="${CUSTOM_TMUX}/configs"
-                export PATH_TMUX_CONFIG="${CUSTOM_TMUX}"
                 {
-                    export PATH_TMUX_BIN="${PATH_TMUX_CONFIG}/bin"
-                    export TMUX_COMMON_CONF="${PATH_TMUX_CONFIG}/common.tmux.config"
-                    export TMUX_COMMON_THEME="${PATH_TMUX_CONFIG}/theme.tmux.config"
+                    export TMUX_LOADER="${TMUX_BIN}/tmux-loader.sh"
+                }
+                export TMUX_CONFIGS="${CUSTOM_TMUX}/configs"
+                {
+                    export TMUX_COMMON_CONF="${TMUX_CONFIGS}/common.tmux.config"
+                    export TMUX_COMMON_THEME="${TMUX_CONFIGS}/theme.tmux.config"
                 }
             }
 
