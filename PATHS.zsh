@@ -1,12 +1,11 @@
 export AHMYZSH="${HOME}/ahmyzsh"
-export CUSTOM_TMUX="${AHMYZSH}/custom-tmux"
 export CUSTOM_ZSH="${AHMYZSH}/custom-zsh"
 export NODE_REPL="${AHMYZSH}/node-repl"
 export OHMYZSH="${AHMYZSH}/ohmyzsh"
 export POWERLEVEL10K="${AHMYZSH}/powerlevel10k"
 export POWERLINE="${AHMYZSH}/powerline"
 export PYTHON_REPL="${AHMYZSH}/python-repl"
-
+source "${AHMYZSH}/paths.sh"
 {
     export ZSH_BIN="${CUSTOM_ZSH}/bin"
     export ZSH_BIN_ETC="${ZSH_BIN}/etc"
@@ -69,7 +68,6 @@ if [ "$LOAD_ONCE_00" != 'true' ]; then
         {
             export PWRLN_BINDINGS="${POWERLINE}/powerline/bindings"
             {
-                export PWRLN_TMUX_CONF="${PWRLN_BINDINGS}/tmux/powerline.conf"
                 export PWRLN_ZSH_CONF="${PWRLN_BINDINGS}/zsh/powerline.zsh"
 
             }
@@ -77,14 +75,9 @@ if [ "$LOAD_ONCE_00" != 'true' ]; then
             {
                 export NODE_REPL_SCRIPT="${NODE_REPL}/repl.js"
 
-                export TMUX_BIN="${CUSTOM_TMUX}/bin"
                 {
-                    export TMUX_LOADER="${TMUX_BIN}/tmux-loader.sh"
                 }
-                export TMUX_CONFIGS="${CUSTOM_TMUX}/configs"
                 {
-                    export TMUX_COMMON_CONF="${TMUX_CONFIGS}/common.tmux.config"
-                    export TMUX_COMMON_THEME="${TMUX_CONFIGS}/theme.tmux.config"
                 }
             }
 
@@ -120,3 +113,11 @@ if [ "$LOAD_ONCE_00" != 'true' ]; then
     # /Users/neb_401/.vscode-insiders/extensions/dev-pop-n-lock-theme-vscode
     export DEV_POPNLOCK="${PATH_INSDR_CODE_EXT}/dev-pop-n-lock-theme-vscode"
 fi
+
+export CUSTOM_TMUX="${AHMYZSH}/custom-tmux"
+export PWRLN_TMUX_CONF="${PWRLN_BINDINGS}/tmux/powerline.conf"
+export TMUX_BIN="${CUSTOM_TMUX}/bin"
+export TMUX_LOADER="${TMUX_BIN}/tmux-loader.sh"
+export TMUX_CONFIGS="${CUSTOM_TMUX}/configs"
+export TMUX_COMMON_CONF="${TMUX_CONFIGS}/common.tmux.config"
+export TMUX_COMMON_THEME="${TMUX_CONFIGS}/theme.tmux.config"

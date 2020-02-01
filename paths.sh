@@ -1,0 +1,16 @@
+# CUSTOM_ZSH_PATH
+export AHMYZSH_PATH=${AHMYZSH}
+export CUSTOM_TMUX_PATH="${AHMYZSH_PATH}/custom-tmux"
+source "${CUSTOM_TMUX_PATH}/paths.sh"
+export CUSTOM_ZSH_PATH="${AHMYZSH_PATH}/custom-zsh"
+source "${CUSTOM_ZSH_PATH}/paths.sh"
+export NODE_REPL_PATH="${AHMYZSH_PATH}/node-repl"
+source "${NODE_REPL_PATH}/paths.sh"
+export OHMYZSH_PATH="${AHMYZSH_PATH}/ohmyzsh"
+source "${OHMYZSH_PATH}/paths.sh"
+export POWERLEVLE10K_PATH="${AHMYZSH_PATH}/powerlevel10k"
+source "${POWERLEVLE10K_PATH}/paths.sh"
+export POWERLINE_PATH="${AHMYZSH_PATH}/powerline"
+source "${POWERLINE_PATH}/paths.sh"
+export PYTHON_REPL_PATH="${AHMYZSH_PATH}/python-repl"
+source "${PYTHON_REPL_PATH}/paths.sh"
