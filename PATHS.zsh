@@ -10,11 +10,24 @@ source "${AHMYZSH}/paths.sh"
     export ZSH_BIN="${CUSTOM_ZSH}/bin"
     export ZSH_BIN_ETC="${ZSH_BIN}/etc"
     export ZSH_SOURCES="${CUSTOM_ZSH}/sources"
+
     {
         export ZSH_COMPLETION="${ZSH_SOURCES}/completion"
         export ZSH_COMPUTE="${ZSH_SOURCES}/compute"
         export ZSH_FLAGS="${ZSH_SOURCES}/flags"
         export ZSH_LAYOUTS="${ZSH_SOURCES}/layouts"
+
+        # { #* FPATH +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        #     local _FPATH="${CUSTOM_ZSH}"
+        #     local _FPATH="${_FPATH}:${ZSH_SOURCES}"
+        #     local _FPATH="${_FPATH}:${ZSH_COMPLETION}"
+        #     local _FPATH="${_FPATH}:${ZSH_COMPUTE}"
+        #     local _FPATH="${_FPATH}:${ZSH_FLAGS}"
+        #     local _FPATH="${_FPATH}:${ZSH_LAYOUTS}"
+
+        #     export fpath="${_FPATH}:${fpath}"
+        # } #* FPATH +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
     }
 }
 

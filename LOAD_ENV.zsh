@@ -24,25 +24,62 @@ echo "${BEGIN_LOADING} ${0} ${END_LOADING}"
 # Path aliases  for diferent part of this Z shell system implementation
 
 function init_all() {
+
     SHOW_LOAD_CUTLS="true"
     ENV_LOADED="false"
 
-    . "${AHMYZSH}/PATHS.zsh"
+    local S1="${AHMYZSH}/PATHS.zsh"
+    . "${S1}"
+    # (zcompile "${S1}" &)
 
-    . "${AHMYZSH}/MYENVS.sh"
+    local S1="${AHMYZSH}/MYENVS.sh"
+    . "${S1}"
+    # (zcompile "${S1}" &)
 
-    . "${CUSTOM_ZSH}/notice.sh"
-
-    export MY_ALIASES="${CUSTOM_ZSH}/aliases.sh"
-    . "${MY_ALIASES}"
-    load_aliases
+    local S1="${CUSTOM_ZSH}/notice.sh"
+    . "${S1}"
+    # (zcompile "${S1}" &)
 
     export BASE_LAYOUTS="${CUSTOM_ZSH}/sources/layouts/base-layouts.sh"
     . "${BASE_LAYOUTS}"
+    # (zcompile "${BASE_LAYOUTS}" &)
     load_layouts
 
-    export MAIN_BOOTSTRAP="${CUSTOM_ZSH}/MAIN.sh"
+    export MY_ALIASES="${CUSTOM_ZSH}/aliases.sh"
+    . "${MY_ALIASES}"
+    # (zcompile "${MY_ALIASES}" &)
+    load_aliases
+
+    local S1="${ZSH_LAYOUTS}/pl10K-Layout.zsh"
+    # echo "${BEGIN_LOADING} ${S1} ${END_LOADING}"
+    . "${S1}"
+    # (zcompile "${S1}" &)
+    load_pl10K
+    # compute_pl10k
+
+    # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+    # Initialization code that may require console input (password prompts, [y/n]
+    # confirmations, etc.) must go above this block, everything else may go below.
+
+    typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+    export POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+
+    hardcls
+    echo "${normal}${CLRLN}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO} ${bold} $(tput setaf 2)${BKBK}${normal}"
+
+    local S1="${ZSH_SOURCES}/instant-prompt"
+    # echo "${BEGIN_LOADING} ${S1} ${END_LOADING}"
+    . "${S1}"
+    # (zcompile "${S1}" &)
+
+    local S1="${POWERLEVEL10K}/powerlevel10k.zsh-theme"
+    echo "${BEGIN_LOADING} ${S1} ${END_LOADING}"
+    . "${S1}"
+    # (zcompile "${S1}" &)
+
+    export MAIN_BOOTSTRAP="${CUSTOM_ZSH}/MAIN.zsh"
     . "${MAIN_BOOTSTRAP}"
+    # (zcompile "${MAIN_BOOTSTRAP}" &)
     source_all
 }
 
