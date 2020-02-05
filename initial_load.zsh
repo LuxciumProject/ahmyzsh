@@ -1,4 +1,3 @@
-echo "${BEGIN_LOADING} ${0} ${END_LOADING}"
 ################################################################################
 ##                                                                            ##
 ##              !!! PLEASE USE CAUTION WHEN USING THIS FILE !!!               ##
@@ -21,98 +20,31 @@ echo "${BEGIN_LOADING} ${0} ${END_LOADING}"
 ##           in all copies or substantial portions of the Software.           ##
 ##                                                                            ##
 ################################################################################
-# Path aliases  for diferent part of this Z shell system implementation
 
-function init_all() {
+function my_envs() {
+    export TIMER1=$(/usr/local/bin/gdate +%s%N)
+    : ${ENV_LOADED:="false"}
+    : ${SHOW_LOAD_CUTLS:="true"}
 
-    SHOW_LOAD_CUTLS="true"
-    ENV_LOADED="false"
+    echo 'LET THERE BE LIGHT ...'
 
-    local S1="${AHMYZSH}/PATHS.zsh"
+    export EDITOR='code'
+    export VERBOSA="false"
+
+    local S1="${AHMYZSH}/paths.sh"
     . "${S1}"
-    # (zcompile "${S1}" &)
-
-    local S1="${AHMYZSH}/MYENVS.sh"
-    . "${S1}"
-    # (zcompile "${S1}" &)
-
-    local S1="${CUSTOM_ZSH}/notice.sh"
-    . "${S1}"
-    # (zcompile "${S1}" &)
-
-    export BASE_LAYOUTS="${CUSTOM_ZSH}/sources/layouts/base-layouts.sh"
-    . "${BASE_LAYOUTS}"
-    # (zcompile "${BASE_LAYOUTS}" &)
-    load_layouts
-
-    export MY_ALIASES="${CUSTOM_ZSH}/aliases.sh"
-    . "${MY_ALIASES}"
-    # (zcompile "${MY_ALIASES}" &)
-    load_aliases
-
-    local S1="${ZSH_LAYOUTS}/pl10K-Layout.zsh"
-    # echo "${BEGIN_LOADING} ${S1} ${END_LOADING}"
-    . "${S1}"
-    # (zcompile "${S1}" &)
-    load_pl10K
-    # compute_pl10k
-
-    # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-    # Initialization code that may require console input (password prompts, [y/n]
-    # confirmations, etc.) must go above this block, everything else may go below.
-
-    typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
-    export POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-
-    hardcls
-    echo "${normal}${CLRLN}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO} ${bold} $(tput setaf 2)${BKBK}${normal}"
-
-    local S1="${ZSH_SOURCES}/instant-prompt"
-    # echo "${BEGIN_LOADING} ${S1} ${END_LOADING}"
-    . "${S1}"
-    # (zcompile "${S1}" &)
-
-    local S1="${POWERLEVEL10K}/powerlevel10k.zsh-theme"
-    echo "${BEGIN_LOADING} ${S1} ${END_LOADING}"
-    . "${S1}"
-    # (zcompile "${S1}" &)
-
-    export MAIN_BOOTSTRAP="${CUSTOM_ZSH}/MAIN.zsh"
-    . "${MAIN_BOOTSTRAP}"
-    # (zcompile "${MAIN_BOOTSTRAP}" &)
-    source_all
+    init_paths
 }
 
-if [[ ! -o norcs ]]; then
-#  ... <commands to run if NO_RCS is not set,
-#       such as setting options> ...
-fi
+function lux_principium() {
+    # 'LET THERE BE LIGHT ...'
+    my_envs
+    load_my_envs
 
-# |----------------|-----------|-----------|------|
-# |                |Interactive|Interactive|Script|
-# |----------------|-----------|-----------|------|
-# |                |login      |non-login  |      |
-# |----------------|-----------|-----------|------|
-# |/etc/zshenv     |    A      |    A      |  A   |
-# |~/.zshenv       |    B      |    B      |  B   |
-# |/etc/zprofile   |    C      |           |      |
-# |~/.zprofile     |    D      |           |      |
-# |/etc/zshrc      |    E      |    C      |      |
-# |~/.zshrc        |    F      |    D      |      | ***
-# |/etc/zlogin     |    G      |           |      |
-# |~/.zlogin       |    H      |           |      |
-# |                |           |           |      |
-# |                |           |           |      |
-# |~/.zlogout      |    I      |           |      |
-# |/etc/zlogout    |    J      |           |      |
-# |----------------|-----------|-----------|------|
-
-# /bin/bash ~ The bash executable
-# /etc/profile ~ The systemwide initialization file, executed for login shells
-# ~/.bash_profile ~ The personal initialization file, executed for login shells
-# ~/.bashrc ~ The individual per-interactive-shell startup file
-# ~/.bash_logout ~ The individual login shell cleanup file, executed when a login shell exits
-# ~/.inputrc ~ Individual readline initialization file
+    local S1="${CUSTOM_ZSH}/main.zsh"
+    . "${S1}"
+    source_all
+}
 
 ##!!0###########################################################################
 ##!!                                                                          ##

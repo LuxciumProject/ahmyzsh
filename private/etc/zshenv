@@ -1,5 +1,5 @@
 echo "${BEGIN_LOADING:=\u001b[0m\u001b[34m #} ${0} ZSHENV ${END_LOADING:=\u001b[31;1m}"
-#$ Verry first entry point
+#$ Verry first entry point !!!
 #$ Interactive,Script,login,non-login
 
 export AHMYZSH="${HOME}/ahmyzsh"
