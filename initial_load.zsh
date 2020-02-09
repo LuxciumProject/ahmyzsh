@@ -22,11 +22,12 @@
 ################################################################################
 
 function my_envs() {
+
     export TIMER1=$(/usr/local/bin/gdate +%s%N)
     : ${ENV_LOADED:="false"}
     : ${SHOW_LOAD_CUTLS:="true"}
 
-    echo 'LET THERE BE LIGHT ...'
+    # echo 'LET THERE BE LIGHT ...'
 
     export EDITOR='code'
     export VERBOSA="false"
@@ -38,8 +39,12 @@ function my_envs() {
 
 function lux_principium() {
     # 'LET THERE BE LIGHT ...'
+    # reversed יְהִי אוֹר due to lack of support in my terminal
+    # https://en.wikipedia.org/wiki/Let_there_be_light
+    echo -n 'LET THERE BE LIGHT ... '
+    echo רֹוא יִהְי
+
     my_envs
-    load_my_envs
 
     local S1="${CUSTOM_ZSH}/main.zsh"
     . "${S1}"

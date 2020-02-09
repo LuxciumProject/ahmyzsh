@@ -37,33 +37,34 @@ init_paths() {
             export PWRLN_TMUX_CONF="${POWERLINE_BINDINGS}/tmux/powerline.conf"
         }
     }
-
+    load_my_envs
+    init_projects_paths
 }
 
 init_projects_paths() {
 
-    export AHMYZSH_PATH=${AHMYZSH}
+    export AHMYZSH=${AHMYZSH}
 
-    export CUSTOM_TMUX_PATH="${AHMYZSH_PATH}/custom-tmux"
-    source "${CUSTOM_TMUX_PATH}/paths.sh"
+    export CUSTOM_TMUX="${AHMYZSH}/custom-tmux"
+    source "${CUSTOM_TMUX}/paths.sh"
 
-    export CUSTOM_ZSH_PATH="${AHMYZSH_PATH}/custom-zsh"
-    source "${CUSTOM_ZSH_PATH}/paths.sh"
+    export CUSTOM_ZSH="${AHMYZSH}/custom-zsh"
+    source "${CUSTOM_ZSH}/paths.sh"
 
-    export NODE_REPL_PATH="${AHMYZSH_PATH}/node-repl"
-    source "${NODE_REPL_PATH}/paths.sh"
+    export NODE_REPL="${AHMYZSH}/node-repl"
+    source "${NODE_REPL}/paths.sh"
 
-    export OHMYZSH_PATH="${AHMYZSH_PATH}/ohmyzsh"
-    source "${OHMYZSH_PATH}/paths.sh"
+    export OHMYZSH="${AHMYZSH}/ohmyzsh"
+    source "${OHMYZSH}/paths.sh"
 
-    export POWERLEVLE10K_PATH="${AHMYZSH_PATH}/powerlevel10k"
-    source "${POWERLEVLE10K_PATH}/paths.sh"
+    export POWERLEVLE10K="${AHMYZSH}/powerlevel10k"
+    source "${POWERLEVLE10K}/paths.sh"
 
-    export POWERLINE_PATH="${AHMYZSH_PATH}/powerline"
-    source "${POWERLINE_PATH}/paths.sh"
+    export POWERLINE="${AHMYZSH}/powerline"
+    source "${POWERLINE}/paths.sh"
 
-    export PYTHON_REPL_PATH="${AHMYZSH_PATH}/python-repl"
-    source "${PYTHON_REPL_PATH}/paths.sh"
+    export PYTHON_REPL="${AHMYZSH}/python-repl"
+    source "${PYTHON_REPL}/paths.sh"
 }
 
 # source "${AHMYZSH}/paths.sh"
