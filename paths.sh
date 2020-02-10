@@ -1,46 +1,25 @@
-init_paths() {
-    export AHMYZSH="${HOME}/ahmyzsh"
-    export NODE_REPL="${AHMYZSH}/node-repl"
-    export POWERLEVEL10K="${AHMYZSH}/powerlevel10k"
-    export PYTHON_REPL="${AHMYZSH}/python-repl"
-    export CUSTOM_ZSH="${AHMYZSH}/custom-zsh"
-    {
-        export ZSH_SOURCES="${CUSTOM_ZSH}/sources"
-        {
-            export ZSH_COMPLETION="${ZSH_SOURCES}/completion"
-            export ZSH_COMPUTE="${ZSH_SOURCES}/compute"
-            export ZSH_FLAGS="${ZSH_SOURCES}/flags"
-            export ZSH_LAYOUTS="${ZSH_SOURCES}/layouts"
-        }
-
-        export ZSH_BIN="${CUSTOM_ZSH}/bin"
-        {
-            export ZSH_BIN_ETC="${ZSH_BIN}/etc"
-        }
-    }
-    export OHMYZSH="${AHMYZSH}/ohmyzsh"
-    {
-        export ZSH="${OHMYZSH}"
-    }
-    export CUSTOM_TMUX="${AHMYZSH}/custom-tmux"
-    {
-        export TMUX_BIN="${CUSTOM_TMUX}/bin"
-        export TMUX_LOADER="${TMUX_BIN}/tmux-loader.sh"
-        export TMUX_CONFIGS="${CUSTOM_TMUX}/configs"
-        export TMUX_COMMON_CONF="${TMUX_CONFIGS}/common.tmux.config"
-        export TMUX_COMMON_THEME="${TMUX_CONFIGS}/theme.tmux.config"
-    }
-    export POWERLINE="${AHMYZSH}/powerline"
-    {
-        export POWERLINE_BINDINGS="${POWERLINE}/powerline/bindings"
-        {
-            export PWRLN_TMUX_CONF="${POWERLINE_BINDINGS}/tmux/powerline.conf"
-        }
-    }
-    load_my_envs
-    init_projects_paths
-}
-
+################################################################################
+##                                                                            ##
+##              !!! PLEASE USE CAUTION WHEN USING THIS FILE !!!               ##
+##                                                                            ##
+##  THIS FILE CANNOT BE USED AS IS YOU MAY HAVE TO CUSTOMISE IT TO USE IT.    ##
+##  Even if this file is shared on my public git hub it has not been designed ##
+##  for public use. It was not created with the idea that someone else would  ##
+##  be using it. The files in this repository have been created for my usage  ##
+##  only. They are available so you can see how I have customized my system.  ##
+##  I decided to put them in the public space so anyone can download them     ##
+##  and edit them. I hope this can inspire someone or serve as a reference.   ##
+##                                                                            ##
+#+           Copyright (c) 2019-present Benjamin Vincent Kasapoglu            ##
+#&                                                                            ##
+#&     This Source Code Form is subject to the terms of the Mozilla Public    ##
+#&     License, v. 2.0. If a copy of the MPL was not distributed with this    ##
+#&           file, You can obtain one at http://mozilla.org/MPL/2.0/.         ##
+#&                                                                            ##
+##     The above copyright notice and this license notice shall be included   ##
+##           in all copies or substantial portions of the Software.           ##
+##                                                                            ##
+################################################################################
 init_projects_paths() {
 
     export AHMYZSH=${AHMYZSH}
@@ -67,57 +46,102 @@ init_projects_paths() {
     source "${PYTHON_REPL}/paths.sh"
 }
 
+init_paths() {
+    if [ "$PARENT_ENV_LOADED" != 'true' ]; then
+        export AHMYZSH="${HOME}/ahmyzsh"
+        export NODE_REPL="${AHMYZSH}/node-repl"
+        export POWERLEVEL10K="${AHMYZSH}/powerlevel10k"
+        export PYTHON_REPL="${AHMYZSH}/python-repl"
+        export CUSTOM_ZSH="${AHMYZSH}/custom-zsh"
+        {
+            export ZSH_SOURCES="${CUSTOM_ZSH}/sources"
+            {
+                export ZSH_COMPLETION="${ZSH_SOURCES}/completion"
+                export ZSH_COMPUTE="${ZSH_SOURCES}/compute"
+                export ZSH_FLAGS="${ZSH_SOURCES}/flags"
+                export ZSH_LAYOUTS="${ZSH_SOURCES}/layouts"
+            }
+
+            export ZSH_BIN="${CUSTOM_ZSH}/bin"
+            {
+                export ZSH_BIN_ETC="${ZSH_BIN}/etc"
+            }
+        }
+        export OHMYZSH="${AHMYZSH}/ohmyzsh"
+        {
+            export ZSH="${OHMYZSH}"
+        }
+        export CUSTOM_TMUX="${AHMYZSH}/custom-tmux"
+        {
+            export TMUX_BIN="${CUSTOM_TMUX}/bin"
+            export TMUX_LOADER="${TMUX_BIN}/tmux-loader.sh"
+            export TMUX_CONFIGS="${CUSTOM_TMUX}/configs"
+            export TMUX_COMMON_CONF="${TMUX_CONFIGS}/common.tmux.config"
+            export TMUX_COMMON_THEME="${TMUX_CONFIGS}/theme.tmux.config"
+        }
+        export POWERLINE="${AHMYZSH}/powerline"
+        {
+            export POWERLINE_BINDINGS="${POWERLINE}/powerline/bindings"
+            {
+                export PWRLN_TMUX_CONF="${POWERLINE_BINDINGS}/tmux/powerline.conf"
+            }
+        }
+    fi
+
+    load_my_envs
+    init_projects_paths
+}
+
 # source "${AHMYZSH}/paths.sh"
 load_my_envs() {
-
-    {
-        export ZSH_BIN="${CUSTOM_ZSH}/bin"
-        export ZSH_BIN_ETC="${ZSH_BIN}/etc"
-        export ZSH_SOURCES="${CUSTOM_ZSH}/sources"
+    if [ "$PARENT_ENV_LOADED" != 'true' ]; then
 
         {
-            export ZSH_COMPLETION="${ZSH_SOURCES}/completion"
-            export ZSH_COMPUTE="${ZSH_SOURCES}/compute"
-            export ZSH_FLAGS="${ZSH_SOURCES}/flags"
-            export ZSH_LAYOUTS="${ZSH_SOURCES}/layouts"
+            export ZSH_BIN="${CUSTOM_ZSH}/bin"
+            export ZSH_BIN_ETC="${ZSH_BIN}/etc"
+            export ZSH_SOURCES="${CUSTOM_ZSH}/sources"
 
-            # { #* FPATH +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-            #     local _FPATH="${CUSTOM_ZSH}"
-            #     local _FPATH="${_FPATH}:${ZSH_SOURCES}"
-            #     local _FPATH="${_FPATH}:${ZSH_COMPLETION}"
-            #     local _FPATH="${_FPATH}:${ZSH_COMPUTE}"
-            #     local _FPATH="${_FPATH}:${ZSH_FLAGS}"
-            #     local _FPATH="${_FPATH}:${ZSH_LAYOUTS}"
+            {
+                export ZSH_COMPLETION="${ZSH_SOURCES}/completion"
+                export ZSH_COMPUTE="${ZSH_SOURCES}/compute"
+                export ZSH_FLAGS="${ZSH_SOURCES}/flags"
+                export ZSH_LAYOUTS="${ZSH_SOURCES}/layouts"
 
-            #     export fpath="${_FPATH}:${fpath}"
-            # } #* FPATH +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                # { #* FPATH +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                #     local _FPATH="${CUSTOM_ZSH}"
+                #     local _FPATH="${_FPATH}:${ZSH_SOURCES}"
+                #     local _FPATH="${_FPATH}:${ZSH_COMPLETION}"
+                #     local _FPATH="${_FPATH}:${ZSH_COMPUTE}"
+                #     local _FPATH="${_FPATH}:${ZSH_FLAGS}"
+                #     local _FPATH="${_FPATH}:${ZSH_LAYOUTS}"
 
+                #     export fpath="${_FPATH}:${fpath}"
+                # } #* FPATH +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+            }
         }
-    }
 
-    export POWERLINE_BINDINGS="${POWERLINE}/powerline/bindings"
+        export POWERLINE_BINDINGS="${POWERLINE}/powerline/bindings"
 
-    export PS2="$(tput setab 7)$(tput setaf 0)  "
+        export PS2="$(tput setab 7)$(tput setaf 0)  "
 
-    # Ruby
-    export WITH_RBENV='true'
-    export PATH_RBENV='/Users/neb_401/.rbenv/shims'
+        # Ruby
+        export WITH_RBENV='true'
+        export PATH_RBENV='/Users/neb_401/.rbenv/shims'
 
-    # GEM
-    export WITH_BIN_GEM='true'
-    export PATH_BIN_GEM='/usr/local/lib/ruby/gems/2.6.0/bin:/usr/local/opt/ruby/bin'
+        # GEM
+        export WITH_BIN_GEM='true'
+        export PATH_BIN_GEM='/usr/local/lib/ruby/gems/2.6.0/bin:/usr/local/opt/ruby/bin'
 
-    export PERL5LIB="${HOME}/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"
+        export PERL5LIB="${HOME}/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"
 
-    export PERL_LOCAL_LIB_ROOT="${HOME}/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"
-    export PERL_MB_OPT='--install_base "${HOME}/perl5"'
-    export PERL_MM_OPT='INSTALL_BASE=/Users/neb_401/perl5'
-    export PATH_PKG_CONFIG='/usr/local/opt/sqlite/lib/pkgconfig'
-    # export PATH_PKG_CONFIG="/usr/local/opt/openssl/lib/pkgconfig"
-    export WITH_ANACONDA='true'
-    export PATH_ANACONDA3="${HOME}/anaconda3/tungsten/bin"
-
-    if [ "$LOAD_ONCE_00" != 'true' ]; then
+        export PERL_LOCAL_LIB_ROOT="${HOME}/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"
+        export PERL_MB_OPT='--install_base "${HOME}/perl5"'
+        export PERL_MM_OPT='INSTALL_BASE=/Users/neb_401/perl5'
+        export PATH_PKG_CONFIG='/usr/local/opt/sqlite/lib/pkgconfig'
+        # export PATH_PKG_CONFIG="/usr/local/opt/openssl/lib/pkgconfig"
+        export WITH_ANACONDA='true'
+        export PATH_ANACONDA3="${HOME}/anaconda3/tungsten/bin"
 
         export LOAD_ONCE_00="true"
 
@@ -191,3 +215,33 @@ load_my_envs() {
     fi
 
 }
+
+##!!0###########################################################################
+##!!                                                                          ##
+#+!!         Copyright (c) 2019-present Benjamin Vincent Kasapoglu            ##
+#&!!                                                                          ##
+#&!!   This Source Code Form is subject to the terms of the Mozilla Public    ##
+#&!!   License, v. 2.0. If a copy of the MPL was not distributed with this    ##
+#&!!         file, You can obtain one at http://mozilla.org/MPL/2.0/.         ##
+#&!!                                                                          ##
+##!!   The above copyright notice and this license notice shall be included   ##
+##!!         in all copies or substantial portions of the Software.           ##
+##!!                                                                          ##
+##!!          ------------------------------------------------------          ##
+##!!                                                                          ##
+##!!    Disclaimer of Warranty                                                ##
+##!!   -------------------------                                              ##
+##!!                                                                          ##
+##!!   Covered Software is provided under this License on an "as is"          ##
+##!!   basis, without warranty of any kind, either expressed, implied, or     ##
+##!!   statutory, including, without limitation, warranties that the          ##
+##!!   Covered Software is free of defects, merchantable, fit for a           ##
+##!!   particular purpose or non-infringing. The entire risk as to the        ##
+##!!   quality and performance of the Covered Software is with You.           ##
+##!!   Should any Covered Software prove defective in any respect, You        ##
+##!!   (not any Contributor) assume the cost of any necessary servicing,      ##
+##!!   repair, or correction. This disclaimer of warranty constitutes an      ##
+##!!   essential part of this License. No use of any Covered Software is      ##
+##!!   authorized under this License except under this disclaimer.            ##
+##!!                                                                          ##
+##!!0###########################################################################
