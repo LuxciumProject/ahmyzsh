@@ -1,14 +1,9 @@
-# reversed יְהִי אוֹר due to lack of support in my terminal
-echo "      \u001b[1m    רֹוא יִהְי \u001b[0m" # 'LET THERE BE LIGHT ...'
-# https://en.wikipedia.org/wiki/Let_there_be_light
-
 function my_envs() {
 
     : ${ENV_LOADED:="false"}
     : ${SHOW_LOAD_CUTLS:="true"}
-
-    export EDITOR='code'
-    export VERBOSA="false"
+    : ${VERBOSA:=1}
+    : ${EDITOR:='code'}
 
     local S1="${AHMYZSH}/paths.sh"
     . "${S1}"
@@ -21,8 +16,18 @@ function my_envs() {
     function timer_() {
         local TIMER_NOW=$(/usr/local/bin/gdate +%s%N)
         local TIMER_VALUE=$(((${TIMER_NOW} - ${1}) / 1000000))
-
-        echo "${TIMER_VALUE} "
+        if [ ${#TIMER_VALUE} = 0 ]; then
+            local spacing_="    "
+        elif [ ${#TIMER_VALUE} = 1 ]; then
+            local spacing_="   "
+        elif [ ${#TIMER_VALUE} = 2 ]; then
+            local spacing_="  "
+        elif [ ${#TIMER_VALUE} = 3 ]; then
+            local spacing_=" "
+        else
+            local spacing_=""
+        fi
+        echo "${TIMER_VALUE}${spacing_}"
         return 0
     }
 
@@ -46,8 +51,11 @@ function my_envs() {
 function lux_principium() {
 
     my_envs
-    # echo 'LET THERE BE LIGHT ...'
-    echo "${BEGIN_LBULB_ON}> LET THERE BE LIGHT ... ${END_SOURCING}"
+    # reversed יְהִי אוֹר due to lack of support in my terminal
+    [ "${VERBOSA}" -gt 0 ] && echo "      \u001b[1m    רֹוא יִהְי \u001b[0m" # 'LET THERE BE LIGHT ...'
+    # https://en.wikipedia.org/wiki/Let_there_be_light
+    # 'LET THERE BE LIGHT ...'
+    [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_LBULB_ON}> LET THERE BE LIGHT ... ${END_SOURCING}"
 
     local S1="${CUSTOM_ZSH}/MAIN.zsh"
     . "${S1}"
