@@ -60,5 +60,6 @@ function lux_principium() {
     local S1="${CUSTOM_ZSH}/MAIN.zsh"
     . "${S1}"
     source_all
+    source_ "${TMUX_FUNCTIONS_INDEX}"
 
 }
