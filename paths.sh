@@ -48,6 +48,8 @@ init_projects_paths() {
 
 init_paths() {
     if [ "$PARENT_ENV_LOADED" != 'true' ]; then
+        export CACHE_FOLDER="${HOME}/.cache/p10k-${USER}"
+        mkdir -p CACHE_FOLDER
         export AHMYZSH="${HOME}/ahmyzsh"
         export NODE_REPL="${AHMYZSH}/node-repl"
         export POWERLEVEL10K="${AHMYZSH}/powerlevel10k"
