@@ -1,0 +1,11 @@
+{
+  "name": "ahmyzsh",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Luxcium/ahmyzsh.git",
+  "author": "Benjamin Vincent <luxcium@neb401.com>",
+  "license": "MIT",
+  "dependencies": {
+    "shelljs": "^0.8.3"
+  }
+}
