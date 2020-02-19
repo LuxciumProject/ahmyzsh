@@ -1,7 +1,14 @@
-echo "${BEGIN_SOURCING:=\u001b[0m\u001b[34m #} ${0} ZSHENV ${END_SOURCING:=\u001b[31;1m}"
-#$ Verry first entry point !!!
-#$ Interactive,Script,login,non-login
+export TIMER_ALL_THEN=$(/usr/local/bin/gdate +%s%N)
+#$ Verry first entry point
+## load_path
+. $HOME/.cache/path.env
+local TIMER_NOW=$(/usr/local/bin/gdate +%s%N)
+local TIMER_VALUE=$(((${TIMER_NOW} - ${TIMER_ALL_THEN}) / 1000000))
+echo "\u001b[1m      רֹוא יִהְי \u001b[0m"
+echo " ${TIMER_VALUE}   ms   to   'PATH'"
 
 export AHMYZSH="${HOME}/ahmyzsh"
-. "${AHMYZSH}/LOAD_ENV.zsh"
-init_all
+. "${AHMYZSH}/initial_load.zsh"
+
+# 'LET THERE BE LIGHT "יְהִי אוֹר" ... '
+lux_principium

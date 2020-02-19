@@ -25,10 +25,10 @@ function lux_principium() {
     # reversed יְהִי אוֹר due to lack of support in my terminal
     # [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_HOURGLASS_END_0} load_zshenv in $(timer_all) ms !${END_FUNCTION}"
     #
-    [ "${VERBOSA}" -gt 0 ] && echo "      \u001b[1m    רֹוא יִהְי \u001b[0m" # 'LET THERE BE LIGHT ...'
+    # [ "${VERBOSA}" -gt 0 ] && echo "      \u001b[1m    רֹוא יִהְי \u001b[0m" # 'LET THERE BE LIGHT ...'
     # https://en.wikipedia.org/wiki/Let_there_be_light
     # 'LET THERE BE LIGHT ...'
-    [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_LBULB_ON}> $(timer_all) LET THERE BE LIGHT ... ${END_SOURCING}"
+    [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_LBULB_ON}> $(timer_all) 'LET THERE BE LIGHT' ... ${END_SOURCING}"
 
     local S1="${CUSTOM_ZSH}/MAIN.zsh"
     . "${S1}"

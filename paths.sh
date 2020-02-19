@@ -20,7 +20,12 @@
 ##           in all copies or substantial portions of the Software.           ##
 ##                                                                            ##
 ################################################################################
+personal_projects_paths() {
+    export LXIO="${HOME}/Developer/LuxciumProject/luxcium.io"
+}
 init_projects_paths() {
+
+    personal_projects_paths
 
     export AHMYZSH=${AHMYZSH}
 
@@ -49,7 +54,6 @@ init_projects_paths() {
 init_paths() {
     if [ "$PARENT_ENV_LOADED" != 'true' ]; then
         export CACHE_FOLDER="${HOME}/.cache/p10k-${USER}"
-        mkdir -p CACHE_FOLDER
         export AHMYZSH="${HOME}/ahmyzsh"
         export NODE_REPL="${AHMYZSH}/node-repl"
         export POWERLEVEL10K="${AHMYZSH}/powerlevel10k"
@@ -121,6 +125,26 @@ load_my_envs() {
                 # } #* FPATH +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
             }
+        }
+
+        ## fnm
+        export FNM_ALIASES="${HOME}/.fnm/aliases"
+        {
+            export NODEDEFAULT="${FNM_ALIASES}/default/bin"
+            export NODELATEST="${FNM_ALIASES}/latest/bin"
+            export NODELATEST_ARGON="${FNM_ALIASES}/latest-argon/bin"
+            export NODELATEST_BORON="${FNM_ALIASES}/latest-boron/bin"
+            export NODELATEST_CARBON="${FNM_ALIASES}/latest-carbon/bin"
+            export NODELATEST_DUBNIUM="${FNM_ALIASES}/latest-dubnium/bin"
+            export NODELATEST_ERBIUM="${FNM_ALIASES}/latest-erbium/bin"
+
+            alias node-default="${NODEDEFAULT}/node"
+            alias node-latest="${NODELATEST}/node"
+            alias node-argon="${NODELATEST_ARGON}/node"
+            alias node-boron="${NODELATEST_BORON}/node"
+            alias node-carbon="${NODELATEST_CARBON}/node"
+            alias node-dubnium="${NODELATEST_DUBNIUM}/node"
+            alias node-erbium="${NODELATEST_ERBIUM}/node"
         }
 
         export POWERLINE_BINDINGS="${POWERLINE}/powerline/bindings"
