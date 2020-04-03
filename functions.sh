@@ -29,7 +29,7 @@ function init_functions() {
     function timer_() {
         # local TIMER_NOW=$(/usr/local/bin/gdate +%s%N)
         local TIMER_NOW=$(date +%s%N)
-        # local TIMER_VALUE=$((((${TIMER_NOW} - ${1})) / 1000000))
+        local TIMER_VALUE=$((((${TIMER_NOW} - ${1})) / 1000000))
         if [ ${#TIMER_VALUE} = 0 ]; then
             local spacing_="    "
         elif [ ${#TIMER_VALUE} = 1 ]; then
