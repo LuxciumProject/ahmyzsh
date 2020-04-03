@@ -4,12 +4,13 @@ function my_envs() {
     : ${SHOW_LOAD_CUTLS:="true"}
     : ${VERBOSA:=1}
     : ${EDITOR:='code'}
+    : ${AHMYZSH:="$HOME/ahmyzsh"}
 
     local S1="${AHMYZSH}/paths.sh"
     . "${S1}"
     init_paths
 
-    export BASE_LAYOUTS="${ZSH_SOURCES}/layouts/base-layouts.sh"
+    export BASE_LAYOUTS="${ZSH_SOURCES}/Layouts/base-layouts.sh"
     . ${BASE_LAYOUTS}
     load_layouts
 
