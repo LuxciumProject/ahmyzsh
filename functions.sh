@@ -1,7 +1,8 @@
 function init_functions() {
     function call_() {
         if [ -z $1 ]; then; else
-            TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
+            # TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
+            TIMER_THEN=$(date +%s%N)
             eval ${1}
             [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_FUNCTION} $(timer_now) '${1}()' ${END_FUNCTION}"
         fi
@@ -9,7 +10,8 @@ function init_functions() {
 
     function source_() {
         if [ -z $1 ]; then; else
-            TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
+            # TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
+            TIMER_THEN=$(date +%s%N)
             . "${1}"
             [ "${VERBOSA}" -gt 2 ] && echo "${BEGIN_SOURCING} $(timer_now) ${1} ${END_SOURCING}"
         fi
@@ -25,8 +27,9 @@ function init_functions() {
     }
 
     function timer_() {
-        local TIMER_NOW=$(/usr/local/bin/gdate +%s%N)
-        local TIMER_VALUE=$(((${TIMER_NOW} - ${1}) / 1000000))
+        # local TIMER_NOW=$(/usr/local/bin/gdate +%s%N)
+        local TIMER_NOW=$(date +%s%N)
+        local TIMER_VALUE=$((((${TIMER_NOW} - ${1})) / 1000000))
         if [ ${#TIMER_VALUE} = 0 ]; then
             local spacing_="    "
         elif [ ${#TIMER_VALUE} = 1 ]; then

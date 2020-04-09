@@ -65,7 +65,7 @@ init_paths() {
                 export ZSH_COMPLETION="${ZSH_SOURCES}/completion"
                 export ZSH_COMPUTE="${ZSH_SOURCES}/compute"
                 export ZSH_FLAGS="${ZSH_SOURCES}/flags"
-                export ZSH_LAYOUTS="${ZSH_SOURCES}/layouts"
+                export ZSH_LAYOUTS="${ZSH_SOURCES}/Layouts"
             }
 
             export ZSH_BIN="${CUSTOM_ZSH}/bin"
@@ -111,7 +111,7 @@ load_my_envs() {
                 export ZSH_COMPLETION="${ZSH_SOURCES}/completion"
                 export ZSH_COMPUTE="${ZSH_SOURCES}/compute"
                 export ZSH_FLAGS="${ZSH_SOURCES}/flags"
-                export ZSH_LAYOUTS="${ZSH_SOURCES}/layouts"
+                export ZSH_LAYOUTS="${ZSH_SOURCES}/Layouts"
 
                 # { #* FPATH +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
                 #     local _FPATH="${CUSTOM_ZSH}"
