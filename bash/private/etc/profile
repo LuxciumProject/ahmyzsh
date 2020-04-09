@@ -1,0 +1,24 @@
+echo "\u001b[35m# LOADING... (*   SYSTEM (bash) profile)"
+source /Users/neb_401/.oh-my-zsh/custom/luxcium/bin/all.profile.sh
+source "${BASH_BIN}/profile.sh"
+
+# System-wide .profile for sh(1)
+if [ -x /usr/libexec/path_helper ]; then
+	eval `/usr/libexec/path_helper -s`
+fi
+
+if [ "${BASH-no}" != "no" ]; then
+	[ -r /etc/bashrc ] && . /etc/bashrc
+fi
+
+
+# /etc/profile
+#        The systemwide initialization file, executed for login shells
+# ~/.bash_profile
+#        The personal initialization file, executed for login shells
+# ~/.bashrc
+#        The individual per-interactive-shell startup file
+# ~/.bash_logout
+#        The individual login shell cleanup file, executed when a login shell exits
+# ~/.inputrc
+#        Individual readline initialization file
