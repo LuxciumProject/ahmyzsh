@@ -1,8 +1,8 @@
+LANG="fr_CA.UTF-8"
+LANGUAGE="fr_CA.UTßF-8"
 function my_envs() {
     __LOCALE__
     # This variable determines the locale category for any category not specifically selected via a variable starting # with ‘LC_’.
-    LANG="fr_CA.UTF-8"
-
     : ${ENV_LOADED:="false"}
     : ${SHOW_LOAD_CUTLS:="true"}
     : ${VERBOSA:=1}
@@ -59,4 +59,7 @@ function __LOCALE__() {
 
     # This variable determines the locale category for date and time formatting in prompt escape sequences.
     LC_TIME="fr_CA.UTF-8"
+
+    LC_MONETARY="fr_CA.UTF-8"
+
 }
