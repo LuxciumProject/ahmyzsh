@@ -1,25 +1,4 @@
 function init_functions() {
-    function call_() {
-        if [ -z $1 ]; then; else
-            TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
-            eval ${1}
-            [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_FUNCTION} $(timer_now) '${1}()' ${END_FUNCTION}"
-        fi
-    }
-
-    function source_() {
-        if [ -z $1 ]; then; else
-            TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
-            . "${1}"
-            [ "${VERBOSA}" -gt 2 ] && echo "${BEGIN_SOURCING} $(timer_now) ${1} ${END_SOURCING}"
-        fi
-    }
-
-    function load_() {
-        source_ "${1}"
-        call_ ${2}
-    }
-
     function add_to_path_() {
         [ -z $1 ] || export PATH="${1}:${PATH}"
     }
@@ -56,5 +35,33 @@ function init_functions() {
         timer_ "${TIMER_ALL_THEN}"
         # echo -n "${TIMER_VALUE} "
         # return 0
+    }
+
+    function call_() {
+        if [ -z $1 ]; then
+            return 1
+        else
+            TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
+            eval ${1}
+            [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_FUNCTION} $(timer_now) '${1}()' ${END_FUNCTION}"
+            return 0
+        fi
+    }
+
+    function source_() {
+        if [ -z $1 ]; then
+            return 1
+            [ "${VERBOSA}" -gt 3 ] && echo "Error sourcing"
+        else
+            TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
+            . "${1}"
+            [ "${VERBOSA}" -gt 2 ] && echo "${BEGIN_SOURCING} $(timer_now) ${1} ${END_SOURCING}"
+            return 0
+        fi
+    }
+
+    function load_() {
+        source_ "${1}" &&
+            call_ ${2}
     }
 }
