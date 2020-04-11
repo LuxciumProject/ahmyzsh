@@ -8,7 +8,7 @@ function load_envs() {
 
     : ${ENV_LOADED:="false"}
     : ${SHOW_LOAD_CUTLS:="true"}
-    : ${VERBOSA:=0}
+    : ${VERBOSA:=5}
 
 }
 
@@ -25,9 +25,11 @@ function __loader__() {
     # Loading the basic env variable to load and process the bootstraping
     load_envs
     # Other envs will be laoded later in the process
+
     local S1="${AHMYZSH}/paths.sh"
     if [ -f "$S1" ]; then
         . "${S1}"
+        personal_projects_paths
         init_paths
     else
         [ "${VERBOSA}" -gt 3 ] && echo "Can not load 'init_paths' from '${S1}' please verify path or file"
@@ -49,6 +51,7 @@ function __loader__() {
         [ "${VERBOSA}" -gt 3 ] && echo "Can not load 'init_functions' from '${S1}' please verify path or file"
     fi
 
+    call_ init_projects_paths
     call_ my_envs
 
     local S1="${CUSTOM_ZSH}/MAIN.zsh"

@@ -88,45 +88,7 @@
 
 init_paths() {
     if [ "$PARENT_ENV_LOADED" != 'true' ]; then
-        export CACHE_FOLDER="${HOME}/.cache/p10k-${USER}"
-        export AHMYZSH="${HOME}/ahmyzsh"
-        export NODE_REPL="${AHMYZSH}/node-repl"
-        export POWERLEVEL10K="${AHMYZSH}/powerlevel10k"
-        export PYTHON_REPL="${AHMYZSH}/python-repl"
-        export CUSTOM_ZSH="${AHMYZSH}/custom-zsh"
-        {
-            export ZSH_SOURCES="${CUSTOM_ZSH}/sources"
-            {
-                export ZSH_COMPLETION="${ZSH_SOURCES}/completion"
-                export ZSH_COMPUTE="${ZSH_SOURCES}/compute"
-                export ZSH_FLAGS="${ZSH_SOURCES}/flags"
-                export ZSH_LAYOUTS="${ZSH_SOURCES}/layouts"
-            }
 
-            export ZSH_BIN="${CUSTOM_ZSH}/bin"
-            {
-                export ZSH_BIN_ETC="${ZSH_BIN}/etc"
-            }
-        }
-        export OHMYZSH="${AHMYZSH}/ohmyzsh"
-        {
-            export ZSH="${OHMYZSH}"
-        }
-        export CUSTOM_TMUX="${AHMYZSH}/custom-tmux"
-        {
-            export TMUX_BIN="${CUSTOM_TMUX}/bin"
-            export TMUX_LOADER="${TMUX_BIN}/tmux-loader.sh"
-            export TMUX_CONFIGS="${CUSTOM_TMUX}/configs"
-            export TMUX_COMMON_CONF="${TMUX_CONFIGS}/common.tmux.config"
-            export TMUX_COMMON_THEME="${TMUX_CONFIGS}/theme.tmux.config"
-        }
-        export POWERLINE="${AHMYZSH}/powerline"
-        {
-            export POWERLINE_BINDINGS="${POWERLINE}/powerline/bindings"
-            {
-                export PWRLN_TMUX_CONF="${POWERLINE_BINDINGS}/tmux/powerline.conf"
-            }
-        }
     fi
 
     # load_my_envs

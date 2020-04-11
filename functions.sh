@@ -51,7 +51,7 @@ function init_functions() {
     function source_() {
         if [ -z $1 ]; then
             return 1
-            [ "${VERBOSA}" -gt 3 ] && echo "Error sourcing"
+            [ "${VERBOSA}" -gt 3 ] && echo "Error sourcing $1"
         else
             TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
             . "${1}"
