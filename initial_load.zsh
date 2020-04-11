@@ -8,7 +8,7 @@ function load_envs() {
 
     : ${ENV_LOADED:="false"}
     : ${SHOW_LOAD_CUTLS:="true"}
-    : ${VERBOSA:=5}
+    : ${VERBOSA:=0}
 
 }
 

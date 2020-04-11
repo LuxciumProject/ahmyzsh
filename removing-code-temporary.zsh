@@ -85,23 +85,3 @@
 # }
 
 # !! ~/ahmyzsh/path.sh
-
-init_paths() {
-    if [ "$PARENT_ENV_LOADED" != 'true' ]; then
-
-    fi
-
-    # load_my_envs
-    # init_projects_paths
-}
-
-# { #* FPATH +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-#     local _FPATH="${CUSTOM_ZSH}"
-#     local _FPATH="${_FPATH}:${ZSH_SOURCES}"
-#     local _FPATH="${_FPATH}:${ZSH_COMPLETION}"
-#     local _FPATH="${_FPATH}:${ZSH_COMPUTE}"
-#     local _FPATH="${_FPATH}:${ZSH_FLAGS}"
-#     local _FPATH="${_FPATH}:${ZSH_LAYOUTS}"
-
-#     export fpath="${_FPATH}:${fpath}"
-# } #* FPATH +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
