@@ -1,0 +1,19 @@
+((cd /Users/neb_401/ahmyzsh/powerline/ ; git checkout master; git pull --all; git merge luxcium --ff-only; push; git checkout luxcium;)&
+(cd /Users/neb_401/ahmyzsh/powerlevel10k/ ; git checkout master; git pull --all; git merge luxcium --ff-only; push; git checkout luxcium;)&
+(cd /Users/neb_401/ahmyzsh/ohmyzsh/ ; git checkout master; git pull --all; git merge luxcium --ff-only; push; git checkout luxcium;)&
+(cd /Users/neb_401/ahmyzsh/custom-zsh/ ; git checkout master; git pull --all; git merge luxcium --ff-only; push; git checkout luxcium;)&
+(cd /Users/neb_401/ahmyzsh/custom-tmux/ ; git checkout master; git pull --all; git merge luxcium --ff-only; push; git checkout luxcium;)&
+(cd /Users/neb_401/ahmyzsh/python-repl/ ; git checkout master; git pull --all; git merge luxcium --ff-only; push; git checkout luxcium;)&
+(cd /Users/neb_401/ahmyzsh/node-repl/ ; git checkout master; git pull --all; git merge luxcium --ff-only; push; git checkout luxcium;)&
+(cd /Users/neb_401/ahmyzsh/nerd-fonts/ ; git checkout master; git pull --all; git merge luxcium --ff-only; push; git checkout luxcium;)&)
+# (cd /Users/neb_401/ahmyzsh/ ; git checkout master; git pull --all; git merge luxcium --ff-only; push; git checkout luxcium;)&
+
+((cd /Users/neb_401/ahmyzsh/powerline/ ; git checkout pc-master-race; git pull --all; push; git checkout luxcium;)&
+(cd /Users/neb_401/ahmyzsh/powerlevel10k/ ; git checkout pc-master-race; git pull --all; push; git checkout luxcium;)&
+(cd /Users/neb_401/ahmyzsh/ohmyzsh/ ; git checkout pc-master-race; git pull --all; push; git checkout luxcium;)&
+(cd /Users/neb_401/ahmyzsh/custom-zsh/ ; git checkout pc-master-race; git pull --all; push; git checkout luxcium;)&
+(cd /Users/neb_401/ahmyzsh/custom-tmux/ ; git checkout pc-master-race; git pull --all; push; git checkout luxcium;)&
+(cd /Users/neb_401/ahmyzsh/python-repl/ ; git checkout pc-master-race; git pull --all; push; git checkout luxcium;)&
+(cd /Users/neb_401/ahmyzsh/node-repl/ ; git checkout pc-master-race; git pull --all; push; git checkout luxcium;)&
+(cd /Users/neb_401/ahmyzsh/nerd-fonts/ ; git checkout pc-master-race; git pull --all; push; git checkout luxcium;)&)
+# (cd /Users/neb_401/ahmyzsh/ ; git checkout pc-master-race; git pull --all; push; git checkout luxcium;)&

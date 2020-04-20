@@ -20,5 +20,5 @@ url = https://github.com/Luxcium/python-repl.git
 path = node-repl
 url = https://github.com/Luxcium/node-repl.git
 [submodule "nerd-fonts"]
-	path = nerd-fonts
-	url = https://github.com/ryanoasis/nerd-fonts.git
+path = nerd-fonts
+url = https://github.com/Luxcium/nerd-fonts.git

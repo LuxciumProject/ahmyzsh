@@ -1,0 +1,37 @@
+sorce : https://unix.stackexchange.com/questions/105568/how-can-i-list-the-available-color-names
+
+I'm trying to add some color to my git configuration and I want to know what color names are available on the terminal.
+
+I only want to use colors by name so it's easier for others to understand
+I don't want to add any new colors - I just want to select from the predefined names
+I would like a solution that works for all distros, but primarily Debian
+It would be nice to see the color that the name indicates
+Many online references (http://www.graphviz.org/doc/info/colors.html) often talk about color names that are not defined on my system, so I just need a way to see what my default options are.
+
+
+=======
+
+Many online references often talk about color names that are not defined on my system
+Those probably are defined, but they are X11 colors; once upon a time you could find them in /lib[64]/X11/rgb.txt. In any case, this is a mapping of strings (e.g., dimgray) to 24-bit RGB colors (e.g. 0xff8800 or #ff8800, which would be orange). A 24-bit space is ~16 million colors, obviously X11 does not give them all names (CSS 3 uses X11 names, BTW).
+
+The 24-bit space is used by your GUI; transparency is implemented by increasing this to a 32-bit space. However, git isn't a GUI (G = graphical) tool, it's a TUI (T = terminal) tool, and it is limited to the colors available on a normal terminal.
+
+I would like a solution that works for all distros, but primarily Debian
+If you want this to be properly portable, you should rely only on the eight standard ANSI colors:
+
+black
+blue
+green
+yellow
+cyan
+white
+magenta
+red
+A little disappointing next to the X11 list, but better than nothing at all! These also have a "bold" or "bright" version that is standard, making 16 colors, which you may be able to specify as, e.g., "brightyellow" (or conversely, "darkyellow").
+
+Most GUI terminals1 have 256 color support and some terminal apps can exploit this. To test, you first need to set the $TERM variable appropriately:
+
+export $TERM=xterm-256color
+Your terminal emulator may also have a configuration option for this. Colors under the xterm 256 color protocol are indexed:
+
+https://en.wikipedia.org/wiki/Xterm#Protocols

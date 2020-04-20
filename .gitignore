@@ -3,3 +3,4 @@
 !*.t*
 *.zwc
 *.ZWC
+node_modules
