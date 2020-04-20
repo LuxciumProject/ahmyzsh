@@ -44,6 +44,7 @@ function init_paths() {
                     export PATH_ZSH_FUNCTIONS="${ZSH_LUXCIUM}"
                     export ZSH_FLAGS_VALUES="${ZSH_LUXCIUM}/flags/values"
                 }
+
             }
         }
         export NODE_REPL="${AHMYZSH}/node-repl"
