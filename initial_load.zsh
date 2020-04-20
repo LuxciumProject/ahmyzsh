@@ -7,6 +7,7 @@ function load_envs() {
     export LANG
 
     : ${VERBOSA:=0}
+
     : ${ENV_LOADED:="false"}
     : ${ZLE_RPROMPT_INDENT=0}
     : ${SHOW_LOAD_CUTLS:="true"}
@@ -27,6 +28,7 @@ function __loader__() {
     load_envs
     # Other envs will be laoded later in the process
 
+
     local S1="${AHMYZSH}/paths.sh"
     if [ -f "$S1" ]; then
         . "${S1}"
@@ -43,6 +45,7 @@ function __loader__() {
     else
         [ "${VERBOSA}" -gt 3 ] && echo "Can not load 'load_layouts' from '${S1}' please verify path or file"
     fi
+
 
     local S1="${AHMYZSH}/functions.sh"
     if [ -f "$S1" ]; then
@@ -126,7 +129,32 @@ function my_envs() {
     export GITHUB_PASSWORD="${GITHUB_TOKEN}"
     export GITHUB_USER='Luxcium'
 
+
     export LOCALPORT=80
     export PORT=80
     export SERVER='dev-server'
+}
+
+function __LOCALE__() {
+
+    # This variable overrides the value of the ‘LANG’ variable and the value of any of the other variables starting with # ‘LC_’.
+    # LC_ALL="fr_CA.UTF-8"
+
+    # This variable determines the locale category for character collation information within ranges in glob brackets and # for sorting.
+    LC_COLLATE="fr_CA.UTF-8"
+
+    # This variable determines the locale category for character handling functions. If the MULTIBYTE option is in effect # this variable or LANG should contain a value that reflects the character set in use, even if it is a single-byte # character set, unless only the 7-bit subset (ASCII) is used. For example, if the character set is ISO-8859-1, a # suitable value might be en_US.iso88591 (certain Linux distributions) or en_US.ISO8859-1 (MacOS).
+    LC_CTYPE="fr_CA.UTF-8"
+
+    # This variable determines the language in which messages should be written. Note that zsh does not use message # catalogs.
+    LC_MESSAGES="fr_CA.UTF-8"
+
+    # This variable affects the decimal point character and thousands separator character for the formatted input/output # functions and string conversion functions. Note that zsh ignores this setting when parsing floating point # mathematical expressions.
+    LC_NUMERIC="fr_CA.UTF-8"
+
+    # This variable determines the locale category for date and time formatting in prompt escape sequences.
+    LC_TIME="fr_CA.UTF-8"
+
+    LC_MONETARY="fr_CA.UTF-8"
+
 }
