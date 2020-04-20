@@ -8,7 +8,7 @@ function load_envs() {
 
     : ${VERBOSA:=0}
     : ${ENV_LOADED:="false"}
-    : ${ZLE_RPROMPT_INDENT:=0}
+    : ${ZLE_RPROMPT_INDENT=0}
     : ${SHOW_LOAD_CUTLS:="true"}
 
 }
