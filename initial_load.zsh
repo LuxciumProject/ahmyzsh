@@ -6,9 +6,10 @@ function load_envs() {
     : ${LANG:="fr_CA.UTF-8"}
     export LANG
 
-    : ${ENV_LOADED:="false"}
-    : ${SHOW_LOAD_CUTLS:="true"}
     : ${VERBOSA:=0}
+    : ${ENV_LOADED:="false"}
+    : ${ZLE_RPROMPT_INDENT:=0}
+    : ${SHOW_LOAD_CUTLS:="true"}
 
 }
 
