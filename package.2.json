@@ -12,8 +12,7 @@
     "typescript": "^3.8.3"
   },
   "devDependencies": {
-    "@types/n
-    ode": "^12.12.31",
+    "@types/node": "^12.12.31",
     "@typescript-eslint/eslint-plugin": "^2.24.0",
     "@typescript-eslint/parser": "2.25.0",
     "eslint": "^6.8.0",
