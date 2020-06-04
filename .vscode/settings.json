@@ -72,4 +72,5 @@
         "color": "#4AEC"
     }
 ],
+    "git.ignoreLimitWarning": true
 }
