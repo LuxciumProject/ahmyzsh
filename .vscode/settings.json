@@ -1,0 +1,75 @@
+{
+    "editor.fontSize": 14,
+/*
+        "#F15F",
+        "#FB3F",
+        "#4AEF",
+        "#BD2F",
+        */
+"editor.rulers": [
+    {
+        "column": 4,
+        "color": "#F158"
+    },
+    {
+        "column": 80,
+        "color": "#FA0E"
+    },
+    {
+        "column": 81,
+        "color": "#F15F"
+    },
+    {
+        "column": 84,
+        "color": "#F154"
+    },
+    {
+        "column": 88,
+        "color": "#FA06"
+    },
+    {
+        "column": 93,
+        "color": "#F158"
+    },
+    {
+        "column": 120,
+        "color": "#F15F"
+    },
+    {
+        "column": 121,
+        "color": "#FA0E"
+    },
+    {
+        "column": 122,
+        "color": "#FD3E"
+    },
+    {
+        "column": 123,
+        "color": "#BD2F"
+    },
+    {
+        "column": 124,
+        "color": "#4AEF"
+    },
+    {
+        "column": 125,
+        "color": "#A2EF"
+    },
+    {
+        "column": 128,
+        "color": "#4AE3"
+    },
+    {
+        "column": 131,
+        "color": "#4AE6"
+    },
+    {
+        "column": 134,
+        "color": "#4AE9"
+    },
+    {
+        "column": 138,
+        "color": "#4AEC"
+    }
+],
+}
