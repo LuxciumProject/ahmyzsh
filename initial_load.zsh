@@ -2,7 +2,7 @@
 
 function load_envs() {
     # Set log level here
-    : ${VERBOSA:=0}
+    : ${VERBOSA:=10}
     export VERBOSA
 
     # Set you locale here
