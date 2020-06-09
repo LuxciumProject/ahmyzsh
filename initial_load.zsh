@@ -15,11 +15,12 @@ function load_envs() {
 }
 
 function __loader__() {
+    export VERBOSA=10
     local PATH_FILE="${HOME}/.cache/path.env"
     if [ -f "$PATH_FILE" ]; then
         . $HOME/.cache/path.env
         # local TIMER_NOW=$(/bin/date +%s%N)
-        local TIMER_NOW=$(/usr/local/bin/gdate +%s%N)
+        local TIMER_NOW=$(/usr/bin/date +%s%N)
         local TIMER_VALUE=$(((${TIMER_NOW} - ${TIMER_ALL_THEN}) / 1000000))
         echo " ${TIMER_VALUE}   ms   to   'PATH'"
     fi
@@ -43,6 +44,8 @@ function __loader__() {
         . ${S1}
         load_layouts
     else
+    #  '/home/luxcium/ahmyzsh/custom-zsh/sources/layouts/base-layouts.sh' 
+    #  '/home/luxcium/ahmyzsh/custom-zsh/sources/Layouts/base-layouts.sh'
         [ "${VERBOSA}" -gt 3 ] && echo "Can not load 'load_layouts' from '${S1}' please verify path or file"
     fi
 

@@ -2,14 +2,14 @@
 
 # !! ~/ahmyzsh/initial_load.zsh
 # ¬ !! /etc/zshenv
-# export TIMER_ALL_THEN2=$(/usr/local/bin/gdate +%s%N)
+# export TIMER_ALL_THEN2=$(/usr/bin/date +%s%N)
 
 #export AHMYZSH="${HOME}/ahmyzsh"
 #. "${AHMYZSH}/initial_load.zsh"
 #__loader__
 
 # function __loader__() {
-#     export TIMER_ALL_THEN=$(/usr/local/bin/gdate +%s%N)
+#     export TIMER_ALL_THEN=$(/usr/bin/date +%s%N)
 
 #     # must put this code in /etc/zshenv
 #     # then call the __loader__ function
@@ -24,7 +24,7 @@
 #     local PATH_FILE="${HOME}/.cache/path.env"
 #     if [ -f "$PATH_FILE" ]; then
 #         . $HOME/.cache/path.env
-#         local TIMER_NOW=$(/usr/local/bin/gdate +%s%N)
+#         local TIMER_NOW=$(/usr/bin/date +%s%N)
 #         local TIMER_VALUE=$(((${TIMER_NOW} - ${TIMER_ALL_THEN}) / 1000000))
 #         echo " ${TIMER_VALUE}   ms   to   'PATH'"
 #     fi
@@ -54,11 +54,11 @@
 #     : ${VERBOSA:=1}
 #     : ${EDITOR:='code'}
 
-#     # local TIMER_NOW4=$(/usr/local/bin/gdate +%s%N)
+#     # local TIMER_NOW4=$(/usr/bin/date +%s%N)
 #     # local TIMER_VALUE2=$(((${TIMER_NOW4} - ${TIMER_ALL_THEN2}) / 1000000))
 #     # echo " ${TIMER_VALUE2}   ms   prior to load'init_paths'"
 
-#     local TIMER_NOW3=$(/usr/local/bin/gdate +%s%N)
+#     local TIMER_NOW3=$(/usr/bin/date +%s%N)
 #     # local TIMER_VALUE2=$(((${TIMER_NOW3} - ${TIMER_NOW4}) / 1000000))
 #     # echo " ${TIMER_VALUE2}   ms   after to load'init_paths'"
 #     local TIMER_VALUE2=$(((${TIMER_NOW3} - ${TIMER_ALL_THEN2}) / 1000000))
@@ -71,7 +71,7 @@
 #     my_envs
 
 #     [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_LBULB_ON}> $(timer_all) 'LET THERE BE LIGHT' ... ${END_SOURCING}"
-#     local TIMER_NOW2=$(/usr/local/bin/gdate +%s%N)
+#     local TIMER_NOW2=$(/usr/bin/date +%s%N)
 #     local TIMER_VALUE2=$(((${TIMER_NOW2} - ${TIMER_ALL_THEN2}) / 1000000))
 #     echo " ${TIMER_VALUE2}   ms   prior to 'source_all'"
 #     local S1="${CUSTOM_ZSH}/MAIN.zsh"

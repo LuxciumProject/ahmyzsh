@@ -4,7 +4,7 @@ function init_functions() {
     }
 
     function timer_() {
-        # local TIMER_NOW=$(/usr/local/bin/gdate +%s%N)
+        # local TIMER_NOW=$(/usr/bin/date +%s%N)
         local TIMER_NOW=$(date +%s%N)
         local TIMER_VALUE=$((((${TIMER_NOW} - ${1})) / 1000000))
         if [ ${#TIMER_VALUE} = 0 ]; then
@@ -23,7 +23,7 @@ function init_functions() {
     }
 
     function timer_now() {
-        # local TIMER_NOW=$(/usr/local/bin/gdate +%s%N)
+        # local TIMER_NOW=$(/usr/bin/date +%s%N)
         # local TIMER_VALUE=$(((${TIMER_NOW} - ${TIMER_THEN}) / 1000000))
         timer_ "${TIMER_THEN}"
         # echo -n "${TIMER_VALUE} "
@@ -31,7 +31,7 @@ function init_functions() {
     }
 
     function timer_all() {
-        # local TIMER_NOW=$(/usr/local/bin/gdate +%s%N)
+        # local TIMER_NOW=$(/usr/bin/date +%s%N)
         # local TIMER_VALUE=$(((${TIMER_NOW} - ${TIMER_ALL_THEN}) / 1000000))
         timer_ "${TIMER_ALL_THEN}"
         # echo -n "${TIMER_VALUE} "
@@ -42,7 +42,7 @@ function init_functions() {
         if [ -z $1 ]; then
             return 1
         else
-            TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
+            TIMER_THEN=$(/usr/bin/date +%s%N)
             eval ${1}
             [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_FUNCTION} $(timer_now) '${1}()' ${END_FUNCTION}"
             return 0
@@ -54,7 +54,7 @@ function init_functions() {
             return 1
             [ "${VERBOSA}" -gt 3 ] && echo "Error sourcing $1"
         else
-            TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
+            TIMER_THEN=$(/usr/bin/date +%s%N)
             . "${1}"
             [ "${VERBOSA}" -gt 2 ] && echo "${BEGIN_SOURCING} $(timer_now) ${1} ${END_SOURCING}"
             return 0
