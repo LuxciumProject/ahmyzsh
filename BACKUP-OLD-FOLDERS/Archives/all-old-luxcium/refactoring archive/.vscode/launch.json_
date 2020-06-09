@@ -1,0 +1,44 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Server",
+      "cwd": "${workspaceRoot}",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "debug"],
+      "timeout": 1000000000,
+      "console": "integratedTerminal",
+      "port": 5858
+    },
+
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome",
+      "url": "http://localhost:5050",
+      "webRoot": "${workspaceFolder}",
+      "port": 9229
+    },
+    {
+      "type": "devtools-for-chrome",
+      "request": "launch",
+      "name": "Launch DevTools",
+      "file": "${workspaceFolder}/index.html"
+    },
+    {
+      "type": "devtools-for-chrome",
+      "request": "attach",
+      "name": "Attach DevTools",
+      "url": "ws://localhost:9222/"
+    }
+  ],
+
+  "compounds": [
+    {
+      "name": "Debug",
+      "configurations": ["Launch Server", "Launch Chrome", "Attach DevTools"]
+    }
+  ]
+}

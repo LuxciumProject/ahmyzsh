@@ -1,0 +1,15 @@
+#!/usr/local/bin/zsh
+
+tmux new -s questrade -d
+tmux rename-window -t questrade code
+tmux send-keys -t questrade 'code' C-m
+
+tmux new-window -t questrade
+tmux rename-window -t questrade server
+# tmux send-keys -t questrade './bin/rails s' C-m
+tmux split-window -v -t questrade
+# tmux send-keys -t questrade './bin/sidekiq' C-m
+tmux select-window -t questrade:1
+tmux attach -t questrade
+tmux source "$PATH_TMUX_CONFIG"/common.tmux.conf
+tmux source "$PATH_TMUX_CONFIG"/theme.tmux.conf

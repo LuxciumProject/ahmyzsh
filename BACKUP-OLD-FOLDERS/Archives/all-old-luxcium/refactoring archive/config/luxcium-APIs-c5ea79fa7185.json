@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "luxcium-apis-1541665671533",
+  "private_key_id": "c5ea79fa7185a40cd16b6f76337f402d2084d349",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEuwIBADANBgkqhkiG9w0BAQEFAASCBKUwggShAgEAAoIBAQCmrlQ6P49BjqPL\nD/yQrg4x0aNmZ/D3EH5szPzuuVSZ3dK6GNfSYXtm3LWmSWvmybLvn1DLQsgROMrW\n+EzDd+z/zhduW1i/kYw0cVLWyKUrXp4utZHb1VS0TWRf8tavVSl1VbmlFPfVo8dn\nTuH8ObF4Eomp36asQ9/YDKTRJGRqLK9sozRK87DOPW21sBoYjrzkxZZgYTlXRy4B\npswa86PrjKsBshqkbYLhOXHxt1xKeC7UeyC0YpNXXHSQS12gBM60gNo8rIEd0ncq\n05kE8AXs0BtAbF9U1SvNu30H9Bpy+lS6NuWdw2lrOcow5eElSTPipzU1qpx52rcp\nleU7jq6lAgMBAAECgf8JzsRXS744+QPmGTtDaymEryjLsIHUnXrs9AGb+OapZ2zL\n0Y6g63mYtOdWuH0kxMIKOL18iqv7PKoVKmuU99Yg/6Vhjyk8mJWuZ0Q4hPhA1Fu2\nPNtRCOPliwzakncxu2gBbXSAQ7fV7Rp9SkZ+e+RUAxjQyQ3eV15l57XlisLIcbna\nUXm78gxaIcfXGbdeYhemGwQl/r+2u2pSrPoyUULXfiFCzkOidCyCyRj49dRWhJ6Z\nhoPrrD3hi07i/A0+snlFBPke0lG8PpdhlEwLw8+UZg9jPB5hUcKA8bu66piHyayr\npsRdvkwggZWsa1N0SuH2y1mt6MGxYJbDMJL85WkCgYEA0sAk9JcsxsjA86MGy6M1\nnbfou1OL1bz0euDTrQ21XpsW1gp7iY6cAzyXn60yOyuZNiVgbXblIdkmnN8yzP6x\nG0WDOzGw323ieHmNB6+/h1VhhKZ+NGAjLGaTE66F2VAOyfd5kcpY0cDvZqYF130S\njbDW6wY7EUQEmBA8Xzr7F2cCgYEAynfo65UMblmsSrwFXj3VRe+4gGHQX4M230NC\nwTf+wgLC0F06cz3pnocrjJ6sj6jDmhnRfnT36RPGIXB7YIHk03ZomeAwg1MPjk6w\nAsDQ+uU00WL/Os1OCYUn+NEhUFoiEhslC8KRnlI1vUDQ+n8Vz69x6676qHdXB9NA\ncucXPhMCgYEAkfJgZUXfy1WxUcffZ9yBv9RhhoCoAP+W6xWRYXFx3a9XVCj0PmGV\nJySp9/lQJOvfcUDXE1dX/GXOOKrVGmNysOklpTOXQlNtl3LNuLn70DPPkbZfBdRh\n51itl96vcLvhUfpgpRbVBYUwBQ0KVJ2X4KnLW/z3oNBSwh/UPzqwMhcCgYBdAXIc\nbc5VDppHhlFM9kh3JORzDPukNGlLa+FJUsiTJKOLBZhpAcLEUMFfijAomdSogD2s\nwlxzU+MKz1nNfj24KcdpEAQY/1nA/EJ8MUiOSCXYHYqy30Z+tw0ijiaoe471FEUT\nPuCXgpovAow81Y4WZjiFlE6Ofqua657KaX9SwwKBgCFEy7k5ctVgnsTAExclX4DR\nqFFmidwVbwfcvbh7at+dNDwZjqynw9OetAIJ+XKGW17uhDVznJ001dXlREYIVrZ9\nZ869Mz1Wu46v024ow0zENJ+R/lkyeci2kKr1BVxXdz7jUUS8aMdHtcMVkP7cEJcH\nGtnqD6/Nfu9AnypURiEM\n-----END PRIVATE KEY-----\n",
+  "client_email": "luxcium@luxcium-apis-1541665671533.iam.gserviceaccount.com",
+  "client_id": "101917814798281228025",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/luxcium%40luxcium-apis-1541665671533.iam.gserviceaccount.com"
+}

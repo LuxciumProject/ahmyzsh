@@ -1,0 +1,14 @@
+// .babelrc
+{
+  "presets": [
+    "@babel/react",
+    "@babel/typescript",
+    "minify",
+    [
+      "@babel/env",
+      {
+        "modules": false
+      }
+    ]
+  ]
+}

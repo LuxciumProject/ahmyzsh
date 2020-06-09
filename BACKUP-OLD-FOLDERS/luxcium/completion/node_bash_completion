@@ -1,0 +1,12 @@
+_node_complete() {
+  local cur_word options
+  cur_word="${COMP_WORDS[COMP_CWORD]}"
+  if [[ "${cur_word}" == -* ]] ; then
+    COMPREPLY=( $(compgen -W '--track-heap-objects --abort-on-uncaught-exception --napi-modules --redirect-warnings --max-old-space-size --perf-basic-prof --no-warnings --trace-event-file-pattern --check --preserve-symlinks --perf-prof --inspect-port --print --trace-deprecation --inspect-brk --expose_http2 --trace-sync-io --tls-cipher-list --no-force-async-hooks-checks --inspect --eval --loader --pending-deprecation --experimental-worker --expose-http2 --use-bundled-ca --stack-trace-limit --debug-brk --title --experimental-repl-await --debug --no-deprecation --use-openssl-ca --preserve-symlinks-main --interactive --inspect-brk-node --icu-data-dir --v8-options --expose-internals --trace-warnings --require --version --experimental-vm-modules --prof-process --max-http-header-size [has_eval_string] --throw-deprecation --completion-bash --help --zero-fill-buffers --v8-pool-size [ssl_openssl_cert_store] --experimental-modules --openssl-config --trace-event-categories --security-reverts --debug-port --prof-process --debug= -p -pe -v --inspect-brk= -i --print <arg> --inspect= --debug-brk= -e --inspect-brk-node= -c -h -r --trace-events-enabled' -- "${cur_word}") )
+    return 0
+  else
+    COMPREPLY=( $(compgen -f "${cur_word}") )
+    return 0
+  fi
+}
+# complete -F _node_complete node node_g

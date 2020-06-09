@@ -1,0 +1,36 @@
+/** @format */
+import mongoose from 'mongoose';
+
+// class dbConnection {
+//   private connectionString: string;
+
+const dbConnection = (CONNECTION_STRING: string, dbName: string = 'defaultDB', callback) => {
+  const connectionString: string = `${CONNECTION_STRING}/${dbName}`;
+  if (callback) {
+    return mongoose
+      .connect(
+        connectionString,
+        { useNewUrlParser: true }
+      )
+      .then(value => {
+        callback(null, value);
+      })
+      .catch(err => {
+        callback(err, null);
+      });
+  } else {
+    return mongoose.connect(
+      connectionString,
+      { useNewUrlParser: true }
+    );
+  }
+};
+
+//   public connect() {
+//     return mongoose.connect(
+//       this.connectionString,
+//       { useNewUrlParser: true }
+//     );
+//   }
+// }
+export { dbConnection };

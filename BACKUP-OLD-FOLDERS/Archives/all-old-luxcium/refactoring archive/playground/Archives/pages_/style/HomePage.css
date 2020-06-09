@@ -1,0 +1,16 @@
+/** @format */
+
+@font-face {
+  font-family: 'OdibeeSans-Regular';
+  src: url('../../assets/fonts/OdibeeSans/OdibeeSans-Regular.eot');
+  src: url('../../assets/fonts/OdibeeSans/OdibeeSans-Regular.eot?#iefix')
+      format('embedded-opentype'),
+    url('../../assets/fonts/OdibeeSans/OdibeeSans-Regular.woff') format('woff'),
+    url('../../assets/fonts/OdibeeSans/OdibeeSans-Regular.ttf')
+      format('truetype');
+}
+.subtitle {
+  font-family: 'OdibeeSans-Regular', Helvetica, Arial, sans-serif;
+  font-feature-settings: 'kern' 1;
+  font-kerning: normal;
+}

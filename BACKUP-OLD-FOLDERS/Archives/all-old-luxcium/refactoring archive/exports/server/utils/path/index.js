@@ -1,0 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var rootDir_1 = require("./rootDir");
+exports.rootDir = rootDir_1.rootDir;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiLi9zZXJ2ZXIvIiwic291cmNlcyI6WyJ1dGlscy9wYXRoL2luZGV4LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBRUEscUNBQW9DO0FBQzNCLGtCQURBLGlCQUFPLENBQ0EiLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGZvcm1hdCAqL1xuXG5pbXBvcnQgeyByb290RGlyIH0gZnJvbSAnLi9yb290RGlyJztcbmV4cG9ydCB7IHJvb3REaXIgfTtcbiJdfQ==

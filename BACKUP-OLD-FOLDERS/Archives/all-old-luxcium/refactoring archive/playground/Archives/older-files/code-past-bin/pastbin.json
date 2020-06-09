@@ -1,0 +1,2 @@
+{    "deployToServer": "git add . ; git commit  -m 'deployToServer commiting changes to client and server files'; npm run clientBuildProd; npm run serverBuildProd; git push origin master; git push heroku master",
+}   

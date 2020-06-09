@@ -1,0 +1,10 @@
+.DS_Store
+*-test.js
+*.spec.js
+*marko.js 
+node_modules/
+exports/
+imports/
+playground/
+dist/
+lib/bin/

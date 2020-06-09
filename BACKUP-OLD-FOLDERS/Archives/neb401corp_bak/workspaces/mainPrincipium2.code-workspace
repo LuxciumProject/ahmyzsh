@@ -1,0 +1,13 @@
+{
+"folders": [
+	{
+		"path": "/Users/neb_401/Developer/Archives/neb401corp_bak/mainPrincipium"
+	}
+],
+  "settings": {
+    "zenMode.centerLayout": false,
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "eslint.alwaysShowStatus": true
+  }
+}

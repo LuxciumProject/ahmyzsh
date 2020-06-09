@@ -1,0 +1,6 @@
+{
+    "tslint.configFile": "/settings/tslint.json",
+    "vsprettier.printWidth": 120,
+    "vsprettier.packageManager": "npm",
+    "vsprettier.insertPragma": true
+}

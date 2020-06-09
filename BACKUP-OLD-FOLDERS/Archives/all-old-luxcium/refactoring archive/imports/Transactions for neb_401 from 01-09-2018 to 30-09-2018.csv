@@ -1,0 +1,243 @@
+TXID, Created, Received, Sent, TXtype, TXdesc, TXNotes
+,2018-09-01T03:30:02+00:00,,0.01010000,Send to address,1EK2YbBCJyDwSQFu6WYFqxprJdjrcRkLEr
+,2018-09-01T03:30:02+00:00,,0.00005000,Other,fee
+,2018-09-01T03:39:28+00:00,,0.00453977,Other,Remboursement BTC à Mathieu Sweeney
+,2018-09-01T18:02:11+00:00,0.02399053,,Other,3QRTCmHmHCiHwJaRXYwzZgzW456AefZ4Fn
+,2018-09-01T18:02:11+00:00,,0.00015000,Other,Deposit fee
+,2018-09-01T18:21:57+00:00,,0.00680000,Send to address,1EK2YbBCJyDwSQFu6WYFqxprJdjrcRkLEr
+,2018-09-01T18:21:58+00:00,,0.00005000,Other,fee
+,2018-09-01T20:11:18+00:00,,0.00970000,Send to address,1EK2YbBCJyDwSQFu6WYFqxprJdjrcRkLEr
+,2018-09-01T20:11:18+00:00,,0.00005000,Other,fee
+,2018-09-02T09:38:11+00:00,0.03304820,,Other,3QRTCmHmHCiHwJaRXYwzZgzW456AefZ4Fn
+,2018-09-02T09:38:11+00:00,,0.00015000,Other,Deposit fee
+,2018-09-03T22:18:27+00:00,,0.01738276,Other,"Bitcoin reserve, contact #27771911 neb_401 (1000+; 100%)"
+,2018-09-03T22:34:46+00:00,,0.00504126,Other,"Bitcoin reserve, contact #27772497 neb_401 (1000+; 100%)"
+,2018-09-03T22:44:03+00:00,,0.02301487,Other,"Bitcoin reserve, contact #27772785 neb_401 (1000+; 100%)"
+,2018-09-04T16:29:52+00:00,0.01341087,,Other,Contact #27808801 release
+,2018-09-04T16:53:31+00:00,0.02391885,,Other,Contact #27807998 release
+,2018-09-05T01:18:57+00:00,0.04945625,,Other,3EAMb3KwdPz9umWwb82ZB3qKd5gzEeoCoJ
+,2018-09-05T01:18:57+00:00,,0.00015000,Other,Deposit fee
+,2018-09-05T04:38:32+00:00,,0.00494740,Other,"Bitcoin reserve, contact #27838251 neb_401 (1000+; 100%)"
+,2018-09-05T09:11:20+00:00,,0.07925744,Other,"Bitcoin reserve, contact #27845580 neb_401 (1000+; 100%)"
+,2018-09-05T09:14:45+00:00,0.07925744,,Other,Contact #27845580 trade canceled
+,2018-09-05T09:33:25+00:00,0.44142142,,Other,3DCyQ63wWDUvfPx3WQi8bJh8v9q7TTV7QA
+,2018-09-05T09:33:25+00:00,,0.00015000,Other,Deposit fee
+,2018-09-05T15:40:01+00:00,0.05049741,,Other,Contact #27865101 release
+,2018-09-05T15:57:29+00:00,,0.00774777,Other,"Bitcoin reserve, contact #27868967 neb_401 (1000+; 100%)"
+,2018-09-05T16:07:51+00:00,,0.00950393,Other,"Bitcoin reserve, contact #27869718 neb_401 (1000+; 100%)"
+,2018-09-05T19:04:09+00:00,,0.03124684,Other,"Bitcoin reserve, contact #27881470 neb_401 (1000+; 100%)"
+,2018-09-05T19:48:43+00:00,0.02475015,,Other,Contact #27882015 release
+,2018-09-05T22:03:27+00:00,,0.05764272,Other,"Bitcoin reserve, contact #27889971 neb_401 (1000+; 100%)"
+,2018-09-06T02:34:11+00:00,,0.00780997,Other,"Bitcoin reserve, contact #27897643 neb_401 (1000+; 100%)"
+,2018-09-06T02:36:49+00:00,0.00780997,,Other,Contact #27897643 trade canceled
+,2018-09-06T02:52:04+00:00,,0.00978849,Other,"Bitcoin reserve, contact #27897950 neb_401 (1000+; 100%)"
+,2018-09-06T03:44:59+00:00,,0.00780997,Other,"Bitcoin reserve, contact #27898765 neb_401 (1000+; 100%)"
+,2018-09-06T05:16:03+00:00,0.00780997,,Other,Contact #27898765 payment timeout from buyer
+,2018-09-06T17:21:42+00:00,0.00713969,,Other,Contact #27934670 release
+,2018-09-06T19:23:21+00:00,0.01748233,,Other,Contact #27940910 release
+,2018-09-06T19:24:22+00:00,0.01185267,,Other,Contact #27941287 release
+,2018-09-06T19:36:22+00:00,0.02455231,,Other,Contact #27941942 release
+,2018-09-06T20:17:23+00:00,,0.01572074,Other,"Bitcoin reserve, contact #27946552 neb_401 (1000+; 100%)"
+,2018-09-06T20:46:12+00:00,0.00610230,,Other,Contact #27936507 release
+,2018-09-06T21:48:03+00:00,0.01572074,,Other,Contact #27946552 payment timeout from buyer
+,2018-09-06T22:58:53+00:00,,0.01572074,Other,Contact #27946552 reopen
+,2018-09-07T01:11:03+00:00,,0.00829818,Other,"Bitcoin reserve, contact #27956548 neb_401 (1000+; 100%)"
+,2018-09-07T01:28:40+00:00,,0.01128937,Other,"Bitcoin reserve, contact #27956929 neb_401 (1000+; 100%)"
+,2018-09-07T01:38:05+00:00,,0.01128937,Other,"Bitcoin reserve, contact #27957114 neb_401 (1000+; 100%)"
+,2018-09-07T01:47:33+00:00,,0.00829818,Other,"Bitcoin reserve, contact #27957285 neb_401 (1000+; 100%)"
+,2018-09-07T01:47:36+00:00,,0.05616461,Other,"Bitcoin reserve, contact #27957286 neb_401 (1000+; 100%)"
+,2018-09-07T02:04:09+00:00,,0.01693405,Other,"Bitcoin reserve, contact #27957533 neb_401 (1000+; 100%)"
+,2018-09-07T02:44:03+00:00,0.00829818,,Other,Contact #27956548 payment timeout from buyer
+,2018-09-07T03:11:08+00:00,,0.00564469,Other,"Bitcoin reserve, contact #27958496 neb_401 (1000+; 100%)"
+,2018-09-07T03:20:04+00:00,0.00829818,,Other,Contact #27957285 payment timeout from buyer
+,2018-09-07T04:24:12+00:00,,0.00564469,Other,"Bitcoin reserve, contact #27959419 neb_401 (1000+; 100%)"
+,2018-09-07T04:44:27+00:00,,0.00564469,Other,"Bitcoin reserve, contact #27959745 neb_401 (1000+; 100%)"
+,2018-09-07T21:31:48+00:00,,0.03386811,Other,"Bitcoin reserve, contact #28013359 neb_401 (1000+; 100%)"
+,2018-09-07T21:48:16+00:00,0.10890058,,Other,Contact #28011539 release
+,2018-09-07T21:55:16+00:00,0.03620927,,Other,Contact #28011770 release
+,2018-09-07T23:26:28+00:00,,0.01106424,Other,"Bitcoin reserve, contact #28017964 neb_401 (1000+; 100%)"
+,2018-09-08T01:24:41+00:00,0.01919438,,Other,Contact #28021126 release
+,2018-09-08T03:02:29+00:00,,0.00900000,Send to address,32jEUxaZFYZNCzZ46idSeSoGaw6LqA3SFe
+,2018-09-08T03:02:29+00:00,,0.00005000,Other,fee
+,2018-09-08T03:03:49+00:00,,0.00760000,Send to address,1EK2YbBCJyDwSQFu6WYFqxprJdjrcRkLEr
+,2018-09-08T03:03:49+00:00,,0.00005000,Other,fee
+,2018-09-08T05:21:29+00:00,,0.00685023,Other,"Bitcoin reserve, contact #28025286 neb_401 (1000+; 100%)"
+,2018-09-08T16:30:03+00:00,,0.02020018,Other,"Bitcoin reserve, contact #28058301 neb_401 (1000+; 100%)"
+,2018-09-08T16:35:01+00:00,,0.00564472,Other,"Bitcoin reserve, contact #28058645 neb_401 (1000+; 100%)"
+,2018-09-08T17:07:39+00:00,,0.00564472,Other,"Bitcoin reserve, contact #28060766 neb_401 (1000+; 100%)"
+,2018-09-08T17:16:21+00:00,,0.00564472,Other,"Bitcoin reserve, contact #28061322 neb_401 (1000+; 100%)"
+,2018-09-08T17:29:23+00:00,,0.02009074,Other,"Bitcoin reserve, contact #28062209 neb_401 (1000+; 100%)"
+,2018-09-08T17:43:05+00:00,,0.01128693,Other,"Bitcoin reserve, contact #28063058 neb_401 (1000+; 100%)"
+,2018-09-08T18:02:58+00:00,,0.01128693,Other,"Bitcoin reserve, contact #28064408 neb_401 (1000+; 100%)"
+,2018-09-08T18:16:01+00:00,,0.00550000,Send to address,33YJqUjUHciwjHe2HvRQ2zGrzyfS75URDd
+,2018-09-08T18:16:01+00:00,,0.00005000,Other,fee
+,2018-09-08T20:05:44+00:00,0.06633022,,Other,Contact #28068100 release
+,2018-09-09T17:33:47+00:00,,0.00150000,Other,Internal transaction to 32TTBm9j2MP3KCoeUtFy5yFBqDLqCJL9EB
+,2018-09-10T04:27:25+00:00,,0.01776485,Other,"Bitcoin reserve, contact #28126103 neb_401 (1000+; 100%)"
+,2018-09-10T06:00:03+00:00,0.01776485,,Other,Contact #28126103 payment timeout from buyer
+,2018-09-10T06:22:57+00:00,,0.01776485,Other,Contact #28126103 reopen
+,2018-09-10T19:19:03+00:00,,0.04039986,Other,"Bitcoin reserve, contact #28167933 neb_401 (1000+; 100%)"
+,2018-09-10T19:23:03+00:00,0.04039986,,Other,Contact #28167933 trade canceled
+,2018-09-10T19:42:25+00:00,,0.07879508,Other,"Bitcoin reserve, contact #28169162 neb_401 (1000+; 100%)"
+,2018-09-10T20:29:09+00:00,,0.09131728,Other,"Bitcoin reserve, contact #28171348 neb_401 (1000+; 100%)"
+,2018-09-10T20:48:40+00:00,0.09131728,,Other,Contact #28171348 trade canceled
+,2018-09-10T21:04:44+00:00,,0.01738127,Other,"Bitcoin reserve, contact #28172818 neb_401 (1000+; 100%)"
+,2018-09-10T22:33:01+00:00,0.02259993,,Other,Contact #28174848 release
+,2018-09-11T01:39:01+00:00,,0.00842013,Other,"Bitcoin reserve, contact #28180455 neb_401 (1000+; 100%)"
+,2018-09-11T01:44:06+00:00,0.01494822,,Other,Contact #28179882 release
+,2018-09-11T02:11:43+00:00,0.09735822,,Other,Contact #28180375 release
+,2018-09-11T02:26:12+00:00,,0.01681769,Other,"Bitcoin reserve, contact #28181174 neb_401 (1000+; 100%)"
+,2018-09-11T03:13:06+00:00,0.01681769,,Other,Contact #28181174 trade canceled
+,2018-09-11T03:56:06+00:00,,0.01122684,Other,"Bitcoin reserve, contact #28182306 neb_401 (1000+; 100%)"
+,2018-09-11T04:56:58+00:00,,0.00898147,Other,"Bitcoin reserve, contact #28183156 neb_401 (1000+; 100%)"
+,2018-09-11T05:53:52+00:00,,0.01010415,Other,"Bitcoin reserve, contact #28184195 neb_401 (1000+; 100%)"
+,2018-09-11T13:01:12+00:00,,0.01156364,Other,"Bitcoin reserve, contact #28201043 neb_401 (1000+; 100%)"
+,2018-09-11T18:19:42+00:00,,0.00861163,Other,"Bitcoin reserve, contact #28221582 neb_401 (1000+; 100%)"
+,2018-09-11T18:20:13+00:00,0.00861163,,Other,Contact #28221582 trade canceled
+,2018-09-11T18:24:46+00:00,,0.00150000,Other,N=Dmx-River  P=15.00 ID=1227
+,2018-09-11T19:41:08+00:00,0.03316951,,Other,Contact #28223825 release
+,2018-09-11T21:22:31+00:00,,0.01435271,Other,"Bitcoin reserve, contact #28230758 neb_401 (1000+; 100%)"
+,2018-09-11T22:05:21+00:00,,0.00918573,Other,"Bitcoin reserve, contact #28232344 neb_401 (1000+; 100%)"
+,2018-09-11T22:33:37+00:00,0.02117659,,Other,Contact #28231847 release
+,2018-09-11T22:59:11+00:00,0.08918719,,Other,Contact #28232194 release
+,2018-09-11T23:10:30+00:00,,0.01262732,Other,"Bitcoin reserve, contact #28234471 neb_401 (1000+; 100%)"
+,2018-09-11T23:16:06+00:00,0.02666092,,Other,Contact #28233422 release
+,2018-09-11T23:23:21+00:00,,0.00252546,Other,"Bitcoin reserve, contact #28234846 neb_401 (1000+; 100%)"
+,2018-09-11T23:52:52+00:00,,0.01148216,Other,"Bitcoin reserve, contact #28235701 neb_401 (1000+; 100%)"
+,2018-09-12T00:25:35+00:00,0.03341630,,Other,Contact #28235158 release
+,2018-09-12T00:42:43+00:00,,0.02671257,Other,"Bitcoin reserve, contact #28237027 neb_401 (1000+; 100%)"
+,2018-09-12T00:43:29+00:00,0.02671257,,Other,Contact #28237027 trade canceled
+,2018-09-12T00:45:45+00:00,,0.02671257,Other,"Bitcoin reserve, contact #28237107 neb_401 (1000+; 100%)"
+,2018-09-12T00:47:19+00:00,,0.15853331,Other,"Bitcoin reserve, contact #28237149 neb_401 (1000+; 100%)"
+,2018-09-12T01:06:52+00:00,0.04584974,,Other,Contact #28236640 release
+,2018-09-12T03:06:45+00:00,,0.00348349,Other,"Bitcoin reserve, contact #28239505 neb_401 (1000+; 100%)"
+,2018-09-12T03:12:18+00:00,0.00348349,,Other,Contact #28239505 trade canceled
+,2018-09-12T03:14:43+00:00,,0.00348349,Other,"Bitcoin reserve, contact #28239594 neb_401 (1000+; 100%)"
+,2018-09-12T03:20:54+00:00,,0.00200000,Send to address,34GDmgz2sZFDMD1YZGh47nYhic4Yris9QX
+,2018-09-12T03:20:54+00:00,,0.00005000,Other,fee
+,2018-09-12T03:28:21+00:00,0.06214643,,Other,Contact #28239312 release
+,2018-09-12T04:47:34+00:00,,0.01161163,Other,"Bitcoin reserve, contact #28240947 neb_401 (1000+; 100%)"
+,2018-09-12T05:01:46+00:00,,0.00348349,Other,"Bitcoin reserve, contact #28241227 neb_401 (1000+; 100%)"
+,2018-09-12T05:37:04+00:00,0.00348349,,Other,Contact #28241227 trade canceled
+,2018-09-12T05:42:29+00:00,0.09077169,,Other,Contact #28238687 release
+,2018-09-12T18:53:54+00:00,,0.06966975,Other,"Bitcoin reserve, contact #28281870 neb_401 (1000+; 100%)"
+,2018-09-12T19:05:39+00:00,0.06966975,,Other,Contact #28281870 trade canceled
+,2018-09-12T19:17:09+00:00,,0.15907925,Other,"Bitcoin reserve, contact #28283139 neb_401 (1000+; 100%)"
+,2018-09-12T19:42:54+00:00,,0.07316922,Other,"Bitcoin reserve, contact #28284558 neb_401 (1000+; 100%)"
+,2018-09-12T20:27:09+00:00,,0.00929133,Other,"Bitcoin reserve, contact #28286647 neb_401 (1000+; 100%)"
+,2018-09-12T20:49:27+00:00,,0.00871062,Other,"Bitcoin reserve, contact #28287658 neb_401 (1000+; 100%)"
+,2018-09-12T20:52:58+00:00,0.04786695,,Other,Contact #28285181 release
+,2018-09-12T23:56:54+00:00,,0.01060993,Other,"Bitcoin reserve, contact #28293858 neb_401 (1000+; 100%)"
+,2018-09-13T00:28:24+00:00,,0.00252545,Other,"Bitcoin reserve, contact #28294607 neb_401 (1000+; 100%)"
+,2018-09-13T01:03:04+00:00,0.01372166,,Other,Contact #28292139 release
+,2018-09-13T02:23:21+00:00,,0.00252545,Other,"Bitcoin reserve, contact #28296858 neb_401 (1000+; 100%)"
+,2018-09-13T03:47:25+00:00,0.18376744,,Other,3D75kSeY5saEBYHh6tv9NJ9vMe2MYZYguc
+,2018-09-13T03:47:25+00:00,,0.00015000,Other,Deposit fee
+,2018-09-13T06:48:47+00:00,,0.19466562,Send to address,3Hg4HhbgJ5XpWtgYdNg1LuZj86ZXBE3NKQ
+,2018-09-13T06:48:47+00:00,,0.00005000,Other,fee
+,2018-09-13T14:09:35+00:00,,0.01161929,Other,"Bitcoin reserve, contact #28322034 neb_401 (1000+; 100%)"
+,2018-09-14T03:47:06+00:00,,0.00505091,Other,"Bitcoin reserve, contact #28357302 neb_401 (1000+; 100%)"
+,2018-09-14T04:44:44+00:00,0.03050295,,Other,Contact #28357589 release
+,2018-09-14T07:21:23+00:00,0.05491011,,Other,Contact #28360609 release
+,2018-09-14T15:45:43+00:00,,0.00814658,Other,"Bitcoin reserve, contact #28392090 neb_401 (1000+; 100%)"
+,2018-09-14T16:57:54+00:00,,0.00839200,Other,"Bitcoin reserve, contact #28397843 neb_401 (1000+; 100%)"
+,2018-09-14T17:16:04+00:00,0.00814658,,Other,Contact #28392090 payment timeout from buyer
+,2018-09-14T19:27:44+00:00,,0.00630086,Other,Remboursement BTC à Mathieu Sweeney
+,2018-09-15T00:14:53+00:00,,0.01699101,Other,"Bitcoin reserve, contact #28420612 neb_401 (1000+; 100%)"
+,2018-09-15T00:15:29+00:00,,0.01699101,Other,"Bitcoin reserve, contact #28420633 neb_401 (1000+; 100%)"
+,2018-09-15T00:16:56+00:00,0.01699101,,Other,Contact #28420633 trade canceled
+,2018-09-15T00:17:10+00:00,,0.01472554,Other,"Bitcoin reserve, contact #28420675 neb_401 (1000+; 100%)"
+,2018-09-15T03:40:33+00:00,,0.02865966,Other,"Bitcoin reserve, contact #28424989 neb_401 (1000+; 100%)"
+,2018-09-15T05:34:07+00:00,,0.05619540,Other,"Bitcoin reserve, contact #28427139 neb_401 (1000+; 100%)"
+,2018-09-17T12:39:48+00:00,,0.22937733,Other,"Bitcoin reserve, contact #28546078 neb_401 (1000+; 100%)"
+,2018-09-17T14:00:22+00:00,,0.04587546,Other,"Bitcoin reserve, contact #28550619 neb_401 (1000+; 100%)"
+,2018-09-17T15:32:59+00:00,0.01623977,,Other,Contact #28556053 release
+,2018-09-17T16:33:58+00:00,,0.00988088,Other,"Bitcoin reserve, contact #28561382 neb_401 (1000+; 100%)"
+,2018-09-17T17:01:11+00:00,,0.01312981,Other,"Bitcoin reserve, contact #28563115 neb_401 (1000+; 100%)"
+,2018-09-17T17:22:32+00:00,,0.00882222,Other,"Bitcoin reserve, contact #28564534 neb_401 (1000+; 100%)"
+,2018-09-17T17:34:01+00:00,0.01286945,,Other,Contact #28562345 release
+,2018-09-17T18:24:34+00:00,,0.00882222,Other,"Bitcoin reserve, contact #28568515 neb_401 (1000+; 100%)"
+,2018-09-17T18:28:31+00:00,0.00882222,,Other,Contact #28568515 trade canceled
+,2018-09-17T21:03:29+00:00,,0.00882222,Other,"Bitcoin reserve, contact #28576907 neb_401 (1000+; 100%)"
+,2018-09-17T21:03:41+00:00,0.00882222,,Other,Contact #28576907 trade canceled
+,2018-09-17T21:08:11+00:00,,0.00352891,Other,"Bitcoin reserve, contact #28577107 neb_401 (1000+; 100%)"
+,2018-09-20T07:40:05+00:00,,0.05535333,Other,"Bitcoin reserve, contact #28708228 neb_401 (1000+; 100%)"
+,2018-09-20T08:02:17+00:00,0.05535333,,Other,Contact #28708228 trade canceled
+,2018-09-20T08:24:20+00:00,0.06265073,,Other,Contact #28708608 release
+,2018-09-20T11:33:54+00:00,,0.02018090,Other,"Bitcoin reserve, contact #28717793 neb_401 (1000+; 100%)"
+,2018-09-20T12:06:01+00:00,0.02018090,,Other,Contact #28717793 trade canceled
+,2018-09-21T08:42:19+00:00,,0.01029700,Other,"Bitcoin reserve, contact #28771597 neb_401 (1000+; 100%)"
+,2018-09-21T10:11:21+00:00,,0.01089697,Other,"Bitcoin reserve, contact #28774812 neb_401 (1000+; 100%)"
+,2018-09-21T10:30:58+00:00,,0.02015940,Other,"Bitcoin reserve, contact #28775573 neb_401 (1000+; 100%)"
+,2018-09-21T11:07:47+00:00,,0.01634546,Other,"Bitcoin reserve, contact #28777724 neb_401 (1000+; 100%)"
+,2018-09-21T17:07:09+00:00,0.02710664,,Other,Contact #28801729 release
+,2018-09-21T18:03:51+00:00,0.02969953,,Other,Contact #28805067 release
+,2018-09-21T18:18:36+00:00,,0.11762100,Other,"Bitcoin reserve, contact #28810213 neb_401 (1000+; 100%)"
+,2018-09-22T19:01:39+00:00,0.01295497,,Other,Contact #28874084 release
+,2018-09-24T14:10:14+00:00,0.05205532,,Other,Contact #28953279 release
+,2018-09-24T17:02:31+00:00,0.02474950,,Other,Contact #28964461 release
+,2018-09-24T17:08:12+00:00,,0.01010035,Other,"Bitcoin reserve, contact #28967426 neb_401 (1000+; 100%)"
+,2018-09-24T18:54:14+00:00,0.05652417,,Other,Contact #28968831 release
+,2018-09-24T22:59:51+00:00,,0.00991641,Other,"Bitcoin reserve, contact #28984456 neb_401 (1000+; 100%)"
+,2018-09-24T23:15:46+00:00,,0.00804332,Other,"Bitcoin reserve, contact #28985015 neb_401 (1000+; 100%)"
+,2018-09-25T14:28:38+00:00,,0.00655388,Other,"Bitcoin reserve, contact #29015199 neb_401 (1000+; 100%)"
+,2018-09-26T02:58:00+00:00,,0.02260583,Other,"Bitcoin reserve, contact #29048090 neb_401 (1000+; 100%)"
+,2018-09-26T03:20:07+00:00,0.02260583,,Other,Contact #29048090 trade canceled
+,2018-09-26T03:27:13+00:00,,0.00901950,Other,"Bitcoin reserve, contact #29048441 neb_401 (1000+; 100%)"
+,2018-09-26T05:37:05+00:00,,0.03535006,Other,"Bitcoin reserve, contact #29050402 neb_401 (1000+; 100%)"
+,2018-09-26T05:40:24+00:00,0.03535006,,Other,Contact #29050402 trade canceled
+,2018-09-26T20:51:47+00:00,,0.02891712,Other,"Bitcoin reserve, contact #29096531 neb_401 (1000+; 100%)"
+,2018-09-26T22:36:34+00:00,,0.00393961,Other,"Bitcoin reserve, contact #29100383 neb_401 (1000+; 100%)"
+,2018-09-26T23:14:02+00:00,,0.00252539,Other,"Bitcoin reserve, contact #29101528 neb_401 (1000+; 100%)"
+,2018-09-26T23:14:36+00:00,0.00252539,,Other,Contact #29101528 trade canceled
+,2018-09-26T23:20:12+00:00,,0.00252539,Other,"Bitcoin reserve, contact #29101737 neb_401 (1000+; 100%)"
+,2018-09-26T23:21:07+00:00,0.00252539,,Other,Contact #29101737 trade canceled
+,2018-09-26T23:30:23+00:00,,0.00561332,Other,"Bitcoin reserve, contact #29102070 neb_401 (1000+; 100%)"
+,2018-09-26T23:36:16+00:00,,0.00100000,Other,N=DMX-river p=10.00 id=843
+,2018-09-27T00:06:25+00:00,,0.01122663,Other,"Bitcoin reserve, contact #29103014 neb_401 (1000+; 100%)"
+,2018-09-27T00:08:07+00:00,0.00393961,,Other,Contact #29100383 payment timeout from buyer
+,2018-09-27T00:09:47+00:00,0.06023000,,Other,Benjamin500
+,2018-09-27T00:20:30+00:00,,0.00673598,Other,"Bitcoin reserve, contact #29103345 neb_401 (1000+; 100%)"
+,2018-09-27T00:50:20+00:00,,0.01128935,Other,"Bitcoin reserve, contact #29104018 neb_401 (1000+; 100%)"
+,2018-09-27T00:51:36+00:00,,0.04515737,Other,"Bitcoin reserve, contact #29104054 neb_401 (1000+; 100%)"
+,2018-09-27T01:01:58+00:00,,0.03510986,Other,"Bitcoin reserve, contact #29104280 neb_401 (1000+; 100%)"
+,2018-09-27T03:01:00+00:00,0.10981021,,Other,Contact #29105253 release
+,2018-09-27T03:23:41+00:00,,0.00770115,Other,Remboursement BTC à Mathieu Sweeney
+,2018-09-27T03:29:24+00:00,,0.00564467,Other,"Bitcoin reserve, contact #29106712 neb_401 (1000+; 100%)"
+,2018-09-27T04:44:06+00:00,,0.01693401,Other,"Bitcoin reserve, contact #29107787 neb_401 (1000+; 100%)"
+,2018-09-27T16:00:29+00:00,,0.00564467,Other,"Bitcoin reserve, contact #29138907 neb_401 (1000+; 100%)"
+,2018-09-27T18:48:04+00:00,,0.09178237,Other,"Bitcoin reserve, contact #29150019 neb_401 (1000+; 100%)"
+,2018-09-27T21:05:20+00:00,0.09376243,,Other,Contact #29154725 release
+,2018-09-28T04:18:23+00:00,,0.09376444,Other,"Bitcoin reserve, contact #29168337 neb_401 (1000+; 100%)"
+,2018-09-28T05:52:20+00:00,0.00000203,,Other,Affiliate Payout ID 239707
+,2018-09-28T10:36:50+00:00,0.06977990,,Other,Contact #29174151 release
+,2018-09-28T10:41:14+00:00,,0.00539561,Other,"Bitcoin reserve, contact #29181944 neb_401 (1000+; 100%)"
+,2018-09-28T19:58:48+00:00,,0.00525000,Send to address,1EK2YbBCJyDwSQFu6WYFqxprJdjrcRkLEr
+,2018-09-28T19:58:48+00:00,,0.00005000,Other,fee
+,2018-09-28T20:12:08+00:00,,0.02249036,Other,"Bitcoin reserve, contact #29222481 neb_401 (1000+; 100%)"
+,2018-09-28T21:09:07+00:00,0.03910556,,Other,Contact #29223401 release
+,2018-09-28T22:35:22+00:00,0.05401236,,Other,Contact #29227768 release
+,2018-09-29T03:45:44+00:00,0.12140715,,Other,Contact #29235984 release
+,2018-09-29T04:08:13+00:00,,0.00278274,Other,"Bitcoin reserve, contact #29236935 neb_401 (1000+; 100%)"
+,2018-09-29T04:54:15+00:00,0.00278274,,Other,Contact #29236935 trade canceled
+,2018-09-29T05:15:28+00:00,,0.00561978,Other,"Bitcoin reserve, contact #29238032 neb_401 (1000+; 100%)"
+,2018-09-29T05:46:46+00:00,,0.00327688,Other,"Bitcoin reserve, contact #29238661 neb_401 (1000+; 100%)"
+,2018-09-29T06:47:59+00:00,,0.01310754,Other,"Bitcoin reserve, contact #29240372 neb_401 (1000+; 100%)"
+,2018-09-29T06:54:04+00:00,0.01310754,,Other,Contact #29240372 trade canceled
+,2018-09-29T06:54:32+00:00,,0.00819221,Other,"Bitcoin reserve, contact #29240576 neb_401 (1000+; 100%)"
+,2018-09-29T13:39:48+00:00,,0.03323699,Other,"Bitcoin reserve, contact #29259964 neb_401 (1000+; 100%)"
+,2018-09-29T14:15:48+00:00,,0.00528770,Other,"Bitcoin reserve, contact #29262221 neb_401 (1000+; 100%)"
+,2018-09-29T14:20:58+00:00,,0.01692065,Other,"Bitcoin reserve, contact #29262565 neb_401 (1000+; 100%)"
+,2018-09-29T14:37:24+00:00,,0.01586311,Other,"Bitcoin reserve, contact #29263666 neb_401 (1000+; 100%)"
+,2018-09-29T14:58:11+00:00,0.01765639,,Other,Contact #29264006 release
+,2018-09-29T15:30:50+00:00,,0.00528770,Other,"Bitcoin reserve, contact #29267282 neb_401 (1000+; 100%)"
+,2018-09-29T15:45:28+00:00,,0.01414287,Other,"Bitcoin reserve, contact #29268195 neb_401 (1000+; 100%)"
+,2018-09-29T17:16:03+00:00,0.01414287,,Other,Contact #29268195 payment timeout from buyer
+,2018-09-29T19:33:27+00:00,0.02148350,,Other,Contact #29280026 release
+,2018-09-29T19:35:52+00:00,0.02267043,,Other,Contact #29276754 release
+,2018-09-30T03:37:59+00:00,0.02046931,,Other,Contact #29295174 release
+,2018-09-30T04:40:10+00:00,0.01211202,,Other,Contact #29294666 release
+,2018-09-30T09:06:49+00:00,,0.04150518,Other,"Bitcoin reserve, contact #29302935 neb_401 (1000+; 100%)"
+,2018-09-30T09:52:25+00:00,,0.01134921,Other,"Bitcoin reserve, contact #29304543 neb_401 (1000+; 100%)"
+,2018-09-30T13:25:35+00:00,,0.02042857,Other,"Bitcoin reserve, contact #29313719 neb_401 (1000+; 100%)"
+,2018-09-30T13:28:53+00:00,0.02042857,,Other,Contact #29313719 trade canceled

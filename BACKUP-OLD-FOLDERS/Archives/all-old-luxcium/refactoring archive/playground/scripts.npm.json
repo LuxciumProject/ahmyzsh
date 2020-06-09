@@ -1,0 +1,31 @@
+{
+  "scripts": {
+    "start": "node exports/server/MAIN.js",
+    "build": "concurrently \"npm:build:server\" \"npm:build:client\" ",
+    "debug": "npm run start:debug:postman",
+    "start:nodemon": "nodemon exports/server/MAIN.js --config nodemon.json",
+    "start:debug:chromium": "concurrently  \"npm:build:watch:tsc\" \"npm:build:watch:webpack\" \"npm:start:nodemon\" \"npm:chromium\"",
+    "start:debug:postman": "concurrently  \"npm:build:watch:tsc\" \"npm:build:watch:webpack\"  \"npm:start:nodemon\" \"npm:postman\"",
+    "build:dev": "concurrently \"npm:build:server\" \"npm:build:client:dev\" ",
+    "build:server": "rm -rf ./exports/server/ && tsc  --build  tsconfig.json",
+    "build:client": "npm run build:assets  && webpack --mode production",
+    "build:client:dev": "npm run build:assets  && webpack --mode development",
+    "build:assets": "npm run build:css & rm -rf ./exports/client/ & rm -rf ./exports/public && cp -vR ./src/assets ./exports/public",
+    "build:watch": "concurrently  \"npm:build:watch:tsc\"  \"npm:build:watch:webpack\"  ",
+    "build:watch:tsc": "rm -rf ./exports/server/; tsc --build --watch tsconfig.json",
+    "build:watch:webpack": "npm run build:assets ; webpack --watch --mode development",
+    "build:css": "tcm src",
+    "postman": "/Applications/Postman.app/Contents/MacOS/Postman",
+    "chromium": "/Applications/Chromium.app/Contents/MacOS/Chromium 'http://localhost:5050'",
+    "tslint-check": "tslint-config-prettier-check ./tslint.json",
+    "postinstall": "npm run build",
+    "heroku-postbuild": " find . ! -path './.heroku/node/lib/node_modules/*' ! -path './node_modules/*'; npm doctor; npm audit ",
+    "preDeploy": " git add . ; git commit --allow-empty  -m '.::preDeploy::. adding any uncommited files and submiting changes to origin dev-server .::preDeploy::.'; git pull origin dev-server; git push origin dev-server --tags; git checkout test-server; git pull dev-server --tags; git pull origin test-server; git push origin test-server --tags; git checkout dev-server; git branch -a",
+    "deploy:macbookpro": " git add . ; git commit --allow-empty  -m '.::deploy from macbook pro::. save changes on @neb_401`s mac book pro to unify work from macbook computer to dev-server .::. adding any uncommited files and submiting changes to origin dev-server .::deploy from macbook pro::.'; git pull origin dev-server; git push origin dev-server --tags; git branch -a",
+    "deploy:windows": " git add . & git commit --allow-empty  -m \".::deploy from windows::. save changes on @PC-MasterRace to unify work from windows computer to dev-server .::. adding any uncommited files and submiting changes to origin dev-server .::deploy from windows::.\" & git pull origin dev-server& git push origin dev-server & git branch -a ",
+    "preDeploy:release": " git add . ; git commit --allow-empty  -m '.::preRelease::. adding any uncommited files prior to start a new Release branch sumiting to origin dev-server && origin test-server .::preRelease::.'  ; git pull origin dev-server; git push origin dev-server; git checkout test-server; git pull origin test-server; git push origin test-server; git checkout dev-server; git branch -a",
+    "preDeploy:feature": " git add . ; git commit --allow-empty  -m '.::preFeature::. adding any uncommited files prior to start a new Feature branch sumiting to origin dev-server .::preFeature::.'   ; git pull origin dev-server; git push origin dev-server",
+    "preDeploy:hotfix": " git add . ; git commit --allow-empty  -m '.::preHotfix::. adding any uncommited files prior to start a new  Hotfix branch sumiting to origin dev-server && origin test-server .::preHotfix::.'; git pull origin dev-server; git push origin dev-server; git checkout test-server; git pull origin test-server; git push origin test-server; git checkout dev-server; git branch -a ",
+    "preDeploy:support": " git add . ; git commit --allow-empty  -m '.::preSupport::. adding any uncommited files prior to start a new Support branch sumiting to origin dev-server .::preSupport::.'; git pull origin dev-server; git push origin dev-server"
+  }
+}

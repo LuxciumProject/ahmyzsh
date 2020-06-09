@@ -1,0 +1,34 @@
+dependencies:
+  asn1.js: 4.10.1
+  asn1.js-rfc5280: 1.2.2
+lockfileVersion: 5
+packages:
+  /asn1.js-rfc5280/1.2.2:
+    dependencies:
+      asn1.js: 4.10.1
+    dev: false
+    resolution:
+      integrity: sha1-U6DbzyvMyeWkaP9lE/JOzvY5r8I=
+  /asn1.js/4.10.1:
+    dependencies:
+      bn.js: 4.11.8
+      inherits: 2.0.3
+      minimalistic-assert: 1.0.1
+    dev: false
+    resolution:
+      integrity: sha512-p32cOF5q0Zqs9uBiONKYLm6BClCoBCM5O9JfeUSlnQLBTxYdTK+pW+nXflm8UkKd2UYlEbYz5qEi0JuZR9ckSw==
+  /bn.js/4.11.8:
+    dev: false
+    resolution:
+      integrity: sha512-ItfYfPLkWHUjckQCk8xC+LwxgK8NYcXywGigJgSwOP8Y2iyWT4f2vsZnoOXTTbo+o5yXmIUJ4gn5538SO5S3gA==
+  /inherits/2.0.3:
+    dev: false
+    resolution:
+      integrity: sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
+  /minimalistic-assert/1.0.1:
+    dev: false
+    resolution:
+      integrity: sha512-UtJcAD4yEaGtjPezWuO9wC4nwUnVH/8/Im3yEHQP4b67cXlD/Qr9hdITCU1xDbSEXg2XKNaP8jsReV7vQd00/A==
+specifiers:
+  asn1.js: ^4.9.1
+  asn1.js-rfc5280: ^1.2.2

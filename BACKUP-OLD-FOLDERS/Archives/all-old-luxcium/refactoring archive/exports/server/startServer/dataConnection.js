@@ -1,0 +1,15 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var connection_1 = require("../data/connection");
+exports.mongodb = connection_1.mongodb;
+exports.MongoDB = connection_1.MongoDB;
+exports.MongoClient = connection_1.MongoClient;
+var mongoConnection = (function () { return function (URI) {
+    if (URI === void 0) { URI = connection_1.TEST_URI; }
+    return new connection_1.mongoConnect(URI);
+}; })();
+exports.mongoConnection = mongoConnection;
+var dataConnection = mongoConnection();
+exports.dataConnection = dataConnection;
+exports.default = dataConnection;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZGF0YUNvbm5lY3Rpb24uanMiLCJzb3VyY2VSb290IjoiLi9zZXJ2ZXIvIiwic291cmNlcyI6WyJzdGFydFNlcnZlci9kYXRhQ29ubmVjdGlvbi50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUVBLGlEQUEyRjtBQU1qRCxrQkFObkIsb0JBQU8sQ0FNbUI7QUFBRSxrQkFOVCxvQkFBTyxDQU1TO0FBQUUsc0JBTlQsd0JBQVcsQ0FNUztBQUp2RSxJQUFNLGVBQWUsR0FBRyxDQUFDLGNBQU0sT0FBQSxVQUFDLEdBQXNCO0lBQXRCLG9CQUFBLEVBQUEsTUFBYyxxQkFBUTtJQUFLLE9BQUEsSUFBSSx5QkFBWSxDQUFDLEdBQUcsQ0FBQztBQUFyQixDQUFxQixFQUFqRCxDQUFpRCxDQUFDLEVBQUUsQ0FBQztBQUkzRSwwQ0FBZTtBQUh4QixJQUFNLGNBQWMsR0FBRyxlQUFlLEVBQUUsQ0FBQztBQUdmLHdDQUFjO0FBRHhDLGtCQUFlLGNBQWMsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBAZm9ybWF0ICovXG5cbmltcG9ydCB7IG1vbmdvQ29ubmVjdCwgbW9uZ29kYiwgVEVTVF9VUkksIE1vbmdvREIsIE1vbmdvQ2xpZW50IH0gZnJvbSAnLi4vZGF0YS9jb25uZWN0aW9uJztcblxuY29uc3QgbW9uZ29Db25uZWN0aW9uID0gKCgpID0+IChVUkk6IHN0cmluZyA9IFRFU1RfVVJJKSA9PiBuZXcgbW9uZ29Db25uZWN0KFVSSSkpKCk7XG5jb25zdCBkYXRhQ29ubmVjdGlvbiA9IG1vbmdvQ29ubmVjdGlvbigpO1xuXG5leHBvcnQgZGVmYXVsdCBkYXRhQ29ubmVjdGlvbjtcbmV4cG9ydCB7IG1vbmdvQ29ubmVjdGlvbiwgZGF0YUNvbm5lY3Rpb24sIG1vbmdvZGIsIE1vbmdvREIsIE1vbmdvQ2xpZW50IH07XG4iXX0=

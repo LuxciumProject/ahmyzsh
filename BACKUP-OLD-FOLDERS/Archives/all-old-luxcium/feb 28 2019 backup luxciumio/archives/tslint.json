@@ -1,0 +1,53 @@
+{
+  "defaultSeverity": "warning",
+  "extends": [
+    "tslint:recommended",
+    "tslint-config-prettier",
+    "tslint-config-airbnb"
+  ],
+
+  "rulesDirectory": [],
+
+  "rules": {
+    "no-console": false,
+    "triple-equals": false,
+    "import-name": false,
+    "max-line-length": [true, 120],
+    "ordered-imports": false,
+    "ter-arrow-parens": [true, "as-needed", { "requireForBlockBody": false }],
+    "no-boolean-literal-compare": false,
+    "object-literal-sort-keys": false,
+    "no-unused-variable": true,
+    "no-unused-expression": true,
+    "variable-name": [
+      true,
+      "check-format",
+      "allow-trailing-underscore",
+      "ban-keywords"
+    ]
+  },
+  "jsRules": {
+    "no-console": false,
+    "triple-equals": false,
+    "import-name": false,
+    "max-line-length": [true, 120],
+    "ordered-imports": false,
+    "ter-arrow-parens": [true, "as-needed", { "requireForBlockBody": false }],
+    "object-literal-sort-keys": false,
+    "variable-name": [
+      true,
+      "check-format",
+      "allow-trailing-underscore",
+      "ban-keywords"
+    ]
+  },
+
+  "linterOptions": {
+    "exclude": [
+      "config/**/*.js",
+      "node_modules/**/*.ts",
+      "coverage/lcov-report/*.js",
+      "dist/**"
+    ]
+  }
+}

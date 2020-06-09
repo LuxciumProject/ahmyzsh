@@ -1,0 +1,8 @@
+{
+  "name": "luxcium-io-server",
+  "version": "1.0.0",
+  "description": "Scientia is lux principium™",
+  "main": "index.js",
+  "license": "private",
+  "private": true
+}

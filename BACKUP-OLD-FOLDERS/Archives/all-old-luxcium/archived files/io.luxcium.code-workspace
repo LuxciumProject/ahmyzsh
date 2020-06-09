@@ -1,0 +1,37 @@
+{
+  "settings": {
+
+  },
+   "folders": [
+    {
+      "path": "/Users/neb_401/Developer/neb401corp/LuxciumProject/luxcium.io"
+    }
+  ]
+}
+
+
+  //   "editor.fontFamily": "Fira Code",
+  //   "editor.fontSize": 18,
+  //   "editor.fontWeight": "bold",
+  //   "editor.fontLigatures": true,
+  //   "workbench.fontAliasing": "default",
+  //   "code-runner.enableAppInsights": false,
+  //   "workbench.iconTheme": "material-icon-theme",
+
+  //   "terminal.integrated.fontSize": 16,
+  //   "terminal.integrated.fontWeight": "300",
+  //   "terminal.integrated.fontWeightBold": "700",
+  //   "terminal.integrated.cursorBlinking": true,
+  //   "terminal.integrated.enableBell": true,
+  //   "terminal.integrated.cursorStyle": "block",
+  //   "terminal.integrated.shell.osx": "/bin/zsh",
+  //   "gitlens.advanced.messages": {
+  //     "suppressFileNotUnderSourceControlWarning": true
+  //   },
+
+
+  //   "window.zoomLevel": -1,
+  //   "editor.multiCursorModifier": "ctrlCmd",
+  //   "terminal.external.osxExec": "Terminal.app",
+  //   "git.autofetch": true,
+  //   "html.format.endWithNewline": true,

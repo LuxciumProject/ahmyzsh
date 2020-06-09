@@ -1,0 +1,22 @@
+{
+  //   "nyc:mocha": "nyc mocha dist/server/test/index.spec.js",
+  //   "test:ts": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mocha  --require ts-node/register  ./server/*.ts",
+  //   "test:js": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mocha  ./dist/server/*.js",
+  "start": "node ./dist/server/main.js",
+  //   "travis": "yarn run test",
+  //   "test": "yarn run report  --verbose;",
+  //   "heroku-postbuild": "yarn run build:all",
+  //   "report": "yarn run report:clean; yarn run build:all; cross-env NODE_ENV=test  yarn run report:nyc",
+  //   "report:clean": "rm -rfv ./.nyc_output; rm -rfv ./coverage; mkdir coverage",
+  //   "report:nyc": " yarn run test:js;nyc report --reporter=json > coverage/coverage.json; nyc report --reporter=lcov",
+  //   "report:nyc:x": "nyc yarn run mocha;nyc report --reporter=json > coverage/coverage.json; nyc report --reporter=lcov",
+  //   "mocha": "node_modules/.bin/mocha dist/**/*.spec.js --exit;",
+  "clean:install": "concurrently \"yarn:clean:node-modules\"  \"yarn:clean:yarn-lock\" ;yarn install; yarn run report  --verbose",
+  "clean:node-modules": "rm -rf ./node_modules",
+  "clean:yarn-lock": "rm -fv ./yarn.lock; rm -fv ./yarn-error.log; rm -fv ./package-lock.json",
+  "start:debug": "concurrently \"yarn:build:server:watch\" \"yarn:start:nodemon\"",
+  "start:nodemon": "nodemon ./dist/server/main.js",
+  "build:server:watch": "rm -rfv ./dist/server; tsc  --build tsconfig.server.json --watch",
+  "build:all": "yarn run build:server",
+  "build:server": "rm -rfv ./dist/server; tsc --build tsconfig.server.json"
+}

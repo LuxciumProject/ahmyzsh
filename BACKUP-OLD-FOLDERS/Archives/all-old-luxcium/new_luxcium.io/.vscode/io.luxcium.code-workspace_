@@ -1,0 +1,39 @@
+{
+
+	"settings": {
+		"workbench.colorTheme": "Gruvbox Dark Hard",
+		"workbench.iconTheme": "material-icon-theme",
+		"terminal.integrated.fontFamily": "DroidSansMono Nerd Font, Droid Sans Mono Nerd Font Complete, LigaFantasqueSansMono ,CQ Mono, Fira Code, monospace",
+		"terminal.integrated.fontSize": 16,
+		"terminal.integrated.fontWeight": "300",
+		"terminal.integrated.fontWeightBold": "700",
+		"terminal.integrated.cursorBlinking": true,
+		"terminal.integrated.enableBell": true,
+		"terminal.integrated.cursorStyle": "block",
+		"terminal.integrated.shell.osx": "/bin/zsh",
+		"tslint.alwaysShowStatus": true,
+		"prettier.singleQuote": true,
+		"prettier.tabWidth": 2,
+		"prettier.trailingComma": "es5",
+		"prettier.semi": true,
+		"explorer.confirmDragAndDrop": false,
+		"explorer.confirmDelete": false,
+		"breadcrumbs.enabled": true,
+		"material-icon-theme.showReloadMessage": true,
+		"coloredRegions.namedColors": {
+			"Main": "rgba(79, 44, 115, 0.5)",
+			"JavaScript": "rgba(115, 115, 44, 0.3)",
+			"ImportsRequire": "rgba(44, 44, 115, 0.4)",
+			"HEAD": "rgba(44, 44, 115, 0.4)",
+			"Footer": "rgba(44, 44, 115, 0.4)",
+			"BODY": "rgba(115, 115, 44, 0.3)",
+			"Region": "rgba(115, 115, 44, 0.3)",
+			"mainContent": "rgba(79, 44, 115, 0.5)"
+		},
+		"git.confirmSync": false,
+		"window.zoomLevel": 2,
+		"telemetry.enableTelemetry": false,
+		"telemetry.enableCrashReporter": false,
+		"typescript.surveys.enabled": false
+	}
+}

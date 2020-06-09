@@ -1,0 +1,115 @@
+{
+  "material-icon-theme.showReloadMessage": true,
+  "material-icon-theme.folders.associations": {
+    "axios": "middleware",
+    "iex-api-react": "components",
+    "localbitcoin": "job",
+    "puppeteer": "android",
+    "startServer": "serverless",
+    "types": "core",
+    "utils": "Global",
+    "validation": "coverage"
+  },
+
+  "breadcrumbs.enabled": true,
+
+  "editor.showFoldingControls": "always",
+  "editor.cursorWidth": 2,
+  "editor.fontFamily": "Fira Code",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 16,
+  "editor.fontWeight": "normal",
+  "editor.mouseWheelZoom": false,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.renderControlCharacters": true,
+  "editor.renderIndentGuides": true,
+  "editor.renderLineHighlight": "all",
+  "editor.renderWhitespace": "boundary",
+  "editor.roundedSelection": true,
+  "editor.showUnused": true,
+  "editor.smoothScrolling": true,
+  "editor.suggestSelection": "recentlyUsedByPrefix",
+  "editor.tabCompletion": "on",
+  "editor.wordBasedSuggestions": false,
+
+  "explorer.confirmDelete": true,
+  "explorer.confirmDragAndDrop": false,
+
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+
+  "telemetry.enableCrashReporter": false,
+  "telemetry.enableTelemetry": false,
+
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.cursorStyle": "block",
+  "terminal.integrated.enableBell": true,
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.fontWeight": "300",
+  "terminal.integrated.fontWeightBold": "700",
+  "terminal.integrated.letterSpacing": 0.2,
+  "terminal.integrated.rendererType": "canvas",
+  "terminal.integrated.shell.osx": "/bin/zsh",
+  "terminal.integrated.showExitAlert": true,
+  "terminal.integrated.fontFamily": "DroidSansMono Nerd Font, Droid Sans Mono Nerd Font Complete, LigaFantasqueSansMono ,CQ Mono, Fira Code, monospace",
+
+  "workbench.activityBar.visible": true,
+  "workbench.colorTheme": "Popping and Locking",
+  "workbench.editor.highlightModifiedTabs": true,
+  "workbench.editor.tabCloseButton": "left",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.sideBar.location": "left",
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.statusBar.visible": true,
+  "workbench.view.alwaysShowHeaderActions": true,
+
+  "code-runner.saveAllFilesBeforeRun": true,
+  "code-runner.saveFileBeforeRun": true,
+
+  "color-highlight.markerType": "underline",
+
+  "colorHelper.disableGpu": 1,
+  "colorHelper.disableShadow": true,
+  "colorHelper.disableTransparent": true,
+  "colorHelper.pickerForm": "compact",
+  "colorHelper.resident": true,
+
+  "colorize.include": ["json"],
+
+  "npm-intellisense.scanDevDependencies": true,
+  "npm-intellisense.showBuildInLibs": true,
+
+  "coloredRegions.namedColors": {
+    "BODY": "rgba(115, 115, 44, 0.3)",
+    "Footer": "rgba(44, 44, 115, 0.4)",
+    "HEAD": "rgba(44, 44, 115, 0.4)",
+    "ImportsRequire": "rgba(44, 44, 115, 0.4)",
+    "JavaScript": "rgba(115, 115, 44, 0.3)",
+    "Main": "rgba(79, 44, 115, 0.5)",
+    "mainContent": "rgba(79, 44, 115, 0.5)",
+    "Region": "rgba(115, 115, 44, 0.3)"
+  },
+
+  "auto-close-tag.SublimeText3Mode": true,
+  "auto-close-tag.activationOnLanguage": [
+    "blade",
+    "cfml",
+    "ejs",
+    "erb",
+    "HTML (Eex)",
+    "javascript",
+    "javascriptreact",
+    "jinja",
+    "lang-cfml",
+    "liquid",
+    "markdown",
+    "php",
+    "plaintext",
+    "typescriptreact",
+    "vue",
+    "xml"
+  ]
+}

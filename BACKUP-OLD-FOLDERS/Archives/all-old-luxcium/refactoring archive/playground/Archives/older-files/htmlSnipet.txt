@@ -1,0 +1,66 @@
+<header id="Header">
+          <nav>
+            <div className="nav-wrapper">
+              <a href="#" className="brand-logo">
+                LUXCIUM.io
+              </a>
+              <ul id="nav-mobile" className="right hide-on-med-and-down">
+                <li>
+                  <a href="">Register</a>
+                </li>
+                <li>
+                  <a href="">Login</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </header>
+        <main id="Content">Content</main>
+        <footer id="footer" className="page-footer grey">
+          <div className="container">
+            <div className="row">
+              <div className="col l6 s12">
+                <h5 className="white-text">
+                  This version of the web site is not yet ready
+                </h5>
+                <p className="grey-text text-lighten-4">
+                  This site is under developpment and therefor it is not
+                  recomended to use any of its functionalities yet . . .
+                </p>
+              </div>
+              <div className="col l4 offset-l2 s12">
+                <h5 className="white-text">Links</h5>
+                <ul>
+                  <li>
+                    <a className="grey-text text-lighten-3" href="#!">
+                      Link 1
+                    </a>
+                  </li>
+                  <li>
+                    <a className="grey-text text-lighten-3" href="#!">
+                      Link 2
+                    </a>
+                  </li>
+                  <li>
+                    <a className="grey-text text-lighten-3" href="#!">
+                      Link 3
+                    </a>
+                  </li>
+                  <li>
+                    <a className="grey-text text-lighten-3" href="#!">
+                      Link 4
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div className="footer-copyright">
+            <div className="container">
+              NeB_401.Corp Ltée
+              <a className="grey-text text-lighten-4 right" href="#!">
+                © 2018
+              </a>
+            </div>
+          </div>
+        </footer>

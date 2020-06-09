@@ -1,0 +1,47 @@
+{
+  "version": "0.2.0",
+
+  "configurations": [
+    { "type": "node", "request": "" },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Webpack",
+      "program": "${workspaceFolder}/node_modules/webpack/bin/webpack.js",
+      "args": ["--watch", "--mode", "development"],
+      "console": "externalTerminal",
+      "protocol": "inspector",
+      "preLaunchTask": "debug:build"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch scripts/debug.ts",
+      "args": ["${workspaceFolder}/scripts/debug.ts"],
+      "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
+      "console": "internalConsole",
+      "sourceMaps": true,
+      "cwd": "${workspaceRoot}",
+      "protocol": "inspector"
+    },
+
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome",
+      "url": "http://localhost:5050",
+      "webRoot": "${workspaceFolder}",
+      "port": 9229
+    }
+
+    // { "type": "devtools-for-chrome", "request": "launch", "name": "Launch Devtools" },
+    // { "type": "node", "request": "attach", "name": "Attach Node" },
+    // { "type": "devtools-for-chrome", "request": "attach", "name": "Attach Devtools" }
+  ],
+  "compounds": [
+    {
+      "name": "Debug",
+      "configurations": ["Launch Webpack", "Launch scripts/debug.ts"]
+    }
+  ]
+}

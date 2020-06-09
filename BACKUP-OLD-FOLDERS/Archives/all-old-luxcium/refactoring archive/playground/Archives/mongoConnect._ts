@@ -1,0 +1,26 @@
+/** @format */
+
+// /** @format */
+
+// import mongoDB from 'mongodb';
+// const URI = 'mongodb+srv://luxcium0:rubmy3-Qadruv-xyxkik@cluster0-8w34w.mongodb.net/test?retryWrites=true';
+// // let _db;
+// const mongoConnect = (() => (CONNECTION_STRING: string) => (
+//   callback: (err: any, db: mongoDB.MongoClient | null) => any
+// ) => {
+//   const connectionString: string = `${CONNECTION_STRING}`;
+//   if (callback) {
+//     return mongoDB
+//       .connect(connectionString)
+//       .then(db => {
+//         callback(null, db);
+//       })
+//       .catch(err => {
+//         callback(err, null);
+//       });
+//   } else {
+//     return mongoDB.connect(connectionString);
+//   }
+// })()(URI);
+// export { mongoDB, mongoConnect };
+// export default mongoConnect;

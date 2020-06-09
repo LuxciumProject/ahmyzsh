@@ -1,0 +1,16 @@
+html, body{
+  margin: 0px;
+  padding: 0px;
+	font-family: 'Courier New', Courier, monospace;
+	color: antiquewhite;
+	font-weight: bold;
+	background-color: rgb(56, 26, 26);
+
+}
+
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+
+}

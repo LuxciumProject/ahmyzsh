@@ -1,0 +1,25 @@
+{
+    "scripts": {
+        "local": "npm run clientBuild:Prod; npm run serverBuild:Prod && npm run serverStart:Prod",
+        "test": "",
+        "preBuild:local": "npm run serverBuild:prod; npm run clientBuild:prod",
+        "build:local": "sudo rm -rf /srv/www/dev-server/luxcium.io/exports; sudo  mkdir -p /srv/www/dev-server/luxcium.io/; sudo cp -vRn ./exports /srv/www/dev-server/luxcium.io/",
+        "reBuild:local": "sudo npm run preBuild:local; npm run build:local",
+        "buildDeploy:local": "sudo preBuild:local; sudo rm -rf /srv/www/dev-server/luxcium.io; sudo  mkdir -p /srv/www/dev-server/; sudo cp -vRn  ../luxcium.io /srv/www/dev-server/",
+        "serverStart:local": "sudo node /srv/www/dev-server/luxcium.io/exports/server/startServer.js",
+        "clientBuild:Dev": "npm run removeClientFiles; npm run copyAssets; webpack -w --mode development",
+        "serverBuild:Dev": "npm run removeServerFiles; tsc  --build --watch  tsconfig.json",
+        "clientStart:Dev": "webpack-dev-server --mode development",
+        "serverStart:Dev": "nodemon exports/server/server.js",
+        "clientStartProd": "webpack-dev-server --mode production",
+        "serverStart:Prod": "node exports/server/startServer.js",
+        "removeLocalFiles": "npm run removeServerFiles; npm run removeClientFiles ",
+        "clientDev": "concurrently \"npm:clientBuild:Dev\" \"npm:clientStartDev\"",
+
+
+        "START": "npm start",
+        "start": "node exports/server/startServer.js",
+        "START:local": "DEPLOY:local; node exports/server/startServer.js",
+        "START:local:watch": "DEPLOY:local; node exports/server/startServer.js",
+    }
+}
