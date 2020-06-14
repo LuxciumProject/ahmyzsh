@@ -1,11 +1,14 @@
 function load_envs() {
     # Set you locale here
     # strong set
-    # LANG="fr_CA.UTF-8"
+    LANG="fr_CA.UTF-8"
     # fall back
+
+    # chsh -s $(which zsh) # !! KEEP ZSH THE DEFAULT OR REMOVE THIS LINE
+
+    source "${HOME}/.env"
     : ${LANG:="fr_CA.UTF-8"}
     export LANG
-
     : ${VERBOSA:=0}
 
     : ${ENV_LOADED:="false"}
@@ -15,7 +18,7 @@ function load_envs() {
 }
 
 function __loader__() {
-    export VERBOSA=10
+    # export VERBOSA=10
     local PATH_FILE="${HOME}/.cache/path.env"
     if [ -f "$PATH_FILE" ]; then
         . $HOME/.cache/path.env
@@ -28,7 +31,6 @@ function __loader__() {
     # Loading the basic env variable to load and process the bootstraping
     load_envs
     # Other envs will be laoded later in the process
-
 
     local S1="${AHMYZSH}/paths.sh"
     if [ -f "$S1" ]; then
@@ -44,11 +46,10 @@ function __loader__() {
         . ${S1}
         load_layouts
     else
-    #  '/home/luxcium/ahmyzsh/custom-zsh/sources/layouts/base-layouts.sh' 
-    #  '/home/luxcium/ahmyzsh/custom-zsh/sources/Layouts/base-layouts.sh'
+        #  '/home/luxcium/ahmyzsh/custom-zsh/sources/layouts/base-layouts.sh'
+        #  '/home/luxcium/ahmyzsh/custom-zsh/sources/Layouts/base-layouts.sh'
         [ "${VERBOSA}" -gt 3 ] && echo "Can not load 'load_layouts' from '${S1}' please verify path or file"
     fi
-
 
     local S1="${AHMYZSH}/functions.sh"
     if [ -f "$S1" ]; then
@@ -132,7 +133,6 @@ function my_envs() {
     export GITHUB_PASSWORD="${GITHUB_TOKEN}"
     export GITHUB_USER='Luxcium'
 
-
     export LOCALPORT=80
     export PORT=80
     export SERVER='dev-server'
@@ -161,3 +161,5 @@ function __LOCALE__() {
     LC_MONETARY="fr_CA.UTF-8"
 
 }
+
+# alias right_prompt_off=sleep 100

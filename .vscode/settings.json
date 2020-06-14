@@ -2,8 +2,6 @@
   "files.exclude": {
     "**/*.zwc": true
   },
-
-  "editor.fontSize": 14,
   /*
         "#F15F",
         "#FB3F",
