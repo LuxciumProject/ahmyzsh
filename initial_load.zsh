@@ -10,7 +10,7 @@ function load_envs() {
     : ${LANG:="fr_CA.UTF-8"}
     export LANG
     : ${VERBOSA:=0}
-
+    : ${EDITOR:=code}
     : ${ENV_LOADED:="false"}
     : ${ZLE_RPROMPT_INDENT:=0}
     : ${SHOW_LOAD_CUTLS:="true"}

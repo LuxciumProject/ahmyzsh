@@ -3,6 +3,18 @@ function init_functions() {
         [ -z $1 ] || export PATH="${1}:${PATH}"
     }
 
+    function affix_to_path_() {
+        [ -z $1 ] || export PATH="${1}:${PATH}"
+    }
+
+    function perpend_to_path_() {
+        [ -z $1 ] || export PATH="${1}:${PATH}"
+    }
+
+    function append_to_path_() {
+        [ -z $1 ] || export PATH="${PATH}:${1}"
+    }
+
     function timer_() {
         # local TIMER_NOW=$(/usr/bin/date +%s%N)
         local TIMER_NOW=$(date +%s%N)
