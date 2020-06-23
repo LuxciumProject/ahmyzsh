@@ -56,7 +56,7 @@ function init_functions() {
         else
             TIMER_THEN=$(/usr/bin/date +%s%N)
             eval ${1}
-            [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_FUNCTION} $(timer_now) '${1}()' ${END_FUNCTION}"
+            [ "${VERBOSA}" -gt 1 ] && echo "${BEGIN_FUNCTION} $(timer_now) '${1}()' ${END_FUNCTION}"
             return 0
         fi
     }
