@@ -3,8 +3,8 @@ function personal_projects_paths() {
 
         export AHMYZSH="${HOME}/ahmyzsh"
         alias ahmyzsh="cd ${AHMYZSH}"
-        export CACHE_FOLDER="${HOME}/.cache/p10k-${USER}"
-        alias cache_folder="cd ${CACHE_FOLDER}"
+        export CACHE_FOLDER_="${HOME}/envs/cache/p10k-${USER}"
+        alias cache_folder="cd ${CACHE_FOLDER_}"
 
         export DEV_FOLDER="${HOME}/development"
         alias dev_folder="cd ${DEV_FOLDER}"

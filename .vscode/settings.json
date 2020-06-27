@@ -259,5 +259,6 @@
       "backgroundColor": "transparent"
     },
   ],
+  "window.title": "°Ah! MYZSH° ✨${remoteName}${appName}✨ ${rootPath} ${dirty} ${activeEditorMedium} ",
 }
 //

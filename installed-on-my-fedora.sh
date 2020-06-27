@@ -1,4 +1,8 @@
-sudo dnf group install custom-environment minimal-environment kde-desktop-environment admin-tools c-development editors libreoffice office window-managers kde-desktop fonts hardware-support sound-and-video
+(
+  sudo dnf group install --refresh -y custom-environment minimal-environment kde-desktop-environment admin-tools c-development editors libreoffice office window-managers kde-desktop fonts hardware-support sound-and-video
+  sudo dnf update -y
+  sudo dnf distro-sync -y
+)
 
 ## autojump-zsh.noarch                          22.5.3-1.fc32                            updates
 ## cekit-zsh-completion.noarch                  3.6.0-2.fc32                             fedora

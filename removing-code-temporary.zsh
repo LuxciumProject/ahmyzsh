@@ -21,9 +21,8 @@
 # יְהִי אוֹר
 
 #     ## load_path
-#     local PATH_FILE="${HOME}/.cache/path.env"
 #     if [ -f "$PATH_FILE" ]; then
-#         . $HOME/.cache/path.env
+#         . $HOME/envs/cache/path.env
 #         local TIMER_NOW=$(/usr/bin/date +%s%N)
 #         local TIMER_VALUE=$(((${TIMER_NOW} - ${TIMER_ALL_THEN}) / 1000000))
 #         echo " ${TIMER_VALUE}   ms   to   'PATH'"

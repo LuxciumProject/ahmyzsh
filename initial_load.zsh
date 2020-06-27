@@ -9,7 +9,7 @@ function load_envs() {
     source "${HOME}/.env"
     : ${LANG:="fr_CA.UTF-8"}
     export LANG
-    : ${VERBOSA:=0}
+    : ${VERBOSA:=100}
     : ${EDITOR:=code}
     : ${ENV_LOADED:="false"}
     : ${ZLE_RPROMPT_INDENT:=0}
@@ -19,9 +19,9 @@ function load_envs() {
 
 function __loader__() {
     # export VERBOSA=10
-    local PATH_FILE="${HOME}/.cache/path.env"
+    local PATH_FILE="${HOME}/envs/cache/path.env"
     if [ -f "$PATH_FILE" ]; then
-        . $HOME/.cache/path.env
+        . $HOME/envs/cache/path.env
         # local TIMER_NOW=$(/bin/date +%s%N)
         local TIMER_NOW=$(/usr/bin/date +%s%N)
         local TIMER_VALUE=$(((${TIMER_NOW} - ${TIMER_ALL_THEN}) / 1000000))
