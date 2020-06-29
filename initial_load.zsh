@@ -5,6 +5,7 @@ function load_envs() {
     # fall back
 
     # chsh -s $(which zsh) # !! KEEP ZSH THE DEFAULT OR REMOVE THIS LINE
+    export MYVIRTUALRAM_PATH="${HOME}/virtualram"
 
     source "${HOME}/.env"
     : ${LANG:="fr_CA.UTF-8"}
@@ -62,12 +63,19 @@ function __loader__() {
     call_ init_projects_paths
     call_ my_envs
 
+    local S1="${CUSTOM_TMUX}/MAIN.zsh"
+    if [ -f "$S1" ]; then
+        load_ "${S1}" "source_all_tmux"
+    else
+        [ "${VERBOSA}" -gt 3 ] && echo "Can not load 'source_all_tmux' from '${S1}' please verify path or file"
+    fi
+
     local S1="${CUSTOM_ZSH}/MAIN.zsh"
     if [ -f "$S1" ]; then
-        . "${S1}"
-        source_all
+        load_ "${S1}" "source_all_zsh"
+
     else
-        [ "${VERBOSA}" -gt 3 ] && echo "Can not load 'source_all' from '${S1}' please verify path or file"
+        [ "${VERBOSA}" -gt 3 ] && echo "Can not load 'source_all_zsh' from '${S1}' please verify path or file"
     fi
 
 }
