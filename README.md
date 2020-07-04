@@ -1,12 +1,22 @@
 # ahmyzsh
 
-I use a different branch for each of my computers and this project is not currently maintained in a way that is friendly to others. This project is for my personal use therefor *it is garanteed that it will **NOT** be fit for any particular purpose*. Regardless feel free to grab what can be useful to you for personal projects or open source projects. Some parts of this work are under Mozilla Public License, v. 2.0. and other parts are under MIT the use of any part of code should be flexible for you and for people using the code you produce in all cases please state `Copyright (c) 2019-present Benjamin Vincent Kasapoglu` and when possible please list the changes you made from this current work...
+## Don't have any expectations
+
+This project is for my personal use, it is not currently maintained in a way that is friendly for general use by others (this includes you), therefor *it is garanteed that this project will **NOT** be fit for any particular purpose*. 
+
+### Use what can be useful for you
+
+Regardless feel free to grab what can be useful to you for your personal projects or open source projects. Some parts of this work are under Mozilla Public License, v. 2.0. and other parts are under MIT the use of any part of code should be flexible for you and for people using the code you produce in all cases please state `Copyright (c) 2019-present Benjamin Vincent Kasapoglu` and when possible please list the changes you made from this current work...
+
+## Report bugs, problems and security issues
 
 Please open a pull request to correct small bugs or any security issues or to fix compatibilities issues...
 If possible plesae first open an [issue](https://github.com/Luxcium/ahmyzsh/issues) to describe the probleme...
 Then open a pull request that fixes the issue...
 
-I am using the [luxcium](https://github.com/Luxcium/ahmyzsh/tree/luxcium) branch on my macOS and [pc-master-race](https://github.com/Luxcium/ahmyzsh/tree/pc-master-race) branch fo my WSL on windows and now my main computer is using fedora so I am using the [fedora-working-station](https://github.com/Luxcium/ahmyzsh/tree/fedora-working-station) as my main development branch...
+## Workflows and branch
+
+I use a different branch for each of my computers (or workflows). I am using the [luxcium](https://github.com/Luxcium/ahmyzsh/tree/luxcium) branch on my macOS and [pc-master-race](https://github.com/Luxcium/ahmyzsh/tree/pc-master-race) branch fo my WSL on windows and now my main computer is using fedora so I am using the [fedora-working-station](https://github.com/Luxcium/ahmyzsh/tree/fedora-working-station) as my main development branch...
 
 ```shell
 ################################################################################
