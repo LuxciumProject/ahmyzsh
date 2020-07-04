@@ -21,7 +21,7 @@ I use a different branch for each of my computers (or workflows). I am using the
 
 ## THESES FILES CANNOT BE USED `AS IS`
 
-Consider this text as being part of each files you get from this repo. Files or part of code under MIT liscense will be taged accordingly.
+Consider the folowing text as being part of each files you get from this repo. Files or part of code under MIT liscense will be taged accordingly:
 
 ```shell
 ################################################################################
