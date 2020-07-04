@@ -4,7 +4,7 @@
   "main": "index.js",
   "repository": "https://github.com/Luxcium/ahmyzsh.git",
   "author": "Benjamin Vincent <luxcium@neb401.com>",
-  "license": "MIT",
+  "license": "MPL-2.0",
   "dependencies": {
     "@types/shelljs": "^0.8.6",
     "eslint-config-prettier": "6.10.0",
