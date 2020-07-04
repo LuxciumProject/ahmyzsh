@@ -4,7 +4,7 @@
 
 This project is for my personal use, it is not currently maintained in a way that is friendly for general use by others (this includes you), therefor *it is garanteed that this project will **NOT** be fit for any particular purpose*. 
 
-### Use what can be useful for you
+### Use what can be useful to you
 
 Regardless feel free to grab what can be useful to you for your personal projects or open source projects. Some parts of this work are under Mozilla Public License, v. 2.0. and other parts are under MIT the use of any part of code should be flexible for you and for people using the code you produce in all cases please state `Copyright (c) 2019-present Benjamin Vincent Kasapoglu` and when possible please list the changes you made from this current work...
 
