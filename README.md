@@ -18,6 +18,11 @@ Then open a pull request that fixes the issue...
 
 I use a different branch for each of my computers (or workflows). I am using the [luxcium](https://github.com/Luxcium/ahmyzsh/tree/luxcium) branch on my macOS and [pc-master-race](https://github.com/Luxcium/ahmyzsh/tree/pc-master-race) branch fo my WSL on windows and now my main computer is using fedora so I am using the [fedora-working-station](https://github.com/Luxcium/ahmyzsh/tree/fedora-working-station) as my main development branch...
 
+
+## THESES FILES CANNOT BE USED `AS IS`
+
+Consider this text as being part of each files you get from this repo. Files or part of code under MIT liscense will be taged accordingly.
+
 ```shell
 ################################################################################
 ##                                                                            ##
@@ -42,6 +47,8 @@ I use a different branch for each of my computers (or workflows). I am using the
 ##                                                                            ##
 ################################################################################
 ```
+
+## Disclaimer of Warranty
 
 ```bash
 ##!!0###########################################################################
