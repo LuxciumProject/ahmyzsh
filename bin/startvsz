@@ -1,0 +1,3 @@
+#!/bin/zsh
+vsz
+exit 0
