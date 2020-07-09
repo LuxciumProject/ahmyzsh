@@ -86,6 +86,16 @@ function init_paths() {
             export PWRLN_BINDINGS="${POWERLINE}/powerline/bindings"
         }
 
+        export AHMYZSH_CORE="${AHMYZSH}/core"
+        {
+            export CORE_BIN="${AHMYZSH_CORE}/bin"
+        }
+
+        export AHMYZSH_PLUGINS="${AHMYZSH}/plugins"
+        {
+            export PLUGINS_BIN="${AHMYZSH_PLUGINS}/bin"
+        }
+        export AHMYZSH_BIN="${AHMYZSH}/bin"
     fi
 
 }

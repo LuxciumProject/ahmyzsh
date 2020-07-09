@@ -1,15 +1,16 @@
 ################################################################################
 ##                                                                            ##
-##          Copyright (c) 2019-present Benjamin Vincent Kasapoglu             ##
+##           Copyright (c) 2019-present Benjamin Vincent Kasapoglu.           ##
 ##                                                                            ##
-##    This Source Code Form is subject to the terms of the Mozilla Public     ##
-##    License, v. 2.0. If a copy of the MPL was not distributed with this     ##
-##          file, You can obtain one at http://mozilla.org/MPL/2.0/.          ##
+##            This Source Code Form is subject to the terms of the            ##
+##                       Mozilla Public License, v. 2.0.                      ##
+##            You can obtain a copy at http://mozilla.org/MPL/2.0/            ##
 ##                                                                            ##
 ##    The above copyright notice and this license notice shall be included    ##
-##          in all copies or substantial portions of the Software.            ##
+##           in all copies or substantial portions of the Software.           ##
 ##                                                                            ##
 ################################################################################
+#
 #
 # This is the `ahmyzsh` MAIN bootloader it should be invoked (sourced) inside of
 # /etc/zshenv the system-wide .zshenv file for zsh(1).
@@ -53,6 +54,12 @@ function __AHMYZSH__BOOT__LOADER__() {
   if [ -f "${S1}" ]; then
     . "${S1}"
     base_layouts_colors
+    base_layouts_colors_olds
+    base_layouts_cursors_moves
+    base_layouts_icons
+    base_layouts_icons_groups
+    base_layouts
+    load_layouts
   else
     echo "Error loading '${S1}'... File or path can not be resolved"
   fi
