@@ -1,7 +1,6 @@
 #!/bin/sh
 
-#!! in this folder ...
-#!!
+#$
 #$ Scientia es lux principium✨ ™
 #$
 #% Copyright © 2020 - LUXCIUM† (Benjamin Vincent Kasapoglu) <luxcium@neb401.com>
@@ -21,7 +20,12 @@
 #&
 #& The liscence is described at the botom of the page the copyright and notice
 #& above shall be included in all copies or substantial portions of the Software
-#&
+
+rand1=$(sha224hmac <<<$(date +%s%N) | cut -c -${1} | tr \[a-z\] \[A-Z\])
+echo "${rand1}"
+exit 0
+
+#
 #& In any cases the copyright and notice below MUST BE INCLUDED when
 #& distributing source code that include this code. Source code to the original
 #& file must be some how available to anyone consuming a final product including

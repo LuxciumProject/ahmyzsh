@@ -1,0 +1,34 @@
+#!/bin/sh
+numx=$(((${1} + 8)))
+rand1=$(sha224hmac <<<$(date +%s%N) | cut -c -1 | tr \[a-z\] \[A-Z\])
+rand2=$(sha224hmac <<<$(date +%s%N) | cut -c -2 | tr \[a-z\] \[A-Z\])
+rand3=$(sha224hmac <<<$(date +%s%N) | cut -c -3 | tr \[a-z\] \[A-Z\])
+rand4=$(sha224hmac <<<$(date +%s%N) | cut -c -4 | tr \[a-z\] \[A-Z\])
+rand5=$(sha224hmac <<<$(date +%s%N) | cut -c -5 | tr \[a-z\] \[A-Z\])
+rand6=$(sha224hmac <<<$(date +%s%N) | cut -c -6 | tr \[a-z\] \[A-Z\])
+rand7=$(sha224hmac <<<$(date +%s%N) | cut -c -7 | tr \[a-z\] \[A-Z\])
+rand8=$(sha224hmac <<<$(date +%s%N) | cut -c -8 | tr \[a-z\] \[A-Z\])
+
+echo -e "\
+${rand1}${rand2}${rand1}${rand3}${rand1}${rand5}${rand1}${rand1}${rand1}${rand4}${rand1}${rand1}${rand8}\n\
+${rand4}${rand1}${rand1}${rand5}${rand1}${rand3}${rand1}${rand2}${rand1}${rand8}${rand1}${rand1}${rand1}\n\
+${rand1}${rand1}${rand1}${rand2}${rand1}${rand1}${rand1}${rand3}${rand1}${rand8}${rand1}${rand5}${rand4}\n\
+${rand1}${rand5}${rand1}${rand3}${rand1}${rand8}${rand1}${rand4}${rand1}${rand1}${rand1}${rand2}${rand1}\n\
+${rand1}${rand4}${rand1}${rand2}${rand1}${rand8}${rand1}${rand1}${rand1}${rand1}${rand1}${rand3}${rand5}\n\
+${rand2}${rand8}${rand1}${rand4}${rand1}${rand1}${rand1}${rand5}${rand1}${rand3}${rand1}${rand1}${rand1}\n\
+${rand1}${rand8}${rand1}${rand1}${rand1}${rand3}${rand1}${rand5}${rand1}${rand1}${rand1}${rand4}${rand2}\n\
+${rand1}${rand1}${rand1}${rand2}${rand1}${rand4}${rand1}${rand5}${rand1}${rand3}${rand1}${rand8}${rand1}\n\
+${rand1}${rand2}${rand1}${rand3}${rand1}${rand5}${rand1}${rand1}${rand1}${rand4}${rand1}${rand1}${rand8}\n\
+${rand1}${rand2}${rand1}${rand1}${rand1}${rand3}${rand1}${rand8}${rand1}${rand5}${rand1}${rand4}${rand1}\n\
+${rand1}${rand4}${rand1}${rand1}${rand1}${rand5}${rand1}${rand3}${rand1}${rand2}${rand1}${rand8}${rand1}\n\
+${rand2}${rand8}${rand1}${rand4}${rand1}${rand1}${rand1}${rand5}${rand1}${rand3}${rand1}${rand1}${rand1}\n\
+${rand1}${rand4}${rand1}${rand2}${rand1}${rand8}${rand1}${rand1}${rand1}${rand1}${rand1}${rand3}${rand5}\n\
+${rand1}${rand5}${rand1}${rand3}${rand1}${rand8}${rand1}${rand4}${rand1}${rand1}${rand1}${rand2}${rand1}\n\
+${rand1}${rand1}${rand1}${rand1}${rand1}${rand2}${rand1}${rand4}${rand1}${rand5}${rand1}${rand3}${rand8}\n\
+${rand8}${rand1}${rand1}${rand3}${rand1}${rand5}${rand1}${rand1}${rand1}${rand4}${rand1}${rand2}${rand1}\n\
+"
+# echo $(sha224hmac <<<$(date +%s%N) | cut -c -$numx | tr \[a-z\] \[A-Z\])
+# ${rand3}${rand5}
+# ${rand5}${rand3}
+# ${rand8}
+exit 0
