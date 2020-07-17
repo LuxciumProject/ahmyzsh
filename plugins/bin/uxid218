@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# /home/luxcium/ahmyzsh/plugins/bin/uxid
+
+function uxid18() {
+  local fooZ="$(/home/luxcium/ahmyzsh/plugins/bin/uxid)"
+  echo -n ${fooZ:0:18}
+}
+uxid18
+exit 0
+
+# 720620B07C178177557UXIDZ816F2841
