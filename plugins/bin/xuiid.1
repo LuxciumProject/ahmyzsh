@@ -1,0 +1,44 @@
+#!/bin/sh
+
+# 0
+myxuids=$(/home/luxcium/ahmyzsh/plugins/bin/randx 32)
+echo -n $(/home/luxcium/ahmyzsh/plugins/bin/randx 1)
+# +1 = 1
+echo -n $(date --utc +%C) # %C siècle, comme %Y, sans les deux derniers chiffres
+# +2 = 3
+echo -n $(/home/luxcium/ahmyzsh/plugins/bin/randx 1)
+# +1 = 4
+echo -n $(date --utc +%y) # %y deux derniers chiffres de l'année (00..99)
+# +2 = 6
+echo -n $(/home/luxcium/ahmyzsh/plugins/bin/randx 1)
+# +1 = 7
+echo -n $(date --utc +%m) # %m mois (01..12)
+# +2 = 9
+echo -n $(/home/luxcium/ahmyzsh/plugins/bin/randx 1)
+# +1 = 10
+echo -n $(date --utc +%d) # %d jour du mois (par exemple 01)
+# +2 = 12
+echo -n $(/home/luxcium/ahmyzsh/plugins/bin/randx 1)
+# +1 = 13
+echo -n $(date --utc +%H) # %H heure (00..23)
+# +2 = 15
+echo -n $(/home/luxcium/ahmyzsh/plugins/bin/randx 1)
+# +1 = 16
+echo -n $(date --utc +%M) # %M minute (00..59)
+# +2 = 18
+echo -n $(/home/luxcium/ahmyzsh/plugins/bin/randx 1)
+# +1 = 19
+echo -n $(date --utc +%S) # %S secondes (00..60)
+# +2 = 21
+echo -n $(/home/luxcium/ahmyzsh/plugins/bin/randx 1)
+# +1 = 22
+echo -n 'UX15Z' # % Temps Universel (heure du méridien de Greenwich)
+# +5 = 27
+echo -n $(/home/luxcium/ahmyzsh/plugins/bin/randx 1)
+# +1 = 28
+echo -n $(date --utc +%N | cut -c -3) # %N nanosecondes (000000000..999999999)
+# +3 = 31
+echo -n $(/home/luxcium/ahmyzsh/plugins/bin/randx 1)
+# +1 = 32
+
+exit 0

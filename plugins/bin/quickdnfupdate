@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+sudo nice -n -15 taskset -c 0,1,5,8 ionice -c 1 -n 3 $(which dnfupdateall)
+
+exit 0

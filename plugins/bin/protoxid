@@ -1,0 +1,103 @@
+#!/bin/sh
+
+# protoxid
+
+function ctrlsum() {
+
+  local myxuidhash="$(/home/luxcium/ahmyzsh/plugins/bin/randx 10)"
+  local myxuiddate="$(date --utc +%C%y%m%d%H%M%S)$(date --utc +%N | cut -c -3)"
+  local fooX3="${myxuidhash}UXZ${myxuiddate}"
+
+  local fooY=""
+  local cvalueX=0
+  local firstmoduloX=0
+  local secondmoduloX=0
+  local modfstX=0
+  local modsndX=0
+
+  local cvalueY=0
+  local firstmoduloY=0
+  local secondmoduloY=0
+  local modfstY=0
+  local modsndY=0
+
+  for ((i = 0; i < ${#fooX3}; i++)); do
+    cvalueX=$(printf %d\\n \'$(echo -n "${fooX3:$i:1}"))
+    firstmoduloX=$((($firstmoduloX + $cvalueX)))
+    secondmoduloX=$((($secondmoduloX + (($firstmoduloX % 10)))))
+  done
+
+  modfstX=$((($firstmoduloX % 10)))
+  modsndX=$((($secondmoduloX % 10)))
+
+  fooY="$fooX3$modfstX$modsndX"
+
+  for ((i = 0; i < ${#fooY}; i++)); do
+    cvalueY=$(printf %d\\n \'$(echo -n "${fooY:$i:1}"))
+    firstmoduloY=$((($firstmoduloY + $cvalueY)))
+    secondmoduloY=$((($secondmoduloY + (($firstmoduloY % 10)))))
+  done
+
+  modfstY=$((($firstmoduloY % 10)))
+  modsndY=$((($secondmoduloY % 10)))
+
+  if [[ $modfstX$modsndX = $modfstY$modsndY ]]; then
+
+    local fooZ="${fooY:0:1}${fooY:13:2}${fooY:1:1}${fooY:15:2}${fooY:2:1}${fooY:17:2}${fooY:3:1}${fooY:19:2}${fooY:4:1}${fooY:21:2}${fooY:5:1}${fooY:23:2}${fooY:6:1}${fooY:10:2}${fooY:30:2}${fooY:12:1}${fooY:7:1}${fooY:25:2}${fooY:8:1}${fooY:27:3}${fooY:9:1}"
+    echo -n $fooZ
+  fi
+}
+ctrlsum
+exit 0
+
+# # local fooX=$(xuiid)
+
+# # local fooX1=$(echo $fooX | cut -c 1-24)
+# # local fooX2=$(echo $fooX | cut -c 27-32)
+# # local fooX3="$fooX1$fooX2"
+
+# # echo $foo2 #="$(echo $foo | cut -c 1-26)$((($bazzx % 10)))$(echo $foo | cut -c 28-32)"
+# # echo
+# # echo $modfstX$modsndX
+
+# # 4 3 3 D 3 3 2 3 B 5
+# # 0 1 2 3 4 5 6 7 8 9
+# # UX Z 20 20 07 17 15 09 00 803 00
+# # 0  2 3  5  7  9  1  3  5  7   0
+
+# #& ${fooY:0:1}${fooY:13:2}${fooY:1:1}${fooY:15:2}${fooY:2:1}${fooY:17:2}${fooY:3:1}${fooY:19:2}${fooY:4:1}${fooY:21:2}${fooY:5:1}${fooY:23:2}${fooY:6:1}${fooY:10:2}${fooY:30:2}${fooY:12:1}${fooY:7:1}${fooY:25:2}${fooY:8:1}${fooY:27:3}${fooY:9:1}
+
+# #&
+# # 4 20 3 20 3 07 D 17 3 15 3 09 2 UX00Z 3 00 B 803 5
+
+# #  +%C%y%m%d%H%M%S
+# ${fooY:0:1}
+# ${fooY:13:2} # %C
+# ${fooY:1:1}
+# ${fooY:15:2} # %y
+# ${fooY:2:1}
+# ${fooY:17:2} # %m
+# ${fooY:3:1}
+# ${fooY:19:2} # %d
+# ${fooY:4:1}
+# ${fooY:21:2} # %H
+# ${fooY:5:1}
+# ${fooY:23:2} # %M
+# ${fooY:6:1}
+# ${fooY:10:2} # +UX
+# ${fooY:30:2} # $ control sum
+# ${fooY:12:1} # +Z
+# ${fooY:7:1}
+# ${fooY:25:2} # %S
+# ${fooY:8:1}
+# ${fooY:27:3} # %N
+# ${fooY:9:1}
+
+# ${fooY:13:2}
+# ${fooY:15:2}
+# ${fooY:17:2}
+# ${fooY:19:2}
+# ${fooY:21:2}
+# ${fooY:23:2}
+# ${fooY:25:2}
+# ${fooY:27:3}
