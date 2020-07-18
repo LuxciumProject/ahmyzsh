@@ -1,0 +1,7 @@
+#!/bin/bash
+
+(
+  sudo dnf reinstall code-insiders code -y
+  sudo dnf upgrade -y
+  # sudo dnf group upgrade -y
+)
