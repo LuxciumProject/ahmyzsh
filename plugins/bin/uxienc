@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# /home/luxcium/ahmyzsh/plugins/bin/uxienc
+
+function uxid32encode() {
+  REV_UXIDSTRING="$1"
+
+  # 420E20507D173197417UXIDZ93210408
+  # 420E20507D173197417UXIDZ93210408
+
+  rhsh1=${REV_UXIDSTRING:0:1}
+  rcentury02=${REV_UXIDSTRING:17:2}
+  rhsh2=${REV_UXIDSTRING:1:1}
+  ryear02=${REV_UXIDSTRING:19:2}
+  rhsh3=${REV_UXIDSTRING:2:1}
+  rmonth02=${REV_UXIDSTRING:22:2}
+  rhsh4=${REV_UXIDSTRING:3:1}
+  rday02=${REV_UXIDSTRING:25:2}
+  rhsh5=${REV_UXIDSTRING:4:1}
+  rhour02=${REV_UXIDSTRING:28:2}
+  rhsh6=${REV_UXIDSTRING:5:1}
+  rminutes02=${REV_UXIDSTRING:31:2}
+  rhsh7=${REV_UXIDSTRING:6:1}
+  rcontrol05=${REV_UXIDSTRING:11:5}
+  rhsh8=${REV_UXIDSTRING:7:1}
+  rseconds02=${REV_UXIDSTRING:34:2}
+  rhsh9=${REV_UXIDSTRING:8:1}
+  rmilisecondes03=${REV_UXIDSTRING:37:3}
+  rhsh10=${REV_UXIDSTRING:9:1}
+
+  echo -n "${rhsh1}${rcentury02}${rhsh2}${ryear02}${rhsh3}${rmonth02}${rhsh4}${rday02}${rhsh5}${rhour02}${rhsh6}${rminutes02}${rhsh7}${rcontrol05}${rhsh8}${rseconds02}${rhsh9}${rmilisecondes03}${rhsh10}"
+}
+uxid32encode $@

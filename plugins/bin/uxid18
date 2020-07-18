@@ -4,9 +4,9 @@
 
 function uxid18() {
   local fooZ="$(/home/luxcium/ahmyzsh/plugins/bin/uxid)"
-  echo -n ${fooZ:0:18}
+  echo -n "${fooZ:1:17}R"
 }
 uxid18
 exit 0
 
-# 720620B07C178177557UXIDZ816F2841
+# 20D20C07D179183044R

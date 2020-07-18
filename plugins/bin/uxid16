@@ -1,12 +1,10 @@
-#!/bin/sh
+#!/bin/env sh
 
 # /home/luxcium/ahmyzsh/plugins/bin/uxid
 
-function uxid24() {
+function uxid16() {
   local fooZ="$(/home/luxcium/ahmyzsh/plugins/bin/uxid)"
-  echo -n "${fooZ:0:23}X"
+  echo -n "${fooZ:1:17}R"
 }
-uxid24
+uxid16
 exit 0
-
-# 720620B07C178177557UXIDZ816F2841
