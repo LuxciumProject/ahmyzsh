@@ -1,0 +1,135 @@
+#!/bin/sh
+
+#--//-------------------------------------------------------------------------
+(
+  echo -e '--------------------------------------------------------------------------------'
+  {
+    myUXIDlong="$(/home/luxcium/ahmyzsh/plugins/bin/uxid)" || exit 1
+    myUXIDshort="${myUXIDlong:7:11}L" || exit 1
+    WORKING_LOCATION="/tmp/LXCM-portable-vscode-${myUXIDlong}" || exit 1
+    echo -e " >    set the temporary working folder in ${WORKING_LOCATION}"
+    DOWNLOAD_LOCATION="${WORKING_LOCATION}/download" || exit 1
+  }
+  {
+    echo -e " >    create the downlaod folder and the working folder at the same time"
+    sudo nice -n -35 ionice -c 1 -n 1 mkdir -p "${WORKING_LOCATION}" || exit 1
+    echo -ne " >    "
+    sudo nice -n -35 ionice -c 1 -n 1 mkdir -pv "${DOWNLOAD_LOCATION}" || exit 1
+    echo -ne " >    "
+    sudo nice -n -35 ionice -c 1 -n 1 chown -vR $(whoami) "${DOWNLOAD_LOCATION}" || exit 1
+    echo -ne " >    "
+    sudo nice -n -35 ionice -c 1 -n 1 chown -v $(whoami) "${WORKING_LOCATION}" || exit 1
+  }
+  {
+    cd ${WORKING_LOCATION}
+
+    echo -e " >    downloadin using dnf reinstall 'code*'"
+    sudo nice -n -35 ionice -c 1 -n 1 dnf reinstall "code*" -v --downloadonly --downloaddir ${DOWNLOAD_LOCATION} -y >/dev/null || exit 1
+    echo -e " >    extract the rpm files into the ${WORKING_LOCATION}/usr"
+    for f in $(ls ${DOWNLOAD_LOCATION}/*code*.x86_64.rpm); do
+      sudo nice -n -35 ionice -c 1 -n 1 rpm2cpio "$f" | sudo nice -n -35 ionice -c 1 -n 1 cpio -idm --no-absolute-filenames &>/dev/null || exit 1
+    done
+    sudo nice -n -35 ionice -c 1 -n 1 chown -R $(whoami) "${WORKING_LOCATION}" >/dev/null || exit 1
+  }
+  {
+    cp -r /etc/vscode-portable/vs-code/ ${WORKING_LOCATION} || exit 1
+    cp -r /etc/vscode-portable/vs-code-insiders/ ${WORKING_LOCATION} || exit 1
+
+    echo -ne " >    "
+    mv -v ${WORKING_LOCATION}/usr/share/code ${WORKING_LOCATION}/code || exit 1
+
+    echo -ne " >    "
+    mv -v ${WORKING_LOCATION}/usr/share/code-insiders ${WORKING_LOCATION}/code-insiders || exit 1
+
+    echo -ne " >    "
+    mkdir -pv ${WORKING_LOCATION}/vs-code/completions/ || exit 1
+
+    echo -ne " >    "
+    mkdir -pv ${WORKING_LOCATION}/vs-code-insiders/completions/ || exit 1
+  }
+
+  {
+    cp -r ${WORKING_LOCATION}/usr/share/zsh/site-functions/ ${WORKING_LOCATION}/vs-code/completions/zsh/ || exit 1
+    cp -r ${WORKING_LOCATION}/usr/share/zsh/site-functions/ ${WORKING_LOCATION}/vs-code-insiders/completions/zsh/ || exit 1
+
+    cp -r ${WORKING_LOCATION}/usr/share/bash-completion/completions/ ${WORKING_LOCATION}/vs-code/completions/bash/ || exit 1
+
+    cp -r ${WORKING_LOCATION}/usr/share/bash-completion/completions/ ${WORKING_LOCATION}/vs-code-insiders/completions/bash/ || exit 1
+
+    cp -r ${WORKING_LOCATION}/usr/share/pixmaps/ ${WORKING_LOCATION}/vs-code/pixmaps/ || exit 1
+    cp -r ${WORKING_LOCATION}/usr/share/pixmaps/ ${WORKING_LOCATION}/vs-code-insiders/pixmaps/ || exit 1
+
+    for f in $(ls ${WORKING_LOCATION}/code); do
+      mv "${WORKING_LOCATION}/code/$f" "${WORKING_LOCATION}/vs-code/" || exit 1
+    done
+
+    for f in $(ls ${WORKING_LOCATION}/code-insiders); do
+      mv "${WORKING_LOCATION}/code-insiders/$f" "${WORKING_LOCATION}/vs-code-insiders/" || exit 1
+    done
+
+    mv "${WORKING_LOCATION}/vs-code/" "${WORKING_LOCATION}/vs-code-${myUXIDshort}/"
+    mv "${WORKING_LOCATION}/vs-code-insiders/" "${WORKING_LOCATION}/vs-code-insiders-${myUXIDshort}/"
+
+    echo -e " >    make sure the newly created folder and files are accesible by the current user schown -R $(whoami)"
+    echo -e " >    make sure the newly created folder and files are inside a group  chgrp -R 'luxcium.io' '${WORKING_LOCATION}' "
+    (
+      sudo nice -n -35 ionice -c 1 -n 1 rm -fr "${WORKING_LOCATION}/usr" || exit 1
+      sudo nice -n -35 ionice -c 1 -n 1 rm -fr "${WORKING_LOCATION}/download" || exit 1
+      ( 
+        (sudo nice -n -35 ionice -c 1 -n 1 chown -R $(whoami) "${WORKING_LOCATION}" || exit 1) &
+        (sudo nice -n -35 ionice -c 1 -n 1 chgrp -R "luxcium.io" "${WORKING_LOCATION}" || exit 1) &
+      ) &
+    ) &
+  }
+  echo -e '--------------------------------------------------------------------------------'
+
+)
+
+echo -e "  -OK-" && exit 0
+
+# destFolder="${HOME}/potable-vscode/lxcm${myUXID:0:8}"
+# destFolderCode="${destFolder}/code"
+# destFolderCodeInsiders="${destFolder}/insiders"
+
+# sudo nice -n -35 ionice -c 1 -n 1 mkdir -pv "${FOLDER_LOCATION}/usr/share/code-insiders/data/tmp/"
+# sudo nice -n -35 ionice -c 1 -n 1 mkdir -pv "${FOLDER_LOCATION}/usr/share/code/data/tmp/"
+
+# sudo nice -n -35 ionice -c 1 -n 1 chown -R luxcium "${FOLDER_LOCATION}"
+# sudo nice -n -35 ionice -c 1 -n 1 chgrp -R luxcium "${FOLDER_LOCATION}"
+
+# destFolderCode="${HOME}/potable-vscode/lxcm${myUXID:0:8}L/"
+# destFolderCodeInsiders="${HOME}/potable-vscode/lxcm${myUXID:0:8}/"
+
+# sudo nice -n -35 ionice -c 1 -n 1 mkdir -pv "${destFolderCode}"
+# sudo nice -n -35 ionice -c 1 -n 1 mkdir -pv "${destFolderCodeInsiders}"
+
+# sudo nice -n -35 ionice -c 1 -n 1 chown -R luxcium "${destFolderCode}"
+# sudo nice -n -35 ionice -c 1 -n 1 chgrp -R luxcium "${destFolderCode}"
+
+# sudo nice -n -35 ionice -c 1 -n 1 cp -r "${FOLDER_LOCATION}/usr/share/code/" "${destFolderCode}/"
+# sudo nice -n -35 ionice -c 1 -n 1 cp -r "${FOLDER_LOCATION}/usr/share/code-insiders/" "${destFolderCodeInsiders}/"
+
+# sudo nice -n -35 ionice -c 1 -n 1 chown -R luxcium "/home/luxcium/potable-vscode"
+# sudo nice -n -35 ionice -c 1 -n 1 chgrp -R luxcium "/home/luxcium/potable-vscode"
+# #
+
+# exit 0
+
+# # file:///tmp/lxcm-D20F204077175201172UXIDZF4358035/visual-studio-code/downloads/usr/share/code/code
+# # file:///tmp/lxcm-D20F204077175201172UXIDZF4358035/visual-studio-code/downloads/usr/share/code-insiders/code-insiders
+# # cd visual-studio-code/downloads/usr/share/s
+
+# # 07-8-18-E-23-F-42-L
+
+# # 20-9-20-D-07-1-18-2-23-8-33
+# # 20920D07118223833
+
+# # XIDZ-C-00-6-406-2
+# echo -e /tmp/lxcm-E-20-5-20-2-07-B-18-4-23-A-29-9-UXIDZ-C-14-0-183-8-vs-code/
+
+# # # /tmp/lxcm--20--20--07--18--23--29--UXIDZC1401838-vs-code/
+
+# # 07A18823835FU
+# #  07-A-18-7-23-7-37-L
+# # 07A18723737L
+# # abcde fghej kl mnop

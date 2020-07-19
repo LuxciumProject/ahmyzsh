@@ -1,7 +1,5 @@
-#!/bin/sh
+#!/bin/zsh
 
-# watch -d -n .5
-awk '$3=="kB"||$2==0{$3="KB"}{if($2>1024^3){$2=$2/1024^3;$3="T";}else if($2>1024^2){$2=$2/1024^2;$3="GB";}else if($2>1024){$2=$2/1024;$3="MB";}else if($2<1){$2="....... °°";$3=";}} 1\
-' /proc/meminfo | column -t
+ionice -c 3 nice -n 35 watch -d -t -n 1 meminfo
 
 exit 0

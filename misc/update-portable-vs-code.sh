@@ -172,13 +172,13 @@ echo -n $(/home/luxcium/ahmyzsh/plugins/bin/randx 1)
 # +1 = 30
 # +1 = 31
 
-2-3
-5-6
-8-9
-11-12
-14-15
-17-18
-21-22
+# 2-3
+# 5-6
+# 8-9
+# 11-12
+# 14-15
+# 17-18
+# 21-22
 # %C siècle, comme %Y, sans les deux derniers chiffres
 # %y deux derniers chiffres de l'année (00..99)
 # %m mois (01..12)
@@ -189,15 +189,15 @@ echo -n $(/home/luxcium/ahmyzsh/plugins/bin/randx 1)
 # %Z abréviation alphabétique des fuseaux horaires (par exemple EDT)
 # %N nanosecondes (000000000..999999999)
 
-echo $(echo '320720C07A16B23252555AEDTA192DX' | cut -c 2-3)   # %C siècle, comme %Y, sans les deux derniers chiffres
-echo $(echo '320720C07A16B23252555AEDTA192DX' | cut -c 5-6)   # %y deux derniers chiffres de l'année (00..99)
-echo $(echo '320720C07A16B23252555AEDTA192DX' | cut -c 8-9)   # %m mois (01..12)
-echo $(echo '320720C07A16B23252555AEDTA192DX' | cut -c 11-12) # %d jour du mois (par exemple 01)
-echo $(echo '320720C07A16B23252555AEDTA192DX' | cut -c 14-15) # %H heure (00..23)
-echo $(echo '320720C07A16B23252555AEDTA192DX' | cut -c 17-18) # %M minute (00..59)
-echo $(echo '320720C07A16B23252555AEDTA192DX' | cut -c 20-21) # %S secondes (00..60)
-echo $(echo '320720C07A16B23252555AEDTA192DX' | cut -c 23-25) # %Z abréviation alphabétique des fuseaux horaires (par exemple EDT)
-echo $(echo '320720C07A16B23252555AEDTA192DX' | cut -c 27-29) # & Milisecondes (000..999)
+# echo $(echo '320720C07A16B23252555AEDTA192DX' | cut -c 2-3)   # %C siècle, comme %Y, sans les deux derniers chiffres
+# echo $(echo '320720C07A16B23252555AEDTA192DX' | cut -c 5-6)   # %y deux derniers chiffres de l'année (00..99)
+# echo $(echo '320720C07A16B23252555AEDTA192DX' | cut -c 8-9)   # %m mois (01..12)
+# echo $(echo '320720C07A16B23252555AEDTA192DX' | cut -c 11-12) # %d jour du mois (par exemple 01)
+# echo $(echo '320720C07A16B23252555AEDTA192DX' | cut -c 14-15) # %H heure (00..23)
+# echo $(echo '320720C07A16B23252555AEDTA192DX' | cut -c 17-18) # %M minute (00..59)
+# echo $(echo '320720C07A16B23252555AEDTA192DX' | cut -c 20-21) # %S secondes (00..60)
+# echo $(echo '320720C07A16B23252555AEDTA192DX' | cut -c 23-25) # %Z abréviation alphabétique des fuseaux horaires (par exemple EDT)
+# echo $(echo '320720C07A16B23252555AEDTA192DX' | cut -c 27-29) # & Milisecondes (000..999)
 #  sudo nice -n -20 taskset -c 1,8 ionice -c 1 -n 0 echo $(date +%S%N | cut -c -5) >> timetests.txt;
 
 # | cut -c -${1}

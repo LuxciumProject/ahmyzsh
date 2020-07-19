@@ -28,7 +28,7 @@ function desktopconsoles() {
     cool-retro-term -T 'cool-retro-term window desktop 8' --profile 'retro-blue' --verbose -e zsh &
   }
 }
-cool-retro-term -T 'cool-retro-term meminfo' --profile 'meminfo-003' --verbose -e zsh -c 'exec watch -xpd -n 0.5 meminfo' &
+cool-retro-term -T 'cool-retro-term meminfo' --profile 'meminfo-003' --verbose -e zsh -c 'exec watch -pd -n 0.5 meminfo' &
 cool-retro-term -T 'cool-retro-term htop' --profile 'htop-001' --verbose -e zsh -c 'exec htop' &
 # -c exec watch -xpd -n 0.5 meminfo
 
