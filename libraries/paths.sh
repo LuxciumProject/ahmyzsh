@@ -45,6 +45,15 @@ function personal_projects_paths() {
 }
 
 function init_paths() {
+
+    # /home/luxcium/ahmyzsh/custom-zsh/sources/functions/getportablecode.sh
+    # "${HOME}"
+    # "${AHMYZSH}"
+    # "${CUSTOM_ZSH}"
+    # "${ZSH_SOURCES}"
+    # "${ZSH_FUNCTIONS_FOLDER}"
+    #
+
     if [ "$PARENT_ENV_LOADED" != 'true' ]; then
 
         export CUSTOM_TMUX="${AHMYZSH}/custom-tmux"
@@ -64,6 +73,7 @@ function init_paths() {
                 export ZSH_COMPLETION="${ZSH_SOURCES}/completion"
                 export ZSH_COMPUTE="${ZSH_SOURCES}/compute"
                 export ZSH_FLAGS="${ZSH_SOURCES}/flags"
+                export ZSH_FUNCTIONS_FOLDER="${ZSH_SOURCES}/functions"
                 export ZSH_LAYOUTS="${ZSH_SOURCES}/layouts"
                 export ZSH_LUXCIUM="${ZSH_SOURCES}"
                 {
