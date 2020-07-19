@@ -1,7 +1,6 @@
 #!/bin/sh
 
-#$
-#$ Scientia es lux principium✨ ™
+#$ LUXCIUM LICENSE *NO* PERMISSION GRANTED - PROVIDED "AS IS" - WITHOUT WARRANTY
 #$
 #% Copyright © 2020 - LUXCIUM† (Benjamin Vincent Kasapoglu) <luxcium@neb401.com>
 #%
@@ -13,13 +12,15 @@
 #% OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #% SOFTWARE.
 #&
-#& NO PERMISSION ARE GRANTED. NOT TO PUBLISH, DISTRIBUTE, SUBLICENSE, AND/OR
-#& SELL COPIES OF THE SOFTWARE. YOU MAY USE FOR YOURSELF, DISTRIBUTE TO YOUR
-#& FRIENDS, TO YOUR STUDENTS, OR TO YOU COWORKER FOR PERSONAL USE AT HOME
-#& AT SCHOOL OR AT WORK ON A SMALL SCALE.
+#& *NO* PERMISSION ARE GRANTED. NOT TO PUBLISH, NOT TO DISTRIBUTE, NOT TO
+#& SUBLICENSE, AND/OR NOT TO SELL COPIES OF THE SOFTWARE.
+#& YOU MAY USE IT ONLY FOR YOURSELF AND YOU HAVE THE RIGHT TO: DISTRIBUTE TO
+#& YOUR FRIENDS, TO YOUR STUDENTS, OR TO YOU COWORKER FOR PERSONAL USE AT HOME
+#& AT SCHOOL OR AT WORK.
 #&
-#& The liscence is described at the botom of the page the copyright and notice
-#& above shall be included in all copies or substantial portions of the Software
+#& IN ANY CASES THE COPYRIGHT AND NOTICE ABOVE MUST BE INCLUDED.
+#$
+#$ Scientia es lux principium✨ ™
 
 rand1=$(sha224hmac <<<$(date +%s%N) | cut -c -${1} | tr \[a-z\] \[A-Z\])
 echo "${rand1}"
