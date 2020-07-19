@@ -5,7 +5,7 @@
   echo -e '--------------------------------------------------------------------------------'
   {
     myUXIDlong="$(/home/luxcium/ahmyzsh/plugins/bin/uxid)" || exit 1
-    myUXIDshort="${myUXIDlong:7:11}L" || exit 1
+    myUXIDshort="$(date +%s)-${myUXIDlong:7:11}L" || exit 1
     WORKING_LOCATION="/tmp/LXCM-portable-vscode-${myUXIDlong}" || exit 1
     echo -e " >    set the temporary working folder in ${WORKING_LOCATION}"
     DOWNLOAD_LOCATION="${WORKING_LOCATION}/download" || exit 1
@@ -77,10 +77,11 @@
       sudo nice -n -35 ionice -c 1 -n 1 chown -R $(whoami) "${WORKING_LOCATION}" || exit 1
       sudo nice -n -35 ionice -c 1 -n 1 chgrp -R "luxcium.io" "${WORKING_LOCATION}" || exit 1
 
-      mkdir -pv ${home}/potable-vscode/ || exit 1
+      echo -ne " >    "
+      sudo mkdir -pv "${home}/potable-vscode/" || exit 1
 
-      mv "${WORKING_LOCATION}/vs-code/" "${HOME}/potable-vscode/vs-code-${myUXIDshort}/" || exit 1
-      mv "${WORKING_LOCATION}/vs-code-insiders/" "${HOME}/potable-vscode/vs-code-insiders-${myUXIDshort}/" || exit 1
+      mv "${WORKING_LOCATION}/vs-code/" "${HOME}/potable-vscode/vs-code_${myUXIDshort}/" || exit 1
+      mv "${WORKING_LOCATION}/vs-code-insiders/" "${HOME}/potable-vscode/vs-code-insiders_${myUXIDshort}/" || exit 1
 
       (
         sudo nice -n -35 ionice -c 1 -n 1 rm -fr "${WORKING_LOCATION}/usr" &
@@ -93,6 +94,19 @@
   }
 
   echo -e '--------------------------------------------------------------------------------'
+  #  file:///home/luxcium/potable-vscode/vs-code-insiders-07C19801E04L/bin/code-insiders
+
+  echo -e '\n\n'
+
+  echo "'${myUXIDshort}' code"
+  echo ${HOME}/potable-vscode/vs-code_${myUXIDshort}/
+  echo ${HOME}/potable-vscode/vs-code_${myUXIDshort}/bin/code
+
+  echo -e '\n----------------------------------------\n'
+
+  echo "'${myUXIDshort}' code-insiders"
+  echo ${HOME}/potable-vscode/vs-code-insiders_${myUXIDshort}/
+  echo ${HOME}/potable-vscode/vs-code-insiders_${myUXIDshort}/bin/code-insiders
 
 ) || exit 1
 

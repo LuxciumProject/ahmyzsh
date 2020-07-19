@@ -1,5 +1,5 @@
 #!/bin/zsh
 
-ionice -c 3 nice -n 35 watch -d -t -n 1 meminfo
+nice -n 35 ionice -c 3 watch -d -t -n 1 meminfo
 
 exit 0
