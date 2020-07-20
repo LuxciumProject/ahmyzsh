@@ -46,7 +46,7 @@ function personal_projects_paths() {
 
 function init_paths() {
 
-    # /home/luxcium/ahmyzsh/custom-zsh/sources/functions/getportablecode.sh
+    # source /home/luxcium/ahmyzsh/custom-zsh/sources/functions/getportablecode.sh
     # "${HOME}"
     # "${AHMYZSH}"
     # "${CUSTOM_ZSH}"

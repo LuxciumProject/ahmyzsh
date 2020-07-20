@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/env sh
 
 #$ LUXCIUM LICENSE *NO* PERMISSION GRANTED - PROVIDED "AS IS" - WITHOUT WARRANTY
 #$
@@ -22,82 +22,90 @@
 #$
 #$ Scientia es lux principium✨ ™
 
-(
+S1="${ZSH_FUNCTIONS_FOLDER}/getportablecode.sh"
+if [ -f "${S1}" ]; then
+  . "${S1}"
+  getportablecode 'STABLE'
+else
+  echo "Error loading '${S1}'... File or path can not be resolved"
+fi
 
-  ## CONSTANTS
-  {
-    VSCODEURL_STABLE_RPM='https://go.microsoft.com/fwlink/?LinkID=760867'
-    VSCODEURL_STABLE_TAR_GZ='https://go.microsoft.com/fwlink/?LinkID=620884'
-    VSCODEURL_INSIDERS_RPM='https://go.microsoft.com/fwlink/?LinkID=760866'
-    VSCODEURL_INSIDERS_TAR_GZ='https://go.microsoft.com/fwlink/?LinkId=723968'
-    VSCODESHORTPATH_STABLE='code'
-    VSCODESHORTPATH_INSIDERS='code-insiders'
-  }
+# (
 
-  ## CUSTOM VARIABLES
-  {
-    vsbranch='STABLE' # or 'INSIDERS'
-    vscoderpm="${VSCODEURL_STABLE_RPM}"
-    vscodeshortpath="${VSCODESHORTPATH_STABLE}"
-  }
+#   ## CONSTANTS
+#   {
+#     VSCODEURL_STABLE_RPM='https://go.microsoft.com/fwlink/?LinkID=760867'
+#     VSCODEURL_STABLE_TAR_GZ='https://go.microsoft.com/fwlink/?LinkID=620884'
+#     VSCODEURL_INSIDERS_RPM='https://go.microsoft.com/fwlink/?LinkID=760866'
+#     VSCODEURL_INSIDERS_TAR_GZ='https://go.microsoft.com/fwlink/?LinkId=723968'
+#     VSCODESHORTPATH_STABLE='code'
+#     VSCODESHORTPATH_INSIDERS='code-insiders'
+#   }
 
-  ## INTERNAL VARIABLES
-  {
-    myUXIDlong="$(/home/luxcium/ahmyzsh/plugins/bin/uxid)" || exit 1
-    WORKING_LOCATION="/tmp/LXCM-vscode-${vsbranch}-${myUXIDlong}" || exit 1
-    DOWNLOAD_LOCATION="${WORKING_LOCATION}/download" || exit 1
+#   ## CUSTOM VARIABLES
+#   {
+#     vsbranch='STABLE' # or 'INSIDERS'
+#     vscoderpm="${VSCODEURL_STABLE_RPM}"
+#     vscodeshortpath="${VSCODESHORTPATH_STABLE}"
+#   }
 
-    sudo nice -n -35 ionice -c 1 -n 1 mkdir -p "${DOWNLOAD_LOCATION}" || exit 1
-    sudo nice -n -35 ionice -c 1 -n 1 chown -R $(whoami) "${WORKING_LOCATION}" || exit 1
-  }
+#   ## INTERNAL VARIABLES
+#   {
+#     myUXIDlong="$(/home/luxcium/ahmyzsh/plugins/bin/uxid)" || exit 1
+#     WORKING_LOCATION="/tmp/LXCM-vscode-${vsbranch}-${myUXIDlong}" || exit 1
+#     DOWNLOAD_LOCATION="${WORKING_LOCATION}/download" || exit 1
 
-  ## DOWNLOAD FROM MICROSOFT
-  {
-    cd ${DOWNLOAD_LOCATION}
+#     sudo nice -n -35 ionice -c 1 -n 1 mkdir -p "${DOWNLOAD_LOCATION}" || exit 1
+#     sudo nice -n -35 ionice -c 1 -n 1 chown -R $(whoami) "${WORKING_LOCATION}" || exit 1
+#   }
 
-    echo -e "\n >    download ${vsbranch}.rpm from microsoft server"
-    sudo nice -n -35 ionice -c 1 -n 1 curl -O -L -J -S# "${vscoderpm}" || exit 1
-    myUXIDshort="${vsbranch}-$(date +%s)-${myUXIDlong:7:11}L" || exit 1
+#   ## DOWNLOAD FROM MICROSOFT
+#   {
+#     cd ${DOWNLOAD_LOCATION}
 
-    cd ${WORKING_LOCATION}
-    for f in $(ls ${DOWNLOAD_LOCATION}/*code*.x86_64.rpm); do
-      sudo nice -n -35 ionice -c 1 -n 1 rpm2cpio "$f" | sudo nice -n -35 ionice -c 1 -n 1 cpio -idm --no-absolute-filenames &>/dev/null || exit 1
-    done
-    sudo nice -n -35 ionice -c 1 -n 1 chown -R $(whoami) "${WORKING_LOCATION}" >/dev/null || exit 1
-  }
+#     echo -e "\n >    download ${vsbranch}.rpm from microsoft server"
+#     sudo nice -n -35 ionice -c 1 -n 1 curl -O -L -J -S# "${vscoderpm}" || exit 1
+#     myUXIDshort="${vsbranch}-$(date +%s)-${myUXIDlong:7:11}L" || exit 1
 
-  ## CREATING THE PORTABLE VERSION
-  {
-    cp -r "/etc/vscode-portable/vs-${vscodeshortpath}/" "${WORKING_LOCATION}" || exit 1
-    mv "${WORKING_LOCATION}/usr/share/${vscodeshortpath}" "${WORKING_LOCATION}/${vscodeshortpath}" || exit 1
-    mkdir -p "${WORKING_LOCATION}/vs-${vscodeshortpath}/completions/" || exit 1
+#     cd ${WORKING_LOCATION}
+#     for f in $(ls ${DOWNLOAD_LOCATION}/*code*.x86_64.rpm); do
+#       sudo nice -n -35 ionice -c 1 -n 1 rpm2cpio "$f" | sudo nice -n -35 ionice -c 1 -n 1 cpio -idm --no-absolute-filenames &>/dev/null || exit 1
+#     done
+#     sudo nice -n -35 ionice -c 1 -n 1 chown -R $(whoami) "${WORKING_LOCATION}" >/dev/null || exit 1
+#   }
 
-    # cp -r "${WORKING_LOCATION}/usr/share/zsh/site-functions/" "${WORKING_LOCATION}/vs-${vscodeshortpath}/completions/zsh/" || exit 1
+#   ## CREATING THE PORTABLE VERSION
+#   {
+#     cp -r "/etc/vscode-portable/vs-${vscodeshortpath}/" "${WORKING_LOCATION}" || exit 1
+#     mv "${WORKING_LOCATION}/usr/share/${vscodeshortpath}" "${WORKING_LOCATION}/${vscodeshortpath}" || exit 1
+#     mkdir -p "${WORKING_LOCATION}/vs-${vscodeshortpath}/completions/" || exit 1
 
-    # cp -r "${WORKING_LOCATION}/usr/share/bash-completion/completions/" "${WORKING_LOCATION}/vs-${vscodeshortpath}/completions/bash/" || exit 1
+#     # cp -r "${WORKING_LOCATION}/usr/share/zsh/site-functions/" "${WORKING_LOCATION}/vs-${vscodeshortpath}/completions/zsh/" || exit 1
 
-    # cp -r "${WORKING_LOCATION}/usr/share/pixmaps/" "${WORKING_LOCATION}/vs-${vscodeshortpath}/pixmaps/" || exit 1
+#     # cp -r "${WORKING_LOCATION}/usr/share/bash-completion/completions/" "${WORKING_LOCATION}/vs-${vscodeshortpath}/completions/bash/" || exit 1
 
-    for f in $(ls "${WORKING_LOCATION}/${vscodeshortpath}"); do
-      mv "${WORKING_LOCATION}/${vscodeshortpath}/$f" "${WORKING_LOCATION}/vs-${vscodeshortpath}/" || exit 1
-    done
-  }
+#     # cp -r "${WORKING_LOCATION}/usr/share/pixmaps/" "${WORKING_LOCATION}/vs-${vscodeshortpath}/pixmaps/" || exit 1
 
-  ## MOVING STUFF TO HOME FOLDER
-  {
-    sudo mkdir -p "${HOME}/potable-vscode/" || exit 1
-    sudo nice -n -35 ionice -c 1 -n 1 chown -R $(whoami) "${WORKING_LOCATION}" || exit 1
-    sudo groupadd "luxcium.io" &>/dev/null
-    sudo nice -n -35 ionice -c 1 -n 1 chgrp -R "luxcium.io" "${WORKING_LOCATION}" || exit 1
-    mv "${WORKING_LOCATION}/vs-${vscodeshortpath}/" "${HOME}/potable-vscode/vs-code_${myUXIDshort}/" || exit 1
-    sudo rm -rf "${WORKING_LOCATION}" || exit 1
+#     for f in $(ls "${WORKING_LOCATION}/${vscodeshortpath}"); do
+#       mv "${WORKING_LOCATION}/${vscodeshortpath}/$f" "${WORKING_LOCATION}/vs-${vscodeshortpath}/" || exit 1
+#     done
+#   }
 
-  }
+#   ## MOVING STUFF TO HOME FOLDER
+#   {
+#     sudo mkdir -p "${HOME}/potable-vscode/" || exit 1
+#     sudo nice -n -35 ionice -c 1 -n 1 chown -R $(whoami) "${WORKING_LOCATION}" || exit 1
+#     sudo groupadd "luxcium.io" &>/dev/null
+#     sudo nice -n -35 ionice -c 1 -n 1 chgrp -R "luxcium.io" "${WORKING_LOCATION}" || exit 1
+#     mv "${WORKING_LOCATION}/vs-${vscodeshortpath}/" "${HOME}/potable-vscode/vs-code_${myUXIDshort}/" || exit 1
+#     sudo rm -rf "${WORKING_LOCATION}" || exit 1
 
-  echo "'${myUXIDshort}':"
-  echo ${HOME}/potable-vscode/vs-code_${myUXIDshort}/
-  echo ${HOME}/potable-vscode/vs-code_${myUXIDshort}/bin/code
+#   }
 
-) || exit 1
+#   echo "'${myUXIDshort}':"
+#   echo ${HOME}/potable-vscode/vs-code_${myUXIDshort}/
+#   echo ${HOME}/potable-vscode/vs-code_${myUXIDshort}/bin/code
 
-echo -e "\n   -OK-" && exit 0
+# ) || exit 1
+
+# echo -e "\n   -OK-" && exit 0
