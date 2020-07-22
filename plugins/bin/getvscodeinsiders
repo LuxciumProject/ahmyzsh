@@ -22,10 +22,10 @@
 #$
 #$ Scientia es lux principium✨ ™
 
-S1="${ZSH_FUNCTIONS_FOLDER}/getportablecode.sh"
+S1="${ZSH_FUNCTIONS_FOLDER}/getvscodeportable.zsh"
 if [ -f "${S1}" ]; then
   . "${S1}"
-  getportablecode 'INSIDERS'
+  getvscodeportable 'INSIDERS'
 else
   echo "Error loading '${S1}'... File or path can not be resolved"
 fi

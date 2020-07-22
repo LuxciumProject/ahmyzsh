@@ -49,29 +49,40 @@ function init_functions() {
         # local TIMER_VALUE=$(((${TIMER_NOW} - ${TIMER_ALL_THEN}) / 1000000))
         timer_ "${TIMER_ALL_THEN}"
         # echo -n "${TIMER_VALUE} "
-        # return 0
     }
 
     function call_() {
         if [ -z $1 ]; then
+            [ "${VERBOSA}" -gt 1 ] && echo "Error sourcing ' $1 ' no function call provided"
             return 1
         else
             TIMER_THEN=$(/usr/bin/date +%s%N)
             eval ${1}
-            [ "${VERBOSA}" -gt 1 ] && echo "${BEGIN_FUNCTION} $(timer_now) '${1}()' ${END_FUNCTION}"
-            return 0
+            returnval=$?
+            [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_FUNCTION} $(timer_now) '${1}()' ${END_FUNCTION}"
+            return "${returnval}"
         fi
     }
 
     function source_() {
         if [ -z $1 ]; then
+            [ "${VERBOSA}" -gt 1 ] && echo "Error sourcing ' $1 ' no file provided"
             return 1
-            [ "${VERBOSA}" -gt 3 ] && echo "Error sourcing $1"
         else
             TIMER_THEN=$(/usr/bin/date +%s%N)
-            . "${1}"
-            [ "${VERBOSA}" -gt 2 ] && echo "${BEGIN_SOURCING} $(timer_now) ${1} ${END_SOURCING}"
-            return 0
+            if [[ -f $1 ]]; then
+                if [[ -r $1 ]]; then
+                    source "${1}"
+                    [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_SOURCING} $(timer_now) ${1} ${END_SOURCING}"
+                    return 0
+                else
+                    [ "${VERBOSA}" -gt 3 ] && echo "Error sourcing '$1' file provided is not redable"
+                    return 3
+                fi
+            else
+                [ "${VERBOSA}" -gt 2 ] && echo "Error sourcing '$1' file provided does not exist"
+                return 2
+            fi
         fi
     }
 

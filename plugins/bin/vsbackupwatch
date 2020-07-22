@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+exec watch vsbackup
+
+exit 0

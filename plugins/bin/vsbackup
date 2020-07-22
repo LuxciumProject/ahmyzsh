@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Backup my vscode and my insiders into /etc/vscode-portable/backup
+
+## TODO: REMOVE HARD CONFIGURED LINKS
+
+(cp -vuLr /home/luxcium/.config/Code/ /etc/vscode-portable/backup/vs-code/data/user-data) &
+(cp -vuLr /home/luxcium/.vscode/extensions /etc/vscode-portable/backup/vs-code/data/estensions) &
+(cp -vuLr /home/luxcium/.config/'Code - Insiders'/ /etc/vscode-portable/backup/insiders-code/data/user-data) &
+(cp -vuLr /home/luxcium/.vscode-insiders/extensions /etc/vscode-portable/backup/insiders-code/data/estensions) &
+
+exit 0
