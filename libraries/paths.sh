@@ -1,3 +1,4 @@
+alias reload_projects_paths="PARENT_ENV_LOADED=false;personal_projects_paths;echo 'Projects paths refreshed'"
 function personal_projects_paths() {
     if [ "$PARENT_ENV_LOADED" != 'true' ]; then
 
@@ -6,7 +7,7 @@ function personal_projects_paths() {
         export CACHE_FOLDER_="${HOME}/envs/cache/p10k-${USER}"
         alias cache_folder="cd ${CACHE_FOLDER_}"
 
-        export DEV_FOLDER="${HOME}/development"
+        export DEV_FOLDER="${HOME}/dev"
         alias dev_folder="cd ${DEV_FOLDER}"
         export LXI_PROJCT="${DEV_FOLDER}/luxcium-projects"
         alias lxi_projct="cd ${LXI_PROJCT}"
