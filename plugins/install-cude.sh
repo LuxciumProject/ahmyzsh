@@ -9,6 +9,13 @@
 #+ PROBLEME IT MAY CAUSE TO YOU (or anyone) OR YOUR MACHINE (or any machine)
 #† Scientia es lux principium✨ ™
 
+## get into '/tmp' to work ...
+#+ -----------------------------------------------------------------------------
+INSTALLDIRNAME="/tmp/cuda-install-$(date +%s)"
+sudo mkdir ${INSTALLDIRNAME}
+sudo chown $(whoami) ${INSTALLDIRNAME}
+cd ${INSTALLDIRNAME}
+
 ## Verify the system has a CUDA-capable GPU.
 #+ -----------------------------------------------------------------------------
 lspci | grep -i nvidia &>/dev/null || sudo update-pciids
@@ -50,6 +57,7 @@ sudo /usr/local/cuda-*/bin/uninstall_cuda_*.pl
 sudo dnf -y remove "*cuda*"
 sudo /usr/bin/nvidia-uninstall
 sudo dnf -y remove "*nvidia*"
+sudo dnf -y remove "*kmod*"
 # sudo rm -rf /usr/local/cuda*
 
 ## Address custom xorg.conf, if applicable
@@ -61,6 +69,7 @@ sudo dnf -y remove "*nvidia*"
 # /etc/X11/xorg.conf.d/00-nvidia.conf to the xorg.conf file. The xorg.conf file
 # will most likely need manual tweaking for systems with a non-trivial
 # GPU configuration.
+(sudo mv "/etc/X11/xorg.conf" "/etc/X11/xorg.conf~$(date +%s).bak") &>/dev/null
 
 ## Satisfy Akmods dependency
 #+ -----------------------------------------------------------------------------
@@ -84,21 +93,21 @@ sudo dnf clean expire-cache
 
 ## Install CUDA
 #+ -----------------------------------------------------------------------------
-sudo dnf install cuda
+sudo dnf -y install cuda
 
 # The CUDA driver installation may fail if the RPMFusion non-free repository
 # is enabled. In this case, CUDA installations should temporarily disable the
 # RPMFusion non-free repository:
-sudo dnf --disablerepo="rpmfusion-nonfree*" install cuda
+sudo dnf -y --disablerepo="rpmfusion-nonfree*" install cuda
 
 # If a system has installed both packages with the same instance of dnf,
 # some driver components may be missing. Such an installation can be corrected
 # by running:
-sudo dnf install cuda-drivers
+sudo dnf -y install cuda-drivers
 
 ## Optional Actions
 #+ -----------------------------------------------------------------------------
-sudo dnf install freeglut-devel libX11-devel libXi-devel libXmu-devel \
+sudo dnf -y install freeglut-devel libX11-devel libXi-devel libXmu-devel \
   make mesa-libGLU-devel
 
 ## Finalise
@@ -107,6 +116,10 @@ sudo dracut --force -v
 sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 sudo dracut --uefi --force -v
 sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
+
+echo "PLEASE REBOOT NOW!!!"
+echo "PLEASE REBOOT NOW!!!"
+echo "PLEASE REBOOT NOW!!!"
 
 #!! REBOOT
 
