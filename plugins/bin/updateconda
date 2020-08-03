@@ -1,4 +1,4 @@
 #!/bin/sh
-conda update conda || exit 1
-conda update --all || exit 1
+conda update -y conda || exit 1
+conda update -y --all || exit 1
 exit 0
