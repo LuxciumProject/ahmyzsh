@@ -35,6 +35,14 @@ function __AHMYZSH__BOOT__LOADER__() {
   export CACHED_PATH="${HOME}/.cache/path.env"
   export AH_LIBRARIES="${AHMYZSH}/libraries"
 
+  local S1="${AHMYZSH}/MAIN_configuration.sh"
+  if [ -f "${S1}" ]; then
+    . ${S1}
+    firtstage
+  else
+    echo "Error loading '${S1}'... File or path can not be resolved"
+  fi
+
   local S1="${CACHED_PATH}"
   if [ -f "${S1}" ]; then
     . ${S1}

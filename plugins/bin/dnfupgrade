@@ -2,6 +2,6 @@
 
 (
   sudo dnf reinstall code-insiders code -y
-  sudo dnf upgrade -y
+  sudo dnf upgrade
   # sudo dnf group upgrade -y
 )
