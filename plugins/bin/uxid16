@@ -1,0 +1,10 @@
+#!/bin/env sh
+
+# /home/luxcium/ahmyzsh/plugins/bin/uxid
+
+function uxid16() {
+  local fooZ="$(/home/luxcium/ahmyzsh/plugins/bin/uxid)"
+  echo -n "${fooZ:1:17}R"
+}
+uxid16
+exit 0

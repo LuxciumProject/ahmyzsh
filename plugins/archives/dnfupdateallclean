@@ -1,0 +1,20 @@
+#!/bin/sh
+
+dnf autoremove -v -y
+dnf clean all
+dnf upgrade -x xorg-x11-drv-nouveau -v --downloadonly -y --refresh
+#! Groupes disponibles :
+#! Groupes d’environnements disponibles :
+# dnf group install --assumeno eclipse        #!!
+# dnf group install --assumeno electronic-lab #!!
+# dnf group install --assumeno developer-workstation-environment #!!
+# dnf group install --assumeno 3d-printing audio authoring-and-publishing cloud-management compiz domain-client engineering-and-scientific freeipa-server mate-applications milkymist python-classroom python-science robotics-suite security-lab deepin-desktop gnome-desktop server-product-environment workstation-product-environment cloud-server-environment xfce-desktop-environment lxde-desktop-environment lxqt-desktop-environment cinnamon-desktop-environment mate-desktop-environment sugar-desktop-environment deepin-desktop-environment web-server-environment basic-desktop-environment
+#! Groupes d’environnements installés :
+#! Groupes installés :
+dnf group install -x xorg-x11-drv-nouveau -y custom-environment infrastructure-server-environment minimal-environment kde-desktop-environment books cloud-infrastructure container-management d-development education medical network-server neuron-modelling-simulators games rpm-development-tools admin-tools c-development development-tools editors headless-management libreoffice office text-internet window-managers graphical-internet kde-desktop fonts hardware-support sound-and-video system-tools design-suite
+dnf upgrade -y -x xorg-x11-drv-nouveau
+dnf autoremove --assumeno
+dnf remove xorg-x11-drv-nouveau -y
+
+#!  sudo nice -n -15 taskset -c 0,1,5,8 ionice -c 1 -n 3 $(which dnfupdateallclean)
+exit 0

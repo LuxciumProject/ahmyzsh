@@ -1,0 +1,38 @@
+#!/bin/env sh
+
+# cool-retro-term -T 'old-server 000-main' --profile 'old-server-000-main' --verbose -e zsh &
+# cool-retro-term -T 'old-server main' --profile 'old-brown-less' --verbose -e zsh &
+
+function activityconsoles() {
+  {
+    cool-retro-term -T 'cool-retro-term window activity 1. Main' --profile 'new-ibm-green' --verbose -e zsh &
+    cool-retro-term -T 'cool-retro-term window activity 2. Secondary' --profile 'old-server-006' --verbose -e zsh &
+    cool-retro-term -T 'cool-retro-term window activity 3. Monitoring' --profile 'activity-003' --verbose -e zsh &
+    cool-retro-term -T 'cool-retro-term window activity 4. °Luxcium.io°' --profile 'cool-brown' --verbose -e zsh &
+    cool-retro-term -T 'cool-retro-term window activity 5. °Ah! MYZSH°' --profile 'cool-brown' --verbose -e zsh &
+    cool-retro-term -T 'cool-retro-term window activity 6. Code' --profile 'old-server-006' --verbose -e zsh &
+    cool-retro-term -T 'cool-retro-term window activity 7.' --profile 'old-server-006' --verbose -e zsh &
+    cool-retro-term -T 'cool-retro-term window activity 8.' --profile 'old-server-006' --verbose -e zsh &
+  }
+}
+
+function desktopconsoles() {
+  {
+    cool-retro-term -T 'cool-retro-term window desktop 1' --profile 'default-green' --verbose -e zsh &
+    cool-retro-term -T 'cool-retro-term window desktop 2' --profile 'old-blue' --verbose -e zsh &
+    cool-retro-term -T 'cool-retro-term window desktop 3' --profile 'new-ibm-green' --verbose -e zsh &
+    cool-retro-term -T 'cool-retro-term window desktop 4' --profile 'old-dos' --verbose -e zsh &
+    cool-retro-term -T 'cool-retro-term window desktop 5' --profile 'default-amber-monochrome' --verbose -e zsh &
+    cool-retro-term -T 'cool-retro-term window desktop 6' --profile 'retro-red' --verbose -e zsh &
+    cool-retro-term -T 'cool-retro-term window desktop 7' --profile 'retro-green' --verbose -e zsh &
+    cool-retro-term -T 'cool-retro-term window desktop 8' --profile 'retro-blue' --verbose -e zsh &
+  }
+}
+cool-retro-term -T 'cool-retro-term meminfo' --profile 'meminfo-003' --verbose -e zsh -c 'exec watch -pd -n 0.5 meminfo' &
+cool-retro-term -T 'cool-retro-term htop' --profile 'htop-001' --verbose -e zsh -c 'exec htop' &
+# -c exec watch -xpd -n 0.5 meminfo
+
+activityconsoles
+desktopconsoles
+echo '# To close all cool-retro-term windows -> kill $(pidof cool-retro-term)'
+exit 0

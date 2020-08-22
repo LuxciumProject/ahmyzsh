@@ -2,8 +2,6 @@
   "files.exclude": {
     "**/*.zwc": true
   },
-
-  "editor.fontSize": 14,
   /*
         "#F15F",
         "#FB3F",
@@ -75,5 +73,192 @@
       "column": 138,
       "color": "#4AEC"
     }
-  ]
+  ],
+  "better-comments.tags": [
+    {
+      // !!
+      "tag": "!!",
+      "color": "#FF2D00",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // ?
+      "tag": "?",
+      "color": "#3498DB",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // $
+      "tag": "$",
+      "color": "#f48e41",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // #
+      "tag": "#",
+      "color": "#4AE",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // IIFE
+      "tag": "IIFE",
+      "color": "#FF3D",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // private
+      "tag": "private",
+      "color": "#F15E",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // protected
+      "tag": "protected",
+      "color": "#FD3E",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // TEST_MODULE
+      "tag": "TEST_MODULE",
+      "color": "#6CBC",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // public
+      "tag": "public",
+      "color": "#FC5D", // "#FA0E",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // static
+      "tag": "static",
+      "color": "#F70E",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // get
+      "tag": "get",
+      "color": "#6BFC",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    // {
+    //   // set
+    //   "tag": "set",
+    //   "color": "#85FE",
+    //   "strikethrough": false,
+    //   "backgroundColor": "transparent"
+    // },
+    {
+      // %
+      "tag": "%",
+      "color": "#41e2f4",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // # -c-54442
+      // †
+      "tag": "†",
+      "color": "#c54442",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // +
+      "tag": "+",
+      "color": "#c5f442",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // async
+      "tag": "async",
+      "color": "#FB3F",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // http
+      "tag": "http",
+      "color": "#FB3F",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // &
+      "tag": "&",
+      "color": "#a041f4",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    // {
+    //   //
+    //   "tag": "",
+    //   "color": "#6d6060",
+    //   "strikethrough": false,
+    //   "backgroundColor": "transparent"
+    // },
+    {
+      // todo
+      "tag": "todo",
+      "color": "#FF8C00",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // *
+      "tag": "*",
+      "color": "#98C379",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // ¬
+      "tag": "¬",
+      "color": "#ffa0a0",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    // {
+    //       // async function
+    //       "tag": "| async function |",
+    //       "color": "#FB3F",
+    //       "strikethrough": false,
+    //       "backgroundColor": "transparent"
+    // },
+    {
+      // -
+      "tag": "-",
+      "color": "#9BEA",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // ====
+      "tag": "====",
+      "color": "#9BEA",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // setopt
+      "tag": "setopt",
+      "color": "#c5f442",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+  ],
+  "window.title": "°Ah! MYZSH° ✨${remoteName}${appName}✨ ${rootPath} ${dirty} ${activeEditorMedium} ",
 }
+//

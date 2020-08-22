@@ -1,0 +1,262 @@
+#!/bin/zsh
+
+{
+  function ddsoft() {
+    (
+      sudo ionice -c 3 nice -n 35 dd if=/dev/zero of=/dev/null &
+    )
+  }
+
+  function ddhard() {
+    (
+      sudo ionice -c 1 -n 0 nice -n -35 dd if=/dev/zero of=/dev/null &
+    )
+  }
+
+  function ddsoft5() {
+    (
+      ddsoft
+      ddsoft
+      ddsoft
+      ddsoft
+      ddsoft
+    )
+  }
+
+  function ddhard5() {
+    (
+      ddhard
+      ddhard
+      ddhard
+      ddhard
+      ddhard
+    )
+  }
+}
+
+echo -e '\n   TEST #1'
+
+(
+  echo 'Will test DDSOFT x10 for 10 sec'
+  sleep 5
+  echo 'start for 10 seconds'
+  (
+
+    ddsoft5 &
+    ddsoft5 &
+
+  )
+  sleep 10
+  sudo killall dd
+  echo '---'
+)
+
+(
+  echo 'Will test DDHARD x10 for 10 sec'
+  sleep 5
+  echo 'start for 10 seconds'
+  (
+
+    ddhard5 &
+    ddhard5 &
+
+  )
+  sleep 10
+  sudo killall dd
+  echo '---'
+)
+
+echo -e '\n   TEST #2'
+(
+
+  echo 'Will test DDSOFT x20 for 20 sec'
+  sleep 10
+  echo 'start for 20 seconds'
+  (
+
+    ddsoft5 &
+    ddsoft5 &
+
+    ddsoft5 &
+    ddsoft5 &
+
+  )
+
+  sleep 20
+  sudo killall dd
+  echo '---'
+)
+
+(
+  echo 'Will test DDHARD x20 for 20 sec'
+  sleep 10
+  echo 'start for 20 seconds'
+  (
+
+    ddhard5 &
+    ddhard5 &
+
+    ddhard5 &
+    ddhard5 &
+
+  )
+  sleep 20
+  sudo killall dd
+  echo '---'
+)
+
+echo -e '\n   TEST #3'
+
+(
+  echo 'Will test DDHARD x20 for 30 sec'
+  sleep 15
+  echo 'start for 30 seconds'
+  (
+
+    ddhard5 &
+    ddhard5 &
+
+    ddhard5 &
+    ddhard5 &
+
+  )
+
+  sleep 30
+  sudo killall dd
+  echo '---'
+)
+
+(
+  echo 'Will test DDSOFT x20 for 30 sec'
+  sleep 15
+  echo 'start for 30 seconds'
+  (
+
+    ddsoft5 &
+    ddsoft5 &
+
+    ddsoft5 &
+    ddsoft5 &
+
+  )
+
+  sleep 30
+  sudo killall dd
+  echo '---'
+)
+
+echo -e '\n   TEST #4 a'
+
+(
+  echo 'Will test DDHARD x30 for 10 sec'
+  sleep 20
+  echo 'start for 10 seconds'
+  (
+
+    ddhard5 &
+    ddhard5 &
+
+    ddhard5 &
+    ddhard5 &
+
+    ddhard5 &
+    ddhard5 &
+
+  )
+  sleep 10
+  sudo killall dd
+  echo '---'
+)
+echo -e '\n   TEST #4 b'
+
+(
+  echo 'Will test DDHARD x40 for 10 sec'
+  sleep 20
+  echo 'start for 10 seconds'
+  (
+
+    ddhard5 &
+    ddhard5 &
+
+    ddhard5 &
+    ddhard5 &
+
+    ddhard5 &
+    ddhard5 &
+
+    ddhard5 &
+    ddhard5 &
+
+  )
+  sleep 10
+  sudo killall dd
+  echo '---'
+)
+
+echo -e '\n   TEST #4 c'
+
+(
+  echo 'Will test DDHARD x50 for 10 sec'
+  sleep 20
+  echo 'start for 10 seconds'
+  (
+
+    ddhard5 &
+    ddhard5 &
+
+    ddhard5 &
+    ddhard5 &
+
+    ddhard5 &
+    ddhard5 &
+
+    ddhard5 &
+    ddhard5 &
+
+    ddhard5 &
+    ddhard5 &
+
+  )
+  sleep 10
+  sudo killall dd
+  echo '---'
+)
+
+echo -e '\n   TEST #4 d'
+
+(
+  echo 'Will test DDHARD x60 for 10 sec'
+  sleep 20
+  echo 'start for 10 seconds'
+  (
+
+    ddhard5 &
+    ddhard5 &
+
+    ddhard5 &
+    ddhard5 &
+
+    ddhard5 &
+    ddhard5 &
+
+    ddhard5 &
+    ddhard5 &
+
+    ddhard5 &
+    ddhard5 &
+
+    ddhard5 &
+    ddhard5 &
+
+  )
+  sleep 10
+  sudo killall dd
+  echo '---'
+)
+echo ''
+echo --------------------
+echo 'completed !!!'
+echo 'completed !!!'
+echo 'completed !!!'
+echo --------------------
+exit 0

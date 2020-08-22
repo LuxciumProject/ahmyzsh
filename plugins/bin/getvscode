@@ -1,0 +1,171 @@
+#!/bin/env sh
+
+#$ LUXCIUM LICENSE *NO* PERMISSION GRANTED - PROVIDED "AS IS" - WITHOUT WARRANTY
+#$
+#% Copyright © 2020 - LUXCIUM† (Benjamin Vincent Kasapoglu) <luxcium@neb401.com>
+#%
+#% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ALL KIND, EXPRESS OR
+#% IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#% FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+#% AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ALL CLAIM, DAMAGES OR OTHER
+#% LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#% OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+#% SOFTWARE.
+#&
+#& *NO* PERMISSION ARE GRANTED. NOT TO PUBLISH, NOT TO DISTRIBUTE, NOT TO
+#& SUBLICENSE, AND/OR NOT TO SELL COPIES OF THE SOFTWARE.
+#& YOU MAY USE IT ONLY FOR YOURSELF AND YOU HAVE THE RIGHT TO: DISTRIBUTE TO
+#& YOUR FRIENDS, TO YOUR STUDENTS, OR TO YOU COWORKER FOR PERSONAL USE AT HOME
+#& AT SCHOOL OR AT WORK.
+#&
+#& IN ANY CASES THE COPYRIGHT AND NOTICE ABOVE MUST BE INCLUDED.
+#$
+#$ Scientia es lux principium✨ ™
+
+## 'STABLE'
+(
+  S1="${ZSH_FUNCTIONS_FOLDER}/getvscodeportable.zsh"
+  if [ -f "${S1}" ]; then
+    . "${S1}"
+    getvscodeportable 'STABLE'
+  else
+    echo "Error loading '${S1}'... File or path can not be resolved"
+  fi
+)
+
+## 'INSIDERS'
+(
+  S1="${ZSH_FUNCTIONS_FOLDER}/getvscodeportable.zsh"
+  if [ -f "${S1}" ]; then
+    . "${S1}"
+    getvscodeportable 'INSIDERS'
+  else
+    echo "Error loading '${S1}'... File or path can not be resolved"
+  fi
+)
+
+# #--//-------------------------------------------------------------------------
+# (
+#   echo -e '--------------------------------------------------------------------------------'
+#   {
+#     myUXIDlong="$(/home/luxcium/ahmyzsh/plugins/bin/uxid)" || exit 1
+#     myUXIDshort="${myUXIDlong:7:11}L" || exit 1
+#     WORKING_LOCATION="/tmp/LXCM-portable-vscode-${myUXIDlong}" || exit 1
+#     echo -e " >    set the temporary working folder in ${WORKING_LOCATION}"
+#     DOWNLOAD_LOCATION="${WORKING_LOCATION}/download" || exit 1
+#   }
+#   {
+#     echo -e " >    create the downlaod folder and the working folder at the same time"
+#     sudo nice -n -35 ionice -c 1 -n 1 mkdir -p "${WORKING_LOCATION}" || exit 1
+#     echo -ne " >    "
+#     sudo nice -n -35 ionice -c 1 -n 1 mkdir -pv "${DOWNLOAD_LOCATION}" || exit 1
+#     echo -ne " >    "
+#     sudo nice -n -35 ionice -c 1 -n 1 chown -vR $(whoami) "${DOWNLOAD_LOCATION}" || exit 1
+#     echo -ne " >    "
+#     sudo nice -n -35 ionice -c 1 -n 1 chown -v $(whoami) "${WORKING_LOCATION}" || exit 1
+#   }
+#   {
+#     # https://go.microsoft.com/fwlink/?LinkID=760867 (STABLE .rpm)
+#     # https://go.microsoft.com/fwlink/?LinkID=620884 (STABLE .tar.gz)
+#     # https://go.microsoft.com/fwlink/?LinkID=760866 (INSIDERS .rpm)
+#     # https://go.microsoft.com/fwlink/?LinkId=723968 (INSIDERS .tar.gz)
+#     # curl -O -L -J 'https://go.microsoft.com/fwlink/?LinkID=620884' &   # (STABLE .tar.gz)
+#     # curl -O -L -J 'https://go.microsoft.com/fwlink/?LinkId=723968' &   # (INSIDERS .tar.gz)
+
+#     cd ${DOWNLOAD_LOCATION}
+#     echo -e '--------------------------------------------------------------------------------\n'
+#     echo -e " >    download STABLE.rpm from microsoft server"
+#     sudo nice -n -35 ionice -c 1 -n 1 curl -O -L -J -S# 'https://go.microsoft.com/fwlink/?LinkID=760867' || exit 1
+#     myUXIDshort_stable="$(date +%s)-${myUXIDlong:7:11}L" || exit 1
+#     echo -e " >    download INSIDERS.rpm from microsoft server"
+#     sudo nice -n -35 ionice -c 1 -n 1 curl -O -L -J -# 'https://go.microsoft.com/fwlink/?LinkID=760866' || exit 1
+#     myUXIDshort_insiders="$(date +%s)-${myUXIDlong:7:11}L" || exit 1
+#     echo -e '--------------------------------------------------------------------------------'
+
+#     cd ${WORKING_LOCATION}
+#     # sudo nice -n -35 ionice -c 1 -n 1 dnf reinstall "code*" -v --downloadonly --downloaddir ${DOWNLOAD_LOCATION} -y >/dev/null || exit 1
+#     echo -e " >    extract the rpm files into the ${WORKING_LOCATION}/usr"
+#     for f in $(ls ${DOWNLOAD_LOCATION}/*code*.x86_64.rpm); do
+#       sudo nice -n -35 ionice -c 1 -n 1 rpm2cpio "$f" | sudo nice -n -35 ionice -c 1 -n 1 cpio -idm --no-absolute-filenames &>/dev/null || exit 1
+#     done
+#     sudo nice -n -35 ionice -c 1 -n 1 chown -R $(whoami) "${WORKING_LOCATION}" >/dev/null || exit 1
+#   }
+#   {
+#     cp -r /etc/vscode-portable/vs-code/ ${WORKING_LOCATION} || exit 1
+#     cp -r /etc/vscode-portable/vs-code-insiders/ ${WORKING_LOCATION} || exit 1
+
+#     echo -ne " >    "
+#     mv -v ${WORKING_LOCATION}/usr/share/code ${WORKING_LOCATION}/code || exit 1
+
+#     echo -ne " >    "
+#     mv -v ${WORKING_LOCATION}/usr/share/code-insiders ${WORKING_LOCATION}/code-insiders || exit 1
+
+#     echo -ne " >    "
+#     mkdir -pv ${WORKING_LOCATION}/vs-code/completions/ || exit 1
+
+#     echo -ne " >    "
+#     mkdir -pv ${WORKING_LOCATION}/vs-code-insiders/completions/ || exit 1
+#   }
+
+#   {
+#     cp -r ${WORKING_LOCATION}/usr/share/zsh/site-functions/ ${WORKING_LOCATION}/vs-code/completions/zsh/ || exit 1
+#     cp -r ${WORKING_LOCATION}/usr/share/zsh/site-functions/ ${WORKING_LOCATION}/vs-code-insiders/completions/zsh/ || exit 1
+
+#     cp -r ${WORKING_LOCATION}/usr/share/bash-completion/completions/ ${WORKING_LOCATION}/vs-code/completions/bash/ || exit 1
+
+#     cp -r ${WORKING_LOCATION}/usr/share/bash-completion/completions/ ${WORKING_LOCATION}/vs-code-insiders/completions/bash/ || exit 1
+
+#     cp -r ${WORKING_LOCATION}/usr/share/pixmaps/ ${WORKING_LOCATION}/vs-code/pixmaps/ || exit 1
+#     cp -r ${WORKING_LOCATION}/usr/share/pixmaps/ ${WORKING_LOCATION}/vs-code-insiders/pixmaps/ || exit 1
+
+#     for f in $(ls ${WORKING_LOCATION}/code); do
+#       mv "${WORKING_LOCATION}/code/$f" "${WORKING_LOCATION}/vs-code/" || exit 1
+#     done
+
+#     for f in $(ls ${WORKING_LOCATION}/code-insiders); do
+#       mv "${WORKING_LOCATION}/code-insiders/$f" "${WORKING_LOCATION}/vs-code-insiders/" || exit 1
+#     done
+
+#     # mv "${WORKING_LOCATION}/vs-code/" "${WORKING_LOCATION}/vs-code-${myUXIDshort}/"
+#     # mv "${WORKING_LOCATION}/vs-code-insiders/" "${WORKING_LOCATION}/vs-code-insiders-${myUXIDshort}/"
+
+#     echo -e " >    make sure the newly created folder and files are accesible by the current user schown -R $(whoami)"
+#     echo -e " >    make sure the newly created folder and files are inside a group  chgrp -R 'luxcium.io' '${WORKING_LOCATION}' "
+
+#     (
+#       sudo nice -n -35 ionice -c 1 -n 1 chown -R $(whoami) "${WORKING_LOCATION}" || exit 1
+#       sudo nice -n -35 ionice -c 1 -n 1 chgrp -R "luxcium.io" "${WORKING_LOCATION}" || exit 1
+
+#       # echo -ne " >    "
+#       sudo mkdir -pv "${home}/potable-vscode/" || exit 1
+
+#       mv "${WORKING_LOCATION}/vs-code/" "${HOME}/potable-vscode/vs-code_${myUXIDshort_stable}/" || exit 1
+#       mv "${WORKING_LOCATION}/vs-code-insiders/" "${HOME}/potable-vscode/vs-code-insiders_${myUXIDshort_insiders}/" || exit 1
+
+#       (
+#         sudo nice -n -35 ionice -c 1 -n 1 rm -fr "${WORKING_LOCATION}/usr" &
+#         sudo nice -n -35 ionice -c 1 -n 1 rm -fr "${WORKING_LOCATION}/download" &
+#         sudo nice -n -35 ionice -c 1 -n 1 rm -fr "${WORKING_LOCATION}/code" &
+#         sudo nice -n -35 ionice -c 1 -n 1 rm -fr "${WORKING_LOCATION}/code-insiders" &
+#         sudo rm -rf "${WORKING_LOCATION}" &
+#       ) || exit 1
+#     ) || exit 1
+#   }
+
+#   #  file:///home/luxcium/potable-vscode/vs-code-insiders-07C19801E04L/bin/code-insiders
+
+#   # echo -e '\n\n'
+
+#   echo -e '--------------------------------------------------------------------------------\n'
+#   echo "'${myUXIDshort_stable}' code   -OK-"
+#   echo ${HOME}/potable-vscode/vs-code_${myUXIDshort_stable}/
+#   echo ${HOME}/potable-vscode/vs-code_${myUXIDshort_stable}/bin/code
+#   echo -e '' # \n----------------------------------------\n'
+#   echo "'${myUXIDshort_insiders}' code-insiders   -OK-"
+#   echo ${HOME}/potable-vscode/vs-code-insiders_${myUXIDshort_insiders}/
+#   echo ${HOME}/potable-vscode/vs-code-insiders_${myUXIDshort_insiders}/bin/code-insiders
+#   echo -e '\n--------------------------------------------------------------------------------'
+
+# ) || exit 1
+
+# echo -e "  -OK-" && exit 0

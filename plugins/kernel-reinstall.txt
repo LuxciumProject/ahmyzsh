@@ -1,0 +1,1 @@
+sudo dnf reinstall kernel-5.7.10-201.fc32.x86_64 kernel-core-5.7.10-201.fc32.x86_64 kernel-devel-5.7.10-201.fc32.x86_64 kernel-modules-5.7.10-201.fc32.x86_64 kernel-modules-extra-5.7.10-201.fc32.x86_64 python3-img2pdf-0.3.4-2.fc32.noarch

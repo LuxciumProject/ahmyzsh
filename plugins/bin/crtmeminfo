@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+( 
+  (
+    exec ionice -c 3 nice -n 35 cool-retro-term -T 'cool-retro-term meminfo' --profile 'meminfo-003' -e zsh -c meminfowatch
+  ) &>/dev/null
+) &
+exit 0
