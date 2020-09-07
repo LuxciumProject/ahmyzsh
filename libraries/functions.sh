@@ -16,7 +16,7 @@ function init_functions() {
     }
 
     function timer_() {
-        # local TIMER_NOW=$(/usr/bin/date +%s%N)
+        # local TIMER_NOW=$(/bin/date +%s%N)
         local MICROSEC='1000000'
         local TIMER_NOW=$(date +%s%N)
         local timecalc=$((${TIMER_NOW} - ${1:=TIMER_NOW}))
