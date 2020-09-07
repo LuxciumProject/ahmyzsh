@@ -20,8 +20,6 @@ I use a different branch for each of my computers (or workflows). I am using the
 
 ## MIT License
 
-MIT LICENSE
-
 Copyright © 2019-2020 Benjamin Vincent Kasapoglu (Luxcium) and contributors  
 (https://github.com/Luxcium/ahmyzsh/contributors)
 
