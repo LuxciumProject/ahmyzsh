@@ -1,8 +1,19 @@
 function firtstage() {
+  # CACHED_PATH
+
+  export AHMYZSH_CACHE="${HOME}/.cache/ahmyzsh"
+  export PATH_ENV_CACHE="${AHMYZSH_CACHE}/path.env"
+
+  : ${VERBOSA:=100}
+  : ${EDITOR:=code}
+  : ${ENV_LOADED:="false"}
+  : ${ZLE_RPROMPT_INDENT:=0}
+  : ${SHOW_LOAD_CUTLS:="true"}
+
   : ${AHMYZSH:="${HOME}/ahmyzsh"}
   export AHMYZSH
 
-  : ${PATH_FILE:="${HOME}/.cache/path.env"}
+  : ${PATH_FILE:="${PATH_ENV_CACHE}"}
   export PATH_FILE
 
   # Set you locale here
@@ -39,15 +50,17 @@ function firtstage() {
   # fall back
   source "${HOME}/.env"
 
-  : ${VERBOSA:=0}
-  : ${EDITOR:=code}
-  : ${ENV_LOADED:="false"}
-  : ${ZLE_RPROMPT_INDENT:=0}
-  : ${SHOW_LOAD_CUTLS:="true"}
-
 }
 
-function compile_all() {
-  (find "${AHMYZSH}/" -name '*.*sh' | foreachline zcompile) 2>/dev/null
+function zsh_compile_all_R() {
+  (find "${AHMYZSH}/" -name '*.*sh' | foreachline 'zcompile -R') 2>/dev/null
+}
+
+function zsh_compile_all_M() {
+  (find "${AHMYZSH}/" -name '*.*sh' | foreachline 'zcompile -M') 2>/dev/null
+}
+
+function zsh_compile_all() {
+  (find "${AHMYZSH}/" -name '*.*sh' | foreachline 'zcompile') 2>/dev/null
 }
 # compile_all
