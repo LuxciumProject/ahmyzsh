@@ -4,7 +4,7 @@ function firtstage() {
   export AHMYZSH_CACHE="${HOME}/.cache/ahmyzsh"
   export PATH_ENV_CACHE="${AHMYZSH_CACHE}/path.env"
 
-  : ${VERBOSA:=100}
+  : ${VERBOSA:=0}
   : ${EDITOR:=code}
   : ${ENV_LOADED:="false"}
   : ${ZLE_RPROMPT_INDENT:=0}
