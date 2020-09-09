@@ -17,7 +17,7 @@ function firtstage() {
   export PATH_FILE
 
   # Set you locale here
-  LANG="fr_CA.UTF-8"
+  # LANG="fr_CA.UTF-8"
 
   : ${LANG:="fr_CA.UTF-8"}
   : ${LC_CTYPE:="fr_CA.UTF-8"}
@@ -33,23 +33,10 @@ function firtstage() {
   : ${LC_MEASUREMENT:="fr_CA.UTF-8"}
   : ${LC_IDENTIFICATION:="fr_CA.UTF-8"}
 
-  export LANG
-  export LC_CTYPE
-  export LC_NUMERIC
-  export LC_TIME
-  export LC_COLLATE
-  export LC_MONETARY
-  export LC_MESSAGES
-  export LC_PAPER
-  export LC_NAME
-  export LC_ADDRESS
-  export LC_TELEPHONE
-  export LC_MEASUREMENT
-  export LC_IDENTIFICATION
-
   # fall back
   source "${HOME}/.env"
 
+<<<<<<< Updated upstream
 }
 
 function zsh_compile_all_R() {
@@ -62,5 +49,13 @@ function zsh_compile_all_M() {
 
 function zsh_compile_all() {
   (find "${AHMYZSH}/" -name '*.*sh' | foreachline 'zcompile') 2>/dev/null
+=======
+  : ${VERBOSA:=0}
+  : ${EDITOR:=code}
+  : ${ENV_LOADED:="false"}
+  : ${ZLE_RPROMPT_INDENT:=0}
+  : ${SHOW_LOAD_CUTLS:="true"}
+  ZSH_CUSTOM="${AHMYZSH}/custom-zsh"
+>>>>>>> Stashed changes
 }
 # compile_all
