@@ -36,7 +36,6 @@ function firtstage() {
   # fall back
   source "${HOME}/.env"
 
-<<<<<<< Updated upstream
 }
 
 function zsh_compile_all_R() {
@@ -49,13 +48,6 @@ function zsh_compile_all_M() {
 
 function zsh_compile_all() {
   (find "${AHMYZSH}/" -name '*.*sh' | foreachline 'zcompile') 2>/dev/null
-=======
-  : ${VERBOSA:=0}
-  : ${EDITOR:=code}
-  : ${ENV_LOADED:="false"}
-  : ${ZLE_RPROMPT_INDENT:=0}
-  : ${SHOW_LOAD_CUTLS:="true"}
-  ZSH_CUSTOM="${AHMYZSH}/custom-zsh"
->>>>>>> Stashed changes
+
 }
 # compile_all
