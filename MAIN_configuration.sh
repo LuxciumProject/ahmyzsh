@@ -50,4 +50,5 @@ function zsh_compile_all() {
   (find "${AHMYZSH}/" -name '*.*sh' | foreachline 'zcompile') 2>/dev/null
 
 }
+
 # compile_all
