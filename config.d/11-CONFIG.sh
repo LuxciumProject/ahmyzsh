@@ -37,18 +37,12 @@ function firtstage() {
   source "${HOME}/.env"
 
 }
-
 function zsh_compile_all_R() {
   (find "${AHMYZSH}/" -name '*.*sh' | foreachline 'zcompile -R') 2>/dev/null
 }
-
 function zsh_compile_all_M() {
   (find "${AHMYZSH}/" -name '*.*sh' | foreachline 'zcompile -M') 2>/dev/null
 }
-
 function zsh_compile_all() {
   (find "${AHMYZSH}/" -name '*.*sh' | foreachline 'zcompile') 2>/dev/null
-
 }
-
-# compile_all

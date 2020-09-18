@@ -12,27 +12,18 @@
 #+ =============================================================================≈
 
 function __AHMYZSH__BOOT__LOADER__() {
+
+  # TODO Section: Fix thiss mess :
+  # export AHMYZSH_CONFIGS="${AHMYZSH}/config.d"
+  # ls -d1 ${AHMYZSH_CONFIGS}/*.sh | foreachline source
+  source /home/luxcium/ahmyzsh/config.d/00-PATHS.sh
+  source /home/luxcium/ahmyzsh/config.d/11-CONFIG.sh
   # echo "M A I N  -  B O O T L O A D E R"
+  # TODO Section END: Fix thiss mess :
 
   export AHMYZSH="${HOME}/ahmyzsh"
   export CACHED_PATH="${HOME}/.cache/path.env"
   export AH_LIBRARIES="${AHMYZSH}/libraries"
-
-  # local S1="${AH_LIBRARIES}/load_intearctive_login_state.sh"
-  # if [ -f "${S1}" ]; then
-  #   . ${S1}
-  #   Load_Intearctive_Login_State
-  # else
-  #   echo "Error loading '${S1}'... File or path can not be resolved"
-  # fi
-
-  local S1="${AHMYZSH}/MAIN_configuration.sh"
-  if [ -f "${S1}" ]; then
-    . ${S1}
-    firtstage
-  else
-    echo "Error loading '${S1}'... File or path can not be resolved"
-  fi
 
   local S1="${CACHED_PATH}"
   if [ -f "${S1}" ]; then
@@ -43,14 +34,6 @@ function __AHMYZSH__BOOT__LOADER__() {
     #   # echo "path loaded"
     # fi
 
-  else
-    echo "Error loading '${S1}'... File or path can not be resolved"
-  fi
-
-  local S1="${AH_LIBRARIES}/paths.sh"
-  if [ -f "${S1}" ]; then
-    . "${S1}"
-    init_paths
   else
     echo "Error loading '${S1}'... File or path can not be resolved"
   fi
@@ -76,6 +59,10 @@ function __AHMYZSH__BOOT__LOADER__() {
   else
     echo "Error loading '${S1}'... File or path can not be resolved"
   fi
+
+  personal_projects_paths
+  init_paths
+  init_projects_paths
 
   # local S1="${CUSTOM_TMUX}/MAIN.zsh"
   # if [ -f "${S1}" ]; then

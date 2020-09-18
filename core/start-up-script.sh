@@ -2,6 +2,5 @@
 
 fc-cache -v
 sudo dnf remove -y xorg-x11-drv-amdgpu xorg-x11-drv-nouveau
-sudo dnf update --downloadonly -v -y
-
+(sudo nice -n -15 ionice -c 1 -n 3 dnf upgrade --refresh --downloadonly -v -y)
 exit
