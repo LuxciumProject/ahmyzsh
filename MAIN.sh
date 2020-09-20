@@ -38,8 +38,6 @@ function __AHMYZSH__BOOT__LOADER__() {
     for f in "${SD1}/"*; do
       [ -f "${f}" ] && source "${f}"
     done
-    # ${SD1}
-
   else
     echo "Error loading files in '${SD1}'... Directory or path can not be resolved"
   fi
