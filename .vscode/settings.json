@@ -7,7 +7,7 @@
     "ohmyzsh":true,
     "powerline":true,
     "python-repl":true,
-    "crt-profiles":true,
+    "crt-profiles":true
   },
   /*
         "#F15F",
