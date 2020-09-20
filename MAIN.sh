@@ -11,83 +11,50 @@
 #? Scientia es lux principium✨ ™ - SEE THE BOTTOM OF THIS FILES FOR MORE INFO
 #+ =============================================================================≈
 
-function __AHMYZSH__BOOT__LOADER__() {
-  : ${VERBOSA=100}
-
-  # TODO Section: Fix thiss mess :
-  # export AHMYZSH_CONFIGS="${AHMYZSH}/config.d"
-  # ls -d1 ${AHMYZSH_CONFIGS}/*.sh | foreachline source
-  source /home/luxcium/ahmyzsh/config.d/00-PATHS.sh
-  source /home/luxcium/ahmyzsh/config.d/11-CONFIG.sh
-  # echo "M A I N  -  B O O T L O A D E R"
-  # TODO Section END: Fix thiss mess :
-
-  export AHMYZSH="${HOME}/ahmyzsh"
-  export CACHED_PATH="${HOME}/.cache/path.env"
-  export AH_LIBRARIES="${AHMYZSH}/libraries"
-
-  # SOURCE ALIASES
-
-  # (
-  #   cd "${AHMYZSH}/aliases.d/"
-  #   foreachfile 'echo' '' '$(pwd)/'
-  # )
-
-  local SD1="${AHMYZSH}/aliases.d"
+function Load_all_files_d() {
+  local SD1="$1"
   if [ -d "${SD1}" ]; then
-    for f in "${SD1}/"*; do
+    for f in "${SD1}/"*.sh; do
       [ -f "${f}" ] && source "${f}"
     done
   else
     echo "Error loading files in '${SD1}'... Directory or path can not be resolved"
   fi
+}
+
+function __AHMYZSH__BOOT__LOADER__() {
+
+  export CACHED_PATH="${HOME}/.cache/path.env"
+  export AHMYZSH="${HOME}/ahmyzsh"
+  export AHMYZSH_CORE="${AHMYZSH}/core"
+  export AHMYZSH_ENV="${AHMYZSH_CORE}/env"
+  export AH_LIBRARIES="${AHMYZSH}/libraries"
+
+  : ${VERBOSA=0}
+  if [[ -o interactive ]]; then
+    : ${VERBOSA=100}
+  fi
 
   local S1="${CACHED_PATH}"
   if [ -f "${S1}" ]; then
     . ${S1}
-    # if [[ -o interactive ]]; then
-    #   # echo "I'm interactive shell"
-    #   # echo "${BEGIN_HOURGLASS_END_1} load_zshenv in $(timer_all) ms !${END_FUNCTION}"
-    #   # echo "path loaded"
-    # fi
 
   else
     echo "Error loading '${S1}'... File or path can not be resolved"
   fi
 
-  local S1="${AH_LIBRARIES}/base-layouts.sh"
-  if [ -f "${S1}" ]; then
-    . "${S1}"
-    base_layouts_colors
-    base_layouts_colors_olds
-    base_layouts_cursors_moves
-    base_layouts_icons
-    base_layouts_icons_groups
-    base_layouts
-    load_layouts
-  else
-    echo "Error loading '${S1}'... File or path can not be resolved"
-  fi
+  Load_all_files_d "${AHMYZSH_ENV}/aliases"
+  Load_all_files_d "${AHMYZSH_ENV}/configs"
+  Load_all_files_d "${AHMYZSH_ENV}/functions"
+  Load_all_files_d "${AHMYZSH_ENV}/layouts"
+  Load_all_files_d "${AHMYZSH_ENV}/paths"
 
-  local S1="${AH_LIBRARIES}/functions.sh"
-  if [ -f "${S1}" ]; then
-    . "${S1}"
-    init_functions
-  else
-    echo "Error loading '${S1}'... File or path can not be resolved"
-  fi
+  {
 
-  personal_projects_paths
-  init_paths
-  init_projects_paths
-
-  # local S1="${CUSTOM_TMUX}/MAIN.zsh"
-  # if [ -f "${S1}" ]; then
-  #   . "${S1}"
-  #   source_all_tmux
-  # else
-  #   echo "Error loading '${S1}'... File or path can not be resolved"
-  # fi
+    personal_projects_paths
+    init_paths
+    init_projects_paths
+  }
 
   local S1="${CUSTOM_ZSH}/MAIN.zsh"
   if [ -f "${S1}" ]; then
@@ -96,6 +63,45 @@ function __AHMYZSH__BOOT__LOADER__() {
   else
     echo "Error loading '${S1}'... File or path can not be resolved canot source_all_zsh"
   fi
+
+  # local SD1="${AHMYZSH_CORE}/aliases"
+  # if [ -d "${SD1}" ]; then
+  #   for f in "${SD1}/"*; do
+  #     [ -f "${f}" ] && source "${f}"
+  #   done
+  # else
+  #   echo "Error loading files in '${SD1}'... Directory or path can not be resolved"
+  # fi
+
+  # local S1="${AH_LIBRARIES}/base-layouts.sh"
+  # if [ -f "${S1}" ]; then
+  #   . "${S1}"
+  #   base_layouts_colors
+  #   base_layouts_colors_olds
+  #   base_layouts_cursors_moves
+  #   base_layouts_icons
+  #   base_layouts_icons_groups
+  #   base_layouts
+  #   load_layouts
+  # else
+  #   echo "Error loading '${S1}'... File or path can not be resolved"
+  # fi
+
+  # local S1="${AH_LIBRARIES}/functions.sh"
+  # if [ -f "${S1}" ]; then
+  #   . "${S1}"
+  #   init_functions
+  # else
+  #   echo "Error loading '${S1}'... File or path can not be resolved"
+  # fi
+
+  # local S1="${CUSTOM_TMUX}/MAIN.zsh"
+  # if [ -f "${S1}" ]; then
+  #   . "${S1}"
+  #   source_all_tmux
+  # else
+  #   echo "Error loading '${S1}'... File or path can not be resolved"
+  # fi
 
 }
 
@@ -170,3 +176,11 @@ function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N  -  B O O T S T R A P - +#
 #† Scientia es lux principium✨™ is a Tread Mark of Benjamin Vincent Kasapoglu
 #† © & ™ Benjamin Vincent Kasapoglu (Luxcium) 2017-2020
 # ==============================================================================≈
+
+# #region TODO: Fix thiss mess                                                |
+# export AHMYZSH_CONFIGS="${AHMYZSH}/config.d"
+# ls -d1 ${AHMYZSH_CONFIGS}/*.sh | foreachline source
+# source "${AHMYZSH_CORE}/config/00-PATHS.sh"
+# source "${AHMYZSH_CORE}/config/11-CONFIG.sh"
+# echo "M A I N  -  B O O T L O A D E R"
+# #endregion TODO: Fix thiss mess                                             |
