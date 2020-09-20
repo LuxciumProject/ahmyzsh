@@ -4,3 +4,4 @@
 *.zwc
 *.ZWC
 node_modules
+!templates/vscode-material-icon-testDirs/node_modules
