@@ -46,3 +46,8 @@ function firtstage() {
   : ${SHOW_LOAD_CUTLS:="true"}
 
 }
+
+function compile_all() {
+  (find "${AHMYZSH}/" -name '*.*sh' | foreachline zcompile) 2>/dev/null
+}
+# compile_all

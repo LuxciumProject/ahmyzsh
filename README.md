@@ -2,11 +2,11 @@
 
 ## Don't have any expectations
 
-This project is for my personal use, it is not currently maintained in a way that is friendly for general use by others (this includes you), therefor *it is garanteed that this project will **NOT** be fit for any particular purpose*. 
+This project is for my personal use, it is not currently maintained in a way that is friendly for general use by others (this includes you), therefor *it is garanteed that this project will **NOT** be fit for any particular purpose*.
 
 ### Use what can be useful to you
 
-Regardless feel free to grab what can be useful to you for your personal projects or open source projects. Some parts of this work are under Mozilla Public License, v. 2.0. and other parts are under MIT the use of any part of code should be flexible for you and for people using the code you produce in all cases please state `Copyright (c) 2019-present Benjamin Vincent Kasapoglu` and when possible please list the changes you made from this current work...
+Regardless feel free to grab what can be useful to you for your personal projects or open source projects. Some parts of this work are under Mozilla Public License, v. 2.0. and other parts are under MIT the use of any part of code should be flexible for you and for people using the code you produce in all cases please state `Copyright © 2019-present Benjamin Vincent Kasapoglu (Luxcium)` and when possible please list the changes you made from this current work...
 
 ## Report bugs, problems and security issues
 
@@ -18,66 +18,25 @@ Then open a pull request that fixes the issue...
 
 I use a different branch for each of my computers (or workflows). I am using the [luxcium](https://github.com/Luxcium/ahmyzsh/tree/luxcium) branch on my macOS and [pc-master-race](https://github.com/Luxcium/ahmyzsh/tree/pc-master-race) branch fo my WSL on windows and now my main computer is using fedora so I am using the [fedora-working-station](https://github.com/Luxcium/ahmyzsh/tree/fedora-working-station) as my main development branch...
 
+## MIT License
 
-## THESES FILES CANNOT BE USED `AS IS`
+Copyright © 2019-2020 Benjamin Vincent Kasapoglu (Luxcium) and contributors  
+(https://github.com/Luxcium/ahmyzsh/contributors)
 
-Consider the folowing text as being part of each files you get from this repo. Files or part of code under MIT liscense will be taged accordingly:
+Permission is hereby granted, free of charge, to all person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
 
-```shell
-################################################################################
-##                                                                            ##
-##              !!! PLEASE USE CAUTION WHEN USING THIS FILE !!!               ##
-##                                                                            ##
-##  THIS FILE CANNOT BE USED AS IS YOU MAY HAVE TO CUSTOMISE IT TO USE IT.    ##
-##  Even if this file is shared on my public git hub it has not been designed ##
-##  for public use. It was not created with the idea that someone else would  ##
-##  be using it. The files in this repository have been created for my usage  ##
-##  only. They are available so you can see how I have customized my system.  ##
-##  I decided to put them in the public space so anyone can download them     ##
-##  and edit them. I hope this can inspire someone or serve as a reference.   ##
-##                                                                            ##
-#+           Copyright (c) 2019-present Benjamin Vincent Kasapoglu            ##
-#&                                                                            ##
-#&     This Source Code Form is subject to the terms of the Mozilla Public    ##
-#&     License, v. 2.0. If a copy of the MPL was not distributed with this    ##
-#&           file, You can obtain one at http://mozilla.org/MPL/2.0/.         ##
-#&                                                                            ##
-##     The above copyright notice and this license notice shall be included   ##
-##           in all copies or substantial portions of the Software.           ##
-##                                                                            ##
-################################################################################
-```
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-## Disclaimer of Warranty
-
-```bash
-##!!0###########################################################################
-##!!                                                                          ##
-#+!!         Copyright (c) 2019-present Benjamin Vincent Kasapoglu            ##
-#&!!                                                                          ##
-#&!!   This Source Code Form is subject to the terms of the Mozilla Public    ##
-#&!!   License, v. 2.0. If a copy of the MPL was not distributed with this    ##
-#&!!         file, You can obtain one at http://mozilla.org/MPL/2.0/.         ##
-#&!!                                                                          ##
-##!!   The above copyright notice and this license notice shall be included   ##
-##!!         in all copies or substantial portions of the Software.           ##
-##!!                                                                          ##
-##!!          ------------------------------------------------------          ##
-##!!                                                                          ##
-##!!    Disclaimer of Warranty                                                ##
-##!!   -------------------------                                              ##
-##!!                                                                          ##
-##!!   Covered Software is provided under this License on an "as is"          ##
-##!!   basis, without warranty of any kind, either expressed, implied, or     ##
-##!!   statutory, including, without limitation, warranties that the          ##
-##!!   Covered Software is free of defects, merchantable, fit for a           ##
-##!!   particular purpose or non-infringing. The entire risk as to the        ##
-##!!   quality and performance of the Covered Software is with You.           ##
-##!!   Should any Covered Software prove defective in any respect, You        ##
-##!!   (not any Contributor) assume the cost of any necessary servicing,      ##
-##!!   repair, or correction. This disclaimer of warranty constitutes an      ##
-##!!   essential part of this License. No use of any Covered Software is      ##
-##!!   authorized under this License except under this disclaimer.            ##
-##!!                                                                          ##
-##!!0###########################################################################
-```
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ALL KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ALL CLAIM, DAMAGES OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
