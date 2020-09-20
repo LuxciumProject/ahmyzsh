@@ -1,6 +1,9 @@
 ##################
 ## GIT / GITHUB ##
 ##################
+alias testtest="echo test test"
+
+echo '/home/luxcium/ahmyzsh/aliases.d/000-git.sh loaded'
 
 alias check='git checkout master'
 alias add='git add -u --renormalize -v .'

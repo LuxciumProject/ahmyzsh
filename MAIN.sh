@@ -26,6 +26,21 @@ function __AHMYZSH__BOOT__LOADER__() {
   export CACHED_PATH="${HOME}/.cache/path.env"
   export AH_LIBRARIES="${AHMYZSH}/libraries"
 
+  # SOURCE ALIASES
+
+  # (
+  #   cd "${AHMYZSH}/aliases.d/"
+  #   foreachfile 'echo' '' '$(pwd)/'
+  # )
+
+  local SD1="${AHMYZSH}/aliases.d/000-git.sh"
+  if [ - "${SD1}" ]; then
+    ${SD1}
+
+  else
+    echo "Error loading files in '${S1}'... Directory or path can not be resolved"
+  fi
+
   local S1="${CACHED_PATH}"
   if [ -f "${S1}" ]; then
     . ${S1}
