@@ -12,6 +12,7 @@
 #+ =============================================================================≈
 
 function __AHMYZSH__BOOT__LOADER__() {
+  : ${VERBOSA=100}
 
   # TODO Section: Fix thiss mess :
   # export AHMYZSH_CONFIGS="${AHMYZSH}/config.d"
@@ -71,14 +72,13 @@ function __AHMYZSH__BOOT__LOADER__() {
   # else
   #   echo "Error loading '${S1}'... File or path can not be resolved"
   # fi
-  #-----10--------20--------30--------40--------50--------60--------70--------80
-  #-----10--------20--------30--------40--------50--------60--------70--------80--------90-------100-------110-------120
+
   local S1="${CUSTOM_ZSH}/MAIN.zsh"
   if [ -f "${S1}" ]; then
     . "${S1}"
     source_all_zsh
   else
-    echo "Error loading '${S1}'... File or path can not be resolved"
+    echo "Error loading '${S1}'... File or path can not be resolved canot source_all_zsh"
   fi
 
 }

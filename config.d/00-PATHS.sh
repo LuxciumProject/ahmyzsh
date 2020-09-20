@@ -114,22 +114,43 @@ function init_projects_paths() {
   local S1="${CUSTOM_TMUX}/paths.sh"
   source_ ${S1}
 
-  local S1="${CUSTOM_ZSH}/paths.sh"
-  source_ ${S1}
-
   local S1="${NODE_REPL}/paths.sh"
-  source_ ${S1}
-
-  local S1="${OHMYZSH}/paths.sh"
-  source_ ${S1}
-
-  local S1="${POWERLEVEL10K}/paths.sh"
-  source_ ${S1}
-
-  local S1="${POWERLINE}/paths.sh"
   source_ ${S1}
 
   local S1="${PYTHON_REPL}/paths.sh"
   source_ ${S1}
+
+  # !! local S1="${CUSTOM_ZSH}/paths.sh"
+  # !! source_ ${S1}
+
+  # local S1="${OHMYZSH}/paths.sh"
+  # source_ ${S1}
+
+  # local S1="${POWERLEVEL10K}/paths.sh"
+  # source_ ${S1}
+
+  # local S1="${POWERLINE}/paths.sh"
+  # source_ ${S1}
+
+  # local S1="${CUSTOM_TMUX}/paths.sh"
+  # source_ ${S1}
+
+  # local S1="${CUSTOM_ZSH}/paths.sh"
+  # source_ ${S1}
+
+  # local S1="${NODE_REPL}/paths.sh"
+  # source_ ${S1}
+
+  # local S1="${OHMYZSH}/paths.sh"
+  # source_ ${S1}
+
+  # local S1="${POWERLEVEL10K}/paths.sh"
+  # source_ ${S1}
+
+  # local S1="${POWERLINE}/paths.sh"
+  # source_ ${S1}
+
+  # local S1="${PYTHON_REPL}/paths.sh"
+  # source_ ${S1}
 
 }
