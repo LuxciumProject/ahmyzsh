@@ -18,6 +18,23 @@ Then open a pull request that fixes the issue...
 
 I use a different branch for each of my computers (or workflows). I am using the [luxcium](https://github.com/Luxcium/ahmyzsh/tree/luxcium) branch on my macOS and [pc-master-race](https://github.com/Luxcium/ahmyzsh/tree/pc-master-race) branch fo my WSL on windows and now my main computer is using fedora so I am using the [fedora-working-station](https://github.com/Luxcium/ahmyzsh/tree/fedora-working-station) as my main development branch...
 
+### Hidden folders
+
+Some folder have been hiddens while I am not working with them now you may unhide them in `.vscode/settings.json`:
+
+```json
+  "files.exclude": {
+    "**/*.zwc": true,
+    "custom-tmux":true,
+    "node-repl":true,
+    "powerlevel10k":true,
+    "ohmyzsh":true,
+    "powerline":true,
+    "python-repl":true,
+    "crt-profiles":true
+  },
+  ```
+
 ## MIT License
 
 Copyright © 2019-2020 Benjamin Vincent Kasapoglu (Luxcium) and contributors
