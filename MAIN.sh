@@ -33,12 +33,15 @@ function __AHMYZSH__BOOT__LOADER__() {
   #   foreachfile 'echo' '' '$(pwd)/'
   # )
 
-  local SD1="${AHMYZSH}/aliases.d/000-git.sh"
-  if [ - "${SD1}" ]; then
-    ${SD1}
+  local SD1="${AHMYZSH}/aliases.d"
+  if [ -d "${SD1}" ]; then
+    for f in "${SD1}/"*; do
+      [ -f "${f}" ] && source "${f}"
+    done
+    # ${SD1}
 
   else
-    echo "Error loading files in '${S1}'... Directory or path can not be resolved"
+    echo "Error loading files in '${SD1}'... Directory or path can not be resolved"
   fi
 
   local S1="${CACHED_PATH}"
