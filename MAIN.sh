@@ -32,8 +32,8 @@ function __AHMYZSH__BOOT__LOADER__() {
 
   : ${VERBOSA=0}
   if [[ -o interactive ]]; then
-    : ${VERBOSA=100}
   fi
+  : ${VERBOSA=100}
 
   local S1="${CACHED_PATH}"
   if [ -f "${S1}" ]; then
