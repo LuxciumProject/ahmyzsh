@@ -5,3 +5,4 @@
 *.ZWC
 node_modules
 !templates/vscode-material-icon-testDirs/node_modules
+core/env/aliases/Untitled-1.js
