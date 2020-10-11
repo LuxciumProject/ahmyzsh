@@ -20,8 +20,9 @@ function cambat(){
     #-- ${LIGHT_2}
     #-- ${RSET}\n\n
 
+    base_layouts_icons
 
-    echo "in cambat"
+
     VACUOUS=$(gphoto2 --get-config='/main/status/Niveau de batterie' 2>/dev/null |grep '100')>/dev/null
     if  [[ $? == 0 ]]; then
         echo -e "\n\n${LIGHT_2} ${RSET}\n\n"
@@ -45,7 +46,7 @@ function cambat(){
         return 0
     fi
 
-    echo -e "\n\n${LIGHT_0_} ${RSET}\n\n"
+    echo -e "\n\n${LIGHT_0_} hey ${RSET}\n\n"
 
     playnegative
     return 1
