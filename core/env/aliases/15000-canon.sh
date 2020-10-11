@@ -34,23 +34,26 @@ function cambat() {
     fi
 
     echo -e "${LIGHT_0_} ${LIGHT_0_} ${LIGHT_0_}"
-    ($(gphoto2 --get-config='/main/status/Niveau de batterie' | grep '0') &)
+    (echo $(gphoto2 --get-config='/main/status/Niveau de batterie' | grep 'Current'))
     echo -ne "${RSET} "
     (playcritical)
     return 1
 
 }
 
-alias pbat=cambat
-alias gphotoload="(echo -ne '\\n\\n' && pbat && echo -ne '\\n\\n' && gphoto2 --stdout --capture-movie | ffmpeg -hwaccel nvdec -c:v mjpeg_cuvid -i - -vcodec rawvideo -filter atadenoise -pix_fmt yuv420p -r 25 -f v4l2 /dev/video0)"
-alias gphotoreload="(sudo killall gphoto2) 2>/dev/null; (mkloopback && gphotoload)"
 alias getphotos="( (mkdir ${HOME}/myPic -p; cd ${HOME}/myPic;  gphoto2 --get-all-files --skip-existing; lf&)& pbat)"
 
-alias photoreload=gphotoreload
-alias photoload=gphotoload
+alias gphotoload="(echo -ne '\\n\\n' && cambat && echo -ne '\\n\\n' && gphoto2 --stdout --capture-movie | ffmpeg -hwaccel nvdec -c:v mjpeg_cuvid -i - -vcodec rawvideo -filter atadenoise -pix_fmt yuv420p -r 25 -f v4l2 /dev/video0)"
+alias gphotoreload="(sudo killall gphoto2) 2>/dev/null; (mkloopback && gphotoload)"
+alias gphotoloadx=gphotoreload
 
-alias camloadx=gphotoreload
+alias photoload=gphotoload
+alias photoreload=gphotoreload
+alias photoloadx=gphotoreload
+
 alias camload=gphotoload
+alias camreload=gphotoreload
+alias camloadx=gphotoreload
 
 # "(cd /home/luxcium/src/v4l2loopback &&\
 #     make clean &&\
