@@ -8,6 +8,6 @@ export bold="$LBOLD"
 export normal="$RSET"
 
 function hardcls() {
-  echo -n '\u001b[2J'
-  echo -n '\u001b[0;0H'
+    echo -n '\u001b[2J'
+    echo -n '\u001b[0;0H'
 }
