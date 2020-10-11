@@ -11,135 +11,138 @@
 #? Scientia es lux principium✨ ™ - SEE THE BOTTOM OF THIS FILES FOR MORE INFO
 #+ =============================================================================≈
 
-function Load_all_files_d() {
-  local SD1="$1"
-  if [ -d "${SD1}" ]; then
-    for f in "${SD1}/"*.sh; do
-      [ -f "${f}" ] && source "${f}"
-    done
-  else
-    echo "Error loading files in '${SD1}'... Directory or path can not be resolved"
-  fi
-}
+IS_ZSH_="$(ps -o comm= -p $$ | grep 'zsh')"
+IS_BASH_="$(ps -o comm= -p $$ | grep 'bash')"
+
+alias iszsh="([[ -n ${IS_ZSH_:-''} ]] && (echo 'zsh'; exit 0) || (echo 'not zsh'; exit 1))"
+alias isbash="([[ -n ${IS_BASH_:-''} ]] && (echo 'bash'; exit 0) || (echo 'not bash'; exit 1))"
+
+alias iszsh_="([[ -n ${IS_ZSH_:-''} ]] && (exit 0) || (exit 1))"
+alias isbash_="([[ -n ${IS_BASH_:-''} ]] && (exit 0) || (exit 1))"
+
 
 function __AHMYZSH__BOOT__LOADER__() {
 
-  export CACHED_PATH="${HOME}/.cache/path.env"
-  export AHMYZSH="${HOME}/ahmyzsh"
-  export AHMYZSH_CORE="${AHMYZSH}/core"
-  export AHMYZSH_ENV="${AHMYZSH_CORE}/env"
-  export AH_LIBRARIES="${AHMYZSH}/libraries"
+    export CACHED_PATH="${HOME}/.cache/path.env"
+    export AHMYZSH="${HOME}/ahmyzsh"
+    export AHMYZSH_CORE="${AHMYZSH}/core"
+    export AHMYZSH_ENV="${AHMYZSH_CORE}/env"
+    export AH_LIBRARIES="${AHMYZSH}/libraries"
 
-  : ${VERBOSA=0}
-  if [[ -o interactive ]]; then
-  fi
-  : ${VERBOSA=100}
+    : ${VERBOSA=0}
+    if [[ -o interactive ]]; then
+    fi
+    : ${VERBOSA=100}
 
-  local S1="${CACHED_PATH}"
-  if [ -f "${S1}" ]; then
-    . ${S1}
+    local S1="${CACHED_PATH}"
+    if [ -f "${S1}" ]; then
+        . ${S1}
 
-  else
-    echo "Error loading '${S1}'... File or path can not be resolved"
-  fi
+    else
+        echo "Error loading '${S1}'... File or path can not be resolved"
+    fi
 
-  Load_all_files_d "${AHMYZSH_ENV}/aliases"
-  Load_all_files_d "${AHMYZSH_ENV}/configs"
-  Load_all_files_d "${AHMYZSH_ENV}/functions"
-  Load_all_files_d "${AHMYZSH_ENV}/layouts"
-  Load_all_files_d "${AHMYZSH_ENV}/paths"
+    Load_all_files_d "${AHMYZSH_ENV}/aliases"
+    Load_all_files_d "${AHMYZSH_ENV}/configs"
+    Load_all_files_d "${AHMYZSH_ENV}/functions"
+    Load_all_files_d "${AHMYZSH_ENV}/layouts"
+    Load_all_files_d "${AHMYZSH_ENV}/paths"
 
-  {
+    {
 
-    personal_projects_paths
-    init_paths
-    init_projects_paths
-  }
+        personal_projects_paths
+        init_paths
+        init_projects_paths
+    }
 
-  local S1="${CUSTOM_ZSH}/MAIN.zsh"
-  if [ -f "${S1}" ]; then
-    . "${S1}"
-    source_all_zsh
-  else
-    echo "Error loading '${S1}'... File or path can not be resolved canot source_all_zsh"
-  fi
+    local S1="${CUSTOM_ZSH}/MAIN.zsh"
+    if [ -f "${S1}" ]; then
+        . "${S1}"
+        source_all_zsh
+    else
+        echo "Error loading '${S1}'... File or path can not be resolved canot source_all_zsh"
+    fi
 
-  # local SD1="${AHMYZSH_CORE}/aliases"
-  # if [ -d "${SD1}" ]; then
-  #   for f in "${SD1}/"*; do
-  #     [ -f "${f}" ] && source "${f}"
-  #   done
-  # else
-  #   echo "Error loading files in '${SD1}'... Directory or path can not be resolved"
-  # fi
+    # local SD1="${AHMYZSH_CORE}/aliases"
+    # if [ -d "${SD1}" ]; then
+    #   for f in "${SD1}/"*; do
+    #     [ -f "${f}" ] && source "${f}"
+    #   done
+    # else
+    #   echo "Error loading files in '${SD1}'... Directory or path can not be resolved"
+    # fi
 
-  # local S1="${AH_LIBRARIES}/base-layouts.sh"
-  # if [ -f "${S1}" ]; then
-  #   . "${S1}"
-  #   base_layouts_colors
-  #   base_layouts_colors_olds
-  #   base_layouts_cursors_moves
-  #   base_layouts_icons
-  #   base_layouts_icons_groups
-  #   base_layouts
-  #   load_layouts
-  # else
-  #   echo "Error loading '${S1}'... File or path can not be resolved"
-  # fi
+    # local S1="${AH_LIBRARIES}/base-layouts.sh"
+    # if [ -f "${S1}" ]; then
+    #   . "${S1}"
+    #   base_layouts_colors
+    #   base_layouts_colors_olds
+    #   base_layouts_cursors_moves
+    #   base_layouts_icons
+    #   base_layouts_icons_groups
+    #   base_layouts
+    #   load_layouts
+    # else
+    #   echo "Error loading '${S1}'... File or path can not be resolved"
+    # fi
 
-  # local S1="${AH_LIBRARIES}/functions.sh"
-  # if [ -f "${S1}" ]; then
-  #   . "${S1}"
-  #   init_functions
-  # else
-  #   echo "Error loading '${S1}'... File or path can not be resolved"
-  # fi
+    # local S1="${AH_LIBRARIES}/functions.sh"
+    # if [ -f "${S1}" ]; then
+    #   . "${S1}"
+    #   init_functions
+    # else
+    #   echo "Error loading '${S1}'... File or path can not be resolved"
+    # fi
 
-  # local S1="${CUSTOM_TMUX}/MAIN.zsh"
-  # if [ -f "${S1}" ]; then
-  #   . "${S1}"
-  #   source_all_tmux
-  # else
-  #   echo "Error loading '${S1}'... File or path can not be resolved"
-  # fi
+    # local S1="${CUSTOM_TMUX}/MAIN.zsh"
+    # if [ -f "${S1}" ]; then
+    #   . "${S1}"
+    #   source_all_tmux
+    # else
+    #   echo "Error loading '${S1}'... File or path can not be resolved"
+    # fi
 
 }
 
-### ERROR:
-IS_ZSH_=$( (env echo "${0}") | grep 'zsh')
-# return /home/luxcium/ahmyzsh/MAIN.sh (if positive)
-# should return /bin/zsh
-IS_BASH_="$(echo "${0}" | grep 'bash')"
-# return /home/luxcium/ahmyzsh/MAIN.sh
-# should return /bin/bash (if positive)
+function Load_all_files_d() {
+    local SD1="$1"
+    if [ -d "${SD1}" ]; then
+        for f in "${SD1}/"*.sh; do
+            [ -f "${f}" ] && source "${f}"
+        done
+    else
+        echo "Error loading files in '${SD1}'... Directory or path can not be resolved"
+    fi
+}
+
 
 function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N  -  B O O T S T R A P - +#
 
-  # echo "M A I N  -  B O O T S T R A P"
-  # if [ "$0" = "zsh" -o "$0" = "-zsh" ] ; then
-  if [[ -n "${IS_ZSH_}" ]]; then
-    if [ -z "${MAIN_INIT}" ]; then
-      MAIN_INIT="start"
+    # echo "M A I N  -  B O O T S T R A P"
+    # if [ "$0" = "zsh" -o "$0" = "-zsh" ] ; then
+    if [[ -n "${IS_ZSH_}" ]]; then
+        if [ -z "${MAIN_INIT}" ]; then
+            MAIN_INIT="start"
 
-      # export AHMYZSH="${HOME}/ahmyzsh"
-      # . ${AHMYZSH}/libraries/functions.sh
-      # . ${AHMYZSH}/libraries/paths.sh
-      # . ${AHMYZSH}/libraries/initial_load.zsh
-      __AHMYZSH__BOOT__LOADER__
-      load_zshenv
-      load_zshrc
+            # export AHMYZSH="${HOME}/ahmyzsh"
+            # . ${AHMYZSH}/libraries/functions.sh
+            # . ${AHMYZSH}/libraries/paths.sh
+            # . ${AHMYZSH}/libraries/initial_load.zsh
+            __AHMYZSH__BOOT__LOADER__
+            load_zshenv
+            load_zshrc
+        fi
     fi
-  fi
-  # fi # rwxrwxr-x  rw-rw-r--
+    # fi # rwxrwxr-x  rw-rw-r--
 
-  # if [ "$0" = "bash" -o "$0" = "-bash" ] ; then
-  if [ -n "${IS_BASH_}" ]; then
-    if [ -z "${MAIN_INIT}" ]; then
-      MAIN_INIT="start"
-      echo pwd=$(pwd)
-      echo 'using bash'
+    # if [ "$0" = "bash" -o "$0" = "-bash" ] ; then
+    if [ -n "${IS_BASH_}" ]; then
+        if [ -z "${MAIN_INIT}" ]; then
+            MAIN_INIT="start"
+            echo pwd=$(pwd)
+            echo 'using bash'
+        fi
     fi
-  fi
 
 } #+ - M A I N  -  B O O T S T R A P - +#
 
