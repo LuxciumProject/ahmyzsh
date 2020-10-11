@@ -1,3 +1,16 @@
+function base_layouts() {
+
+    export LBOLD='\u001b[1m' # Bold: \u001b[1m
+    export LUND='\u001b[4m'  # Underline: \u001b[4m
+    export LREV='\u001b[7m'  # Reversed: \u001b[7m
+    export RSET='\u001b[0m'
+    export RVSD='\u001b[7m'
+
+    export bold="$LBOLD"
+    export normal="$RSET"
+
+}
+
 function base_layouts_colors() {
     export FBK='\u001b[30m' # BK Black: \u001b[30m
     export FRD='\u001b[31m' # RD Red: \u001b[31m
@@ -154,6 +167,15 @@ function base_layouts_icons() {
     export LIGHTBULB_ON="\uf834"  #// \uf834  LIGHTBULB_ON
     export HOURGLASS_END="\uf253" #// \uf253  HOURGLASS_END
 
+    export LIGHT_0_="${LBOLD}${FRD_}${LIGHTBULB}" #// \uf835  LIGHTBULB
+    export LIGHT_1_="${LBOLD}${FYL_}${LIGHTBULB}" #// \uf835  LIGHTBULB
+    export LIGHT_2_="${LBOLD}${FGR_}${LIGHTBULB}" #// \uf835  LIGHTBULB
+    export LIGHT_0="${LBOLD}${FRD_}${LIGHTBULB_ON}" #// \uf834  LIGHTBULB_ON
+    export LIGHT_1="${LBOLD}${FYL_}${LIGHTBULB_ON}" #// \uf834  LIGHTBULB_ON
+    export LIGHT_2="${LBOLD}${FGR_}${LIGHTBULB_ON}" #// \uf834  LIGHTBULB_ON
+
+
+
     export END_SOURCING="\u001b[0m\u001b[31;1m${LBOLD}"
     export END_FUNCTION="${END_SOURCING}"
 
@@ -220,18 +242,7 @@ function base_layouts_icons_groups() {
     # load_layouts
 }
 
-function base_layouts() {
 
-    export LBOLD='\u001b[1m' # Bold: \u001b[1m
-    export LUND='\u001b[4m'  # Underline: \u001b[4m
-    export LREV='\u001b[7m'  # Reversed: \u001b[7m
-    export RSET='\u001b[0m'
-    export RVSD='\u001b[7m'
-
-    export bold="$LBOLD"
-    export normal="$RSET"
-
-}
 
 function load_layouts() {
     base_layouts_colors
