@@ -41,10 +41,13 @@ function cambat() {
 
 }
 
-alias getphotos="( (mkdir ${HOME}/myPic -p; cd ${HOME}/myPic;  gphoto2 --get-all-files --skip-existing; lf&)& pbat)"
+alias runobs="(cd /home/luxcium/obs-studio-portable/bin/64bit && sudo nice -n -35 sudo ionice -c 1 -n 0 sudo -u luxcium /home/luxcium/obs-studio-portable/bin/64bit/obs)"
+alias reloadobs="(sudo killall obs; runobs)"
 
-alias gphotoload="(echo -ne '\\n\\n' && cambat && echo -ne '\\n\\n' && gphoto2 --stdout --capture-movie | ffmpeg -hwaccel nvdec -c:v mjpeg_cuvid -i - -vcodec rawvideo -filter atadenoise -pix_fmt yuv420p -r 25 -f v4l2 /dev/video0)"
-alias gphotoreload="(sudo killall gphoto2) 2>/dev/null; (mkloopback && gphotoload)"
+alias getphotos="(cambat && mkdir ${HOME}/myPic -p && cd ${HOME}/myPic && sudo nice -n -35 ionice -c 1 -n 0 gphoto2 --get-all-files --skip-existing&& lf&)"
+
+alias gphotoload="(echo -ne '\n\n' && cambat && echo -ne '\n\n' && sudo nice -n -35 ionice -c 1 -n 0  gphoto2 --stdout --capture-movie | sudo nice -n -35 ionice -c 1 -n 0  ffmpeg -hwaccel nvdec -c:v mjpeg_cuvid -i - -vcodec rawvideo -filter atadenoise -pix_fmt yuv420p -r 25 -f v4l2 /dev/video0)"
+alias gphotoreload="(sudo killall gphoto2& sudo killall ffmpeg&) 2>/dev/null; (mkloopback && gphotoload)"
 alias gphotoloadx=gphotoreload
 
 alias photoload=gphotoload
