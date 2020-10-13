@@ -1,5 +1,4 @@
 export EDITOR="nano"
-
 IS_ZSH_="$(ps -o comm= -p $$ | grep 'zsh')"
 IS_BASH_="$(ps -o comm= -p $$ | grep 'bash')"
 
