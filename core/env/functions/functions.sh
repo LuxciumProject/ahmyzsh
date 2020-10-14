@@ -1,3 +1,35 @@
+function parse_options() {
+  o_port=(-p 9999)
+  o_root=(-r WWW)
+  o_log=(-d ZWS.log)
+  zparseopts -K -- p:=o_port r:=o_root l:=o_log h=o_help
+  if [[ $? != 0 || "$o_help" != "" ]]; then
+    echo Usage: $(basename "$0") "[-p PORT] [-r DIRECTORY]"
+    exit 1
+  fi
+  port=$o_port[2]
+  root=$o_root[2]
+  log=$o_log[2]
+  if [[ $root[1] != '/' ]]; then root="$PWD/$root"; fi
+}
+
+  function mkramdir() {
+    # LASTVIRTUALRAM
+    if [ -d "${MYVIRTUALRAM_PATH}" ]; then
+
+      LASTVIRTUALRAM="${MYVIRTUALRAM_PATH}/${1}"
+      mkdir -p "${LASTVIRTUALRAM}"
+      chmod 1777 "${LASTVIRTUALRAM}"
+      # cd "${LASTVIRTUALRAM}"
+      # ln -s LASTVIRTUALRAM -v
+      export LASTVIRTUALRAM
+
+    fi
+    # echo "'\$@:' $@, \n'\$1:' $1, \n'\$2:' $2, \n'\$3:' $3, \n'\$4:' $4"
+
+  }
+
+
 function add_to_path_() {
     [ -z $1 ] || export PATH="${1}:${PATH}"
 }

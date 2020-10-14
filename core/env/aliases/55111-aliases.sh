@@ -1,12 +1,6 @@
-${PATH_LXXXY}
-${PATH_LXIO}
-${PATH_QUESTRADE}
-${PATH_IEXCLOUD_API_WRAPPER}
-${PATH_IEX_API}
-${PATH_LXIO_PRJ}
-${PATH}
-# PATH_
-# alias lxXX="cd ${PATH_LXXXY}"
+LXI_SESSION='luxcium-io'
+clearall='\u001b[2J\u001b[0;0H'
+
 alias vsx="cd ${PATH_LXIO}; code -n ${PATH_LXIO}"
 alias vsqt="cd ${PATH_QUESTRADE}; code -n  ${PATH_QUESTRADE}"
 alias vs-iex-cloud="cd ${PATH_IEXCLOUD_API_WRAPPER}; code ${PATH_IEXCLOUD_API_WRAPPER}"
@@ -17,9 +11,7 @@ alias lxicd=" mycode ${PATH_LXIO_PRJ}/luxcium.io; lxi;"
 alias lxq="cd ${PATH_LXIO_PRJ}/questrade-ts"
 alias lxqc="mycode ${PATH_LXIO_PRJ}/questrade-ts && cd ${PATH_LXIO_PRJ}/questrade-ts"
 alias lxqtx="env tmux -uv -f ${TMUX_CONFIGS}/questrade.tmux.conf new-session -A -s questrade-ts -c ${PATH_LXIO_PRJ}/questrade-ts"
-# alias tmuxlxic='mycode ${PATH_LXIO_PRJ}/luxcium.io && cd ${PATH_LXIO_PRJ}/luxcium.io'
 alias txio="env tmux -uv -f ${TMUX_CONFIGS}/luxcium.tmux.conf new-session -A -s luxcium-io -c ${PATH_LXIO_PRJ}/luxcium.io"
-# alias mxdef="tmux -uv -f ${TMUX_CONFIGS}/common.tmux.conf new-session -A -s luxcium-io -c ${PATH_LXIO_PRJ}/luxcium.io"
 alias lux="open $PATH_LXIO_PRJ"
 alias lx="cd ${PATH_LXIO_PRJ}/luxcium.io && mycode ${PATH_LXIO_PRJ}/luxcium.io"
 alias lxc="mycode ${PATH_LXIO_PRJ}/luxcium.io && cd ${PATH_LXIO_PRJ}/luxcium.io"
@@ -32,17 +24,12 @@ alias lx3="lxqc;lxec;lxic && cd ${PATH_LXIO_PRJ}/"
 alias lx4="cd ~ && atom . ;lxqc;lxec;lxic && cd ${PATH_LXIO_PRJ}/"
 alias lxcode="cd ${PATH_LXIO_PRJ}/ && mycode ./.vscode/luxcium-project.code-workspace"
 alias path='echo ${PATH}'
-# alias zshQ="zsh --pathdirs"
-################
-## TMUX ALIAS ##
-# alias dx='tmux detach'
 alias nx='tmux neww'
 alias dx='tmux detach -a; mxd'
 alias k='_p9k_dump_instant_prompt;notmytty; tmux kill-session -a; killall tmux'
 alias kx='k'
 alias mylab=" tmux new-window -d -c '/Users/neb_401/JupyterLab' -n 'Jupyter Lab' 'env jupyter lab'"
 alias jlab=" tmux new-window -d -n 'Jupyter Lab' 'env jupyter lab'"
-
 alias n='new'
 alias quit='tmux detach'
 alias q='_p9k_dump_instant_prompt;exit'
@@ -52,13 +39,6 @@ alias als="load_ ${MY_ALIASES} 'load_aliases'"
 alias ala=alsa
 alias finder='open .'
 alias allo='echo allo tout le monde'
-####################
-## Projects ALIAS ##
-# Luxcium.io
-# Questrade-ts
-# Luxcium ZSH
-# VisualStudio Theme
-# NodeJS Repl
 alias vx=vsx
 alias vsz="cd ${CUSTOM_ZSH}/..; code -n ${CUSTOM_ZSH}/.."
 alias vz=vsz
@@ -69,15 +49,9 @@ alias vq=vsq
 alias vqt=vq
 alias vstm="cd ${DEV_POPNLOCK}; insiders  -n ${DEV_POPNLOCK}"
 alias vst=vstm
-# /Users/neb_401/.oh-my-zsh/custom/luxcium/repl/node-repl
-## LUXCIUM
-LXI_SESSION='luxcium-io'
 alias lximux="tmux-luxcium"
-# alias lxicode="lxicd; lximux"
 alias lxic="lxicd;" # lximux
-# alias lxicode="lxcode; tmux new-session -A -s $LXI_SESSION"
 alias lxikill="tmux kill-session -t $LXI_SESSION"
-## QUESTRADE
 alias runqt='ts-node --pretty "${HOME}/Developer/LuxciumProject/questrade-ts/src/test/playground/debug/debug.ts"'
 alias buildqt='tsc --pretty -p "${HOME}/Developer/LuxciumProject/questrade-ts/configs/tsconfig.commonjs.json"'
 alias wbuildqt='tsc --pretty -w -p "${HOME}/Developer/LuxciumProject/questrade-ts/configs/tsconfig.commonjs.json"'
@@ -92,7 +66,6 @@ alias qtstart='startqt'
 alias qtbstart='bstartqt'
 alias qtbns='bnsqt'
 alias qts='sqt'
-# alias lxic='tmuxlxic; tmux new-session -A -s luxcium-io;'
 alias lxcq='lxqc'
 alias lxz="cd ${CUSTOM_ZSH}/.."
 alias lxzc="mycode ${CUSTOM_ZSH}/.. && cd ${CUSTOM_ZSH}/.."
@@ -100,7 +73,6 @@ alias jpac='code ./package.json'
 alias tsfig='code ./tsconfig.json'
 alias insdr='/usr/local/bin/insiders'
 alias mycode='code'
-# PYTHONSTARTUP='~/.pythonrc'
 alias py='export PYTHONSTARTUP="$HOME/.pythonrc";clear;python3 -q'
 alias a80='echo "1-------10--------20--------30--------40--------50--------60--------70--------80!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"'
 alias a120='echo "1-------10--------20--------30--------40--------50--------60--------70--------80--------90-------100-------110-------120!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"'
@@ -113,8 +85,6 @@ alias newni='zsh --login --no-interactive'
 alias newnl='zsh --no-login --interactive'
 alias newl='zsh --login'
 alias newi='zsh --interactive'
-# alias tmcode='insdr /Users/neb_401/.vscode-insiders/extensions/dev-pop-n-lock-theme-vscode'
-# alias gitAll='/Users/neb_401/gitAll3.sh'
 alias hconf='code ~/.hyper.js'
 alias p9k='compute_p9k'
 alias zshcnf='atom ~/.zshrc'
@@ -123,39 +93,21 @@ alias zshatom='atom ~/.oh-my-zsh'
 alias cnftmx='atom ~/.tmux.conf'
 alias clearall='\u001b[2J\u001b[0;0H'
 alias js="hardcls; env NODE_NO_READLINE=1 rlwrap ${NODELATEST}/node ${NODE_REPL_SCRIPT}"
-# alias zshenv="code ~/.zshenv"
 alias noderepl="env NODE_NO_READLINE=1 rlwrap node"
-# function projects_paths() {
-# source_ "${ALIASES_FOLDER}/aliases.sh"
-# source_ "${ALIASES_FOLDER}/for-do.sh"
-# source_ "${ALIASES_FOLDER}/dnf.sh"
-# local S1="${AH_LIBRARIES}/paths.sh"
-# if [ -f "${S1}" ]; then
-#   . "${S1}"
-#   init_paths
-# else
-#   echo "Error loading '${S1}'... File or path can not be resolved"
-# fi
 alias rnd4='echo $(sha224hmac <<< $(date +%s%N) | cut -c -4 | tr \[a-z\] \[A-Z\])'
 alias rnd6='echo $(sha224hmac <<< $(date +%s%N) | cut -c -6 | tr \[a-z\] \[A-Z\])'
 alias rnd8='echo $(sha224hmac <<< $(date +%s%N) | cut -c -8 | tr \[a-z\] \[A-Z\])'
 alias rnd16='echo $(sha224hmac <<< $(date +%s%N) | cut -c -16 | tr \[a-z\] \[A-Z\])'
 alias rnd24='echo $(sha224hmac <<< $(date +%s%N) | cut -c -24 | tr \[a-z\] \[A-Z\])'
 alias rnd32='echo $(sha224hmac <<< $(date +%s%N) | cut -c -32 | tr \[a-z\] \[A-Z\])'
-# ------------------------------------------------------------------------------
-# Modified by Luxcium
-# Original author Dongweiming <ciici123@gmail.com>
 alias ping='ping -c 5'
 alias clr='clear; echo Currently logged in on $TTY, as $USER in directory $PWD.'
 alias path='print -l $path'
 alias mkdir='mkdir -pv'
-# get top process eating memory
 alias psmemall='ps -e -orss=,args= | sort -b -k1,1n'
 alias psmem='ps -e -orss=,args= | sort -b -k1,1n| head -10'
-# get top process eating cpu if not work try excute : export LC_ALL='C'
 alias pscpuall='ps -e -o pcpu,cpu,nice,state,cputime,args|sort -k1,1n -nr'
 alias pscpu='ps -e -o pcpu,cpu,nice,state,cputime,args|sort -k1,1n -nr | head -10'
-# top10 of the history
 alias hist5='print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 5'
 alias hist10='print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 10'
 alias hist15='print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 15'
@@ -164,15 +116,12 @@ alias hist25='print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 25'
 alias hist50='print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 50'
 alias histall='print -l ${(o)history%% *} | uniq -c | sort -nr'
 alias mktmp='TMPDIRLOCATION="/tmp/LXCM$(uxid)"; mkdir "${TMPDIRLOCATION:0:27}S"; cd "${TMPDIRLOCATION:0:27}S" ;unset -v TMPDIRLOCATION'
-# ---- REDIS-CLI ---------------------------------------------------------------
 alias rcli="redis-cli"
 alias redisall="redis-cli keys \*"
 alias smembers="redis-cli smembers"
 alias hgetall="redis-cli hgetall"
 alias hexist="redis-cli hexist"
 alias exists="redis-cli exists"
-# ----           ---------------------------------------------------------------
-# SYMBOL_ITEM:IEX_CLOUD@JRI
 alias ucp="sudo nice -n -10 ionice -c 1 -n 5 cp -uRL"
 alias vucp="sudo nice -n -10 ionice -c 1 -n 5 cp -vuR"
 alias vrmf="sudo nice -n -15 ionice -c 1 -n 3 rm -vRf"
@@ -202,12 +151,106 @@ alias c16x9="echo '0.5625 or 1.7777777778'"
 alias p480x16x9="echo 480 x 853"
 alias p720x16x9="echo 1280 x 720"
 alias p1080x16x9="echo 1080 x 1920"
+alias vmdaloc="az vm deallocate -g 'GroupeONE-UKSouth' --name 'MEAN-VirtualONE'"
+alias vmstart="az vm start -g 'GroupeONE-UKSouth' --name 'MEAN-VirtualONE'"
+
+
+
+# function load_aliases() {
+
+#   # TODO Section: Fix thiss mess :
+#   # personal_projects_paths
+#   # TODO Section end: Fix thiss mess :
+
+#   function mkramdir() {
+#     # LASTVIRTUALRAM
+#     if [ -d "${MYVIRTUALRAM_PATH}" ]; then
+
+#       LASTVIRTUALRAM="${MYVIRTUALRAM_PATH}/${1}"
+#       mkdir -p "${LASTVIRTUALRAM}"
+#       chmod 1777 "${LASTVIRTUALRAM}"
+#       # cd "${LASTVIRTUALRAM}"
+#       # ln -s LASTVIRTUALRAM -v
+#       export LASTVIRTUALRAM
+
+#     fi
+#     # echo "'\$@:' $@, \n'\$1:' $1, \n'\$2:' $2, \n'\$3:' $3, \n'\$4:' $4"
+
+#   }
+
+# }
+
+
+# function parse_options() {
+#   o_port=(-p 9999)
+#   o_root=(-r WWW)
+#   o_log=(-d ZWS.log)
+#   zparseopts -K -- p:=o_port r:=o_root l:=o_log h=o_help
+#   if [[ $? != 0 || "$o_help" != "" ]]; then
+#     echo Usage: $(basename "$0") "[-p PORT] [-r DIRECTORY]"
+#     exit 1
+#   fi
+#   port=$o_port[2]
+#   root=$o_root[2]
+#   log=$o_log[2]
+#   if [[ $root[1] != '/' ]]; then root="$PWD/$root"; fi
+# }
+
+# ${PATH_LXIO}
+# ${PATH_QUESTRADE}
+# ${PATH_IEXCLOUD_API_WRAPPER}
+# ${PATH_IEX_API}
+# ${PATH_LXIO_PRJ}
+# ${PATH}
+# PATH_
+# alias lxXX="cd ${PATH_LXXXY}"
+# alias tmuxlxic='mycode ${PATH_LXIO_PRJ}/luxcium.io && cd ${PATH_LXIO_PRJ}/luxcium.io'
+# alias mxdef="tmux -uv -f ${TMUX_CONFIGS}/common.tmux.conf new-session -A -s luxcium-io -c ${PATH_LXIO_PRJ}/luxcium.io"
+# alias zshQ="zsh --pathdirs"
+################
+## TMUX ALIAS ##
+# alias dx='tmux detach'
+####################
+## Projects ALIAS ##
+# Luxcium.io
+# Questrade-ts
+# Luxcium ZSH
+# VisualStudio Theme
+# NodeJS Repl
+# /Users/neb_401/.oh-my-zsh/custom/luxcium/repl/node-repl
+## LUXCIUM
+# alias lxicode="lxicd; lximux"
+# alias lxicode="lxcode; tmux new-session -A -s $LXI_SESSION"
+## QUESTRADE
+# alias lxic='tmuxlxic; tmux new-session -A -s luxcium-io;'
+# PYTHONSTARTUP='~/.pythonrc'
+# alias tmcode='insdr /Users/neb_401/.vscode-insiders/extensions/dev-pop-n-lock-theme-vscode'
+# alias gitAll='/Users/neb_401/gitAll3.sh'
+# alias zshenv="code ~/.zshenv"
+# function projects_paths() {
+# source_ "${ALIASES_FOLDER}/aliases.sh"
+# source_ "${ALIASES_FOLDER}/for-do.sh"
+# source_ "${ALIASES_FOLDER}/dnf.sh"
+# local S1="${AH_LIBRARIES}/paths.sh"
+# if [ -f "${S1}" ]; then
+#   . "${S1}"
+#   init_paths
+# else
+#   echo "Error loading '${S1}'... File or path can not be resolved"
+# fi
+# ------------------------------------------------------------------------------
+# Modified by Luxcium
+# Original author Dongweiming <ciici123@gmail.com>
+# get top process eating memory
+# get top process eating cpu if not work try excute : export LC_ALL='C'
+# top10 of the history
+# ---- REDIS-CLI ---------------------------------------------------------------
+# ----           ---------------------------------------------------------------
+# SYMBOL_ITEM:IEX_CLOUD@JRI
 ################################################################################
 ######################
 ## POWER LEVEL 10 K ##
 ## AZUR ALIAS ##
-alias vmdaloc="az vm deallocate -g 'GroupeONE-UKSouth' --name 'MEAN-VirtualONE'"
-alias vmstart="az vm start -g 'GroupeONE-UKSouth' --name 'MEAN-VirtualONE'"
 # ################
 # ## YARN ALIAS ##
 # # npm i concurrently@latest
@@ -251,80 +294,3 @@ alias vmstart="az vm start -g 'GroupeONE-UKSouth' --name 'MEAN-VirtualONE'"
 # alias nlist='npm list -g --depth 0'
 # alias lsg='npm list -g --depth 0;yarn global list'
 # alias lg=lsg
-clearall='\u001b[2J\u001b[0;0H'function load_aliases() {
-
-  # TODO Section: Fix thiss mess :
-  # personal_projects_paths
-  # TODO Section end: Fix thiss mess :
-
-  function mkramdir() {
-    # LASTVIRTUALRAM
-    if [ -d "${MYVIRTUALRAM_PATH}" ]; then
-
-      LASTVIRTUALRAM="${MYVIRTUALRAM_PATH}/${1}"
-      mkdir -p "${LASTVIRTUALRAM}"
-      chmod 1777 "${LASTVIRTUALRAM}"
-      # cd "${LASTVIRTUALRAM}"
-      # ln -s LASTVIRTUALRAM -v
-      export LASTVIRTUALRAM
-
-    fi
-    # echo "'\$@:' $@, \n'\$1:' $1, \n'\$2:' $2, \n'\$3:' $3, \n'\$4:' $4"
-
-  }
-
-}
-
-function load_aliases() {
-
-  # TODO Section: Fix thiss mess :
-  # personal_projects_paths
-  # TODO Section end: Fix thiss mess :
-
-  function mkramdir() {
-    # LASTVIRTUALRAM
-    if [ -d "${MYVIRTUALRAM_PATH}" ]; then
-
-      LASTVIRTUALRAM="${MYVIRTUALRAM_PATH}/${1}"
-      mkdir -p "${LASTVIRTUALRAM}"
-      chmod 1777 "${LASTVIRTUALRAM}"
-      # cd "${LASTVIRTUALRAM}"
-      # ln -s LASTVIRTUALRAM -v
-      export LASTVIRTUALRAM
-
-    fi
-    # echo "'\$@:' $@, \n'\$1:' $1, \n'\$2:' $2, \n'\$3:' $3, \n'\$4:' $4"
-
-  }
-
-}
-
-function parse_options() {
-  o_port=(-p 9999)
-  o_root=(-r WWW)
-  o_log=(-d ZWS.log)
-  zparseopts -K -- p:=o_port r:=o_root l:=o_log h=o_help
-  if [[ $? != 0 || "$o_help" != "" ]]; then
-    echo Usage: $(basename "$0") "[-p PORT] [-r DIRECTORY]"
-    exit 1
-  fi
-  port=$o_port[2]
-  root=$o_root[2]
-  log=$o_log[2]
-  if [[ $root[1] != '/' ]]; then root="$PWD/$root"; fi
-}
-
-function parse_options() {
-  o_port=(-p 9999)
-  o_root=(-r WWW)
-  o_log=(-d ZWS.log)
-  zparseopts -K -- p:=o_port r:=o_root l:=o_log h=o_help
-  if [[ $? != 0 || "$o_help" != "" ]]; then
-    echo Usage: $(basename "$0") "[-p PORT] [-r DIRECTORY]"
-    exit 1
-  fi
-  port=$o_port[2]
-  root=$o_root[2]
-  log=$o_log[2]
-  if [[ $root[1] != '/' ]]; then root="$PWD/$root"; fi
-}
