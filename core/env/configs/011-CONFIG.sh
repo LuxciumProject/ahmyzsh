@@ -20,18 +20,18 @@ function firtstage() {
   # LANG="fr_CA.UTF-8"
 
   : ${LANG:="fr_CA.UTF-8"}
-  : ${LC_CTYPE:="fr_CA.UTF-8"}
-  : ${LC_NUMERIC:="fr_CA.UTF-8"}
+  : ${LC_CTYPE:="${LANG}"}
+  : ${LC_NUMERIC:="${LANG}"}
   : ${LC_TIME:="fr_FR.UTF-8"}
-  : ${LC_COLLATE:="fr_CA.UTF-8"}
-  : ${LC_MONETARY:="fr_CA.UTF-8"}
-  : ${LC_MESSAGES:="fr_CA.UTF-8"}
-  : ${LC_PAPER:="fr_CA.UTF-8"}
-  : ${LC_NAME:="fr_CA.UTF-8"}
-  : ${LC_ADDRESS:="fr_CA.UTF-8"}
-  : ${LC_TELEPHONE:="fr_CA.UTF-8"}
-  : ${LC_MEASUREMENT:="fr_CA.UTF-8"}
-  : ${LC_IDENTIFICATION:="fr_CA.UTF-8"}
+  : ${LC_COLLATE:="${LANG}"}
+  : ${LC_MONETARY:="${LANG}"}
+  : ${LC_MESSAGES:="${LANG}"}
+  : ${LC_PAPER:="${LANG}"}
+  : ${LC_NAME:="${LANG}"}
+  : ${LC_ADDRESS:="${LANG}"}
+  : ${LC_TELEPHONE:="${LANG}"}
+  : ${LC_MEASUREMENT:="${LANG}"}
+  : ${LC_IDENTIFICATION:="${LANG}"}
 
   # fall back
   source "${HOME}/.env"
