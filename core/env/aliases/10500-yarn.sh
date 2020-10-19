@@ -4,10 +4,13 @@
 # npm i concurrently@latest
 # alias ylint='linters'
 #> /dev/null'
+alias yarnstart="yarn start"
+alias ystart="yarn start"
+
 alias yu='fnm install latest-erbium && \
-      fnm install latest && \
-     fnm use latest-erbium && \
-      fnm default $(node -v)'
+fnm install latest && \
+fnm use latest-erbium && \
+fnm default $(node -v)'
 alias yi='yg; yu; yi1 ; yi2' # yi3'
 
 # alias yarnu='npm install -g yarn@latest'
@@ -17,7 +20,7 @@ alias yarn2="yarn set version berry 1>& /dev/null || yarn set version latest; ya
 alias yi1='concurrently  "rm yarn.lock" "rm -f package-lock.json" "rm -f pnpm-lock.yaml" "rm -rf node_modules"'
 alias yi2='yarn install --force --audit --link-duplicates --check-files;'
 alias yg='yarn global add \
-    concurrently@latest yarn@latest typescript@latest npm@latest ts-node@latest vsce@latest pnpm@latest  1> /dev/null &'
+concurrently@latest yarn@latest typescript@latest npm@latest ts-node@latest vsce@latest pnpm@latest  1> /dev/null &'
 # alias yi3='yarn add -D typescript@rc @types/node@latest ts-node@latest > /dev/null 2>&1 &'
 alias ya='yarn add --exact --audit --force --link-duplicates --check-files --no-progress'
 alias yb='yarn run build --force'
