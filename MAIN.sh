@@ -46,7 +46,6 @@ function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N  -  B O O T S T R A P - +#
             local S1="${CUSTOM_ZSH}/MAIN.zsh"
             if [ -f "${S1}" ]; then
                 . "${S1}"
-                source_all_zsh
                 load_zshenv
                 load_zshrc
             else
