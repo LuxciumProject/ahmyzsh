@@ -1,33 +1,80 @@
-export NMON="cmndkMt"
-alias nmonk="sudo env NMON=k nmon -a"
-alias nmonc="sudo env NMON=c nmon -a"
-alias nmonC="sudo env NMON=C nmon -a"
-alias nmonmmm="sudo env NMON=MMM nmon -a"
-alias nmonm="sudo env NMON=m nmon -a"
-alias nmont="sudo env NMON=t nmon -a"
-alias nmonl="sudo env NMON=l nmon -a"
-alias nmonV="sudo env NMON=V nmon -a"
-alias nmonN="sudo env NMON=N nmon -a"
-alias nmonr="sudo env NMON=r nmon -a"
-alias nmono="sudo env NMON=o nmon -a"
-alias nmond="sudo env NMON=d nmon -a"
+export NMON="mknd.jJ"
 
-# │ h = This help                         | r = Resources OS & Proc                                     │
-# │ c = CPU Util  C = wide view           | l = longer term CPU averages                                │
-# │ m = Memory & Swap    L=Huge           | V = Virtual Memory                                          │
-# │ n = Network                           | N = NFS                                                     │
-# │ d = Disk I/O Graphs  D=Stats          | o = Disks %Busy Map                                         │
-# │ k = Kernel stats & loadavg            | j = Filesystem Usage J=reduced                              │
-# │ M = MHz by thread & CPU                                                                             │
-# │ t = TopProcess 1=Priority/Nice/State  | u = TopProc with command line                               │
-# │     ReOrder by: 3=CPU 4=RAM 5=I/O     |     Hit u twice to update                                   │
-# │ g = User Defined Disk Groups          | G = with -g switches Disk graphs                            │
-# │     [start nmon with -g <filename>]   |     to disk groups only                                     │
-# │                                       | b = black & white mode                                      │
-# │ Other Controls:                       |                                                             │
-# │ + = double the screen refresh time    | 0 = reset peak marks (">") to zero                          │
-# │ - = half   the screen refresh time    | space refresh screen now                                    │
-# │ . = Display only busy disks & CPU     | q = Quit                                                    │
+
+# h = This help
+alias monhelp="sudo nice -n -15 ionice -c 1 -n 3 env NMON=h nmon -a"
+
+# r = Resources OS & Proc
+alias monres="sudo nice -n -15 ionice -c 1 -n 3 env NMON=r nmon -a"
+
+# c = CPU Util  C = wide view
+alias moncpu="sudo nice -n -15 ionice -c 1 -n 3 env NMON=c nmon -a"
+alias monccpu="sudo nice -n -15 ionice -c 1 -n 3 env NMON=C nmon -a"
+
+# l = longer term CPU averages
+alias monlcpu="sudo nice -n -15 ionice -c 1 -n 3 env NMON=l nmon -a"
+
+# m = Memory & Swap    L=Huge
+alias monmem="sudo nice -n -15 ionice -c 1 -n 3 env NMON=m nmon -a"
+
+# V = Virtual Memory
+alias monvirt="sudo nice -n -15 ionice -c 1 -n 3 env NMON=V nmon -a"
+
+# n = Network
+alias monnetwork="sudo nice -n -15 ionice -c 1 -n 3 env NMON=n nmon -a"
+
+# N = NFS
+alias monnfs="sudo nice -n -15 ionice -c 1 -n 3 env NMON=N nmon -a"
+
+
+#
+# d = Disk I/O Graphs  D=Stats
+alias mondisk="sudo nice -n -15 ionice -c 1 -n 3 env NMON=d nmon -a"
+alias mondiskstats="sudo nice -n -15 ionice -c 1 -n 3 env NMON=D nmon -a"
+
+# o = Disks %Busy Map
+#
+
+# k = Kernel stats & loadavg
+alias monkern="sudo nice -n -15 ionice -c 1 -n 3 env NMON=k nmon -a"
+
+# j = Filesystem Usage J=reduced
+alias monfs="sudo nice -n -15 ionice -c 1 -n 3 env NMON=jJ nmon -a"
+alias monfsall="sudo nice -n -15 ionice -c 1 -n 3 env NMON=j nmon -a"
+
+
+#
+# M = MHz by thread & CPU
+alias monmhz="sudo nice -n -15 ionice -c 1 -n 3 env NMON=M nmon -a"
+
+#
+
+
+# t = TopProcess 1=Priority/Nice/State
+# ReOrder by: 3=CPU 4=RAM 5=I/O
+alias montopnice="sudo nice -n -15 ionice -c 1 -n 3 env NMON=t1 nmon -a"
+alias montopproc="sudo nice -n -15 ionice -c 1 -n 3 env NMON=t3 nmon -a"
+alias montopmem="sudo nice -n -15 ionice -c 1 -n 3 env NMON=t4 nmon -a"
+alias montopio="sudo nice -n -15 ionice -c 1 -n 3 env NMON=t5 nmon -a"
+
+# u = TopProc with command line
+# ReOrder by: 3=CPU 4=RAM 5=I/O
+alias montopniceu="sudo nice -n -15 ionice -c 1 -n 3 env NMON=t1u nmon -a"
+alias montopprocu="sudo nice -n -15 ionice -c 1 -n 3 env NMON=t3u nmon -a"
+alias montopmemu="sudo nice -n -15 ionice -c 1 -n 3 env NMON=t4u nmon -a"
+alias montopiou="sudo nice -n -15 ionice -c 1 -n 3 env NMON=t5u nmon -a"
+
+
+
+
+
+# alias nmonmmm="sudo nice -n -15 ionice -c 1 -n 3 env NMON=MMM nmon -a"
+# alias nmonV="sudo nice -n -15 ionice -c 1 -n 3 env NMON=V nmon -a"
+# alias nmonN="sudo nice -n -15 ionice -c 1 -n 3 env NMON=N nmon -a"
+# alias nmonr="sudo nice -n -15 ionice -c 1 -n 3 env NMON=r nmon -a"
+# alias nmono="sudo nice -n -15 ionice -c 1 -n 3 env NMON=o nmon -a"
+# alias monddisk="sudo nice -n -15 ionice -c 1 -n 3 env NMON=d nmon -a"
+# alias mondisk="sudo nice -n -15 ionice -c 1 -n 3 env NMON=d. nmon -a"
 
 # nmon -h
 # Hint for nmon version 16k

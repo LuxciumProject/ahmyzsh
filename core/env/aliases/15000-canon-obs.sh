@@ -11,18 +11,18 @@ alias inice1="sudo ionice -c 1 -n 1 nice -n -35"
 # // gphoto2 --stdout --capture-movie | ffmpeg  -hwaccel nvdec -c:v mjpeg_cuvid -i - -vcodec rawvideo -filter atadenoise -pix_fmt yuv420p -force_key_frames 00:00:00.000 -c:a copy -f v4l2 /dev/video0 -init_hw_device cuda:1
 # // gphoto2 --stdout --capture-movie |
 alias fpeg="( inice1 \
-ffmpeg -hide_banner \
--init_hw_device cuda:0 \
--hwaccel nvdec \
--c:v mjpeg_cuvid \
--i - \
--init_hw_device cuda:0 \
--vcodec rawvideo  \
--filter atadenoise \
--pix_fmt yuv420p \
--c:a copy \
--flush_packets 1 \
--f v4l2 /dev/video0 \
+    ffmpeg -hide_banner \
+    -init_hw_device cuda:0 \
+    -hwaccel nvdec \
+    -c:v mjpeg_cuvid \
+    -i - \
+    -init_hw_device cuda:0 \
+    -vcodec rawvideo  \
+    -filter atadenoise \
+    -pix_fmt yuv420p \
+    -c:a copy \
+    -flush_packets 1 \
+    -f v4l2 /dev/video0 \
 )"
 
 # alias fpeg="(inice1 ffmpeg -init_hw_device cuda:0 -hwaccel nvdec -c:v mjpeg_cuvid -i - -vcodec rawvideo -filter atadenoise -pix_fmt yuv420p -r 25 -f v4l2 /dev/video0)"
@@ -44,6 +44,8 @@ alias camload=gphotoload
 alias camreload=gphotoreload
 alias camloadx=gphotoreload
 
+alias captureimage="gphoto2 --keep-raw --capture-image-and-download"
+
 function cambat() {
     VACUOUS=$(gphoto2 --get-config='/main/status/Niveau de batterie' 2>/dev/null | grep '100') >/dev/null
     if [[ $? == 0 ]]; then
@@ -51,35 +53,35 @@ function cambat() {
         (playpositive)
         return 0
     fi
-
+    
     VACUOUS=$(gphoto2 --get-config='/main/status/Niveau de batterie' 2>/dev/null | grep '75') >/dev/null
     if [[ $? == 0 ]]; then
         (echo -e "   ${LIGHT_1}${RSET} $(gphoto2 --get-config='/main/status/Niveau de batterie' 2>/dev/null | grep '75') ${RSET}" &)
         (playwarning)
         return 0
     fi
-
+    
     VACUOUS=$(gphoto2 --get-config='/main/status/Niveau de batterie' 2>/dev/null | grep '50') >/dev/null
     if [[ $? == 0 ]]; then
         (echo -e "   ${LIGHT_1_}${RSET} $(gphoto2 --get-config='/main/status/Niveau de batterie' 2>/dev/null | grep '50') ${RSET}" &)
         (playwarning)
         return 0
     fi
-
+    
     VACUOUS=$(gphoto2 --get-config='/main/status/Niveau de batterie' 2>/dev/null | grep '25') >/dev/null
     if [[ $? == 0 ]]; then
         (echo -e "   ${LIGHT_0}${RSET} $(gphoto2 --get-config='/main/status/Niveau de batterie' 2>/dev/null | grep '25') ${RSET}" &)
         (playnegative)
         return 0
     fi
-
+    
     (playcritical)
     echo -e "${LIGHT_0_} ${LIGHT_0_} ${LIGHT_0_}"
     (echo $(gphoto2 --get-config='/main/status/Niveau de batterie' | grep 'Current'))
     echo -ne "${RSET} "
     VACUOUS=$(gphoto2 --get-config='/main/status/Niveau de batterie' 2>/dev/null) >/dev/null
     return
-
+    
 }
 
 # "(cd /home/luxcium/src/v4l2loopback &&\
