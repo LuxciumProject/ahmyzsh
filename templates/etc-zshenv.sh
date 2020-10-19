@@ -2,7 +2,7 @@
 
 #+ ZSH verry first entry point
 #+ =============================================================================≈
-#? MIT LICENSE ― *NOT* fit for any particular use or purpose ― PROVIDED "AS IS"
+#- MIT LICENSE ― PROVIDED "AS IS" ― *NOT* fit for any particular use or purpose!
 #? =============================================================================≈
 #? @author Benjamin Vincent Kasapoglu (LUXCIUM)
 #? @copyright © 2020 - LUXCIUM (Benjamin Vincent Kasapoglu) <luxcium@neb401.com>
@@ -24,7 +24,6 @@
 # output or assume the shell is attached to a tty.
 #
 # Global Order: zshenv, zprofile, zshrc, zlogin
-#
 
 
 #+ LOAD PATH
@@ -63,7 +62,7 @@ if [ -f "${S1}" ]; then
     . "${S1}"
     unset -v S1
     SCIENTIA_ES_LUX_PRINCIPIUM
-    
+
 else
     [[ -o interactive ]] &&
     echo "Error loading '${S1}'... File or path can not be resolved"
@@ -90,8 +89,16 @@ fi
 # |/etc/zlogout    |    J      |           |      |
 # |----------------|-----------|-----------|------|
 
+
+
+
+# -------------------------- !!! SECURITY WARNING !!! --------------------------≈
+#! AUDIT ANY FILES YOU IMPORT FROM THIS PROJECT PRIOR: DOWNLOAD / INSTALL / USE
+# Please asses security risks by yourself befor to use the product and report
+# any security issues or vulnerability on the issues page of the main repo site:
+# [AHMYZSH project issues]{@link https://github.com/Luxcium/ahmyzsh/issues}
 # ==============================================================================≈
-#† MIT LICENSE ― *NOT* fit for any particular use or purpose ― PROVIDED "AS IS"
+#† MIT LICENSE ― PROVIDED "AS IS" ― *NOT* fit for any particular use or purpose!
 #
 #† Copyright © 2019-2020 Benjamin Vincent Kasapoglu (Luxcium)
 #† and contributors (https://github.com/Luxcium/ahmyzsh/contributors)
@@ -113,13 +120,7 @@ fi
 # OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 # ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
-#
-# -------------------------- !!! SECURITY WARNING !!! --------------------------≈
-#! AUDIT ANY FILES YOU IMPORT FROM THIS PROJECT PRIOR: DOWNLOAD / INSTALL / USE
-# Please asses security risks by yoursel befor to use the product and report
-# any security issues or vulnerabilitie on the the main repo site issues page:
-# [AHMYZSH project issues]{@link https://github.com/Luxcium/ahmyzsh/issues}
-# ------------------------------------------------------------------------------
+# ==============================================================================≈
 #† Scientia es lux principium✨™ is a Tread Mark of Benjamin Vincent Kasapoglu
 #† © & ™ Benjamin Vincent Kasapoglu (Luxcium) 2017-2020
-# ==============================================================================≈
+# ------------------------------------------------------------------------------
