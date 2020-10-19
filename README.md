@@ -25,15 +25,21 @@ Some folder have been hiddens while I am not working with them now you may unhid
 ```json
   "files.exclude": {
     "**/*.zwc": true,
-    "custom-tmux":true,
-    "node-repl":true,
-    "powerlevel10k":true,
-    "ohmyzsh":true,
-    "powerline":true,
-    "python-repl":true,
-    "crt-profiles":true
+    "custom-tmux": true,
+    "node-repl": true,
+    "powerlevel10k": true,
+    "ohmyzsh": true,
+    "powerline": true,
+    "python-repl": true,
+    "crt-profiles": true,
+    "node_modules": true
   },
   ```
+## SECURITY WARNING !!!
+AUDIT ANY FILES YOU IMPORT FROM THIS PROJECT PRIOR: DOWNLOAD / INSTALL / USE
+Please asses security risks by yourself befor to use the product and report
+any security issues or vulnerability on the issues page of the main repo site:
+[AHMYZSH project issues](https://github.com/Luxcium/ahmyzsh/issues)
 
 ## MIT License
 
