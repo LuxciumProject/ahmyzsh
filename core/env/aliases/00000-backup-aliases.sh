@@ -1,4 +1,4 @@
-function projects_paths() {
+function projects_paths_bak() {
   ${PATH_LXXXY}
   ${PATH_LXIO}
   ${PATH_QUESTRADE}
@@ -37,7 +37,7 @@ function projects_paths() {
 
 }
 
-function load_aliases() {
+function load_aliases_bak() {
 
   personal_projects_paths
 
@@ -150,7 +150,6 @@ function load_aliases() {
   alias lxpc="mycode ${PATH_LXIO_PRJ}/ && cd ${PATH_LXIO_PRJ}/"
   alias lx3="lxqc;lxec;lxic && cd ${PATH_LXIO_PRJ}/"
   alias lx4="cd ~ && atom . ;lxqc;lxec;lxic && cd ${PATH_LXIO_PRJ}/"
-  alias lxcode="cd ${PATH_LXIO_PRJ}/ && mycode ./.vscode/luxcium-project.code-workspace"
 
   #######################
   ## VSCODE ZSH PLUGIN ##
