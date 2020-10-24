@@ -10,6 +10,7 @@
 #? =============================================================================≈
 #? Scientia es lux principium✨ ™ - SEE THE BOTTOM OF THIS FILES FOR MORE INFO
 #+ =============================================================================≈
+
 function AHMYZSH_TOP_CONFIG_OPTIONS() {
 
     : ${VERBOSA=00}
@@ -21,18 +22,13 @@ function AHMYZSH_TOP_CONFIG_OPTIONS() {
     export AHMYZSH_ENV="${AHMYZSH_CORE}/env"
     export AH_LIBRARIES="${AHMYZSH}/libraries"
 
-    fpath=(${AHMYZSH}/core/functions ${fpath})
-    autoload Load_all_files_d
-    autoload source_
-    autoload call_
-    autoload load_
+    fpath=(${AHMYZSH_CORE}/functions ${fpath})
 
     Load_all_files_d "${AHMYZSH_ENV}/aliases"
     Load_all_files_d "${AHMYZSH_ENV}/configs"
     Load_all_files_d "${AHMYZSH_ENV}/functions"
     Load_all_files_d "${AHMYZSH_ENV}/layouts"
     Load_all_files_d "${AHMYZSH_ENV}/paths"
-
     {
         personal_projects_paths
         init_paths
@@ -41,21 +37,34 @@ function AHMYZSH_TOP_CONFIG_OPTIONS() {
 
 }
 
+function Load_all_files_d() {
+    local SD1="$1"
+    if [ -d "${SD1}" ]; then
+        for f in "${SD1}/"*.sh; do
+            [ -f "${f}" ] && source "${f}"
+        done
+    else
+        [ "${VERBOSA}" -gt 0 ] && echo "Error loading files in '${SD1}'... Directory or path can not be resolved"
+    fi
+}
+
 IS_ZSH_="$(ps -o comm= -p $$ | grep 'zsh')"
 IS_BASH_="$(ps -o comm= -p $$ | grep 'bash')"
 
 function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N  -  B O O T S T R A P - +#
 
+    AHMYZSH_TOP_CONFIG_OPTIONS
+
     if [[ -n "${IS_ZSH_}" ]]; then
         if [ -z "${MAIN_INIT}" ]; then
             MAIN_INIT="start"
-            AHMYZSH_TOP_CONFIG_OPTIONS
         fi
     fi
 
     local S1="${CUSTOM_ZSH}/MAIN.zsh"
     if [ -f "${S1}" ]; then
         . "${S1}"
+
         load_zshenv
         load_zshrc
     else
