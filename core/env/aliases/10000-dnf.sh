@@ -6,19 +6,19 @@
 #@ created by https://github.com/GioMac
 #@ updated and maintained by https://github.com/mcornella
 
-# alias dnfl="dnf list"            # List packages
-alias dnfli="dnf list --installed" # List installed packages
-alias dnfgl="dnf grouplist"        # List package groups
-alias dnfmc="dnf makecache"        # Generate metadata cache
-alias dnfp="dnf info"              # Show package information
-alias dnfs="dnf search"            # Search package
-
+# alias dnfl="dnf list"             # List packages
+alias dnfli="dnf list --installed"  # List installed packages
+alias dnfgl="dnf grouplist"         # List package groups
+alias dnfp="dnf info"               # Show package information
+alias dnfs="dnf search"             # Search package
 alias dnfu="sudo dnf upgrade"       # Upgrade package
 alias dnfi="sudo dnf install"       # Install package
 alias dnfgi="sudo dnf groupinstall" # Install package group
 alias dnfr="sudo dnf remove"        # Remove package
 alias dnfgr="sudo dnf groupremove"  # Remove package group
+alias dnfmc="dnf makecache"         # Generate metadata cache
 alias dnfc="sudo dnf clean all"     # Clean cache
+alias dnfmkcln="dnfc -v; dnfmc"     # Clean cache & Regenerate metadata cache
 
 ## Additional Aliases
 #@ created by https://github.com/Luxcium
@@ -197,3 +197,99 @@ function dnfi() {
 #                         Inclut les paquets concernant la sécurité avec une
 #                         certaine sévérité dans les mises à jour
 #   --forcearch ARCH      Force l’utilisation d’une architecture
+
+################################################################################
+## dnfmc --help ################################################################
+################################################################################
+
+# usage: dnf makecache [-c [config file]] [-q] [-v] [--version] [--installroot [path]] [--nodocs] [--noplugins]
+#                      [--enableplugin [plugin]] [--disableplugin [plugin]] [--releasever RELEASEVER] [--setopt SETOPTS]
+#                      [--skip-broken] [-h] [--allowerasing] [-b | --nobest] [-C] [-R [minutes]] [-d [debug level]] [--debugsolver]
+#                      [--showduplicates] [-e ERRORLEVEL] [--obsoletes] [--rpmverbosity [debug level name]] [-y] [--assumeno]
+#                      [--enablerepo [repo]] [--disablerepo [repo] | --repo [repo]] [--enable | --disable] [-x [package]]
+#                      [--disableexcludes [repo]] [--repofrompath [repo,path]] [--noautoremove] [--nogpgcheck] [--color COLOR]
+#                      [--refresh] [-4] [-6] [--destdir DESTDIR] [--downloadonly] [--comment COMMENT] [--bugfix] [--enhancement]
+#                      [--newpackage] [--security] [--advisory ADVISORY] [--bz BUGZILLA] [--cve CVES]
+#                      [--sec-severity {Critical,Important,Moderate,Low}] [--forcearch ARCH] [--timer]
+
+# génération du cache des métadonnées
+
+# General DNF options:
+#   -c [config file], --config [config file]
+#                         emplacement du fichier de configuration
+#   -q, --quiet           opération silencieuse
+#   -v, --verbose         opération verbeuse
+#   --version             affiche la version de DNF et quitte
+#   --installroot [path]  définit la racine d’installation
+#   --nodocs              ne pas installer les documentations
+#   --noplugins           désactive tous les modules complémentaires
+#   --enableplugin [plugin]
+#                         active les modules complémentaires par nom
+#   --disableplugin [plugin]
+#                         désactive les modules complémentaires par leur nom
+#   --releasever RELEASEVER
+#                         annule la valeur de $releasever dans les fichiers de configuration et de dépôts
+#   --setopt SETOPTS      réinitialise la configuration ainsi que les options des dépôts
+#   --skip-broken         résout les problèmes de résolutions de dépendance en ignorant les paquets
+#   -h, --help, --help-cmd
+#                         affiche l’aide de la commande
+#   --allowerasing        autorise l’effacement des paquets installés pour résoudre les dépendances
+#   -b, --best            tente d’utiliser les versions de paquets les plus récentes lors des transactions.
+#   --nobest              ne pas limiter la transaction au meilleur candidat
+#   -C, --cacheonly       exécute entièrement depuis le cache système, sans le mettre à jour
+#   -R [minutes], --randomwait [minutes]
+#                         temps d’attente maximum de la commande
+#   -d [debug level], --debuglevel [debug level]
+#                         niveau de déboguage pour la sortie
+#   --debugsolver         détaille les résultats de résolution des dépendances dans des fichiers
+#   --showduplicates      affiche les doublons dans les dépôts, pour les commandes list/search
+#   -e ERRORLEVEL, --errorlevel ERRORLEVEL
+#                         niveau d’erreur pour la sortie
+#   --obsoletes           active la mécanique de traitement des paquets obsolètes de dnf pour les mises à jour ou affiche les
+#                         fonctionnalités qu’un paquet rend obsolètes pour les commandes « info », « list » et « repoquery »
+#   --rpmverbosity [debug level name]
+#                         niveau de déboguage de rpm pour la sortie
+#   -y, --assumeyes       répond automatiquement oui à toutes les questions
+#   --assumeno            répond automatiquement non à toutes les questions
+#   --enablerepo [repo]   Active les dépôts additionnels. Option de liste. Prend en charge les globs, peut être renseigné plusieurs
+#                         fois.
+#   --disablerepo [repo]  Désactive les dépôts. Option de liste. Prend en charge les globs, peut être renseigné plusieurs fois.
+#   --repo [repo], --repoid [repo]
+#                         active seulement des dépôts spécifiques par id ou par le caractère générique (*), peut être spécifié
+#                         plusieurs fois
+#   --enable              active les dépôts avec la commande config-manager (sauvegarde automatiquement)
+#   --disable             désactive les dépôts avec la commande config-manager (sauvegarde automatiquement)
+#   -x [package], --exclude [package], --excludepkgs [package]
+#                         exclut des paquets par leur nom ou par le caractère générique (*)
+#   --disableexcludes [repo], --disableexcludepkgs [repo]
+#                         désactive « excludepkgs »
+#   --repofrompath [repo,path]
+#                         étiquette et chemin vers un dépôt additionnel (même chemin que dans un baseurl), peut être spécifié
+#                         plusieurs fois.
+#   --noautoremove        désactive la suppression des dépendances désormais inutilisées
+#   --nogpgcheck          désactive la vérification par signature gpg (si la politique RPM le permet)
+#   --color COLOR         contrôle l’utilisation ou pas de la couleur
+#   --refresh             configure les métadonnées comme étant expirées avant d’exécuter la commande
+#   -4                    résout en adresses IPv4 uniquement
+#   -6                    résout en adresses IPv6 uniquement
+#   --destdir DESTDIR, --downloaddir DESTDIR
+#                         définit le dossier dans lequel copier les paquets
+#   --downloadonly        télécharge seulement des paquets
+#   --comment COMMENT     ajoute un commentaire à la transaction
+#   --bugfix              Inclut les paquets concernant la correction de bugs dans les mises à jour
+#   --enhancement         Inclut les paquets concernant des améliorations dans les mises à jour
+#   --newpackage          Inclut les paquets concernant les nouveaux paquets dans les mises à jour
+#   --security            Inclure les paquets concernant la sécurité dans les mises à jour
+#   --advisory ADVISORY, --advisories ADVISORY
+#                         Inclut dans les mises à jour les paquets nécessaires pour résoudre une alerte donnée, dans les mises à
+#                         jour
+#   --bz BUGZILLA, --bzs BUGZILLA
+#                         Inclut dans les mises à jour les paquets nécessaires pour résoudre le ticket BugZilla cité
+#   --cve CVES, --cves CVES
+#                         Inclut dans les mises à jour les paquets nécessaires pour résoudre le CVE cité
+#   --sec-severity {Critical,Important,Moderate,Low}, --secseverity {Critical,Important,Moderate,Low}
+#                         Inclut les paquets concernant la sécurité avec une certaine sévérité dans les mises à jour
+#   --forcearch ARCH      Force l’utilisation d’une architecture
+
+# Makecache command-specific options:
+#   --timer

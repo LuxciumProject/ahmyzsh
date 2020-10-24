@@ -73,8 +73,7 @@ alias tsfig='code ./tsconfig.json'
 alias insdr='/usr/local/bin/insiders'
 alias mycode='code'
 alias py='export PYTHONSTARTUP="$HOME/.pythonrc";clear;python3 -q'
-alias a80='echo "1-------10--------20--------30--------40--------50--------60--------70--------80!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"'
-alias a120='echo "1-------10--------20--------30--------40--------50--------60--------70--------80--------90-------100-------110-------120!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"'
+
 alias chrome='Google\ Chrome\ Canary --remote-debugging-port=222'
 alias lsc='lc'
 alias new='_p9k_dump_instant_prompt && zsh -i'
@@ -115,12 +114,7 @@ alias hist25='print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 25'
 alias hist50='print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 50'
 alias histall='print -l ${(o)history%% *} | uniq -c | sort -nr'
 alias mktmp='TMPDIRLOCATION="/tmp/LXCM$(uxid)"; mkdir "${TMPDIRLOCATION:0:27}S"; cd "${TMPDIRLOCATION:0:27}S" ;unset -v TMPDIRLOCATION'
-alias rcli="redis-cli"
-alias redisall="redis-cli keys \*"
-alias smembers="redis-cli smembers"
-alias hgetall="redis-cli hgetall"
-alias hexist="redis-cli hexist"
-alias exists="redis-cli exists"
+
 alias ucp="sudo nice -n -10 ionice -c 1 -n 5 cp -uRL"
 alias vucp="sudo nice -n -10 ionice -c 1 -n 5 cp -vuR"
 alias vrmf="sudo nice -n -15 ionice -c 1 -n 3 rm -vRf"
@@ -153,8 +147,6 @@ alias p1080x16x9="echo 1080 x 1920"
 alias vmdaloc="az vm deallocate -g 'GroupeONE-UKSouth' --name 'MEAN-VirtualONE'"
 alias vmstart="az vm start -g 'GroupeONE-UKSouth' --name 'MEAN-VirtualONE'"
 
-
-
 # function load_aliases() {
 
 #   # TODO Section: Fix thiss mess :
@@ -178,7 +170,6 @@ alias vmstart="az vm start -g 'GroupeONE-UKSouth' --name 'MEAN-VirtualONE'"
 #   }
 
 # }
-
 
 # function parse_options() {
 #   o_port=(-p 9999)

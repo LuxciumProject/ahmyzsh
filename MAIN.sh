@@ -12,17 +12,37 @@
 #+ =============================================================================≈
 function AHMYZSH_TOP_CONFIG_OPTIONS() {
 
-    # export PATH_ENV_CACHE="${AHMYZSH_CACHE}/path.env"
-    export CACHED_PATH="${HOME}/.cache/path.env"
+    : ${VERBOSA=00}
+
+    export AHMYZSH_CACHE="${HOME}/.cache/ahmyzsh"
+    export CACHED_PATH="${AHMYZSH_CACHE}/path.env"
     export AHMYZSH="${HOME}/ahmyzsh"
     export AHMYZSH_CORE="${AHMYZSH}/core"
     export AHMYZSH_ENV="${AHMYZSH_CORE}/env"
     export AH_LIBRARIES="${AHMYZSH}/libraries"
 
     fpath=(${AHMYZSH}/core/functions ${fpath})
+    autoload Load_all_files_d
+    autoload source_
+    autoload call_
+    autoload load_
 
-    : ${VERBOSA=00}
+    Load_all_files_d "${AHMYZSH_ENV}/aliases"
+    Load_all_files_d "${AHMYZSH_ENV}/configs"
+    Load_all_files_d "${AHMYZSH_ENV}/functions"
+    Load_all_files_d "${AHMYZSH_ENV}/layouts"
+    Load_all_files_d "${AHMYZSH_ENV}/paths"
+
+    {
+        personal_projects_paths
+        init_paths
+        init_projects_paths
+    }
+
 }
+
+IS_ZSH_="$(ps -o comm= -p $$ | grep 'zsh')"
+IS_BASH_="$(ps -o comm= -p $$ | grep 'bash')"
 
 function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N  -  B O O T S T R A P - +#
 
@@ -32,17 +52,6 @@ function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N  -  B O O T S T R A P - +#
             AHMYZSH_TOP_CONFIG_OPTIONS
         fi
     fi
-
-    Load_all_files_d "${AHMYZSH_ENV}/aliases"
-    Load_all_files_d "${AHMYZSH_ENV}/configs"
-    Load_all_files_d "${AHMYZSH_ENV}/functions"
-    Load_all_files_d "${AHMYZSH_ENV}/layouts"
-    Load_all_files_d "${AHMYZSH_ENV}/paths"
-    {
-        personal_projects_paths
-        init_paths
-        init_projects_paths
-    }
 
     local S1="${CUSTOM_ZSH}/MAIN.zsh"
     if [ -f "${S1}" ]; then
@@ -63,38 +72,7 @@ function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N  -  B O O T S T R A P - +#
             echo 'using bash'
         fi
     fi
-
-    # if [[ -o interactive ]]; then
-
-    #     local S1="${CACHED_PATH}"
-    #     if [ -f "${S1}" ]; then
-    #         . ${S1}
-
-    #     else
-    #         echo "Error loading '${S1}'... File or path can not be resolved"
-    #     fi
-
 }
-
-function Load_all_files_d() {
-    local SD1="$1"
-    if [ -d "${SD1}" ]; then
-        for f in "${SD1}/"*.sh; do
-            [ -f "${f}" ] && source "${f}"
-        done
-    else
-        echo "Error loading files in '${SD1}'... Directory or path can not be resolved"
-    fi
-}
-
-IS_ZSH_="$(ps -o comm= -p $$ | grep 'zsh')"
-IS_BASH_="$(ps -o comm= -p $$ | grep 'bash')"
-
-alias iszsh="([[ -n ${IS_ZSH_:-''} ]] && (echo 'zsh'; exit 0) || (echo 'not zsh'; exit 1))"
-alias isbash="([[ -n ${IS_BASH_:-''} ]] && (echo 'bash'; exit 0) || (echo 'not bash'; exit 1))"
-
-alias iszsh_="([[ -n ${IS_ZSH_:-''} ]] && (exit 0) || (exit 1))"
-alias isbash_="([[ -n ${IS_BASH_:-''} ]] && (exit 0) || (exit 1))"
 
 # -------------------------- !!! SECURITY WARNING !!! --------------------------≈
 #! AUDIT ANY FILES YOU IMPORT FROM THIS PROJECT PRIOR: DOWNLOAD / INSTALL / USE

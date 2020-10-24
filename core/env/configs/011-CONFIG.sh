@@ -1,24 +1,24 @@
 function firtstage() {
     # CACHED_PATH
-    
+
     export AHMYZSH_CACHE="${HOME}/.cache/ahmyzsh"
-    export PATH_ENV_CACHE="${AHMYZSH_CACHE}/path.env"
+    export CACHED_PATH="${AHMYZSH_CACHE}/path.env"
     # : ${VERBOSA=100}
     : ${VERBOSA:=10}
     : ${EDITOR:=code}
     : ${ENV_LOADED:="false"}
     : ${ZLE_RPROMPT_INDENT:=0}
     : ${SHOW_LOAD_CUTLS:="true"}
-    
+
     : ${AHMYZSH:="${HOME}/ahmyzsh"}
     export AHMYZSH
-    
-    : ${PATH_FILE:="${PATH_ENV_CACHE}"}
+
+    : ${PATH_FILE:="${CACHED_PATH}"}
     export PATH_FILE
-    
+
     # Set you locale here
     # LANG="fr_CA.UTF-8"
-    
+
     : ${LANG:="fr_CA.UTF-8"}
     : ${LC_CTYPE:="${LANG}"}
     : ${LC_NUMERIC:="${LANG}"}
@@ -32,10 +32,10 @@ function firtstage() {
     : ${LC_TELEPHONE:="${LANG}"}
     : ${LC_MEASUREMENT:="${LANG}"}
     : ${LC_IDENTIFICATION:="${LANG}"}
-    
+
     # fall back
     source "${HOME}/.env"
-    
+
 }
 
 function zsh_compile_all_R() {
@@ -46,5 +46,5 @@ function zsh_compile_all_M() {
 }
 function zsh_compile_all() {
     (find "${AHMYZSH}/" -name '*.*sh' | while read line; do eval "zcompile ${line}"; done) 2>/dev/null
-    
+
 }

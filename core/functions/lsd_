@@ -1,0 +1,10 @@
+# function lsd_()
+(
+  local mypath="${@:-$(pwd)}"
+  echo ''
+  builtin cd "${mypath}"
+  pw
+  colorls --all -d
+  pw
+  echo ''
+)

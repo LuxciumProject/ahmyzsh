@@ -25,15 +25,14 @@
 #
 # Global Order: zshenv, zprofile, zshrc, zlogin
 
-
 #+ LOAD PATH
 #+ =============================================================================≈
 # . "${HOME}/.cache/ahmyzsh/path.env"
 export TIMER_ALL_THEN=$(/usr/bin/date +%s%N)
 export AHMYZSH_CACHE="${HOME}/.cache/ahmyzsh"
-export PATH_ENV_CACHE="${AHMYZSH_CACHE}/path.env"
+export CACHED_PATH="${AHMYZSH_CACHE}/path.env"
 ## load_path
-. "${PATH_ENV_CACHE}"
+. "${CACHED_PATH}"
 
 #+ LET THERE BE LIGHT "יְהִי אוֹר" ...
 #+ ECHO DELAY TO PATH
@@ -65,10 +64,9 @@ if [ -f "${S1}" ]; then
 
 else
     [[ -o interactive ]] &&
-    echo "Error loading '${S1}'... File or path can not be resolved"
+        echo "Error loading '${S1}'... File or path can not be resolved"
     unset -v S1
 fi
-
 
 # |----------------|-----------|-----------|------|
 # |                |Interactive|Interactive|Script|
@@ -88,9 +86,6 @@ fi
 # |~/.zlogout      |    I      |           |      |
 # |/etc/zlogout    |    J      |           |      |
 # |----------------|-----------|-----------|------|
-
-
-
 
 # -------------------------- !!! SECURITY WARNING !!! --------------------------≈
 #! AUDIT ANY FILES YOU IMPORT FROM THIS PROJECT PRIOR: DOWNLOAD / INSTALL / USE

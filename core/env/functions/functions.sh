@@ -1,34 +1,33 @@
 function parse_options() {
-  o_port=(-p 9999)
-  o_root=(-r WWW)
-  o_log=(-d ZWS.log)
-  zparseopts -K -- p:=o_port r:=o_root l:=o_log h=o_help
-  if [[ $? != 0 || "$o_help" != "" ]]; then
-    echo Usage: $(basename "$0") "[-p PORT] [-r DIRECTORY]"
-    exit 1
-  fi
-  port=$o_port[2]
-  root=$o_root[2]
-  log=$o_log[2]
-  if [[ $root[1] != '/' ]]; then root="$PWD/$root"; fi
+    o_port=(-p 9999)
+    o_root=(-r WWW)
+    o_log=(-d ZWS.log)
+    zparseopts -K -- p:=o_port r:=o_root l:=o_log h=o_help
+    if [[ $? != 0 || "$o_help" != "" ]]; then
+        echo Usage: $(basename "$0") "[-p PORT] [-r DIRECTORY]"
+        exit 1
+    fi
+    port=$o_port[2]
+    root=$o_root[2]
+    log=$o_log[2]
+    if [[ $root[1] != '/' ]]; then root="$PWD/$root"; fi
 }
 
-  function mkramdir() {
+function mkramdir() {
     # LASTVIRTUALRAM
     if [ -d "${MYVIRTUALRAM_PATH}" ]; then
 
-      LASTVIRTUALRAM="${MYVIRTUALRAM_PATH}/${1}"
-      mkdir -p "${LASTVIRTUALRAM}"
-      chmod 1777 "${LASTVIRTUALRAM}"
-      # cd "${LASTVIRTUALRAM}"
-      # ln -s LASTVIRTUALRAM -v
-      export LASTVIRTUALRAM
+        LASTVIRTUALRAM="${MYVIRTUALRAM_PATH}/${1}"
+        mkdir -p "${LASTVIRTUALRAM}"
+        chmod 1777 "${LASTVIRTUALRAM}"
+        # cd "${LASTVIRTUALRAM}"
+        # ln -s LASTVIRTUALRAM -v
+        export LASTVIRTUALRAM
 
     fi
     # echo "'\$@:' $@, \n'\$1:' $1, \n'\$2:' $2, \n'\$3:' $3, \n'\$4:' $4"
 
-  }
-
+}
 
 function add_to_path_() {
     [ -z $1 ] || export PATH="${1}:${PATH}"
@@ -54,11 +53,11 @@ function timer_() {
     local TIMER_VALUE=$((${timecalc} / ${MICROSEC}))
     if [ ${#TIMER_VALUE} = 0 ]; then
         local spacing_="    "
-        elif [ ${#TIMER_VALUE} = 1 ]; then
+    elif [ ${#TIMER_VALUE} = 1 ]; then
         local spacing_="   "
-        elif [ ${#TIMER_VALUE} = 2 ]; then
+    elif [ ${#TIMER_VALUE} = 2 ]; then
         local spacing_="  "
-        elif [ ${#TIMER_VALUE} = 3 ]; then
+    elif [ ${#TIMER_VALUE} = 3 ]; then
         local spacing_=" "
     else
         local spacing_=""
@@ -82,194 +81,831 @@ function timer_all() {
     # echo -n "${TIMER_VALUE} "
 }
 
-function call_() {
-    if [ -z $1 ]; then
-        [ "${VERBOSA}" -gt 1 ] && echo "Error sourcing ' $1 ' no function call provided"
-        return 1
-    else
-        TIMER_THEN=$(/usr/bin/date +%s%N)
-        eval ${1}
-        returnval=$?
-        [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_FUNCTION} $(timer_now) '${1}()' ${END_FUNCTION}"
-        return "${returnval}"
-    fi
-}
+# function call_() {
+#     if [ -z $1 ]; then
+#         [ "${VERBOSA}" -gt 1 ] && echo "Error sourcing ' $1 ' no function call provided"
+#         return 1
+#     else
+#         TIMER_THEN=$(/usr/bin/date +%s%N)
+#         eval ${1}
+#         returnval=$?
+#         [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_FUNCTION} $(timer_now) '${1}()' ${END_FUNCTION}"
+#         return "${returnval}"
+#     fi
+# }
 
-function source_() {
-    if [ -z $1 ]; then
-        [ "${VERBOSA}" -gt 1 ] && echo "Error sourcing ' $1 ' no file provided"
-        return 1
-    else
-        TIMER_THEN=$(/usr/bin/date +%s%N)
-        if [[ -f $1 ]]; then
-            if [[ -r $1 ]]; then
-                source "${1}"
-                [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_SOURCING} $(timer_now) ${1} ${END_SOURCING}"
-                return 0
-            else
-                [ "${VERBOSA}" -gt 3 ] && echo "Error sourcing '$1' file provided is not redable"
-                return 3
+# function source_() {
+#     if [ -z $1 ]; then
+#         [ "${VERBOSA}" -gt 1 ] && echo "Error sourcing ' $1 ' no file provided"
+#         return 1
+#     else
+#         TIMER_THEN=$(/usr/bin/date +%s%N)
+#         if [[ -f $1 ]]; then
+#             if [[ -r $1 ]]; then
+#                 source "${1}"
+#                 [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_SOURCING} $(timer_now) ${1} ${END_SOURCING}"
+#                 return 0
+#             else
+#                 [ "${VERBOSA}" -gt 3 ] && echo "Error sourcing '$1' file provided is not redable"
+#                 return 3
+#             fi
+#         else
+#             [ "${VERBOSA}" -gt 2 ] && echo "Error sourcing '$1' file provided does not exist"
+#             return 2
+#         fi
+#     fi
+# }
+
+# function load_() {
+#     source_ "${1}" &&
+#     call_ ${2}
+# }
+
+function load_functions_definitions() {
+
+    function source_notice_now() {
+        source_ "${CUSTOM_ZSH}/notice.sh"
+    }
+
+    function update() {
+        (update_ >/dev/null)
+        (ls node_modules 1>/dev/null 2>&1)
+        if [ $? ]; then
+            if [ -f yarn.lock ]; then
+                S1='package-lock.json'
+                [ -f "${S1}" ] && (rm "${S1}" 1>/dev/null 2>&1)
+
+                S1='yarn-error.log'
+                [ -f "${S1}" ] && (rm "${S1}" 1>/dev/null 2>&1)
+
+                S1='yarn-error.log'
+                [ -f "${S1}" ] && (rm "${S1}" 1>/dev/null 2>&1)
+
+                S1='pnpm-lock.yaml'
+                [ -f "${S1}" ] && (rm "${S1}" 1>/dev/null 2>&1)
+
+                S1='node_modules/'
+                [ -d "${S1}" ] && (rm -r "${S1}" 1>/dev/null 2>&1)
+
+                (yarn install --force --audit --link-duplicates --check-files)
+
+                [ -f '.yarnclean' ] && (yarn autoclean --force) || (yarn autoclean --init && yarn autoclean --force)
+
+                # yarn add -D eslint@latest typescript@latest ts-node@latest @types/node@latest
+                # yarn global add eslint@latest typescript@latest ts-node@latest @types/node@latest
+                # install-peerdeps -Y -D @typescript-eslint/eslint-plugin@latest
+                # install-peerdeps -Y -D @typescript-eslint/parser@latest
+                # install-peerdeps -Y -D eslint-config-airbnb-base@latest
+                # install-peerdeps -Y -D eslint-config-airbnb-typescript@latest
+                # install-peerdeps -Y -D eslint-config-airbnb@latest
+                # install-peerdeps -Y -D eslint-config-prettier@latest
+                # install-peerdeps -Y -D eslint-plugin-import@latest
+                # install-peerdeps -Y -D eslint-plugin-jsx-a11y@latest
+                # install-peerdeps -Y -D eslint-plugin-react-hooks@latest
+                # install-peerdeps -Y -D eslint-plugin-react@latest
+                # install-peerdeps -Y -D eslint-plugin-node@latest
+                # install-peerdeps -Y -D eslint-plugin-unicorn@latest
+
+                #                 warning "eslint-config-airbnb-typescript > eslint-config-airbnb@18.1.0" has unmet peer dependency "eslint-plugin-import@^2.20.1".
+                # warning "eslint-config-airbnb-typescript > eslint-config-airbnb@18.1.0" has unmet peer dependency "eslint-plugin-jsx-a11y@^6.2.3".
+                # warning "eslint-config-airbnb-typescript > eslint-config-airbnb@18.1.0" has unmet peer dependency "eslint-plugin-react@^7.19.0".
+                # warning "eslint-config-airbnb-typescript > eslint-config-airbnb@18.1.0" has unmet peer dependency "eslint-plugin-react-hooks@^2.5.0 || ^1.7.0".
+                # warning "eslint-config-airbnb-typescript > eslint-config-airbnb-base@14.1.0" has unmet peer dependency "eslint-plugin-import@^2.20.1".
             fi
-        else
-            [ "${VERBOSA}" -gt 2 ] && echo "Error sourcing '$1' file provided does not exist"
-            return 2
         fi
-    fi
-}
+        return 0
+    }
+    function update_() {
+        (fnm-update_ 2>/dev/null)
+        (yarn-update_ 2>/dev/null)
+        (eslint_global 2>/dev/null)
+        (conda-update_ 2>/dev/null)
+        return 0
+    }
 
-function load_() {
-    source_ "${1}" &&
-    call_ ${2}
-}
+    function cabal-update_() {
+        cabal update &
+        # conda update --all -y &
+        return 0
+    }
+
+    autoload conda-update_
+    alias conda-update=conda-update_
+    # function conda-update_() {
+    #     conda update conda -y &
+    #     conda update --all -y &
+    #     return 0
+    # }
+
+    function fnm-update_() {
+        fnm install latest-dubnium &
+        fnm install latest-carbon &
+        fnm install latest-boron &
+        fnm install latest-argon &
+        fnm install latest-erbium && fnm use latest-erbium && fnm default $(node -v) && fnm install latest &
+        return 0
+
+    }
+
+    autoload yarn-update_
+    alias yarn-update=yarn-update_
+    # function yarn-update_() {
+    #     yarn global add \
+    #         create-react-app@latest \
+    #         eslint-config-prettier@latest \
+    #         eslint@latest \
+    #         prettier@latest \
+    #         install-peerdeps@latest \
+    #         npm@latest \
+    #         pnpm@latest \
+    #         serve@latest \
+    #         shelljs@latest \
+    #         shx@latest \
+    #         ts-node@latest \
+    #         typescript@latest \
+    #         yarn@latest &
+    #     return 0
+
+    # }
+
+    function eslint_global() {
+        npx install-peerdeps -g @typescript-eslint/parser@latest
+        npx install-peerdeps -g @typescript-eslint/eslint-plugin@latest
+        npx install-peerdeps -g eslint-config-airbnb-base@latest
+        npx install-peerdeps -g eslint-config-prettier@latest
+        npx install-peerdeps -g eslint-plugin-flowtype@latest
+        npx install-peerdeps -g eslint-plugin-import@latest
+        npx install-peerdeps -g eslint-plugin-jest@latest
+        npx install-peerdeps -g eslint-plugin-jsx-a11y@latest
+        npx install-peerdeps -g eslint-plugin-node@latest
+        npx install-peerdeps -g eslint-plugin-prettier@latest
+        npx install-peerdeps -g eslint-plugin-react-hooks@latest
+        npx install-peerdeps -g eslint-plugin-react@latest
+        npx install-peerdeps -g eslint-plugin-unicorn@latest
+        yarn-update_ &
+        return 0
+
+    }
+
+    #     /home/luxcium/.fnm/node-versions/v12.18.2/installation/lib
+    # ├── @typescript-eslint/parser@3.6.1
+    # ├── UNMET PEER DEPENDENCY eslint@^5.0.0 || ^6.0.0 || ^7.0.0
+    # ├── npm@6.14.6
+    # ├── pnpm@5.4.0
+    # └── yarn@1.22.4
+
+    # npm ERR! peer dep missing: eslint@^5.0.0 || ^6.0.0 || ^7.0.0, required by @typescript-eslint/parser@3.6.1
+    # npm ERR! peer dep missing: eslint@*, required by @typescript-eslint/experimental-utils@3.6.1
+    # npm ERR! peer dep missing: typescript@>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta, required by tsutils@3.17.1
+    # yarn global v1.22.4
+    # info "create-react-app@3.4.1" has binaries:
+    #    - create-react-app
+    # info "eslint@7.5.0" has binaries:
+    #    - eslint
+    # info "eslint-config-prettier@6.11.0" has binaries:
+    #    - eslint-config-prettier-check
+    # info "install-peerdeps@2.0.3" has binaries:
+    #    - install-peerdeps
+    # info "npm@6.14.6" has binaries:
+    #    - npm
+    #    - npx
+    # info "pnpm@5.4.0" has binaries:
+    #    - pnpm
+    #    - pnpx
+    # info "prettier@2.0.5" has binaries:
+    #    - prettier
+    # info "serve@11.3.2" has binaries:
+    #    - serve
+    # info "shelljs@0.8.4" has binaries:
+    #    - shjs
+    # info "shx@0.3.2" has binaries:
+    #    - shx
+    # info "ts-node@8.10.2" has binaries:
+    #    - ts-node
+    #    - ts-script
+    #    - ts-node-script
+    #    - ts-node-transpile-only
+    # info "typescript@3.9.7" has binaries:
+    #    - tsc
+    #    - tsserver
+    # info "yarn@1.22.4" has binaries:
+    #    - yarn
+    #    - yarnpkg
+    # Done in 0.48s.
+
+    function tsu() {
+        yarn add -D yarn@latest &&
+            yarn add -D eslint@latest typescript@latest ts-node@latest @types/node@latest &
+        yarn global add yarn@latest &&
+            yarn global add eslint@latest typescript@latest ts-node@latest @types/node@latest &
+    }
+    function ts-nightly() {
+        yarn add -D typescript@next ts-node@latest @types/node@latest tslib@latest &
+        yarn global add typescript@next ts-node@latest @types/node@latest tslib@latest &
+    }
+
+    function tmcode() {
+
+        source $TMUX_BIN/tmux-functions.sh
+        tmp-set-cache
+        TMUX_SESSION="Default"
+        TMUX_WINDOW_0="dev-pop-n-lock"
+        PATH_TMUX_SESSION="${DEV_POPNLOCK}"
+        insdr "${DEV_POPNLOCK}"
+        tmux has-session -t $TMUX_SESSION 2>/dev/null
+        if [ $? != 0 ]; then
+            tmux new -s $TMUX_SESSION -d -n $TMUX_WINDOW_0 -c $PATH_TMUX_SESSION
+            tmux-config
+        else
+            tmux new-window -t $TMUX_SESSION -n $TMUX_WINDOW_0 -c $PATH_TMUX_SESSION
+        fi
+        tmux-attach
+        tmp-reset-to-cache
+    }
+
+    autoload pw_
+    alias pw=pw_
+    # function pw() {
+    #     (pwd | lolcat "${@}")
+
+    # }
+
+    autoload lsf_
+    alias lsf=lsf_
+    # function lsf() {
+    #     (
+    #         local mypath="${@:-$(pwd)}"
+    #         echo ''
+    #         builtin cd "${mypath}"
+    #         pw
+    #         colorls --almost-all --gs -f
+    #         pw
+    #         echo ''
+    #     )
+    # }
+
+    autoload lsd_
+    alias lsd=lsd_
+    # function lsd() {
+    #     (
+    #         local mypath="${@:-$(pwd)}"
+    #         echo ''
+    #         builtin cd "${mypath}"
+    #         pw
+    #         colorls --all -d
+    #         pw
+    #         echo ''
+    #     )
+    # }
+
+    autoload ll_
+    alias ll=ll_
+    # function ll() {
+    #     (
+
+    #         local mypath="${@:-$(pwd)}"
+    #         echo ''
+    #         builtin cd "${mypath}"
+    #         pw
+    #         colorls -lA --sd --gs
+    #         pw
+    #         echo ''
+    #     )
+    # }
+
+    autoload lf_
+    alias lf=lf_
+    # function lf() {
+    #     (
+    #         local mypath="${@:-$(pwd)}"
+    #         echo ''
+    #         builtin cd "${mypath}"
+    #         pw
+    #         colorls -lA --sf -f
+    #         pw
+    #         echo ''
+    #     )
+    # }
+
+    autoload ld_
+    alias ld=ld_
+    # function ld() {
+    #     (
+    #         local mypath="${@:-$(pwd)}"
+    #         echo ''
+    #         builtin cd "${mypath}"
+    #         pw
+    #         colorls -lA --sd -d
+    #         pw
+    #         echo ''
+    #     )
+    # }
+
+    autoload lc_
+    alias lc=lc_
+    # function lc() {
+    #     (
+    #         local mypath="${@:-$(pwd)}"
+    #         builtin cd "${mypath}"
+    #         colorls -a --sd --gs -S
+    #         pw -ta -d 20
+    #         echo ''
+    #     )
+    # }
+
+    autoload cls_
+    alias cls=cls_
+    # function cls() {
+    #     print "${clearall}"
+    #     pw
+
+    # }
+
+    autoload cd_
+    alias cd=cd_
+    # function cd() {
+
+    #     local mypath="${@:-$HOME}"
+    #     echo ''
+    #     builtin cd "${mypath}"
+    #     pw
+    #     colorls -lA --sd -d
+    #     pw
+    #     echo ''
+    # }
+
+    # brew configurations
+
+    function perseus() {
+        export WITH_ANACONDA=false
+        reload_path && echo "The sleeping Medusa decapitated."
+    }
+
+    function medusa() {
+        export WITH_ANACONDA=true
+        reload_path && echo "Perseus turning to stone."
+    }
+
+    function brewdoc() {
+        # FROM: (SOURCE) https://hashrocket.com/blog/posts/keep-anaconda-from-constricting-your-homebrew-installs
+        # (C) 2018 HASHROCKET (used without permision)
+        perseus
+        command echo '>     UPDATING BREW  . . . '
+        command brew update
+        command echo '>     UPGRADING BREW  . . . '
+        command brew upgrade
+        command echo '>     Remove old symlinks  . . . '
+        command brew cleanup --prune-prefix
+        command echo ">     If nothing is returned to the terminal you're up-to-date  . . . "
+        command brew outdated
+        command echo '>     List forumlas that can be cleaned up  . . . '
+        command brew cleanup -n
+        command echo '>     Remove all old formulae from brew and cask  . . . '
+        command brew cleanup
+        command echo '>     Show the individual packages installed  . . . '
+        command brew list
+        command echo '>     Looking if everything is working correctly  . . . '
+        command brew doctor
+        command echo '>     UPGRADING NPM   . . . '
+        npm install -g npm@latest
+        command echo '>     UPGRADING YARN   . . . '
+        npm install -g yarn@latest
+        command echo '>     UPGRADING PNPM   . . . '
+        npm install -g pnpm@latest
+        # command echo '>     Will also uninstall && reinstall all Globals NPM and PNPM  . . . '
+        # reinstallNPMGlobal
+        medusa
+
+    }
+
+    function brew() {
+        perseus
+        command brew "$@"
+        medusa
+    }
+
+    function brewx() {
+        command brew "$@"
+    }
+
+    function ts-react-app() {
+        npx create-react-app $1 --typescript
+    }
+
+    function git_add_comit_push() {
+        git add .
+        git commit -am "${1:=adding functionalities}"
+        git push --tags --progress
+        git push --all --progress
+        git fetch
+    }
+
+    function ahmyzsh_git_update() {
+        (
+            builtin cd $AHMYZSH
+            git_add_comit_push "${1}" &
+        ) &>/dev/null
+        (
+            builtin cd $CUSTOM_TMUX
+            git_add_comit_push "${1}" &
+        ) &>/dev/null
+        (
+            builtin cd $CUSTOM_ZSH
+            git_add_comit_push "${1}" &
+        ) &>/dev/null
+        (
+            builtin cd $NODE_REPL
+            git_add_comit_push "${1}" &
+        ) &>/dev/null
+        (
+            builtin cd $POWERLINE
+            git_add_comit_push "${1}" &
+        ) &>/dev/null
+        (
+            builtin cd $PYTHON_REPL
+            git_add_comit_push "${1}" &
+        ) &>/dev/null
+        # AHMYZSH="${HOME}/ahmyzsh"
+        # CUSTOM_TMUX="${AHMYZSH}/custom-tmux"
+        # CUSTOM_ZSH="${AHMYZSH}/custom-zsh"
+        # NODE_REPL="${AHMYZSH}/node-repl"
+        # OHMYZSH="${AHMYZSH}/ohmyzsh"
+        # POWERLEVEL10K="${AHMYZSH}/powerlevel10k"
+        # POWERLINE="${AHMYZSH}/powerline"
+        # PYTHON_REPL="${AHMYZSH}/python-repl"
+    }
+
+    function mytty() {
+        tty >~/.tty
+        tty >~/.tty1
+        tty >~/.tty2
+    }
+
+    function mytty0() {
+        tty >~/.tty
+    }
+
+    function mytty1() {
+        tty >~/.tty1
+    }
+
+    function mytty2() {
+        tty >~/.tty2
+    }
+
+    function notmytty() {
+        echo -n '' >~/.tty
+        echo -n '' >~/.tty1
+        echo -n '' >~/.tty2
+    }
+
+    function notmytty0() {
+        echo -n '' >~/.tty
+    }
+
+    function notmytty1() {
+        echo -n '' >~/.tty1
+    }
+
+    function notmytty2() {
+        echo -n '' >~/.tty2
+    }
+
+    function cattty() {
+        local myTY_=$(cat $HOME/.tty)
+        if [ "$myTY_" != "" ]; then
+            if [ "${1:-0}" = 1 ]; then
+                cattty1 $@
+                return 0
+            fi
+            if [ "${1:-0}" = 2 ]; then
+                cattty2 $@
+                return 0
+            fi
+            echo "$(cat $HOME/.tty)"
+            return 0
+        fi
+        return 1
+    }
+
+    function cattty1() {
+        local myTY_=$(cat $HOME/.tty1)
+        if [ "$myTY_" != "" ]; then
+            if [ "${1:-0}" = 1 ]; then
+                echo -n " 1>$(cat $HOME/.tty1)"
+                return 0
+            fi
+            if [ "${1:-0}" = 2 ]; then
+                cattty2 $@
+                return 0
+            fi
+            echo -n " 1>$(cat $HOME/.tty1)"
+            # echo "$(cat $HOME/.tty1)"
+            return 0
+        fi
+        return 1
+    }
+
+    function cattty2() {
+        local myTY_=$(cat $HOME/.tty2)
+        if [ "$myTY_" != "" ]; then
+            if [ "${1:-0}" = 1 ]; then
+                cattty1 $@
+                return 0
+            fi
+            if [ "${1:-0}" = 2 ]; then
+                echo -n " 2>$(cat $HOME/.tty2)"
+                return 0
+            fi
+            echo -n " 2>$(cat $HOME/.tty2)"
+            # echo "$(cat $HOME/.tty2)"
+            return 0
+        fi
+        return 1
+    }
+
+    function toSD1n2() {
+        # local myTY_=$(cat $HOME/.tty)
+        # if [ "$myTY_" != "" ]; then
+        eval $(echo "${@:-echo nothing to do} $(cattty2) $(cattty1)")
+        return 0
+        # fi
+        eval $(echo "${@:-echo nothing to do}")
+        return 0
+
+    }
+
+    function toSDOUT1() {
+        local myTY_=$(cat $HOME/.tty1)
+        if [ "$myTY_" != "" ]; then
+            eval $(echo "${@:-echo nothing to do} $(cattty1)")
+            return 0
+        fi
+        eval $(echo "${@:-echo nothing to do}")
+    }
+
+    function toSDERR2() {
+        local myTY_=$(cat $HOME/.tty2)
+        if [ "$myTY_" != "" ]; then
+            eval $(echo "${@:-echo nothing to do} $(cattty2)")
+            return 0
+        fi
+        eval $(echo "${@:-echo nothing to do}")
+        return 0
+    }
+
+    alias to0="toSD1n2"
+    alias to1="toSDOUT1"
+    alias to2="toSDERR2"
+
+    function ahmyzsh-update() {
+        (ahmyzsh-update_ &)
+    }
+
+    function ahmyzsh-update_() {
+
+        eval $(echo "(
+            toSDERR2 custom-zsh-update
+            toSDERR2 custom-tmux-update
+            toSDERR2 node-repl-update
+            toSDERR2 python-repl-update
+            toSDERR2 ohmyzsh-update
+            toSDERR2 powerlevel10k-update
+            toSDERR2 powerline-update
 
 
-function ctrl(){
-    echo "'Tab' Auto complete"
-    echo ""
-    echo "'crtl+a' Beginning of line"
-    echo "'crtl+e' End of line"
-    echo ""
-    echo "'crtl+f' Forward one character"
-    echo "'crtl+b' Back one character"
-    echo "'crtl+h' Delete one character (backw­ards)"
-    echo ""
-    echo "'alt+f'  Forward one word"
-    echo "'alt+b'  Back one word"
-    echo "'crtl+w' Delete one word (backw­ards)"
-    echo ""
-    echo "'crtl+u' Clear to beginning of line"
-    echo "'crtl+k' Clear to end of line"
-    echo ""
-    echo "'crtl+t' Swap cursor with previous character"
-    echo "'alt+t'  Swap cursor with previous word"
-    echo "'esc+t'  Swap the last two words before the cursor"
-    echo ""
-    echo "'crtl+p' Previous line in history"
-    echo "'crtl+n' Next line in history"
-    echo "'crtl+r' Search backwards in history"
-    echo ""
-    echo ""
-    echo "'crtl+o' Execute command but keep line"
-    echo ""
-    echo "'crtl+y' Paste from Kill Ring"
-    echo ""
-    echo "'crtl+z' Suspend process"
-    echo "  'fg'   restore process"
-    echo "  'bg'   continue process in background"
-    echo ""
-    echo "'crtl+l' Clear screen"
-    echo ""
-    echo "'crtl+c' Kill current process"
-    echo "'crtl+d' Exit shell"
+        )")
+        toSD1n2 "custom-update ${AHMYZSH}/"
 
-#     How-to: Bash Keyboard Shortcuts
-# Moving the cursor:
-#   Ctrl + a   Go to the beginning of the line (Home)
-#   Ctrl + e   Go to the End of the line (End)
-#   Ctrl + p   Previous command (Up arrow)
-#   Ctrl + n   Next command (Down arrow)
-#    Alt + b   Back (left) one word
-#    Alt + f   Forward (right) one word
-#   Ctrl + f   Forward one character
-#   Ctrl + b   Backward one character
-#   Ctrl + xx  Toggle between the start of line and current cursor position
-# Editing:
-#  Ctrl + L   Clear the Screen, similar to the clear command
+        return 0
+    }
 
-#   Alt + Del Delete the Word before the cursor.
-#   Alt + d   Delete the Word after the cursor.
-#  Ctrl + d   Delete character under the cursor
-#  Ctrl + h   Delete character before the cursor (Backspace)
+    function custom-update() {
+        eval $(echo "(
+            builtin cd ${1};
+            git add .;
+            git commit -am "refresh/update";
+            push;
+            git checkout ${2:-'master'};
+            pull;
+            git pull origin ${2:-'master'} -t --ff;
+            push;
+            git checkout luxcium;
+            pull;
+            git pull origin ${2:-'master'} -t --ff;
+            push;)")
+        return 0
+    }
 
-#  Ctrl + w   Cut the Word before the cursor to the clipboard.
-#  Ctrl + k   Cut the Line after the cursor to the clipboard.
-#  Ctrl + u   Cut/delete the Line before the cursor to the clipboard.
+    function custom-upstream-update() {
+        eval $(echo "(
+            builtin cd ${1};
+            git add .;
+            git commit -am "refresh/update";
+            push;
+            git checkout ${2:-'master'};
+            pull;
+            git pull upstream ${2:-'master'} -t --ff;
+            push;
+            git checkout luxcium;
+            pull;
+            git pull origin ${2:-'master'} -t --ff;
+            push;)")
+        return 0
+    }
 
-#   Alt + t   Swap current word with previous
-#  Ctrl + t   Swap the last two characters before the cursor (typo).
-#  Esc  + t   Swap the last two words before the cursor.
+    function ohmyzsh-update() {
+        toSDOUT1 "custom-upstream-update ${OHMYZSH}/"
+    }
 
-#  ctrl + y   Paste the last thing to be cut (yank)
-#   Alt + u   UPPER capitalize every character from the cursor to the end of the current word.
-#   Alt + l   Lower the case of every character from the cursor to the end of the current word.
-#   Alt + c   Capitalize the character under the cursor and move to the end of the word.
-#   Alt + r   Cancel the changes and put back the line as it was in the history (revert).
-#  ctrl + _   Undo
+    function powerlevel10k-update() {
+        toSDOUT1 "custom-upstream-update ${POWERLEVLE10K}/"
+    }
 
-#  TAB        Tab completion for file/directory names
-# For example, to move to a directory 'sample1'; Type cd sam ; then press TAB and ENTER.
-# type just enough characters to uniquely identify the directory you wish to open.
+    function powerline-update() {
+        toSDOUT1 "custom-upstream-update ${POWERLINE}/ develop"
+    }
 
-# Special keys: Tab, Backspace, Enter, Esc
-# Text Terminals send characters (bytes), not key strokes.
-# Special keys such as Tab, Backspace, Enter and Esc are encoded as control characters.
-# Control characters are not printable, they display in the terminal as ^ and are intended to have an effect on applications.
+    function custom-zsh-update() {
+        toSDOUT1 "custom-update ${CUSTOM_ZSH}/"
+    }
 
-# Ctrl+I = Tab
-# Ctrl+J = Newline
-# Ctrl+M = Enter
-# Ctrl+[ = Escape
+    function node-repl-update() {
+        toSDOUT1 "custom-update ${NODE_REP}/"
+    }
 
-# Many terminals will also send control characters for keys in the digit row:
-# Ctrl+2 → ^@
-# Ctrl+3 → ^[ Escape
-# Ctrl+4 → ^\
-# Ctrl+5 → ^]
-# Ctrl+6 → ^^
-# Ctrl+7 → ^_ Undo
-# Ctrl+8 → ^? Backward-delete-char
+    function python-repl-update() {
+        toSDOUT1 "custom-update ${PYTHON_REPl}/"
+    }
 
-# Ctrl+v tells the terminal to not interpret the following character, so Ctrl+v Ctrl-I will display a tab character,
-# similarly Ctrl+v ENTER will display the escape sequence for the Enter key: ^M
+    function custom-tmux-update() {
+        toSDOUT1 "custom-update ${CUSTOM_TMUX}/"
+    }
 
-# History:
-#   Ctrl + r   Recall the last command including the specified character(s).
-#              searches the command history as you type.
-#              Equivalent to : vim ~/.bash_history.
-#   Ctrl + p   Previous command in history (i.e. walk back through the command history).
-#   Ctrl + n   Next command in history (i.e. walk forward through the command history).
+    # function useful_functions() {
 
-#   Ctrl + s   Go back to the next most recent command.
-#              (beware to not execute it from a terminal because this will also launch its XOFF).
-#   Ctrl + o   Execute the command found via Ctrl+r or Ctrl+s
-#   Ctrl + g   Escape from history searching mode
-#         !!   Repeat last command
-#        !n    Repeat from the last command: args n e.g. !:2 for the second argumant.
-#        !n:m  Repeat from the last command: args from n to m. e.g. !:2-3 for the second and third.
-#        !n:$  Repeat from the last command: args n to the last argument.
-#        !n:p  Print last command starting with n
-#      !string Print the last command beginning with string.
-#        !:q   Quote the last command with proper Bash escaping applied.
-#               Tip: enter a line of Bash starting with a # comment, then run !:q on the next line to escape it.
-#         !$   Last argument of previous command.
-#    ALT + .   Last argument of previous command.
-#         !*   All arguments of previous command.
-# ^abc­^­def   Run previous command, replacing abc with def
-# Process control:
-#  Ctrl + C   Interrupt/Kill whatever you are running (SIGINT).
-#  Ctrl + l   Clear the screen.
-#  Ctrl + s   Stop output to the screen (for long running verbose commands).
-#             Then use PgUp/PgDn for navigation.
-#  Ctrl + q   Allow output to the screen (if previously stopped using command above).
-#  Ctrl + D   Send an EOF marker, unless disabled by an option, this will close the current shell (EXIT).
-#  Ctrl + Z   Send the signal SIGTSTP to the current task, which suspends it.
-#             To return to it later enter fg 'process name' (foreground).
-# Emacs mode vs Vi Mode
-# All the above assume that bash is running in the default Emacs setting, if you prefer this can be switched to Vi shortcuts instead.
+    # Functions ==============================================
 
-# Set Vi Mode in bash:
+    # return 1 if global command line program installed, else 0
+    # example
+    # echo "node: $(program_is_installed node)"
+    function program_is_installed() {
+        # set to 1 initially
+        local return_=1
+        # set to 0 if not found
+        type $1 >/dev/null 2>&1 || { local return_=0; }
+        # return value
+        echo "$return_"
+    }
 
-# $ set -o vi
-# Set Emacs Mode in bash:
+    # return 1 if local npm package is installed at ./node_modules, else 0
+    # example
+    # echo "gruntacular : $(npm_package_is_installed gruntacular)"
+    function npm_package_is_installed() {
+        # set to 1 initially
+        local return_=1
+        # set to 0 if not found
+        ls node_modules | grep $1 >/dev/null 2>&1 || { local return_=0; }
+        # return value
+        echo "$return_"
+    }
 
-# $ set -o emacs
-# “...emacs, which might be thought of as a thermonuclear word processor” ~ Emacs vs. Vi Wiki
+    # display a message in red with a cross by it
+    # example
+    # echo echo_fail "No"
+    function echo_fail() {
+        # echo first argument in red
+        printf "\e[31m✘ ${1}"
+        # reset colours back to normal
+        printf "\033\e[0m"
+    }
 
-# Related linux commands:
+    # display a message in green with a tick by it
+    # example
+    # echo echo_fail "Yes"
+    function echo_pass() {
+        # echo first argument in green
+        echo -n "\e[32m✔ ${1}"
+        # reset colours back to normal
+        printf "\033\e[0m"
+    }
 
-# fg - Bring a command to the foreground.
-# vi editor - A one page reference to the vi editor.
-# ~./.bash_history - Text file with command history.
-# Terminals Are Weird - How and why of terminal keybindings.
-# Equivalent Windows Keyboard shortcuts
+    # echo pass or fail
+    # example
+    # echo echo_if 1 "Passed"
+    # echo echo_if 0 "Failed"
+    function echo_if() {
+        if [ $1 = 1 ]; then
+            echo_pass $2
+        else
+            echo_fail $2
+        fi
+    }
+
+    # ============================================== Functions
+
+    # command line programs
+    function versions() {
+        printf "\033\e[0m"
+        env echo "  $(echo_if $(program_is_installed node))  Node $(env node -v)"
+        env echo "  $(echo_if $(program_is_installed npm))  NPM v$(env npm -v)"
+        env echo "  $(echo_if $(program_is_installed fnm))  FNM v$(env fnm -v)"
+        env echo "  $(echo_if $(program_is_installed yarn))  Yarn v$(env yarn -v)"
+        env echo "  $(echo_if $(program_is_installed pnpm))  PNPM v$(env pnpm -v)"
+        env echo "  $(echo_if $(program_is_installed tmux))  $(env tmux -V)"
+        env echo "  $(echo_if $(program_is_installed eslint))  eslint $(env eslint -v)"
+        env echo "  $(echo_if $(program_is_installed tsc))  TypeScript $(env tsc -v)"
+        env echo "  $(echo_if $(program_is_installed conda))  $(env conda -V)"
+        env echo "  $(echo_if $(program_is_installed python))  $(env python -V)"
+        # env echo "  $(echo_if $(program_is_installed python3))  $(env python3 -V)"
+        # Python2Version=$(echo -n $(python2 -V))
+        # env echo "  $(echo_if $(program_is_installed python2))  ${Python2Version}"
+        env echo "  $(echo_if $(program_is_installed rbenv))  $(env rbenv -v)"
+        env echo "  $(echo_if $(program_is_installed gem))  gem v$(env gem -v)"
+        env echo "  $(echo_if $(program_is_installed ruby))  $(env ruby -v)"
+        env echo "  $(echo_if $(program_is_installed zsh))  $(env zsh --version)"
+        env echo "  $(echo_if $(program_is_installed uname))  Kernel $(env uname -r)"
+        #  uname -r
+        # env echo "  $(echo_if $(program_is_installed brew))  $(env command brew -v)"
+
+        # echo "gulp    $(echo_if $(program_is_installed gulp))  "
+        # echo "webpack $(echo_if $(program_is_installed webpack))  "
+        # echo "conda $(echo_if $(program_is_installed conda))
+        # echo "  $(echo_if $(program_is_installed redis))  redis"
+        # echo "grep2   $(echo_if $(program_is_installed grep2))"
+
+        # local npm packages
+        # echo "lodash  $(echo_if $(npm_package_is_installed lodash))"
+        # echo "react   $(echo_if $(npm_package_is_installed react))"
+        # echo "angular $(echo_if $(npm_package_is_installed angular))"
+    }
+
+    function zsh_version() {
+        local ZSH_X=$(echo $0)
+        local ZSH_V=$($(echo "${ZSH_X/'-'/}" --version))
+        export MY_ZSH_VERSION=" ${TERM_ICO}  ${ZSH_V%%' (x86)'*}"
+        echo "${normal}$CLRLN$BYL9K_TERM$(tput setaf 2)${MY_ZSH_VERSION} ${BKBK}${normal}"
+    }
+
+    alias reload="source_load_all"
+    alias load="source_load_all"
+    function source_load_all() {
+        toSD1n2 source_load_all_
+    }
+
+    function source_load_all_() {
+        TIMER_THEN=$(/usr/bin/date +%s%N)
+
+        AHMYZSH="${HOME}/ahmyzsh"
+
+        . "${AHMYZSH}/initial_load.zsh"
+
+        . "${AH_LIBRARIES}/paths.sh"
+
+        . "${CUSTOM_ZSH}/notice.sh"
+
+        init_paths
+
+        source_all_zsh
+        load_fab_four
+
+        source_TMUX
+
+        source_path_now
+        load_oh_my_zsh_now
+        load_autocomplete_now
+
+        load_oh_my_zsh
+        compute_path
+
+        echo "${BEGIN_FUNCTION} $(timer_now) 'source_load_all()' ${END_FUNCTION}"
+
+    }
+
+    # if [[ ! -o norcs ]]; then
+    #     echo "... <commands to run if NO_RCS is not set,"
+    #     echo "                    such as setting options> ..."
+    # fi
+    # }
+
+    # yarn global v1.22.4
+    # info "eslint@7.5.0" has binaries:
+    #    - eslint
+    # info "prettier@2.0.5" has binaries:
+    #    - prettier
+    # info "ts-node@8.10.2" has binaries:
+    #    - ts-node
+    #    - ts-script
+    #    - ts-node-script
+    #    - ts-node-transpile-only
+    # info "typescript@3.9.7" has binaries:
+    #    - tsc
+    #    - tsserver
+    # info "yarn@1.22.4" has binaries:
+    #    - yarn
+    #    - yarnpkg
+    # Done in 0.15s.
+
+    # function npmupdate
+
 }

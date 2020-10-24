@@ -1,0 +1,10 @@
+# function lf()
+(
+  local mypath="${@:-$(pwd)}"
+  echo ''
+  builtin cd "${mypath}"
+  pw
+  colorls -lA --sf -f
+  pw
+  echo ''
+)

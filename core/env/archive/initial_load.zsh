@@ -123,3 +123,13 @@ function __LOCALE__() {
 }
 
 # alias right_prompt_off=sleep 100
+
+# if [[ -o interactive ]]; then
+
+#     local S1="${CACHED_PATH}"
+#     if [ -f "${S1}" ]; then
+#         . ${S1}
+
+#     else
+#         echo "Error loading '${S1}'... File or path can not be resolved"
+#     fi

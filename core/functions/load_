@@ -1,0 +1,4 @@
+# function load_()
+
+source_ "${1}" &&
+  call_ ${2}

@@ -1,0 +1,10 @@
+# function lsf_() {
+(
+  local mypath="${@:-$(pwd)}"
+  echo ''
+  builtin cd "${mypath}"
+  pw
+  colorls --almost-all --gs -f
+  pw
+  echo ''
+)

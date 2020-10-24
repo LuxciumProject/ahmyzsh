@@ -1,0 +1,5 @@
+# function conda-update_()
+(
+  conda update conda -y
+  conda update --all -y
+)
