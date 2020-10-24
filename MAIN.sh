@@ -10,51 +10,49 @@
 #? =============================================================================≈
 #? Scientia es lux principium✨ ™ - SEE THE BOTTOM OF THIS FILES FOR MORE INFO
 #+ =============================================================================≈
+function AHMYZSH_TOP_CONFIG_OPTIONS() {
+
+    # export PATH_ENV_CACHE="${AHMYZSH_CACHE}/path.env"
+    export CACHED_PATH="${HOME}/.cache/path.env"
+    export AHMYZSH="${HOME}/ahmyzsh"
+    export AHMYZSH_CORE="${AHMYZSH}/core"
+    export AHMYZSH_ENV="${AHMYZSH_CORE}/env"
+    export AH_LIBRARIES="${AHMYZSH}/libraries"
+
+    fpath=(${AHMYZSH}/core/functions ${fpath})
+
+    : ${VERBOSA=00}
+}
 
 function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N  -  B O O T S T R A P - +#
-
-    source ${AHMYZSH}/main-options.sh
 
     if [[ -n "${IS_ZSH_}" ]]; then
         if [ -z "${MAIN_INIT}" ]; then
             MAIN_INIT="start"
+            AHMYZSH_TOP_CONFIG_OPTIONS
+        fi
+    fi
 
-            AHMYZSH__OPTIONS__LOADER
+    Load_all_files_d "${AHMYZSH_ENV}/aliases"
+    Load_all_files_d "${AHMYZSH_ENV}/configs"
+    Load_all_files_d "${AHMYZSH_ENV}/functions"
+    Load_all_files_d "${AHMYZSH_ENV}/layouts"
+    Load_all_files_d "${AHMYZSH_ENV}/paths"
+    {
+        personal_projects_paths
+        init_paths
+        init_projects_paths
+    }
 
-            if [[ -o interactive ]]; then
+    local S1="${CUSTOM_ZSH}/MAIN.zsh"
+    if [ -f "${S1}" ]; then
+        . "${S1}"
+        load_zshenv
+        load_zshrc
+    else
+        if [[ -o interactive ]]; then
 
-                local S1="${CACHED_PATH}"
-                if [ -f "${S1}" ]; then
-                    . ${S1}
-
-                else
-                    echo "Error loading '${S1}'... File or path can not be resolved"
-                fi
-            fi
-
-            Load_all_files_d "${AHMYZSH_ENV}/aliases"
-            Load_all_files_d "${AHMYZSH_ENV}/configs"
-            Load_all_files_d "${AHMYZSH_ENV}/functions"
-            Load_all_files_d "${AHMYZSH_ENV}/layouts"
-            Load_all_files_d "${AHMYZSH_ENV}/paths"
-            {
-                personal_projects_paths
-                init_paths
-                init_projects_paths
-            }
-
-            local S1="${CUSTOM_ZSH}/MAIN.zsh"
-            if [ -f "${S1}" ]; then
-                . "${S1}"
-                load_zshenv
-                load_zshrc
-            else
-                if [[ -o interactive ]]; then
-
-                    echo "Error loading '${S1}'... File or path can not be resolved canot source_all_zsh"
-                fi
-            fi
-
+            echo "Error loading '${S1}'... File or path can not be resolved canot source_all_zsh"
         fi
     fi
 
@@ -66,7 +64,17 @@ function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N  -  B O O T S T R A P - +#
         fi
     fi
 
-} #+ - M A I N  -  B O O T S T R A P - +#
+    # if [[ -o interactive ]]; then
+
+    #     local S1="${CACHED_PATH}"
+    #     if [ -f "${S1}" ]; then
+    #         . ${S1}
+
+    #     else
+    #         echo "Error loading '${S1}'... File or path can not be resolved"
+    #     fi
+
+}
 
 function Load_all_files_d() {
     local SD1="$1"
@@ -87,7 +95,6 @@ alias isbash="([[ -n ${IS_BASH_:-''} ]] && (echo 'bash'; exit 0) || (echo 'not b
 
 alias iszsh_="([[ -n ${IS_ZSH_:-''} ]] && (exit 0) || (exit 1))"
 alias isbash_="([[ -n ${IS_BASH_:-''} ]] && (exit 0) || (exit 1))"
-
 
 # -------------------------- !!! SECURITY WARNING !!! --------------------------≈
 #! AUDIT ANY FILES YOU IMPORT FROM THIS PROJECT PRIOR: DOWNLOAD / INSTALL / USE

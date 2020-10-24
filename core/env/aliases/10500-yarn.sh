@@ -6,6 +6,7 @@
 #> /dev/null'
 alias yarnstart="yarn start"
 alias ystart="yarn start"
+alias yarnglobalupdate='yarn global add @nestjs/cli@latest bash-language-server@latest concurrently@latest create-react-app@latest eslint@latest eslint-config-prettier@latest install-peerdeps@latest npm-check@latest npm-check-unused@latest npm-check-updates@latest pnpm@latest prettier@latest serve@latest shelljs@latest shx@latest standard-version@latest ts-node@latest typescript@latest vsce@latest yarn@latest'
 
 alias yu='fnm install latest-erbium && \
 fnm install latest && \
@@ -33,3 +34,18 @@ alias quick='yarn run quick'
 alias tests='yarn run test'
 alias rebuild='yarn run rebuild'
 alias debug='yarn run debug'
+
+# yarn global add npm-check-unused@latest
+# yarn global add npm-check-updates@latest
+# yarn global add npm-check@latest
+# yarn global add pnpm@latest
+# yarn global add prettier@latest
+# yarn global add ts-node@latest
+# yarn global add typescript@latest
+# yarn global add vsce@latest
+# yarn global add yarn@latest
+# yarn global add standard-version@latest
+# yarn global add bash-language-server@latest
+# yarn global add eslint@latest
+# yarn global add prettier@latest
+# yarn global add @nestjs/cli@latest

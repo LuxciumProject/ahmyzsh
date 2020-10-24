@@ -22,7 +22,6 @@ alias lxp="cd ${PATH_LXIO_PRJ}/"
 alias lxpc="mycode ${PATH_LXIO_PRJ}/ && cd ${PATH_LXIO_PRJ}/"
 alias lx3="lxqc;lxec;lxic && cd ${PATH_LXIO_PRJ}/"
 alias lx4="cd ~ && atom . ;lxqc;lxec;lxic && cd ${PATH_LXIO_PRJ}/"
-alias lxcode="cd ${PATH_LXIO_PRJ}/ && mycode ./.vscode/luxcium-project.code-workspace"
 alias path='echo ${PATH}'
 alias nx='tmux neww'
 alias dx='tmux detach -a; mxd'
@@ -220,7 +219,6 @@ alias vmstart="az vm start -g 'GroupeONE-UKSouth' --name 'MEAN-VirtualONE'"
 # /Users/neb_401/.oh-my-zsh/custom/luxcium/repl/node-repl
 ## LUXCIUM
 # alias lxicode="lxicd; lximux"
-# alias lxicode="lxcode; tmux new-session -A -s $LXI_SESSION"
 ## QUESTRADE
 # alias lxic='tmuxlxic; tmux new-session -A -s luxcium-io;'
 # PYTHONSTARTUP='~/.pythonrc'

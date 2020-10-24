@@ -11,16 +11,3 @@
 #† Scientia es lux principium✨™ is a Tread Mark of Benjamin Vincent Kasapoglu
 #† © & ™ Benjamin Vincent Kasapoglu (Luxcium) 2017-2020
 #+ =============================================================================≈
-
-
-
-function AHMYZSH__OPTIONS__LOADER() {
-    
-    export CACHED_PATH="${HOME}/.cache/path.env"
-    export AHMYZSH="${HOME}/ahmyzsh"
-    export AHMYZSH_CORE="${AHMYZSH}/core"
-    export AHMYZSH_ENV="${AHMYZSH_CORE}/env"
-    export AH_LIBRARIES="${AHMYZSH}/libraries"
-    
-    : ${VERBOSA=0}
-}
