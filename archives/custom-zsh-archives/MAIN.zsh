@@ -38,18 +38,18 @@ else
   echo "Error loading '${S1}'... File or path can not be resolved"
 fi
 
-  function load_autocomplete_now() {
-    load_ "${ZSH_COMPLETION}/autocomplete.sh" "load_autocomplete"
-    call_ npm_completion
-		source_  "${AHMYZSH_PLUGINS}/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh"
-    source_  "${AHMYZSH_PLUGINS}/yarn-autocompletions/yarn-autocompletions.plugin.zsh"
-    source_ "/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-    source_ "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-  }
-	load_autocomplete_now
+function load_autocomplete_now() {
+  load_ "${ZSH_COMPLETION}/autocomplete.sh" "load_autocomplete"
+  call_ npm_completion
+  source_ "${AHMYZSH_PLUGINS}/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh"
+  source_ "${AHMYZSH_PLUGINS}/yarn-autocompletions/yarn-autocompletions.plugin.zsh"
+  source_ "/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+  source_ "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+}
+load_autocomplete_now
 
-	function load_aliases() {
-  Load_all_files_d "${AHMYZSH_ENV}/aliases"
+function load_aliases() {
+  Load_all_files_d "${AHMYZSH_CORE}/aliases"
 }
 # region source_all_zsh
 # function source_all_zsh() {
@@ -108,7 +108,6 @@ fi
 #     source_ "${ZSH_COMPUTE}/path.zsh"
 #     compute_path
 #   }
-
 
 #   function source_powerline_now() {
 #     source_ "${POWERLINE_BINDINGS}/zsh/powerline.zsh"

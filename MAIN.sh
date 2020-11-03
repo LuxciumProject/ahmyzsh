@@ -19,16 +19,21 @@ function AHMYZSH_TOP_CONFIG_OPTIONS() {
     export CACHED_PATH="${AHMYZSH_CACHE}/path.env"
     export AHMYZSH="${HOME}/ahmyzsh"
     export AHMYZSH_CORE="${AHMYZSH}/core"
-    export AHMYZSH_ENV="${AHMYZSH_CORE}/env"
     export AH_LIBRARIES="${AHMYZSH}/libraries"
 
     fpath=(${AHMYZSH_CORE}/functions ${fpath})
 
-    Load_all_files_d "${AHMYZSH_ENV}/aliases"
-    Load_all_files_d "${AHMYZSH_ENV}/configs"
-    Load_all_files_d "${AHMYZSH_ENV}/functions"
-    Load_all_files_d "${AHMYZSH_ENV}/layouts"
-    Load_all_files_d "${AHMYZSH_ENV}/paths"
+    function load_all_config_and_settings_files() {
+        Load_all_files_d "${AHMYZSH_CORE}/misc"
+        Load_all_files_d "${AHMYZSH_CORE}/aliases"
+        Load_all_files_d "${AHMYZSH_CORE}/configs"
+        Load_all_files_d "${AHMYZSH_CORE}/env/functions"
+        Load_all_files_d "${AHMYZSH_CORE}/layouts"
+        Load_all_files_d "${AHMYZSH_CORE}/paths"
+        # Load_all_files_d "${AHMYZSH_CORE}/env"
+    }
+    load_all_config_and_settings_files
+    alias reload_alias_and_conf="load_all_config_and_settings_files"
     {
         personal_projects_paths
         init_paths
