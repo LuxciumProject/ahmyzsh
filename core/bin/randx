@@ -21,7 +21,6 @@
 #& IN ANY CASES THE COPYRIGHT AND NOTICE ABOVE MUST BE INCLUDED.
 #$
 #$ Scientia es lux principium✨ ™
-
 rand1=$(sha224hmac <<<$(date +%s%N) | cut -c -${1} | tr \[a-z\] \[A-Z\])
 echo "${rand1}"
 exit 0
