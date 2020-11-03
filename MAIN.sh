@@ -84,7 +84,7 @@ function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N  -  B O O T S T R A P - +#
 }
 
 # -------------------------- !!! SECURITY WARNING !!! --------------------------≈
-#! AUDIT ANY FILES YOU IMPORT FROM THIS PROJECT PRIOR: DOWNLOAD / INSTALL / USE
+# !!AUDIT ANY FILES YOU IMPORT FROM THIS PROJECT PRIOR: DOWNLOAD / INSTALL / USE
 # Please asses security risks by yourself befor to use the product and report
 # any security issues or vulnerability on the issues page of the main repo site:
 # [AHMYZSH project issues]{@link https://github.com/Luxcium/ahmyzsh/issues}
