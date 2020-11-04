@@ -49,6 +49,7 @@ DEALINGS IN THE SOFTWARE.
 
 ## SECURITY WARNING   
 
+**MIT LICENSE ― PROVIDED "AS IS" ― \**NOT*\* fit for any particular use or purpose!**
  
 AUDIT ANY FILES YOU IMPORT FROM THIS PROJECT PRIOR: DOWNLOAD / INSTALL / USE
 Please asses security risks by yourself befor to use the product and report
@@ -56,12 +57,6 @@ any security issues or vulnerability on the issues page of the main repo site: *
 
 -------
 
-**MIT LICENSE ― PROVIDED "AS IS" ― \**NOT*\* fit for any particular use or purpose!**
-
--------
-
-**† Scientia es lux principium✨™ is a Tread Mark of Benjamin Vincent Kasapoglu**
-
+**† Scientia es lux principium✨™ is a Tread Mark of Benjamin Vincent Kasapoglu**  
 ***† © & ™ Benjamin Vincent Kasapoglu (Luxcium) 2017-2020***
 
--------
