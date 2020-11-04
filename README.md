@@ -56,7 +56,7 @@ any security issues or vulnerability on the issues page of the main repo site: *
 
 -------
 
-**† MIT LICENSE ― PROVIDED "AS IS" ― *NOT* fit for any particular use or purpose!**
+**MIT LICENSE ― PROVIDED "AS IS" ― \**NOT*\* fit for any particular use or purpose!**
 
 -------
 
