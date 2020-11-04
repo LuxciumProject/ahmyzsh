@@ -55,7 +55,6 @@ DEALINGS IN THE SOFTWARE.
 Please asses security risks by yourself befor to use the product and report
 any security issues or vulnerability on the issues page of the main repo site: *[AHMYZSH project issues](https://github.com/Luxcium/ahmyzsh/issues)*
 
--------
 
 **† Scientia es lux principium✨™ is a Tread Mark of Benjamin Vincent Kasapoglu**  
 ***† © & ™ Benjamin Vincent Kasapoglu (Luxcium) 2017-2020***
