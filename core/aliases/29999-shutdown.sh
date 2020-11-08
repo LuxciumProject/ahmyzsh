@@ -17,4 +17,5 @@ function 8ujn() nji9-plkçèé
 }
 
 alias upnboot="dnfup && playshutdown& sleep 3.5; sudo reboot"
+alias upndown="dnfup && playshutdown& sleep 3; sudo shutdown now"
 alias up="sudo nice -n -15 ionice -c 1 -n 3 dnf upgrade --setopt=keepcache=1 && sudo reboot"

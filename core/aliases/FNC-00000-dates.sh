@@ -1,6 +1,6 @@
-# function getstamp8() {
-#   echo -n "Z$(sha224hmac <<<${1:-$(date +%D%s%N)} | cut -c -8 | tr \[a-z\] \[A-Z\])x"
-# }
+function AHMYZSH_CORE() {
+  echo -n "Z$(sha224hmac <<<${1:-$(date +%D%s%N)} | cut -c -8 | tr \[a-z\] \[A-Z\])x"
+}
 
 function getstamp4() {
   echo -n $(sha224hmac <<<$(date +%D%s%N) | cut -c -4 | tr \[a-z\] \[A-Z\])
@@ -10,23 +10,23 @@ function getstamp6() {
   echo -n \#$(sha224hmac <<<$(date +%D%s%N) | cut -c -6 | tr \[a-z\] \[A-Z\])
 }
 
-function getstamp8a() {
+function AHMYZSH_COREa() {
   echo -n "$(getstamp4)-$(getstamp4)x"
 }
 
-function getstamp8d() {
+function AHMYZSH_COREd() {
   echo -n "$(getdatestamp)-$(getstamp4)x"
 }
 
-function getstamp8dy() {
+function AHMYZSH_COREdy() {
   echo -n "$(getdatestampy)-$(getstamp4)x"
 }
 
-function getstamp8dyy() {
+function AHMYZSH_COREdyy() {
   echo -n "$(getdatestampyy)-$(getstamp4)"
 }
 
-function getstamp8dtyy() {
+function AHMYZSH_COREdtyy() {
   echo -n "$(getdatestampyy)-$(gettimestamp)-$(getstamp4)"
 }
 
@@ -71,14 +71,14 @@ function getepochstamp() {
 }
 
 function getstamphelp() {
-  echo "getstamp8"
+  echo "AHMYZSH_CORE"
   echo "getstamp4"
   echo "getstamp6"
-  echo "getstamp8a"
-  echo "getstamp8d"
-  echo "getstamp8dy"
-  echo "getstamp8dyy"
-  echo "getstamp8dtyy"
+  echo "AHMYZSH_COREa"
+  echo "AHMYZSH_COREd"
+  echo "AHMYZSH_COREdy"
+  echo "AHMYZSH_COREdyy"
+  echo "AHMYZSH_COREdtyy"
   echo "getdatestamp"
   echo "getdatestampy"
   echo "getdatestampyy"
