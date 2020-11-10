@@ -1,0 +1,12 @@
+#!/bin/sh
+# function ll() {}
+# (
+
+#   local mypath="${@:-$(pwd)}"
+#   echo ''
+#   builtin cd "${mypath}"
+#   pw
+#   colorls -lA --sd --gs
+#   pw
+#   echo ''
+# )

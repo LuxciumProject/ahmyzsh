@@ -1,2 +1,0 @@
-# function pw_()
-(pwd | lolcat "${@}")

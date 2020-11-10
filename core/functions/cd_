@@ -1,8 +1,0 @@
-# function cd()
-local mypath="${@:-$HOME}"
-echo ''
-builtin cd "${mypath}"
-pw
-colorls -lA --sd -d
-pw
-echo ''

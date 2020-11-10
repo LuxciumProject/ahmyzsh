@@ -1,0 +1,19 @@
+#!/bin/sh
+
+function lc_() {
+  (
+    echo ''
+    builtin cd "${@:-$(pwd)}"
+    [[ -x $(which lolcat) ]] && (pwd | lolcat "${@}" -ta -d 20 &) || ([[ -x $(which /bin/pwd) ]] && /bin/pwd)
+    [[ -x $(which colorls) ]] && (colorls -a --sd --gs -S) || ([[ -x $(which /bin/ls) ]] && /bin/ls --color=auto -hal)
+    [[ -x $(which lolcat) ]] && (pwd | lolcat "${@}" -ta -d 20 &) || ([[ -x $(which /bin/pwd) ]] && /bin/pwd)
+    echo ''
+  )
+}
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+lc_ $@
+
+unset lc_
+
+exit 0

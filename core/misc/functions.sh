@@ -189,13 +189,13 @@ function load_functions_definitions() {
         return 0
     }
 
-    autoload conda-update_
-    alias conda-update=conda-update_
-    # function conda-update_() {
-    #     conda update conda -y &
-    #     conda update --all -y &
-    #     return 0
-    # }
+    # autoload conda-update_
+    # alias conda-update=conda-update_
+    function conda-update_() {
+        conda update conda -y &
+        conda update --all -y &
+        return 0
+    }
 
     function fnm-update_() {
         fnm install latest-dubnium &
@@ -207,26 +207,26 @@ function load_functions_definitions() {
 
     }
 
-    autoload yarn-update_
-    alias yarn-update=yarn-update_
-    # function yarn-update_() {
-    #     yarn global add \
-    #         create-react-app@latest \
-    #         eslint-config-prettier@latest \
-    #         eslint@latest \
-    #         prettier@latest \
-    #         install-peerdeps@latest \
-    #         npm@latest \
-    #         pnpm@latest \
-    #         serve@latest \
-    #         shelljs@latest \
-    #         shx@latest \
-    #         ts-node@latest \
-    #         typescript@latest \
-    #         yarn@latest &
-    #     return 0
+    # autoload yarn-update_
+    # alias yarn-update=yarn-update_
+    function yarn-update_() {
+        yarn global add \
+            create-react-app@latest \
+            eslint-config-prettier@latest \
+            eslint@latest \
+            prettier@latest \
+            install-peerdeps@latest \
+            npm@latest \
+            pnpm@latest \
+            serve@latest \
+            shelljs@latest \
+            shx@latest \
+            ts-node@latest \
+            typescript@latest \
+            yarn@latest &
+        return 0
 
-    # }
+    }
 
     function eslint_global() {
         npx install-peerdeps -g @typescript-eslint/parser@latest
@@ -323,15 +323,15 @@ function load_functions_definitions() {
         tmp-reset-to-cache
     }
 
-    autoload pw_
-    alias pw=pw_
+    # autoload pw_
+    # alias pw=pw_
     # function pw() {
     #     (pwd | lolcat "${@}")
 
     # }
 
-    autoload lsf_
-    alias lsf=lsf_
+    # autoload lsf_
+    # alias lsf=lsf_
     # function lsf() {
     #     (
     #         local mypath="${@:-$(pwd)}"
@@ -344,8 +344,8 @@ function load_functions_definitions() {
     #     )
     # }
 
-    autoload lsd_
-    alias lsd=lsd_
+    # autoload lsd_
+    # alias lsd=lsd_
     # function lsd() {
     #     (
     #         local mypath="${@:-$(pwd)}"
@@ -358,8 +358,8 @@ function load_functions_definitions() {
     #     )
     # }
 
-    autoload ll_
-    alias ll=ll_
+    # autoload ll_
+    # alias ll=ll_
     # function ll() {
     #     (
 
@@ -373,8 +373,8 @@ function load_functions_definitions() {
     #     )
     # }
 
-    autoload lf_
-    alias lf=lf_
+    # autoload lf_
+    # alias lf=lf_
     # function lf() {
     #     (
     #         local mypath="${@:-$(pwd)}"
@@ -387,8 +387,8 @@ function load_functions_definitions() {
     #     )
     # }
 
-    autoload ld_
-    alias ld=ld_
+    # autoload ld_
+    # alias ld=ld_
     # function ld() {
     #     (
     #         local mypath="${@:-$(pwd)}"
@@ -401,8 +401,8 @@ function load_functions_definitions() {
     #     )
     # }
 
-    autoload lc_
-    alias lc=lc_
+    # autoload lc_
+    # alias lc=lc_
     # function lc() {
     #     (
     #         local mypath="${@:-$(pwd)}"
@@ -413,26 +413,26 @@ function load_functions_definitions() {
     #     )
     # }
 
-    autoload cls_
-    alias cls=cls_
-    # function cls() {
-    #     print "${clearall}"
-    #     pw
+    # autoload cls_
+    # alias cls=cls_
+    function cls() {
+        print "${clearall}"
+        pw
 
-    # }
+    }
 
-    autoload cd_
-    alias cd=cd_
-    # function cd() {
+    # autoload cd_
+    # alias cd=cd_
+    function cd() {
 
-    #     local mypath="${@:-$HOME}"
-    #     echo ''
-    #     builtin cd "${mypath}"
-    #     pw
-    #     colorls -lA --sd -d
-    #     pw
-    #     echo ''
-    # }
+        local mypath="${@:-$HOME}"
+        echo ''
+        builtin cd "${mypath}"
+        pw
+        colorls -lA --sd -d
+        pw
+        echo ''
+    }
 
     # brew configurations
 
