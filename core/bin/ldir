@@ -1,6 +1,6 @@
 #!/bin/sh
 
-function ld_() {
+function ldir_() {
   (
     echo ''
     builtin cd "${@:-$(pwd)}"
@@ -12,8 +12,8 @@ function ld_() {
 }
 
 ## Extra code make it easy to copy paste only the function out to use elsewhere
-ld_ $@
+ldir_ $@
 
-unset ld_
+unset ldir_
 
 exit 0

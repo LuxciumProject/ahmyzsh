@@ -14,10 +14,10 @@
 function AHMYZSH_TOP_CONFIG_OPTIONS() {
 
     : ${VERBOSA=00}
-
     export AHMYZSH_CACHE="${HOME}/.cache/ahmyzsh"
     export CACHED_PATH="${AHMYZSH_CACHE}/path.env"
     export AHMYZSH="${HOME}/ahmyzsh"
+    export ZSH_CUSTOM="${AHMYZSH}" # /custom-zsh"
     export AHMYZSH_CORE="${AHMYZSH}/core"
     export AH_LIBRARIES="${AHMYZSH}/libraries"
 

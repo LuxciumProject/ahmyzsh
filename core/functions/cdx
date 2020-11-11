@@ -1,9 +1,9 @@
 #!/bin/sh
 # function cdx_() {
-#   local mypath="${@:-$HOME}"
+# mypath="${@:-$HOME}"
 #   echo ''
-#   builtin cd "${mypath}"
-#   # pw
+#   builtin cd "$(echo $mypath)"
+# #   # pw
 #   [[ -x $(which colorls) ]] && (colorls -lA --sd -d) || ([[ -x $(which /bin/ls) ]] && /bin/ls --color -al)
 #   pw
 #   echo ''
