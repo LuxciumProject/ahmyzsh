@@ -1,0 +1,3 @@
+#!/bin/sh
+nice -15 /home/luxcium/bin/code-luxcium.io "/home/luxcium/dev/maybelist/"
+exit

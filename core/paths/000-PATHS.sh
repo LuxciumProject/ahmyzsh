@@ -8,7 +8,7 @@ function personal_projects_paths() {
     alias cache_folder="cd ${CACHE_FOLDER_}"
 
     export DEV_FOLDER="${HOME}/dev"
-    alias dev_folder="cd ${DEV_FOLDER}"
+    alias cddev="cd ${DEV_FOLDER}"
     export LXI_PROJCT="${DEV_FOLDER}/luxcium-projects"
     alias lxi_projct="cd ${LXI_PROJCT}"
     export TEMP_PROJCT="${DEV_FOLDER}/temporary-projects"
@@ -19,8 +19,8 @@ function personal_projects_paths() {
     export QSTRD="${LXI_PROJCT}/questrade-ts"
     alias qstrd="cd ${QSTRD}"
 
-    export DEV_POPNLOCK="${HOME}/.vscode-insiders/extensions/dev-pop-n-lock-theme-vscode"
-    alias dev_popnlock="cd ${DEV_POPNLOCK}"
+    # export DEV_POPNLOCK="${HOME}/.vscode-insiders/extensions/dev-pop-n-lock-theme-vscode"
+    # alias dev_popnlock="cd ${DEV_POPNLOCK}"
 
     export PATH_INSDR_CODE_EXT="${HOME}/.vscode-insiders/extensions"
     alias path_insdr_code_ext="cd ${PATH_INSDR_CODE_EXT}"
