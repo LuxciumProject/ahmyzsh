@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 function source_() {
   if [ -z $1 ]; then

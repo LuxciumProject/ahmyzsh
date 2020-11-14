@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # sudo dnf clean all # quick
 sudo dnf upgrade --downloadonly -y

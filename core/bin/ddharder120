@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # ddtotheend
 
@@ -8,13 +8,13 @@
             sudo ionice -c 3 nice -n 35 dd if=/dev/zero of=/dev/null &
         )
     }
-    
+
     function ddhard() {
         (
             sudo ionice -c 1 -n 3 nice -n -35 dd if=/dev/zero of=/dev/null &
         )
     }
-    
+
     function ddsoft5() {
         (
             sleep 1
@@ -29,7 +29,7 @@
             ddsoft
         )
     }
-    
+
     function ddhard5() {
         (
             sleep 1
@@ -42,7 +42,7 @@
             ddhard
             sleep 0.5
             ddhard
-            
+
         )
     }
 }
@@ -149,25 +149,25 @@ echo -e '\e[38;2;252;198;36m\n   TEST CPU   ' ## -------------------------------
     echo 'Will test x60 DDHARD  for 120 sec'
     echo 'Warm Up 5 sec'
     (
-        
+
         ddhard5 &
         ddhard5 &
-        
+
         ddhard5 &
         ddhard5 &
-        
+
         ddhard5 &
         ddhard5 &
-        
+
         ddhard5 &
         ddhard5 &
-        
+
         ddhard5 &
         ddhard5 &
-        
+
         ddhard5 &
         ddhard5 &
-        
+
     )
     sleep 5
     echo 'full speed for 120 seconds'

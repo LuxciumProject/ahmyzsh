@@ -1,4 +1,4 @@
-# #!/bin/sh
+# #!/usr/bin/env sh
 # function yarn-update() {
 #   yarn global add \
 #     @nestjs/cli@latest \

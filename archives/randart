@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 numx=$(((${1} + 8)))
 rand1=$(sha224hmac <<<$(date +%s%N) | cut -c -1 | tr \[a-z\] \[A-Z\])
 rand2=$(sha224hmac <<<$(date +%s%N) | cut -c -2 | tr \[a-z\] \[A-Z\])

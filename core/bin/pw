@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 function pw_() {
    [[ -x $(which lolcat) ]] && (pwd | lolcat "${@}") || ([[ -x $(which /bin/pwd) ]] && /bin/pwd)
 }

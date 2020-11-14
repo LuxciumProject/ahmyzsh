@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 (
   MY_DIR="${HOME}/virtualram/luxcium.io"

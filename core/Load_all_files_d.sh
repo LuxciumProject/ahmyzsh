@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 function Load_all_files_d() {
   local SD1="$1"

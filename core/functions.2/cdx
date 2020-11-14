@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 # function cdx_() {
 # mypath="${@:-$HOME}"
 #   echo ''

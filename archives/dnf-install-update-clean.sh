@@ -1,7 +1,7 @@
-#!/bin/sh
+#!/usr/bin/env sh
 sudo dnf --refresh autoremove
 dnf clean all
-sudo dnf upgrade --assumeno 
+sudo dnf upgrade --assumeno
 sudo dfn group install --assumeno 3d-printing
 sudo dfn group install --assumeno audio
 sudo dfn group install --assumeno authoring-and-publishing

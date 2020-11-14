@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 #! dnf clean all # (quick)
 # dnf upgrade -x xorg-x11-drv-nouveau -v --downloadonly -y #! --refresh # (quick)

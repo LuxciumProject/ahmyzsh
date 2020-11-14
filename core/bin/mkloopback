@@ -1,4 +1,6 @@
-function mkloopback() {
+#!/usr/bin/env/ sh
+
+function mkloopback_() {
   (
     cd /usr/src/v4l2loopback &&
       sudo make clean &&
@@ -11,3 +13,13 @@ function mkloopback() {
       ( (sudo wall "ERROR IN MAKE LOOPBACK") && exit 1)
   ) && ( (sudo wall "Video loop back in /sys/devices/virtual/video4linux/$(ls /sys/devices/virtual/video4linux)/ ") && exit 0)
 }
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+
+mkloopback_ $@
+
+__EXIT_STATUS="${?}"
+
+unset -f mkloopback_
+
+exit __EXIT_STATUS

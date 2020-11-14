@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 npm install -g yarn@latest ||  exit 1
 yarn global add yarn@latest ||  exit 1

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 function dedup_path_() {
 
