@@ -21,16 +21,19 @@ function AHMYZSH_TOP_CONFIG_OPTIONS() {
     export AHMYZSH_CORE="${AHMYZSH}/core"
     export AH_LIBRARIES="${AHMYZSH}/libraries"
 
+    export PAGER="/usr/bin/most -s"
+    # export PAGER="/usr/bin/less"
+
     fpath=(${AHMYZSH_CORE}/functions ${fpath})
 
     function load_all_config_and_settings_files() {
         Load_all_files_d "${AHMYZSH_CORE}/misc"
         Load_all_files_d "${AHMYZSH_CORE}/aliases"
         Load_all_files_d "${AHMYZSH_CORE}/configs"
-        Load_all_files_d "${AHMYZSH_CORE}/env/functions"
+        Load_all_files_d "${AHMYZSH_CORE}/functions"
         Load_all_files_d "${AHMYZSH_CORE}/layouts"
         Load_all_files_d "${AHMYZSH_CORE}/paths"
-        # Load_all_files_d "${AHMYZSH_CORE}/env"
+        Load_all_files_d "${AHMYZSH_CORE}/env"
     }
     load_all_config_and_settings_files
     alias reload_alias_and_conf="load_all_config_and_settings_files"
