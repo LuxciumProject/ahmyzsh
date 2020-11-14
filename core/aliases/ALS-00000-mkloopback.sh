@@ -1,6 +1,6 @@
 function mkloopback() {
   (
-    cd /home/luxcium/src/v4l2loopback &&
+    cd /usr/src/v4l2loopback &&
       sudo make clean &&
       git pull origin &&
       sudo make &&
@@ -11,3 +11,5 @@ function mkloopback() {
       ( (sudo wall "ERROR IN MAKE LOOPBACK") && exit 1)
   )
 }
+
+# file://

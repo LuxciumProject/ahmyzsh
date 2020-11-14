@@ -30,7 +30,7 @@
 exit
 
 # (
-#   cd /home/luxcium/src/v4l2loopback &&
+#   cd /usr/src/v4l2loopback &&
 #     make clean &&
 #     git pull origin &&
 #     sudo make &&
