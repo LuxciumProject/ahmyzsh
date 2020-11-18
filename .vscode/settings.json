@@ -1,14 +1,14 @@
 {
   "files.exclude": {
     "**/*.zwc": true,
-    "custom-tmux": true,
-    "node-repl": true,
+    // "custom-tmux": false,
+    // "node-repl": false,
     "powerlevel10k": true,
     "ohmyzsh": true,
     "powerline": true,
-    "python-repl": true,
+    // "python-repl": false,
     "crt-profiles": true,
-    "node_modules": true
+    // "node_modules": true
   },
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
