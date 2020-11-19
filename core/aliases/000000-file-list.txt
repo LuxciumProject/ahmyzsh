@@ -1,4 +1,0 @@
-mv 00000-FNC-dates.sh 05000-FNC-dates.sh
-mv 00299-shutdown.sh 00299-ALS-shutdown.sh
-mv 00551-aliases.sh 00551-ALS-aliases.sh
-mv 00600-fille-access.sh 00600-ALS-fille-access.sh
