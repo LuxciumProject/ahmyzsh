@@ -302,7 +302,6 @@ function load_aliases_bak() {
   alias newl='zsh --login'
   alias newi='zsh --interactive'
 
-  # alias tmcode='insdr /Users/neb_401/.vscode-insiders/extensions/dev-pop-n-lock-theme-vscode'
   # alias gitAll='/Users/neb_401/gitAll3.sh'
   alias hconf='code ~/.hyper.js'
   alias p9k='compute_p9k'

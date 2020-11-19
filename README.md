@@ -25,12 +25,9 @@ Some folder have been hiddens while I am not working with them now you may unhid
 ```json
   "files.exclude": {
     "**/*.zwc": true,
-    "custom-tmux": true,
-    "node-repl": true,
     "powerlevel10k": true,
     "ohmyzsh": true,
     "powerline": true,
-    "python-repl": true,
     "crt-profiles": true,
     "node_modules": true
   },

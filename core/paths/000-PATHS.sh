@@ -56,11 +56,6 @@ function init_paths() {
 
   if [ "$PARENT_ENV_LOADED" != 'true' ]; then
 
-    export CUSTOM_TMUX="${AHMYZSH}/custom-tmux"
-    {
-      export TMUX_BIN="${CUSTOM_TMUX}/bin"
-      export TMUX_CONFIGS="${CUSTOM_TMUX}/configs"
-    }
     export CUSTOM_ZSH="${AHMYZSH}/custom-zsh"
     {
       export ZSH_BIN="${CUSTOM_ZSH}/bin"
@@ -83,13 +78,11 @@ function init_paths() {
 
       }
     }
-    export NODE_REPL="${AHMYZSH}/node-repl"
     export OHMYZSH="${AHMYZSH}/ohmyzsh"
     {
       export ZSH="${OHMYZSH}"
     }
     export POWERLEVEL10K="${AHMYZSH}/powerlevel10k"
-    export PYTHON_REPL="${AHMYZSH}/python-repl"
     export POWERLINE="${AHMYZSH}/powerline"
     {
       export POWERLINE_BINDINGS="${POWERLINE}/powerline/bindings"
@@ -107,50 +100,5 @@ function init_paths() {
     }
     export AHMYZSH_BIN="${AHMYZSH}/bin"
   fi
-
-}
-function init_projects_paths() {
-
-  local S1="${CUSTOM_TMUX}/paths.sh"
-  source_ ${S1}
-
-  local S1="${NODE_REPL}/paths.sh"
-  source_ ${S1}
-
-  local S1="${PYTHON_REPL}/paths.sh"
-  source_ ${S1}
-
-  # !! local S1="${CUSTOM_ZSH}/paths.sh"
-  # !! source_ ${S1}
-
-  # local S1="${OHMYZSH}/paths.sh"
-  # source_ ${S1}
-
-  # local S1="${POWERLEVEL10K}/paths.sh"
-  # source_ ${S1}
-
-  # local S1="${POWERLINE}/paths.sh"
-  # source_ ${S1}
-
-  # local S1="${CUSTOM_TMUX}/paths.sh"
-  # source_ ${S1}
-
-  # local S1="${CUSTOM_ZSH}/paths.sh"
-  # source_ ${S1}
-
-  # local S1="${NODE_REPL}/paths.sh"
-  # source_ ${S1}
-
-  # local S1="${OHMYZSH}/paths.sh"
-  # source_ ${S1}
-
-  # local S1="${POWERLEVEL10K}/paths.sh"
-  # source_ ${S1}
-
-  # local S1="${POWERLINE}/paths.sh"
-  # source_ ${S1}
-
-  # local S1="${PYTHON_REPL}/paths.sh"
-  # source_ ${S1}
 
 }

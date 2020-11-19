@@ -207,7 +207,6 @@ alias vmstart="az vm start -g 'GroupeONE-UKSouth' --name 'MEAN-VirtualONE'"
 ## QUESTRADE
 # alias lxic='tmuxlxic; tmux new-session -A -s luxcium-io;'
 # PYTHONSTARTUP='~/.pythonrc'
-# alias tmcode='insdr /Users/neb_401/.vscode-insiders/extensions/dev-pop-n-lock-theme-vscode'
 # alias gitAll='/Users/neb_401/gitAll3.sh'
 # alias zshenv="code ~/.zshenv"
 # function projects_paths() {

@@ -1,25 +1,25 @@
-#!/dev/env sh
+#. -----------------------------------------------------------------------------~
+#. Scientia es lux principium - SEE THE BOTTOM OF THIS FILES FOR MORE INFO
+#. MIT LICENSE ― PROVIDED "AS IS" ― *NOT* fit for any particular use or purpose!
+#. -----------------------------------------------------------------------------~
+#. AHMYZSH first entry point
 
-#† Scientia es lux principium✨™
+# export TIMER_ALL_THEN=$(/usr/bin/date +%s%N)
 
-#+ AHMYZSH first entry point
-#+ =============================================================================≈
-#!! MIT LICENSE ― PROVIDED "AS IS" ― *NOT* fit for any particular use or purpose
-#‽ =============================================================================≈
-#‽ @author Benjamin Vincent Kasapoglu (LUXCIUM)
-#‽ @copyright © 2020 - LUXCIUM (Benjamin Vincent Kasapoglu) <luxcium@neb401.com>
-#‽ @license MIT
-#‽ =============================================================================≈
-#‽ Scientia es lux principium✨ ™ - SEE THE BOTTOM OF THIS FILES FOR MORE INFO
-#+ =============================================================================≈
+# export AHMYZSH=${AHMYZSH:="${HOME}/ahmyzsh"}
+# export AHMYZSH_CACHE=${AHMYZSH_CACHE:="${HOME}/.cache/ahmyzsh"}
+# export CACHED_PATH=${CACHED_PATH:="${AHMYZSH_CACHE}/path.env"}
+# export MAIN_BOOTSTRAP=${MAIN_BOOTSTRAP:="${AHMYZSH}/MAIN.sh"}
+
+# export AHMYZSH="${HOME}/ahmyzsh"
+# export AHMYZSH_CACHE="${HOME}/.cache/ahmyzsh"
+# export CACHED_PATH="${AHMYZSH_CACHE}/path.env"
 
 function AHMYZSH_TOP_CONFIG_OPTIONS() {
 
-    : ${VERBOSA=00}
-    export AHMYZSH_CACHE="${HOME}/.cache/ahmyzsh"
-    export CACHED_PATH="${AHMYZSH_CACHE}/path.env"
-    export AHMYZSH="${HOME}/ahmyzsh"
-    export ZSH_CUSTOM="${AHMYZSH}" # /custom-zsh"
+    : ${VERBOSA:=100}
+
+    export ZSH_CUSTOM="${AHMYZSH}" #/custom-zsh"
     export AHMYZSH_CORE="${AHMYZSH}/core"
     export AH_LIBRARIES="${AHMYZSH}/libraries"
 
@@ -42,7 +42,7 @@ function AHMYZSH_TOP_CONFIG_OPTIONS() {
     {
         personal_projects_paths
         init_paths
-        init_projects_paths
+        # init_projects_paths
     }
 
 }
@@ -94,34 +94,34 @@ function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N  -  B O O T S T R A P - +#
 }
 
 # -------------------------- !!! SECURITY WARNING !!! --------------------------≈
-# !!AUDIT ANY FILES YOU IMPORT FROM THIS PROJECT PRIOR: DOWNLOAD / INSTALL / USE
+# AUDIT ANY FILES YOU IMPORT FROM THIS PROJECT PRIOR: DOWNLOAD / INSTALL / USE
 # Please asses security risks by yourself befor to use the product and report
 # any security issues or vulnerability on the issues page of the main repo site:
-# [AHMYZSH project issues]{@link https://github.com/Luxcium/ahmyzsh/issues}
+# [AHMYZSH project issues](https://github.com/Luxcium/ahmyzsh/issues)
 # ==============================================================================≈
-#† MIT LICENSE ― PROVIDED "AS IS" ― *NOT* fit for any particular use or purpose!
-#‽
-#† Copyright © 2019-2020 Benjamin Vincent Kasapoglu (Luxcium)
-#† and contributors (https://github.com/Luxcium/ahmyzsh/contributors)
-#‽
-#‽ Permission is hereby granted, free of charge, to all person obtaining a copy
-#‽ of this software and associated documentation files (the "Software"), to deal
-#‽ in the Software without restriction, including without limitation the rights
-#‽ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-#‽ copies of the Software, and to permit persons to whom the Software is
-#‽ furnished to do so, subject to the following conditions:
-#‽
-#‽ The above copyright notice and this permission notice shall be included
-#‽ in all copies or substantial portions of the Software.
-#‽
-#‽ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ALL KIND, EXPRESS OR
-#‽ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-#‽ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-#‽ THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ALL CLAIM, DAMAGES OR
-#‽ OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-#‽ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-#‽ DEALINGS IN THE SOFTWARE.
+# MIT LICENSE ― PROVIDED "AS IS" ― *NOT* fit for any particular use or purpose!
+#
+# Copyright © 2019-2020 Benjamin Vincent Kasapoglu (Luxcium)
+# and contributors (https://github.com/Luxcium/ahmyzsh/contributors)
+#
+# Permission is hereby granted, free of charge, to all person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ALL KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ALL CLAIM, DAMAGES OR
+# OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+# ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+# DEALINGS IN THE SOFTWARE.
 # ==============================================================================≈
-#† Scientia es lux principium✨™ is a Tread Mark of Benjamin Vincent Kasapoglu
-#† © & ™ Benjamin Vincent Kasapoglu (Luxcium) 2017-2020
-# ------------------------------------------------------------------------------
+# Scientia es lux principium is a Tread Mark of Benjamin Vincent Kasapoglu
+# (c) et tm - Benjamin Vincent Kasapoglu (Luxcium) 2017-2020
+# ------------------------------------------------------------------------------~

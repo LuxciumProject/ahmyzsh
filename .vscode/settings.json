@@ -1,10 +1,9 @@
 {
   "files.exclude": {
     "**/*.zwc": true,
-    // "custom-tmux": false,
     // "node-repl": false,
     "powerlevel10k": true,
-    "ohmyzsh": true,
+    // "ohmyzsh": true,
     "powerline": true,
     // "python-repl": false,
     "crt-profiles": true,

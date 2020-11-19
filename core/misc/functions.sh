@@ -304,25 +304,6 @@ function load_functions_definitions() {
         yarn global add typescript@next ts-node@latest @types/node@latest tslib@latest &
     }
 
-    function tmcode() {
-
-        source $TMUX_BIN/tmux-functions.sh
-        tmp-set-cache
-        TMUX_SESSION="Default"
-        TMUX_WINDOW_0="dev-pop-n-lock"
-        PATH_TMUX_SESSION="${DEV_POPNLOCK}"
-        insdr "${DEV_POPNLOCK}"
-        tmux has-session -t $TMUX_SESSION 2>/dev/null
-        if [ $? != 0 ]; then
-            tmux new -s $TMUX_SESSION -d -n $TMUX_WINDOW_0 -c $PATH_TMUX_SESSION
-            tmux-config
-        else
-            tmux new-window -t $TMUX_SESSION -n $TMUX_WINDOW_0 -c $PATH_TMUX_SESSION
-        fi
-        tmux-attach
-        tmp-reset-to-cache
-    }
-
     # autoload pw_
     # alias pw=pw_
     # function pw() {
@@ -542,7 +523,6 @@ function load_functions_definitions() {
             git_add_comit_push "${1}" &
         ) &>/dev/null
         # AHMYZSH="${HOME}/ahmyzsh"
-        # CUSTOM_TMUX="${AHMYZSH}/custom-tmux"
         # CUSTOM_ZSH="${AHMYZSH}/custom-zsh"
         # NODE_REPL="${AHMYZSH}/node-repl"
         # OHMYZSH="${AHMYZSH}/ohmyzsh"
@@ -682,7 +662,6 @@ function load_functions_definitions() {
 
         eval $(echo "(
             toSDERR2 custom-zsh-update
-            toSDERR2 custom-tmux-update
             toSDERR2 node-repl-update
             toSDERR2 python-repl-update
             toSDERR2 ohmyzsh-update
@@ -752,10 +731,6 @@ function load_functions_definitions() {
 
     function python-repl-update() {
         toSDOUT1 "custom-update ${PYTHON_REPl}/"
-    }
-
-    function custom-tmux-update() {
-        toSDOUT1 "custom-update ${CUSTOM_TMUX}/"
     }
 
     # function useful_functions() {
