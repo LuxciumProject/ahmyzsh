@@ -6,7 +6,6 @@
 
 export TIMER_ALL_THEN=$(/usr/bin/date +%s%N)
 
-# export TIMER_ALL_THEN=${TIMER_ALL_THEN:="$(/usr/bin/date +%s%N)"}
 export AHMYZSH=${AHMYZSH:="${HOME}/ahmyzsh"}
 export AHMYZSH_CACHE=${AHMYZSH_CACHE:="${HOME}/.cache/ahmyzsh"}
 export CACHED_PATH=${CACHED_PATH:="${AHMYZSH_CACHE}/path.env"}
