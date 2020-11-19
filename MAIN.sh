@@ -29,7 +29,7 @@ function AHMYZSH_TOP_CONFIG_OPTIONS() {
     fpath=(${AHMYZSH_CORE}/functions ${fpath})
 
     function load_all_config_and_settings_files() {
-        Load_all_files_d "${AHMYZSH_CORE}/misc"
+        # Load_all_files_d "${AHMYZSH_CORE}/misc"
         Load_all_files_d "${AHMYZSH_CORE}/aliases"
         Load_all_files_d "${AHMYZSH_CORE}/configs"
         Load_all_files_d "${AHMYZSH_CORE}/functions"
