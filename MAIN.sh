@@ -1,14 +1,16 @@
+#!/dev/env sh
+
 #† Scientia es lux principium✨™
 
 #+ AHMYZSH first entry point
 #+ =============================================================================≈
-#- MIT LICENSE ― PROVIDED "AS IS" ― *NOT* fit for any particular use or purpose!
-#? =============================================================================≈
-#? @author Benjamin Vincent Kasapoglu (LUXCIUM)
-#? @copyright © 2020 - LUXCIUM (Benjamin Vincent Kasapoglu) <luxcium@neb401.com>
-#? @license MIT
-#? =============================================================================≈
-#? Scientia es lux principium✨ ™ - SEE THE BOTTOM OF THIS FILES FOR MORE INFO
+#!! MIT LICENSE ― PROVIDED "AS IS" ― *NOT* fit for any particular use or purpose
+#‽ =============================================================================≈
+#‽ @author Benjamin Vincent Kasapoglu (LUXCIUM)
+#‽ @copyright © 2020 - LUXCIUM (Benjamin Vincent Kasapoglu) <luxcium@neb401.com>
+#‽ @license MIT
+#‽ =============================================================================≈
+#‽ Scientia es lux principium✨ ™ - SEE THE BOTTOM OF THIS FILES FOR MORE INFO
 #+ =============================================================================≈
 
 function AHMYZSH_TOP_CONFIG_OPTIONS() {
@@ -98,27 +100,27 @@ function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N  -  B O O T S T R A P - +#
 # [AHMYZSH project issues]{@link https://github.com/Luxcium/ahmyzsh/issues}
 # ==============================================================================≈
 #† MIT LICENSE ― PROVIDED "AS IS" ― *NOT* fit for any particular use or purpose!
-#
+#‽
 #† Copyright © 2019-2020 Benjamin Vincent Kasapoglu (Luxcium)
 #† and contributors (https://github.com/Luxcium/ahmyzsh/contributors)
-#
-# Permission is hereby granted, free of charge, to all person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in all
-# copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ALL KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ALL CLAIM, DAMAGES OR
-# OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-# ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-# DEALINGS IN THE SOFTWARE.
+#‽
+#‽ Permission is hereby granted, free of charge, to all person obtaining a copy
+#‽ of this software and associated documentation files (the "Software"), to deal
+#‽ in the Software without restriction, including without limitation the rights
+#‽ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+#‽ copies of the Software, and to permit persons to whom the Software is
+#‽ furnished to do so, subject to the following conditions:
+#‽
+#‽ The above copyright notice and this permission notice shall be included
+#‽ in all copies or substantial portions of the Software.
+#‽
+#‽ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ALL KIND, EXPRESS OR
+#‽ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#‽ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#‽ THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ALL CLAIM, DAMAGES OR
+#‽ OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+#‽ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+#‽ DEALINGS IN THE SOFTWARE.
 # ==============================================================================≈
 #† Scientia es lux principium✨™ is a Tread Mark of Benjamin Vincent Kasapoglu
 #† © & ™ Benjamin Vincent Kasapoglu (Luxcium) 2017-2020
