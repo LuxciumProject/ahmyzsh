@@ -31,7 +31,6 @@ function AHMYZSH_TOP_CONFIG_OPTIONS() {
     function load_all_config_and_settings_files() {
         # Load_all_files_d "${AHMYZSH_CORE}/misc"
         Load_all_files_d "${AHMYZSH_CORE}/aliases"
-        Load_all_files_d "${AHMYZSH_CORE}/configs"
         Load_all_files_d "${AHMYZSH_CORE}/functions"
         Load_all_files_d "${AHMYZSH_CORE}/layouts"
         Load_all_files_d "${AHMYZSH_CORE}/paths"
@@ -42,7 +41,6 @@ function AHMYZSH_TOP_CONFIG_OPTIONS() {
     {
         personal_projects_paths
         init_paths
-        # init_projects_paths
     }
 
 }

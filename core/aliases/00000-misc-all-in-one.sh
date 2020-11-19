@@ -1,7 +1,6 @@
 eval "$(gh completion -s zsh)"
 export NMON="mknd.jJ"
 
-
 # h = This help
 alias monhelp="sudo nice -n -15 ionice -c 1 -n 3 env NMON=h nmon -a"
 
@@ -27,7 +26,6 @@ alias monnetwork="sudo nice -n -15 ionice -c 1 -n 3 env NMON=n nmon -a"
 # N = NFS
 alias monnfs="sudo nice -n -15 ionice -c 1 -n 3 env NMON=N nmon -a"
 
-
 #
 # d = Disk I/O Graphs  D=Stats
 alias mondisk="sudo nice -n -15 ionice -c 1 -n 3 env NMON=d nmon -a"
@@ -43,13 +41,11 @@ alias monkern="sudo nice -n -15 ionice -c 1 -n 3 env NMON=k nmon -a"
 alias monfs="sudo nice -n -15 ionice -c 1 -n 3 env NMON=jJ nmon -a"
 alias monfsall="sudo nice -n -15 ionice -c 1 -n 3 env NMON=j nmon -a"
 
-
 #
 # M = MHz by thread & CPU
 alias monmhz="sudo nice -n -15 ionice -c 1 -n 3 env NMON=M nmon -a"
 
 #
-
 
 # t = TopProcess 1=Priority/Nice/State
 # ReOrder by: 3=CPU 4=RAM 5=I/O
@@ -64,10 +60,6 @@ alias montopniceu="sudo nice -n -15 ionice -c 1 -n 3 env NMON=t1u nmon -a"
 alias montopprocu="sudo nice -n -15 ionice -c 1 -n 3 env NMON=t3u nmon -a"
 alias montopmemu="sudo nice -n -15 ionice -c 1 -n 3 env NMON=t4u nmon -a"
 alias montopiou="sudo nice -n -15 ionice -c 1 -n 3 env NMON=t5u nmon -a"
-
-
-
-
 
 # alias nmonmmm="sudo nice -n -15 ionice -c 1 -n 3 env NMON=MMM nmon -a"
 # alias nmonV="sudo nice -n -15 ionice -c 1 -n 3 env NMON=V nmon -a"
@@ -274,92 +266,92 @@ alias isbash_="([[ -n ${IS_BASH_:-''} ]] && (exit 0) || (exit 1))"
 # }
 
 function getstamp4() {
-  echo -n $(sha224hmac <<<$(date +%D%s%N) | cut -c -4 | tr \[a-z\] \[A-Z\])
+    echo -n $(sha224hmac <<<$(date +%D%s%N) | cut -c -4 | tr \[a-z\] \[A-Z\])
 }
 
 function getstamp6() {
-  echo -n \#$(sha224hmac <<<$(date +%D%s%N) | cut -c -6 | tr \[a-z\] \[A-Z\])
+    echo -n \#$(sha224hmac <<<$(date +%D%s%N) | cut -c -6 | tr \[a-z\] \[A-Z\])
 }
 
 function getstamp8a() {
-  echo -n "$(getstamp4)-$(getstamp4)x"
+    echo -n "$(getstamp4)-$(getstamp4)x"
 }
 
 function getstamp8d() {
-  echo -n "$(getdatestamp)-$(getstamp4)x"
+    echo -n "$(getdatestamp)-$(getstamp4)x"
 }
 
 function getstamp8dy() {
-  echo -n "$(getdatestampy)-$(getstamp4)x"
+    echo -n "$(getdatestampy)-$(getstamp4)x"
 }
 
 function getstamp8dyy() {
-  echo -n "$(getdatestampyy)-$(getstamp4)"
+    echo -n "$(getdatestampyy)-$(getstamp4)"
 }
 
 function getstamp8dtyy() {
-  echo -n "$(getdatestampyy)-$(gettimestamp)-$(getstamp4)"
+    echo -n "$(getdatestampyy)-$(gettimestamp)-$(getstamp4)"
 }
 
 function getdatestamp() {
-  echo -n $(date +%m%d)
+    echo -n $(date +%m%d)
 }
 
 function getdatestampy() {
-  echo -n $(date +%y%m%d)
+    echo -n $(date +%y%m%d)
 }
 
 function getdatestampyy() {
-  echo -n $(date +%Y%m%d)
+    echo -n $(date +%Y%m%d)
 }
 
 function getdatestampu() {
-  echo -n $(date --utc +%m%d)
+    echo -n $(date --utc +%m%d)
 }
 
 function getdatestampyu() {
-  echo -n $(date --utc +%y%m%d)
+    echo -n $(date --utc +%y%m%d)
 }
 
 function gettimestamp() {
-  echo -n $(date +%H%M%S)
+    echo -n $(date +%H%M%S)
 }
 
 function gettimestampz() {
-  echo -n $(date +%H%M%S%Z)
+    echo -n $(date +%H%M%S%Z)
 }
 
 function gettimestampu() {
-  echo -n $(date --utc +%H%M%S%Z)
+    echo -n $(date --utc +%H%M%S%Z)
 }
 
 function gettimeshortstampu() {
-  echo -n $(date --utc +%H%M%S)
+    echo -n $(date --utc +%H%M%S)
 }
 
 function getepochstamp() {
-  echo -n $(date +%s)
+    echo -n $(date +%s)
 }
 
 function getstamphelp() {
-  echo "getstamp8"
-  echo "getstamp4"
-  echo "getstamp6"
-  echo "getstamp8a"
-  echo "getstamp8d"
-  echo "getstamp8dy"
-  echo "getstamp8dyy"
-  echo "getstamp8dtyy"
-  echo "getdatestamp"
-  echo "getdatestampy"
-  echo "getdatestampyy"
-  echo "getdatestampu"
-  echo "getdatestampyu"
-  echo "gettimestamp"
-  echo "gettimestampz"
-  echo "gettimestampu"
-  echo "gettimeshortstampu"
-  echo "getepochstamp"
+    echo "getstamp8"
+    echo "getstamp4"
+    echo "getstamp6"
+    echo "getstamp8a"
+    echo "getstamp8d"
+    echo "getstamp8dy"
+    echo "getstamp8dyy"
+    echo "getstamp8dtyy"
+    echo "getdatestamp"
+    echo "getdatestampy"
+    echo "getdatestampyy"
+    echo "getdatestampu"
+    echo "getdatestampyu"
+    echo "gettimestamp"
+    echo "gettimestampz"
+    echo "gettimestampu"
+    echo "gettimeshortstampu"
+    echo "getepochstamp"
 }
 function init_functions() {
     function add_to_path_() {
@@ -1177,18 +1169,6 @@ function load_functions_definitions() {
         toSDOUT1 "custom-upstream-update ${POWERLINE}/ develop"
     }
 
-    function custom-zsh-update() {
-        toSDOUT1 "custom-update ${CUSTOM_ZSH}/"
-    }
-
-    function node-repl-update() {
-        toSDOUT1 "custom-update ${NODE_REP}/"
-    }
-
-    function python-repl-update() {
-        toSDOUT1 "custom-update ${PYTHON_REPl}/"
-    }
-
     # function useful_functions() {
 
     # Functions ==============================================
@@ -1357,52 +1337,52 @@ function load_functions_definitions() {
 
 }
 function Load_Intearctive_Login_State() {
-  export Login_Start_Did_Execute=false
-  export Non_Login_Start_Did_Execute=false
-  export Interactive_Start_Did_Execute=false
-  export Non_Interactive_Start_Did_Execute=false
-  function Login_Start() {
-    if [[ Login_Start_Did_Execute != true ]]; then
-      export Login_Start_Did_Execute=true
-      if [[ -o login ]]; then
-      # echo "I'm a login shell"
-      fi
-    fi
+    export Login_Start_Did_Execute=false
+    export Non_Login_Start_Did_Execute=false
+    export Interactive_Start_Did_Execute=false
+    export Non_Interactive_Start_Did_Execute=false
+    function Login_Start() {
+        if [[ Login_Start_Did_Execute != true ]]; then
+            export Login_Start_Did_Execute=true
+            if [[ -o login ]]; then
+            # echo "I'm a login shell"
+            fi
+        fi
 
-  }
+    }
 
-  function Non_Login_Start() {
-    if [[ Non_Login_Start_Did_Execute != true ]]; then
-      export Non_Login_Start_Did_Execute=true
-      if [[ -o login ]]; then; else #+ !! ELSE !!
-        # echo "I'm a non login shell"
-      fi
-    fi
-  }
+    function Non_Login_Start() {
+        if [[ Non_Login_Start_Did_Execute != true ]]; then
+            export Non_Login_Start_Did_Execute=true
+            if [[ -o login ]]; then; else #+ !! ELSE !!
+                # echo "I'm a non login shell"
+            fi
+        fi
+    }
 
-  function Interactive_Start() {
-    if [[ Interactive_Start_Did_Execute != true ]]; then
-      export Interactive_Start_Did_Execute=true
-      if [[ -o interactive ]]; then
-      # echo "I'm interactive shell"
-      fi
-    fi
+    function Interactive_Start() {
+        if [[ Interactive_Start_Did_Execute != true ]]; then
+            export Interactive_Start_Did_Execute=true
+            if [[ -o interactive ]]; then
+            # echo "I'm interactive shell"
+            fi
+        fi
 
-  }
+    }
 
-  function Non_Interactive_Start() {
-    if [[ Non_Interactive_Start_Did_Execute != true ]]; then
-      export Non_Interactive_Start_Did_Execute=true
-      if [[ -o interactive ]]; then; else #+ !! ELSE !!
-        # echo "I'm non interactive shell"
-        export VERBOSA=0
-      fi
-    fi
-  }
-  Login_Start
-  Non_Login_Start
-  Interactive_Start
-  Non_Interactive_Start
+    function Non_Interactive_Start() {
+        if [[ Non_Interactive_Start_Did_Execute != true ]]; then
+            export Non_Interactive_Start_Did_Execute=true
+            if [[ -o interactive ]]; then; else #+ !! ELSE !!
+                # echo "I'm non interactive shell"
+                export VERBOSA=0
+            fi
+        fi
+    }
+    Login_Start
+    Non_Login_Start
+    Interactive_Start
+    Non_Interactive_Start
 }
 # # function Load_Intearctive_Login_State() {
 #   export Login_Start_Did_Execute=false
@@ -1497,106 +1477,4 @@ function personal_projects_paths() {
         alias path_lxio_prj="cd ${PATH_LXIO_PRJ}"
 
     fi
-}
-
-function init_paths() {
-
-    # source /home/luxcium/ahmyzsh/custom-zsh/sources/functions/getportablecode.sh
-    # "${HOME}"
-    # "${AHMYZSH}"
-    # "${CUSTOM_ZSH}"
-    # "${ZSH_SOURCES}"
-    # "${ZSH_FUNCTIONS_FOLDER}"
-    #
-
-    if [ "$PARENT_ENV_LOADED" != 'true' ]; then
-
-        export CUSTOM_ZSH="${AHMYZSH}/custom-zsh"
-        {
-            export ZSH_BIN="${CUSTOM_ZSH}/bin"
-            {
-                export ZSH_BIN_ETC="${ZSH_BIN}/etc"
-            }
-
-            export ZSH_SOURCES="${CUSTOM_ZSH}/sources"
-            {
-                export ZSH_COMPLETION="${ZSH_SOURCES}/completion"
-                export ZSH_COMPUTE="${ZSH_SOURCES}/compute"
-                export ZSH_FLAGS="${ZSH_SOURCES}/flags"
-                export ZSH_FUNCTIONS_FOLDER="${ZSH_SOURCES}/functions"
-                export ZSH_LAYOUTS="${ZSH_SOURCES}/layouts"
-                export ZSH_LUXCIUM="${ZSH_SOURCES}"
-                {
-                    export PATH_ZSH_FUNCTIONS="${ZSH_LUXCIUM}"
-                    export ZSH_FLAGS_VALUES="${ZSH_LUXCIUM}/flags/values"
-                }
-
-            }
-        }
-        export NODE_REPL="${AHMYZSH}/node-repl"
-        export OHMYZSH="${AHMYZSH}/ohmyzsh"
-        {
-            export ZSH="${OHMYZSH}"
-        }
-        export POWERLEVEL10K="${AHMYZSH}/powerlevel10k"
-        export PYTHON_REPL="${AHMYZSH}/python-repl"
-        export POWERLINE="${AHMYZSH}/powerline"
-        {
-            export POWERLINE_BINDINGS="${POWERLINE}/powerline/bindings"
-            export PWRLN_BINDINGS="${POWERLINE}/powerline/bindings"
-        }
-
-        export AHMYZSH_CORE="${AHMYZSH}/core"
-        {
-            export CORE_BIN="${AHMYZSH_CORE}/bin"
-        }
-
-        export AHMYZSH_PLUGINS="${AHMYZSH}/plugins"
-        {
-            export PLUGINS_BIN="${AHMYZSH_PLUGINS}/bin"
-        }
-        export AHMYZSH_BIN="${AHMYZSH}/bin"
-    fi
-
-}
-#!/usr/bin/env sh
-
-function source_() {
-  if [ -z $1 ]; then
-    [ "${VERBOSA}" -gt 1 ] && echo "Error sourcing ' $1 ' no file provided"
-    return 1
-  else
-    TIMER_THEN=$(/usr/bin/date +%s%N)
-    if [[ -f $1 ]]; then
-      if [[ -r $1 ]]; then
-        source "${1}"
-        [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_SOURCING} $(timer_now) ${1} ${END_SOURCING}"
-        return 0
-      else
-        [ "${VERBOSA}" -gt 3 ] && echo "Error sourcing '$1' file provided is not redable"
-        return 3
-      fi
-    else
-      [ "${VERBOSA}" -gt 2 ] && echo "Error sourcing '$1' file provided does not exist"
-      return 2
-    fi
-  fi
-}
-
-function call_() {
-  if [ -z $1 ]; then
-    [ "${VERBOSA}" -gt 1 ] && echo "Error sourcing ' $1 ' no function call provided"
-    return 1
-  else
-    TIMER_THEN=$(/usr/bin/date +%s%N)
-    eval ${1}
-    returnval=$?
-    [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_FUNCTION} $(timer_now) '${1}()' ${END_FUNCTION}"
-    return "${returnval}"
-  fi
-}
-
-function load_() {
-  source_ "${1}" &&
-    call_ ${2}
 }
