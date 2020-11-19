@@ -24,24 +24,16 @@
 
 ## 'STABLE'
 (
-  S1="${ZSH_FUNCTIONS_FOLDER}/getvscodeportable.zsh"
-  if [ -f "${S1}" ]; then
-    . "${S1}"
-    getvscodeportable 'STABLE' "${1}"
-  else
-    echo "Error loading '${S1}'... File or path can not be resolved"
-  fi
+
+  getvscodeportable 'STABLE' "${1}"
+
 )
 
 ## 'INSIDERS'
 (
-  S1="${ZSH_FUNCTIONS_FOLDER}/getvscodeportable.zsh"
-  if [ -f "${S1}" ]; then
-    . "${S1}"
-    getvscodeportable 'INSIDERS' "${1}"
-  else
-    echo "Error loading '${S1}'... File or path can not be resolved"
-  fi
+
+  getvscodeportable 'INSIDERS' "${1}"
+
 )
 
 # #--//-------------------------------------------------------------------------

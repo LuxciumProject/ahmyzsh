@@ -4,20 +4,9 @@
 #. -----------------------------------------------------------------------------~
 #. AHMYZSH first entry point
 
-# export TIMER_ALL_THEN=$(/usr/bin/date +%s%N)
-
-# export AHMYZSH=${AHMYZSH:="${HOME}/ahmyzsh"}
-# export AHMYZSH_CACHE=${AHMYZSH_CACHE:="${HOME}/.cache/ahmyzsh"}
-# export CACHED_PATH=${CACHED_PATH:="${AHMYZSH_CACHE}/path.env"}
-# export MAIN_BOOTSTRAP=${MAIN_BOOTSTRAP:="${AHMYZSH}/MAIN.sh"}
-
-# export AHMYZSH="${HOME}/ahmyzsh"
-# export AHMYZSH_CACHE="${HOME}/.cache/ahmyzsh"
-# export CACHED_PATH="${AHMYZSH_CACHE}/path.env"
-
 function AHMYZSH_TOP_CONFIG_OPTIONS() {
 
-    : ${VERBOSA:=100}
+    : ${VERBOSA:=00}
 
     export ZSH_CUSTOM="${AHMYZSH}" #/custom-zsh"
     export AHMYZSH_CORE="${AHMYZSH}/core"
@@ -69,7 +58,9 @@ function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N  -  B O O T S T R A P - +#
         . "${S1}"
 
         load_zshenv
-        load_zshrc
+        if [[ -o interactive ]]; then
+            load_zshrc
+        fi
     else
         if [[ -o interactive ]]; then
 

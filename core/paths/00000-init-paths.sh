@@ -10,7 +10,6 @@ export CUSTOM_ZSH="${AHMYZSH}/custom-zsh"
     export ZSH_COMPLETION="${ZSH_SOURCES}/completion"
     export ZSH_COMPUTE="${ZSH_SOURCES}/compute"
     export ZSH_FLAGS="${ZSH_SOURCES}/flags"
-    export ZSH_FUNCTIONS_FOLDER="${ZSH_SOURCES}/functions"
     export ZSH_LAYOUTS="${ZSH_SOURCES}/layouts"
     export ZSH_LUXCIUM="${ZSH_SOURCES}"
     {
