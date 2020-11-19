@@ -18,12 +18,17 @@ if [ -f "${CACHED_PATH}" ]; then
     . "${CACHED_PATH}"
 
     TIMER_NOW=$(/usr/bin/date +%s%N)
-    TIMER_VALUE="$(((${TIMER_NOW} - ${TIMER_ALL_THEN}) / 1000000))"
+    TIMER_VALUE="$(((${TIMER_NOW} - ${TIMER_ALL_THEN}) / 1000))"
 
-    export TIME_TO_PATH="${TIMER_VALUE}"
+    export TIME_TO_PATH=("$(
+        HEADPART=${TIMER_VALUE:0:-3}
+        echo ${HEADPART:-0}
+    ).${TIMER_VALUE:${#TIMER_VALUE}-3}") 2>/dev/null
 
     if [[ -o interactive ]]; then
-        echo "   ${TIME_TO_PATH}ms  to  'PATH'"
+        echo ""
+        echo "   ${TIME_TO_PATH} ms  to  'PATH'"
+        echo ""
     fi
 else
     if [[ -o interactive ]]; then
