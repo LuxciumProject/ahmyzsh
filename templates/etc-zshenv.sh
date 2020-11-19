@@ -4,7 +4,9 @@
 #. -----------------------------------------------------------------------------~
 #. ZSH verry first entry point
 
-export TIMER_ALL_THEN=${TIMER_ALL_THEN:="$(/usr/bin/env date +%s%N)"}
+export TIMER_ALL_THEN=$(/usr/bin/date +%s%N)
+
+# export TIMER_ALL_THEN=${TIMER_ALL_THEN:="$(/usr/bin/date +%s%N)"}
 export AHMYZSH=${AHMYZSH:="${HOME}/ahmyzsh"}
 export AHMYZSH_CACHE=${AHMYZSH_CACHE:="${HOME}/.cache/ahmyzsh"}
 export CACHED_PATH=${CACHED_PATH:="${AHMYZSH_CACHE}/path.env"}
@@ -16,8 +18,8 @@ export MAIN_BOOTSTRAP=${MAIN_BOOTSTRAP:="${AHMYZSH}/MAIN.sh"}
 if [ -f "${CACHED_PATH}" ]; then
     . "${CACHED_PATH}"
 
-    TIMER_NOW=$(/usr/bin/env date +%s%N)
-    TIMER_VALUE=$(((${TIMER_NOW} - ${TIMER_ALL_THEN}) / 1000000))
+    TIMER_NOW=$(/usr/bin/date +%s%N)
+    TIMER_VALUE="$(((${TIMER_NOW} - ${TIMER_ALL_THEN}) / 1000000))"
 
     export TIME_TO_PATH="${TIMER_VALUE}"
 
@@ -35,6 +37,7 @@ fi
 
 if [ -f "${MAIN_BOOTSTRAP}" ]; then
     . "${MAIN_BOOTSTRAP}"
+
     SCIENTIA_ES_LUX_PRINCIPIUM
 
 else
