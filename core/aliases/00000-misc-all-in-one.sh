@@ -950,26 +950,26 @@ function load_functions_definitions() {
             builtin cd $AHMYZSH
             git_add_comit_push "${1}" &
         ) &>/dev/null
-        (
-            builtin cd $CUSTOM_TMUX
-            git_add_comit_push "${1}" &
-        ) &>/dev/null
+        # (
+        #     builtin cd $CUSTOM_TMUX
+        #     git_add_comit_push "${1}" &
+        # ) &>/dev/null
         (
             builtin cd $CUSTOM_ZSH
             git_add_comit_push "${1}" &
         ) &>/dev/null
-        (
-            builtin cd $NODE_REPL
-            git_add_comit_push "${1}" &
-        ) &>/dev/null
+        # (
+        #     builtin cd $NODE_REPL
+        #     git_add_comit_push "${1}" &
+        # ) &>/dev/null
         (
             builtin cd $POWERLINE
             git_add_comit_push "${1}" &
         ) &>/dev/null
-        (
-            builtin cd $PYTHON_REPL
-            git_add_comit_push "${1}" &
-        ) &>/dev/null
+        # (
+        #     builtin cd $PYTHON_REPL
+        #     git_add_comit_push "${1}" &
+        # ) &>/dev/null
         # AHMYZSH="${HOME}/ahmyzsh"
         # CUSTOM_ZSH="${AHMYZSH}/custom-zsh"
         # NODE_REPL="${AHMYZSH}/node-repl"
@@ -1296,7 +1296,7 @@ function load_functions_definitions() {
         source_all_zsh
         load_fab_four
 
-        source_TMUX
+        # source_TMUX
 
         source_path_now
         load_oh_my_zsh_now
