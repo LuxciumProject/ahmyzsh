@@ -6,7 +6,7 @@
 
 function AHMYZSH_TOP_CONFIG_OPTIONS() {
 
-    : ${VERBOSA:=9}
+    : ${VERBOSA:=999}
 
     export ZSH_CUSTOM="${AHMYZSH}" #/custom-zsh"
     export AHMYZSH_CORE="${AHMYZSH}/core"
@@ -18,11 +18,19 @@ function AHMYZSH_TOP_CONFIG_OPTIONS() {
     fpath=(${AHMYZSH_CORE}/functions ${fpath})
 
     function load_all_config_and_settings_files() {
-        Load_all_files_d "${AHMYZSH_CORE}/aliases"
-        Load_all_files_d "${AHMYZSH_CORE}/functions"
-        Load_all_files_d "${AHMYZSH_CORE}/layouts"
-        Load_all_files_d "${AHMYZSH_CORE}/paths"
-        Load_all_files_d "${AHMYZSH_CORE}/env"
+        if [ "${VERBOSA}" -gt 10 ]; then
+            Load_all_files_d_v "${AHMYZSH_CORE}/aliases"
+            Load_all_files_d_v "${AHMYZSH_CORE}/functions"
+            Load_all_files_d_v "${AHMYZSH_CORE}/layouts"
+            Load_all_files_d_v "${AHMYZSH_CORE}/paths"
+            Load_all_files_d_v "${AHMYZSH_CORE}/env"
+        else
+            Load_all_files_d "${AHMYZSH_CORE}/aliases"
+            Load_all_files_d "${AHMYZSH_CORE}/functions"
+            Load_all_files_d "${AHMYZSH_CORE}/layouts"
+            Load_all_files_d "${AHMYZSH_CORE}/paths"
+            Load_all_files_d "${AHMYZSH_CORE}/env"
+        fi
     }
     load_all_config_and_settings_files
     alias reload_alias_and_conf="load_all_config_and_settings_files"
@@ -30,15 +38,26 @@ function AHMYZSH_TOP_CONFIG_OPTIONS() {
 }
 
 function Load_all_files_d() {
-    local BEGIN_SOURCING="\u001b[0m\u001b[34m #   \u001b[0m\u001b[33m\uf085\u001b[0m\u001b[34m  >"
-    local END_SOURCING="\u001b[0m\u001b[31;1m\u001b[1m"
+    local SD1="$1"
+    if [ -d "${SD1}" ]; then
+        for f in "${SD1}/"*.sh; do
+            source "${f}"
+        done
+    else
+        return 2
+    fi
+}
+
+function Load_all_files_d_v() {
+    export BEGIN_SOURCING_FILES="\u001b[0m\u001b[34m #   \u001b[0m\u001b[33m\uf085\u001b[0m\u001b[34m  >"
+    export END_SOURCING_FILES="\u001b[0m\u001b[31;1m\u001b[1m"
     TIMER_THEN=$(/usr/bin/date +%s%N)
     local SD1="$1"
     if [ -d "${SD1}" ]; then
         for f in "${SD1}/"*.sh; do
             if [ -r "${f}" ]; then
                 source "${f}"
-                [ "${VERBOSA}" -gt 10 ] && echo "${BEGIN_SOURCING} $(timer_now) ${f} ${END_SOURCING}"
+                [ "${VERBOSA}" -gt 10 ] && echo "${BEGIN_SOURCING_FILES} $(timer_now) ${f} ${END_SOURCING_FILES}"
             else
                 [ "${VERBOSA}" -gt 3 ] && echo "Error sourcing '$1' file provided is not redable"
                 return 3
@@ -48,28 +67,6 @@ function Load_all_files_d() {
     else
         [ "${VERBOSA}" -gt 2 ] && echo "Error loading files in '${SD1}'... Directory or path can not be resolved"
         return 2
-    fi
-}
-
-function source_() {
-    if [ -z $1 ]; then
-        [ "${VERBOSA}" -gt 1 ] && echo "Error sourcing ' $1 ' no file provided"
-        return 1
-    else
-        TIMER_THEN=$(/usr/bin/date +%s%N)
-        if [[ -f $1 ]]; then
-            if [[ -r $1 ]]; then
-                source "${1}"
-                [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_SOURCING} $(timer_now) ${1} ${END_SOURCING}"
-                return 0
-            else
-                [ "${VERBOSA}" -gt 3 ] && echo "Error sourcing '$1' file provided is not redable"
-                return 3
-            fi
-        else
-            [ "${VERBOSA}" -gt 2 ] && echo "Error sourcing '$1' file provided does not exist"
-            return 2
-        fi
     fi
 }
 
