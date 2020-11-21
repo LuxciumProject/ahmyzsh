@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+# getstamp
+
+function getstamp_() {
+  # @1 = length (default 8)
+  # @2 = seed (default current seconds since 1970-01-01 00:00:00 UTC with nanoseconds)
+  # @3 = leading chars (default 'Z')
+  # @4 = trailing chars  (default 'x')
+  echo -n "${3-Z}$(sha512hmac <<<${@:-$(date +%D%s%N)} | cut -c -${1:-'8'} | tr \[a-z\] \[A-Z\])${4-x}"
+}
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+getstamp_ $@
+
+unset -f getstamp_
+
+exit 0

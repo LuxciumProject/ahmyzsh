@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+function pw_() {
+   [[ -x $(which lolcat) ]] && (pwd | lolcat "${@}") || ([[ -x $(which /bin/pwd) ]] && /bin/pwd)
+}
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+pw_ $@
+
+unset -f pw_
+
+exit 0

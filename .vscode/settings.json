@@ -1,7 +1,14 @@
 {
   "files.exclude": {
-    "**/*.zwc": true
+    "**/*.zwc": true,
+    "powerlevel10k": true,
+    "ohmyzsh": false,
+    "powerline": true,
+    "crt-profiles": true,
+    "node_modules": true
   },
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
   /*
         "#F15F",
         "#FB3F",
@@ -74,191 +81,243 @@
       "color": "#4AEC"
     }
   ],
-  // "better-comments.tags": [
-  //   {
-  //     // !!
-  //     "tag": "!!",
-  //     "color": "#FF2D00",
-  //     "strikethrough": false,
-  //     "backgroundColor": "transparent"
-  //   },
-  //   {
-  //     // ?
-  //     "tag": "?",
-  //     "color": "#3498DB",
-  //     "strikethrough": false,
-  //     "backgroundColor": "transparent"
-  //   },
-  //   {
-  //     // $
-  //     "tag": "$",
-  //     "color": "#f48e41",
-  //     "strikethrough": false,
-  //     "backgroundColor": "transparent"
-  //   },
-  //   {
-  //     // #
-  //     "tag": "#",
-  //     "color": "#4AE",
-  //     "strikethrough": false,
-  //     "backgroundColor": "transparent"
-  //   },
-  //   {
-  //     // IIFE
-  //     "tag": "IIFE",
-  //     "color": "#FF3D",
-  //     "strikethrough": false,
-  //     "backgroundColor": "transparent"
-  //   },
-  //   {
-  //     // private
-  //     "tag": "private",
-  //     "color": "#F15E",
-  //     "strikethrough": false,
-  //     "backgroundColor": "transparent"
-  //   },
-  //   {
-  //     // protected
-  //     "tag": "protected",
-  //     "color": "#FD3E",
-  //     "strikethrough": false,
-  //     "backgroundColor": "transparent"
-  //   },
-  //   {
-  //     // TEST_MODULE
-  //     "tag": "TEST_MODULE",
-  //     "color": "#6CBC",
-  //     "strikethrough": false,
-  //     "backgroundColor": "transparent"
-  //   },
-  //   {
-  //     // public
-  //     "tag": "public",
-  //     "color": "#FC5D", // "#FA0E",
-  //     "strikethrough": false,
-  //     "backgroundColor": "transparent"
-  //   },
-  //   {
-  //     // static
-  //     "tag": "static",
-  //     "color": "#F70E",
-  //     "strikethrough": false,
-  //     "backgroundColor": "transparent"
-  //   },
-  //   {
-  //     // get
-  //     "tag": "get",
-  //     "color": "#6BFC",
-  //     "strikethrough": false,
-  //     "backgroundColor": "transparent"
-  //   },
-  //   // {
-  //   //   // set
-  //   //   "tag": "set",
-  //   //   "color": "#85FE",
-  //   //   "strikethrough": false,
-  //   //   "backgroundColor": "transparent"
-  //   // },
-  //   {
-  //     // %
-  //     "tag": "%",
-  //     "color": "#41e2f4",
-  //     "strikethrough": false,
-  //     "backgroundColor": "transparent"
-  //   },
-  //   {
-  //     // # -c-54442
-  //     // †
-  //     "tag": "†",
-  //     "color": "#c54442",
-  //     "strikethrough": false,
-  //     "backgroundColor": "transparent"
-  //   },
-  //   {
-  //     // +
-  //     "tag": "+",
-  //     "color": "#c5f442",
-  //     "strikethrough": false,
-  //     "backgroundColor": "transparent"
-  //   },
-  //   {
-  //     // async
-  //     "tag": "async",
-  //     "color": "#FB3F",
-  //     "strikethrough": false,
-  //     "backgroundColor": "transparent"
-  //   },
-  //   {
-  //     // http
-  //     "tag": "http",
-  //     "color": "#FB3F",
-  //     "strikethrough": false,
-  //     "backgroundColor": "transparent"
-  //   },
-  //   {
-  //     // &
-  //     "tag": "&",
-  //     "color": "#a041f4",
-  //     "strikethrough": false,
-  //     "backgroundColor": "transparent"
-  //   },
-  //   // {
-  //   //   //
-  //   //   "tag": "",
-  //   //   "color": "#6d6060",
-  //   //   "strikethrough": false,
-  //   //   "backgroundColor": "transparent"
-  //   // },
-  //   {
-  //     // todo
-  //     "tag": "todo",
-  //     "color": "#FF8C00",
-  //     "strikethrough": false,
-  //     "backgroundColor": "transparent"
-  //   },
-  //   {
-  //     // *
-  //     "tag": "*",
-  //     "color": "#98C379",
-  //     "strikethrough": false,
-  //     "backgroundColor": "transparent"
-  //   },
-  //   {
-  //     // ¬
-  //     "tag": "¬",
-  //     "color": "#ffa0a0",
-  //     "strikethrough": false,
-  //     "backgroundColor": "transparent"
-  //   },
-  //   // {
-  //   //       // async function
-  //   //       "tag": "| async function |",
-  //   //       "color": "#FB3F",
-  //   //       "strikethrough": false,
-  //   //       "backgroundColor": "transparent"
-  //   // },
-  //   {
-  //     // -
-  //     "tag": "-",
-  //     "color": "#9BEA",
-  //     "strikethrough": false,
-  //     "backgroundColor": "transparent"
-  //   },
-  //   {
-  //     // ====
-  //     "tag": "====",
-  //     "color": "#9BEA",
-  //     "strikethrough": false,
-  //     "backgroundColor": "transparent"
-  //   },
-  //   {
-  //     // setopt
-  //     "tag": "setopt",
-  //     "color": "#c5f442",
-  //     "strikethrough": false,
-  //     "backgroundColor": "transparent"
-  //   },
-  // ],
+  "better-comments.tags": [
+    {
+      // #region
+      "tag": "#region",
+      "color": "#555",
+      "strikethrough": false,
+      "backgroundColor": "#FF3D"
+    },
+    {
+      // #endregion
+      "tag": "#endregion",
+      "color": "#222",
+      "strikethrough": false,
+      "backgroundColor": "#F15E"
+    },
+    {
+      // !!
+      "tag": "!!",
+      "color": "#FF2D00",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // ?
+      "tag": "?",
+      "color": "#3498DB",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // $
+      "tag": "$",
+      "color": "#f48e41",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // #
+      "tag": "#",
+      "color": "#4AE",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // IIFE
+      "tag": "IIFE",
+      "color": "#FF3D",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // private
+      "tag": "private",
+      "color": "#F15E",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // protected
+      "tag": "protected",
+      "color": "#FD3E",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // TEST_MODULE
+      "tag": "TEST_MODULE",
+      "color": "#6CBC",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // public
+      "tag": "public",
+      "color": "#FC5D", // "#FA0E",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // static
+      "tag": "static",
+      "color": "#F70E",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // get
+      "tag": "get",
+      "color": "#6BFC",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    // {
+    //   // set
+    //   "tag": "set",
+    //   "color": "#85FE",
+    //   "strikethrough": false,
+    //   "backgroundColor": "transparent"
+    // },
+    {
+      // %
+      "tag": "%",
+      "color": "#41e2f4",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // # -c-54442
+      // †
+      "tag": "†",
+      "color": "#c54442",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // # -c-54442
+      // ©
+      "tag": "©",
+      "color": "#c54442",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // +
+      "tag": "+",
+      "color": "#c5f442",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // async
+      "tag": "async",
+      "color": "#FB3F",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // http
+      "tag": "http",
+      "color": "#FB3F",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // &
+      "tag": "&",
+      "color": "#a041f4",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    // {
+    //   //
+    //   "tag": "",
+    //   "color": "#6d6060",
+    //   "strikethrough": false,
+    //   "backgroundColor": "transparent"
+    // },
+    {
+      // todo
+      "tag": "todo",
+      "color": "#FF8C00",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // *
+      "tag": "*",
+      "color": "#98C379",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // ¬
+      "tag": "¬",
+      "color": "#ffa0a0",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    // {
+    //       // async function
+    //       "tag": "| async function |",
+    //       "color": "#FB3F",
+    //       "strikethrough": false,
+    //       "backgroundColor": "transparent"
+    // },
+    {
+      // -
+      "tag": "-",
+      "color": "#9BEA",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // ====
+      "tag": "====",
+      "color": "#9BEA",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // setopt
+      "tag": "setopt",
+      "color": "#c5f442",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+  ],
   "window.title": "°Ah! MYZSH° ✨${remoteName}${appName}✨ ${rootPath} ${dirty} ${activeEditorMedium} ",
 }
 //
+// "editor.suggest.showClasses": true,
+// "editor.suggest.showColors": true,
+// "editor.suggest.showConstants": true,
+// "editor.suggest.showConstructors": true,
+// "editor.suggest.showCustomcolors": true,
+// "editor.suggest.showEnumMembers": true,
+// "editor.suggest.showEnums": true,
+// "editor.suggest.showEvents": true,
+// "editor.suggest.showFields": true,
+// "editor.suggest.showFiles": true,
+// "editor.suggest.showFolders": true,
+// "editor.suggest.showFunctions": true,
+// "editor.suggest.showIcons": true,
+// "editor.suggest.showInterfaces": true,
+// "editor.suggest.showIssues": true,
+// "editor.suggest.showKeywords": true,
+// "editor.suggest.showMethods": true,
+// "editor.suggest.showModules": true,
+// "editor.suggest.showOperators": true,
+// "editor.suggest.showProperties": true,
+// "editor.suggest.showReferences": true,
+// "editor.suggest.showSnippets": true,
+// "editor.suggest.showStructs": true,
+// "editor.suggest.showTypeParameters": true,
+// "editor.suggest.showUnits": true,
+// "editor.suggest.showUsers": true,
+// "editor.suggest.showValues": true,
+// "editor.suggest.showVariables": true,
+// "editor.suggest.showWords": true,
+// echo '\n20\n19\n18\n17\n16\n15\n14\n13\n12\n11\n10\n9\n8\n7\n6\n5\n4\n3\n2\n1\n\n'

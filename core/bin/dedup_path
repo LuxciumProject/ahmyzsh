@@ -1,0 +1,36 @@
+#!/usr/bin/env sh
+
+function dedup_path_() {
+
+    # #region Dedup ============================================================¹
+    # https://unix.stackexchange.com/a/40973/431235
+    # © 2012 by https://unix.stackexchange.com/users/885
+    # © CC BY-SA 4.0 ¹ (User: Gilles 'SO- stop being evil' ― Jun 17 '12 at 2:15)
+
+    ## And here's a shell snippet that removes duplicates from $PATH.
+    ## It goes through the entries one by one,
+    ## and copies those that haven't been seen yet.
+
+    if [ -n "$PATH" ]; then
+        old_PATH=$PATH:
+        PATH=
+        while [ -n "$old_PATH" ]; do
+            x=${old_PATH%%:*} # the first remaining entry
+            case $PATH: in
+            *:"$x":*) ;;        # already there
+            *) PATH=$PATH:$x ;; # not there yet
+            esac
+            old_PATH=${old_PATH#*:}
+        done
+        PATH=${PATH#:}
+        unset old_PATH x
+    fi
+    # #endregion Dedup =========================================================¹
+}
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+dedup_path_ $@
+
+unset -f dedup_path_
+
+exit

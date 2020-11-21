@@ -1,105 +1,146 @@
-function __AHMYZSH__BOOT__LOADER__() {
-  export AHMYZSH="${HOME}/ahmyzsh"
-  export CACHED_PATH="${HOME}/.cache/path.env"
-  export AH_LIBRARIES="${AHMYZSH}/libraries"
+#. -----------------------------------------------------------------------------~
+#. Scientia es lux principium - SEE THE BOTTOM OF THIS FILES FOR MORE INFO
+#. MIT LICENSE ― PROVIDED "AS IS" ― *NOT* fit for any particular use or purpose!
+#. -----------------------------------------------------------------------------~
+#. AHMYZSH first entry point
 
-  # local S1="${AH_LIBRARIES}/load_intearctive_login_state.sh"
-  # if [ -f "${S1}" ]; then
-  #   . ${S1}
-  #   Load_Intearctive_Login_State
-  # else
-  #   echo "Error loading '${S1}'... File or path can not be resolved"
-  # fi
+function AHMYZSH_TOP_CONFIG_OPTIONS() {
 
-  local S1="${AHMYZSH}/MAIN_configuration.sh"
-  if [ -f "${S1}" ]; then
-    . ${S1}
-    firtstage
-  else
-    echo "Error loading '${S1}'... File or path can not be resolved"
-  fi
+    : ${VERBOSA:=0}
 
-  local S1="${CACHED_PATH}"
-  if [ -f "${S1}" ]; then
-    . ${S1}
-    # if [[ -o interactive ]]; then
-    #   # echo "I'm interactive shell"
-    #   # echo "${BEGIN_HOURGLASS_END_1} load_zshenv in $(timer_all) ms !${END_FUNCTION}"
-    #   # echo "path loaded"
-    # fi
+    export ZSH_CUSTOM="${AHMYZSH}" #/custom-zsh"
+    export AHMYZSH_CORE="${AHMYZSH}/core"
+    export AH_LIBRARIES="${AHMYZSH}/libraries"
 
-  else
-    echo "Error loading '${S1}'... File or path can not be resolved"
-  fi
+    export PAGER="/usr/bin/most -s"
+    # export PAGER="/usr/bin/less"
 
-  local S1="${AH_LIBRARIES}/paths.sh"
-  if [ -f "${S1}" ]; then
-    . "${S1}"
-    init_paths
-  else
-    echo "Error loading '${S1}'... File or path can not be resolved"
-  fi
+    fpath=(${AHMYZSH_CORE}/functions ${fpath})
 
-  local S1="${AH_LIBRARIES}/base-layouts.sh"
-  if [ -f "${S1}" ]; then
-    . "${S1}"
-    base_layouts_colors
-    base_layouts_colors_olds
-    base_layouts_cursors_moves
-    base_layouts_icons
-    base_layouts_icons_groups
-    base_layouts
-    load_layouts
-  else
-    echo "Error loading '${S1}'... File or path can not be resolved"
-  fi
+    function load_all_config_and_settings_files() {
 
-  local S1="${AH_LIBRARIES}/functions.sh"
-  if [ -f "${S1}" ]; then
-    . "${S1}"
-    init_functions
-  else
-    echo "Error loading '${S1}'... File or path can not be resolved"
-  fi
+        if [ "${VERBOSA}" -gt 10 ]; then
+            Load_all_files_d_v "${AHMYZSH_CORE}/aliases"
+            # Load_all_files_d_v "${AHMYZSH_CORE}/functions"
+            Load_all_files_d_v "${AHMYZSH_CORE}/layouts"
+            Load_all_files_d_v "${AHMYZSH_CORE}/paths"
+            # Load_all_files_d_v "${AHMYZSH_CORE}/env"
+        else
+            Load_all_files_d "${AHMYZSH_CORE}/aliases"
+            # Load_all_files_d "${AHMYZSH_CORE}/functions"
+            Load_all_files_d "${AHMYZSH_CORE}/layouts"
+            Load_all_files_d "${AHMYZSH_CORE}/paths"
+            # Load_all_files_d "${AHMYZSH_CORE}/env"
+        fi
 
-  # local S1="${CUSTOM_TMUX}/MAIN.zsh"
-  # if [ -f "${S1}" ]; then
-  #   . "${S1}"
-  #   source_all_tmux
-  # else
-  #   echo "Error loading '${S1}'... File or path can not be resolved"
-  # fi
+        # Created by newuser for 5.8
 
-  local S1="${CUSTOM_ZSH}/MAIN.zsh"
-  if [ -f "${S1}" ]; then
-    . "${S1}"
-    source_all_zsh
-  else
-    echo "Error loading '${S1}'... File or path can not be resolved"
-  fi
+    }
+
+    load_all_config_and_settings_files
+    alias reload_alias_and_conf="load_all_config_and_settings_files"
 
 }
 
-# if [ "$0" = "zsh" -o "$0" = "-zsh" ] ; then
-if [ -n "$(echo "${0}" | grep 'zsh')" ]; then
-  if [ -z "${MAIN_INIT}" ]; then
-    MAIN_INIT="start"
+function Load_all_files_d() {
+    local SD1="$1"
+    if [ -d "${SD1}" ]; then
+        for f in "${SD1}/"*.sh; do
+            source "${f}"
+        done
+    else
+        return 2
+    fi
+}
 
-    # export AHMYZSH="${HOME}/ahmyzsh"
-    # . ${AHMYZSH}/libraries/functions.sh
-    # . ${AHMYZSH}/libraries/paths.sh
-    # . ${AHMYZSH}/libraries/initial_load.zsh
-    __AHMYZSH__BOOT__LOADER__
-    load_zshenv
-    load_zshrc
-  fi
-fi
+function Load_all_files_d_v() {
+    export BEGIN_SOURCING_FILES="\u001b[0m\u001b[34m #   \u001b[0m\u001b[33m\uf085\u001b[0m\u001b[34m  >"
+    export END_SOURCING_FILES="\u001b[0m\u001b[31;1m\u001b[1m"
+    TIMER_THEN=$(/usr/bin/date +%s%N)
+    local SD1="$1"
+    if [ -d "${SD1}" ]; then
+        for f in "${SD1}/"*.sh; do
+            if [ -r "${f}" ]; then
+                source "${f}"
+                [ "${VERBOSA}" -gt 10 ] && echo "${BEGIN_SOURCING_FILES} $(timer_now) ${f} ${END_SOURCING_FILES}"
+            else
+                [ "${VERBOSA}" -gt 3 ] && echo "Error sourcing '$1' file provided is not redable"
+                return 3
+            fi
+            TIMER_THEN=$(/usr/bin/date +%s%N)
+        done
+    else
+        [ "${VERBOSA}" -gt 2 ] && echo "Error loading files in '${SD1}'... Directory or path can not be resolved"
+        return 2
+    fi
+}
 
-# if [ "$0" = "bash" -o "$0" = "-bash" ] ; then
-if [ -n "$(echo "${0}" | grep 'bash')" ]; then
-  if [ -z "${MAIN_INIT}" ]; then
-    MAIN_INIT="start"
-    echo pwd=$(pwd)
-    echo 'using bash'
-  fi
-fi
+IS_ZSH_="$(ps -o comm= -p $$ | grep 'zsh')"
+IS_BASH_="$(ps -o comm= -p $$ | grep 'bash')"
+
+function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N  -  B O O T S T R A P - +#
+
+    AHMYZSH_TOP_CONFIG_OPTIONS
+
+    if [[ -n "${IS_ZSH_}" ]]; then
+        if [ -z "${MAIN_INIT}" ]; then
+            MAIN_INIT="start"
+        fi
+    fi
+
+    local S1="${CUSTOM_ZSH}/MAIN.zsh"
+    if [ -f "${S1}" ]; then
+        . "${S1}"
+
+        load_zshenv
+        if [[ -o interactive ]]; then
+            load_zshrc
+        fi
+    else
+        if [[ -o interactive ]]; then
+
+            echo "Error loading '${S1}'... File or path can not be resolved canot source_all_zsh"
+        fi
+    fi
+
+    if [ -n "${IS_BASH_}" ]; then
+        if [ -z "${MAIN_INIT}" ]; then
+            MAIN_INIT="start"
+            echo pwd=$(pwd)
+            echo 'using bash'
+        fi
+    fi
+}
+
+# -------------------------- !!! SECURITY WARNING !!! --------------------------≈
+# AUDIT ANY FILES YOU IMPORT FROM THIS PROJECT PRIOR: DOWNLOAD / INSTALL / USE
+# Please asses security risks by yourself befor to use the product and report
+# any security issues or vulnerability on the issues page of the main repo site:
+# [AHMYZSH project issues](https://github.com/Luxcium/ahmyzsh/issues)
+# ==============================================================================≈
+# MIT LICENSE ― PROVIDED "AS IS" ― *NOT* fit for any particular use or purpose!
+#
+# Copyright © 2019-2020 Benjamin Vincent Kasapoglu (Luxcium)
+# and contributors (https://github.com/Luxcium/ahmyzsh/contributors)
+#
+# Permission is hereby granted, free of charge, to all person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ALL KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ALL CLAIM, DAMAGES OR
+# OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+# ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+# DEALINGS IN THE SOFTWARE.
+# ==============================================================================≈
+# Scientia es lux principium is a Tread Mark of Benjamin Vincent Kasapoglu
+# (c) et tm - Benjamin Vincent Kasapoglu (Luxcium) 2017-2020
+# ------------------------------------------------------------------------------~

@@ -1,8 +1,0 @@
-#!/bin/sh
-
-(
-  sudo dnf clean all
-  sudo dnf reinstall code-insiders code --downloadonly -y --refresh
-  sudo dnf upgrade --downloadonly -y --refresh
-  # sudo dnf group upgrade -y
-)

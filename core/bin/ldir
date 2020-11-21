@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+
+function ldir_() {
+  (
+    echo ''
+    builtin cd "${@:-$(pwd)}"
+    [[ -x $(which lolcat) ]] && (pwd | lolcat "${@}") || ([[ -x $(which /bin/pwd) ]] && /bin/pwd)
+    [[ -x $(which colorls) ]] && (colorls -lA --sd -d --gs) || ([[ -x $(which /bin/ls) ]] && /bin/ls --color=auto -hal)
+    [[ -x $(which lolcat) ]] && (pwd | lolcat "${@}") || ([[ -x $(which /bin/pwd) ]] && /bin/pwd)
+    echo ''
+  )
+}
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+ldir_ $@
+
+unset ldir_
+
+exit 0
