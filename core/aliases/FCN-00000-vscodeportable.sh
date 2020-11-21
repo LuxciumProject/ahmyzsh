@@ -21,7 +21,7 @@
 #$ Scientia es lux principium✨ ™
 
 # /home/luxcium/ahmyzsh/custom-zsh/sources/functions/getvscodeportable.zsh
-function getvscodeportable() {
+function vscodeportable() {
   (
     {
 
