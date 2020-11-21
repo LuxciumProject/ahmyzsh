@@ -6,7 +6,7 @@
 
 function AHMYZSH_TOP_CONFIG_OPTIONS() {
 
-    : ${VERBOSA:=999}
+    : ${VERBOSA:=0}
 
     export ZSH_CUSTOM="${AHMYZSH}" #/custom-zsh"
     export AHMYZSH_CORE="${AHMYZSH}/core"
@@ -18,20 +18,25 @@ function AHMYZSH_TOP_CONFIG_OPTIONS() {
     fpath=(${AHMYZSH_CORE}/functions ${fpath})
 
     function load_all_config_and_settings_files() {
+
         if [ "${VERBOSA}" -gt 10 ]; then
             Load_all_files_d_v "${AHMYZSH_CORE}/aliases"
-            Load_all_files_d_v "${AHMYZSH_CORE}/functions"
+            # Load_all_files_d_v "${AHMYZSH_CORE}/functions"
             Load_all_files_d_v "${AHMYZSH_CORE}/layouts"
             Load_all_files_d_v "${AHMYZSH_CORE}/paths"
-            Load_all_files_d_v "${AHMYZSH_CORE}/env"
+            # Load_all_files_d_v "${AHMYZSH_CORE}/env"
         else
             Load_all_files_d "${AHMYZSH_CORE}/aliases"
-            Load_all_files_d "${AHMYZSH_CORE}/functions"
+            # Load_all_files_d "${AHMYZSH_CORE}/functions"
             Load_all_files_d "${AHMYZSH_CORE}/layouts"
             Load_all_files_d "${AHMYZSH_CORE}/paths"
-            Load_all_files_d "${AHMYZSH_CORE}/env"
+            # Load_all_files_d "${AHMYZSH_CORE}/env"
         fi
+
+        # Created by newuser for 5.8
+
     }
+
     load_all_config_and_settings_files
     alias reload_alias_and_conf="load_all_config_and_settings_files"
 
