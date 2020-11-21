@@ -29,35 +29,3 @@
 #  i.e.:
 # export AHMYZSH="${HOME}/ahmyzsh"
 # source "${AHMYZSH}/MAIN_init.sh"
-
-# /etc/zsh/zshenv: system-wide .zshenv file for zsh(1).
-#
-# This file is sourced on all invocations of the shell.
-# If the -f flag is present or if the NO_RCS option is
-# set within this file, all other initialization files
-# are skipped.
-#
-# This file should contain commands to set the command
-# search path, plus other important environment variables.
-# This file should not contain commands that produce
-# output or assume the shell is attached to a tty.
-#
-# Global Order: zshenv, zprofile, zshrc, zlogin
-
-# ¬ !! /etc/zshenv
-# export TIMER_ALL_THEN2=$(/usr/local/bin/gdate +%s%N) 2>/dev/null
-# echo $TIMER_ALL_THEN2
-
-export TIMER_ALL_THEN=$(/bin/date +%s%N) 2>/dev/null
-export AHMYZSH="${HOME}/ahmyzsh"
-S1="${AHMYZSH}/MAIN.sh"
-if [ -f "${S1}" ]; then
-  . ${S1}
-  unset -v S1
-  source "${AHMYZSH}/MAIN.sh"
-else
-  if [[ -o interactive ]]; then
-    echo "Error loading '${S1}'... AHMYZSH initialisation scripts can not be resolved"
-  fi
-  unset -v S1
-fi
