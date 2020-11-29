@@ -25,11 +25,10 @@ if [ -f "${CACHED_PATH}" ]; then
         echo ${HEADPART:-0}
     ).${TIMER_VALUE:${#TIMER_VALUE}-3}") 2>/dev/null
 
-    if [[ -o interactive ]]; then
-        echo ""
-        echo "   ${TIME_TO_PATH} ms  to  'PATH'"
-        echo ""
-    fi
+    # if [[ -o interactive ]]; then
+    export TIME_TO_PATH_STR"${TIME_TO_PATH} ms  to  'PATH'"
+
+    # fi
 else
     if [[ -o interactive ]]; then
         echo "Error: Unable to preload 'PATH'"

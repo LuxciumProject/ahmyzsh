@@ -7,9 +7,11 @@ function precmd() {
   if [ "$ENV_LOADED" != 'true' ]; then
     export PARENT_ENV_LOADED='true'
     ENV_LOADED='true'
+
     # right_prompt_off
     # hardcls
-    echo "  ${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
+    source_ "${CUSTOM_ZSH}/themes/ahmyzhs.sh"
+    echo "${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
     call_ prompt_versions
     echo -e "\a"
   fi
