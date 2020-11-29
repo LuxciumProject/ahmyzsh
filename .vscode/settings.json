@@ -1,9 +1,9 @@
 {
   "files.exclude": {
     "**/*.zwc": true,
-    // "powerlevel10k": true,
-    // "ohmyzsh": true,
-    // "powerline": true,
+    "powerlevel10k": true,
+    "ohmyzsh": true,
+    "powerline": true,
     "crt-profiles": true,
     "node_modules": true
   },
