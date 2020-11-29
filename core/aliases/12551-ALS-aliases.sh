@@ -1,6 +1,7 @@
 alias latestohmyzsh="( builtin cd ${AHMYZSH}/ohmyzsh &&  git pull origin) "
 alias latestpowerlevel10k="( builtin cd ${AHMYZSH}/powerlevel10k &&  git pull origin) "
 alias latestpowerline="( builtin cd ${AHMYZSH}/powerline &&  git pull origin) "
+alias upgradesubmodules="latestohmyzsh; latestpowerlevel10k; latestpowerline"
 
 LXI_SESSION='luxcium-io'
 clearall='\u001b[2J\u001b[0;0H'
