@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+function latesttypescript_() {
+  npm install -g typescript
+  npm install -g ts-node
+
+  yarn global add \
+    ts-node@latest \
+    typescript@latest
+}
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+latesttypescript_ "${@}"
+
+__EXIT_STATUS="${?}"
+
+unset -f latesttypescript_
+
+exit $__EXIT_STATUS

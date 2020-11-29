@@ -31,7 +31,7 @@ function dedup_pathvar_() {
   ##  colon-separated lists of paths (e.g. PYTHONPATH).
 
   # #endregion Deduplicate path variables ======================================¹
-  _dedup_pathvar $@
+  _dedup_pathvar "${@}"
 
   unset -f _dedup_pathvar
   unset -f _get_var
@@ -40,7 +40,7 @@ function dedup_pathvar_() {
 }
 
 ## Extra code make it easy to copy paste only the function out to use elsewhere
-dedup_pathvar_ $@
+dedup_pathvar_ "${@}"
 
 unset -f dedup_pathvar_
 

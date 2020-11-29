@@ -12,7 +12,7 @@ function ldir_() {
 }
 
 ## Extra code make it easy to copy paste only the function out to use elsewhere
-ldir_ $@
+ldir_ "${@}"
 
 unset ldir_
 

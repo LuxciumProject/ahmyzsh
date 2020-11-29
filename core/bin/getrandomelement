@@ -1,0 +1,25 @@
+#!/bin/env sh
+
+# "${AHMYZSH}/core/bin/getrandomelement"
+
+#. ----------------------------------------------------------------------------- ~
+#. Scientia es lux principium -tm-
+#. Copyright © 2019-2020 Benjamin Vincent Kasapoglu (Luxcium)
+#. MIT LICENSE ― PROVIDED "AS IS" ― *NOT* fit for any particular use or purpose!
+#. ----------------------------------------------------------------------------- ~
+
+function getrandomelement_() {
+  [ $(eval $1 | wc -w) -gt 0 ] || return 10
+  WHICH_ONE_="$(($RANDOM % $(eval $1 | wc -w) + 1))"
+  echo -n "$(eval $1 | head -n $WHICH_ONE_ | tail -n 1)"
+}
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+
+getrandomelement_ "$1"
+
+EXIT_="${?}"
+
+unset -f getrandomelement_
+
+exit $EXIT_
