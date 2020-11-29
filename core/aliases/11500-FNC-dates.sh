@@ -2,12 +2,20 @@ function getstamp8() {
   echo -n "Z$(sha224hmac <<<${1:-$(date +%D%s%N)} | cut -c -8 | tr \[a-z\] \[A-Z\])x"
 }
 
-function getstamp4() {
-  echo -n $(sha224hmac <<<$(date +%D%s%N) | cut -c -4 | tr \[a-z\] \[A-Z\])
-}
-
 function getstamp6() {
   echo -n \#$(sha224hmac <<<$(date +%D%s%N) | cut -c -6 | tr \[a-z\] \[A-Z\])
+}
+
+function getstamp4() {
+  echo -n "$(sha224hmac <<<$(date +%D%s%N) | cut -c -4 | tr \[a-z\] \[A-Z\])"
+}
+
+function getstamp2() {
+  echo -n "$(sha224hmac <<<$(date +%D%s%N) | cut -c -2 | tr \[a-z\] \[A-Z\])"
+}
+
+function getstamp1() {
+  echo -n "$(sha224hmac <<<$(date +%D%s%N) | cut -c -1 | tr \[a-z\] \[A-Z\])"
 }
 
 function getstampa() {
@@ -15,38 +23,40 @@ function getstampa() {
 }
 
 function getstampd() {
-  echo -n "$(getdatestamp)-$(getstamp4)x"
+  echo -n "$(getdate)-$(getstamp4)x"
 }
 
 function getstampdy() {
-  echo -n "$(getdatestampy)-$(getstamp4)x"
+  echo -n "$(getdatey)-0x$(getstamp4)r"
 }
 
 function getstampdyy() {
-  echo -n "$(getdatestampyy)-$(getstamp4)"
+  echo -n "$(getdateyy)-$(getstamp4)"
 }
 
 function getstampdtyy() {
-  echo -n "$(getdatestampyy)-$(gettimestamp)-$(getstamp4)"
+  echo -n "$(getdateyy)-$(gettimestamp)-$(getstamp4)"
 }
-
-function getdatestamp() {
+function getstampdty() {
+  echo -n "$(getdatey)-$(gettimestamp)-0x$(getstamp4)r"
+}
+function getdate() {
   echo -n $(date +%m%d)
 }
 
-function getdatestampy() {
+function getdatey() {
   echo -n $(date +%y%m%d)
 }
 
-function getdatestampyy() {
+function getdateyy() {
   echo -n $(date +%Y%m%d)
 }
 
-function getdatestampu() {
+function getdateu() {
   echo -n $(date --utc +%m%d)
 }
 
-function getdatestampyu() {
+function getdateyu() {
   echo -n $(date --utc +%y%m%d)
 }
 
@@ -70,25 +80,38 @@ function getepochstamp() {
   echo -n $(date +%s)
 }
 
+function getnanoepochstamp() {
+  echo -n $(date +%s%N)
+}
+
 function getstamphelp() {
-  echo "getstamp8"
-  echo "getstamp4"
-  echo "getstamp6"
-  echo "getstampa"
-  echo "getstampd"
-  echo "getstampdy"
-  echo "getstampdyy"
-  echo "getstampdtyy"
-  echo "getdatestamp"
-  echo "getdatestampy"
-  echo "getdatestampyy"
-  echo "getdatestampu"
-  echo "getdatestampyu"
-  echo "gettimestamp"
-  echo "gettimestampz"
-  echo "gettimestampu"
-  echo "gettimeshortstampu"
-  echo "getepochstamp"
+  echo "getstamp8: $(getstamp8)"
+  echo "getstamp6: $(getstamp6)"
+  echo "getstamp4: $(getstamp4)"
+  echo "getstamp2: $(getstamp2)"
+  echo "getstamp1: $(getstamp1)"
+  echo "getstampa: $(getstampa)"
+  echo "getstampd: $(getstampd)"
+  echo "getstampdy: $(getstampdy)"
+  echo "getstampdyy: $(getstampdyy)"
+  echo "getstampdtyy: $(getstampdtyy)"
+  echo "getstampdty: $(getstampdty)"
+  echo "getdate: $(getdate)"
+  echo "getdatey: $(getdatey)"
+  echo "getdateyy: $(getdateyy)"
+  echo "getdateu: $(getdateu)"
+  echo "getdateyu: $(getdateyu)"
+  echo "gettimestamp: $(gettimestamp)"
+  echo "gettimestampz: $(gettimestampz)"
+  echo "gettimestampu: $(gettimestampu)"
+  echo "gettimeshortstampu: $(gettimeshortstampu)"
+  echo "getepochstamp: $(getepochstamp)"
+  echo "getnanoepochstamp: $(getnanoepochstamp)"
+  echo "getstamphelp: print this help menu"
+  echo "getSTMP8_: $(getSTMP8_)"
+  echo "getSTMP4_: $(getSTMP4_)"
+  echo "getSTMP6_: $(getSTMP6_)"
+  echo "getSTMP8a_: $(getSTMP8a_)"
 }
 
 function getSTMP8_() {

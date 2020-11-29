@@ -44,7 +44,7 @@ alias camload=gphotoload
 alias camreload=gphotoreload
 alias camloadx=gphotoreload
 
-alias captureimage="gphoto2 --keep-raw --capture-image-and-download --stdout > $(getstamp8dtyy).jpg"
+alias captureimage="gphoto2 --keep-raw --capture-image-and-download --stdout > $(getstamp8)-$(getstampdtyy).jpg"
 alias takephoto=captureimage
 function cambat() {
     VACUOUS=$(gphoto2 --get-config='/main/status/Niveau de batterie' 2>/dev/null | grep '100') >/dev/null
