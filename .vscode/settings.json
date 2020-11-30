@@ -115,6 +115,13 @@
       "backgroundColor": "transparent"
     },
     {
+      // ·
+      "tag": "·",
+      "color": "#FF2D00",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
       // ?
       "tag": "?",
       "color": "#3498DB",

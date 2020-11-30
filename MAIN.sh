@@ -1,12 +1,15 @@
-#. -----------------------------------------------------------------------------~
-#. Scientia es lux principium - SEE THE BOTTOM OF THIS FILES FOR MORE INFO
-#. MIT LICENSE ― PROVIDED "AS IS" ― *NOT* fit for any particular use or purpose!
-#. -----------------------------------------------------------------------------~
-#. AHMYZSH first entry point
+#?& Scientia es lux principium
+
+#?+ ============================================================================
+#? PROVIDED "AS IS" WITHOUT WARRANTY *NOT* fit for any particular use or purpose
+#?!!! See the bottom of this file for *IMPORTANT INFORMATIONS* ― MIT LICENSE !!!
+#? Copyright © 2019-2020 Benjamin Vincent Kasapoglu (Luxcium)
+#?+ ============================================================================
+#?* AHMYZSH first entry point
 
 function AHMYZSH_TOP_CONFIG_OPTIONS() {
 
-    : ${VERBOSA:=00000}
+    : ${VERBOSA:=0000}
 
     export ZSH_CUSTOM="${AHMYZSH}" #/custom-zsh"
     export AHMYZSH_CORE="${AHMYZSH}/core"
@@ -15,7 +18,7 @@ function AHMYZSH_TOP_CONFIG_OPTIONS() {
     export PAGER="/usr/bin/most -s"
     # export PAGER="/usr/bin/less"
 
-    fpath=(${AHMYZSH_CORE}/functions ${fpath})
+    # fpath=(${AHMYZSH_CORE}/functions ${fpath})
 
     function load_all_config_and_settings_files() {
 
@@ -88,13 +91,23 @@ function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N  -  B O O T S T R A P - +#
 
 IS_ZSH_="$(ps -o comm= -p $$ | grep 'zsh')"
 IS_BASH_="$(ps -o comm= -p $$ | grep 'bash')"
-# -------------------------- !!! SECURITY WARNING !!! --------------------------≈
-# AUDIT ANY FILES YOU IMPORT FROM THIS PROJECT PRIOR: DOWNLOAD / INSTALL / USE
-# Please asses security risks by yourself befor to use the product and report
-# any security issues or vulnerability on the issues page of the main repo site:
-# [AHMYZSH project issues](https://github.com/Luxcium/ahmyzsh/issues)
-# ==============================================================================≈
-# MIT LICENSE ― PROVIDED "AS IS" ― *NOT* fit for any particular use or purpose!
+
+# ·――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――· #
+# !!―――――――――――――――――――――――――!!! SECURITY WARNING !!!―――――――――――――――――――――――――!! #
+# !!                                                                          !! #
+# !! AUDIT ANY FILES YOU IMPORT FROM THIS PROJECT PRIOR: DOWNLOAD/INSTALL/USE !! #
+# !!    Please asses security risks by yourself before using this product.    !! #
+# !!        You must report any security problemes or vulnerability on        !! #
+# !!                  the issues page of the main repo site:                  !! #
+# !!   [AHMYZSH project issues](https://github.com/Luxcium/ahmyzsh/issues/)   !! #
+# !!                                                                          !! #
+# !!―――――――――――――――――――――――――!!! SECURITY WARNING !!!―――――――――――――――――――――――――!! #
+# ·――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――· #
+
+# ============================================================================== ≈
+# PROVIDED "AS IS" WITHOUT WARRANTY *NOT* fit for any particular use or purpose!
+#
+# MIT LICENSE
 #
 # Copyright © 2019-2020 Benjamin Vincent Kasapoglu (Luxcium)
 # and contributors (https://github.com/Luxcium/ahmyzsh/contributors)
@@ -117,6 +130,6 @@ IS_BASH_="$(ps -o comm= -p $$ | grep 'bash')"
 # ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 # ==============================================================================≈
-# Scientia es lux principium is a Tread Mark of Benjamin Vincent Kasapoglu
+# Scientia es lux principium is a Trade Mark of Benjamin Vincent Kasapoglu
 # (c) et tm - Benjamin Vincent Kasapoglu (Luxcium) 2017-2020
 # ------------------------------------------------------------------------------~

@@ -101,8 +101,8 @@ function load_autocomplete() {
     compctl -K _pip_completion pip
     #* pip zsh completion end
 
-    source "${ZSH_SOURCES}/completion/autocomplete.conf.sh"
+    source "${ZSH_COMPLETION}/autocomplete.conf.sh"
 
-    Load_all_files_d "${AHMYZSH_CORE}/complete.d"
+    # Load_all_files_d "${AHMYZSH_CORE}/complete.d"
 
 }
