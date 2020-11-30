@@ -4,6 +4,3 @@ url = https://github.com/romkatv/powerlevel10k
 [submodule "ohmyzsh"]
 path = ohmyzsh
 url = https://github.com/ohmyzsh/ohmyzsh.git
-[submodule "custom-zsh"]
-path = custom-zsh
-url = https://github.com/Luxcium/custom-zsh.git
