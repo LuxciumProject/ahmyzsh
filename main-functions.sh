@@ -11,6 +11,94 @@
 #† Scientia es lux principium is a Tread Mark of Benjamin Vincent Kasapoglu
 #† (c) & tm Benjamin Vincent Kasapoglu (Luxcium) 2017-2020
 #+ =============================================================================≈
+function firtstage() {
+  # CACHED_PATH
+
+  export AHMYZSH_CACHE="${HOME}/.cache/ahmyzsh"
+  export CACHED_PATH="${AHMYZSH_CACHE}/path.env"
+  # : ${VERBOSA=100}
+
+  : ${VERBOSA:=10}
+
+  : ${EDITOR:=code}
+
+  : ${ENV_LOADED:="false"}
+
+  : ${ZLE_RPROMPT_INDENT:=0}
+
+  : ${SHOW_LOAD_CUTLS:="true"}
+
+  : ${AHMYZSH:="${HOME}/ahmyzsh"}
+
+  export AHMYZSH
+
+  : ${PATH_FILE:="${CACHED_PATH}"}
+
+  export PATH_FILE
+
+  # Set you locale here
+  # LANG="fr_CA.UTF-8"
+
+  : ${LANG:="fr_CA.UTF-8"}
+
+  : ${LC_CTYPE:="${LANG}"}
+
+  : ${LC_NUMERIC:="${LANG}"}
+
+  : ${LC_TIME:="fr_FR.UTF-8"}
+
+  : ${LC_COLLATE:="${LANG}"}
+
+  : ${LC_MONETARY:="${LANG}"}
+
+  : ${LC_MESSAGES:="${LANG}"}
+
+  : ${LC_PAPER:="${LANG}"}
+
+  : ${LC_NAME:="${LANG}"}
+
+  : ${LC_ADDRESS:="${LANG}"}
+
+  : ${LC_TELEPHONE:="${LANG}"}
+
+  : ${LC_MEASUREMENT:="${LANG}"}
+
+  : ${LC_IDENTIFICATION:="${LANG}"}
+
+  # fall back
+  source "${HOME}/.env"
+
+}
+
+function Load_all_files_d() {
+  local SD1="$1"
+  if [ -d "${SD1}" ]; then
+    for f in "${SD1}/"*.sh; do
+      source "${f}"
+    done
+  else
+    return 2
+  fi
+}
+
+function Load_all_files_d_v() {
+  local SD1="$1"
+  if [ -d "${SD1}" ]; then
+    for f in "${SD1}/"*.sh; do
+      if [ -r "${f}" ]; then
+        source "${f}"
+        [ "${VERBOSA}" -gt 10 ] && echo "${BEGIN_SOURCING_FILES} $(timer_now) ${f} ${END_SOURCING_FILES}"
+      else
+        [ "${VERBOSA}" -gt 3 ] && echo "Error sourcing '$1' file provided is not redable"
+        return 3
+      fi
+      TIMER_THEN=$(/usr/bin/date +%s%N)
+    done
+  else
+    [ "${VERBOSA}" -gt 2 ] && echo "Error loading files in '${SD1}'... Directory or path can not be resolved"
+    return 2
+  fi
+}
 
 function activate_normal_prompt() {
 
@@ -34,7 +122,7 @@ function activate_instant_prompt() {
 
 function load_my_powerlevel10k_now() {
   ## load_my_pl10K_layout_now
-  source_ "${CUSTOM_ZSH}/sources/pl10K-Layout.zsh"
+  source_ "${AHMYZSH}/themes/pl10K-Layout.zsh"
   load_my_powerlevel10k
   pl10k_prompt_on
 
@@ -45,8 +133,6 @@ function compute_pl10K_now() {
 }
 
 function load_path() {
-  ## source_ path.zsh
-  source_ "${ZSH_COMPUTE}/path.zsh"
   ## load_path
   if [ -f "${CACHED_PATH}" ]; then
     source_ "${CACHED_PATH}"
@@ -57,7 +143,6 @@ function load_path() {
 }
 
 function re_load_path() {
-  source_ "${ZSH_COMPUTE}/path.zsh"
   compute_path
 }
 
@@ -145,7 +230,6 @@ function load_zshenv() {
   call_ load_path
 
   ## load_functions_now
-  source_ "${ZSH_SOURCES}/functions.zsh"
   call_ load_functions_definitions
 
   [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_HOURGLASS_END_1} load_zshenv in $(timer_all) ms !${END_FUNCTION}"
@@ -162,7 +246,7 @@ function load_zshrc() {
     (compute_path &) # >/dev/null
   fi
 
-  source_ "${CUSTOM_ZSH}/sources/options-list.zsh"
+  # source_ "${AMYZSH_CORE}/options-list.zsh"
   call_ load_oh_my_zsh
   call_ load_options_list
   call_ load_options
@@ -170,4 +254,126 @@ function load_zshrc() {
 
   # autoload -U compinit && compinit
 
+}
+
+# function zsh_compile_all_R() {
+#   (find "${AHMYZSH}/" -name '*.*sh' | while read line; do eval "zcompile -R ${line}"; done) 2>/dev/null
+# }
+
+# function zsh_compile_all_M() {
+#   (find "${AHMYZSH}/" -name '*.*sh' | while read line; do eval "zcompile -M ${line}"; done) 2>/dev/null
+# }
+
+# function zsh_compile_all() {
+#   (find "${AHMYZSH}/" -name '*.*sh' | while read line; do eval "zcompile ${line}"; done) 2>/dev/null
+
+# }
+
+function add_to_path_() {
+  [ -z $1 ] || export PATH="${1}:${PATH}"
+}
+
+function affix_to_path_() {
+  [ -z $1 ] || export PATH="${1}:${PATH}"
+}
+
+function perpend_to_path_() {
+  [ -z $1 ] || export PATH="${1}:${PATH}"
+}
+
+function append_to_path_() {
+  [ -z $1 ] || export PATH="${PATH}:${1}"
+}
+
+function timer_() {
+  # local TIMER_NOW=$(/bin/date +%s%N)
+  local MICROSEC='1000000'
+  local TIMER_NOW=$(date +%s%N)
+  local timecalc=$((${TIMER_NOW} - ${1:=TIMER_NOW}))
+  local TIMER_VALUE=$((${timecalc} / ${MICROSEC}))
+  if [ ${#TIMER_VALUE} = 0 ]; then
+    local spacing_="    "
+  elif [ ${#TIMER_VALUE} = 1 ]; then
+    local spacing_="   "
+  elif [ ${#TIMER_VALUE} = 2 ]; then
+    local spacing_="  "
+  elif [ ${#TIMER_VALUE} = 3 ]; then
+    local spacing_=" "
+  else
+    local spacing_=""
+  fi
+  echo "${TIMER_VALUE}${spacing_}"
+  return 0
+}
+
+function timer_now() {
+  # local TIMER_NOW=$(/usr/bin/date +%s%N)
+  # local TIMER_VALUE=$(((${TIMER_NOW} - ${TIMER_THEN}) / 1000000))
+  timer_ "${TIMER_THEN}"
+  # echo -n "${TIMER_VALUE} "
+  # return 0
+}
+
+function timer_all() {
+  # local TIMER_NOW=$(/usr/bin/date +%s%N)
+  # local TIMER_VALUE=$(((${TIMER_NOW} - ${TIMER_ALL_THEN}) / 1000000))
+  timer_ "${TIMER_ALL_THEN}"
+  # echo -n "${TIMER_VALUE} "
+}
+
+function call_() {
+  if [ -z $1 ]; then
+    [ "${VERBOSA}" -gt 1 ] && echo "Error sourcing ' $1 ' no function call provided"
+    return 1
+  else
+    TIMER_THEN=$(/usr/bin/date +%s%N)
+    eval ${1}
+
+    returnval=$?
+    [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_FUNCTION} $(timer_now) '${1}()' ${END_FUNCTION}"
+    return "${returnval}"
+  fi
+}
+
+function source_() {
+  if [ -z $1 ]; then
+    [ "${VERBOSA}" -gt 1 ] && echo "Error sourcing ' $1 ' no file provided"
+    return 1
+  else
+    TIMER_THEN=$(/usr/bin/date +%s%N)
+    if [[ -f $1 ]]; then
+      if [[ -r $1 ]]; then
+        source "${1}"
+        [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_SOURCING} $(timer_now) ${1} ${END_SOURCING}"
+        return 0
+      else
+        [ "${VERBOSA}" -gt 3 ] && echo "Error sourcing '$1' file provided is not redable"
+        return 3
+      fi
+    else
+      [ "${VERBOSA}" -gt 2 ] && echo "Error sourcing '$1' file provided does not exist"
+      return 2
+    fi
+  fi
+}
+
+function load_() {
+  source_ "${1}" &&
+    call_ ${2}
+
+}
+
+function parse_options() {
+  o_port=(-p 9999)
+  o_root=(-r WWW)
+  o_log=(-d ZWS.log)
+  zparseopts -K -- p:=o_port r:=o_root l:=o_log h=o_help
+  if [[ $? != 0 || "$o_help" != "" ]]; then
+    echo Usage: $(basename "$0") "[-p PORT] [-r DIRECTORY]"
+    exit 1
+  fi
+  port=$o_port[2]
+  root=$o_root[2]
+  log=$o_log[2]
+  if [[ $root[1] != '/' ]]; then root="$PWD/$root"; fi
 }

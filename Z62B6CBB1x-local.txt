@@ -390,7 +390,6 @@ ZSH_BIN_ETC=/home/luxcium/ahmyzsh/custom-zsh/bin/etc
 ZSH_CACHE_DIR=/home/luxcium/ahmyzsh/ohmyzsh/cache
 ZSH_COMPDUMP=/home/luxcium/.zcompdump-corsairone-neb401-com-5.8
 ZSH_COMPLETION=/home/luxcium/ahmyzsh/custom-zsh/sources/completion
-ZSH_COMPUTE=/home/luxcium/ahmyzsh/custom-zsh/sources/compute
 ZSH_CUSTOM=/home/luxcium/ahmyzsh
 readonly tied zsh_eval_context ZSH_EVAL_CONTEXT=toplevel
 ZSH_FLAGS=/home/luxcium/ahmyzsh/custom-zsh/sources/flags

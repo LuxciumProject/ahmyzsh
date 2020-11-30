@@ -10,7 +10,7 @@ function precmd() {
 
     right_prompt_off
     # hardcls
-    source_ "${CUSTOM_ZSH}/themes/ahmyzhs.sh"
+    source_ "${AHMYZSH}/themes/ahmyzhs.sh"
     echo "${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
     call_ prompt_versions
     echo -e "\a"

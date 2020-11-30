@@ -38,7 +38,7 @@ function nvm_() {
 }
 
 function conda_() {
-    load_ "${ZSH_SOURCES}/conda-initialize.zsh" "conda_init"
+    load_ "${AHMYZSH}/core/compute-path/conda-initialize.sh" "conda_init"
 
 }
 function compute_path() {

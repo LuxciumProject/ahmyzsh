@@ -6,7 +6,7 @@
 
 function AHMYZSH_TOP_CONFIG_OPTIONS() {
 
-    : ${VERBOSA:=0}
+    : ${VERBOSA:=00000}
 
     export ZSH_CUSTOM="${AHMYZSH}" #/custom-zsh"
     export AHMYZSH_CORE="${AHMYZSH}/core"
@@ -20,14 +20,24 @@ function AHMYZSH_TOP_CONFIG_OPTIONS() {
     function load_all_config_and_settings_files() {
 
         if [ "${VERBOSA}" -gt 10 ]; then
+            export BEGIN_SOURCING_FILES="\u001b[0m\u001b[34m#   \u001b[0m\u001b[33m\uf085\u001b[0m\u001b[34m  >"
+            export END_SOURCING_FILES="\u001b[0m\u001b[31;1m\u001b[1m"
+            TIMER_THEN=$(/usr/bin/date +%s%N)
+            S2="${AHMYZSH}/core/aliases/00000-misc-all-in-one.zsh"
+            source $S2
+            [ "${VERBOSA}" -gt 10 ] && echo "${BEGIN_SOURCING_FILES} $(timer_now) ${S2} ${END_SOURCING_FILES}"
+            Load_all_files_d_v "${AHMYZSH_CORE}/compute-path"
+            Load_all_files_d_v "${AHMYZSH_CORE}/functions"
             Load_all_files_d_v "${AHMYZSH_CORE}/aliases"
-            # Load_all_files_d_v "${AHMYZSH_CORE}/functions"
             Load_all_files_d_v "${AHMYZSH_CORE}/layouts"
             Load_all_files_d_v "${AHMYZSH_CORE}/paths"
             # Load_all_files_d_v "${AHMYZSH_CORE}/env"
         else
+            S2="${AHMYZSH}/core/aliases/00000-misc-all-in-one.zsh"
+            source $S2
+            Load_all_files_d "${AHMYZSH_CORE}/compute-path"
+            Load_all_files_d "${AHMYZSH_CORE}/functions"
             Load_all_files_d "${AHMYZSH_CORE}/aliases"
-            # Load_all_files_d "${AHMYZSH_CORE}/functions"
             Load_all_files_d "${AHMYZSH_CORE}/layouts"
             Load_all_files_d "${AHMYZSH_CORE}/paths"
             # Load_all_files_d "${AHMYZSH_CORE}/env"
@@ -42,60 +52,23 @@ function AHMYZSH_TOP_CONFIG_OPTIONS() {
 
 }
 
-function Load_all_files_d() {
-    local SD1="$1"
-    if [ -d "${SD1}" ]; then
-        for f in "${SD1}/"*.sh; do
-            source "${f}"
-        done
-    else
-        return 2
-    fi
-}
-
-function Load_all_files_d_v() {
-    export BEGIN_SOURCING_FILES="\u001b[0m\u001b[34m #   \u001b[0m\u001b[33m\uf085\u001b[0m\u001b[34m  >"
-    export END_SOURCING_FILES="\u001b[0m\u001b[31;1m\u001b[1m"
-    TIMER_THEN=$(/usr/bin/date +%s%N)
-    local SD1="$1"
-    if [ -d "${SD1}" ]; then
-        for f in "${SD1}/"*.sh; do
-            if [ -r "${f}" ]; then
-                source "${f}"
-                [ "${VERBOSA}" -gt 10 ] && echo "${BEGIN_SOURCING_FILES} $(timer_now) ${f} ${END_SOURCING_FILES}"
-            else
-                [ "${VERBOSA}" -gt 3 ] && echo "Error sourcing '$1' file provided is not redable"
-                return 3
-            fi
-            TIMER_THEN=$(/usr/bin/date +%s%N)
-        done
-    else
-        [ "${VERBOSA}" -gt 2 ] && echo "Error loading files in '${SD1}'... Directory or path can not be resolved"
-        return 2
-    fi
-}
-
-IS_ZSH_="$(ps -o comm= -p $$ | grep 'zsh')"
-IS_BASH_="$(ps -o comm= -p $$ | grep 'bash')"
-
 function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N  -  B O O T S T R A P - +#
 
-    AHMYZSH_TOP_CONFIG_OPTIONS
-
-    if [[ -n "${IS_ZSH_}" ]]; then
-        if [ -z "${MAIN_INIT}" ]; then
-            MAIN_INIT="start"
-        fi
-    fi
-
-    # local S1="${CUSTOM_ZSH}/MAIN.zsh"
     local S1="${AHMYZSH}/main-functions.sh"
     if [ -f "${S1}" ]; then
         . "${S1}"
 
-        load_zshenv
+        AHMYZSH_TOP_CONFIG_OPTIONS
+
+        if [[ -n "${IS_ZSH_}" ]]; then
+            if [ -z "${MAIN_INIT}" ]; then
+                MAIN_INIT="start"
+            fi
+        fi
+
+        call_ load_zshenv
         if [[ -o interactive ]]; then
-            load_zshrc
+            call_ load_zshrc
         fi
     else
         if [[ -o interactive ]]; then
@@ -113,6 +86,8 @@ function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N  -  B O O T S T R A P - +#
     fi
 }
 
+IS_ZSH_="$(ps -o comm= -p $$ | grep 'zsh')"
+IS_BASH_="$(ps -o comm= -p $$ | grep 'bash')"
 # -------------------------- !!! SECURITY WARNING !!! --------------------------≈
 # AUDIT ANY FILES YOU IMPORT FROM THIS PROJECT PRIOR: DOWNLOAD / INSTALL / USE
 # Please asses security risks by yourself befor to use the product and report
