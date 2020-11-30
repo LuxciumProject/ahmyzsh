@@ -45,8 +45,6 @@ function compute_pl10K_now() {
 }
 
 function load_path() {
-  ## load_flags_now
-  load_ "${ZSH_FLAGS}/flg-shortcuts.sh" "init_flags"
   ## source_ path.zsh
   source_ "${ZSH_COMPUTE}/path.zsh"
   ## load_path
@@ -59,7 +57,6 @@ function load_path() {
 }
 
 function re_load_path() {
-  load_ "${ZSH_FLAGS}/flg-shortcuts.sh" "init_flags"
   source_ "${ZSH_COMPUTE}/path.zsh"
   compute_path
 }
