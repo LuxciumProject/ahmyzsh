@@ -13,7 +13,7 @@ export MAIN_BOOTSTRAP=${MAIN_BOOTSTRAP:="${AHMYZSH}/MAIN.sh"}
 
 #+ LOAD PATH
 #+ -----------------------------------------------------------------------------~
-
+export PATH_BAK="${PATH}"
 if [ -f "${CACHED_PATH}" ]; then
     . "${CACHED_PATH}"
 
@@ -26,7 +26,7 @@ if [ -f "${CACHED_PATH}" ]; then
     ).${TIMER_VALUE:${#TIMER_VALUE}-3}") 2>/dev/null
 
     # if [[ -o interactive ]]; then
-    export TIME_TO_PATH_STR"${TIME_TO_PATH} ms  to  'PATH'"
+    export TIME_TO_PATH_STR="${TIME_TO_PATH} ms  to  'PATH'"
 
     # fi
 else
