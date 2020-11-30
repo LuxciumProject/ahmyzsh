@@ -8,6 +8,9 @@
     "node_modules": true
   },
   "search.exclude": {
+    "powerlevel10k": true,
+    "ohmyzsh": true,
+    "powerline": true,
     "**/node_modules": true,
     "**/bower_components": true,
     "**/*.code-search": true,

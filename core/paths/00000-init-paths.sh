@@ -24,11 +24,6 @@ export OHMYZSH="${AHMYZSH}/ohmyzsh"
   export ZSH="${OHMYZSH}"
 }
 export POWERLEVEL10K="${AHMYZSH}/powerlevel10k"
-export POWERLINE="${AHMYZSH}/powerline"
-{
-  export POWERLINE_BINDINGS="${POWERLINE}/powerline/bindings"
-  export PWRLN_BINDINGS="${POWERLINE}/powerline/bindings"
-}
 
 export AHMYZSH_CORE="${AHMYZSH}/core"
 {

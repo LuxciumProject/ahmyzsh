@@ -8,7 +8,7 @@ function precmd() {
     export PARENT_ENV_LOADED='true'
     ENV_LOADED='true'
 
-    # right_prompt_off
+    right_prompt_off
     # hardcls
     source_ "${CUSTOM_ZSH}/themes/ahmyzhs.sh"
     echo "${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"

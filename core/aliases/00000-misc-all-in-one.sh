@@ -874,10 +874,6 @@ function load_functions_definitions() {
         #     builtin cd $NODE_REPL
         #     git_add_comit_push "${1}" &
         # ) &>/dev/null
-        (
-            builtin cd $POWERLINE
-            git_add_comit_push "${1}" &
-        ) &>/dev/null
         # (
         #     builtin cd $PYTHON_REPL
         #     git_add_comit_push "${1}" &
@@ -887,7 +883,6 @@ function load_functions_definitions() {
         # NODE_REPL="${AHMYZSH}/node-repl"
         # OHMYZSH="${AHMYZSH}/ohmyzsh"
         # POWERLEVEL10K="${AHMYZSH}/powerlevel10k"
-        # POWERLINE="${AHMYZSH}/powerline"
         # PYTHON_REPL="${AHMYZSH}/python-repl"
     }
 
@@ -1026,7 +1021,7 @@ function load_functions_definitions() {
             toSDERR2 python-repl-update
             toSDERR2 ohmyzsh-update
             toSDERR2 powerlevel10k-update
-            toSDERR2 powerline-update
+
 
 
         )")
@@ -1075,10 +1070,6 @@ function load_functions_definitions() {
 
     function powerlevel10k-update() {
         toSDOUT1 "custom-upstream-update ${POWERLEVLE10K}/"
-    }
-
-    function powerline-update() {
-        toSDOUT1 "custom-upstream-update ${POWERLINE}/ develop"
     }
 
     # function useful_functions() {
