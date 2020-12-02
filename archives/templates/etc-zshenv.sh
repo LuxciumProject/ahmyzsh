@@ -3,7 +3,6 @@
 #. MIT LICENSE ― PROVIDED "AS IS" ― *NOT* fit for any particular use or purpose!
 #. -----------------------------------------------------------------------------~
 #. ZSH verry first entry point
-export PATH_BAK="## PATH_BAK:${PATH} ##"
 
 export TIMER_ALL_THEN=$(/usr/bin/date +%s%N)
 
@@ -14,6 +13,7 @@ export MAIN_BOOTSTRAP=${MAIN_BOOTSTRAP:="${AHMYZSH}/MAIN.sh"}
 
 #+ LOAD PATH
 #+ -----------------------------------------------------------------------------~
+export PATH_BAK="${PATH}"
 if [ -f "${CACHED_PATH}" ]; then
     . "${CACHED_PATH}"
 
