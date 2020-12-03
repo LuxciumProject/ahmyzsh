@@ -22,100 +22,100 @@
 ################################################################################
 function init_flags() {
 
-    source ${ZSH_FLAGS}/flg-AUTO_LOAD_ALL.sh
-    source ${ZSH_FLAGS}/flg-GNU_COREUTILS.sh
-    source ${ZSH_FLAGS}/flg-TMUX_START.sh
+  source ${ZSH_FLAGS}/flg-AUTO_LOAD_ALL.sh
+  source ${ZSH_FLAGS}/flg-GNU_COREUTILS.sh
+  source ${ZSH_FLAGS}/flg-TMUX_START.sh
 
-    AUTO_LOAD_ALL='true'
-    GNU_COREUTILS='true'
-    TMUX_START='true'
+  AUTO_LOAD_ALL='true'
+  GNU_COREUTILS='true'
+  TMUX_START='true'
 
-    if [ -f ${ZSH_FLAGS_VALUES}/.AUTO_LOAD_ALL ]; then
-        source ${ZSH_FLAGS_VALUES}/.AUTO_LOAD_ALL
-    fi
+  if [ -f ${ZSH_FLAGS_VALUES}/.AUTO_LOAD_ALL ]; then
+    source ${ZSH_FLAGS_VALUES}/.AUTO_LOAD_ALL
+  fi
 
-    if [ -f ${ZSH_FLAGS_VALUES}/.GNU_COREUTILS ]; then
-        source ${ZSH_FLAGS_VALUES}/.GNU_COREUTILS
-    fi
+  if [ -f ${ZSH_FLAGS_VALUES}/.GNU_COREUTILS ]; then
+    source ${ZSH_FLAGS_VALUES}/.GNU_COREUTILS
+  fi
 
-    if [ -f ${ZSH_FLAGS_VALUES}/.TMUX_START ]; then
-        source ${ZSH_FLAGS_VALUES}/.TMUX_START
-    fi
+  if [ -f ${ZSH_FLAGS_VALUES}/.TMUX_START ]; then
+    source ${ZSH_FLAGS_VALUES}/.TMUX_START
+  fi
 
-    function reload() {
-        AUTO_LOAD_ALL_ON
-    }
+  function reload() {
+    AUTO_LOAD_ALL_ON
+  }
 
-    function deload() {
-        AUTO_LOAD_ALL_OFF
-    }
+  function deload() {
+    AUTO_LOAD_ALL_OFF
+  }
 
-    function loadon() {
-        AUTO_LOAD_ALL_ON
-    }
+  function loadon() {
+    AUTO_LOAD_ALL_ON
+  }
 
-    function loadoff() {
-        AUTO_LOAD_ALL_OFF
-    }
+  function loadoff() {
+    AUTO_LOAD_ALL_OFF
+  }
 
-    # function nv-mon() {
-    #     AUTO_LOAD_nv-m_ON
-    # }
+  # function nv-mon() {
+  #     AUTO_LOAD_nv-m_ON
+  # }
 
-    # function nv-moff() {
-    #     AUTO_LOAD_nv-m_OFF
-    # }
+  # function nv-moff() {
+  #     AUTO_LOAD_nv-m_OFF
+  # }
 
-    function gnuon() {
-        GNU_COREUTILS_ON
-    }
+  function gnuon() {
+    GNU_COREUTILS_ON
+  }
 
-    function gnuoff() {
-        GNU_COREUTILS_OFF
-    }
+  function gnuoff() {
+    GNU_COREUTILS_OFF
+  }
 
-    function tmxon() {
-        TMUX_START_ON
-        renew
-        echo -n "${normal}$CLRLN$BYL9K_GNU$(tput setaf 2) $COG_ICO ${bold} $(tput setaf 2)TMUX AUTO START$(tput setaf 2) will NOW be in function${BKBK}${normal}\n"
+  function tmxon() {
+    TMUX_START_ON
+    renew
+    echo -n "${normal}$CLRLN$BYL9K_GNU$(tput setaf 2) $COG_ICO ${bold} $(tput setaf 2)TMUX AUTO START$(tput setaf 2) will NOW be in function${BKBK}${normal}\n"
 
-    }
+  }
 
-    function tmxoff() {
-        TMUX_START_OFF
-        renew
-        echo -n "${normal}$CLRLN$BYL9K_GNU$(tput setaf 2) $COG_ICO ${bold} $(tput setaf 2)TMUX AUTO START$(tput setaf 1) will NOT be in function${BKBK}${normal}\n"
+  function tmxoff() {
+    TMUX_START_OFF
+    renew
+    echo -n "${normal}$CLRLN$BYL9K_GNU$(tput setaf 2) $COG_ICO ${bold} $(tput setaf 2)TMUX AUTO START$(tput setaf 1) will NOT be in function${BKBK}${normal}\n"
 
-    }
+  }
 
-    function allon() {
-        echo "AUTO_LOAD_ALL='true'" >${ZSH_FLAGS_VALUES}/.AUTO_LOAD_ALL
-        source ${ZSH_FLAGS_VALUES}/.AUTO_LOAD_ALL
-        # echo "AUTO_LOAD_nv-m='true'" >${ZSH_FLAGS_VALUES}/.AUTO_LOAD_nv-m
-        # source "${ZSH_FLAGS_VALUES}/.AUTO_LOAD_nv-m"
-        # source "${PATH_ZSH_FUNCTIONS}/load_nv-m.zsh"
-        echo "GNU_COREUTILS='true'" >${ZSH_FLAGS_VALUES}/.GNU_COREUTILS
-        source ${ZSH_FLAGS_VALUES}/.GNU_COREUTILS
-        zsh
+  function allon() {
+    echo "AUTO_LOAD_ALL='true'" >${ZSH_FLAGS_VALUES}/.AUTO_LOAD_ALL
+    source ${ZSH_FLAGS_VALUES}/.AUTO_LOAD_ALL
+    # echo "AUTO_LOAD_nv-m='true'" >${ZSH_FLAGS_VALUES}/.AUTO_LOAD_nv-m
+    # source "${ZSH_FLAGS_VALUES}/.AUTO_LOAD_nv-m"
+    # source "${PATH_ZSH_FUNCTIONS}/load_nv-m.zsh"
+    echo "GNU_COREUTILS='true'" >${ZSH_FLAGS_VALUES}/.GNU_COREUTILS
+    source ${ZSH_FLAGS_VALUES}/.GNU_COREUTILS
+    zsh
 
-    }
-    function alloff() {
-        echo "AUTO_LOAD_ALL='false'" >${ZSH_FLAGS_VALUES}/.AUTO_LOAD_ALL
-        source ${ZSH_FLAGS_VALUES}/.AUTO_LOAD_ALL
-        export COMPUTE_POWERLEVEL9K_ON='false'
-        # echo "AUTO_LOAD_nv-m='false'" >"${ZSH_FLAGS_VALUES}/.AUTO_LOAD_nv-m"
-        # source "${ZSH_FLAGS_VALUES}/.AUTO_LOAD_nv-m"
-        # source "${PATH_ZSH_FUNCTIONS}/load_nv-m.zsh"
-        echo "GNU_COREUTILS='false'" >${ZSH_FLAGS_VALUES}/.GNU_COREUTILS
-        source ${ZSH_FLAGS_VALUES}/.GNU_COREUTILS
-        # zsh
-    }
+  }
+  function alloff() {
+    echo "AUTO_LOAD_ALL='false'" >${ZSH_FLAGS_VALUES}/.AUTO_LOAD_ALL
+    source ${ZSH_FLAGS_VALUES}/.AUTO_LOAD_ALL
+    export COMPUTE_POWERLEVEL9K_ON='false'
+    # echo "AUTO_LOAD_nv-m='false'" >"${ZSH_FLAGS_VALUES}/.AUTO_LOAD_nv-m"
+    # source "${ZSH_FLAGS_VALUES}/.AUTO_LOAD_nv-m"
+    # source "${PATH_ZSH_FUNCTIONS}/load_nv-m.zsh"
+    echo "GNU_COREUTILS='false'" >${ZSH_FLAGS_VALUES}/.GNU_COREUTILS
+    source ${ZSH_FLAGS_VALUES}/.GNU_COREUTILS
+    # zsh
+  }
 
-    # AUTO_LOAD_nv-m='true'
+  # AUTO_LOAD_nv-m='true'
 
-    # if [ -f ${ZSH_FLAGS_VALUES}/.AUTO_LOAD_nv-m ]; then
-    # source ${ZSH_FLAGS_VALUES}/.AUTO_LOAD_nv-m
-    # fi
+  # if [ -f ${ZSH_FLAGS_VALUES}/.AUTO_LOAD_nv-m ]; then
+  # source ${ZSH_FLAGS_VALUES}/.AUTO_LOAD_nv-m
+  # fi
 }
 
 ##!!0###########################################################################

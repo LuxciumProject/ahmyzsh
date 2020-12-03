@@ -9,88 +9,63 @@
 
 function AHMYZSH_TOP_CONFIG_OPTIONS() {
 
-    : ${VERBOSA:=0000}
+  : ${VERBOSA:=0}
 
-    export ZSH_CUSTOM="${AHMYZSH}" #/custom-zsh"
-    export AHMYZSH_CORE="${AHMYZSH}/core"
-    export AH_LIBRARIES="${AHMYZSH}/libraries"
+  export ZSH_CUSTOM="${AHMYZSH}" #/custom-zsh"
+  export AHMYZSH_CORE="${AHMYZSH}/core"
+  export AH_LIBRARIES="${AHMYZSH}/libraries"
 
-    export PAGER="/usr/bin/most -s"
-    # export PAGER="/usr/bin/less"
+  export EDITOR="nano"
+  export PAGER="/usr/bin/most -s"
 
-    # fpath=(${AHMYZSH_CORE}/functions ${fpath})
-
-    function load_all_config_and_settings_files() {
-
-        if [ "${VERBOSA}" -gt 10 ]; then
-            export BEGIN_SOURCING_FILES="\u001b[0m\u001b[34m#   \u001b[0m\u001b[33m\uf085\u001b[0m\u001b[34m  >"
-            export END_SOURCING_FILES="\u001b[0m\u001b[31;1m\u001b[1m"
-            TIMER_THEN=$(/usr/bin/date +%s%N)
-            S2="${AHMYZSH}/core/aliases/00000-misc-all-in-one.zsh"
-            source $S2
-            [ "${VERBOSA}" -gt 10 ] && echo "${BEGIN_SOURCING_FILES} $(timer_now) ${S2} ${END_SOURCING_FILES}"
-            Load_all_files_d_v "${AHMYZSH_CORE}/compute-path"
-            Load_all_files_d_v "${AHMYZSH_CORE}/functions"
-            Load_all_files_d_v "${AHMYZSH_CORE}/aliases"
-            Load_all_files_d_v "${AHMYZSH_CORE}/layouts"
-            Load_all_files_d_v "${AHMYZSH_CORE}/paths"
-            # Load_all_files_d_v "${AHMYZSH_CORE}/env"
-        else
-            S2="${AHMYZSH}/core/aliases/00000-misc-all-in-one.zsh"
-            source $S2
-            Load_all_files_d "${AHMYZSH_CORE}/compute-path"
-            Load_all_files_d "${AHMYZSH_CORE}/functions"
-            Load_all_files_d "${AHMYZSH_CORE}/aliases"
-            Load_all_files_d "${AHMYZSH_CORE}/layouts"
-            Load_all_files_d "${AHMYZSH_CORE}/paths"
-            # Load_all_files_d "${AHMYZSH_CORE}/env"
-        fi
-
-        # Created by newuser for 5.8
-
-    }
-
-    load_all_config_and_settings_files
-    alias reload_alias_and_conf="load_all_config_and_settings_files"
+  call_ load_all_config_and_settings_files
 
 }
 
 function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N  -  B O O T S T R A P - +#
 
-    local S1="${AHMYZSH}/main-functions.sh"
-    if [ -f "${S1}" ]; then
-        . "${S1}"
+  if [[ -n "${IS_ZSH_}" ]]; then     #? IF IS_ZSH_
+    if [[ -z "${MAIN_INIT}" ]]; then #? IF MAIN_INIT
+      MAIN_INIT="start"
 
-        AHMYZSH_TOP_CONFIG_OPTIONS
+      local S1="${AHMYZSH}/main-functions.sh"
+      if [[ -f "${S1}" ]]; then
+        source "${S1}"
 
-        if [[ -n "${IS_ZSH_}" ]]; then
-            if [ -z "${MAIN_INIT}" ]; then
-                MAIN_INIT="start"
-            fi
-        fi
+        call_ AHMYZSH_TOP_CONFIG_OPTIONS
 
         call_ load_zshenv
-        if [[ -o interactive ]]; then
-            call_ load_zshrc
-        fi
+        [ "${VERBOSA}" -gt 0 ] && echo "\n${LD_COLR}${BEGIN_HOURGLASS_END_1}     load_zshenv in $(timer_all)ms!${END_FUNCTION}\n"
+
+        [[ -o interactive ]] && call_ load_zshrc
+
+      else #? NO SUCH FILE "${AHMYZSH}/main-functions.sh"
+        [[ -o interactive ]] && echo \
+          "Error loading '${S1}'... File or path can not be resolved canot source_all_zsh"
+        return 1
+      fi
+
+    else #? IF NOT MAIN_INIT
+      reload_alias_and_conf
+      [[ -o interactive ]] && echo \
+        "Reloaded alias files functions and conf"
+    fi
+
+  elif [[ -z "${IS_BASH_}" ]]; then #? IF NOT IS_BASH_
+    if [ -z "${MAIN_INIT}" ]; then
+      MAIN_INIT="start"
+      echo pwd=$(pwd)
+      echo 'using bash'
     else
-        if [[ -o interactive ]]; then
-
-            echo "Error loading '${S1}'... File or path can not be resolved canot source_all_zsh"
-        fi
+      [[ -o interactive ]] && echo \
+        "Already loaded reload not yet implemented"
+      return 1
     fi
-
-    if [ -n "${IS_BASH_}" ]; then
-        if [ -z "${MAIN_INIT}" ]; then
-            MAIN_INIT="start"
-            echo pwd=$(pwd)
-            echo 'using bash'
-        fi
-    fi
+  fi
 }
 
-IS_ZSH_="$(ps -o comm= -p $$ | grep 'zsh')"
-IS_BASH_="$(ps -o comm= -p $$ | grep 'bash')"
+export IS_ZSH_="$(ps -o comm= -p $$ | grep 'zsh')"
+export IS_BASH_="$(ps -o comm= -p $$ | grep 'bash')"
 
 # ·――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――· #
 # !!―――――――――――――――――――――――――!!! SECURITY WARNING !!!―――――――――――――――――――――――――!! #

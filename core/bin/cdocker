@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+
+function cdocker_() {
+  NEW_DIR_="${HOME}/dev/dockers/$(date +%y)$(date +%m%d)$(date +%Z)$(date +%H%M)$(getstamp 6 Z '')"
+  mkdir -p "${NEW_DIR_}"
+  echo -n "${NEW_DIR_}"
+  cd $NEW_DIR_
+}
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+echo -n $(cdocker_ "${@}")
+
+__EXIT_STATUS="${?}"
+
+unset -f cdocker_
+
+exit $__EXIT_STATUS

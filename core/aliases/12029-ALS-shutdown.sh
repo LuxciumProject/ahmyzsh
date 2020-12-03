@@ -4,10 +4,10 @@ alias dnfup="( ( (sudo nice -n -35 ionice -c 1 -n 0 dnf upgrade --downloadonly -
 function dnfcup() {
   ( 
     (
-      sudo dnf clean all &&
-        dnf makecache
-    ) &&
-      ( (
+      sudo dnf clean all \
+        && dnf makecache
+    ) \
+      && ( (
         sudo nice -n -35 ionice -c 1 -n 2 dnf upgrade --downloadonly -y &
       ) >/dev/null) 2>/dev/null
   )

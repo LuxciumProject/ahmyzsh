@@ -1,0 +1,186 @@
+#!/usr/bin/env node
+
+function allNodeJSStuff_() {
+  if (typeof _ !== "undefined") console.log("_", typeof _);
+  if (typeof _error !== "undefined") console.log("_error", typeof _error);
+  if (typeof AbortController !== "undefined")
+    console.log("AbortController", typeof AbortController);
+  if (typeof AbortSignal !== "undefined")
+    console.log("AbortSignal", typeof AbortSignal);
+  if (typeof AggregateError !== "undefined")
+    console.log("AggregateError", typeof AggregateError);
+  if (typeof Array !== "undefined") console.log("Array", typeof Array);
+  if (typeof ArrayBuffer !== "undefined")
+    console.log("ArrayBuffer", typeof ArrayBuffer);
+  if (typeof assert !== "undefined") console.log("assert", typeof assert);
+  if (typeof async_hooks !== "undefined")
+    console.log("async_hooks", typeof async_hooks);
+  if (typeof Atomics !== "undefined") console.log("Atomics", typeof Atomics);
+  if (typeof BigInt !== "undefined") console.log("BigInt", typeof BigInt);
+  if (typeof BigInt64Array !== "undefined")
+    console.log("BigInt64Array", typeof BigInt64Array);
+  if (typeof BigUint64Array !== "undefined")
+    console.log("BigUint64Array", typeof BigUint64Array);
+  if (typeof Boolean !== "undefined") console.log("Boolean", typeof Boolean);
+  if (typeof Buffer !== "undefined") console.log("Buffer", typeof Buffer);
+  if (typeof buffer !== "undefined") console.log("buffer", typeof buffer);
+  if (typeof child_process !== "undefined")
+    console.log("child_process", typeof child_process);
+  if (typeof clearImmediate !== "undefined")
+    console.log("clearImmediate", typeof clearImmediate);
+  if (typeof clearInterval !== "undefined")
+    console.log("clearInterval", typeof clearInterval);
+  if (typeof clearTimeout !== "undefined")
+    console.log("clearTimeout", typeof clearTimeout);
+  if (typeof cluster !== "undefined") console.log("cluster", typeof cluster);
+  if (typeof console !== "undefined") console.log("console", typeof console);
+  if (typeof constants !== "undefined")
+    console.log("constants", typeof constants);
+  if (typeof crypto !== "undefined") console.log("crypto", typeof crypto);
+  if (typeof DataView !== "undefined") console.log("DataView", typeof DataView);
+  if (typeof Date !== "undefined") console.log("Date", typeof Date);
+  if (typeof decodeURI !== "undefined")
+    console.log("decodeURI", typeof decodeURI);
+  if (typeof decodeURIComponent !== "undefined")
+    console.log("decodeURIComponent", typeof decodeURIComponent);
+  if (typeof dgram !== "undefined") console.log("dgram", typeof dgram);
+  if (typeof diagnostics_channel !== "undefined")
+    console.log("diagnostics_channel", typeof diagnostics_channel);
+  if (typeof dns !== "undefined") console.log("dns", typeof dns);
+  if (typeof domain !== "undefined") console.log("domain", typeof domain);
+  if (typeof encodeURI !== "undefined")
+    console.log("encodeURI", typeof encodeURI);
+  if (typeof encodeURIComponent !== "undefined")
+    console.log("encodeURIComponent", typeof encodeURIComponent);
+  if (typeof Error !== "undefined") console.log("Error", typeof Error);
+  if (typeof escape !== "undefined") console.log("escape", typeof escape);
+  if (typeof eval !== "undefined") console.log("eval", typeof eval);
+  if (typeof EvalError !== "undefined")
+    console.log("EvalError", typeof EvalError);
+  if (typeof Event !== "undefined") console.log("Event", typeof Event);
+  if (typeof events !== "undefined") console.log("events", typeof events);
+  if (typeof EventTarget !== "undefined")
+    console.log("EventTarget", typeof EventTarget);
+  if (typeof FinalizationRegistry !== "undefined")
+    console.log("FinalizationRegistry", typeof FinalizationRegistry);
+  if (typeof Float32Array !== "undefined")
+    console.log("Float32Array", typeof Float32Array);
+  if (typeof Float64Array !== "undefined")
+    console.log("Float64Array", typeof Float64Array);
+  if (typeof fs !== "undefined") console.log("fs", typeof fs);
+  if (typeof Function !== "undefined") console.log("Function", typeof Function);
+  if (typeof global !== "undefined") console.log("global", typeof global);
+  if (typeof globalThis !== "undefined")
+    console.log("globalThis", typeof globalThis);
+  if (typeof http !== "undefined") console.log("http", typeof http);
+  if (typeof http2 !== "undefined") console.log("http2", typeof http2);
+  if (typeof https !== "undefined") console.log("https", typeof https);
+  if (typeof Infinity !== "undefined") console.log("Infinity", typeof Infinity);
+  if (typeof inspector !== "undefined")
+    console.log("inspector", typeof inspector);
+  if (typeof Int16Array !== "undefined")
+    console.log("Int16Array", typeof Int16Array);
+  if (typeof Int32Array !== "undefined")
+    console.log("Int32Array", typeof Int32Array);
+  if (typeof Int8Array !== "undefined")
+    console.log("Int8Array", typeof Int8Array);
+  if (typeof Intl !== "undefined") console.log("Intl", typeof Intl);
+  if (typeof isFinite !== "undefined") console.log("isFinite", typeof isFinite);
+  if (typeof isNaN !== "undefined") console.log("isNaN", typeof isNaN);
+  if (typeof JSON !== "undefined") console.log("JSON", typeof JSON);
+  if (typeof Map !== "undefined") console.log("Map", typeof Map);
+  if (typeof Math !== "undefined") console.log("Math", typeof Math);
+  if (typeof MessageChannel !== "undefined")
+    console.log("MessageChannel", typeof MessageChannel);
+  if (typeof MessageEvent !== "undefined")
+    console.log("MessageEvent", typeof MessageEvent);
+  if (typeof MessagePort !== "undefined")
+    console.log("MessagePort", typeof MessagePort);
+  if (typeof module !== "undefined") console.log("module", typeof module);
+  if (typeof NaN !== "undefined") console.log("NaN", typeof NaN);
+  if (typeof net !== "undefined") console.log("net", typeof net);
+  if (typeof Number !== "undefined") console.log("Number", typeof Number);
+  if (typeof Object !== "undefined") console.log("Object", typeof Object);
+  if (typeof os !== "undefined") console.log("os", typeof os);
+  if (typeof parseFloat !== "undefined")
+    console.log("parseFloat", typeof parseFloat);
+  if (typeof parseInt !== "undefined") console.log("parseInt", typeof parseInt);
+  if (typeof path !== "undefined") console.log("path", typeof path);
+  if (typeof perf_hooks !== "undefined")
+    console.log("perf_hooks", typeof perf_hooks);
+  if (typeof process !== "undefined") console.log("process", typeof process);
+  if (typeof Promise !== "undefined") console.log("Promise", typeof Promise);
+  if (typeof Proxy !== "undefined") console.log("Proxy", typeof Proxy);
+  if (typeof punycode !== "undefined") console.log("punycode", typeof punycode);
+  if (typeof querystring !== "undefined")
+    console.log("querystring", typeof querystring);
+  if (typeof queueMicrotask !== "undefined")
+    console.log("queueMicrotask", typeof queueMicrotask);
+  if (typeof RangeError !== "undefined")
+    console.log("RangeError", typeof RangeError);
+  if (typeof readline !== "undefined") console.log("readline", typeof readline);
+  if (typeof ReferenceError !== "undefined")
+    console.log("ReferenceError", typeof ReferenceError);
+  if (typeof Reflect !== "undefined") console.log("Reflect", typeof Reflect);
+  if (typeof RegExp !== "undefined") console.log("RegExp", typeof RegExp);
+  if (typeof repl !== "undefined") console.log("repl", typeof repl);
+  if (typeof require !== "undefined") console.log("require", typeof require);
+  if (typeof Set !== "undefined") console.log("Set", typeof Set);
+  if (typeof setImmediate !== "undefined")
+    console.log("setImmediate", typeof setImmediate);
+  if (typeof setInterval !== "undefined")
+    console.log("setInterval", typeof setInterval);
+  if (typeof setTimeout !== "undefined")
+    console.log("setTimeout", typeof setTimeout);
+  if (typeof SharedArrayBuffer !== "undefined")
+    console.log("SharedArrayBuffer", typeof SharedArrayBuffer);
+  if (typeof stream !== "undefined") console.log("stream", typeof stream);
+  if (typeof String !== "undefined") console.log("String", typeof String);
+  if (typeof string_decoder !== "undefined")
+    console.log("string_decoder", typeof string_decoder);
+  if (typeof Symbol !== "undefined") console.log("Symbol", typeof Symbol);
+  if (typeof SyntaxError !== "undefined")
+    console.log("SyntaxError", typeof SyntaxError);
+  if (typeof sys !== "undefined") console.log("sys", typeof sys);
+  if (typeof TextDecoder !== "undefined")
+    console.log("TextDecoder", typeof TextDecoder);
+  if (typeof TextEncoder !== "undefined")
+    console.log("TextEncoder", typeof TextEncoder);
+  if (typeof timers !== "undefined") console.log("timers", typeof timers);
+  if (typeof tls !== "undefined") console.log("tls", typeof tls);
+  if (typeof trace_events !== "undefined")
+    console.log("trace_events", typeof trace_events);
+  if (typeof tty !== "undefined") console.log("tty", typeof tty);
+  if (typeof TypeError !== "undefined")
+    console.log("TypeError", typeof TypeError);
+  if (typeof Uint16Array !== "undefined")
+    console.log("Uint16Array", typeof Uint16Array);
+  if (typeof Uint32Array !== "undefined")
+    console.log("Uint32Array", typeof Uint32Array);
+  if (typeof Uint8Array !== "undefined")
+    console.log("Uint8Array", typeof Uint8Array);
+  if (typeof Uint8ClampedArray !== "undefined")
+    console.log("Uint8ClampedArray", typeof Uint8ClampedArray);
+  console.log("undefined", typeof undefined);
+  if (typeof unescape !== "undefined") console.log("unescape", typeof unescape);
+  if (typeof URIError !== "undefined") console.log("URIError", typeof URIError);
+  if (typeof URL !== "undefined") console.log("URL", typeof URL);
+  if (typeof url !== "undefined") console.log("url", typeof url);
+  if (typeof URLSearchParams !== "undefined")
+    console.log("URLSearchParams", typeof URLSearchParams);
+  if (typeof util !== "undefined") console.log("util", typeof util);
+  if (typeof v8 !== "undefined") console.log("v8", typeof v8);
+  if (typeof vm !== "undefined") console.log("vm", typeof vm);
+  if (typeof wasi !== "undefined") console.log("wasi", typeof wasi);
+  if (typeof WeakMap !== "undefined") console.log("WeakMap", typeof WeakMap);
+  if (typeof WeakRef !== "undefined") console.log("WeakRef", typeof WeakRef);
+  if (typeof WeakSet !== "undefined") console.log("WeakSet", typeof WeakSet);
+  if (typeof WebAssembly !== "undefined")
+    console.log("WebAssembly", typeof WebAssembly);
+  if (typeof worker_threads !== "undefined")
+    console.log("worker_threads", typeof worker_threads);
+  if (typeof zlib !== "undefined") console.log("zlib", typeof zlib);
+  return "allNodeJSStuff()";
+}
+
+allNodeJSStuff_();

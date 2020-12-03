@@ -13,7 +13,6 @@ function precmd() {
     source_ "${AHMYZSH}/themes/ahmyzhs.sh"
     echo "${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
     call_ prompt_versions
-    echo -e "\a"
   fi
   # exit
 }

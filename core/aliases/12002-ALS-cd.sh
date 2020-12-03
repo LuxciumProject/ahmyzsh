@@ -8,7 +8,7 @@ alias cdtmp="cd /tmp"
 alias ctmp="cd /tmp"
 
 function cdir() {
-    mkdir -p "$1" &&
-        cd "$1"
+  mkdir -p "$1" \
+    && cd "$1"
 }
 alias cmdir=cdir

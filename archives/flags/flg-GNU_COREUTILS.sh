@@ -24,20 +24,20 @@
 ## GNU_COREUTILS
 
 function GNU_COREUTILS_ON() {
-    echo "GNU_COREUTILS='true'" >${ZSH_FLAGS_VALUES}/.GNU_COREUTILS
-    source ${ZSH_FLAGS_VALUES}/.GNU_COREUTILS
-    compute_path
-    echo -n $normal
-    zsh
+  echo "GNU_COREUTILS='true'" >${ZSH_FLAGS_VALUES}/.GNU_COREUTILS
+  source ${ZSH_FLAGS_VALUES}/.GNU_COREUTILS
+  compute_path
+  echo -n $normal
+  zsh
 
 }
 
 function GNU_COREUTILS_OFF() {
-    echo "GNU_COREUTILS='false'" >${ZSH_FLAGS_VALUES}/.GNU_COREUTILS
-    source ${ZSH_FLAGS_VALUES}/.GNU_COREUTILS
-    compute_path
-    echo -n $normal
-    zsh
+  echo "GNU_COREUTILS='false'" >${ZSH_FLAGS_VALUES}/.GNU_COREUTILS
+  source ${ZSH_FLAGS_VALUES}/.GNU_COREUTILS
+  compute_path
+  echo -n $normal
+  zsh
 }
 
 ##!!0###########################################################################

@@ -8,8 +8,8 @@ source /home/luxcium/.zshrc
 eval "$(rbenv init -)"
 ~/.rbenv/bin/rbenv init
 (rbenv install 2.7.1)
-(mkdir -p "$(rbenv root)"/plugins) &&
-  (git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build)
+(mkdir -p "$(rbenv root)"/plugins) \
+  && (git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build)
 
 (curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash)
 

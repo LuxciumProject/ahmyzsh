@@ -137,8 +137,8 @@ function vscodeportable() {
 
       for f in $(ls ${download_location}/*code*.x86_64.rpm); do
         (
-          sudo nice -n "${_NICE_VAL}" ionice -c "${_IONICE_C}" -n 1 rpm2cpio "$f" |
-            sudo nice -n "${_NICE_VAL}" ionice -c "${_IONICE_C}" -n 1 cpio -idm --no-absolute-filenames &>/dev/null
+          sudo nice -n "${_NICE_VAL}" ionice -c "${_IONICE_C}" -n 1 rpm2cpio "$f" \
+            | sudo nice -n "${_NICE_VAL}" ionice -c "${_IONICE_C}" -n 1 cpio -idm --no-absolute-filenames &>/dev/null
         ) || exit 1
       done
 
@@ -210,8 +210,8 @@ function vscodeportable() {
       fi
       # ========================================================================
     }
-  ) ||
-    return 1
+  ) \
+    || return 1
   if [[ "${2}" = 'UPDATE' ]]; then
     echo -e "\n   -UPDATE-" && return 0
   else

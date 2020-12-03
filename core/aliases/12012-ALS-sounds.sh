@@ -1,4 +1,3 @@
-
 alias play-Im-Cant-Connect="(play -qv 0.1 /usr/share/sounds/Oxygen-Im-Cant-Connect.ogg&)"
 alias play-Im-Connection-Lost="(play -qv 0.1 /usr/share/sounds/Oxygen-Im-Connection-Lost.ogg&)"
 alias play-Im-Contact-In="(play -qv 0.1 /usr/share/sounds/Oxygen-Im-Contact-In.ogg&)"
@@ -48,7 +47,6 @@ alias play-Window-Move="(play -qv 0.1 /usr/share/sounds/Oxygen-Window-Move.ogg&)
 alias play-Window-Move-Stop="(play -qv 0.1 /usr/share/sounds/Oxygen-Window-Move-Stop.ogg&)"
 alias play-Window-Shade-Down="(play -qv 0.1 /usr/share/sounds/Oxygen-Window-Shade-Down.ogg&)"
 alias play-Window-Shade-Up="(play -qv 0.1 /usr/share/sounds/Oxygen-Window-Shade-Up.ogg&)"
-
 
 alias playnegative="(play-Sys-App-Negative; sleep 1; play-Sys-App-Negative; sleep 0.3; play-Sys-App-Negative; sleep 0.3; play-Sys-App-Negative)"
 alias playpositive="(play-Sys-App-Positive; sleep 1; play-Sys-App-Positive; sleep 0.3; play-Sys-App-Positive; sleep 0.3; play-Sys-App-Positive)"

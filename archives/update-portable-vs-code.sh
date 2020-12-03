@@ -20,9 +20,9 @@ echo ''
   myUXID="$(/home/luxcium/ahmyzsh/plugins/bin/uxid)"
   FOLDER_LOCATION="/tmp/lxcm-$myUXID/visual-studio-code/downloads"
   sudo mkdir -pv "${FOLDER_LOCATION}"
-  cd ${FOLDER_LOCATION} &&
-    sudo dnf reinstall "code*" --downloadonly --downloaddir $FOLDER_LOCATION -y &&
-    for f in $(ls ${FOLDER_LOCATION}/*code*.x86_64.rpm); do sudo rpm2cpio "$f" | sudo cpio -idmv --no-absolute-filenames; done
+  cd ${FOLDER_LOCATION} \
+    && sudo dnf reinstall "code*" --downloadonly --downloaddir $FOLDER_LOCATION -y \
+    && for f in $(ls ${FOLDER_LOCATION}/*code*.x86_64.rpm); do sudo rpm2cpio "$f" | sudo cpio -idmv --no-absolute-filenames; done
 
   # file:///tmp/lxcm-D20F204077175201172UXIDZF4358035/visual-studio-code/downloads/usr/share/code/code
   # file:///tmp/lxcm-D20F204077175201172UXIDZF4358035/visual-studio-code/downloads/usr/share/code-insiders/code-insiders

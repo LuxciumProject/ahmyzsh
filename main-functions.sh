@@ -12,6 +12,33 @@
 #& Scientia es lux principium is a Trade Mark of Benjamin Vincent Kasapoglu
 #& (c) & tm Benjamin Vincent Kasapoglu (Luxcium) 2017-2020
 #+ =============================================================================≈
+function load_all_config_and_settings_files() {
+
+  if [ "${VERBOSA}" -gt 10 ]; then
+    export BEGIN_SOURCING_FILES="\u001b[0m\u001b[34m#   \u001b[0m\u001b[33m\uf085\u001b[0m\u001b[34m  >"
+    export END_SOURCING_FILES="\u001b[0m\u001b[31;1m\u001b[1m"
+    TIMER_THEN=$(/usr/bin/date +%s%N)
+    [ "${VERBOSA}" -gt 10 ] && echo "${BEGIN_SOURCING_FILES} $(timer_now) ${S2} ${END_SOURCING_FILES}"
+    Load_all_files_d_v "${AHMYZSH_CORE}/layouts"
+    Load_all_files_d_v "${AHMYZSH_CORE}/compute-path"
+    Load_all_files_d_v "${AHMYZSH_CORE}/functions"
+    Load_all_files_d_v "${AHMYZSH_CORE}/aliases"
+    Load_all_files_d_v "${AHMYZSH_CORE}/paths"
+    # Load_all_files_d_v "${AHMYZSH_CORE}/env"
+  else
+    Load_all_files_d "${AHMYZSH_CORE}/compute-path"
+    Load_all_files_d "${AHMYZSH_CORE}/layouts"
+    Load_all_files_d "${AHMYZSH_CORE}/functions"
+    Load_all_files_d "${AHMYZSH_CORE}/aliases"
+    Load_all_files_d "${AHMYZSH_CORE}/paths"
+    # Load_all_files_d "${AHMYZSH_CORE}/env"
+  fi
+
+  # Created by newuser for 5.8
+
+}
+alias reload_alias_and_conf="load_all_config_and_settings_files"
+
 function firtstage() {
   # CACHED_PATH
 
@@ -152,10 +179,10 @@ alias reloadpath="re_load_path"
 function load_zlogout() {
   ##$  Interactive,login
 
-  ( 
-    (builtin cd $AHMYZSH &&
-      find $(pwd) | grep .zwc | foreachline rm -f &&
-      zsh_compile_all_R) &
+  (
+    (builtin cd $AHMYZSH \
+      && find $(pwd) | grep .zwc | foreachline rm -f \
+      && zsh_compile_all_R) &
   )                                           # 1.2385s
   ( (_p9k_dump_instant_prompt 2>/dev/null) &) # 0.0310s
   ( (compute_path 2>/dev/null) &)             # 0.4123s
@@ -231,9 +258,8 @@ function load_zshenv() {
   call_ load_path
 
   ## load_functions_now
-  call_ load_functions_definitions
+  # call_ load_functions_definitions
 
-  [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_HOURGLASS_END_1} load_zshenv in $(timer_all) ms !${END_FUNCTION}"
 }
 
 function load_zshrc() {
@@ -324,8 +350,8 @@ function timer_all() {
 
 function call_() {
   if [ -z $1 ]; then
-    [ "${VERBOSA}" -gt 1 ] && echo "Error sourcing ' $1 ' no function call provided"
-    return 1
+    [ "${VERBOSA}" -gt 4 ] && echo "Error sourcing ' $1 ' no function call provided"
+    return 4
   else
     TIMER_THEN=$(/usr/bin/date +%s%N)
     eval ${1}
@@ -338,29 +364,29 @@ function call_() {
 
 function source_() {
   if [ -z $1 ]; then
-    [ "${VERBOSA}" -gt 1 ] && echo "Error sourcing ' $1 ' no file provided"
-    return 1
+    [ "${VERBOSA}" -gt 4 ] && echo "Error sourcing ' $1 ' no file provided"
+    return 4
   else
     TIMER_THEN=$(/usr/bin/date +%s%N)
     if [[ -f $1 ]]; then
       if [[ -r $1 ]]; then
         source "${1}"
-        [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_SOURCING} $(timer_now) ${1} ${END_SOURCING}"
+        [ "${VERBOSA}" -gt 2 ] && echo "${BEGIN_SOURCING} $(timer_now) ${1} ${END_SOURCING}"
         return 0
       else
-        [ "${VERBOSA}" -gt 3 ] && echo "Error sourcing '$1' file provided is not redable"
-        return 3
+        [ "${VERBOSA}" -gt 6 ] && echo "Error sourcing '$1' file provided is not redable"
+        return 6
       fi
     else
-      [ "${VERBOSA}" -gt 2 ] && echo "Error sourcing '$1' file provided does not exist"
-      return 2
+      [ "${VERBOSA}" -gt 8 ] && echo "Error sourcing '$1' file provided does not exist"
+      return 8
     fi
   fi
 }
 
 function load_() {
-  source_ "${1}" &&
-    call_ ${2}
+  source_ "${1}" \
+    && call_ ${2}
 
 }
 
@@ -377,6 +403,55 @@ function parse_options() {
   root=$o_root[2]
   log=$o_log[2]
   if [[ $root[1] != '/' ]]; then root="$PWD/$root"; fi
+}
+
+function Load_Intearctive_Login_State() {
+  export Login_Start_Did_Execute=false
+  export Non_Login_Start_Did_Execute=false
+  export Interactive_Start_Did_Execute=false
+  export Non_Interactive_Start_Did_Execute=false
+  function Login_Start() {
+    if [[ Login_Start_Did_Execute != true ]]; then
+      export Login_Start_Did_Execute=true
+      if [[ -o login ]]; then
+        echo "I'm a login shell"
+      fi
+    fi
+
+  }
+
+  function Non_Login_Start() {
+    if [[ Non_Login_Start_Did_Execute != true ]]; then
+      export Non_Login_Start_Did_Execute=true
+      if [[ -o login ]]; then; else #+ !! ELSE !!
+        echo "I'm a non login shell"
+      fi
+    fi
+  }
+
+  function Interactive_Start() {
+    if [[ Interactive_Start_Did_Execute != true ]]; then
+      export Interactive_Start_Did_Execute=true
+      if [[ -o interactive ]]; then
+        echo "I'm interactive shell"
+      fi
+    fi
+
+  }
+
+  function Non_Interactive_Start() {
+    if [[ Non_Interactive_Start_Did_Execute != true ]]; then
+      export Non_Interactive_Start_Did_Execute=true
+      if [[ -o interactive ]]; then; else #+ !! ELSE !!
+        echo "I'm non interactive shell"
+        export VERBOSA=0
+      fi
+    fi
+  }
+  Login_Start
+  Non_Login_Start
+  Interactive_Start
+  Non_Interactive_Start
 }
 
 # ·――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――· #

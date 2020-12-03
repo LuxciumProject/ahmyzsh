@@ -45,12 +45,12 @@ export CACHED_PATH="${AHMYZSH_CACHE}/path.env"
 # "God said, “Let there be light”; and there was light."
 # "וַיֹּאמֶר אֱלֹהִים יְהִי אוֹר וַיְהִי אוֹר."
 if [[ -o interactive ]]; then
-    # echo "\u001b[1m      רֹוא יִהְי \u001b[0m"
-    # remove \ud83d\udca1 "💡"
-    # echo "\u001b[1m\u05d9\u05b0\u05d4\u05b4\u05d9\u0020 \u05d0\u05d5\u05b9\u05e8\u200e\u0020\u001b[0m"
-    local TIMER_NOW=$(/usr/bin/date +%s%N)
-    local TIMER_VALUE=$(((${TIMER_NOW} - ${TIMER_ALL_THEN}) / 1000000))
-    echo "   ${TIMER_VALUE}ms  to  'PATH'"
+  # echo "\u001b[1m      רֹוא יִהְי \u001b[0m"
+  # remove \ud83d\udca1 "💡"
+  # echo "\u001b[1m\u05d9\u05b0\u05d4\u05b4\u05d9\u0020 \u05d0\u05d5\u05b9\u05e8\u200e\u0020\u001b[0m"
+  local TIMER_NOW=$(/usr/bin/date +%s%N)
+  local TIMER_VALUE=$(((${TIMER_NOW} - ${TIMER_ALL_THEN}) / 1000000))
+  echo "   ${TIMER_VALUE}ms  to  'PATH'"
 fi
 
 #+ - M A I N  -  B O O T S T R A P -
@@ -58,14 +58,14 @@ fi
 export AHMYZSH="${HOME}/ahmyzsh"
 S1="${AHMYZSH}/MAIN.sh"
 if [ -f "${S1}" ]; then
-    . "${S1}"
-    unset -v S1
-    SCIENTIA_ES_LUX_PRINCIPIUM
+  . "${S1}"
+  unset -v S1
+  SCIENTIA_ES_LUX_PRINCIPIUM
 
 else
-    [[ -o interactive ]] &&
-        echo "Error loading '${S1}'... File or path can not be resolved"
-    unset -v S1
+  [[ -o interactive ]] \
+    && echo "Error loading '${S1}'... File or path can not be resolved"
+  unset -v S1
 fi
 
 # |----------------|-----------|-----------|------|
