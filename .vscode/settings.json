@@ -5,7 +5,8 @@
     "ohmyzsh": true,
     "powerline": true,
     "crt-profiles": true,
-    "node_modules": true
+    "node_modules": true,
+    ".git": false
   },
   "search.exclude": {
     "**/*.zwc": true,
