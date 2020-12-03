@@ -6,7 +6,7 @@
     "powerline": true,
     "crt-profiles": true,
     "node_modules": true,
-    ".git": false
+    "**/.directory": true
   },
   "search.exclude": {
     "**/*.zwc": true,
