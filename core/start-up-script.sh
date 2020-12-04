@@ -1,28 +1,30 @@
 #!/usr/bin/env sh
 
 echo "Start Up Script begin"
-( 
+(
   (nice -10 code-insiders /home/luxcium/ahmyzsh) &
 
-  (nice -n 30 ionice -c 3 fc-cache -v) &
+  (
+    (nice -5 ionice -c 2 -n 0 sudo fc-cache -rfE)
+    (nice -5 ionice -c 2 -n 0 fc-cache -rfE)
+  ) &
 
   (
     eval $(fnm env)
-    (nice -n 30 ionice -c 3 fnm install 8) &
-    (nice -n 30 ionice -c 3 fnm install 10) &
-    (nice -n 30 ionice -c 3 fnm install 12) &
-    (nice -n 30 ionice -c 3 fnm install 14) &
-    (nice -n 30 ionice -c 3 fnm install 15 && fnm default 15 && fnm use default)
-  )
+    (nice -5 ionice -c 2 -n 0 fnm install 8) &
+    (nice -5 ionice -c 2 -n 0 fnm install 10) &
+    (nice -5 ionice -c 2 -n 0 fnm install 12) &
+    (nice -5 ionice -c 2 -n 0 fnm install 14) &
+    (nice -5 ionice -c 2 -n 0 fnm install 15 && fnm default 15 && fnm use default)
+  ) &
 
-  (nice -n 30 ionice -c 3 conda update conda -y && nice -n 30 ionice -c 3 conda update --all -y)
+  (nice -5 ionice -c 2 -n 0 conda update conda -y && nice -5 ionice -c 2 -n 0 conda update --all -y)
 
-  ( 
-    (nice -n 30 ionice -c 3 sudo dnf remove -y xorg-x11-drv-amdgpu xorg-x11-drv-nouveau)
-    (nice -n 30 ionice -c 3 sudo dnf -4 makecache)
-    (nice -n 30 ionice -c 3 sudo dnf upgrade --downloadonly -v -y)
-  )
+  # (play -qv 0.1 /usr/share/sounds/Oxygen-Im-Phone-Ring.ogg &)
+
 )
+(play -qv 0.1 /usr/share/sounds/Oxygen-Im-Sms.ogg tremolo 10 100 chorus 0.4 0.9 50 0.5 0.25 2 -t 40 0.6 0.2 3 -s 60 0.6 0.3 1.3 -t &)
+echo "Start Up Script finishes"
 
 exit 0
 

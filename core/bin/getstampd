@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+# getstampd
+  echo -en "$(getdate)-$(getstamp4)x"

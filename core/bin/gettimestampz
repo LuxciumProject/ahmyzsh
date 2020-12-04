@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+# gettimestampz
+  echo -en $(date +%H%M%S%Z)

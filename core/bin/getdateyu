@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+# getdateyu
+  echo -en $(date --utc +%y%m%d)

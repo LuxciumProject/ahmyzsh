@@ -61,6 +61,7 @@ SharedArrayBuffer (function)
 String (function)
 Symbol (function)
 SyntaxError (function)
+
 TextDecoder (function)
 TextEncoder (function)
 TypeError (function)

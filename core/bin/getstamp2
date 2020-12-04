@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+echo -en "$(sha224hmac <<<$(date +%D%s%N) | cut -c -2 | tr \[a-z\] \[A-Z\])"

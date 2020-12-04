@@ -66,45 +66,79 @@ function prompt_versions() {
     (echo -n "\e[30m# \e[38;2;51;153;51m>  Node: $(node -v | cut -f 2 -d 'v') \u001b[31m\n") &
     (echo -n "\e[30m# \e[38;2;55;118;171m>  Python: $(python -V | cut -f 2 -d ' ') \u001b[31m\n") &
   )
-  sleep 0.25
+  sleep 0.35
   (echo -n "\u001b[37m")
   (echo -e "\a")
 }
 
 function prompt_versions2() {
-  echo -e "\a"
+
   (
-    (echo -n "\e[30m# \e[38;2;203;56;55m>  NPM: $(npm -v) \u001b[31m\n") &
-    (echo -n "\e[30m# \e[38;2;0;122;204m>  TSC: $(tsc -v | cut -f 2 -d ' ') \u001b[31m\n") &
-    (echo -n "\e[30m# \e[38;2;0;122;204m>  Code: $(code -v | grep '1\.') \u001b[31m\n") &
-    (echo -n "\e[30m# \e[38;2;44;142;187m>  Yarn: $(yarn -v) \u001b[31m\n") &
-    (echo -n "\e[30m# \e[38;2;0;122;204m>  Docker: $(docker --version | cut -f 1 -d ',' | cut -f 3 -d ' ')  \u001b[31m\n") &
-    (echo -n "\e[30m# \e[38;2;55;118;171m>  Python: $(python -V | cut -f 2 -d ' ') \u001b[31m\n") &
     (echo -n "\e[30m# \e[38;2;252;198;36m>  $(uname): $(uname -r | cut -f 1 -d '-') \u001b[31m\n") &
+    (echo -n "\e[30m# \e[38;2;0;122;204m>  Docker: $(docker --version | cut -f 1 -d ',' | cut -f 3 -d ' ')  \u001b[31m\n") &
+    (echo -n "\e[30m# \e[38;2;44;142;187m>  Yarn: $(yarn -v) \u001b[31m\n") &
+    (echo -n "\e[30m# \e[38;2;0;122;204m>  Code: $(code -v | grep '1\.') \u001b[31m\n") &
+    (echo -n "\e[30m# \e[38;2;0;122;204m>  TSC: $(tsc -v | cut -f 2 -d ' ') \u001b[31m\n") &
     (echo -n "\e[30m# \e[38;2;51;153;51m>  Node: $(node -v) \u001b[31m\n") &
     (echo -n "\e[30m# \e[37m>  ZSH: $(zsh --version | grep zsh | cut -f 2 -d ' ') \u001b[31m\n") &
-    (echo -n "\u001b[37m") &
+    (echo -n "\e[30m# \e[38;2;55;118;171m>  Python: $(python -V | cut -f 2 -d ' ') \u001b[31m\n") &
+    (echo -n "\e[30m# \e[38;2;203;56;55m>  NPM: $(npm -v) \u001b[31m\n") &
   )
+  (echo -n "\u001b[37m")
+  echo -e "\a"
+  # sleep 0.35
+}
 
+function prompt_versions3() {
+
+  (
+    (echo -n "\e[30m# \e[38;2;203;56;55m>  NPM: $(npm -v) \u001b[31m\n" &)
+    (echo -n "\e[30m# \e[38;2;0;122;204m>  TSC: $(tsc -v | cut -f 2 -d ' ') \u001b[31m\n" &)
+    (echo -n "\e[30m# \e[38;2;0;122;204m>  Code: $(code -v | grep '1\.') \u001b[31m\n" &)
+    (echo -n "\e[30m# \e[38;2;44;142;187m>  Yarn: $(yarn -v) \u001b[31m\n" &)
+    (echo -n "\e[30m# \e[38;2;0;122;204m>  Docker: $(docker --version | cut -f 1 -d ',' | cut -f 3 -d ' ')  \u001b[31m\n" &)
+    (echo -n "\e[30m# \e[38;2;55;118;171m>  Python: $(python -V | cut -f 2 -d ' ') \u001b[31m\n" &)
+    (echo -n "\e[30m# \e[38;2;252;198;36m>  $(uname): $(uname -r | cut -f 1 -d '-') \u001b[31m\n" &)
+    (echo -n "\e[30m# \e[38;2;51;153;51m>  Node: $(node -v) \u001b[31m\n" &)
+    (echo -n "\e[30m# \e[37m>  ZSH: $(zsh --version | grep zsh | cut -f 2 -d ' ') \u001b[31m\n" &)
+    (echo -n "\u001b[37m" &)
+  )
+  echo -e "\a"
+  # sleep 0.35
+}
+
+function prompt_versions4() {
+
+  (
+    (echo -n "\e[30m# \e[38;2;203;56;55m>  NPM: $(npm -v) \u001b[31m\n" &) &
+    (echo -n "\e[30m# \e[38;2;0;122;204m>  TSC: $(tsc -v | cut -f 2 -d ' ') \u001b[31m\n" &) &
+    (echo -n "\e[30m# \e[38;2;0;122;204m>  Code: $(code -v | grep '1\.') \u001b[31m\n" &) &
+    (echo -n "\e[30m# \e[38;2;44;142;187m>  Yarn: $(yarn -v) \u001b[31m\n" &) &
+    (echo -n "\e[30m# \e[38;2;0;122;204m>  Docker: $(docker --version | cut -f 1 -d ',' | cut -f 3 -d ' ')  \u001b[31m\n" &) &
+    (echo -n "\e[30m# \e[38;2;55;118;171m>  Python: $(python -V | cut -f 2 -d ' ') \u001b[31m\n" &) &
+    (echo -n "\e[30m# \e[38;2;252;198;36m>  $(uname): $(uname -r | cut -f 1 -d '-') \u001b[31m\n" &) &
+    (echo -n "\e[30m# \e[38;2;51;153;51m>  Node: $(node -v) \u001b[31m\n" &) &
+    (echo -n "\e[30m# \e[37m>  ZSH: $(zsh --version | grep zsh | cut -f 2 -d ' ') \u001b[31m\n" &) &
+    (echo -n "\u001b[37m" &) &
+  )
+  echo -e "\a"
   # sleep 0.35
 }
 
 function prompt_versions_sync() {
-
   (
-    (echo -n "\e[30m# \e[38;2;0;122;204m>  Code: $(code -v | grep '1\.') \u001b[31m\n")
-    # (# echo -n "\e[30m# >\e[30m\e[31m\n")
-    (echo -n "\e[30m# \e[38;2;55;118;171m>  Python: $(python -V | cut -f 2 -d ' ') \u001b[31m\n")
-    # (# echo -n "\e[30m# >\e[30m\e[31m\n")
-    (echo -n "\e[30m# \e[38;2;51;153;51m>  Node: $(node -v) \u001b[31m\n")
-    (echo -n "\e[30m# \e[38;2;203;56;55m>  NPM: $(npm -v) \u001b[31m\n")
-    (echo -n "\e[30m# \e[38;2;44;142;187m>  Yarn: $(yarn -v) \u001b[31m\n")
+    (echo -n "\e[30m# \e[38;2;203;56;55m>  NPM: $(npm -v) \u001b[31m\n" &)
     (echo -n "\e[30m# \e[38;2;0;122;204m>  TSC: $(tsc -v | cut -f 2 -d ' ') \u001b[31m\n")
-    # (# echo -n "\e[30m# >\e[30m\e[31m\n")
-    (echo -n "\e[30m# \e[38;2;252;198;36m>  $(uname): $(uname -r | cut -f 1 -d '-') \u001b[31m\n")
+    (echo -n "\e[30m# \e[38;2;0;122;204m>  Code: $(code -v | grep '1\.') \u001b[31m\n")
+    (echo -n "\e[30m# \e[38;2;44;142;187m>  Yarn: $(yarn -v) \u001b[31m\n")
     (echo -n "\e[30m# \e[38;2;0;122;204m>  Docker: $(docker --version | cut -f 1 -d ',' | cut -f 3 -d ' ')  \u001b[31m\n")
+    (echo -n "\e[30m# \e[38;2;55;118;171m>  Python: $(python -V | cut -f 2 -d ' ') \u001b[31m\n")
+    (echo -n "\e[30m# \e[38;2;252;198;36m>  $(uname): $(uname -r | cut -f 1 -d '-') \u001b[31m\n")
+    (echo -n "\e[30m# \e[38;2;51;153;51m>  Node: $(node -v) \u001b[31m\n")
     (echo -n "\e[30m# \e[37m>  ZSH: $(zsh --version | grep zsh | cut -f 2 -d ' ') \u001b[31m\n")
     (echo -n "\u001b[37m")
   )
-  # sleep 0.2
+  echo -e "\a"
+
+  # sleep 0.35
 }

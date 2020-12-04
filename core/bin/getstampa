@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+# getstampa
+  echo -en "$(getstamp4)-$(getstamp4)x"

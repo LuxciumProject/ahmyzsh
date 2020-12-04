@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+# getnanoepochstamp
+  echo -en $(date +%s%N)
