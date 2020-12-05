@@ -1,6 +1,9 @@
 #!/usr/bin/env sh
 
 echo "Start Up Script begin"
+
+# (play -qv 0.21 /usr/share/sounds/Oxygen-Sys-Log-In-Short.ogg &) # chorus 0.4 0.9 50 0.5 0.25 2 -t 40 0.6 0.2 3 -s 60 0.6 0.3 1.3 -t
+
 (
   (nice -10 code-insiders /home/luxcium/ahmyzsh) &
 
@@ -23,8 +26,8 @@ echo "Start Up Script begin"
   # (play -qv 0.1 /usr/share/sounds/Oxygen-Im-Phone-Ring.ogg &)
 
 )
-(play -qv 0.1 /usr/share/sounds/Oxygen-Im-Sms.ogg tremolo 10 100 chorus 0.4 0.9 50 0.5 0.25 2 -t 40 0.6 0.2 3 -s 60 0.6 0.3 1.3 -t &)
-echo "Start Up Script finishes"
+echo -e "Start Up Script finishes \a"
+(play -qv 0.75 /usr/share/sounds/Oxygen-Im-Sms.ogg tremolo 10 100 chorus 0.4 0.9 50 0.5 0.25 2 -t 40 0.6 0.2 3 -s 60 0.6 0.3 1.3 -t &)
 
 exit 0
 

@@ -11,6 +11,6 @@
   (echo -en "\e[30m# \e[38;2;51;153;51m>  Node: $(node -v) \u001b[31m\n")
   (echo -en "\e[30m# \e[38;2;55;118;171m>  Python: $(python -V | cut -f 2 -d ' ') \u001b[31m\n") &
 )
-sleep 0.19
+sleep 0.26
 (echo -en "\u001b[37m")
 echo -e "\a"
