@@ -1,0 +1,9 @@
+#!/bin/env sh
+
+function echostdout__() {
+  ([ -e /proc/self/fd/1 ] && (echo "${@}" >>/proc/self/fd/1)) \
+    || ([ -e /dev/stdout ] && (echo "${@}" >>/dev/stdout)) \
+    || return 10
+}
+
+echostdout__ "${@}"

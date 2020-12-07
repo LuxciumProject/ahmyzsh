@@ -9,13 +9,7 @@ function fnm_() {
 
 function rbenv_() {
   export PATH="$HOME/.rbenv/bin:$PATH"
-  export PATH="$HOME/.rbenv/bin:$PATH"
-  export PATH="$HOME/.rbenv/bin:$PATH"
-  export PATH="$HOME/.rbenv/shims:$PATH"
-  export PATH="$HOME/.rbenv/bin:$PATH"
-  export PATH="$HOME/.rbenv/shims:$PATH"
-  export PATH="$HOME/.rbenv/bin:$PATH"
-  export PATH="$HOME/.rbenv/shims:$PATH"
+  # export PATH="$HOME/.rbenv/shims:$PATH"
   eval "$(rbenv init -)"
 
 }
@@ -48,11 +42,13 @@ function compute_path() {
 
   # - ${PATH}
   export PATH_BAK2="${PATH}"
-  export PATH="/sbin"
-  add_to_path_ "/usr/sbin"
-  add_to_path_ "/usr/local/sbin"
+  # echo $PATH_BAK2
 
-  add_to_path_ "/bin"
+  # export PATH="/sbin"
+  # add_to_path_ "/usr/sbin"
+  # add_to_path_ "/usr/local/sbin"
+
+  export PATH="/bin"
   add_to_path_ "/usr/bin"
   add_to_path_ "/usr/local/bin"
 
@@ -64,11 +60,11 @@ function compute_path() {
   add_to_path_ "${HOME}/.config/yarn/global/node_modules/.bin"
   add_to_path_ "${HOME}/.yarn/bin"
 
-  add_to_path_ "${AHMYZSH_BIN}"
-  add_to_path_ "${ZSH_BIN}"
+  # add_to_path_ "${AHMYZSH_BIN}"
+  # add_to_path_ "${ZSH_BIN}"
 
   add_to_path_ "${HOME}/.local/bin"
-  add_to_path_ "${HOME}/.fnm"
+  # add_to_path_ "${HOME}/.fnm"
   call_ fnm_
 
   add_to_path_ $(rust_up_)
@@ -110,14 +106,9 @@ function compute_path() {
   # Note that the above paths change when using a custom install path with the
   # runfile installation method.
 
-  export PATH="${AHMYZSH}/plugins/bin:${PATH}:${AHMYZSH}/core/bin"
+  export PATH="${PATH}:${AHMYZSH}/core/bin"
 
-  # echo PATH_BAK
-  # echo $PATH_BAK
-  # echo PATH_BAK2
-  # echo $PATH_BAK2
-
-  dedup_path
+  # dedup_path
   mkdir -p "${AHMYZSH_CACHE}"
   echo "export PATH=\"$PATH\"" >"${CACHED_PATH}"
   zcompile "${CACHED_PATH}"
@@ -130,3 +121,13 @@ function compute_path() {
 # add_to_path_ "/usr/local/opt/gettext/bin"
 # add_to_path_ "/usr/local/share/zsh/site-functions"
 # add_to_path_ "/home/luxcium/.nvm/versions/node/v14.4.0/bin"
+
+## https://security.stackexchange.com/a/117548
+# #Gilles 'SO- stop being evil'
+# # CC BY-SA 3.0
+
+# PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin (or PATH=/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin) is usually the right setting for jobs running as root,
+
+# and PATH=/usr/local/bin:/usr/bin:/bin for jobs not running as root.
+
+## https://security.stackexchange.com/a/117548

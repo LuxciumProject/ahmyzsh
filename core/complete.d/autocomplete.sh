@@ -3,13 +3,13 @@ function load_autocomplete() {
   bashcompinit
   eval "$(gh completion -s zsh)"
 
-  fpath=(${AHMYZSH_PLUGINS}/nestjs-cli-completion ${fpath})
-  fpath=(${AHMYZSH_PLUGINS}/zsh-better-npm-completion ${fpath})
-  fpath=(${AHMYZSH_PLUGINS}/yarn-autocompletions ${fpath})
-  fpath=(${ZSH_COMPLETION}/fnm_completion.sh ${fpath})
+  fpath=(${ZSH_PLUGINS}/nestjs-cli-completion ${fpath})
+  fpath=(${ZSH_PLUGINS}/zsh-better-npm-completion ${fpath})
+  fpath=(${ZSH_PLUGINS}/yarn-autocompletions ${fpath})
+  fpath=(${CORE_COMPLETE}/fnm_completion.sh ${fpath})
 
-  source_ "${AHMYZSH_PLUGINS}/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh"
-  source_ "${AHMYZSH_PLUGINS}/yarn-autocompletions/yarn-autocompletions.plugin.zsh"
+  source_ "${ZSH_PLUGINS}/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh"
+  source_ "${ZSH_PLUGINS}/yarn-autocompletions/yarn-autocompletions.plugin.zsh"
 
   source_ "/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
   source_ "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
@@ -102,7 +102,7 @@ function load_autocomplete() {
   compctl -K _pip_completion pip
   #* pip zsh completion end
 
-  source "${ZSH_COMPLETION}/autocomplete.conf.sh"
+  source "${CORE_COMPLETE}/autocomplete.conf.sh"
 
   # Load_all_files_d "${AHMYZSH_CORE}/complete.d"
 

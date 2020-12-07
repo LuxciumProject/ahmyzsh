@@ -6,7 +6,7 @@ zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p
 zstyle ':completion:*' completer _list _oldlist _expand _complete _ignored _match _correct _approximate _prefix
 zstyle ':completion:*' expand prefix
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:]}={[:upper:]}'
-zstyle :compinstall filename "${ZSH_SOURCES}/completion/autocomplete.conf.sh"
+zstyle :compinstall filename "${CORE_COMPLETE}/autocomplete.conf.sh"
 
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit

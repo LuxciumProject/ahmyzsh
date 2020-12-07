@@ -143,7 +143,7 @@ function activate_instant_prompt() {
   typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
   typeset -g ZSH_THEME="../../powerlevel10k/powerlevel10k"
 
-  source_ "${CUSTOM_ZSH}/sources/instant-prompt"
+  source_ "${AHMYZSH_CORE}/instant-prompt"
   source_ "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
 
 }
@@ -191,7 +191,7 @@ function load_zlogout() {
 }
 
 function load_autocomplete_now() {
-  load_ "${ZSH_COMPLETION}/autocomplete.sh" "load_autocomplete"
+  load_ "${CORE_COMPLETE}/autocomplete.sh" "load_autocomplete"
 }
 
 function load_aliases() {
@@ -405,49 +405,51 @@ function parse_options() {
   if [[ $root[1] != '/' ]]; then root="$PWD/$root"; fi
 }
 
+function Login_Start() {
+  if [[ Login_Start_Did_Execute != true ]]; then
+    export Login_Start_Did_Execute=true
+    if [[ -o login ]]; then
+      echo "I'm a login shell"
+    fi
+  fi
+
+}
+
+function Non_Login_Start() {
+  if [[ Non_Login_Start_Did_Execute != true ]]; then
+    export Non_Login_Start_Did_Execute=true
+    if [[ -o login ]]; then; else #+ !! ELSE !!
+      echo "I'm a non login shell"
+    fi
+  fi
+}
+
+function Interactive_Start() {
+  if [[ Interactive_Start_Did_Execute != true ]]; then
+    export Interactive_Start_Did_Execute=true
+    if [[ -o interactive ]]; then
+      echo "I'm interactive shell"
+    fi
+  fi
+
+}
+
+function Non_Interactive_Start() {
+  if [[ Non_Interactive_Start_Did_Execute != true ]]; then
+    export Non_Interactive_Start_Did_Execute=true
+    if [[ -o interactive ]]; then; else #+ !! ELSE !!
+      echo "I'm non interactive shell"
+      export VERBOSA=0
+    fi
+  fi
+}
+
 function Load_Intearctive_Login_State() {
   export Login_Start_Did_Execute=false
   export Non_Login_Start_Did_Execute=false
   export Interactive_Start_Did_Execute=false
   export Non_Interactive_Start_Did_Execute=false
-  function Login_Start() {
-    if [[ Login_Start_Did_Execute != true ]]; then
-      export Login_Start_Did_Execute=true
-      if [[ -o login ]]; then
-        echo "I'm a login shell"
-      fi
-    fi
 
-  }
-
-  function Non_Login_Start() {
-    if [[ Non_Login_Start_Did_Execute != true ]]; then
-      export Non_Login_Start_Did_Execute=true
-      if [[ -o login ]]; then; else #+ !! ELSE !!
-        echo "I'm a non login shell"
-      fi
-    fi
-  }
-
-  function Interactive_Start() {
-    if [[ Interactive_Start_Did_Execute != true ]]; then
-      export Interactive_Start_Did_Execute=true
-      if [[ -o interactive ]]; then
-        echo "I'm interactive shell"
-      fi
-    fi
-
-  }
-
-  function Non_Interactive_Start() {
-    if [[ Non_Interactive_Start_Did_Execute != true ]]; then
-      export Non_Interactive_Start_Did_Execute=true
-      if [[ -o interactive ]]; then; else #+ !! ELSE !!
-        echo "I'm non interactive shell"
-        export VERBOSA=0
-      fi
-    fi
-  }
   Login_Start
   Non_Login_Start
   Interactive_Start
