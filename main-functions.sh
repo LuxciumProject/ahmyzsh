@@ -128,26 +128,6 @@ function Load_all_files_d_v() {
   fi
 }
 
-function activate_normal_prompt() {
-
-  typeset -g ZSH_THEME="../../powerlevel10k/powerlevel10k"
-  source_ "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
-
-}
-
-function activate_instant_prompt() {
-  # # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-  # # Initialization code that may require console input (password prompts, [y/n]
-  # # confirmations, etc.) must go above this block, everything else may go below.
-
-  typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
-  typeset -g ZSH_THEME="../../powerlevel10k/powerlevel10k"
-
-  source_ "${AHMYZSH_CORE}/instant-prompt"
-  source_ "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
-
-}
-
 function load_my_powerlevel10k_now() {
   ## load_my_pl10K_layout_now
   source_ "${AHMYZSH}/themes/pl10K-Layout.zsh"
@@ -175,20 +155,6 @@ function re_load_path() {
 }
 
 alias reloadpath="re_load_path"
-
-function load_zlogout() {
-  ##$  Interactive,login
-
-  (
-    (builtin cd $AHMYZSH \
-      && find $(pwd) | grep .zwc | foreachline rm -f \
-      && zsh_compile_all_R) &
-  )                                           # 1.2385s
-  ( (_p9k_dump_instant_prompt 2>/dev/null) &) # 0.0310s
-  ( (compute_path 2>/dev/null) &)             # 0.4123s
-  say_bye
-  exit
-}
 
 function load_autocomplete_now() {
   load_ "${CORE_COMPLETE}/autocomplete.sh" "load_autocomplete"
@@ -261,26 +227,68 @@ function load_zshenv() {
   # call_ load_functions_definitions
 
 }
+function activate_normal_prompt() {
 
+  typeset -g ZSH_THEME="../../powerlevel10k/powerlevel10k"
+  source_ "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
+  call_ load_my_powerlevel10k_now
+
+}
+
+function activate_instant_prompt() {
+
+  ## Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+  ## Initialization code that may require console input (password prompts, [y/n]
+  ## confirmations, etc.) must go above this block; everything else may go below.
+  # if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  #   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+  # fi
+  source_ "${AHMYZSH_CORE}/instant-prompt"
+
+  # # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+  # # Initialization code that may require console input (password prompts, [y/n]
+  # # confirmations, etc.) must go above this block, everything else may go below.
+  #   if [[ -r "${XDG_CACHE_HOME:-$HOME/envs/cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  #   source "${XDG_CACHE_HOME:-$HOME/envs/cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+  # fi
+  typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+
+  typeset -g ZSH_THEME="../../powerlevel10k/powerlevel10k"
+
+  source_ "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
+  call_ load_my_powerlevel10k_now
+
+}
 function load_zshrc() {
   #   #$ Interactive,login,non-login
+  # source_ "${AHMYZSH}/themes/ahmyzhs.sh"
 
-  call_ load_my_powerlevel10k_now
   # call_ activate_instant_prompt
   call_ activate_normal_prompt
+  #  promptversions
 
   if [ "${PARENT_ENV_LOADED}" != 'true' ]; then
     (compute_path &) # >/dev/null
   fi
 
-  # source_ "${AMYZSH_CORE}/options-list.zsh"
   call_ load_oh_my_zsh
   call_ load_options_list
   call_ load_options
   call_ load_autocomplete_now
 
-  # autoload -U compinit && compinit
+}
 
+function clearzwc() {
+  builtin cd $AHMYZSH && find $(pwd) | grep .zwc | foreachline rm -f
+}
+
+function load_zlogout() {
+  ##$  Interactive,login
+  clearzwc && zsh_compile_all_M &
+  _p9k_dump_instant_prompt 2>/dev/null &
+  compute_path 2>/dev/null &
+  say_bye
+  exit
 }
 
 function zsh_compile_all_R() {
@@ -288,7 +296,7 @@ function zsh_compile_all_R() {
 }
 
 function zsh_compile_all_M() {
-  (find "${AHMYZSH}/" -name '*.*sh' | while read line; do eval "zcompile -M ${line}"; done) 2>/dev/null
+  (find "${AHMYZSH}/" -name '*.*sh' | while read line; do eval "zcompile -M  ${line}"; done) 2>/dev/null
 }
 
 function zsh_compile_all() {
