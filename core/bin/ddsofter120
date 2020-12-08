@@ -146,27 +146,27 @@
 echo -e '\e[38;2;252;198;36m\n   TEST CPU   ' ## ----------------------------------------------------
 
 (
-  echo 'Will test x60 DDHARD  for 120 sec'
+  echo 'Will test x60 DDSOFT  for 120 sec'
   echo 'Warm Up 5 sec'
   (
 
-    ddhard5 &
-    ddhard5 &
+    ddsoft5 &
+    ddsoft5 &
 
-    ddhard5 &
-    ddhard5 &
+    ddsoft5 &
+    ddsoft5 &
 
-    ddhard5 &
-    ddhard5 &
+    ddsoft5 &
+    ddsoft5 &
 
-    ddhard5 &
-    ddhard5 &
+    ddsoft5 &
+    ddsoft5 &
 
-    ddhard5 &
-    ddhard5 &
+    ddsoft5 &
+    ddsoft5 &
 
-    ddhard5 &
-    ddhard5 &
+    ddsoft5 &
+    ddsoft5 &
 
   )
   sleep 5
@@ -188,13 +188,13 @@ echo -e '\e[38;2;252;198;36m\n   TEST CPU   ' ## -------------------------------
   echo '                                                                       '
 )
 echo ''
-echo "--------------------"
+echo -e "--------------------"
 echo 'completed !!!'
 echo 'completed !!!'
 echo 'completed !!!'
 echo -e "--------------------\a"
 sleep 0.5
-echo -e "\a"
+echo -en "\a"
 sleep 0.25
 echo -e "\a"
 sleep 0.25
