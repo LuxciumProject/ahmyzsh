@@ -10,6 +10,7 @@ function precmd() {
 
     right_prompt_off
     # hardcls
+    export TIME_TO_PATH_STR="${TIME_TO_PATH} ms  to  'PATH'"
     source_ "${AHMYZSH}/themes/ahmyzhs.sh"
     echo "${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
     promptversions

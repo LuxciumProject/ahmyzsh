@@ -1,40 +1,351 @@
 #!/bin/env sh
 
+# The most basic of these moves your cursor up, down, left or right:
+# Up: \u001b[{n}A
+# Down: \u001b[{n}B
+# Right: \u001b[{n}C
+# Left: \u001b[{n}D
+
 function saybye_() {
-  echo -e "\u001b[1A"
-  echo -en "\e[38;2;252;198;36m                                    \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m          B                         \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m         BY                         \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m        BYE                         \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m       BYE                          \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m      BYE !                         \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m     BYE !!                         \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m    BYE !!!                         \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m   BYE !!!                          \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m  BYE !!!                           \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m  YE !!!                            \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m  E !!!                             \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m   !!!                              \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m  !!!                               \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m  !!                                \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m  !                                 \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m                           \u001b[1000D\a${RSET}"
+  clear
+  # What I have said about the operation of the knoledge and the science is now accomplished and ended.
+  export TIME_TO_PATH_STR='Completum est, quod dixi de lux principium.'
+  source "${AHMYZSH}/themes/ahmyzhs.sh"
+  echo -en "\u001b[1A"
+  echo -en "\e[38;2;252;198;36m                                                  \u001b[1000D"
+  sleep 0.075
+  echo -en "\e[38;2;252;198;36m                                                 B\u001b[1000D"
+  sleep 0.075
+  echo -en "\e[38;2;252;198;36m                                               BYE\u001b[1000D"
+  sleep 0.075
+  echo -en "\e[38;2;252;198;36m                                             BYE !\u001b[1000D"
+  sleep 0.075
+  echo -en "\e[38;2;252;198;36m                                           BYE !!!\u001b[1000D"
+  sleep 0.075
+  echo -en "\e[38;2;252;198;36m                                        BYE !!!   \u001b[1000D"
+  sleep 0.075
+  echo -en "\e[38;2;252;198;36m                                      BYE !!!     \u001b[1000D"
+  sleep 0.075
+  echo -en "\e[38;2;252;198;36m                                   BYE !!!       \u001b[1000D"
+  sleep 0.075
+  echo -en "\e[38;2;252;198;36m                               BYE !!!       \u001b[1000D"
+  sleep 0.075
+  echo -en "\e[38;2;252;198;36m                           BYE !!!       \u001b[1000D"
+  sleep 0.075
+  echo -en "\e[38;2;252;198;36m                       BYE !!!       \u001b[1000D"
+  sleep 0.075
+  echo -en "\e[38;2;252;198;36m                   BYE !!!       \u001b[1000D"
+  sleep 0.075
+  echo -en "\e[38;2;252;198;36m             BYE !!!       \u001b[1000D"
+  sleep 0.075
+  echo -en "\e[38;2;252;198;36m        BYE !!!       \u001b[1000D"
+  sleep 0.075
+  echo -en "\e[38;2;252;198;36m    BYE !!!       \u001b[1000D"
+  sleep 0.075
+  echo -en "\e[38;2;252;198;36mYE  !!!       \u001b[1000D"
+  sleep 0.075
+  echo -en "\e[38;2;252;198;36m !!!       \u001b[1000D"
+  sleep 0.075
+  echo -en "\e[38;2;252;198;36m!!!       \u001b[1000D"
+  sleep 0.075
+  echo -en "\e[38;2;252;198;36m!       \u001b[1000D"
+  sleep 0.075
+  echo -en "\e[38;2;252;198;36m       \u001b[100D\a${RSET}"
+  clear
+  THEEND="\e[0;34m "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.02
+  CYS="\e[0;36m"
+  echo -en " ${CYS}${TIME_TO_PATH_STR}                                         "
+  sleep 0.02
+  echo -en " ${CYS}${TIME_TO_PATH_STR}                                      "
+  sleep 0.02
+  echo -en " ${CYS}${TIME_TO_PATH_STR}                                      "
+  sleep 0.02
+  YS="\e[1;33m"
+  echo -en " ${YS}${TIME_TO_PATH_STR}                                      "
+  sleep 0.02
+  echo -en " ${YS}${TIME_TO_PATH_STR}                                      "
+  sleep 0.02
+  echo -en " ${YS}${TIME_TO_PATH_STR}                                      "
+  sleep 0.02
+  WHS="\e[1;37m"
+  echo -en " ${WHS}${TIME_TO_PATH_STR}                                      "
+  sleep 0.02
+  echo -en " ${WHS}${TIME_TO_PATH_STR}                                      "
+  sleep 0.02
+  echo -en " ${WHS}${TIME_TO_PATH_STR}                                      "
+  sleep 0.02
+  echo -en " ${YS}${TIME_TO_PATH_STR}                                      "
+  sleep 0.02
+  echo -en " ${YS}${TIME_TO_PATH_STR}                                      "
+  sleep 0.02
+  echo -en " ${YS}${TIME_TO_PATH_STR}                                      "
+  sleep 0.02
+  echo -en " ${CYS}${TIME_TO_PATH_STR}                                      "
+  sleep 0.02
+  echo -en " ${CYS}${TIME_TO_PATH_STR}                                      "
+  sleep 0.02
+  echo -en " ${CYS}${TIME_TO_PATH_STR}                                      "
+  sleep 0.02
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0075
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0025
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0025
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0025
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0025
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0025
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0025
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0025
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0025
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0025
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0025
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0025
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0025
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0025
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0025
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0025
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0025
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0025
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0025
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0025
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0025
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0025
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0025
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0025
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0025
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0025
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0025
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0025
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  sleep 0.0025
+
+  echo -en "\e[38;2;252;198;36m       \u001b[100D${RSET}"
+  sleep 2
 }
 
 ## Extra code make it easy to copy paste only the function out to use elsewhere

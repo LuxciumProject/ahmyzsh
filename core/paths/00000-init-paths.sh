@@ -10,22 +10,6 @@ export OHMYZSH="${AHMYZSH}/ohmyzsh"
 export POWERLEVEL10K="${AHMYZSH}/powerlevel10k"
 export ZSH_PLUGINS="${AHMYZSH}/plugins"
 export ZSH_THEMES="${AHMYZSH}/themes"
-{
-  # export PLUGINS_BIN="${ZSH_PLUGINS}/bin"
-}
-
-# ohmyzsh/
-# plugins/
-# powerlevel10k/
-# themes/
-
-# .git/
-# .vscode/
-# archives/
-# core/
-# crt-profiles/
-# node_modules/
-# templates/
 
 export AHMYZSH_CORE="${AHMYZSH}/core"
 {
@@ -65,3 +49,20 @@ export AHMYZSH_CORE="${AHMYZSH}/core"
 
 # # export CORE_FUNCTIONS="${AHMYZSH_CORE}/functions.1"
 # # export CORE_FUNCTIONS="${AHMYZSH_CORE}/functions.2"
+
+{
+  # export PLUGINS_BIN="${ZSH_PLUGINS}/bin"
+}
+
+# ohmyzsh/
+# plugins/
+# powerlevel10k/
+# themes/
+
+# .git/
+# .vscode/
+# archives/
+# core/
+# crt-profiles/
+# node_modules/
+# templates/
