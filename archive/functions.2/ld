@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+# function ld() {}
+# (
+#   local mypath="${@:-$(pwd)}"
+#   echo ''
+#   builtin cd "${mypath}"
+#   pw
+#   colorls -lA --sd -d
+#   pw
+#   echo ''
+# )

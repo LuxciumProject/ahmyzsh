@@ -1,0 +1,96 @@
+Plugins chargés : builddep, changelog, config-manager, copr, debug, debuginfo-install, download, generate_completion_cache, needs-restarting, playground, repoclosure, repodiff, repograph, repomanage, reposync
+DNF version: 4.2.23
+cachedir: /var/cache/dnf
+Option de configuration inconnue : enable=1 dans /etc/yum.repos.d/playonlinux.repo
+User-Agent: constructed: 'libdnf (Fedora 32; kde; Linux.x86_64)'
+dépôt : utilisation du cache pour : fedora-cisco-openh264
+fedora-cisco-openh264 : utilisation des métadonnées depuis le mar. 17 mars 2020 16:10:45.
+dépôt : utilisation du cache pour : fedora-modular
+fedora-modular : utilisation des métadonnées depuis le mer. 22 avril 2020 17:03:13.
+dépôt : utilisation du cache pour : updates-modular
+updates-modular : utilisation des métadonnées depuis le ven. 10 juil. 2020 21:16:26.
+dépôt : utilisation du cache pour : updates
+updates : utilisation des métadonnées depuis le mar. 14 juil. 2020 20:59:50.
+dépôt : utilisation du cache pour : fedora
+fedora : utilisation des métadonnées depuis le mer. 22 avril 2020 18:22:36.
+dépôt : utilisation du cache pour : google-chrome
+google-chrome : utilisation des métadonnées depuis le mar. 14 juil. 2020 13:39:31.
+dépôt : utilisation du cache pour : playonlinux
+playonlinux : utilisation des métadonnées depuis le lun. 24 déc. 2018 15:37:58.
+dépôt : utilisation du cache pour : rpmfusion-free-updates
+rpmfusion-free-updates : utilisation des métadonnées depuis le lun. 13 juil. 2020 07:12:39.
+dépôt : utilisation du cache pour : rpmfusion-free
+rpmfusion-free : utilisation des métadonnées depuis le ven. 24 avril 2020 13:27:23.
+dépôt : utilisation du cache pour : rpmfusion-nonfree-updates
+rpmfusion-nonfree-updates : utilisation des métadonnées depuis le lun. 13 juil. 2020 07:29:02.
+dépôt : utilisation du cache pour : rpmfusion-nonfree
+rpmfusion-nonfree : utilisation des métadonnées depuis le ven. 24 avril 2020 13:52:12.
+dépôt : utilisation du cache pour : code
+code : utilisation des métadonnées depuis le mer. 15 juil. 2020 03:28:57.
+Dernière vérification de l’expiration des métadonnées effectuée il y a 2:20:46 le mer. 15 juil. 2020 09:33:38.
+Completion plugin: Generating completion cache...
+Groupes d’environnements disponibles :
+   Système d’exploitation Fedora personnalisé (custom-environment)
+   Installation minimale (minimal-environment)
+   Édition Fedora Server (server-product-environment)
+   Fedora Workstation (workstation-product-environment)
+   Fedora Cloud Server (cloud-server-environment)
+   Bureau Xfce (xfce-desktop-environment)
+   Bureau LXDE (lxde-desktop-environment)
+   Bureau LXQt (lxqt-desktop-environment)
+   Bureau Cinnamon (cinnamon-desktop-environment)
+   Bureau MATE (mate-desktop-environment)
+   Environnement de bureau Sugar (sugar-desktop-environment)
+   Deepin Desktop (deepin-desktop-environment)
+   Station de travail de développement et de création (developer-workstation-environment)
+   Serveur Web (web-server-environment)
+Groupes d’environnements installés :
+   KDE Plasma Workspaces (kde-desktop-environment)
+   Serveur d’infrastructure (infrastructure-server-environment)
+   Environnement de bureau standard (basic-desktop-environment)
+Groupes installés :
+   Outils d’administration (admin-tools)
+   Production audio (audio)
+   Outils de développement et bibliothèques pour C (c-development)
+   Outils de gestion de Cloud (cloud-management)
+   Gestion des conteneurs (container-management)
+   Outils de développement et bibliothèques pour D (d-development)
+   Design suite (design-suite)
+   Outils de développement (development-tools)
+   Gestion Headless (systèmes n’étant pas reliés directement à un écran, un clavier ou une souris) (headless-management)
+   Python Classroom (python-classroom)
+   Python Science (python-science)
+   Outils de développement RPM (rpm-development-tools)
+   GNOME (gnome-desktop)
+   KDE (kde-desktop)
+   Polices de caractères (fonts)
+   Prise en charge du matériel (hardware-support)
+   Outils système (system-tools)
+Groupes disponibles :
+   Impression 3D (3d-printing)
+   Création et édition (authoring-and-publishing)
+   Livres et guides (books)
+   Infrastructure pour l’informatique en nuage (cloud-infrastructure)
+   Compiz (compiz)
+   Adhésion aux domaines (domain-client)
+   Fedora Eclipse (eclipse)
+   Éditeurs (editors)
+   Logiciel éducatif (education)
+   Labo d’électronique (electronic-lab)
+   Ingénierie et scientifique (engineering-and-scientific)
+   Serveur FreeIPA (freeipa-server)
+   LibreOffice (libreoffice)
+   Applications MATE (mate-applications)
+   Applications médicales (medical)
+   Milkymist (milkymist)
+   Serveurs de réseau (network-server)
+   Neuron Modelling Simulators (neuron-modelling-simulators)
+   Bureautique/Productivité (office)
+   Robotique (robotics-suite)
+   Laboratoire de sécurité (security-lab)
+   Internet basé sur du texte (text-internet)
+   Gestionnaire de fenêtres (window-managers)
+   Deepin Desktop Environment (deepin-desktop)
+   Internet graphique (graphical-internet)
+   Jeux et divertissements (games)
+   Son et vidéo (sound-and-video)

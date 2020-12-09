@@ -1,0 +1,13 @@
+#! /bin/env zsh
+
+: ${HOME:="/home/luxcium"}
+: ${AHMYZSH:="${HOME}/ahmyzsh"}
+: ${CUSTOM_ZSH:="${AHMYZSH}/custom-zsh"}
+: ${CUSTOM_ZSH_BIN:="${CUSTOM_ZSH}/bin"}
+: ${POMODORO:="${CUSTOM_ZSH_BIN}/pomodoro.zsh"}
+
+. ${POMODORO}
+
+cycle9heures_
+
+exit 0
