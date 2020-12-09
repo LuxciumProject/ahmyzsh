@@ -12,6 +12,48 @@
 #& Scientia es lux principium is a Trade Mark of Benjamin Vincent Kasapoglu
 #& (c) & tm Benjamin Vincent Kasapoglu (Luxcium) 2017-2020
 #+ =============================================================================≈
+function load_zshenv() {
+  #   #$ Interactive,Script,login,non-login
+
+  ## load_path_now
+  call_ load_path
+
+  ## load_functions_now
+  # call_ load_functions_definitions
+  [ "${VERBOSA}" -gt 0 ] && echo "\n${LD_COLR}${BEGIN_HOURGLASS_END_1}     load_zshenv in $(timer_all)ms!${END_FUNCTION}\n"
+}
+
+function load_zshrc() {
+  #   #$ Interactive,login,non-login
+  # source_ "${AHMYZSH}/themes/ahmyzhs.sh"
+
+  # call_ activate_instant_prompt
+  call_ activate_normal_prompt
+  #  promptversions
+
+  if [ "${PARENT_ENV_LOADED}" != 'true' ]; then
+    (compute_path &) # >/dev/null
+  fi
+
+  call_ load_oh_my_zsh
+  call_ load_options_list
+  call_ load_options
+  call_ load_autocomplete_now
+
+}
+
+## Add a call to thin function in '/etc/zlogout' or '~/.zlogout'
+function load_zlogout() {
+  ##$  Interactive,login
+  (
+    clearzshwordcode && zsh_compile_all_M &
+    _p9k_dump_instant_prompt 2>/dev/null &
+    compute_path 2>/dev/null &
+    saybye
+  )
+  exit
+}
+
 function load_all_config_and_settings_files() {
 
   if [ "${VERBOSA}" -gt 10 ]; then
@@ -146,48 +188,6 @@ function source_() {
       return 8
     fi
   fi
-}
-
-function load_zshenv() {
-  #   #$ Interactive,Script,login,non-login
-
-  ## load_path_now
-  call_ load_path
-
-  ## load_functions_now
-  # call_ load_functions_definitions
-  [ "${VERBOSA}" -gt 0 ] && echo "\n${LD_COLR}${BEGIN_HOURGLASS_END_1}     load_zshenv in $(timer_all)ms!${END_FUNCTION}\n"
-}
-
-function load_zshrc() {
-  #   #$ Interactive,login,non-login
-  # source_ "${AHMYZSH}/themes/ahmyzhs.sh"
-
-  # call_ activate_instant_prompt
-  call_ activate_normal_prompt
-  #  promptversions
-
-  if [ "${PARENT_ENV_LOADED}" != 'true' ]; then
-    (compute_path &) # >/dev/null
-  fi
-
-  call_ load_oh_my_zsh
-  call_ load_options_list
-  call_ load_options
-  call_ load_autocomplete_now
-
-}
-
-## Add a call to thin function in '/etc/zlogout' or '~/.zlogout'
-function load_zlogout() {
-  ##$  Interactive,login
-  (
-    clearzshwordcode && zsh_compile_all_M &
-    _p9k_dump_instant_prompt 2>/dev/null &
-    compute_path 2>/dev/null &
-    saybye
-  )
-  exit
 }
 
 alias reload_alias_and_conf="load_all_config_and_settings_files"
