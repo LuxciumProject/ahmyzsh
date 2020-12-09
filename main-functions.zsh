@@ -15,10 +15,12 @@
 function load_all_config_and_settings_files() {
 
   if [ "${VERBOSA}" -gt 10 ]; then
+
     export BEGIN_SOURCING_FILES="\u001b[0m\u001b[34m#   \u001b[0m\u001b[33m\uf085\u001b[0m\u001b[34m  >"
     export END_SOURCING_FILES="\u001b[0m\u001b[31;1m\u001b[1m"
+
     TIMER_THEN=$(/usr/bin/date +%s%N)
-    [ "${VERBOSA}" -gt 10 ] && echo "${BEGIN_SOURCING_FILES} $(timer_now) ${S2} ${END_SOURCING_FILES}"
+
     Load_all_files_d_v "${AHMYZSH_CORE}/layouts"
     Load_all_files_d_v "${AHMYZSH_CORE}/compute-path"
     Load_all_files_d_v "${AHMYZSH_CORE}/functions"
@@ -37,64 +39,10 @@ function load_all_config_and_settings_files() {
   # Created by newuser for 5.8
 
 }
+
 alias reload_alias_and_conf="load_all_config_and_settings_files"
 
 function firtstage() {
-  # CACHED_PATH
-
-  export AHMYZSH_CACHE="${HOME}/.cache/ahmyzsh"
-  export CACHED_PATH="${AHMYZSH_CACHE}/path.env"
-  # : ${VERBOSA=100}
-
-  : ${VERBOSA:=10}
-
-  : ${EDITOR:=code}
-
-  : ${ENV_LOADED:="false"}
-
-  : ${ZLE_RPROMPT_INDENT:=0}
-
-  : ${SHOW_LOAD_CUTLS:="true"}
-
-  : ${AHMYZSH:="${HOME}/ahmyzsh"}
-
-  export AHMYZSH
-
-  : ${PATH_FILE:="${CACHED_PATH}"}
-
-  export PATH_FILE
-
-  # Set you locale here
-  # LANG="fr_CA.UTF-8"
-
-  : ${LANG:="fr_CA.UTF-8"}
-
-  : ${LC_CTYPE:="${LANG}"}
-
-  : ${LC_NUMERIC:="${LANG}"}
-
-  : ${LC_TIME:="fr_FR.UTF-8"}
-
-  : ${LC_COLLATE:="${LANG}"}
-
-  : ${LC_MONETARY:="${LANG}"}
-
-  : ${LC_MESSAGES:="${LANG}"}
-
-  : ${LC_PAPER:="${LANG}"}
-
-  : ${LC_NAME:="${LANG}"}
-
-  : ${LC_ADDRESS:="${LANG}"}
-
-  : ${LC_TELEPHONE:="${LANG}"}
-
-  : ${LC_MEASUREMENT:="${LANG}"}
-
-  : ${LC_IDENTIFICATION:="${LANG}"}
-
-  # fall back
-  source "${HOME}/.env"
 
 }
 
@@ -214,7 +162,6 @@ function load_oh_my_zsh() {
   # yarn
   source $ZSH/oh-my-zsh.sh
   unalias ll
-  # echo -n "${normal}$CLRLN$LDLCLR$(tput setaf 2) \uf013 ${bold} DONE! load_oh_my_zsh()${normal}"
 }
 
 function load_zshenv() {
@@ -227,6 +174,7 @@ function load_zshenv() {
   # call_ load_functions_definitions
 
 }
+
 function activate_normal_prompt() {
 
   typeset -g ZSH_THEME="../../powerlevel10k/powerlevel10k"
@@ -259,6 +207,7 @@ function activate_instant_prompt() {
   call_ load_my_powerlevel10k_now
 
 }
+
 function load_zshrc() {
   #   #$ Interactive,login,non-login
   # source_ "${AHMYZSH}/themes/ahmyzhs.sh"
@@ -274,21 +223,24 @@ function load_zshrc() {
   call_ load_oh_my_zsh
   call_ load_options_list
   call_ load_options
-  call_ load_autocomplete_now
+  # call_ load_autocomplete_now
 
 }
 
-function clearzwc() {
-  builtin cd $AHMYZSH && find $(pwd) | grep .zwc | foreachline rm -f
-}
-
+## Add a call to thin function in '/etc/zlogout' or '~/.zlogout'
 function load_zlogout() {
   ##$  Interactive,login
-  clearzwc && zsh_compile_all_M &
-  _p9k_dump_instant_prompt 2>/dev/null &
-  compute_path 2>/dev/null &
-  say_bye
+  (
+    clearzwc && zsh_compile_all_M &
+    _p9k_dump_instant_prompt 2>/dev/null &
+    compute_path 2>/dev/null &
+    saybye
+  )
   exit
+}
+alias bye='load_zlogout'
+function clearzwc() {
+  builtin cd $AHMYZSH && find $(pwd) | grep .zwc | foreachline rm -f
 }
 
 function zsh_compile_all_R() {
@@ -423,15 +375,6 @@ function Login_Start() {
 
 }
 
-function Non_Login_Start() {
-  if [[ Non_Login_Start_Did_Execute != true ]]; then
-    export Non_Login_Start_Did_Execute=true
-    if [[ -o login ]]; then; else #+ !! ELSE !!
-      echo "I'm a non login shell"
-    fi
-  fi
-}
-
 function Interactive_Start() {
   if [[ Interactive_Start_Did_Execute != true ]]; then
     export Interactive_Start_Did_Execute=true
@@ -440,6 +383,15 @@ function Interactive_Start() {
     fi
   fi
 
+}
+
+function Non_Login_Start() {
+  if [[ Non_Login_Start_Did_Execute != true ]]; then
+    export Non_Login_Start_Did_Execute=true
+    if [[ -o login ]]; then; else #+ !! ELSE !!
+      echo "I'm a non login shell"
+    fi
+  fi
 }
 
 function Non_Interactive_Start() {
@@ -463,6 +415,9 @@ function Load_Intearctive_Login_State() {
   Interactive_Start
   Non_Interactive_Start
 }
+
+# [[ $- == *i* ]] && echo 'Interactive' || echo 'Not interactive'
+# shopt -q login_shell && echo 'Login shell' || echo 'Not login shell'
 
 # ·――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――· #
 # !!―――――――――――――――――――――――――!!! SECURITY WARNING !!!―――――――――――――――――――――――――!! #

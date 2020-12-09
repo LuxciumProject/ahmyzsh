@@ -28,7 +28,7 @@ function load_my_powerlevel10k() {
         # ram         # free RAM
         # ! todo        # !todo items (https://github.com/todotxt/todo.txt-cli)
         # timewarrior # timewarrior tracking status (https://timewarrior.net/)
-        # status  # exit code of the last command
+        status  # exit code of the last command
         newline # !! ======================[ Line #1 ]======================
         dir     # current directory
         newline # !! ======================[ Line #2 ]======================# custom_tsx

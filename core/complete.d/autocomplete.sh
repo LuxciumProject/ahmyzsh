@@ -6,7 +6,8 @@ function load_autocomplete() {
   fpath=(${ZSH_PLUGINS}/nestjs-cli-completion ${fpath})
   fpath=(${ZSH_PLUGINS}/zsh-better-npm-completion ${fpath})
   fpath=(${ZSH_PLUGINS}/yarn-autocompletions ${fpath})
-  fpath=(${CORE_COMPLETE}/fnm_completion.sh ${fpath})
+  fpath=(${ZSH_PLUGINS}/zsh-completions/src ${fpath})
+  fpath=(${CORE_COMPLETE} ${fpath})
 
   source_ "${ZSH_PLUGINS}/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh"
   source_ "${ZSH_PLUGINS}/yarn-autocompletions/yarn-autocompletions.plugin.zsh"
@@ -103,7 +104,5 @@ function load_autocomplete() {
   #* pip zsh completion end
 
   source "${CORE_COMPLETE}/autocomplete.conf.sh"
-
-  # Load_all_files_d "${AHMYZSH_CORE}/complete.d"
 
 }

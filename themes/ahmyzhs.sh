@@ -1,4 +1,5 @@
 source "${AHMYZSH}/themes/colors.sh"
+export TIME_TO_PATH_STR="${TIME_TO_PATH} ms  to  'PATH'"
 
 # echo -e "${LGNS}1-------10--------20--------30--------40--------50--------60--------70--------80${CE}"
 BCOL="${BS}     ${COL}     "

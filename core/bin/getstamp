@@ -2,6 +2,8 @@
 
 # getstamp
 
+# // Exemple getstamp 8 'a' 'b' 'c' → a8C3B2FF0b
+# random getstamp → Z2ECEEDA7x
 function getstamp_() {
 
   #- $1 = length (default 8)

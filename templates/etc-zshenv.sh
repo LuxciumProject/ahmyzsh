@@ -3,17 +3,16 @@
 #. MIT LICENSE ― PROVIDED "AS IS" ― *NOT* fit for any particular use or purpose!
 #. -----------------------------------------------------------------------------~
 #. ZSH verry first entry point
-export PATH_BAK="## PATH_BAK:${PATH} ##"
 
 export TIMER_ALL_THEN=$(/usr/bin/date +%s%N)
 
 export AHMYZSH=${AHMYZSH:="${HOME}/ahmyzsh"}
 export AHMYZSH_CACHE=${AHMYZSH_CACHE:="${HOME}/.cache/ahmyzsh"}
 export CACHED_PATH=${CACHED_PATH:="${AHMYZSH_CACHE}/path.env"}
-export MAIN_BOOTSTRAP=${MAIN_BOOTSTRAP:="${AHMYZSH}/MAIN.sh"}
 
-#+ LOAD PATH
+#* 1) LOAD PATH
 #+ -----------------------------------------------------------------------------~
+
 if [ -f "${CACHED_PATH}" ]; then
   . "${CACHED_PATH}"
 
@@ -25,19 +24,17 @@ if [ -f "${CACHED_PATH}" ]; then
     echo ${HEADPART:-0}
   ).${TIMER_VALUE:${#TIMER_VALUE}-3}") 2>/dev/null
 
-  # if [[ -o interactive ]]; then
-  export TIME_TO_PATH_STR="${TIME_TO_PATH} ms  to  'PATH'"
-
-  # fi
 else
   if [[ -o interactive ]]; then
     echo "Error: Unable to preload 'PATH'"
+    unset -v CACHED_PATH
   fi
 fi
 
-#+ AHMYZSH  B O O T S T R A P
+#* 2) LOAD AHMYZSH  B O O T S T R A P
 #+ -----------------------------------------------------------------------------~
 
+export MAIN_BOOTSTRAP=${MAIN_BOOTSTRAP:="${AHMYZSH}/MAIN.sh"}
 if [ -f "${MAIN_BOOTSTRAP}" ]; then
   . "${MAIN_BOOTSTRAP}"
 
@@ -45,7 +42,7 @@ if [ -f "${MAIN_BOOTSTRAP}" ]; then
 
 else
   [[ -o interactive ]] \
-    && echo "Error loading '${MAIN_BOOTSTRAP}'... File or path can not be resolved"
+    && echo "Error: Path to file: '${MAIN_BOOTSTRAP}' can not be resolved"
   unset -v MAIN_BOOTSTRAP
 fi
 
