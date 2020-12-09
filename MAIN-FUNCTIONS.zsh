@@ -40,12 +40,6 @@ function load_all_config_and_settings_files() {
 
 }
 
-alias reload_alias_and_conf="load_all_config_and_settings_files"
-
-function firtstage() {
-
-}
-
 function Load_all_files_d() {
   local SD1="$1"
   if [ -d "${SD1}" ]; then
@@ -74,202 +68,6 @@ function Load_all_files_d_v() {
     [ "${VERBOSA}" -gt 2 ] && echo "Error loading files in '${SD1}'... Directory or path can not be resolved"
     return 2
   fi
-}
-
-function load_my_powerlevel10k_now() {
-  ## load_my_pl10K_layout_now
-  source_ "${AHMYZSH}/themes/pl10K-Layout.zsh"
-  load_my_powerlevel10k
-  pl10k_prompt_on
-
-}
-
-function compute_pl10K_now() {
-  call_ "compute_pl10k"
-}
-
-function load_path() {
-  ## load_path
-  if [ -f "${CACHED_PATH}" ]; then
-    source_ "${CACHED_PATH}"
-    (compute_path &) >/dev/null
-  else
-    compute_path
-  fi
-}
-
-function re_load_path() {
-  compute_path
-}
-
-alias reloadpath="re_load_path"
-
-function load_autocomplete_now() {
-  load_ "${CORE_COMPLETE}/autocomplete.sh" "load_autocomplete"
-}
-
-function load_aliases() {
-  call_ Load_all_files_d "${AHMYZSH_CORE}/aliases"
-}
-
-function load_oh_my_zsh() {
-
-  # Uncomment the following line to disable bi-weekly auto-update checks.
-  DISABLE_AUTO_UPDATE="true"
-
-  # Uncomment the following line to disable auto-setting terminal title.
-  DISABLE_AUTO_TITLE="true"
-
-  # Uncomment the following line to enable command auto-correction.
-  # ENABLE_CORRECTION="true"
-
-  # Uncomment the following line to display red dots whilst waiting for completion.
-  COMPLETION_WAITING_DOTS="true"
-
-  # Uncomment the following line if you want to disable marking untracked files
-  # under VCS as dirty. This makes repository status check for large repositories
-  # much, much faster.
-  DISABLE_UNTRACKED_FILES_DIRTY="true"
-  plugins=(
-    # zsh-autosuggestions
-    # zsh-syntax-highlighting
-    zsh-better-npm-completion
-    yarn-autocompletions
-    zsh-completions
-    git
-    redis-cli
-  )
-  # alias-finder
-  # colorize
-  # dnf
-  # emoji
-  # gem
-  # git
-  # git-auto-fetch
-  # git-hubflow
-  # git-prompt
-  # github
-  # man
-  # node
-  # npm
-  # rbenv
-  # redis-cli
-  # ruby
-  # safe-paste
-  # systemadmin
-  # systemd
-  # vscode
-  # yarn
-  source $ZSH/oh-my-zsh.sh
-  unalias ll
-}
-
-function load_zshenv() {
-  #   #$ Interactive,Script,login,non-login
-
-  ## load_path_now
-  call_ load_path
-
-  ## load_functions_now
-  # call_ load_functions_definitions
-
-}
-
-function activate_normal_prompt() {
-
-  typeset -g ZSH_THEME="../../powerlevel10k/powerlevel10k"
-  source_ "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
-  call_ load_my_powerlevel10k_now
-
-}
-
-function activate_instant_prompt() {
-
-  ## Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-  ## Initialization code that may require console input (password prompts, [y/n]
-  ## confirmations, etc.) must go above this block; everything else may go below.
-  # if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  #   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-  # fi
-  source_ "${AHMYZSH_CORE}/instant-prompt"
-
-  # # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-  # # Initialization code that may require console input (password prompts, [y/n]
-  # # confirmations, etc.) must go above this block, everything else may go below.
-  #   if [[ -r "${XDG_CACHE_HOME:-$HOME/envs/cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  #   source "${XDG_CACHE_HOME:-$HOME/envs/cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-  # fi
-  typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
-
-  typeset -g ZSH_THEME="../../powerlevel10k/powerlevel10k"
-
-  source_ "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
-  call_ load_my_powerlevel10k_now
-
-}
-
-function load_zshrc() {
-  #   #$ Interactive,login,non-login
-  # source_ "${AHMYZSH}/themes/ahmyzhs.sh"
-
-  # call_ activate_instant_prompt
-  call_ activate_normal_prompt
-  #  promptversions
-
-  if [ "${PARENT_ENV_LOADED}" != 'true' ]; then
-    (compute_path &) # >/dev/null
-  fi
-
-  call_ load_oh_my_zsh
-  call_ load_options_list
-  call_ load_options
-  # call_ load_autocomplete_now
-
-}
-
-## Add a call to thin function in '/etc/zlogout' or '~/.zlogout'
-function load_zlogout() {
-  ##$  Interactive,login
-  (
-    clearzwc && zsh_compile_all_M &
-    _p9k_dump_instant_prompt 2>/dev/null &
-    compute_path 2>/dev/null &
-    saybye
-  )
-  exit
-}
-alias bye='load_zlogout'
-function clearzwc() {
-  builtin cd $AHMYZSH && find $(pwd) | grep .zwc | foreachline rm -f
-}
-
-function zsh_compile_all_R() {
-  (find "${AHMYZSH}/" -name '*.*sh' | while read line; do eval "zcompile -R ${line}"; done) 2>/dev/null
-}
-
-function zsh_compile_all_M() {
-  (find "${AHMYZSH}/" -name '*.*sh' | while read line; do eval "zcompile -M  ${line}"; done) 2>/dev/null
-}
-
-function zsh_compile_all() {
-  (find "${AHMYZSH}/" -name '*.*sh' | while read line; do eval "zcompile ${line}"; done) 2>/dev/null
-
-}
-
-function add_to_path_() {
-  [ -z $1 ] || export PATH="${1}:${PATH}"
-}
-
-function affix_to_path_() {
-  [ -z $1 ] || export PATH="${1}:${PATH}"
-}
-
-function perpend_to_path_() {
-  [ -z $1 ] || export PATH="${1}:${PATH}"
-}
-
-function append_to_path_() {
-  [ -z $1 ] || export PATH="${PATH}:${1}"
 }
 
 function timer_() {
@@ -308,6 +106,12 @@ function timer_all() {
   # echo -n "${TIMER_VALUE} "
 }
 
+function load_() {
+  source_ "${1}" \
+    && call_ ${2}
+
+}
+
 function call_() {
   if [ -z $1 ]; then
     [ "${VERBOSA}" -gt 4 ] && echo "Error sourcing ' $1 ' no function call provided"
@@ -344,77 +148,51 @@ function source_() {
   fi
 }
 
-function load_() {
-  source_ "${1}" \
-    && call_ ${2}
+function load_zshenv() {
+  #   #$ Interactive,Script,login,non-login
 
+  ## load_path_now
+  call_ load_path
+
+  ## load_functions_now
+  # call_ load_functions_definitions
+  [ "${VERBOSA}" -gt 0 ] && echo "\n${LD_COLR}${BEGIN_HOURGLASS_END_1}     load_zshenv in $(timer_all)ms!${END_FUNCTION}\n"
 }
 
-function parse_options() {
-  o_port=(-p 9999)
-  o_root=(-r WWW)
-  o_log=(-d ZWS.log)
-  zparseopts -K -- p:=o_port r:=o_root l:=o_log h=o_help
-  if [[ $? != 0 || "$o_help" != "" ]]; then
-    echo Usage: $(basename "$0") "[-p PORT] [-r DIRECTORY]"
-    exit 1
-  fi
-  port=$o_port[2]
-  root=$o_root[2]
-  log=$o_log[2]
-  if [[ $root[1] != '/' ]]; then root="$PWD/$root"; fi
-}
+function load_zshrc() {
+  #   #$ Interactive,login,non-login
+  # source_ "${AHMYZSH}/themes/ahmyzhs.sh"
 
-function Login_Start() {
-  if [[ Login_Start_Did_Execute != true ]]; then
-    export Login_Start_Did_Execute=true
-    if [[ -o login ]]; then
-      echo "I'm a login shell"
-    fi
+  # call_ activate_instant_prompt
+  call_ activate_normal_prompt
+  #  promptversions
+
+  if [ "${PARENT_ENV_LOADED}" != 'true' ]; then
+    (compute_path &) # >/dev/null
   fi
 
-}
-
-function Interactive_Start() {
-  if [[ Interactive_Start_Did_Execute != true ]]; then
-    export Interactive_Start_Did_Execute=true
-    if [[ -o interactive ]]; then
-      echo "I'm interactive shell"
-    fi
-  fi
+  call_ load_oh_my_zsh
+  call_ load_options_list
+  call_ load_options
+  call_ load_autocomplete_now
 
 }
 
-function Non_Login_Start() {
-  if [[ Non_Login_Start_Did_Execute != true ]]; then
-    export Non_Login_Start_Did_Execute=true
-    if [[ -o login ]]; then; else #+ !! ELSE !!
-      echo "I'm a non login shell"
-    fi
-  fi
+## Add a call to thin function in '/etc/zlogout' or '~/.zlogout'
+function load_zlogout() {
+  ##$  Interactive,login
+  (
+    clearzwc && zsh_compile_all_M &
+    _p9k_dump_instant_prompt 2>/dev/null &
+    compute_path 2>/dev/null &
+    saybye
+  )
+  exit
 }
 
-function Non_Interactive_Start() {
-  if [[ Non_Interactive_Start_Did_Execute != true ]]; then
-    export Non_Interactive_Start_Did_Execute=true
-    if [[ -o interactive ]]; then; else #+ !! ELSE !!
-      echo "I'm non interactive shell"
-      export VERBOSA=0
-    fi
-  fi
-}
-
-function Load_Intearctive_Login_State() {
-  export Login_Start_Did_Execute=false
-  export Non_Login_Start_Did_Execute=false
-  export Interactive_Start_Did_Execute=false
-  export Non_Interactive_Start_Did_Execute=false
-
-  Login_Start
-  Non_Login_Start
-  Interactive_Start
-  Non_Interactive_Start
-}
+alias reload_alias_and_conf="load_all_config_and_settings_files"
+alias reloadpath="re_load_path"
+alias bye='load_zlogout'
 
 # [[ $- == *i* ]] && echo 'Interactive' || echo 'Not interactive'
 # shopt -q login_shell && echo 'Login shell' || echo 'Not login shell'

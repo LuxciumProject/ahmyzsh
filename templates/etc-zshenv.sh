@@ -33,8 +33,9 @@ fi
 
 #* 2) LOAD AHMYZSH  B O O T S T R A P
 #+ -----------------------------------------------------------------------------~
-
-export MAIN_BOOTSTRAP=${MAIN_BOOTSTRAP:="${AHMYZSH}/MAIN.sh"}
+# echo "2) LOAD AHMYZSH  B O O T S T R A P"
+export MAIN_BOOTSTRAP=${MAIN_BOOTSTRAP:="${AHMYZSH}/MAIN.zsh"}
+# export MAIN_BOOTSTRAP="${AHMYZSH}/MAIN.zsh"
 if [ -f "${MAIN_BOOTSTRAP}" ]; then
   . "${MAIN_BOOTSTRAP}"
 
