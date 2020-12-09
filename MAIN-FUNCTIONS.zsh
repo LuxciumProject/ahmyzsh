@@ -1,6 +1,5 @@
 #& Scientia es lux principium
 
-#+ AHMYZSH custom options
 #+ =============================================================================≈
 #? MIT LICENSE ― *NOT* fit for any particular use or purpose ― PROVIDED "AS IS"
 #?!!! See the bottom of this file for *IMPORTANT INFORMATIONS* ― MIT LICENSE !!!
@@ -12,47 +11,7 @@
 #& Scientia es lux principium is a Trade Mark of Benjamin Vincent Kasapoglu
 #& (c) & tm Benjamin Vincent Kasapoglu (Luxcium) 2017-2020
 #+ =============================================================================≈
-function load_zshenv() {
-  #   #$ Interactive,Script,login,non-login
-
-  ## load_path_now
-  call_ load_path
-
-  ## load_functions_now
-  # call_ load_functions_definitions
-  [ "${VERBOSA}" -gt 0 ] && echo "\n${LD_COLR}${BEGIN_HOURGLASS_END_1}     load_zshenv in $(timer_all)ms!${END_FUNCTION}\n"
-}
-
-function load_zshrc() {
-  #   #$ Interactive,login,non-login
-  # source_ "${AHMYZSH}/themes/ahmyzhs.sh"
-
-  # call_ activate_instant_prompt
-  call_ activate_normal_prompt
-  #  promptversions
-
-  if [ "${PARENT_ENV_LOADED}" != 'true' ]; then
-    (compute_path &) # >/dev/null
-  fi
-
-  call_ load_oh_my_zsh
-  call_ load_options_list
-  call_ load_options
-  call_ load_autocomplete_now
-
-}
-
-## Add a call to thin function in '/etc/zlogout' or '~/.zlogout'
-function load_zlogout() {
-  ##$  Interactive,login
-  (
-    clearzshwordcode && zsh_compile_all_M &
-    _p9k_dump_instant_prompt 2>/dev/null &
-    compute_path 2>/dev/null &
-    saybye
-  )
-  exit
-}
+#* AHMYZSH basic functions
 
 function load_all_config_and_settings_files() {
 
@@ -208,3 +167,33 @@ alias bye='load_zlogout'
 # !!                                                                          !! #
 # !!―――――――――――――――――――――――――!!! SECURITY WARNING !!!―――――――――――――――――――――――――!! #
 # ·――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――· #
+
+# ============================================================================== ≈
+# PROVIDED "AS IS" WITHOUT WARRANTY *NOT* fit for any particular use or purpose!
+#
+# MIT LICENSE
+#
+# Copyright © 2019-2020 Benjamin Vincent Kasapoglu (Luxcium)
+# and contributors (https://github.com/Luxcium/ahmyzsh/contributors)
+#
+# Permission is hereby granted, free of charge, to all person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ALL KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ALL CLAIM, DAMAGES OR
+# OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+# ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+# DEALINGS IN THE SOFTWARE.
+# ==============================================================================≈
+# Scientia es lux principium is a Trade Mark of Benjamin Vincent Kasapoglu
+# (c) et tm - Benjamin Vincent Kasapoglu (Luxcium) 2017-2020
+# ------------------------------------------------------------------------------~

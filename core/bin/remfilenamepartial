@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+# remfilenamepartial
+function remfilenamepartial_() {
+for file in "${1}"; do
+  mv "$file" "${file/"${1}"/}"
+done
+}
+
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+remfilenamepartial_ "${@}"
+
+__EXIT_STATUS="${?}"
+
+unset -f remfilenamepartial_
+
+exit $__EXIT_STATUS

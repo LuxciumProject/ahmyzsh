@@ -12,4 +12,4 @@
 #   fi
 # fi
 
-export IS_BASH_="$(ps -o comm= -p $$ | grep 'bash')"
+# export IS_BASH_="$(ps -o comm= -p $$ | grep 'bash')"

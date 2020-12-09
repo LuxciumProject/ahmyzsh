@@ -1,11 +1,17 @@
-#?& Scientia es lux principium
+#& Scientia es lux principium
 
-#?+ ============================================================================
-#? PROVIDED "AS IS" WITHOUT WARRANTY *NOT* fit for any particular use or purpose
+#+ =============================================================================≈
+#? MIT LICENSE ― *NOT* fit for any particular use or purpose ― PROVIDED "AS IS"
 #?!!! See the bottom of this file for *IMPORTANT INFORMATIONS* ― MIT LICENSE !!!
-#? Copyright © 2019-2020 Benjamin Vincent Kasapoglu (Luxcium)
-#?+ ============================================================================
-#?* AHMYZSH first entry point
+#? =============================================================================≈
+#? @author Benjamin Vincent Kasapoglu (LUXCIUM)
+#? @copyright (c) 2020 - LUXCIUM (Benjamin Vincent Kasapoglu)
+#? @license MIT
+#? =============================================================================≈
+#& Scientia es lux principium is a Trade Mark of Benjamin Vincent Kasapoglu
+#& (c) & tm Benjamin Vincent Kasapoglu (Luxcium) 2017-2020
+#+ =============================================================================≈
+#* AHMYZSH first entry point
 
 function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
 
