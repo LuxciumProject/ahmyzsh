@@ -1,0 +1,17 @@
+/home/luxcium/bin
+/home/luxcium/.local/bin
+/home/luxcium/.fnm
+/home/luxcium/.yarn/bin
+/home/luxcium/.config/yarn/global/node_modules/.bin
+/home/luxcium/.cargo/bin
+/home/luxcium/.rbenv/shims
+/home/luxcium/.rbenv/bin
+/home/luxcium/miniconda3/bin
+/home/luxcium/miniconda3/condabin
+/usr/lib64/dotnet
+/opt/vlang
+/usr/local/cuda-11.1/bin
+/usr/local/bin
+/usr/bin
+/bin
+/home/luxcium/ahmyzsh/core/bin

@@ -1,27 +1,81 @@
-function fnm_() {
-  # (rm -f /tmp/fnm-shell*) &>/dev/null
-  # eval "$(fnm env --multi)"
-  export PATH=/home/luxcium/.fnm:$PATH
-  eval "$(fnm env --use-on-cd)"
-  # eval "$(fnm completions --shell=zsh)"
+function compute_path() {
+
+  # export PATH="/sbin"
+  # add_to_path_ "/usr/sbin"
+  # add_to_path_ "/usr/local/sbin"
+
+  export MINICONDA3="${HOME}/miniconda3"
+  export DOTNET_ROOT="/usr/lib64/dotnet/"
+
+  export PATH_BAK="${PATH}"
+
+  export PATH="/bin"
+  add_to_path_ "/usr/bin"
+  add_to_path_ "/usr/local/bin"
+
+  # add_to_path_ "/usr/lib64/qt-3.3/bin"
+  # add_to_path_ "/usr/lib64/ccache"
+
+  add_to_path_ "/usr/local/cuda-11.1/bin"
+
+  add_to_path_ "/opt/vlang"
+
+  add_to_path_ "${DOTNET_ROOT}"
+
+  add_to_path_ "${MINICONDA3}/bin"
+  add_to_path_ "${MINICONDA3}/condabin"
+  call_ conda_
+
+  add_to_path_ "${HOME}/.rbenv/bin"
+  add_to_path_ "${HOME}/.rbenv/shims"
+  call_ rbenv_
+
+  add_to_path_ "${HOME}/.cargo/bin"
+  call_ rust_up_
+
+  add_to_path_ "${HOME}/.config/yarn/global/node_modules/.bin"
+  add_to_path_ "${HOME}/.yarn/bin"
+  add_to_path_ "${HOME}/.fnm"
+
+  add_to_path_ "${HOME}/.local/bin"
+  add_to_path_ "${HOME}/bin"
+
+  export LD_LIBRARY_PATH=/usr/local/cuda-11.1/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+
+  export PATH="${PATH}:${AHMYZSH}/core/bin"
+
+  dedup_pathvar_ PATH
+  export NEW_PATH_HASH=$(set_path_hash_ ${PATH})
+  echo "NEW_PATH_HASH:          ${NEW_PATH_HASH}"
+  echo ""
+  echo ${PATH}
+  echo ""
+  export NEW_PATH_HASH_B=$(set_path_hash_ ${PATH_B})
+  echo "NEW_PATH_HASH_B:        ${NEW_PATH_HASH_B}"
+  echo "PATH_HASH:              ${PATH_HASH}"
+
+  if [[ "${NEW_PATH_HASH}" != "${PATH_HASH}" ]]; then
+    mkdir -p "${AHMYZSH_CACHE}"
+    echo "export PATH=\"$PATH\"; export PATH_HASH=$(set_path_hash_ ${PATH}); export PATH_B=\"$PATH\"" >"${CACHED_PATH}"
+
+  fi
+
+  export NO_FNM_PATH=${PATH}
+  call_ fnm_
+  export FNM_PATH=${PATH}
 
 }
 
+function fnm_() {
+  eval "$(fnm env --use-on-cd)"
+}
+
 function rbenv_() {
-  export PATH="$HOME/.rbenv/bin:$PATH"
-  # export PATH="$HOME/.rbenv/shims:$PATH"
   eval "$(rbenv init -)"
 
 }
 
 function rust_up_() {
-
-  # Rust is installed now. Great!
-
-  # To get started you need Cargo's bin directory in your PATH
-  echo -n $HOME/.cargo/bin
-
-  # To configure your current shell environment variable run:
   source $HOME/.cargo/env
 
 }
@@ -33,86 +87,32 @@ function nvm_() {
 
 function conda_() {
   load_ "${AHMYZSH}/core/compute-path/conda-initialize.sh" "conda_init"
+}
+
+function getstamp_() {
+
+  #- $1 = length (default 8)
+  #- $2 = leading chars (default 'Z')
+  #- $3 = trailing chars  (default 'x')
+  #- $4 = seed (default current seconds since 1970-01-01 00:00:00 UTC with nanoseconds)
+
+  if [ -z $4 ]; then
+    echo -n "${2-Z}$(sha512hmac <<<$(date +%D%s%N) | cut -c -${1:-'8'} | tr \[a-z\] \[A-Z\])${3-x}"
+  else
+    echo -n "${2-Z}$(sha512hmac <<<${@} | cut -c -${1:-'8'} | tr \[a-z\] \[A-Z\])${3-x}"
+  fi
 
 }
-function compute_path() {
 
-  export MINICONDA3="${HOME}/miniconda3"
-  export DOTNET_ROOT="/usr/lib64/dotnet/"
-
-  # - ${PATH}
-  export PATH_BAK2="${PATH}"
-  # echo $PATH_BAK2
-
-  # export PATH="/sbin"
-  # add_to_path_ "/usr/sbin"
-  # add_to_path_ "/usr/local/sbin"
-
-  export PATH="/bin"
-  add_to_path_ "/usr/bin"
-  add_to_path_ "/usr/local/bin"
-
-  add_to_path_ "/usr/lib64/qt-3.3/bin"
-  add_to_path_ "/usr/lib64/ccache"
-
-  add_to_path_ "${HOME}/bin"
-
-  add_to_path_ "${HOME}/.config/yarn/global/node_modules/.bin"
-  add_to_path_ "${HOME}/.yarn/bin"
-
-  # add_to_path_ "${AHMYZSH_BIN}"
-  # add_to_path_ "${ZSH_BIN}"
-
-  add_to_path_ "${HOME}/.local/bin"
-  # add_to_path_ "${HOME}/.fnm"
-  call_ fnm_
-
-  add_to_path_ $(rust_up_)
-
-  # add_to_path_ "${HOME}/.rbenv/bin"
-  call_ rbenv_
-
-  add_to_path_ "/opt/vlang"
-
-  # add_to_path_ "${MINICONDA3}/bin"
-  # add_to_path_ "${MINICONDA3}/condabin"
-  call_ conda_
-
-  add_to_path_ "${DOTNET_ROOT}"
-
-  ## Environment Setup
-  #+ -----------------------------------------------------------------------------
-  # The PATH variable needs to include
-  export PATH=/usr/local/cuda-11.0/bin${PATH:+:${PATH}}
-  # Nsight Compute has moved to /opt/nvidia/nsight-compute/ only in rpm/deb
-  # installation method. When using .run installer it is still located under
-  # /usr/local/cuda-11.0/.
-
-  # To add this path to the PATH variable:
-
-  export PATH=/usr/local/cuda-10.2/bin${PATH:+:${PATH}}
-  # In addition, when using the runfile installation method, the LD_LIBRARY_PATH
-  # variable needs to contain /usr/local/cuda-11.0/lib64 on a 64-bit system, or
-  # /usr/local/cuda-11.0/lib on a 32-bit system
-
-  # To change the environment variables for 64-bit operating systems:
-
-  export LD_LIBRARY_PATH=/usr/local/cuda-11.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-  export LD_LIBRARY_PATH=/usr/local/cuda-10.2/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-  # To change the environment variables for 32-bit operating systems:
-
-  # $ export LD_LIBRARY_PATH=/usr/local/cuda-11.0/lib\
-  #                          ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-  # Note that the above paths change when using a custom install path with the
-  # runfile installation method.
-
-  export PATH="${PATH}:${AHMYZSH}/core/bin"
-
-  # dedup_path
-  mkdir -p "${AHMYZSH_CACHE}"
-  echo "export PATH=\"$PATH\"" >"${CACHED_PATH}"
-  zcompile "${CACHED_PATH}"
+function set_path_hash_() {
+  export LAST_PATH_HASH="$(getstamp_ 4 '' '-path-hash' $@)"
+  echo -n "${LAST_PATH_HASH}"
 }
+
+function get_path_hash_() {
+  set_path_hash_ "${PATH}"
+}
+
 # if [ "$WITH_ANACONDA" = 'true' ]; then
 # fi
 
@@ -131,3 +131,41 @@ function compute_path() {
 # and PATH=/usr/local/bin:/usr/bin:/bin for jobs not running as root.
 
 ## https://security.stackexchange.com/a/117548
+
+# function dedup_pathvar_() {
+#   # #region Deduplicate path variables =========================================¹
+#   # https://unix.stackexchange.com/a/149054/431235
+#   # © 2014 by https://unix.stackexchange.com/users/1010
+#   # © CC BY-SA 3.0 ¹ (User: Ryan C. Thompson ― Aug 7 '14 at 17:35)
+
+#   ## If you want some more structure around it,
+#   ## as well as the ability to deduplicate other variables as well,
+#   ## try this snippet, which I'm currently using in my own config:
+
+#   _get_var() {
+#     eval 'printf "%s\n" "${'"$1"'}"'
+#   }
+
+#   _set_var() {
+#     eval "$1=\"\$2\""
+#   }
+
+#   _dedup_pathvar() {
+#     pathvar_name="$1"
+#     pathvar_value="$(_get_var "$pathvar_name")"
+#     deduped_path="$(perl -e 'print join(":",grep { not $seen{$_}++ } split(/:/, $ARGV[0]))' "$pathvar_value")"
+#     _set_var "$pathvar_name" "$deduped_path"
+#   }
+
+#   ## That code will deduplicate both PATH and MANPATH,
+#   ##  and you can easily call dedup_pathvar on other variables that hold
+#   ##  colon-separated lists of paths (e.g. PYTHONPATH).
+
+#   # #endregion Deduplicate path variables ======================================¹
+#   _dedup_pathvar "${@}"
+
+#   unset -f _dedup_pathvar
+#   unset -f _get_var
+#   unset -f _set_var
+
+# }

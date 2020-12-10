@@ -108,8 +108,8 @@ function timer_all() {
 }
 
 function load_() {
-  source_ "${1}" \
-    && call_ ${2}
+  source_ "${1}" &&
+    call_ ${2}
 
 }
 
@@ -151,7 +151,7 @@ function source_() {
 
 alias reload_alias_and_conf="load_all_config_and_settings_files"
 alias reloadpath="re_load_path"
-alias bye='load_zlogout'
+alias bye='load_zlogout;exit'
 
 # [[ $- == *i* ]] && echo 'Interactive' || echo 'Not interactive'
 # shopt -q login_shell && echo 'Login shell' || echo 'Not login shell'

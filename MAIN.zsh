@@ -34,7 +34,7 @@ function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
 
   isinteractive || return 0 #-――――――――― Interactive,login,non-login ――――――――――-#
 
-  compute_path
+  { compute_path; }
 
   call_ activate_prompt
   call_ load_oh_my_zsh
