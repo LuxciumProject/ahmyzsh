@@ -22,8 +22,8 @@ function compute_path() {
 
   add_to_path_ "${DOTNET_ROOT}"
 
-  add_to_path_ "${MINICONDA3}/bin"
   add_to_path_ "${MINICONDA3}/condabin"
+  add_to_path_ "${MINICONDA3}/bin"
   call_ conda_
 
   add_to_path_ "${HOME}/.rbenv/bin"
@@ -46,18 +46,18 @@ function compute_path() {
 
   dedup_pathvar_ PATH
   export NEW_PATH_HASH=$(set_path_hash_ ${PATH})
-  echo "NEW_PATH_HASH:          ${NEW_PATH_HASH}"
-  echo ""
-  echo ${PATH}
-  echo ""
+
   export NEW_PATH_HASH_B=$(set_path_hash_ ${PATH_B})
-  echo "NEW_PATH_HASH_B:        ${NEW_PATH_HASH_B}"
-  echo "PATH_HASH:              ${PATH_HASH}"
 
   if [[ "${NEW_PATH_HASH}" != "${PATH_HASH}" ]]; then
     mkdir -p "${AHMYZSH_CACHE}"
     echo "export PATH=\"$PATH\"; export PATH_HASH=$(set_path_hash_ ${PATH}); export PATH_B=\"$PATH\"" >"${CACHED_PATH}"
-
+    echo "NEW_PATH_HASH:          ${NEW_PATH_HASH}"
+    echo ""
+    echo ${PATH}
+    echo ""
+    echo "NEW_PATH_HASH_B:        ${NEW_PATH_HASH_B}"
+    echo "PATH_HASH:              ${PATH_HASH}"
   fi
 
   export NO_FNM_PATH=${PATH}

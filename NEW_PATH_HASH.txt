@@ -6,8 +6,8 @@
 /home/luxcium/.cargo/bin
 /home/luxcium/.rbenv/shims
 /home/luxcium/.rbenv/bin
-/home/luxcium/miniconda3/bin
 /home/luxcium/miniconda3/condabin
+/home/luxcium/miniconda3/bin
 /usr/lib64/dotnet
 /opt/vlang
 /usr/local/cuda-11.1/bin
