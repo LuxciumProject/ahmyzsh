@@ -14,6 +14,9 @@
 #* AHMYZSH custom settings
 
 function MAIN_SETTINGS() {
+
+  bindkey -e
+
   # : ${VERBOSA:=10000}
   : ${VERBOSA:=0000}
 

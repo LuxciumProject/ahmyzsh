@@ -1,3 +1,3 @@
-function load_autocomplete_now() {
-  load_ "${CORE_COMPLETE}/autocomplete.sh" "load_autocomplete"
+function load_autocomplete() {
+  load_ "${CORE_COMPLETE}/autocomplete.sh" "load_autocomplete_"
 }

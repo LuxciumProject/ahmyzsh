@@ -1,4 +1,4 @@
-function activate_normal_prompt() {
+function activate_prompt() {
 
   typeset -g ZSH_THEME="../../powerlevel10k/powerlevel10k"
   source_ "${POWERLEVEL10K}/powerlevel10k.zsh-theme"

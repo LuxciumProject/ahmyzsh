@@ -1,14 +1,4 @@
-function load_options() {
-  # https://github.com/zsh-users/zsh-autosuggestions#configuration
-  ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#677787"
-
-  # https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters.md
-  ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
-
-  zle_highlight=(region:standout special:standout
-    suffix:bold isearch:underline paste:none)
-
-  bindkey -e
+function load_options_main() {
 
   HISTFILE="${HOME}/.zsh_history"
   HISTSIZE=10000000
@@ -784,7 +774,7 @@ function load_options_list() {
   setopt MONITOR # (-m, ksh: -m)
   #$ Allow job control. Set by default in interactive shells.
 
-  setopt NOTIFY # (-5, ksh: -b) # <Z>
+  setopt noNOTIFY # (-5, ksh: -b) # <Z>
   #$ Report the status of background jobs immediately, rather than waiting until just before printing a prompt.
 
   # setopt POSIX_JOBS # <K> <S>

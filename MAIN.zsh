@@ -19,32 +19,38 @@ function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
 
   export IS_ZSH_="$(ps -o comm= -p $$ | grep 'zsh')"
 
-  if [[ -n "${IS_ZSH_}" ]]; then
-    if [[ -n "${MAIN_INIT}" ]]; then
+  [[ -z "${IS_ZSH_}" ]] &&  return 1
+  [[ -z "${MAIN_INIT}" ]] || reload_alias_and_conf
+  [[ -z "${MAIN_INIT}" ]] || (prompt_ "Reloaded alias files functions and conf" && return)
+  # if [[ -z "${MAIN_INIT}" ]]; then
+  MAIN_INIT="start"
 
-      reload_alias_and_conf
-      [[ -o interactive ]] && echo "Reloaded alias files functions and conf"
+  local S1="${AHMYZSH}/MAIN-FUNCTIONS.zsh"
+  [[ -f "${S1}" ]] && source "${S1}" || load_error_ "${S1}"
+  load_ "${AHMYZSH}/MAIN_SETTINGS.zsh" "MAIN_SETTINGS"
+  call_ load_all_config_and_settings_files
 
-    else
+  call_ load_zshenv
 
-      MAIN_INIT="start"
+  isinteractive || return 0 #-――――――――― Interactive,login,non-login ――――――――――-#
 
-      local S1="${AHMYZSH}/MAIN-FUNCTIONS.zsh"
-      [[ -f "${S1}" ]] && source "${S1}" || load_error_ "${S1}"
+  compute_path
 
-      load_ "${AHMYZSH}/MAIN_SETTINGS.zsh" "MAIN_SETTINGS"
-      call_ load_all_config_and_settings_files
+  call_ activate_prompt
+  call_ load_oh_my_zsh
+  call_ load_options_list
+  call_ load_options_main
+  call_ load_autosuggest
+  call_ load_autocomplete
 
-      call_ load_zshenv
+}
 
-      [[ -o interactive ]] && call_ load_zshrc
-
-    fi
-  fi
+function prompt_() {
+  isinteractive && echo "${@}"
 }
 
 function load_error_() {
-   [[ -o interactive ]] && echo "Error: '${1}' path can not be resolved"
+  prompt_ "Error: '${1}' path can not be resolved"
   return 1
 }
 

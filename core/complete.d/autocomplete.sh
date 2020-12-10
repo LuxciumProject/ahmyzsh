@@ -1,4 +1,4 @@
-function load_autocomplete() {
+function load_autocomplete_() {
   autoload bashcompinit
   bashcompinit
   eval "$(gh completion -s zsh)"
