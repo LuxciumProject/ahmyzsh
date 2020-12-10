@@ -14,7 +14,8 @@ function precmd() {
     source_ "${AHMYZSH}/themes/ahmyzhs.sh"
     echo "${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
     promptversions
-    # compute_path
+    set -m
+
   fi
   # exit
 }

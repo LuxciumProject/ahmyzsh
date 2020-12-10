@@ -1,5 +1,7 @@
 function load_options_main() {
 
+  # set -m later in core/functions/96665x-precmd.sh
+  set +m
   HISTFILE="${HOME}/.zsh_history"
   HISTSIZE=10000000
   SAVEHIST=100000000
@@ -771,7 +773,7 @@ function load_options_list() {
   setopt LONG_LIST_JOBS # (-R)
   #$ Print job notifications in the long format by default.
 
-  setopt MONITOR # (-m, ksh: -m)
+  setopt noMONITOR # (-m, ksh: -m)
   #$ Allow job control. Set by default in interactive shells.
 
   setopt noNOTIFY # (-5, ksh: -b) # <Z>

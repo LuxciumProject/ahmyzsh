@@ -26,12 +26,12 @@ function compute_path() {
   add_to_path_ "${MINICONDA3}/bin"
   call_ conda_
 
+  add_to_path_ "${HOME}/.cargo/bin"
+  call_ rust_up_
+
   add_to_path_ "${HOME}/.rbenv/bin"
   add_to_path_ "${HOME}/.rbenv/shims"
   call_ rbenv_
-
-  add_to_path_ "${HOME}/.cargo/bin"
-  call_ rust_up_
 
   add_to_path_ "${HOME}/.config/yarn/global/node_modules/.bin"
   add_to_path_ "${HOME}/.yarn/bin"
@@ -59,10 +59,7 @@ function compute_path() {
     echo "NEW_PATH_HASH_B:        ${NEW_PATH_HASH_B}"
     echo "PATH_HASH:              ${PATH_HASH}"
   fi
-
-  export NO_FNM_PATH=${PATH}
   call_ fnm_
-  export FNM_PATH=${PATH}
 
 }
 
