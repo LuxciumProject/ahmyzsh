@@ -1,5 +1,6 @@
 #!/bin/env sh
 
+# !! NON DRY CODE
 # The most basic of these moves your cursor up, down, left or right:
 # Up: \u001b[{n}A
 # Down: \u001b[{n}B
@@ -12,244 +13,248 @@ function saybye_() {
   export TIME_TO_PATH_STR='Completum est, quod dixi de lux principium.'
   source "${AHMYZSH}/themes/ahmyzhs.sh"
   echo -en "\u001b[1A"
-  echo -en "\e[38;2;252;198;36m                                                  \u001b[1000D"
+  echo -en "\e[38;2;252;198;36m                                                  \u001b[1000D" # !! NON DRY CODE
   sleep 0.075
-  echo -en "\e[38;2;252;198;36m                                                 B\u001b[1000D"
+  echo -en "\e[38;2;252;198;36m!       \u001b[1000D" # !! NON DRY CODE
   sleep 0.075
-  echo -en "\e[38;2;252;198;36m                                               BYE\u001b[1000D"
+  echo -en "\e[38;2;252;198;36m!!!       \u001b[1000D" # !! NON DRY CODE
   sleep 0.075
-  echo -en "\e[38;2;252;198;36m                                             BYE !\u001b[1000D"
+  echo -en "\e[38;2;252;198;36m !!!       \u001b[1000D" # !! NON DRY CODE
   sleep 0.075
-  echo -en "\e[38;2;252;198;36m                                           BYE !!!\u001b[1000D"
+  echo -en "\e[38;2;252;198;36mYE  !!!       \u001b[1000D" # !! NON DRY CODE
   sleep 0.075
-  echo -en "\e[38;2;252;198;36m                                        BYE !!!   \u001b[1000D"
+  echo -en "\e[38;2;252;198;36m    BYE !!!       \u001b[1000D" # !! NON DRY CODE
   sleep 0.075
-  echo -en "\e[38;2;252;198;36m                                      BYE !!!     \u001b[1000D"
+  echo -en "\e[38;2;252;198;36m        BYE !!!       \u001b[1000D" # !! NON DRY CODE
   sleep 0.075
-  echo -en "\e[38;2;252;198;36m                                   BYE !!!       \u001b[1000D"
+  echo -en "\e[38;2;252;198;36m             BYE !!!       \u001b[1000D" # !! NON DRY CODE
   sleep 0.075
-  echo -en "\e[38;2;252;198;36m                               BYE !!!       \u001b[1000D"
+  echo -en "\e[38;2;252;198;36m                   BYE !!!       \u001b[1000D" # !! NON DRY CODE
   sleep 0.075
-  echo -en "\e[38;2;252;198;36m                           BYE !!!       \u001b[1000D"
+  echo -en "\e[38;2;252;198;36m                       BYE !!!       \u001b[1000D" # !! NON DRY CODE
   sleep 0.075
-  echo -en "\e[38;2;252;198;36m                       BYE !!!       \u001b[1000D"
+  echo -en "\e[38;2;252;198;36m                           BYE !!!       \u001b[1000D" # !! NON DRY CODE
   sleep 0.075
-  echo -en "\e[38;2;252;198;36m                   BYE !!!       \u001b[1000D"
+  echo -en "\e[38;2;252;198;36m                               BYE !!!       \u001b[1000D" # !! NON DRY CODE
   sleep 0.075
-  echo -en "\e[38;2;252;198;36m             BYE !!!       \u001b[1000D"
+  echo -en "\e[38;2;252;198;36m                                   BYE !!!       \u001b[1000D" # !! NON DRY CODE
   sleep 0.075
-  echo -en "\e[38;2;252;198;36m        BYE !!!       \u001b[1000D"
+  echo -en "\e[38;2;252;198;36m                                      BYE !!!     \u001b[1000D" # !! NON DRY CODE
   sleep 0.075
-  echo -en "\e[38;2;252;198;36m    BYE !!!       \u001b[1000D"
+  echo -en "\e[38;2;252;198;36m                                        BYE !!!   \u001b[1000D" # !! NON DRY CODE
   sleep 0.075
-  echo -en "\e[38;2;252;198;36mYE  !!!       \u001b[1000D"
+  echo -en "\e[38;2;252;198;36m                                           BYE !!!\u001b[1000D" # !! NON DRY CODE
   sleep 0.075
-  echo -en "\e[38;2;252;198;36m !!!       \u001b[1000D"
+  echo -en "\e[38;2;252;198;36m                                             BYE !\u001b[1000D" # !! NON DRY CODE
   sleep 0.075
-  echo -en "\e[38;2;252;198;36m!!!       \u001b[1000D"
+  echo -en "\e[38;2;252;198;36m                                               BYE\u001b[1000D" # !! NON DRY CODE
   sleep 0.075
-  echo -en "\e[38;2;252;198;36m!       \u001b[1000D"
+  echo -en "\e[38;2;252;198;36m                                                 B\u001b[1000D" # !! NON DRY CODE
   sleep 0.075
   echo -en "\e[38;2;252;198;36m       \u001b[100D\a${RSET}"
+
   clear
   THEEND="\e[0;34m "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
+  # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.02
+  # !! NON DRY CODE
   CYS="\e[0;36m"
   echo -en " ${CYS}${TIME_TO_PATH_STR}                                         "
   sleep 0.02
@@ -283,69 +288,71 @@ function saybye_() {
   sleep 0.02
   echo -en " ${CYS}${TIME_TO_PATH_STR}                                      "
   sleep 0.02
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  # !! NON DRY CODE
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0075
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0025
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0025
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0025
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0025
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0025
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0025
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0025
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0025
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0025
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0025
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0025
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0025
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0025
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0025
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0025
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0025
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0025
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0025
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0025
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0025
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0025
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0025
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0025
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0025
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0025
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0025
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0025
-  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
+  echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      " # !! NON DRY CODE
   sleep 0.0025
 
   echo -en "\e[38;2;252;198;36m       \u001b[100D${RSET}"
   sleep 2
+  clear
 }
 
 ## Extra code make it easy to copy paste only the function out to use elsewhere
