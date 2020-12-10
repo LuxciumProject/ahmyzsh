@@ -13,6 +13,8 @@
 #+ =============================================================================≈
 #* AHMYZSH first entry point
 
+# will be working on simplification in a new feature branch
+
 function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
 
   export IS_ZSH_="$(ps -o comm= -p $$ | grep 'zsh')"
