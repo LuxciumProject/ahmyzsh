@@ -5,18 +5,24 @@ function LEADERBOARD() {
   BCOL="${BS}     ${COL}     "
   COLB="${COL}     ${BS}     "
   echo -e "${BCOL}${BCOL}${BCOL}${BCOL}${BCOL}${BCOL}${BCOL}${BCOL}${CE}"
-  echo -e "$COL          ${BS}${TIME_TO_PATH_STR}$COL                                                  ${CE}"
-  echo -e "$COL         █████╗ ██╗  ██╗  ███╗   ███╗██╗   ██╗  ███████╗███████╗██╗  ██╗        ${CE}"
-  echo -e "$COL        ██╔══██╗██║  ██║  ████╗ ████║╚██╗ ██╔╝  ╚══███╔╝██╔════╝██║  ██║        ${CE}"
-  echo -e "$COL        ███████║███████║  ██╔████╔██║ ╚████╔╝     ███╔╝ ███████╗███████║        ${CE}"
-  echo -e "$COL        ██╔══██║██╔══██║  ██║╚██╔╝██║  ╚██╔╝     ███╔╝  ╚════██║██╔══██║        ${CE}"
-  echo -e "$COL        ██║  ██║██║  ██║  ██║ ╚═╝ ██║   ██║     ███████╗███████║██║  ██║        ${CE}"
-  echo -e "$COL        ╚═╝  ╚═╝╚═╝  ╚═╝  ╚═╝     ╚═╝   ╚═╝     ╚══════╝╚══════╝╚═╝  ╚═╝        ${CE}"
-  echo -e "$COL         ${WHS}by${COL} ${YS}Luxcium${COL}                                                             ${CE}"
-  echo -e "$RS                                                  Scientia es lux principium™   ${CE}"
+  echo -e "${COL}         ${RS}${bold}Scientia es lux principium™${normal}${COL}                                            ${CE}"
+  echo -e "${COL}                                                ${BS}${TIME_TO_PATH_STR}$COL            ${CE}"
+  # echo -e "${COL}                                                                                ${CE}"
+  echo -e "${COL}         █████╗ ██╗  ██╗  ███╗   ███╗██╗   ██╗  ███████╗███████╗██╗  ██╗        ${CE}"
+  echo -e "${COL}        ██╔══██╗██║  ██║  ████╗ ████║╚██╗ ██╔╝  ╚══███╔╝██╔════╝██║  ██║        ${CE}"
+  echo -e "${COL}        ███████║███████║  ██╔████╔██║ ╚████╔╝     ███╔╝ ███████╗███████║        ${CE}"
+  echo -e "${COL}        ██╔══██║██╔══██║  ██║╚██╔╝██║  ╚██╔╝     ███╔╝  ╚════██║██╔══██║        ${CE}"
+  echo -e "${COL}        ██║  ██║██║  ██║  ██║ ╚═╝ ██║   ██║     ███████╗███████║██║  ██║        ${CE}"
+  echo -e "${COL}        ╚═╝  ╚═╝╚═╝  ╚═╝  ╚═╝     ╚═╝   ╚═╝     ╚══════╝╚══════╝╚═╝  ╚═╝        ${CE}"
+  echo -e "${COL}        ${START_UP_TIME}${COL}                                                    ${CE}"
+  echo -e "${COL}                                                ${bold}${WHS}by${COL}  ${YS}L·U·X·C·I·U·M${COL}               ${CE}"
+  echo -e "${COLB}${COLB}${COLB}${COLB}${COLB}${COLB}${COLB}${COLB}${CE}"
   # echo -e "${YS}# ${COL}>  ${LGNS}---10--------20--------30--------40--------50--------60--------70--------80${CE}"
   # Scientia es lux principium
 }
+# =
+# echo -e "$COL
+# 2.386 ms  to  'PATH'
 # GNU General Public License v3.0
 # https://github.com/arismelachroinos/lscript/blob/master/README.md
 # LAZY script v2.1.4 Copyright (C) 2018 ARIS MELACHROINOS

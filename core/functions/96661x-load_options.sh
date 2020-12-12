@@ -1,6 +1,6 @@
 function load_options_main() {
 
-  # set -m later in core/functions/96665x-precmd.sh
+  # may (or may not) set -m later in core/functions/96665x-precmd.sh
   set +m
   HISTFILE="${HOME}/.zsh_history"
   HISTSIZE=10000000

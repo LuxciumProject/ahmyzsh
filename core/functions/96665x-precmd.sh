@@ -8,14 +8,14 @@ function precmd() {
     export PARENT_ENV_LOADED='true'
     ENV_LOADED='true'
 
-    right_prompt_off
     # hardcls
     export TIME_TO_PATH_STR="${TIME_TO_PATH} ms  to  'PATH'"
+    export START_UP_TIME="${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
     source_ "${AHMYZSH}/themes/ahmyzhs.sh"
-    echo "${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
     promptversions
-    set -m
+
+    # may (or may not) set -m later in core/functions/96665x-precmd.sh
+    # set -m
 
   fi
-  # exit
 }

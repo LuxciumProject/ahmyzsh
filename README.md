@@ -1,8 +1,10 @@
 # ahmyzsh
 
+![AH MY ZSH Initial Screen](images/Screenshot_20201212_080507.png)
+
 ## Don't have any expectations
 
-This project is for my personal use, it is not currently maintained in a way that is friendly for general use by others (this includes you), therefor *it is garanteed that this project will **NOT** be fit for any particular purpose*.
+This project is for my personal use, it is not currently maintained in a way that is friendly for general use by others (this includes you), therefor _it is garanteed that this project will **NOT** be fit for any particular purpose_.
 
 ### Use what can be useful to you
 
@@ -31,8 +33,10 @@ Some folder have been hiddens while I am not working with them now you may unhid
     "crt-profiles": true,
     "node_modules": true
   },
-  ```
+```
+
 ## SECURITY WARNING !!!
+
 AUDIT ANY FILES YOU IMPORT FROM THIS PROJECT PRIOR: DOWNLOAD / INSTALL / USE
 Please asses security risks by yourself befor to use the product and report
 any security issues or vulnerability on the issues page of the main repo site:
