@@ -2,51 +2,6 @@
 
 # ddtotheend
 
-{
-    function ddsoft() {
-        (
-            sudo ionice -c 3 nice -n 35 dd if=/dev/zero of=/dev/null &
-        )
-    }
-
-    function ddhard() {
-        (
-            sudo ionice -c 1 -n 3 nice -n -35 dd if=/dev/zero of=/dev/null &
-        )
-    }
-
-    function ddsoft5() {
-        (
-            sleep 1
-            ddsoft
-            sleep 0.5
-            ddsoft
-            sleep 0.5
-            ddsoft
-            sleep 0.5
-            ddsoft
-            sleep 0.5
-            ddsoft
-        )
-    }
-
-    function ddhard5() {
-        (
-            sleep 1
-            ddhard
-            sleep 0.5
-            ddhard
-            sleep 0.5
-            ddhard
-            sleep 0.5
-            ddhard
-            sleep 0.5
-            ddhard
-
-        )
-    }
-}
-
 # echo -e '\e[38;2;252;198;36m\n   TEST #1' ## -----------------------------------
 
 # (
@@ -143,54 +98,105 @@
 #   echo '                                                                       '
 # )
 
+{
+  function ddsoft() {
+    (
+      sudo ionice -c 3 nice -n 35 dd if=/dev/zero of=/dev/null &
+    )
+  }
+
+  function ddhard() {
+    (
+      sudo ionice -c 1 -n 3 nice -n -35 dd if=/dev/zero of=/dev/null &
+    )
+  }
+
+  function ddsoft5() {
+    (
+      sleep 1
+      ddsoft
+      sleep 0.5
+      ddsoft
+      sleep 0.5
+      ddsoft
+      sleep 0.5
+      ddsoft
+      sleep 0.5
+      ddsoft
+    )
+  }
+
+  function ddhard5() {
+    (
+      sleep 1
+      ddhard
+      sleep 0.5
+      ddhard
+      sleep 0.5
+      ddhard
+      sleep 0.5
+      ddhard
+      sleep 0.5
+      ddhard
+
+    )
+  }
+}
+
 echo -e '\e[38;2;252;198;36m\n   TEST CPU   ' ## ----------------------------------------------------
 
 (
-    echo 'Will test x60 DDHARD  for 120 sec'
-    echo 'Warm Up 5 sec'
-    (
+  echo 'Will test x60 DDHARD  for 120 sec'
+  echo 'Warm Up 5 sec'
+  (
 
-        ddhard5 &
-        ddhard5 &
+    ddhard5 &
+    ddhard5 &
 
-        ddhard5 &
-        ddhard5 &
+    ddhard5 &
+    ddhard5 &
 
-        ddhard5 &
-        ddhard5 &
+    ddhard5 &
+    ddhard5 &
 
-        ddhard5 &
-        ddhard5 &
+    ddhard5 &
+    ddhard5 &
 
-        ddhard5 &
-        ddhard5 &
+    ddhard5 &
+    ddhard5 &
 
-        ddhard5 &
-        ddhard5 &
+    ddhard5 &
+    ddhard5 &
 
-    )
-    sleep 5
-    echo 'full speed for 120 seconds'
-    sleep 115
-    # \u001b[1000D
-    echo -en "\e[38;2;252;198;36m 5 sec remaining \u001b[1000D"
-    sleep 1
-    echo -en "\e[38;2;252;198;36m 4 sec remaining \u001b[1000D"
-    sleep 1
-    echo -en "\e[38;2;252;198;36m 3 sec remaining \u001b[1000D"
-    sleep 1
-    echo -en "\e[38;2;252;198;36m 2 sec remaining \u001b[1000D"
-    sleep 1
-    echo -en "\e[38;2;252;198;36m 1 sec remaining \u001b[1000D"
-    sleep 1
-    echo -en "\e[38;2;252;198;36m 0 sec remaining \u001b[1000D"
-    sudo killall dd
-    echo '                                                                       '
+  )
+  sleep 5
+  echo 'full speed for 120 seconds'
+  sleep 115
+  # \u001b[1000D
+  echo -en "\e[38;2;252;198;36m 5 sec remaining \u001b[1000D\a"
+  sleep 1
+  echo -en "\e[38;2;252;198;36m 4 sec remaining \u001b[1000D\a"
+  sleep 1
+  echo -en "\e[38;2;252;198;36m 3 sec remaining \u001b[1000D\a"
+  sleep 1
+  echo -en "\e[38;2;252;198;36m 2 sec remaining \u001b[1000D\a"
+  sleep 1
+  echo -en "\e[38;2;252;198;36m 1 sec remaining \u001b[1000D\a"
+  sleep 1
+  echo -en "\e[38;2;252;198;36m 0 sec remaining \u001b[1000D\a"
+  sudo killall dd
+  echo '                                                                       '
 )
 echo ''
-echo --------------------
+echo "--------------------"
 echo 'completed !!!'
 echo 'completed !!!'
 echo 'completed !!!'
-echo --------------------
+echo -e "--------------------\a"
+sleep 0.5
+echo -e "\a"
+sleep 0.25
+echo -e "\a"
+sleep 0.25
+echo -e "\a"
 exit 0

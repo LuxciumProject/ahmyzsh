@@ -5,7 +5,19 @@
     "ohmyzsh": false,
     "powerline": true,
     "crt-profiles": true,
-    "node_modules": true
+    "node_modules": true,
+    "**/.directory": true
+  },
+  "search.exclude": {
+    "**/*.zwc": true,
+    "powerlevel10k": true,
+    "ohmyzsh": true,
+    "powerline": true,
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true,
+    "plugins": true,
+    "archive": true,
   },
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
@@ -99,6 +111,13 @@
     {
       // !!
       "tag": "!!",
+      "color": "#FF2D00",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      // ·
+      "tag": "·",
       "color": "#FF2D00",
       "strikethrough": false,
       "backgroundColor": "transparent"

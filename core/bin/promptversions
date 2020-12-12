@@ -1,0 +1,30 @@
+#!/usr/bin/env sh
+##  0.0472s
+
+echo -en "\e[30m# \e[38;2;203;56;55m>  NPM: $(npm --version) \u001b[31m\n" &
+##  0.2413s
+echo -en "\e[30m# \e[38;2;0;122;204m>  Yarn: $(yarn --version) \u001b[31m\n" &
+##  0.1658s
+echo -en "\e[30m# \e[38;2;0;122;204m>  Code: $(code -v | grep '1\.') \u001b[31m\n" &
+## 0.1734s
+echo -en "\e[30m# \e[38;2;0;122;204m>  Docker: $(docker --version | cut -f 1 -d ',' | cut -f 3 -d ' ')  \u001b[31m\n" &
+## 0.1012s
+echo -en "\e[30m# \e[37m>  ZSH: $(zsh --version | grep zsh | cut -f 2 -d ' ') \u001b[31m\n" &
+## 0.0514s
+echo -en "\e[30m# \e[38;2;252;198;36m>  $(uname): $(uname -r | cut -f 1 -d '-') \u001b[31m\n" &
+## 0.0541s
+echo -en "\e[30m# \e[38;2;51;153;51m>  Node: $(node --version) \u001b[31m\n" &
+## 0.0583s
+echo -en "\e[30m# \e[38;2;0;122;204m>  TSC: $(tsc --version | cut -f 2 -d ' ') \u001b[31m\n" &
+## 0.1907s
+echo -en "\e[30m# \e[38;2;0;122;204m>  Python: $(python --version | cut -f 2 -d ' ') \u001b[31m\n" &
+## 0.0510s
+
+sleep 0.3
+
+echo -en "\u001b[37m\a"
+## 0.0477s
+
+##  0.0446s
+
+#+ group ## 0.0617s

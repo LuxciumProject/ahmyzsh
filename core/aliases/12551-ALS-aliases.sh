@@ -1,3 +1,7 @@
+alias latestohmyzsh="( builtin cd ${AHMYZSH}/ohmyzsh &&  git pull origin) "
+alias latestpowerlevel10k="( builtin cd ${AHMYZSH}/powerlevel10k &&  git pull origin) "
+alias upgradesubmodules="latestohmyzsh; latestpowerlevel10k"
+
 LXI_SESSION='luxcium-io'
 clearall='\u001b[2J\u001b[0;0H'
 
@@ -10,8 +14,6 @@ alias lxi="cd ${PATH_LXIO_PRJ}/luxcium.io"
 alias lxicd=" mycode ${PATH_LXIO_PRJ}/luxcium.io; lxi;"
 alias lxq="cd ${PATH_LXIO_PRJ}/questrade-ts"
 alias lxqc="mycode ${PATH_LXIO_PRJ}/questrade-ts && cd ${PATH_LXIO_PRJ}/questrade-ts"
-alias lxqtx="env tmux -uv -f ${TMUX_CONFIGS}/questrade.tmux.conf new-session -A -s questrade-ts -c ${PATH_LXIO_PRJ}/questrade-ts"
-alias txio="env tmux -uv -f ${TMUX_CONFIGS}/luxcium.tmux.conf new-session -A -s luxcium-io -c ${PATH_LXIO_PRJ}/luxcium.io"
 alias lux="open $PATH_LXIO_PRJ"
 alias lx="cd ${PATH_LXIO_PRJ}/luxcium.io && mycode ${PATH_LXIO_PRJ}/luxcium.io"
 alias lxc="mycode ${PATH_LXIO_PRJ}/luxcium.io && cd ${PATH_LXIO_PRJ}/luxcium.io"
@@ -23,30 +25,22 @@ alias lxpc="mycode ${PATH_LXIO_PRJ}/ && cd ${PATH_LXIO_PRJ}/"
 alias lx3="lxqc;lxec;lxic && cd ${PATH_LXIO_PRJ}/"
 alias lx4="cd ~ && atom . ;lxqc;lxec;lxic && cd ${PATH_LXIO_PRJ}/"
 alias path='echo ${PATH}'
-alias nx='tmux neww'
-alias dx='tmux detach -a; mxd'
-alias k='_p9k_dump_instant_prompt;notmytty; tmux kill-session -a; killall tmux'
 alias kx='k'
-alias mylab=" tmux new-window -d -c '/Users/neb_401/JupyterLab' -n 'Jupyter Lab' 'env jupyter lab'"
-alias jlab=" tmux new-window -d -n 'Jupyter Lab' 'env jupyter lab'"
 alias n='new'
-alias quit='tmux detach'
 alias q='_p9k_dump_instant_prompt;exit'
 alias finder='open .'
 alias allo='echo allo tout le monde'
 alias vx=vsx
-alias vsz="cd ${CUSTOM_ZSH}/..; code -n ${CUSTOM_ZSH}/.."
+# alias vsz="cd ${CUSTOM_ZSH}/..; code -n ${CUSTOM_ZSH}/.."
 alias vz=vsz
-alias vsr="cd ${ZSH_LUXCIUM}/repl/node-repl; code -n ${ZSH_LUXCIUM}/repl/node-repl"
+# alias vsr="cd ${ZSH_LUXCIUM}/repl/node-repl; code -n ${ZSH_LUXCIUM}/repl/node-repl"
 alias vr=vr
 alias vsq=vsqt
 alias vq=vsq
 alias vqt=vq
 alias vstm="cd ${DEV_POPNLOCK}; insiders  -n ${DEV_POPNLOCK}"
 alias vst=vstm
-alias lximux="tmux-luxcium"
 alias lxic="lxicd;" # lximux
-alias lxikill="tmux kill-session -t $LXI_SESSION"
 alias runqt='ts-node --pretty "${HOME}/Developer/LuxciumProject/questrade-ts/src/test/playground/debug/debug.ts"'
 alias buildqt='tsc --pretty -p "${HOME}/Developer/LuxciumProject/questrade-ts/configs/tsconfig.commonjs.json"'
 alias wbuildqt='tsc --pretty -w -p "${HOME}/Developer/LuxciumProject/questrade-ts/configs/tsconfig.commonjs.json"'
@@ -62,8 +56,8 @@ alias qtbstart='bstartqt'
 alias qtbns='bnsqt'
 alias qts='sqt'
 alias lxcq='lxqc'
-alias lxz="cd ${CUSTOM_ZSH}/.."
-alias lxzc="mycode ${CUSTOM_ZSH}/.. && cd ${CUSTOM_ZSH}/.."
+# alias lxz="cd ${CUSTOM_ZSH}/.."
+# alias lxzc="mycode ${CUSTOM_ZSH}/.. && cd ${CUSTOM_ZSH}/.."
 alias jpac='code ./package.json'
 alias tsfig='code ./tsconfig.json'
 alias insdr='/usr/local/bin/insiders'
@@ -84,7 +78,6 @@ alias p9k='compute_p9k'
 alias zshcnf='atom ~/.zshrc'
 alias zshcode='code ~/.oh-my-zsh'
 alias zshatom='atom ~/.oh-my-zsh'
-alias cnftmx='atom ~/.tmux.conf'
 alias clearall='\u001b[2J\u001b[0;0H'
 alias js="hardcls; env NODE_NO_READLINE=1 rlwrap ${NODELATEST}/node ${NODE_REPL_SCRIPT}"
 alias noderepl="env NODE_NO_READLINE=1 rlwrap node"
@@ -114,10 +107,6 @@ alias mktmp='TMPDIRLOCATION="/tmp/LXCM$(uxid)"; mkdir "${TMPDIRLOCATION:0:27}S";
 alias ucp="sudo nice -n -10 ionice -c 1 -n 5 cp -uRL"
 alias vucp="sudo nice -n -10 ionice -c 1 -n 5 cp -vuR"
 alias vrmf="sudo nice -n -15 ionice -c 1 -n 3 rm -vRf"
-alias al="ls -alhSvF -X"
-alias alt="ls -alGhSvF -rt"
-alias alu="ls -alGhSvF -rut"
-alias alc="ls -alGhSvF -rct"
 alias rmout="rm -fr ./out"
 alias lxicode="nice -5 /home/luxcium/bin/code-luxcium.io; cd /home/luxcium/dev/vscode-luxcium.io/project/luxcium.io"
 alias rdhard="rdfind -deterministic true -followsymlinks true -removeidentinode false -makehardlinks true -deleteduplicates false -outputname 'rdhard-results.txt' ./"
@@ -184,12 +173,9 @@ alias vmstart="az vm start -g 'GroupeONE-UKSouth' --name 'MEAN-VirtualONE'"
 # ${PATH}
 # PATH_
 # alias lxXX="cd ${PATH_LXXXY}"
-# alias tmuxlxic='mycode ${PATH_LXIO_PRJ}/luxcium.io && cd ${PATH_LXIO_PRJ}/luxcium.io'
-# alias mxdef="tmux -uv -f ${TMUX_CONFIGS}/common.tmux.conf new-session -A -s luxcium-io -c ${PATH_LXIO_PRJ}/luxcium.io"
 # alias zshQ="zsh --pathdirs"
 ################
 ## TMUX ALIAS ##
-# alias dx='tmux detach'
 ####################
 ## Projects ALIAS ##
 # Luxcium.io
@@ -201,7 +187,6 @@ alias vmstart="az vm start -g 'GroupeONE-UKSouth' --name 'MEAN-VirtualONE'"
 ## LUXCIUM
 # alias lxicode="lxicd; lximux"
 ## QUESTRADE
-# alias lxic='tmuxlxic; tmux new-session -A -s luxcium-io;'
 # PYTHONSTARTUP='~/.pythonrc'
 # alias gitAll='/Users/neb_401/gitAll3.sh'
 # alias zshenv="code ~/.zshenv"

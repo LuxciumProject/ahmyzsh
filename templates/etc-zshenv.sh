@@ -9,45 +9,42 @@ export TIMER_ALL_THEN=$(/usr/bin/date +%s%N)
 export AHMYZSH=${AHMYZSH:="${HOME}/ahmyzsh"}
 export AHMYZSH_CACHE=${AHMYZSH_CACHE:="${HOME}/.cache/ahmyzsh"}
 export CACHED_PATH=${CACHED_PATH:="${AHMYZSH_CACHE}/path.env"}
-export MAIN_BOOTSTRAP=${MAIN_BOOTSTRAP:="${AHMYZSH}/MAIN.sh"}
 
-#+ LOAD PATH
+#* 1) LOAD PATH
 #+ -----------------------------------------------------------------------------~
 
 if [ -f "${CACHED_PATH}" ]; then
-    . "${CACHED_PATH}"
+  . "${CACHED_PATH}"
 
-    TIMER_NOW=$(/usr/bin/date +%s%N)
-    TIMER_VALUE="$(((${TIMER_NOW} - ${TIMER_ALL_THEN}) / 1000))"
+  TIMER_NOW=$(/usr/bin/date +%s%N)
+  TIMER_VALUE="$(((${TIMER_NOW} - ${TIMER_ALL_THEN}) / 1000))"
 
-    export TIME_TO_PATH=("$(
-        HEADPART=${TIMER_VALUE:0:-3}
-        echo ${HEADPART:-0}
-    ).${TIMER_VALUE:${#TIMER_VALUE}-3}") 2>/dev/null
+  export TIME_TO_PATH=("$(
+    HEADPART=${TIMER_VALUE:0:-3}
+    echo ${HEADPART:-0}
+  ).${TIMER_VALUE:${#TIMER_VALUE}-3}") 2>/dev/null
 
-    if [[ -o interactive ]]; then
-        echo ""
-        echo "   ${TIME_TO_PATH} ms  to  'PATH'"
-        echo ""
-    fi
 else
-    if [[ -o interactive ]]; then
-        echo "Error: Unable to preload 'PATH'"
-    fi
+  if [[ -o interactive ]]; then
+    echo "Error: Unable to preload 'PATH'"
+    unset -v CACHED_PATH
+  fi
 fi
 
-#+ AHMYZSH  B O O T S T R A P
+#* 2) LOAD AHMYZSH  B O O T S T R A P
 #+ -----------------------------------------------------------------------------~
-
+# echo "2) LOAD AHMYZSH  B O O T S T R A P"
+export MAIN_BOOTSTRAP=${MAIN_BOOTSTRAP:="${AHMYZSH}/MAIN.zsh"}
+# export MAIN_BOOTSTRAP="${AHMYZSH}/MAIN.zsh"
 if [ -f "${MAIN_BOOTSTRAP}" ]; then
-    . "${MAIN_BOOTSTRAP}"
+  . "${MAIN_BOOTSTRAP}"
 
-    SCIENTIA_ES_LUX_PRINCIPIUM
+  SCIENTIA_ES_LUX_PRINCIPIUM
 
 else
-    [[ -o interactive ]] &&
-        echo "Error loading '${MAIN_BOOTSTRAP}'... File or path can not be resolved"
-    unset -v MAIN_BOOTSTRAP
+  [[ -o interactive ]] \
+    && echo "Error: Path to file: '${MAIN_BOOTSTRAP}' can not be resolved"
+  unset -v MAIN_BOOTSTRAP
 fi
 
 # -------------------------- !!! SECURITY WARNING !!! --------------------------≈

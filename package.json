@@ -1,6 +1,9 @@
 {
+  "scripts": {
+    "update": "yarn add -D prettier@latest prettier-plugin-sh@latest"
+  },
   "devDependencies": {
-    "prettier": "^2.1.2",
+    "prettier": "^2.2.1",
     "prettier-plugin-sh": "^0.6.0"
   }
 }

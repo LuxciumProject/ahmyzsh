@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+# getdateyy
+  echo -en $(date +%Y%m%d)

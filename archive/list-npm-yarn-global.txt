@@ -1,0 +1,75 @@
+yarn global add @nestjs/cli@latest
+yarn global add @typescript-eslint/eslint-plugin@latest
+yarn global add @typescript-eslint/parser@latest
+yarn global add concurrently@latest
+yarn global add eslint-plugin-flowtype@latest
+yarn global add eslint-plugin-import@latest
+yarn global add eslint-plugin-jest@latest
+yarn global add eslint-plugin-jsx-a11y@latest
+yarn global add eslint-plugin-node@latest
+yarn global add eslint-plugin-prettier@latest
+yarn global add eslint-plugin-react-hooks@latest
+yarn global add eslint-plugin-react@latest
+yarn global add eslint-plugin-simple-import-sort@latest
+yarn global add eslint-plugin-unicorn@latest
+yarn global add eslint@latest
+yarn global add jest@latest
+yarn global add npm@7
+yarn global add nyc@latest
+yarn global add pnpm@latest
+yarn global add prettier@latest
+yarn global add ts-node@latest
+yarn global add typescript@latest
+yarn global add vsce@latest
+yarn global add yarn@latest
+
+# yarn global v1.22.10
+# info "bash-language-server@1.17.0" has binaries:
+#    - bash-language-server
+# info "concurrently@5.3.0" has binaries:
+#    - concurrently
+# info "create-react-app@4.0.0" has binaries:
+#    - create-react-app
+# info "eslint@7.13.0" has binaries:
+#    - eslint
+# info "eslint-config-prettier@6.15.0" has binaries:
+#    - eslint-config-prettier-check
+# info "install-peerdeps@2.0.3" has binaries:
+#    - install-peerdeps
+# info "npm@6.14.8" has binaries:
+#    - npm
+#    - npx
+# info "npm-check@5.9.2" has binaries:
+#    - npm-check
+# info "npm-check-unused@6.0.0" has binaries:
+#    - npm-check-unused
+# info "npm-check-updates@9.1.2" has binaries:
+#    - npm-check-updates
+#    - ncu
+# info "pnpm@5.13.1" has binaries:
+#    - pnpm
+#    - pnpx
+# info "prettier@2.1.2" has binaries:
+#    - prettier
+# info "serve@11.3.2" has binaries:
+#    - serve
+# info "shelljs@0.8.4" has binaries:
+#    - shjs
+# info "shx@0.3.3" has binaries:
+#    - shx
+# info "standard-version@9.0.0" has binaries:
+#    - standard-version
+# info "ts-node@9.0.0" has binaries:
+#    - ts-node
+#    - ts-script
+#    - ts-node-script
+#    - ts-node-transpile-only
+# info "typescript@4.0.5" has binaries:
+#    - tsc
+#    - tsserver
+# info "vsce@1.81.1" has binaries:
+#    - vsce
+# info "yarn@1.22.10" has binaries:
+#    - yarn
+#    - yarnpkg
+# Done in 0.62s.

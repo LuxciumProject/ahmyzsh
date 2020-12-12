@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+# getstampdtyy
+  echo -en "$(getdateyy)-$(gettimestamp)-$(getstamp4)"

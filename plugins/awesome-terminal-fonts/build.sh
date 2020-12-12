@@ -25,18 +25,18 @@ for file in ./fonts/*.sh; do
 done
 
 echo 'check if fonts are overlapping...'
-cat ./build/*.sh |
-  grep 'CODEPOINT_OF' |
-  sed -e "s/^.*\+='\([^']\+\)'/\1/g" |
-  sort | uniq |
-  while read cp; do
+cat ./build/*.sh \
+  | grep 'CODEPOINT_OF' \
+  | sed -e "s/^.*\+='\([^']\+\)'/\1/g" \
+  | sort | uniq \
+  | while read cp; do
     hits=$(cat ./build/*.sh | grep $cp | wc -l)
     if [ "$hits" -gt "1" ]; then
       fonts=$(
-        cat ./build/*.sh |
-          grep $cp |
-          sed -e 's/^\(CODEPOINT_OF_[^_]\+\).*$/\1/' |
-          sort | uniq | wc -l
+        cat ./build/*.sh \
+          | grep $cp \
+          | sed -e 's/^\(CODEPOINT_OF_[^_]\+\).*$/\1/' \
+          | sort | uniq | wc -l
       )
       if [ "$fonts" -gt "1" ]; then
         echo "more than one font defines $cp, found in: "

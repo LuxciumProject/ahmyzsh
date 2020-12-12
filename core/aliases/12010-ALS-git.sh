@@ -21,7 +21,9 @@ alias pullmaster='git checkout master; git pull -S --stat --progress --signoff -
 # alias gitcleannext='rm -rf ./dist; rm -rf ./build; rm -f ./package.1.json; git add .; git commit -m "getting ready to build next/version"; push'
 # alias nextcycle='push; pullmaster; pullnext; commitpullnext; deletenext; newnext; gitcleannext; lb'
 
-# region https://github.com/ohmyzsh/ohmyzsh/blob/93c837fec8e9fe61509b9dff9e909e84f7ebe32d/plugins/git/git.plugin.zsh#L1-L293
+# #region ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+# https://github.com/ohmyzsh/ohmyzsh/blob/93c837fec8e9fe61509b9dff9e909e84f7ebe32d/plugins/git/git.plugin.zsh#L1-L293
+
 # Copyright (c) 2009-2020 Robby Russell and [contributors](https://github.com/ohmyzsh/ohmyzsh/contributors)
 # this is the work of 106+ contributors over the last 10 years I will customize it to suit the needs of my project
 # I am greatfull for all the people making opensource and free software possible...
@@ -33,33 +35,33 @@ alias pullmaster='git checkout master; git pull -S --stat --progress --signoff -
 # Back-compatibility wrapper for when this function was defined here in
 # the plugin, before being pulled in to core lib/git.zsh as git_current_branch()
 # to fix the core -> git plugin dependency.
-function current_branch() {
-  git_current_branch
-}
+# function current_branch() {
+#   git_current_branch
+# }
 
-# Pretty log messages
-function _git_log_prettily() {
-  if ! [ -z $1 ]; then
-    git log --pretty=$1
-  fi
-}
-########## compdef _git _git_log_prettily=git-log
+# # Pretty log messages
+# function _git_log_prettily() {
+#   if ! [ -z $1 ]; then
+#     git log --pretty=$1
+#   fi
+# }
+#- ########## compdef _git _git_log_prettily=git-log
 
-# Warn if the current branch is a WIP
-function work_in_progress() {
-  if $(git log -n 1 2>/dev/null | grep -q -c "\-\-wip\-\-"); then
-    echo "WIP!!"
-  fi
-}
+# # Warn if the current branch is a WIP
+# function work_in_progress() {
+#   if $(git log -n 1 2>/dev/null | grep -q -c "\-\-wip\-\-"); then
+#     echo "WIP!!"
+#   fi
+# }
 
-# Check if main exists and use instead of master
-function git_main_branch() {
-  if [[ -n "$(git branch --list main)" ]]; then
-    echo main
-  else
-    echo master
-  fi
-}
+# # Check if main exists and use instead of master
+# function git_main_branch() {
+#   if [[ -n "$(git branch --list main)" ]]; then
+#     echo main
+#   else
+#     echo master
+#   fi
+# }
 
 #
 # Aliases
@@ -122,13 +124,13 @@ alias gds='git diff --staged'
 alias gdt='git diff-tree --no-commit-id --name-only -r'
 alias gdw='git diff --word-diff'
 
-function gdnolock() {
-  git diff "$@" ":(exclude)package-lock.json" ":(exclude)*.lock"
-}
-########## compdef _git gdnolock=git-diff
+# function gdnolock() {
+#   git diff "$@" ":(exclude)package-lock.json" ":(exclude)*.lock"
+# }
+#- ########## compdef _git gdnolock=git-diff
 
-# function gdv() { git diff -w "$@" | view - }
-########## compdef _git gdv=git-diff
+# # function gdv() { git diff -w "$@" | view - }
+#- ########## compdef _git gdv=git-diff
 
 alias gf='git fetch'
 alias gfa='git fetch --all --prune'
@@ -139,51 +141,51 @@ alias gfg='git ls-files | grep'
 alias gg='git gui citool'
 alias gga='git gui citool --amend'
 
-function ggf() {
-  [[ "$#" != 1 ]] && local b="$(git_current_branch)"
-  git push --force origin "${b:=$1}"
-}
-########## compdef _git ggf=git-checkout
-function ggfl() {
-  [[ "$#" != 1 ]] && local b="$(git_current_branch)"
-  git push --force-with-lease origin "${b:=$1}"
-}
-########## compdef _git ggfl=git-checkout
+# function ggf() {
+#   [[ "$#" != 1 ]] && local b="$(git_current_branch)"
+#   git push --force origin "${b:=$1}"
+# }
+# ########## compdef _git ggf=git-checkout
+# function ggfl() {
+#   [[ "$#" != 1 ]] && local b="$(git_current_branch)"
+#   git push --force-with-lease origin "${b:=$1}"
+# }
+# ########## compdef _git ggfl=git-checkout
 
-function ggl() {
-  if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]; then
-    git pull origin "${*}"
-  else
-    [[ "$#" == 0 ]] && local b="$(git_current_branch)"
-    git pull origin "${b:=$1}"
-  fi
-}
-########## compdef _git ggl=git-checkout
+# function ggl() {
+#   if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]; then
+#     git pull origin "${*}"
+#   else
+#     [[ "$#" == 0 ]] && local b="$(git_current_branch)"
+#     git pull origin "${b:=$1}"
+#   fi
+# }
+# ########## compdef _git ggl=git-checkout
 
-function ggp() {
-  if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]; then
-    git push origin "${*}"
-  else
-    [[ "$#" == 0 ]] && local b="$(git_current_branch)"
-    git push origin "${b:=$1}"
-  fi
-}
-########## compdef _git ggp=git-checkout
+# function ggp() {
+#   if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]; then
+#     git push origin "${*}"
+#   else
+#     [[ "$#" == 0 ]] && local b="$(git_current_branch)"
+#     git push origin "${b:=$1}"
+#   fi
+# }
+# ########## compdef _git ggp=git-checkout
 
-function ggpnp() {
-  if [[ "$#" == 0 ]]; then
-    ggl && ggp
-  else
-    ggl "${*}" && ggp "${*}"
-  fi
-}
-########## compdef _git ggpnp=git-checkout
+# function ggpnp() {
+#   if [[ "$#" == 0 ]]; then
+#     ggl && ggp
+#   else
+#     ggl "${*}" && ggp "${*}"
+#   fi
+# }
+# ########## compdef _git ggpnp=git-checkout
 
-function ggu() {
-  [[ "$#" != 1 ]] && local b="$(git_current_branch)"
-  git pull --rebase origin "${b:=$1}"
-}
-########## compdef _git ggu=git-checkout
+# function ggu() {
+#   [[ "$#" != 1 ]] && local b="$(git_current_branch)"
+#   git pull --rebase origin "${b:=$1}"
+# }
+# ########## compdef _git ggu=git-checkout
 
 alias ggpur='ggu'
 alias ggpull='git pull origin "$(git_current_branch)"'
@@ -268,9 +270,9 @@ alias gst='git status'
 
 # use the default stash push on git 2.13 and newer
 autoload -Uz is-at-least
-is-at-least 2.13 "$(git --version 2>/dev/null | awk '{print $3}')" &&
-  alias gsta='git stash push' ||
-  alias gsta='git stash save'
+is-at-least 2.13 "$(git --version 2>/dev/null | awk '{print $3}')" \
+  && alias gsta='git stash push' \
+  || alias gsta='git stash save'
 
 alias gstaa='git stash apply'
 alias gstc='git stash clear'
@@ -305,18 +307,19 @@ alias gams='git am --skip'
 alias gama='git am --abort'
 alias gamscp='git am --show-current-patch'
 
-function grename() {
-  if [[ -z "$1" || -z "$2" ]]; then
-    echo "Usage: $0 old_branch new_branch"
-    return 1
-  fi
+# function grename() {
+#   if [[ -z "$1" || -z "$2" ]]; then
+#     echo "Usage: $0 old_branch new_branch"
+#     return 1
+#   fi
 
-  # Rename branch locally
-  git branch -m "$1" "$2"
-  # Rename branch in origin remote
-  if git push origin :"$1"; then
-    git push --set-upstream origin "$2"
-  fi
-}
+#   # Rename branch locally
+#   git branch -m "$1" "$2"
+#   # Rename branch in origin remote
+#   if git push origin :"$1"; then
+#     git push --set-upstream origin "$2"
+#   fi
+# }
 
-# endregion https://github.com/ohmyzsh/ohmyzsh/blob/93c837fec8e9fe61509b9dff9e909e84f7ebe32d/plugins/git/git.plugin.zsh#L1-L293
+# https://github.com/ohmyzsh/ohmyzsh/blob/93c837fec8e9fe61509b9dff9e909e84f7ebe32d/plugins/git/git.plugin.zsh#L1-L293
+# #endregion ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――

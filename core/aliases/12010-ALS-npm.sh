@@ -14,3 +14,5 @@ alias unPNPMupdate="pnpm -g un npm ${unnpmglobal} pnpm"
 alias installNPMGlobal='npm i -g npm@latest && npm i -g pnpm@latest && NPMupdate && PNPMupdate'
 alias reinstallNPMGlobal='uninstallNPMGlobal && echo "\n\n==============================\n\n" && installNPMGlobal && pnpm i -g pnpm'
 alias nlist='npm list -g --depth 0'
+
+alias npmcibuild='rmnodmod;rmout;rmbuild;npm upgrade||npm install;npm run cibuild && git add .'

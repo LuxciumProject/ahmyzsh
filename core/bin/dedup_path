@@ -29,7 +29,7 @@ function dedup_path_() {
 }
 
 ## Extra code make it easy to copy paste only the function out to use elsewhere
-dedup_path_ $@
+dedup_path_ "${@}"
 
 unset -f dedup_path_
 
