@@ -1,29 +1,29 @@
-alias latestohmyzsh="( builtin cd ${AHMYZSH}/ohmyzsh &&  git pull origin) "
-alias latestpowerlevel10k="( builtin cd ${AHMYZSH}/powerlevel10k &&  git pull origin) "
-alias upgradesubmodules="latestohmyzsh; latestpowerlevel10k"
+alias latestohmyzsh='( builtin cd ${AHMYZSH}/ohmyzsh &&  git pull origin) '
+alias latestpowerlevel10k='( builtin cd ${AHMYZSH}/powerlevel10k &&  git pull origin) '
+alias upgradesubmodules='latestohmyzsh; latestpowerlevel10k'
 
 LXI_SESSION='luxcium-io'
 clearall='\u001b[2J\u001b[0;0H'
 
-alias vsx="cd ${PATH_LXIO}; code -n ${PATH_LXIO}"
-alias vsqt="cd ${PATH_QUESTRADE}; code -n  ${PATH_QUESTRADE}"
-alias vs-iex-cloud="cd ${PATH_IEXCLOUD_API_WRAPPER}; code ${PATH_IEXCLOUD_API_WRAPPER}"
-alias vs-iex-api="cd ${PATH_IEX_API}; code -n ${PATH_IEX_API}"
+alias vsx='cd ${PATH_LXIO}; code -n ${PATH_LXIO}'
+alias vsqt='cd ${PATH_QUESTRADE}; code -n  ${PATH_QUESTRADE}'
+alias vs-iex-cloud='cd ${PATH_IEXCLOUD_API_WRAPPER}; code ${PATH_IEXCLOUD_API_WRAPPER}'
+alias vs-iex-api='cd ${PATH_IEX_API}; code -n ${PATH_IEX_API}'
 alias vsram='cd ${PATH_LXIO}/../ramda; code -n ${PATH_LXIO}/../ramda'
-alias lxi="cd ${PATH_LXIO_PRJ}/luxcium.io"
-alias lxicd=" mycode ${PATH_LXIO_PRJ}/luxcium.io; lxi;"
-alias lxq="cd ${PATH_LXIO_PRJ}/questrade-ts"
-alias lxqc="mycode ${PATH_LXIO_PRJ}/questrade-ts && cd ${PATH_LXIO_PRJ}/questrade-ts"
-alias lux="open $PATH_LXIO_PRJ"
-alias lx="cd ${PATH_LXIO_PRJ}/luxcium.io && mycode ${PATH_LXIO_PRJ}/luxcium.io"
-alias lxc="mycode ${PATH_LXIO_PRJ}/luxcium.io && cd ${PATH_LXIO_PRJ}/luxcium.io"
-alias lxe="cd ${PATH_LXIO_PRJ}/iex-luxcium-api"
-alias lxec="mycode ${PATH_LXIO_PRJ}/iex-luxcium-api && cd ${PATH_LXIO_PRJ}/iex-luxcium-api"
-alias iexc="mycode ${PATH_LXIO_PRJ}/iex-luxcium-api && cd ${PATH_LXIO_PRJ}/iex-luxcium-api"
-alias lxp="cd ${PATH_LXIO_PRJ}/"
-alias lxpc="mycode ${PATH_LXIO_PRJ}/ && cd ${PATH_LXIO_PRJ}/"
-alias lx3="lxqc;lxec;lxic && cd ${PATH_LXIO_PRJ}/"
-alias lx4="cd ~ && atom . ;lxqc;lxec;lxic && cd ${PATH_LXIO_PRJ}/"
+alias lxi='cd ${PATH_LXIO_PRJ}/luxcium.io'
+alias lxicd=' mycode ${PATH_LXIO_PRJ}/luxcium.io; lxi;'
+alias lxq='cd ${PATH_LXIO_PRJ}/questrade-ts'
+alias lxqc='mycode ${PATH_LXIO_PRJ}/questrade-ts && cd ${PATH_LXIO_PRJ}/questrade-ts'
+alias lux='open $PATH_LXIO_PRJ'
+alias lx='cd ${PATH_LXIO_PRJ}/luxcium.io && mycode ${PATH_LXIO_PRJ}/luxcium.io'
+alias lxc='mycode ${PATH_LXIO_PRJ}/luxcium.io && cd ${PATH_LXIO_PRJ}/luxcium.io'
+alias lxe='cd ${PATH_LXIO_PRJ}/iex-luxcium-api'
+alias lxec='mycode ${PATH_LXIO_PRJ}/iex-luxcium-api && cd ${PATH_LXIO_PRJ}/iex-luxcium-api'
+alias iexc='mycode ${PATH_LXIO_PRJ}/iex-luxcium-api && cd ${PATH_LXIO_PRJ}/iex-luxcium-api'
+alias lxp='cd ${PATH_LXIO_PRJ}/'
+alias lxpc='mycode ${PATH_LXIO_PRJ}/ && cd ${PATH_LXIO_PRJ}/'
+alias lx3='lxqc;lxec;lxic && cd ${PATH_LXIO_PRJ}/'
+alias lx4='cd ~ && atom . ;lxqc;lxec;lxic && cd ${PATH_LXIO_PRJ}/'
 alias path='echo ${PATH}'
 alias kx='k'
 alias n='new'
@@ -31,16 +31,16 @@ alias q='_p9k_dump_instant_prompt;exit'
 alias finder='open .'
 alias allo='echo allo tout le monde'
 alias vx=vsx
-# alias vsz="cd ${CUSTOM_ZSH}/..; code -n ${CUSTOM_ZSH}/.."
+# alias vsz='cd ${CUSTOM_ZSH}/..; code -n ${CUSTOM_ZSH}/..'
 alias vz=vsz
-# alias vsr="cd ${ZSH_LUXCIUM}/repl/node-repl; code -n ${ZSH_LUXCIUM}/repl/node-repl"
+# alias vsr='cd ${ZSH_LUXCIUM}/repl/node-repl; code -n ${ZSH_LUXCIUM}/repl/node-repl'
 alias vr=vr
 alias vsq=vsqt
 alias vq=vsq
 alias vqt=vq
-alias vstm="cd ${DEV_POPNLOCK}; insiders  -n ${DEV_POPNLOCK}"
+alias vstm='cd ${DEV_POPNLOCK}; insiders  -n ${DEV_POPNLOCK}'
 alias vst=vstm
-alias lxic="lxicd;" # lximux
+alias lxic='lxicd;' # lximux
 alias runqt='ts-node --pretty "${HOME}/Developer/LuxciumProject/questrade-ts/src/test/playground/debug/debug.ts"'
 alias buildqt='tsc --pretty -p "${HOME}/Developer/LuxciumProject/questrade-ts/configs/tsconfig.commonjs.json"'
 alias wbuildqt='tsc --pretty -w -p "${HOME}/Developer/LuxciumProject/questrade-ts/configs/tsconfig.commonjs.json"'
@@ -79,8 +79,8 @@ alias zshcnf='atom ~/.zshrc'
 alias zshcode='code ~/.oh-my-zsh'
 alias zshatom='atom ~/.oh-my-zsh'
 alias clearall='\u001b[2J\u001b[0;0H'
-alias js="hardcls; env NODE_NO_READLINE=1 rlwrap ${NODELATEST}/node ${NODE_REPL_SCRIPT}"
-alias noderepl="env NODE_NO_READLINE=1 rlwrap node"
+alias js='hardcls; env NODE_NO_READLINE=1 rlwrap ${NODELATEST}/node ${NODE_REPL_SCRIPT}'
+alias noderepl='env NODE_NO_READLINE=1 rlwrap node'
 alias rnd4='echo $(sha224hmac <<< $(date +%s%N) | cut -c -4 | tr \[a-z\] \[A-Z\])'
 alias rnd6='echo $(sha224hmac <<< $(date +%s%N) | cut -c -6 | tr \[a-z\] \[A-Z\])'
 alias rnd8='echo $(sha224hmac <<< $(date +%s%N) | cut -c -8 | tr \[a-z\] \[A-Z\])'
@@ -104,27 +104,27 @@ alias hist50='print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 50'
 alias histall='print -l ${(o)history%% *} | uniq -c | sort -nr'
 alias mktmp='TMPDIRLOCATION="/tmp/LXCM$(uxid)"; mkdir "${TMPDIRLOCATION:0:27}S"; cd "${TMPDIRLOCATION:0:27}S" ;unset -v TMPDIRLOCATION'
 
-alias ucp="sudo nice -n -10 ionice -c 1 -n 5 cp -uRL"
-alias vucp="sudo nice -n -10 ionice -c 1 -n 5 cp -vuR"
-alias vrmf="sudo nice -n -15 ionice -c 1 -n 3 rm -vRf"
-alias rmout="rm -fr ./out"
-alias lxicode="nice -5 /home/luxcium/bin/code-luxcium.io; cd /home/luxcium/dev/vscode-luxcium.io/project/luxcium.io"
-alias rdhard="rdfind -deterministic true -followsymlinks true -removeidentinode false -makehardlinks true -deleteduplicates false -outputname 'rdhard-results.txt' ./"
-alias rdsoft="rdfind -deterministic true -followsymlinks true -removeidentinode false -makesymlinks true -deleteduplicates false -outputname 'rdsoft-results.txt' ./"
-alias rdsoftdry="rdfind -n true -deterministic true -followsymlinks true -removeidentinode false -makesymlinks true -deleteduplicates false -outputname 'rddry-results.txt' ./"
-alias rdharddry="rdfind -n true -deterministic true -followsymlinks true -removeidentinode false -makehardlinks true -deleteduplicates false -outputname 'rdhard-results.txt' ./"
-alias apt-get="sudo nice -n -15 ionice -c 1 -n 3 dnf"
-alias apt="sudo nice -n -15 ionice -c 1 -n 3 dnf"
-alias dnf="sudo nice -n -15 ionice -c 1 -n 3 dnf"
-alias ahmy="code ~/ahmyzsh"
-alias testtext="echo '0OoLl1IiGQgq;&function;=>*const;fi;!@ ( ) [ ] { } « » < > (‽)-?'"
+alias ucp='sudo nice -n -10 ionice -c 1 -n 5 cp -uRL'
+alias vucp='sudo nice -n -10 ionice -c 1 -n 5 cp -vuR'
+alias vrmf='sudo nice -n -15 ionice -c 1 -n 3 rm -vRf'
+alias rmout='rm -fr ./out'
+alias lxicode='nice -5 /home/luxcium/bin/code-luxcium.io; cd /home/luxcium/dev/vscode-luxcium.io/project/luxcium.io'
+alias rdhard='rdfind -deterministic true -followsymlinks true -removeidentinode false -makehardlinks true -deleteduplicates false -outputname 'rdhard-results.txt' ./'
+alias rdsoft='rdfind -deterministic true -followsymlinks true -removeidentinode false -makesymlinks true -deleteduplicates false -outputname 'rdsoft-results.txt' ./'
+alias rdsoftdry='rdfind -n true -deterministic true -followsymlinks true -removeidentinode false -makesymlinks true -deleteduplicates false -outputname 'rddry-results.txt' ./'
+alias rdharddry='rdfind -n true -deterministic true -followsymlinks true -removeidentinode false -makehardlinks true -deleteduplicates false -outputname 'rdhard-results.txt' ./'
+alias apt-get='sudo nice -n -15 ionice -c 1 -n 3 dnf'
+alias apt='sudo nice -n -15 ionice -c 1 -n 3 dnf'
+alias dnf='sudo nice -n -15 ionice -c 1 -n 3 dnf'
+alias ahmy='code ~/ahmyzsh'
+alias testtext='echo "0OoLl1IiGQgq;&function;=>*const;fi;!@ ( ) [ ] { } « » < > (‽)-?"'
 
-alias c16x9="echo '0.5625 or 1.7777777778'"
-alias p480x16x9="echo 480 x 853"
-alias p720x16x9="echo 1280 x 720"
-alias p1080x16x9="echo 1080 x 1920"
-alias vmdaloc="az vm deallocate -g 'GroupeONE-UKSouth' --name 'MEAN-VirtualONE'"
-alias vmstart="az vm start -g 'GroupeONE-UKSouth' --name 'MEAN-VirtualONE'"
+alias c16x9='echo "0.5625 or 1.7777777778"'
+alias p480x16x9='echo 480 x 853'
+alias p720x16x9='echo 1280 x 720'
+alias p1080x16x9='echo 1080 x 1920'
+alias vmdaloc='az vm deallocate -g "GroupeONE-UKSouth" --name "MEAN-VirtualONE"'
+alias vmstart='az vm start -g "GroupeONE-UKSouth" --name "MEAN-VirtualONE"'
 
 # function load_aliases() {
 

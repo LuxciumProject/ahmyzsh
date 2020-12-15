@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+it_has_() {
+  type "$1" >/dev/null 2>&1
+}
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+it_has_ "${@}"
+
+__EXIT_STATUS="${?}"
+
+unset -f it_has_
+
+exit $__EXIT_STATUS

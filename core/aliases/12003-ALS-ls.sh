@@ -1,7 +1,7 @@
-alias al="ls -alhSvF -X"
-alias alt="ls -alGhSvF -rt"
-alias alu="ls -alGhSvF -rut"
-alias alc="ls -alGhSvF -rct"
+alias al='ls -alhSvF -X'
+alias alt='ls -alGhSvF -rt'
+alias alu='ls -alGhSvF -rut'
+alias alc='ls -alGhSvF -rct'
 
 #+ LS(1)                                                                          Manuel de l'utilisateur Linux                                                                         LS(1)
 

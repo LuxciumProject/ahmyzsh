@@ -36,7 +36,7 @@ function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
 
   set +m
 
-  call_ "compute_path &"
+  # call_ "compute_path &"
 
   call_ load_oh_my_zsh
   call_ activate_prompt
@@ -44,6 +44,7 @@ function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
   call_ load_options_main
   call_ load_autosuggest
   call_ load_autocomplete
+  call_ fnm_
 
   right_prompt_off
 

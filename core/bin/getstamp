@@ -14,7 +14,7 @@ function getstamp_() {
   if [ -z $4 ]; then
     echo -n "${2-Z}$(sha512hmac <<<$(date +%D%s%N) | cut -c -${1:-'8'} | tr \[a-z\] \[A-Z\])${3-x}"
   else
-    echo -n "${2-Z}$(sha512hmac <<<${@} | cut -c -${1:-'8'} | tr \[a-z\] \[A-Z\])${3-x}"
+    echo -n "${2-Z}$(sha512hmac <<<${2}${3}${4}${5} | cut -c -${1:-'8'} | tr \[a-z\] \[A-Z\])${3-x}"
   fi
 
 }

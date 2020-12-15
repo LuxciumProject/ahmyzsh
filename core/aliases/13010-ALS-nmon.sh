@@ -1,72 +1,72 @@
-export NMON="mknd.jJ"
+export NMON='mknd.jJ'
 
 # h = This help
-alias monhelp="sudo nice -n -15 ionice -c 1 -n 3 env NMON=h nmon -a"
+alias monhelp='sudo nice -n -15 ionice -c 1 -n 3 env NMON=h nmon -a'
 
 # r = Resources OS & Proc
-alias monres="sudo nice -n -15 ionice -c 1 -n 3 env NMON=r nmon -a"
+alias monres='sudo nice -n -15 ionice -c 1 -n 3 env NMON=r nmon -a'
 
 # c = CPU Util  C = wide view
-alias moncpu="sudo nice -n -15 ionice -c 1 -n 3 env NMON=c nmon -a"
-alias monccpu="sudo nice -n -15 ionice -c 1 -n 3 env NMON=C nmon -a"
+alias moncpu='sudo nice -n -15 ionice -c 1 -n 3 env NMON=c nmon -a'
+alias monccpu='sudo nice -n -15 ionice -c 1 -n 3 env NMON=C nmon -a'
 
 # l = longer term CPU averages
-alias monlcpu="sudo nice -n -15 ionice -c 1 -n 3 env NMON=l nmon -a"
+alias monlcpu='sudo nice -n -15 ionice -c 1 -n 3 env NMON=l nmon -a'
 
 # m = Memory & Swap    L=Huge
-alias monmem="sudo nice -n -15 ionice -c 1 -n 3 env NMON=m nmon -a"
+alias monmem='sudo nice -n -15 ionice -c 1 -n 3 env NMON=m nmon -a'
 
 # V = Virtual Memory
-alias monvirt="sudo nice -n -15 ionice -c 1 -n 3 env NMON=V nmon -a"
+alias monvirt='sudo nice -n -15 ionice -c 1 -n 3 env NMON=V nmon -a'
 
 # n = Network
-alias monnetwork="sudo nice -n -15 ionice -c 1 -n 3 env NMON=n nmon -a"
+alias monnetwork='sudo nice -n -15 ionice -c 1 -n 3 env NMON=n nmon -a'
 
 # N = NFS
-alias monnfs="sudo nice -n -15 ionice -c 1 -n 3 env NMON=N nmon -a"
+alias monnfs='sudo nice -n -15 ionice -c 1 -n 3 env NMON=N nmon -a'
 
 #
 # d = Disk I/O Graphs  D=Stats
-alias mondisk="sudo nice -n -15 ionice -c 1 -n 3 env NMON=d nmon -a"
-alias mondiskstats="sudo nice -n -15 ionice -c 1 -n 3 env NMON=D nmon -a"
+alias mondisk='sudo nice -n -15 ionice -c 1 -n 3 env NMON=d nmon -a'
+alias mondiskstats='sudo nice -n -15 ionice -c 1 -n 3 env NMON=D nmon -a'
 
 # o = Disks %Busy Map
 #
 
 # k = Kernel stats & loadavg
-alias monkern="sudo nice -n -15 ionice -c 1 -n 3 env NMON=k nmon -a"
+alias monkern='sudo nice -n -15 ionice -c 1 -n 3 env NMON=k nmon -a'
 
 # j = Filesystem Usage J=reduced
-alias monfs="sudo nice -n -15 ionice -c 1 -n 3 env NMON=jJ nmon -a"
-alias monfsall="sudo nice -n -15 ionice -c 1 -n 3 env NMON=j nmon -a"
+alias monfs='sudo nice -n -15 ionice -c 1 -n 3 env NMON=jJ nmon -a'
+alias monfsall='sudo nice -n -15 ionice -c 1 -n 3 env NMON=j nmon -a'
 
 #
 # M = MHz by thread & CPU
-alias monmhz="sudo nice -n -15 ionice -c 1 -n 3 env NMON=M nmon -a"
+alias monmhz='sudo nice -n -15 ionice -c 1 -n 3 env NMON=M nmon -a'
 
 #
 
 # t = TopProcess 1=Priority/Nice/State
 # ReOrder by: 3=CPU 4=RAM 5=I/O
-alias montopnice="sudo nice -n -15 ionice -c 1 -n 3 env NMON=t1 nmon -a"
-alias montopproc="sudo nice -n -15 ionice -c 1 -n 3 env NMON=t3 nmon -a"
-alias montopmem="sudo nice -n -15 ionice -c 1 -n 3 env NMON=t4 nmon -a"
-alias montopio="sudo nice -n -15 ionice -c 1 -n 3 env NMON=t5 nmon -a"
+alias montopnice='sudo nice -n -15 ionice -c 1 -n 3 env NMON=t1 nmon -a'
+alias montopproc='sudo nice -n -15 ionice -c 1 -n 3 env NMON=t3 nmon -a'
+alias montopmem='sudo nice -n -15 ionice -c 1 -n 3 env NMON=t4 nmon -a'
+alias montopio='sudo nice -n -15 ionice -c 1 -n 3 env NMON=t5 nmon -a'
 
 # u = TopProc with command line
 # ReOrder by: 3=CPU 4=RAM 5=I/O
-alias montopniceu="sudo nice -n -15 ionice -c 1 -n 3 env NMON=t1u nmon -a"
-alias montopprocu="sudo nice -n -15 ionice -c 1 -n 3 env NMON=t3u nmon -a"
-alias montopmemu="sudo nice -n -15 ionice -c 1 -n 3 env NMON=t4u nmon -a"
-alias montopiou="sudo nice -n -15 ionice -c 1 -n 3 env NMON=t5u nmon -a"
+alias montopniceu='sudo nice -n -15 ionice -c 1 -n 3 env NMON=t1u nmon -a'
+alias montopprocu='sudo nice -n -15 ionice -c 1 -n 3 env NMON=t3u nmon -a'
+alias montopmemu='sudo nice -n -15 ionice -c 1 -n 3 env NMON=t4u nmon -a'
+alias montopiou='sudo nice -n -15 ionice -c 1 -n 3 env NMON=t5u nmon -a'
 
-# alias nmonmmm="sudo nice -n -15 ionice -c 1 -n 3 env NMON=MMM nmon -a"
-# alias nmonV="sudo nice -n -15 ionice -c 1 -n 3 env NMON=V nmon -a"
-# alias nmonN="sudo nice -n -15 ionice -c 1 -n 3 env NMON=N nmon -a"
-# alias nmonr="sudo nice -n -15 ionice -c 1 -n 3 env NMON=r nmon -a"
-# alias nmono="sudo nice -n -15 ionice -c 1 -n 3 env NMON=o nmon -a"
-# alias monddisk="sudo nice -n -15 ionice -c 1 -n 3 env NMON=d nmon -a"
-# alias mondisk="sudo nice -n -15 ionice -c 1 -n 3 env NMON=d. nmon -a"
+# alias nmonmmm='sudo nice -n -15 ionice -c 1 -n 3 env NMON=MMM nmon -a'
+# alias nmonV='sudo nice -n -15 ionice -c 1 -n 3 env NMON=V nmon -a'
+# alias nmonN='sudo nice -n -15 ionice -c 1 -n 3 env NMON=N nmon -a'
+# alias nmonr='sudo nice -n -15 ionice -c 1 -n 3 env NMON=r nmon -a'
+# alias nmono='sudo nice -n -15 ionice -c 1 -n 3 env NMON=o nmon -a'
+# alias monddisk='sudo nice -n -15 ionice -c 1 -n 3 env NMON=d nmon -a'
+# alias mondisk='sudo nice -n -15 ionice -c 1 -n 3 env NMON=d. nmon -a'
 
 # nmon -h
 # Hint for nmon version 16k
@@ -76,8 +76,8 @@ alias montopiou="sudo nice -n -15 ionice -c 1 -n 3 env NMON=t5u nmon -a"
 #         Data Collection: nmon -f [-s <seconds>] [-c <count>] [-t|-T]
 #         Capacity Plan  : nmon -x
 # Interactive-Mode:
-#         Read the Welcome screen & at any time type: "h" for more help
-#         Type "q" to exit nmon
+#         Read the Welcome screen & at any time type: 'h' for more help
+#         Type 'q' to exit nmon
 
 # For Data-Collect-Mode
 #         -f            Must be the first option on the line (switches off interactive mode)
@@ -100,7 +100,7 @@ alias montopiou="sudo nice -n -15 ionice -c 1 -n 3 env NMON=t5u nmon -a"
 #                       - Example line: database sdb sdc sdd sde
 #                       - Up to 64 disk groups, 512 disks per line
 #                       - Disks names can appear more than one group
-#         -g auto       - Will generate a file called "auto" with just disks from "lsblk|grep disk" output
+#         -g auto       - Will generate a file called 'auto' with just disks from 'lsblk|grep disk' output
 #          For Interactive use define the groups then type: g or G
 #          For Data Capture defining the groups switches on data collection
 
@@ -130,7 +130,7 @@ alias montopiou="sudo nice -n -15 ionice -c 1 -n 3 env NMON=t5u nmon -a"
 #         -D            Use with -g to add the Disk Wait/Service Time & in-flight stats
 #         -f and -F     See above
 #         -g <filename> User Defined Disk Groups (see above) - Data Capture: Generates  BBBG & DG lines
-#         -g auto       See above but makes the file "auto" for you of just the disks like sda etc.
+#         -g auto       See above but makes the file 'auto' for you of just the disks like sda etc.
 #         -h            This help output
 #         -I <percent>  Set the ignore process & disks busy threshold (default 0.1%)
 #                       Don't save or show proc/disk using less than this percent
@@ -143,7 +143,7 @@ alias montopiou="sudo nice -n -15 ionice -c 1 -n 3 env NMON=t5u nmon -a"
 #         -p            nmon outputs the PID when it starts. Useful in scripts to capture the PID for a later safe stop.
 #         -r <runname>  Use in a benchmark to record the run details for later analysis [default hostname]
 #         -R              Old rrdtool format used by some - may be removed in the future. If you use this email Nigel
-#         -s <seconds>  Time between snap shots - with "-c count" decides duration of the data capture
+#         -s <seconds>  Time between snap shots - with '-c count' decides duration of the data capture
 #         -t            Include Top Processes in the output
 #         -T            As -t plus it saves command line arguments in UARG section
 #         -U            Include the Linux 10 CPU utilisation stats (CPUUTIL lines in the file)
@@ -179,7 +179,7 @@ alias montopiou="sudo nice -n -15 ionice -c 1 -n 3 env NMON=t5u nmon -a"
 #         G   = Change Disk stats (d) to just disks (assumes -g auto   when starting nmon)
 #         h   = This help information
 #         j   = File Systems including Journal File Systems
-#         J   =  Reduces "j" output by removing unreal File Systems
+#         J   =  Reduces 'j' output by removing unreal File Systems
 #         k   = Kernel stats Run Queue, context-switch, fork, Load Average & Uptime
 #         l   = Long term Total CPU (over 75 snapshots) via bar graphs
 #         L   = Large and =Huge memory page stats
@@ -202,7 +202,7 @@ alias montopiou="sudo nice -n -15 ionice -c 1 -n 3 env NMON=t5u nmon -a"
 #         Key --- Other Interactive Controls ---
 #         +   = Double the screen refresh time
 #         -   = Halves the screen refresh time
-#         0   = Reset peak counts to zero (peak highlight with ">")
+#         0   = Reset peak counts to zero (peak highlight with '>')
 #         1   = Top Processes mode 1 Nice, Priority, Status
 #         3   = Top Processes mode 3 CPU, Memory, Faults
 #         4   = Top Processes mode 4 as 3 but order by memory

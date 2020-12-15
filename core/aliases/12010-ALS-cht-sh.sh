@@ -1,1 +1,1 @@
-alias cht="env PAGER="/usr/bin/less -Ks" cht.sh --shell"
+alias cht='env PAGER="/usr/bin/less -Ks" cht.sh --shell'

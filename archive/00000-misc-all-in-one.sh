@@ -354,8 +354,8 @@ function init_functions() {
   }
 
   function load_() {
-    source_ "${1}" \
-      && call_ ${2}
+    source_ "${1}" &&
+      call_ ${2}
   }
 }
 function parse_options() {
@@ -402,6 +402,14 @@ function perpend_to_path_() {
 }
 
 function append_to_path_() {
+  [ -z $1 ] || export PATH="${PATH}:${1}"
+}
+
+function suffix_to_path_() {
+  [ -z $1 ] || export PATH="${PATH}:${1}"
+}
+
+function add_to_end_of_path_() {
   [ -z $1 ] || export PATH="${PATH}:${1}"
 }
 
@@ -654,10 +662,10 @@ function load_functions_definitions() {
   # Done in 0.48s.
 
   function tsu() {
-    yarn add -D yarn@latest \
-      && yarn add -D eslint@latest typescript@latest ts-node@latest @types/node@latest &
-    yarn global add yarn@latest \
-      && yarn global add eslint@latest typescript@latest ts-node@latest @types/node@latest &
+    yarn add -D yarn@latest &&
+      yarn add -D eslint@latest typescript@latest ts-node@latest @types/node@latest &
+    yarn global add yarn@latest &&
+      yarn global add eslint@latest typescript@latest ts-node@latest @types/node@latest &
   }
   function ts-nightly() {
     yarn add -D typescript@next ts-node@latest @types/node@latest tslib@latest &
@@ -770,12 +778,12 @@ function load_functions_definitions() {
     local tentativePath=${@:-${HOME}}
     local effectivePATH="$(builtin cd ${tentativePath} 2>/dev/null && echo -n "${tentativePath}" || echo -n ${catchupPATH})"
     local _MESSAGE=$(
-      [[ "${effectivePATH}" = "${tentativePath}" ]] \
-        || echo "ERROR: Path not found or not a directory cd back to ${effectivePATH}"
+      [[ "${effectivePATH}" = "${tentativePath}" ]] ||
+        echo "ERROR: Path not found or not a directory cd back to ${effectivePATH}"
     )
 
-    [[ "${effectivePATH}" = "${HOME}" ]] && [[ "${catchupPATH}" != "${HOME}" ]] \
-      && echo "cd to $HOME"
+    [[ "${effectivePATH}" = "${HOME}" ]] && [[ "${catchupPATH}" != "${HOME}" ]] &&
+      echo "cd to $HOME"
 
     builtin cd "${effectivePATH}"
     echo ''

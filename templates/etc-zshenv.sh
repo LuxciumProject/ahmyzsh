@@ -6,7 +6,7 @@
 
 export TIMER_ALL_THEN=$(/usr/bin/date +%s%N)
 
-export AHMYZSH=${AHMYZSH:="${HOME}/ahmyzsh"}
+export AHMYZSH=${AHMYZSH:="/home/luxcium/ahmyzsh"}
 export AHMYZSH_CACHE=${AHMYZSH_CACHE:="${HOME}/.cache/ahmyzsh"}
 export CACHED_PATH=${CACHED_PATH:="${AHMYZSH_CACHE}/path.env"}
 
@@ -42,8 +42,8 @@ if [ -f "${MAIN_BOOTSTRAP}" ]; then
   SCIENTIA_ES_LUX_PRINCIPIUM
 
 else
-  [[ -o interactive ]] \
-    && echo "Error: Path to file: '${MAIN_BOOTSTRAP}' can not be resolved"
+  [[ -o interactive ]] &&
+    echo "Error: Path to file: '${MAIN_BOOTSTRAP}' can not be resolved"
   unset -v MAIN_BOOTSTRAP
 fi
 

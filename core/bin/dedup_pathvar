@@ -1,4 +1,5 @@
-# #!/usr/bin/env sh
+
+#!/usr/bin/env sh
 
 # function dedup_pathvar_() {
 #   # #region Deduplicate path variables =========================================¹

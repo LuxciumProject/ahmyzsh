@@ -14,21 +14,21 @@ alias portablevs='newvsportable'
 : ${VSCODE:=code}
 
 # alias vsc="$VSCODE ."
-alias vsca="$VSCODE --add"
-alias vscd="$VSCODE --diff"
-alias vscg="$VSCODE --goto"
-alias vscn="$VSCODE --new-window"
-alias vscr="$VSCODE --reuse-window"
-alias vscw="$VSCODE --wait"
-alias vscu="$VSCODE --user-data-dir"
+alias vsca='${VSCODE} --add'
+alias vscd='${VSCODE} --diff'
+alias vscg='${VSCODE} --goto'
+alias vscn='${VSCODE} --new-window'
+alias vscr='${VSCODE} --reuse-window'
+alias vscw='${VSCODE} --wait'
+alias vscu='${VSCODE} --user-data-dir'
 
-alias vsced="$VSCODE --extensions-dir"
-alias vscie="$VSCODE --install-extension"
-alias vscue="$VSCODE --uninstall-extension"
+alias vsced='${VSCODE} --extensions-dir'
+alias vscie='${VSCODE} --install-extension'
+alias vscue='${VSCODE} --uninstall-extension'
 
-alias vscv="$VSCODE --verbose"
-alias vscl="$VSCODE --log"
-alias vscde="$VSCODE --disable-extensions"
+alias vscv='${VSCODE} --verbose'
+alias vscl='${VSCODE} --log'
+alias vscde='${VSCODE} --disable-extensions'
 
 ##########################
 ## INSIDERS CODE PLUGIN ##
@@ -38,19 +38,19 @@ alias vscde="$VSCODE --disable-extensions"
 
 : ${ISCODE:=insiders}
 
-alias ivsc="$ISCODE ."
-alias ivsca="$ISCODE --add"
-alias ivscd="$ISCODE --diff"
-alias ivscg="$ISCODE --goto"
-alias ivscn="$ISCODE --new-window"
-alias ivscr="$ISCODE --reuse-window"
-alias ivscw="$ISCODE --wait"
-alias ivscu="$ISCODE --user-data-dir"
+alias ivsc='${ISCODE} .'
+alias ivsca='${ISCODE} --add'
+alias ivscd='${ISCODE} --diff'
+alias ivscg='${ISCODE} --goto'
+alias ivscn='${ISCODE} --new-window'
+alias ivscr='${ISCODE} --reuse-window'
+alias ivscw='${ISCODE} --wait'
+alias ivscu='${ISCODE} --user-data-dir'
 
-alias ivsced="$ISCODE --extensions-dir"
-alias ivscie="$ISCODE --install-extension"
-alias ivscue="$ISCODE --uninstall-extension"
+alias ivsced='${ISCODE} --extensions-dir'
+alias ivscie='${ISCODE} --install-extension'
+alias ivscue='${ISCODE} --uninstall-extension'
 
-alias ivscv="$ISCODE --verbose"
-alias ivscl="$ISCODE --log"
-alias ivscde="$ISCODE --disable-extensions"
+alias ivscv='${ISCODE} --verbose'
+alias ivscl='${ISCODE} --log'
+alias ivscde='${ISCODE} --disable-extensions'

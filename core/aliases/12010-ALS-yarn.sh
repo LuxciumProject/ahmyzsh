@@ -4,8 +4,8 @@
 # npm i concurrently@latest
 # alias ylint='linters'
 #> /dev/null'
-alias yarnstart="yarn start"
-alias ystart="yarn start"
+alias yarnstart='yarn start'
+alias ystart='yarn start'
 alias yarnglobalupdate='yarn global add @nestjs/cli@latest bash-language-server@latest concurrently@latest create-react-app@latest eslint@latest eslint-config-prettier@latest install-peerdeps@latest npm-check@latest npm-check-unused@latest npm-check-updates@latest pnpm@latest prettier@latest serve@latest shelljs@latest shx@latest standard-version@latest ts-node@latest typescript@latest vsce@latest yarn@latest'
 
 alias yu='fnm install latest-erbium && \
@@ -17,7 +17,7 @@ alias yi='yg; yu; yi1 ; yi2' # yi3'
 # alias yarnu='npm install -g yarn@latest'
 # alias linters='yarn add --dev eslint-config-airbnb-base@latest eslint@latest eslint-config-prettier@latest eslint-plugin-import@latest eslint-plugin-unicorn@latest @typescript-eslint/parser@latest @typescript-eslint/eslint-plugin@latest tslint@latest'
 # alias gnlint='yarn add --glogal --dev eslint-config-airbnb-base@latest eslint@latest eslint-config-prettier@latest eslint-plugin-import@latest eslint-plugin-unicorn@latest @typescript-eslint/parser@latest @typescript-eslint/eslint-plugin@latest tslint@latest typescript@rc ts-node@latest'
-alias yarn2="yarn set version berry 1>& /dev/null || yarn set version latest; yarn install --immutable --immutable-cache;  yarn stage --commit; git add .yarn* package.json yarn.lock; git commit -m 'yarn update';push"
+alias yarn2='yarn set version berry 1>& /dev/null || yarn set version latest; yarn install --immutable --immutable-cache;  yarn stage --commit; git add .yarn* package.json yarn.lock; git commit -m 'yarn update';push'
 alias yi1='concurrently  "rm yarn.lock" "rm -f package-lock.json" "rm -f pnpm-lock.yaml" "rm -rf node_modules"'
 alias yi2='yarn install --force --audit --link-duplicates --check-files;'
 alias yg='yarn global add \

@@ -15,11 +15,10 @@ function mkloopback_() {
 }
 
 ## Extra code make it easy to copy paste only the function out to use elsewhere
-
 mkloopback_ $@
 
 __EXIT_STATUS="${?}"
 
 unset -f mkloopback_
 
-exit __EXIT_STATUS
+exit $__EXIT_STATUS
