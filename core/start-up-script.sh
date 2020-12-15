@@ -28,25 +28,25 @@ sudo systemctl enable abrtd.service
   sudo ionice -c 1 -n 0 -p $(pidof Xorg)
 )
 
-sudo wall $(sudo systemctl enable ModemManager.service)
-sudo wall $(sudo systemctl start ModemManager.service)
-sudo wall $(sudo systemctl enable bluetooth.service)
-sudo wall $(sudo systemctl start bluetooth.service)
-sudo wall $(sudo systemctl enable NetworkManager.service)
-sudo wall $(sudo systemctl start NetworkManager.service)
-sudo wall $(sudo systemctl enable akmods)
-sudo wall $(sudo systemctl start akmods)
-sudo wall $(sudo akmods)
-sudo wall $(sudo systemctl enable abrtd.service)
-sudo wall $(sudo systemctl start abrtd.service)
-sudo wall $(sudo systemctl enable avahi-daemon.service)
-sudo wall $(sudo systemctl start avahi-daemon.service)
-sudo wall $(sudo systemctl enable containerd.service)
-sudo wall $(sudo systemctl enable docker.socket)
-sudo wall $(sudo systemctl enable docker.service)
-sudo wall $(sudo systemctl start containerd.service)
-sudo wall $(sudo systemctl start docker.socket)
-sudo wall $(sudo systemctl start docker.service)
+sudo systemctl enable ModemManager.service
+sudo systemctl start ModemManager.service
+sudo systemctl enable bluetooth.service
+sudo systemctl start bluetooth.service
+sudo systemctl enable NetworkManager.service
+sudo systemctl start NetworkManager.service
+sudo systemctl enable akmods
+sudo systemctl start akmods
+sudo akmods
+sudo systemctl enable abrtd.service
+sudo systemctl start abrtd.service
+sudo systemctl enable avahi-daemon.service
+sudo systemctl start avahi-daemon.service
+sudo systemctl enable containerd.service
+sudo systemctl enable docker.socket
+sudo systemctl enable docker.service
+sudo systemctl start containerd.service
+sudo systemctl start docker.socket
+sudo systemctl start docker.service
 
 echo -e "Start Up Script finishes \a"
 (play -qv 0.75 /usr/share/sounds/Oxygen-Im-Sms.ogg tremolo 10 100 chorus 0.4 0.9 50 0.5 0.25 2 -t 40 0.6 0.2 3 -s 60 0.6 0.3 1.3 -t &)

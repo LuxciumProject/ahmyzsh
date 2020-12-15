@@ -1,14 +1,14 @@
 #!/bin/env sh
 
-function clearzwc_() {
+function clearzshwordcode_() {
   builtin cd $AHMYZSH && find $(pwd) | grep .zwc | foreachline rm -f
 }
 
 ## Extra code make it easy to copy paste only the function out to use elsewhere
-clearzwc_ "$@"
+clearzshwordcode_ "$@"
 
 EXIT_="${?}"
 
-unset -f clearzwc_
+unset -f clearzshwordcode_
 
 exit $EXIT_

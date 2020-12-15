@@ -1,7 +1,7 @@
 {
   "files.exclude": {
-    "**/*.zwc": true,
-    "powerlevel10k": true,
+    "**/*.zwc": false,
+    "powerlevel10k": false,
     "ohmyzsh": false,
     "powerline": true,
     "crt-profiles": true,
@@ -9,7 +9,7 @@
     "**/.directory": true
   },
   "search.exclude": {
-    "**/*.zwc": true,
+    // "**/*.zwc": true,
     "powerlevel10k": true,
     "ohmyzsh": true,
     "powerline": true,
