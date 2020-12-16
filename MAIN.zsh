@@ -29,14 +29,12 @@ function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
   [[ -f "${S1}" ]] && source "${S1}" || load_error_ "${S1}"
   load_ "${AHMYZSH}/MAIN_SETTINGS.zsh" "MAIN_SETTINGS"
   call_ load_all_config_and_settings_files
-
+  [[ "${PATH_HASH}" == "0" ]] && call_ "compute_path" && export PATH_HASH="$(set_path_hash_ ${PATH})" && echo '' && echo '' && echo ''
   call_ load_zshenv
 
   isinteractive || return 0 #-――――――――― Interactive,login,non-login ――――――――――-#
 
   set +m
-
-  # call_ "compute_path &"
 
   call_ load_oh_my_zsh
   call_ activate_prompt

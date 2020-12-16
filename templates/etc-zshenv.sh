@@ -13,6 +13,7 @@ export CACHED_PATH=${CACHED_PATH:="${AHMYZSH_CACHE}/path.env"}
 #* 1) LOAD PATH
 #+ -----------------------------------------------------------------------------~
 
+export PATH_HASH=999
 if [ -f "${CACHED_PATH}" ]; then
   . "${CACHED_PATH}"
 
@@ -25,10 +26,8 @@ if [ -f "${CACHED_PATH}" ]; then
   ).${TIMER_VALUE:${#TIMER_VALUE}-3}") 2>/dev/null
 
 else
-  if [[ -o interactive ]]; then
-    echo "Error: Unable to preload 'PATH'"
-    unset -v CACHED_PATH
-  fi
+  export TIME_TO_PATH='INFINITE'
+  export PATH_HASH=0
 fi
 
 #* 2) LOAD AHMYZSH  B O O T S T R A P

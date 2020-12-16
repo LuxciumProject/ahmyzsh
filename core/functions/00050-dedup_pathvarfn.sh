@@ -35,13 +35,3 @@ function dedup_pathvar_() {
   unset -f _set_var
 
 }
-
-# ## Extra code make it easy to copy paste only the function out to use elsewhere
-# dedup_pathvar_ "${@}"
-
-# unset -f dedup_pathvar_
-
-# exit 0
-
-# # dedup_pathvar PATH
-# # dedup_pathvar MANPATH
