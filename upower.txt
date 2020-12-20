@@ -1,0 +1,252 @@
+chrome-gnome-shell
+evince-nautilus
+fedorawaves-kdm-theme
+gnome-classic-session
+gnome-initial-setup
+gnome-photos
+gnome-shell-extension-emoji-selector
+gnome-shell-extension-system-monitor-applet
+imsettings-lxde
+kde-connect-nautilus
+kde-style-phase
+kdm-themes
+kffmpegthumbnailer
+qalculate-kde
+tracker-miners
+
+Suppression des dépendances inutilisées:
+ attica
+ gdm
+ gnome-control-center
+ gnome-session-wayland-session
+ gnome-session-xsession
+ gnome-settings-daemon
+ gnome-shell
+ gnome-shell-extension-apps-menu
+ gnome-shell-extension-common
+ gnome-shell-extension-horizontal-workspaces
+ gnome-shell-extension-launch-new-instance
+ gnome-shell-extension-places-menu
+ gnome-shell-extension-window-list
+ herqq
+ kate4-part
+ kde-apps-rpm-macros
+ kde-platform-plugin
+ kde-style-breeze
+ kde-wallpapers
+ kde-workspace-common
+ kdeartwork-common
+ kdelibs
+ kdelibs-common
+ kdelibs-ktexteditor
+ kdelibs-webkit
+ kdm
+ kdm-settings
+ kgreeter-plugins
+ libkworkspace
+ lxsession
+ nautilus
+ nautilus-python
+ polkit-qt
+ qca
+ qca-ossl
+ qimageblitz
+ qtsoap
+
+Groupes d’environnements disponibles :
+   dnf group upgrade minimal-environment
+   dnf group upgrade server-product-environment
+   dnf group upgrade workstation-product-environment
+   dnf group upgrade cloud-server-environment
+   dnf group upgrade xfce-desktop-environment
+   dnf group upgrade lxde-desktop-environment
+   dnf group upgrade lxqt-desktop-environment
+   dnf group upgrade cinnamon-desktop-environment
+   dnf group upgrade mate-desktop-environment
+   dnf group upgrade sugar-desktop-environment
+   dnf group upgrade deepin-desktop-environment
+   dnf group upgrade developer-workstation-environment
+   dnf group upgrade web-server-environment
+Groupes d’environnements installés :
+   dnf group install kde-desktop-environment
+   dnf group remove custom-environment
+   dnf group remove infrastructure-server-environment
+   dnf group remove basic-desktop-environment
+Groupes installés :
+   dnf group install design-suite
+   dnf group install kde-desktop
+
+ base-x
+ Basic Desktop
+ Core
+ Dial-up Networking Support
+ Fonts
+ Guest Desktop Agents
+ Hardware Support
+ multimedia
+ Common NetworkManager Submodules
+ Standard
+
+   ---
+   dnf group remove audio
+   dnf group remove sound-and-video
+   dnf group remove office
+   dnf group remove c-development
+   dnf group remove d-development
+   dnf group remove domain-client
+   dnf group remove fonts
+   dnf group remove hardware-support
+   dnf group remove system-tools
+   dnf group remove network-server
+   dnf group remove admin-tools
+   dnf group remove development-tools
+   dnf group remove cloud-management
+   dnf group remove rpm-development-tools
+   dnf group remove container-management
+   dnf group remove headless-management
+   dnf group remove python-classroom
+   dnf group remove python-science
+   dnf group remove gnome-desktop
+   dnf group remove editors
+Groupes disponibles :
+   dnf group upgrade 3d-printing
+   dnf group upgrade authoring-and-publishing
+   dnf group upgrade books
+   dnf group upgrade cloud-infrastructure
+   dnf group upgrade compiz
+   dnf group upgrade eclipse
+   dnf group remove editors
+   dnf group upgrade education
+   dnf group upgrade electronic-lab
+   dnf group upgrade engineering-and-scientific
+   dnf group upgrade freeipa-server
+   dnf group upgrade libreoffice
+   dnf group upgrade mate-applications
+   dnf group upgrade medical
+   dnf group upgrade milkymist
+   dnf group upgrade neuron-modelling-simulators
+   dnf group upgrade robotics-suite
+   dnf group upgrade security-lab
+   dnf group upgrade text-internet
+   dnf group upgrade window-managers
+   dnf group upgrade deepin-desktop
+   dnf group upgrade graphical-internet
+   dnf group upgrade games
+
+
+bash-completion
+libyaml-devel
+nano
+pipenv
+pypy3-devel
+python3-docs
+python3-idle
+python3-notebook
+python3-tox
+python3-virtualenv
+thonny
+valgrind
+
+
+Suppression:
+ awesome
+ fedora-bookmarks
+ fedora-icon-theme
+ i3
+ lightdm-gtk
+ qtile
+ ratpoison
+ xmonad
+Suppression des dépendances inutilisées:
+ dmenu
+ gnome-themes
+ gnome-themes-extra
+ i3lock
+ i3status
+ libconfuse
+ libxdg-basedir
+ lightdm
+ lightdm-gobject
+ lua-lgi
+ python3-cairocffi
+ python3-xcffib
+ rlwrap
+ rxvt-unicode
+ xmonad-core
+ xterm
+ xterm-resize
+python3-xtermcolor.noarch                                                                                                                                              1.3-19.fc32                                                                                                                                             fedora
+roxterm.x86_64                                                                                                                                                         3.8.5-1.fc32                                                                                                                                            fedora
+xterm.x86_64                                                                                                                                                           351-2.fc32                                                                                                                                              fedora
+xterm-resize.x86_64
+
+
+dnfl dnf
+Paquets installés
+dnf.noarch                                                                                                                                                                4.4.0-3.fc32                                                                                                                           @updates
+dnf-data.noarch                                                                                                                                                           4.4.0-3.fc32                                                                                                                           @updates
+dnf-plugins-core.noarch                                                                                                                                                   4.0.18-1.fc32                                                                                                                          @updates
+dnfdaemon.noarch                                                                                                                                                          0.3.20-1.fc32                                                                                                                          @fedora
+dnfdaemon-selinux.noarch                                                                                                                                                  0.3.20-1.fc32                                                                                                                          @fedora
+dnfdragora.noarch                                                                                                                                                         2.1.0-2.fc32                                                                                                                           @updates
+libdnf.x86_64                                                                                                                                                             0.54.2-3.fc32                                                                                                                          @updates
+python3-dnf.noarch                                                                                                                                                        4.4.0-3.fc32                                                                                                                           @updates
+python3-dnf-plugin-system-upgrade.noarch                                                                                                                                  4.0.12-1.fc32                                                                                                                          @updates
+python3-dnf-plugins-core.noarch                                                                                                                                           4.0.18-1.fc32                                                                                                                          @updates
+python3-dnf-plugins-extras-common.noarch                                                                                                                                  4.0.12-1.fc32                                                                                                                          @updates
+python3-dnfdaemon.noarch                                                                                                                                                  0.3.20-1.fc32                                                                                                                          @fedora
+python3-libdnf.x86_64                                                                                                                                                     0.54.2-3.fc32                                                                                                                          @updates
+
+Paquets disponibles:
+dnf-automatic.noarch                                                                                                                                                      4.4.0-3.fc32                                                                                                                           updates
+dnf-plugin-diff.noarch                                                                                                                                                    1.1-4.fc32                                                                                                                             fedora
+dnf-plugin-nvidia.noarch                                                                                                                                                  2.0-1.el8                                                                                                                              cuda-fedora32-x86_64
+dnf-plugin-ovl.noarch                                                                                                                                                     0.0.3-1.fc32                                                                                                                           fedora
+dnf-plugin-subscription-manager.x86_64                                                                                                                                    1.25.9-5.fc32                                                                                                                          fedora
+dnf-plugin-swidtags.noarch                                                                                                                                                0.8.9-1.fc32                                                                                                                           fedora
+dnf-utils.noarch                                                                                                                                                          4.0.18-1.fc32                                                                                                                          updates
+dnfdragora-updater.noarch                                                                                                                                                 2.1.0-2.fc32                                                                                                                           updates
+etckeeper-dnf.noarch                                                                                                                                                      1.18.14-1.fc32                                                                                                                         fedora
+libdnf.i686                                                                                                                                                               0.54.2-3.fc32                                                                                                                          updates
+libdnf-devel.i686                                                                                                                                                         0.54.2-3.fc32                                                                                                                          updates
+libdnf-devel.x86_64                                                                                                                                                       0.54.2-3.fc32                                                                                                                          updates
+libdnf-plugin-swidtags.x86_64                                                                                                                                             0.8.7-5.fc32                                                                                                                           fedora
+microdnf.x86_64                                                                                                                                                           3.4.0-2.fc32                                                                                                                           fedora
+python3-dnf-plugin-kickstart.noarch                                                                                                                                       4.0.12-1.fc32                                                                                                                          updates
+python3-dnf-plugin-leaves.noarch                                                                                                                                          4.0.18-1.fc32                                                                                                                          updates
+python3-dnf-plugin-local.noarch                                                                                                                                           4.0.18-1.fc32                                                                                                                          updates
+python3-dnf-plugin-post-transaction-actions.noarch                                                                                                                        4.0.18-1.fc32                                                                                                                          updates
+python3-dnf-plugin-rpmconf.noarch                                                                                                                                         4.0.12-1.fc32                                                                                                                          updates
+python3-dnf-plugin-show-leaves.noarch                                                                                                                                     4.0.18-1.fc32                                                                                                                          updates
+python3-dnf-plugin-showvars.noarch                                                                                                                                        4.0.12-1.fc32                                                                                                                          updates
+python3-dnf-plugin-snapper.noarch                                                                                                                                         4.0.12-1.fc32                                                                                                                          updates
+python3-dnf-plugin-torproxy.noarch                                                                                                                                        4.0.12-1.fc32                                                                                                                          updates
+python3-dnf-plugin-tracer.noarch                                                                                                                                          4.0.12-1.fc32                                                                                                                          updates
+python3-dnf-plugin-versionlock.noarch
+
+--skip-broken
+dnf install --best --allowerasing ghc-xmonad ghc-xmonad-contrib ghc-xmonad-contrib-devel ghc-xmonad-contrib-prof ghc-xmonad-devel ghc-xmonad-prof xmonad xmonad-basic xmonad-config xmonad-core xmonad-log-applet-mate xmonad-log-applet-xfce xmonad-mate
+
+
+ Problème: package ghc-xmonad-devel-0.15-5.fc32.x86_64 requires ghc-devel(base-4.12.0.0), but none of the providers can be installed
+  - package xmonad-config-0.15-5.fc32.x86_64 requires ghc-xmonad-devel = 0.15-5.fc32, but none of the providers can be installed
+  - cannot install both ghc-base-devel-4.12.0.0-104.fc32.x86_64 and ghc-base-devel-4.15.0.0-96.module_f32+10733+93954846.x86_64
+  - cannot install both ghc-base-devel-4.12.0.0-102.fc32.x86_64 and ghc-base-devel-4.15.0.0-96.module_f32+10733+93954846.x86_64
+  - package xmonad-mate-0.15-5.fc32.x86_64 requires xmonad-config = 0.15-5.fc32, but none of the providers can be installed
+  - package ghc-ghc-bignum-devel-1.0-96.module_f32+10733+93954846.x86_64 requires ghc-devel(ghc-prim-0.7.0), but none of the providers can be installed
+  - conflicting requests
+  - problem with installed package ghc-ghc-bignum-devel-1.0-96.module_f32+10733+93954846.x86_64
+  - package ghc-base-devel-4.15.0.0-96.module_f32+10733+93954846.x86_64 is filtered out by modular filtering
+(essayez d’ajouter « --allowerasing » à la ligne de commande pour remplacer les paquets en conflit ou « --skip-broken » pour ignorer les paquets non installables)
+
+ Problème: package ghc-X11-1.9.1-1.fc32.x86_64 requires libHSghc-prim-0.5.3-ghc8.6.5.so()(64bit), but none of the providers can be installed
+  - package ghc-X11-1.9.1-1.fc32.x86_64 requires libHSbase-4.12.0.0-ghc8.6.5.so()(64bit), but none of the providers can be installed
+  - package ghc-X11-1.9.1-1.fc32.x86_64 requires libHSinteger-gmp-1.0.2.0-ghc8.6.5.so()(64bit), but none of the providers can be installed
+  - cannot install both ghc-base-4.12.0.0-104.fc32.x86_64 and ghc-base-4.15.0.0-96.module_f32+10733+93954846.x86_64
+  - cannot install both ghc-base-4.12.0.0-102.fc32.x86_64 and ghc-base-4.15.0.0-96.module_f32+10733+93954846.x86_64
+  - package ghc-xmonad-0.15-5.fc32.x86_64 requires libHSX11-1.9.1-3cxH9NQkTIzHTX16bYAEni-ghc8.6.5.so()(64bit), but none of the providers can be installed
+  - package ghc-ghc-bignum-1.0-96.module_f32+10733+93954846.x86_64 requires libHSghc-prim-0.7.0-ghc9.0.0.20200925.so()(64bit), but none of the providers can be installed
+  - conflicting requests
+  - problem with installed package ghc-ghc-bignum-1.0-96.module_f32+10733+93954846.x86_64
+  - package ghc-base-4.15.0.0-96.module_f32+10733+93954846.x86_64 is filtered out by modular filtering
+(essayez d’ajouter « --allowerasing » à la ligne de commande pour remplacer les paquets en conflit ou « --skip-broken » pour ignorer les paquets non installables)

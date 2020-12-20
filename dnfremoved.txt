@@ -1,0 +1,59 @@
+Dernière vérification de l’expiration des métadonnées effectuée il y a 0:05:09 le mer. 16 déc. 2020 23:43:34.
+Paquets installés
+kernel-core                                    5.9.11-100.fc32                    @updates
+kernel-core                                    5.9.12-100.fc32                    @updates
+kernel-core                                    5.9.13-100.fc32                    @updates
+kernel-devel                                   5.9.11-100.fc32                    @updates
+kernel-devel                                   5.9.12-100.fc32                    @updates
+kernel-devel                                   5.9.13-100.fc32                    @updates
+kernel-headers                                 5.9.13-100.fc32                    @updates
+kernel-modules                                 5.9.11-100.fc32                    @updates
+kernel-modules                                 5.9.12-100.fc32                    @updates
+kernel-modules                                 5.9.13-100.fc32                    @updates
+kernel-modules-extra                           5.9.11-100.fc32                    @updates
+kernel-modules-extra                           5.9.12-100.fc32                    @updates
+kernel-modules-extra                           5.9.13-100.fc32                    @updates
+kernel-modules-internal                        5.9.11-100.fc32                    @updates
+kernel-modules-internal                        5.9.12-100.fc32                    @updates
+kernel-modules-internal                        5.9.13-100.fc32                    @updates
+kernel-tools                                   5.9.9-100.fc32                     @updates
+kernel-tools-libs                              5.9.9-100.fc32                     @updates
+Paquets disponibles
+gap-pkg-jupyterkernel-doc.noarch                       1.3-3.fc32                         fedora
+kernel-cross-headers                           5.9.13-100.fc32                    updates
+kernel-rpm-macros.noarch                               150-3.fc32                         updates
+kernel-tools-libs.i686                                 5.6.6-300.fc32                     fedora
+kernel-tools-libs-devel.i686                           5.6.6-300.fc32                     fedora
+kernel-tools-libs-devel                        5.9.9-100.fc32                     updates
+lirc-disable-kernel-rc.noarch                          0.10.0-21.fc32                     fedora
+python-ipykernel-doc.noarch                            5.1.4-1.fc32                       fedora
+python-metakernel-doc.noarch                           0.27.5-1.fc32                      updates
+python3-jupyter-kernel-singular.noarch                 0.9.9-2.fc32                       fedora
+python3-jupyter-kernel-test.noarch                     0.3-13.fc32                        fedora
+python3-metakernel-echo.noarch                         0.19.1-40.fc32                     updates
+python3-metakernel-python.noarch                       0.19.1-40.fc32                     updates
+python3-metakernel-tests.noarch                        0.27.5-1.fc32                      updates
+texlive-l3kernel-doc.noarch
+
+Installation:
+Mise à jour:
+ bolt                                               x86_64                 0.9.1-1.fc32                          updates                       208 k
+ cups-filters                                       x86_64                 1.28.6-1.fc32                         updates                       840 k
+ cups-filters-libs                                  x86_64                 1.28.6-1.fc32                         updates                       139 k
+ hwdata                                             noarch                 0.342-1.fc32                          updates                       1.4 M
+ python3.10                                         x86_64                 3.10.0~a3-1.fc32                      updates                        18 M
+ python39
+
+
+kernel-core                                    5.9.14-100.fc32                    updates
+kernel-devel                                   5.9.14-100.fc32                    updates
+kernel-modules                                 5.9.14-100.fc32                    updates
+kernel-modules-extra                           5.9.14-100.fc32                    updates
+kernel-modules-internal                        5.9.14-100.fc32                    updates
+
+ kernel
+ kernel-core
+ kernel-devel
+ kernel-modules
+ kernel-modules-extra
+ kernel-modules-internal

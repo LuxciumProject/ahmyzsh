@@ -5,60 +5,123 @@
 function enable_startup_() {
 
   function disable_at_shutdown_() {
-    sudo systemctl stop docker.socket
-    sudo systemctl stop docker.service
-    sudo systemctl stop containerd.service
-    sudo systemctl disable docker.socket
-    sudo systemctl disable docker.service
-    sudo systemctl disable containerd.service
-    sudo systemctl stop ModemManager.service
-    sudo systemctl disable ModemManager.service
-    sudo systemctl stop bluetooth.service
-    sudo systemctl disable bluetooth.service
-    sudo systemctl stop NetworkManager.service
-    sudo systemctl disable NetworkManager.service
-    sudo akmods
-    sudo systemctl disable akmods
-    sudo systemctl stop abrtd.service
-    sudo systemctl disable abrtd.service
-    sudo systemctl stop avahi-daemon.service
-    sudo systemctl disable avahi-daemon.service
+
+    (
+      sudo systemctl stop docker.socket
+      sudo systemctl stop docker.service
+      sudo systemctl stop containerd.service
+      sudo systemctl disable docker.socket
+      sudo systemctl disable docker.service
+      sudo systemctl disable containerd.service
+    ) &
+    (
+      sudo systemctl stop ModemManager.service
+      sudo systemctl disable ModemManager.service
+    ) &
+    (
+      sudo systemctl stop bluetooth.service
+      sudo systemctl disable bluetooth.service
+    ) &
+    (
+      sudo systemctl stop NetworkManager.service
+      sudo systemctl disable NetworkManager.service
+    ) &
+    (
+      sudo systemctl stop akmods
+      sudo systemctl disable akmods
+    ) &
+
+    (
+      sudo systemctl stop avahi-daemon.socket
+      sudo systemctl disable avahi-daemon.socket
+      sudo systemctl stop avahi-daemon.service
+      sudo systemctl disable avahi-daemon.service
+    ) &
+    (
+      sudo systemctl stop upower.service
+      sudo systemctl disable upower.service
+    ) &
+    (
+      sudo systemctl stop dnfdaemon.service
+      sudo systemctl disable dnfdaemon.service
+    ) &
+
+    sleep 3
+
+    sudo systemctl daemon-reload
+    sudo systemctl daemon-reexec
+
   }
 
   function enable_at_startup_() {
 
-    sudo systemctl enable ModemManager.service
-    sudo systemctl start ModemManager.service
-    sudo systemctl enable bluetooth.service
-    sudo systemctl start bluetooth.service
-    sudo systemctl enable NetworkManager.service
-    sudo systemctl start NetworkManager.service
-    sudo systemctl enable akmods
-    sudo systemctl start akmods
-    sudo akmods
-    sudo systemctl enable abrtd.service
-    sudo systemctl start abrtd.service
-    sudo systemctl enable avahi-daemon.service
-    sudo systemctl start avahi-daemon.service
-    sudo systemctl enable containerd.service
-    sudo systemctl enable docker.socket
-    sudo systemctl enable docker.service
-    sudo systemctl start containerd.service
-    sudo systemctl start docker.socket
-    sudo systemctl start docker.service
-    sleep 0.1
-    sudo ionice -c 1 -n 0 -p $(pidof Xorg)
+    (
+      sudo systemctl enable NetworkManager.service
+      sudo systemctl start NetworkManager.service &
+    )
+    (
+      sudo systemctl enable ModemManager.service
+      sudo systemctl start ModemManager.service &
+    )
+    (
+      sudo systemctl enable bluetooth.service
+      sudo systemctl start bluetooth.service &
+    )
+    (
+      sudo systemctl enable akmods
+      sudo systemctl start akmods &
+      sudo akmods
+    )
+
+    (
+      sudo systemctl enable avahi-daemon.service
+      sudo systemctl start avahi-daemon.service &
+    )
+
+    (
+      sudo systemctl enable containerd.service
+      sudo systemctl enable docker.socket
+      sudo systemctl enable docker.service
+      sudo systemctl start containerd.service &
+      sudo systemctl start docker.socket &
+      sudo systemctl start docker.service &
+    )
+
+    sleep 3
+
+    sudo ionice -c 1 -n 0 -p $(pidof sddm)
+    sudo ionice -c 1 -n 1 -p $(pidof sddm-helper)
+    sudo ionice -c 1 -n 2 -p $(pidof startplasma-x11)
+    sudo ionice -c 1 -n 3 -p $(pidof plasma_session)
+    sudo ionice -c 1 -n 1 -p $(pidof Xorg)
+    sudo ionice -c 1 -n 4 -p $(pidof kwin_x11)
+    sudo ionice -c 1 -n 5 -p $(pidof plasmashell)
+
+    sudo renice -n -10 -p $(pidof sddm)
+    sudo renice -n -10 -p $(pidof sddm-helper)
+    sudo renice -n -10 -p $(pidof startplasma-x11)
+    sudo renice -n -10 -p $(pidof plasma_session)
+    sudo renice -n -10 -p $(pidof Xorg)
+    sudo renice -n -10 -p $(pidof kwin_x11)
+    sudo renice -n -10 -p $(pidof plasmashell)
+    sudo renice -n -10 -p $(pidof chrome)
+    sudo systemctl daemon-reload
+    sudo systemctl daemon-reexec
   }
 
+  # enable_systemctl down
   if [[ $1 == 'down' ]]; then
     disable_at_shutdown_
   fi
+
+  # enable_systemctl up
   if [[ $1 == 'up' ]]; then
     enable_at_startup_
   fi
 
+  # enable_systemctl restart
   if [[ $1 == 'restart' ]]; then
-    disable_at_shutdown_ && enable_at_startup_ ||  exit 10
+    disable_at_shutdown_ && enable_at_startup_ || exit 10
   fi
 
 }

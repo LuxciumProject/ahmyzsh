@@ -1,6 +1,6 @@
 {
   "files.exclude": {
-    "**/*.zwc": false,
+    "**/*.zwc": true,
     "powerlevel10k": false,
     "ohmyzsh": false,
     "powerline": true,
@@ -340,3 +340,4 @@
 // "editor.suggest.showVariables": true,
 // "editor.suggest.showWords": true,
 // echo '\n20\n19\n18\n17\n16\n15\n14\n13\n12\n11\n10\n9\n8\n7\n6\n5\n4\n3\n2\n1\n\n'
+// Scientia es lux principium ✨
