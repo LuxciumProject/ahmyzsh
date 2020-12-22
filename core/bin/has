@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 has_() {
-  type "$1" >/dev/null 2>&1 && (echo true && exit 0) || (echo false && exit 1)
+  type "$1" >/dev/null 2>&1
 }
 
 ## Extra code make it easy to copy paste only the function out to use elsewhere

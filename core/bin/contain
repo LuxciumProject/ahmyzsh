@@ -1,0 +1,15 @@
+#!/usr/bin/env zsh
+
+it_contain_() {
+  (ls "${1}" >/dev/null 2>&1)
+  [[ $? == 0 ]] && exit 0 || exit 1
+}
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+it_contain_ "${@}"
+
+_stat_=$?
+
+unset -f it_contain_
+
+exit $_stat_

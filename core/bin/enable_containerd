@@ -1,0 +1,60 @@
+#!/usr/bin/env sh
+
+# enable_containerd
+
+function toggle_it_() {
+
+  function disable_it_() {
+
+    sudo systemctl stop docker.socket
+    sudo systemctl stop docker.service
+    sudo systemctl stop containerd.service
+    sudo systemctl disable docker.socket
+    sudo systemctl disable docker.service
+    sudo systemctl disable containerd.service
+
+    sudo systemctl daemon-reload &&
+      sudo systemctl daemon-reexec
+
+  }
+  # // --global
+  function enable_it_() {
+
+    sudo systemctl enable containerd.service
+    sudo systemctl enable docker.socket
+    sudo systemctl enable docker.service
+    sudo systemctl enable docker-distribution.service
+    sudo systemctl restart docker-distribution.service
+    sudo systemctl restart containerd.service
+    sudo systemctl restart docker.socket
+    sudo systemctl restart docker.service
+
+    sudo systemctl daemon-reload &&
+      sudo systemctl daemon-reexec
+  }
+
+  # enable_containerd down
+  if [[ $1 == 'down' ]]; then
+    disable_it_
+  fi
+
+  # enable_containerd up
+  if [[ $1 == 'up' ]]; then
+    enable_it_
+  fi
+
+  # enable_containerd restart
+  if [[ $1 == 'restart' ]]; then
+    disable_it_ && enable_it_ || exit 10
+  fi
+
+}
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+toggle_it_ "${@}"
+
+__EXIT_STATUS="${?}"
+
+unset -f toggle_it_
+
+exit $__EXIT_STATUS

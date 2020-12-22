@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+
+it_has_() {
+  (ls .git &>!/dev/null)
+  (ls node_modules &>!/dev/null)
+  (ls package.json &>!/dev/null)
+  (ls package-lock.json &>!/dev/null)
+  (ls .gitignore &>!/dev/null)
+  (ls LICENSE &>!/dev/null)
+  (ls tsconfig.json &>!/dev/null)
+  (ls README.md &>!/dev/null)
+  (ls yarn.lock &>!/dev/null)
+  (ls package-lock.json &>!/dev/null)
+  (ls yarn-error.log &>!/dev/null)
+  (ls pnpm-lock.yaml &>!/dev/null)
+}
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+it_has_ "${@}"
+
+__EXIT_STATUS="${?}"
+
+unset -f it_has_
+
+exit $__EXIT_STATUS

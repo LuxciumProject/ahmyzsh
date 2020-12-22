@@ -25,3 +25,5 @@ getstamp_ "${@}"
 unset -f getstamp_
 
 exit 0
+
+#

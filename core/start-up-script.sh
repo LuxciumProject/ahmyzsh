@@ -17,7 +17,7 @@ echo "Start Up Script begin"
     (nice -5 ionice -c 2 -n 0 fnm install 14) &
     (nice -5 ionice -c 2 -n 0 fnm install 15 && fnm default 15 && fnm use default)
   ) &
-  enable_systemctl up
+  # enable_systemctl up
 
   (nice -5 ionice -c 2 -n 0 conda update conda -y && nice -5 ionice -c 2 -n 0 conda update --all -y)
 

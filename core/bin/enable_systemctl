@@ -7,46 +7,46 @@ function enable_startup_() {
   function disable_at_shutdown_() {
 
     (
-      sudo systemctl stop docker.socket
-      sudo systemctl stop docker.service
-      sudo systemctl stop containerd.service
+      # sudo systemctl stop docker.socket
+      # sudo systemctl stop docker.service
+      # sudo systemctl stop containerd.service
       sudo systemctl disable docker.socket
       sudo systemctl disable docker.service
       sudo systemctl disable containerd.service
-    ) &
+    )
     (
-      sudo systemctl stop ModemManager.service
+      # sudo systemctl stop ModemManager.service
       sudo systemctl disable ModemManager.service
-    ) &
+    )
     (
-      sudo systemctl stop bluetooth.service
+      # sudo systemctl stop bluetooth.service
       sudo systemctl disable bluetooth.service
-    ) &
+    )
     (
-      sudo systemctl stop NetworkManager.service
+      # sudo systemctl stop NetworkManager.service
       sudo systemctl disable NetworkManager.service
-    ) &
+    )
     (
-      sudo systemctl stop akmods
+      # sudo systemctl stop akmods
       sudo systemctl disable akmods
-    ) &
+    )
 
     (
-      sudo systemctl stop avahi-daemon.socket
+      # sudo systemctl stop avahi-daemon.socket
       sudo systemctl disable avahi-daemon.socket
-      sudo systemctl stop avahi-daemon.service
+      # sudo systemctl stop avahi-daemon.service
       sudo systemctl disable avahi-daemon.service
-    ) &
+    )
     (
-      sudo systemctl stop upower.service
+      # sudo systemctl stop upower.service
       sudo systemctl disable upower.service
-    ) &
+    )
     (
-      sudo systemctl stop dnfdaemon.service
+      # sudo systemctl stop dnfdaemon.service
       sudo systemctl disable dnfdaemon.service
-    ) &
+    )
 
-    sleep 3
+    # sleep 3
 
     sudo systemctl daemon-reload
     sudo systemctl daemon-reexec
@@ -82,29 +82,30 @@ function enable_startup_() {
       sudo systemctl enable containerd.service
       sudo systemctl enable docker.socket
       sudo systemctl enable docker.service
-      sudo systemctl start containerd.service &
-      sudo systemctl start docker.socket &
-      sudo systemctl start docker.service &
+      sudo systemctl start containerd.service
+      sudo systemctl start docker.socket
+      sudo systemctl start docker.service
     )
 
     sleep 3
 
-    sudo ionice -c 1 -n 0 -p $(pidof sddm)
-    sudo ionice -c 1 -n 1 -p $(pidof sddm-helper)
-    sudo ionice -c 1 -n 2 -p $(pidof startplasma-x11)
-    sudo ionice -c 1 -n 3 -p $(pidof plasma_session)
-    sudo ionice -c 1 -n 1 -p $(pidof Xorg)
-    sudo ionice -c 1 -n 4 -p $(pidof kwin_x11)
-    sudo ionice -c 1 -n 5 -p $(pidof plasmashell)
+    sudo renice -n -7 -p $(pidof sddm)
+    sudo renice -n -7 -p $(pidof sddm-helper)
+    sudo renice -n -7 -p $(pidof startplasma-x11)
+    sudo renice -n -7 -p $(pidof plasma_session)
+    sudo renice -n -7 -p $(pidof Xorg)
+    sudo renice -n -7 -p $(pidof kwin_x11)
+    sudo renice -n -7 -p $(pidof plasmashell)
+    sudo renice -n -7 -p $(pidof chrome)
 
-    sudo renice -n -10 -p $(pidof sddm)
-    sudo renice -n -10 -p $(pidof sddm-helper)
-    sudo renice -n -10 -p $(pidof startplasma-x11)
-    sudo renice -n -10 -p $(pidof plasma_session)
-    sudo renice -n -10 -p $(pidof Xorg)
-    sudo renice -n -10 -p $(pidof kwin_x11)
-    sudo renice -n -10 -p $(pidof plasmashell)
-    sudo renice -n -10 -p $(pidof chrome)
+    sudo ionice -c 1 -n 1 -p $(pidof sddm)
+    sudo ionice -c 1 -n 2 -p $(pidof sddm-helper)
+    sudo ionice -c 1 -n 2 -p $(pidof startplasma-x11)
+    sudo ionice -c 1 -n 2 -p $(pidof plasma_session)
+    sudo ionice -c 1 -n 0 -p $(pidof Xorg)
+    sudo ionice -c 1 -n 3 -p $(pidof kwin_x11)
+    sudo ionice -c 1 -n 3 -p $(pidof plasmashell)
+
     sudo systemctl daemon-reload
     sudo systemctl daemon-reexec
   }
@@ -393,3 +394,255 @@ exit $__EXIT_STATUS
 #&
 #* [Install]
 #& WantedBy=sockets.target
+
+# --before
+#            With list-dependencies, show the units that are ordered after the specified unit. In other words, recursively
+#            list units following the Before= dependency.
+
+#            When passed to the list-jobs command, for each printed job show which other jobs it is waiting for. May be
+#            combined with --after to show both the jobs waiting for each job as well as all jobs each job is waiting for.
+
+#+ sudo systemctl list-dependencies NetworkManager.service --no-pager --with-dependencies --before
+#& Show the units that are ordered after the specified unit
+#+ NetworkManager.service
+#+ ● ├─network.service
+#+ ● ├─NetworkManager-wait-online.service
+#+ ● ├─multi-user.target
+#+ ● │ ├─systemd-update-utmp-runlevel.service
+#+ ● │ ├─graphical.target
+#+ ● │ │ ├─systemd-update-utmp-runlevel.service
+#+ ● │ │ └─shutdown.target
+#+ ● │ └─shutdown.target
+#+ ● ├─network.target
+#+ ● │ ├─autofs.service
+#+ ● │ ├─containerd.service
+#+ ● │ ├─cups.service
+#+ ● │ ├─fcoe.service
+#+ ● │ ├─gssproxy.service
+#+ ● │ ├─iscsi-shutdown.service
+#+ ● │ ├─iscsi.service
+#+ ● │ ├─iscsid.service
+#+ ● │ ├─iscsiuio.service
+#+ ● │ ├─kdump.service
+#+ ● │ ├─libvirt-guests.service
+#+ ● │ ├─libvirtd.service
+#+ ● │ ├─lldpad.service
+#+ ● │ ├─rc-local.service
+#+ ● │ ├─sshd.service
+#+ ● │ ├─systemd-user-sessions.service
+#+ ● │ ├─network-online.target
+#+ ● │ │ ├─autofs.service
+#+ ● │ │ ├─dnf-makecache.service
+#+ ● │ │ ├─docker.service
+#+ ● │ │ ├─iscsi.service
+#+ ● │ │ ├─kdump.service
+#+ ● │ │ ├─nfs-mountd.service
+#+ ● │ │ ├─nfs-server.service
+#+ ● │ │ ├─pmcd.service
+#+ ● │ │ ├─pmie.service
+#+ ● │ │ ├─pmlogger.service
+#+ ● │ │ ├─rpc-statd-notify.service
+#+ ● │ │ ├─rpc-statd.service
+#+ ● │ │ └─shutdown.target
+#+ ● │ └─shutdown.target
+#+ ● └─shutdown.target
+#& show the units that are ordered after the specified unit
+
+#  --after
+#      With list-dependencies, show the units that are ordered before the specified unit. In other words, recursively
+#      list units following the After= dependency.
+
+#      Note that any After= dependency is automatically mirrored to create a Before= dependency. Temporal dependencies
+#      may be specified explicitly, but are also created implicitly for units which are WantedBy= targets (see
+#      systemd.target(5)), and as a result of other directives (for example RequiresMountsFor=). Both explicitly and
+#      implicitly introduced dependencies are shown with list-dependencies.
+
+#-!! sudo systemctl list-dependencies NetworkManager.service --no-pager --with-dependencies --after
+#& Show the units that are ordered before the specified unit
+#-!! NetworkManager.service
+#-!! ● ├─dbus-broker.service
+#-!! ● ├─dbus.socket
+#-!! ● ├─netcf-transaction.service
+#-!! ● ├─system.slice
+#-!! ● ├─systemd-journald.socket
+#-!! ● ├─basic.target
+#-!! ● │ ├─-.mount
+#-!! ● │ ├─dbus-broker.service
+#-!! ● │ ├─systemd-ask-password-plymouth.path
+#-!! ● │ ├─tmp.mount
+#-!! ● │ ├─paths.target
+#-!! ● │ │ ├─cups.path
+#-!! ● │ │ ├─systemd-ask-password-console.path
+#-!! ● │ │ └─systemd-ask-password-wall.path
+#-!! ● │ ├─slices.target
+#-!! ● │ │ ├─-.slice
+#-!! ● │ │ ├─machine.slice
+#-!! ● │ │ ├─system.slice
+#-!! ● │ │ └─user.slice
+#-!! ● │ ├─sockets.target
+#-!! ● │ │ ├─avahi-daemon.socket
+#-!! ● │ │ ├─cups.socket
+#-!! ● │ │ ├─dbus.socket
+#-!! ● │ │ ├─docker.socket
+#-!! ● │ │ ├─iscsid.socket
+#-!! ● │ │ ├─iscsiuio.socket
+#-!! ● │ │ ├─libvirtd-admin.socket
+#-!! ● │ │ ├─libvirtd-ro.socket
+#-!! ● │ │ ├─libvirtd.socket
+#-!! ● │ │ ├─multipathd.socket
+#-!! ● │ │ ├─pcscd.socket
+#-!! ● │ │ ├─sssd-kcm.socket
+#-!! ● │ │ ├─syslog.socket
+#-!! ● │ │ ├─systemd-initctl.socket
+#-!! ● │ │ ├─systemd-journald-audit.socket
+#-!! ● │ │ ├─systemd-journald-dev-log.socket
+#-!! ● │ │ ├─systemd-journald.socket
+#-!! ● │ │ ├─systemd-udevd-control.socket
+#-!! ● │ │ ├─systemd-udevd-kernel.socket
+#-!! ● │ │ ├─systemd-userdbd.socket
+#-!! ● │ │ ├─virtlockd-admin.socket
+#-!! ● │ │ ├─virtlockd.socket
+#-!! ● │ │ ├─virtlogd-admin.socket
+#-!! ● │ │ └─virtlogd.socket
+#-!! ● │ └─sysinit.target
+#-!! ● │   ├─auditd.service
+#-!! ● │   ├─dev-hugepages.mount
+#-!! ● │   ├─dev-mqueue.mount
+#-!! ● │   ├─emergency.service
+#-!! ● │   ├─import-state.service
+#-!! ● │   ├─kmod-static-nodes.service
+#-!! ● │   ├─ldconfig.service
+#-!! ● │   ├─modprobe@drm.service
+#-!! ● │   ├─plymouth-read-write.service
+#-!! ● │   ├─proc-sys-fs-binfmt_misc.automount
+#-!! ● │   ├─selinux-autorelabel-mark.service
+#-!! ● │   ├─sys-fs-fuse-connections.mount
+#-!! ● │   ├─sys-kernel-config.mount
+#-!! ● │   ├─sys-kernel-tracing.mount
+#-!! ● │   ├─systemd-binfmt.service
+#-!! ● │   ├─systemd-firstboot.service
+#-!! ● │   ├─systemd-hwdb-update.service
+#-!! ● │   ├─systemd-journal-catalog-update.service
+#-!! ● │   ├─systemd-journald.service
+#-!! ● │   ├─systemd-machine-id-commit.service
+#-!! ● │   ├─systemd-modules-load.service
+#-!! ● │   ├─systemd-sysctl.service
+#-!! ● │   ├─systemd-sysusers.service
+#-!! ● │   ├─systemd-timesyncd.service
+#-!! ● │   ├─systemd-tmpfiles-setup-dev.service
+#-!! ● │   ├─systemd-tmpfiles-setup.service
+#-!! ● │   ├─systemd-udev-settle.service
+#-!! ● │   ├─systemd-udev-trigger.service
+#-!! ● │   ├─systemd-udevd.service
+#-!! ● │   ├─systemd-update-done.service
+#-!! ● │   ├─systemd-update-utmp.service
+#-!! ● │   ├─systemd-userdbd.service
+#-!! ● │   ├─cryptsetup.target
+#-!! ● │   │ ├─dmraid-activation.service
+#-!! ● │   │ ├─systemd-ask-password-console.path
+#-!! ● │   │ └─systemd-ask-password-wall.path
+#-!! ● │   ├─emergency.target
+#-!! ● │   │ ├─emergency.service
+#-!! ● │   │ └─import-state.service
+#-!! ● │   ├─local-fs.target
+#-!! ● │   │ ├─boot-efi.mount
+#-!! ● │   │ ├─boot.mount
+#-!! ● │   │ ├─home.mount
+#-!! ● │   │ ├─ostree-remount.service
+#-!! ● │   │ ├─run-media-luxcium-B.mount
+#-!! ● │   │ ├─run-user-1000-doc.mount
+#-!! ● │   │ ├─run-user-1000-gvfs.mount
+#-!! ● │   │ ├─run-user-1000.mount
+#-!! ● │   │ ├─systemd-fsck-root.service
+#-!! ● │   │ ├─systemd-remount-fs.service
+#-!! ● │   │ ├─tmp.mount
+#-!! ● │   │ ├─var-lib-machines.mount
+#-!! ● │   │ └─local-fs-pre.target
+#-!! ● │   │   ├─dm-event.service
+#-!! ● │   │   ├─dmraid-activation.service
+#-!! ● │   │   ├─lvm2-monitor.service
+#-!! ● │   │   ├─multipathd.service
+#-!! ● │   │   ├─stratisd.service
+#-!! ● │   │   ├─systemd-remount-fs.service
+#-!! ● │   │   └─systemd-tmpfiles-setup-dev.service
+#-!! ● │   └─swap.target
+#-!! ● │     ├─dev-disk-by\x2did-dm\x2dname\x2dfedora\x2d\x2dnvme\x2dsystem_swap.swap
+#-!! ● │     ├─dev-disk-by\x2did-d-!!m\x2duuid\x2dLVM\x2dpbjpHGNkmuCypQ661gOqoVD2mkGe3R1YjNCoWaKtJ0Ca1lcR8PLIOr4mVH30rKk4.swap
+#-!! ● │     ├─dev-disk-by\x2dlabel-SWAP.swap
+#-!! ● │     ├─dev-disk-by\x2duuid-3777e4e7\x2dfaf2\x2d455a\x2db468\x2dfb7fc412ea6b.swap
+#-!! ● │     ├─dev-dm\x2d1.swap
+#-!! ● │     ├─dev-fedora\x2dnvme-system_swap.swap
+#-!! ● │     └─dev-mapper-fedora\x2d\x2dnvme\x2dsystem_swap.swap
+#-!! ● ├─network-pre.target
+#-!! ● │ ├─firewalld.service
+#-!! ● │ └─nftables.service
+#-!! ● └─sysinit.target
+#-!! ●   ├─auditd.service
+#-!! ●   ├─dev-hugepages.mount
+#-!! ●   ├─dev-mqueue.mount
+#-!! ●   ├─emergency.service
+#-!! ●   ├─import-state.service
+#-!! ●   ├─kmod-static-nodes.service
+#-!! ●   ├─ldconfig.service
+#-!! ●   ├─modprobe@drm.service
+#-!! ●   ├─plymouth-read-write.service
+#-!! ●   ├─proc-sys-fs-binfmt_misc.automount
+#-!! ●   ├─selinux-autorelabel-mark.service
+#-!! ●   ├─sys-fs-fuse-connections.mount
+#-!! ●   ├─sys-kernel-config.mount
+#-!! ●   ├─sys-kernel-tracing.mount
+#-!! ●   ├─systemd-binfmt.service
+#-!! ●   ├─systemd-firstboot.service
+#-!! ●   ├─systemd-hwdb-update.service
+#-!! ●   ├─systemd-journal-catalog-update.service
+#-!! ●   ├─systemd-journald.service
+#-!! ●   ├─systemd-machine-id-commit.service
+#-!! ●   ├─systemd-modules-load.service
+#-!! ●   ├─systemd-sysctl.service
+#-!! ●   ├─systemd-sysusers.service
+#-!! ●   ├─systemd-timesyncd.service
+#-!! ●   ├─systemd-tmpfiles-setup-dev.service
+#-!! ●   ├─systemd-tmpfiles-setup.service
+#-!! ●   ├─systemd-udev-settle.service
+#-!! ●   ├─systemd-udev-trigger.service
+#-!! ●   ├─systemd-udevd.service
+#-!! ●   ├─systemd-update-done.service
+#-!! ●   ├─systemd-update-utmp.service
+#-!! ●   ├─systemd-userdbd.service
+#-!! ●   ├─cryptsetup.target
+#-!! ●   │ ├─dmraid-activation.service
+#-!! ●   │ ├─systemd-ask-password-console.path
+#-!! ●   │ └─systemd-ask-password-wall.path
+#-!! ●   ├─emergency.target
+#-!! ●   │ ├─emergency.service
+#-!! ●   │ └─import-state.service
+#-!! ●   ├─local-fs.target
+#-!! ●   │ ├─boot-efi.mount
+#-!! ●   │ ├─boot.mount
+#-!! ●   │ ├─home.mount
+#-!! ●   │ ├─ostree-remount.service
+#-!! ●   │ ├─run-media-luxcium-B.mount
+#-!! ●   │ ├─run-user-1000-doc.mount
+#-!! ●   │ ├─run-user-1000-gvfs.mount
+#-!! ●   │ ├─run-user-1000.mount
+#-!! ●   │ ├─systemd-fsck-root.service
+#-!! ●   │ ├─systemd-remount-fs.service
+#-!! ●   │ ├─tmp.mount
+#-!! ●   │ ├─var-lib-machines.mount
+#-!! ●   │ └─local-fs-pre.target
+#-!! ●   │   ├─dm-event.service
+#-!! ●   │   ├─dmraid-activation.service
+#-!! ●   │   ├─lvm2-monitor.service
+#-!! ●   │   ├─multipathd.service
+#-!! ●   │   ├─stratisd.service
+#-!! ●   │   ├─systemd-remount-fs.service
+#-!! ●   │   └─systemd-tmpfiles-setup-dev.service
+#-!! ●   └─swap.target
+#-!! ●     ├─dev-disk-by\x2did-dm\x2dname\x2dfedora\x2d\x2dnvme\x2dsystem_swap.swap
+#-!! ●     ├─dev-disk-by\x2did- #[...]
+#-!!          dm\x2duuid\x2dLVM\x2dpbjpHGNkmuCypQ661gOqoVD2mkGe3R1YjNCoWaKtJ0Ca1lcR8PLIOr4mVH30rKk4.swap
+#-!! ●     ├─dev-disk-by\x2dlabel-SWAP.swap
+#-!! ●     ├─dev-disk-by\x2duuid-3777e4e7\x2dfaf2\x2d455a\x2db468\x2dfb7fc412ea6b.swap
+#-!! ●     ├─dev-dm\x2d1.swap
+#-!! ●     ├─dev-fedora\x2dnvme-system_swap.swap
+#-!! ●     └─dev-mapper-fedora\x2d\x2dnvme\x2dsystem_swap.swap
