@@ -47,6 +47,7 @@ function __compute_extended_path() {
   add_to_path_ "${HOME}/.local/bin"
   add_to_path_ "${HOME}/.fnm"
   add_to_path_ "${HOME}/bin"
+  add_to_path_ "${HOME}/azure/canada-central/functions"
   return
 }
 

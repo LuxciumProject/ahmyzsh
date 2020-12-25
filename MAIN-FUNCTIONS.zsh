@@ -41,6 +41,19 @@ function load_all_config_and_settings_files() {
 
 }
 
+function load_config_or_settings_() {
+
+  if [ "${VERBOSA}" -gt 10 ]; then
+    export BEGIN_SOURCING_FILES="\u001b[0m\u001b[34m#   \u001b[0m\u001b[33m\uf085\u001b[0m\u001b[34m  >"
+    export END_SOURCING_FILES="\u001b[0m\u001b[31;1m\u001b[1m"
+
+    TIMER_THEN=$(/usr/bin/date +%s%N)
+    Load_all_files_d_v "${1}"
+  else
+    Load_all_files_d "${1}"
+  fi
+}
+
 function Load_all_files_d() {
   local SD1="$1"
   if [ -d "${SD1}" ]; then

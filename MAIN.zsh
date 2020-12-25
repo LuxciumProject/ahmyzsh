@@ -46,6 +46,8 @@ function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
 
   right_prompt_off
 
+  source_ "${HOME}/.env"
+
 }
 
 function prompt_() {

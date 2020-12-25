@@ -1,0 +1,22 @@
+#!/usr/bin/env sh
+
+#. ----------------------------------------------------------------------------- ~
+#. Scientia es lux principium -tm-
+#. Copyright © 2019-2020 Benjamin Vincent Kasapoglu (Luxcium)
+#. MIT LICENSE ― PROVIDED "AS IS" ― *NOT* fit for any particular use or purpose!
+#. ----------------------------------------------------------------------------- ~
+
+# toupper
+# set az text to upper case
+function toupper_() {
+  (echo -n "${@}" | tr \[a-z\] \[A-Z\])
+}
+
+## Extra code make it easy to copy paste only the function to use elsewhere
+toupper_ "${@}"
+
+EXIT_="${?}"
+
+unset -f toupper_
+
+exit $EXIT_

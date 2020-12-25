@@ -66,7 +66,7 @@ function MAIN_SETTINGS() {
   export CACHED_PATH
 
   # fall back
-  source_ "${HOME}/.env"
+  # source_ "${HOME}/.env"
 }
 
 # ·――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――· #
