@@ -35,25 +35,25 @@ function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
   load_ "${AHMYZSH}/MAIN_SETTINGS.zsh" "MAIN_SETTINGS"
   call_ load_all_config_and_settings_files
 
-  echo "${BEGIN_HOURGLASS_END_1} Loaded all_config_and_settings_files $(timer_all)ms" >"${AHMYZSH}/bootime.txt"
+  echo "${BEGIN_HOURGLASS_END_1} Loaded all_config_and_settings_files $(timer_all)ms" >"${AHMYZSH_CACHE}/bootime.txt"
 
   [[ "${PATH_HASH}" == "0" ]] && call_ "compute_path" && export PATH_HASH="$(set_path_hash_ ${PATH})" && echo '' && echo '' && echo ''
 
-  echo "${BEGIN_HOURGLASS_END_1} Loaded all and compute cached path $(timer_all)ms" >>"${AHMYZSH}/bootime.txt"
+  echo "${BEGIN_HOURGLASS_END_1} Loaded all and compute cached path $(timer_all)ms" >>"${AHMYZSH_CACHE}/bootime.txt"
 
   call_ load_zshenv
 
-  echo "${BEGIN_HOURGLASS_END_1} Loaded zshenv (equivalent) $(timer_all)ms" >>"${AHMYZSH}/bootime.txt"
+  echo "${BEGIN_HOURGLASS_END_1} Loaded zshenv (equivalent) $(timer_all)ms" >>"${AHMYZSH_CACHE}/bootime.txt"
 
   isinteractive || return 0 #-――――――――― Interactive,login,non-login ――――――――――-#
 
   set +m
 
   TIME_NOW=$(/usr/bin/date +%s%N)
-  echo "${BEGIN_HOURGLASS_END_1} !!! Load now oh_my_zsh after $(timer_all)ms" >>"${AHMYZSH}/bootime.txt"
+  echo "${BEGIN_HOURGLASS_END_1} !!! Load now oh_my_zsh after $(timer_all)ms" >>"${AHMYZSH_CACHE}/bootime.txt"
   call_ load_oh_my_zsh
-  echo "  ${END_FUNCTION}Loaded oh_my_zsh in only $(timer_from_then)ms" >>"${AHMYZSH}/bootime.txt"
-  echo "${BEGIN_HOURGLASS_END_1} Load oh_my_zsh after $(timer_all)ms" >>"${AHMYZSH}/bootime.txt"
+  echo "  ${END_FUNCTION}Loaded oh_my_zsh in only $(timer_from_then)ms" >>"${AHMYZSH_CACHE}/bootime.txt"
+  echo "${BEGIN_HOURGLASS_END_1} Load oh_my_zsh after $(timer_all)ms" >>"${AHMYZSH_CACHE}/bootime.txt"
   call_ activate_prompt
   call_ load_options_list
   call_ load_options_main
@@ -64,7 +64,7 @@ function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
   right_prompt_off
 
   source_ "${HOME}/.env"
-  echo "${BEGIN_HOURGLASS_END_1} Loaded zshrc  (equivalent) $(timer_all)ms" >>"${AHMYZSH}/bootime.txt"
+  echo "${BEGIN_HOURGLASS_END_1} Loaded zshrc  (equivalent) $(timer_all)ms" >>"${AHMYZSH_CACHE}/bootime.txt"
 
 }
 

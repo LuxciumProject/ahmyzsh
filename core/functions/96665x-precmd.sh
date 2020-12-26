@@ -16,11 +16,12 @@ function precmd() {
 
     # may (or may not) set -m later in core/functions/96665x-precmd.sh
     # set -m
-    echo $START_UP_TIME >>"${AHMYZSH}/bootime.txt"
-    echo "${BEGIN_HOURGLASS_END_1} Fully ready in $(timer_all)ms" >>"${AHMYZSH}/bootime.txt"
-    echo "" >>"${AHMYZSH}/bootime.txt"
-    cat "${AHMYZSH}/bootime.txt"
-    echo "${BEGIN_HOURGLASS_END_1} Done! $(timer_all)ms" #>>"${AHMYZSH}/bootime.txt" &&
-    echo ""                                              # >>"${AHMYZSH}/bootime.txt"
+    echo $START_UP_TIME >>"${AHMYZSH_CACHE}/bootime.txt"
+    echo "${BEGIN_HOURGLASS_END_1} Fully ready in $(timer_all)ms" >>"${AHMYZSH_CACHE}/bootime.txt"
+    echo "" >>"${AHMYZSH_CACHE}/bootime.txt"
+    cat "${AHMYZSH_CACHE}/bootime.txt"
+    echo "${BEGIN_HOURGLASS_END_1} Done! $(timer_all)ms" #>>"${AHMYZSH_CACHE}/bootime.txt" &&
+    echo ""                                              # >>"${AHMYZSH_CACHE}/bootime.txt"
+    rm -f "${AHMYZSH_CACHE}/bootime.txt"
   fi
 }
