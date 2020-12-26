@@ -506,8 +506,8 @@ alias cdtmp='cd /tmp'
 alias ctmp='cd /tmp'
 
 function cdir() {
-  mkdir -p "$1" \
-    && cd "$1"
+  mkdir -p "$1" &&
+    cd "$1"
 }
 alias cmdir='cdir'
 alias al='ls -alhSvF -X'
@@ -2047,9 +2047,9 @@ alias gst='git status'
 
 # use the default stash push on git 2.13 and newer
 autoload -Uz is-at-least
-is-at-least 2.13 "$(git --version 2>/dev/null | awk '{print $3}')" \
-  && alias gsta='git stash push' \
-  || alias gsta='git stash save'
+is-at-least 2.13 "$(git --version 2>/dev/null | awk '{print $3}')" &&
+  alias gsta='git stash push' ||
+  alias gsta='git stash save'
 
 alias gstaa='git stash apply'
 alias gstc='git stash clear'
@@ -2608,10 +2608,10 @@ alias dnfup="( ( (sudo nice -n -35 ionice -c 1 -n 0 dnf upgrade --downloadonly -
 function dnfcup() {
   (
     (
-      sudo dnf clean all \
-        && dnf makecache
-    ) \
-      && ( (
+      sudo dnf clean all &&
+        dnf makecache
+    ) &&
+      ( (
         sudo nice -n -35 ionice -c 1 -n 2 dnf upgrade --downloadonly -y &
       ) >/dev/null) 2>/dev/null
   )
@@ -2623,34 +2623,34 @@ alias up="sudo nice -n -15 ionice -c 1 -n 3 dnf upgrade --setopt=keepcache=1 && 
 alias upndown="dnfup && playshutdown& sleep 3; sudo shutdown now"
 
 function upnboot() {
-  dnfup \
-    && disable_at_shutdown_ \
-    && playshutdown &
+  dnfup &&
+    disable_at_shutdown_ &&
+    playshutdown &
   sleep 3.5
   sudo reboot
 
 }
-function disable_at_shutdown_() {
-  sudo systemctl stop docker.socket
-  sudo systemctl stop docker.service
-  sudo systemctl stop containerd.service
-  sudo systemctl disable docker.socket
-  sudo systemctl disable docker.service
-  sudo systemctl disable containerd.service
-  sudo systemctl stop ModemManager.service
-  sudo systemctl disable ModemManager.service
-  sudo systemctl stop bluetooth.service
-  sudo systemctl disable bluetooth.service
-  sudo systemctl stop NetworkManager.service
-  sudo systemctl disable NetworkManager.service
-  #  /usr/lib/systemd/system/docker.socket
-  sudo akmods
-  sudo systemctl disable akmods
-  sudo systemctl stop abrtd.service
-  sudo systemctl disable abrtd.service
-  sudo systemctl stop avahi-daemon.service
-  sudo systemctl disable avahi-daemon.service
-}
+# function disable_at_shutdown_() {
+#   sudo systemctl stop docker.socket
+#   sudo systemctl stop docker.service
+#   sudo systemctl stop containerd.service
+#   sudo systemctl disable docker.socket
+#   sudo systemctl disable docker.service
+#   sudo systemctl disable containerd.service
+#   sudo systemctl stop ModemManager.service
+#   sudo systemctl disable ModemManager.service
+#   sudo systemctl stop bluetooth.service
+#   sudo systemctl disable bluetooth.service
+#   sudo systemctl stop NetworkManager.service
+#   sudo systemctl disable NetworkManager.service
+#   #  /usr/lib/systemd/system/docker.socket
+#   sudo akmods
+#   sudo systemctl disable akmods
+#   sudo systemctl stop abrtd.service
+#   sudo systemctl disable abrtd.service
+#   sudo systemctl stop avahi-daemon.service
+#   sudo systemctl disable avahi-daemon.service
+# }
 
 #* /usr/lib/systemd/system/docker.service
 ## Description=Docker Application Container Engine
@@ -2670,28 +2670,28 @@ function disable_at_shutdown_() {
 #* [Install]
 #& WantedBy=multi-user.target
 
-function enable_at_startup_() {
+# function enable_at_startup_() {
 
-  sudo systemctl enable ModemManager.service
-  sudo systemctl start ModemManager.service
-  sudo systemctl enable bluetooth.service
-  sudo systemctl start bluetooth.service
-  sudo systemctl enable NetworkManager.service
-  sudo systemctl start NetworkManager.service
-  sudo systemctl enable akmods
-  sudo systemctl start akmods
-  sudo akmods
-  sudo systemctl enable abrtd.service
-  sudo systemctl start abrtd.service
-  sudo systemctl enable avahi-daemon.service
-  sudo systemctl start avahi-daemon.service
-  sudo systemctl enable containerd.service
-  sudo systemctl enable docker.socket
-  sudo systemctl enable docker.service
-  sudo systemctl start containerd.service
-  sudo systemctl start docker.socket
-  sudo systemctl start docker.service
-}
+#   sudo systemctl enable ModemManager.service
+#   sudo systemctl start ModemManager.service
+#   sudo systemctl enable bluetooth.service
+#   sudo systemctl start bluetooth.service
+#   sudo systemctl enable NetworkManager.service
+#   sudo systemctl start NetworkManager.service
+#   sudo systemctl enable akmods
+#   sudo systemctl start akmods
+#   sudo akmods
+#   sudo systemctl enable abrtd.service
+#   sudo systemctl start abrtd.service
+#   sudo systemctl enable avahi-daemon.service
+#   sudo systemctl start avahi-daemon.service
+#   sudo systemctl enable containerd.service
+#   sudo systemctl enable docker.socket
+#   sudo systemctl enable docker.service
+#   sudo systemctl start containerd.service
+#   sudo systemctl start docker.socket
+#   sudo systemctl start docker.service
+# }
 
 # function 8ujn() nji9-plkçèé
 

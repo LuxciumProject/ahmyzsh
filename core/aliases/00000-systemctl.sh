@@ -1,4 +1,4 @@
-function ctllistbefore() {
+function systemctllistbefore() {
   # Show the units that are ordered after the specified unit.
   # In other words, recursively list units following the Before= dependency.
   echo "The units that are ordered after the specified unit."
@@ -6,28 +6,28 @@ function ctllistbefore() {
 
 }
 
-function ctllistafter() {
+function systemctllistafter() {
   # Show the units that are ordered before the specified unit.
   # In other words, recursively list units following the After= dependency.
   echo "The units that are ordered before the specified unit."
-
   sudo systemctl list-dependencies ${@} --no-pager --with-dependencies --after
 }
 
-function ctllistboth() {
+function systemctllistboth() {
   # Show the units that are ordered before the specified unit.
   # In other words, recursively list units following the After= dependency.
 
-  ctllistafter ${@}
-  echo ""
-  echo "Recursively list units following the After= dependency."
-  echo ""
-  echo "${@}"
+  systemctllistbefore ${@}
   echo ""
   echo "Recursively list units following the Before= dependency."
   echo ""
-  ctllistbefore ${@}
+  echo "${@}"
+  echo ""
+  echo "Recursively list units following the After= dependency."
+  echo ""
+  systemctllistafter ${@}
 }
+
 # alias [-p] [nom[=valeur] ...]
 # La commande alias, sans argument ou avec l'option -p affiche sur la sortie
 # standard la liste des alias actuellement définis, sous la forme nom=valeur.

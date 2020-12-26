@@ -4,16 +4,16 @@
 
 function default_proc_vm_() {
   # #region default_proc_vm_ =================================================== ¹
-  (
-    systemctl -w vm.dirty_background_bytes = 0 &&
-      systemctl -w vm.dirty_background_ratio = 10 &&
-      systemctl -w vm.dirty_expire_centisecs = 3000 &&
-      systemctl -w vm.dirty_writeback_centisecs = 500 &&
-      systemctl -w vm.dirtytime_expire_seconds = 43200 &&
-      systemctl -w vm.dirty_ratio = 20 &&
-      exit 0 ||
-      exit 10
-  )
+  # (
+  #   systemctl -w vm.dirty_background_bytes = 0 &&
+  #     systemctl -w vm.dirty_background_ratio = 10 &&
+  #     systemctl -w vm.dirty_expire_centisecs = 3000 &&
+  #     systemctl -w vm.dirty_writeback_centisecs = 500 &&
+  #     systemctl -w vm.dirtytime_expire_seconds = 43200 &&
+  #     systemctl -w vm.dirty_ratio = 20 &&
+  #     exit 0 ||
+  #     exit 10
+  # )
 
   # #endregion default_proc_vm_ ================================================ ¹
 }

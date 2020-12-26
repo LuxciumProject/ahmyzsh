@@ -85,10 +85,9 @@ function Load_all_files_d_v() {
 }
 
 function timer_() {
-  # local TIMER_NOW=$(/bin/date +%s%N)
   local MICROSEC='1000000'
-  local TIMER_NOW=$(date +%s%N)
-  local timecalc=$((${TIMER_NOW} - ${1:=TIMER_NOW}))
+  local NOW_TIME=$(date +%s%N)
+  local timecalc=$((${NOW_TIME} - ${1:=NOW_TIME}))
   local TIMER_VALUE=$((${timecalc} / ${MICROSEC}))
   if [ ${#TIMER_VALUE} = 0 ]; then
     local spacing_="    "
@@ -106,11 +105,15 @@ function timer_() {
 }
 
 function timer_now() {
-  # local TIMER_NOW=$(/usr/bin/date +%s%N)
-  # local TIMER_VALUE=$(((${TIMER_NOW} - ${TIMER_THEN}) / 1000000))
   timer_ "${TIMER_THEN}"
-  # echo -n "${TIMER_VALUE} "
-  # return 0
+  return
+}
+
+function timer_from_then() {
+  # TIME_NOW=$(/usr/bin/date +%s%N)
+  local TIME_THEN=TIME_NOW
+  timer_ "${TIME_THEN}"
+  return
 }
 
 function timer_all() {

@@ -1,0 +1,35 @@
+#!/usr/bin/env sh
+
+# core/bin/play_shutdown
+
+function play_shutdown_() {
+  # #region play_shutdown_ =====================================================¹
+
+  (
+
+    nohup play -qv 0.25 /usr/share/sounds/deepin/stereo/system-shutdown.wav &
+    sleep "${2:-4}"
+
+    if [ "${1}" == "reboot" ]; then
+      sudo /sbin/shutdown -t 10 -F -r now
+
+    fi
+
+    if [ "${1}" == "shutdown" ]; then
+      sudo /sbin/shutdown -t 10 -F -h now
+
+    fi
+
+  )
+
+  # #endregion play_shutdown_ ==================================================¹
+}
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+play_shutdown "${@}"
+
+__EXIT_STATUS="${?}"
+
+unset -f play_shutdown
+
+exit $__EXIT_STATUS

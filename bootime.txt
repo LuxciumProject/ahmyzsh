@@ -1,0 +1,10 @@
+[0m[34m[0m[33;1m[32m Loaded all_config_and_settings_files 69  ms
+[0m[34m[0m[33;1m[32m Loaded all and compute cached path 79  ms
+[0m[34m[0m[33;1m[32m Loaded zshenv (equivalent) 99  ms
+[0m[34m[0m[33;1m[32m !!! Load now oh_my_zsh after 113 ms
+  [0m[31;1m[1mLoaded oh_my_zsh in only 114 ms
+[0m[34m[0m[33;1m[32m Load oh_my_zsh after 220 ms
+[0m[34m[0m[33;1m[32m Loaded zshrc  (equivalent) 515 ms
+[0m[34m[0m[33;1m[32m READY in 585  ms ![0m[31;1m[1m
+[0m[34m[0m[33;1m[32m Fully ready in 903 ms
+

@@ -5,8 +5,8 @@
 function enable_startup_() {
 
   function disable_at_shutdown_() {
-
-    sudo systemctl disable docker.socket docker.service containerd.service ModemManager.service bluetooth.service NetworkManager.service akmods avahi-daemon.socket avahi-daemon.service upower.service dnfdaemon.service --now --quiet
+    # akmods
+    sudo systemctl disable dnf-makecache switcheroo-control docker.socket docker.service containerd.service ModemManager.service bluetooth.service NetworkManager.service avahi-daemon.socket avahi-daemon.service upower.service dnfdaemon.service --now --quiet
 
     sudo systemctl daemon-reload
     sudo systemctl daemon-reexec
@@ -15,33 +15,30 @@ function enable_startup_() {
 
   function enable_at_startup_() {
 
-    sudo systemctl enable NetworkManager.service ModemManager.service bluetooth.service akmods avahi-daemon.service containerd.service docker.socket docker.service --now --quiet
-
+    sudo systemctl enable NetworkManager.service ModemManager.service bluetooth.service avahi-daemon.service switcheroo-control dnf-makecache --now --quiet
     sudo akmods
-
-    sudo renice -n -7 -p $(pidof sddm) &
-    sudo renice -n -7 -p $(pidof sddm-helper) &
-    sudo renice -n -7 -p $(pidof startplasma-x11) &
-    sudo renice -n -7 -p $(pidof plasma_session) &
-    sudo renice -n -7 -p $(pidof Xorg) &
-    sudo renice -n -7 -p $(pidof kwin_x11) &
-    sudo renice -n -7 -p $(pidof plasmashell) &
-    sudo renice -n -7 -p $(pidof chrome) &
-    sudo renice -n -20 -p $(pidof azcopy) &
-    # sudo ionice -c 1 -n 1
-
-    -p $(pidof azcopy) &
-
-    sudo ionice -c 1 -n 1 -p $(pidof sddm) &
-    sudo ionice -c 1 -n 2 -p $(pidof sddm-helper) &
-    sudo ionice -c 1 -n 2 -p $(pidof startplasma-x11) &
-    sudo ionice -c 1 -n 2 -p $(pidof plasma_session) &
-    sudo ionice -c 1 -n 0 -p $(pidof Xorg) &
-    sudo ionice -c 1 -n 3 -p $(pidof kwin_x11) &
-    sudo ionice -c 1 -n 3 -p $(pidof plasmashell) &
 
     sudo systemctl daemon-reload
     sudo systemctl daemon-reexec
+
+    sudo renice -n -18 -p $(pidof Xorg) &
+    sudo renice -n -17 -p $(pidof plasmashell) &
+    sudo renice -n -16 -p $(pidof startplasma-x11) &
+    sudo renice -n -15 -p $(pidof plasma_session) &
+    sudo renice -n -14 -p $(pidof sddm-helper) &
+    sudo renice -n -13 -p $(pidof sddm) &
+    sudo renice -n -12 -p $(pidof kwin_x11) &
+    sudo renice -n -11 -p $(pidof ksmserver) &
+
+    sudo ionice -c 1 -n 0 -p $(pidof Xorg) &
+    sudo ionice -c 1 -n 2 -p $(pidof plasmashell) &
+    sudo ionice -c 1 -n 4 -p $(pidof plasma_session) &
+    sudo ionice -c 1 -n 6 -p $(pidof kwin_x11) &
+    sudo ionice -c 2 -n 0 -p $(pidof ksmserver) &
+    sudo ionice -c 2 -n 2 -p $(pidof startplasma-x11) &
+    sudo ionice -c 2 -n 0 -p $(pidof sddm-helper) &
+    sudo ionice -c 2 -n 0 -p $(pidof sddm) &
+
   }
 
   # enable_systemctl down

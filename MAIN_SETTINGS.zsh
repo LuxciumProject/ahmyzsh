@@ -17,8 +17,8 @@ function MAIN_SETTINGS() {
 
   bindkey -e
   # PKG_CONFIG_PTH=
+  : ${VERBOSA=10000}
   # : ${VERBOSA:=10000}
-  : ${VERBOSA:=0000}
 
   : ${PATH_FILE:="${CACHED_PATH}"}
   : ${EDITOR:=code}

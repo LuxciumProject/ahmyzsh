@@ -1,13 +1,15 @@
 function ddrandom() {
-  dd if=/dev/random \
-    of="${1}random-$(getstamp 64).binary" #/run/media/luxcium/2TB-Seagate/Random-$(getstamp 100)
-  count="${2}"
-  bs="1024x1024"
+  sudo ionice -c 1 -n 5 dd if=/dev/random \
+    of="${2:-./}random-$(getstamp 64).binary" \
+    count="${1:=1}" \
+    bs="33554431"
+  #/run/media/luxcium/2TB-Seagate/Random-$(getstamp 100)
 }
 
 function ddzeros() {
-  dd if=/dev/random \
-    of="${1}zeros-$(getstamp 64).binary" #/run/media/luxcium/2TB-Seagate/Random-$(getstamp 100)
-  count="${2}"
-  bs="1024x1024"
+  sudo ionice -c 1 -n 5 dd if=/dev/random \
+    of="${2:-./}zeros-$(getstamp 64).binary" \
+    count="${1:-1}" \
+    bs="33554431"
+  #/run/media/luxcium/2TB-Seagate/Random-$(getstamp 100)
 }

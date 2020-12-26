@@ -1,53 +1,54 @@
+# clean and get updates:
 function dnfcup() {
-  (
-    (
-      sudo dnf clean all &&
-        sudo dnf makecache
-    ) &&
-      (
-        (
-          sudo nice -n -35 ionice -c 1 -n 2 dnf upgrade --downloadonly -y &
-        ) >/dev/null
-      ) 2>/dev/null
-  ) &&
-    sudo nice -n -15 ionice -c 1 -n 4 dnf upgrade --setopt=keepcache=1
+  _dnf_clean_all && _get_updates
+  echo ""
+  echo "UPGRADE:"
+  sudo nice -n -5 ionice -c 2 -n 0 dnf upgrade --setopt=keepcache=1 --assumeno
+  echo ""
+  echo "DISTRO-SYNC:"
+  sudo nice -n -5 ionice -c 2 -n 0 dnf distro-sync --setopt=keepcache=1 --assumeno
 }
 
+# update and reboot
 function upnboot() {
-  (
-    (
-      (
-        sudo nice -n -5 ionice -c 1 -n 1 dnf upgrade --downloadonly --setopt=keepcache=1 -y &
-      ) &
-    ) >/dev/null
-  ) 2>/dev/null
-
-  sudo nice -n 15 dnf upgrade --setopt=keepcache=1 &&
-    (enable_systemctl down &) &&
-    (playshutdown &) &&
-    sleep 4 &&
-    sudo reboot &
-  bye
+  _get_updates
+  _dnfup
+  enable_systemctl down
+  play_shutdown reboot
 }
 
-function upnbootyes() {
-  (
-    (
-      (
-        sudo nice -n -5 ionice -c 1 -n 1 dnf upgrade --downloadonly --setopt=keepcache=1 -y &
-      ) &
-    ) >/dev/null
-  ) 2>/dev/null
-
-  sudo nice -n 15 dnf upgrade --setopt=keepcache=1 -y &&
-    (enable_systemctl down &) &&
-    (playshutdown &) &&
-    sleep 4 &&
-    sudo reboot &
-  bye
+# update and shutdown
+function upnshutdown() {
+  _get_updates
+  _dnfup
+  enable_systemctl down
+  play_shutdown shutdown
 }
 
-alias playshutdown="(play -qv 0.25 /usr/share/sounds/deepin/stereo/system-shutdown.wav)"
-alias upndown="dnfup && playshutdown& sleep 3; sudo shutdown now"
-alias up="sudo nice -n -15 ionice -c 1 -n 3 dnf upgrade --setopt=keepcache=1 && sudo reboot"
-# alias dnfup=""
+# update and reboot --assumeyes
+function upnbooty() {
+  _get_updates
+  _dnfup --assumeyes
+  enable_systemctl down
+  play_shutdown
+}
+
+# _dnf_clean_all
+function _dnf_clean_all() {
+  sudo dnf clean all --refresh
+  sudo dnf makecache --refresh
+}
+
+# download updates
+function _get_updates() {
+  (
+    (
+      (sudo nice -n -15 ionice -c 1 -n 0 dnf upgrade --downloadonly --setopt=keepcache=1 --assumeyes) &
+    ) >/dev/null
+  ) 2>/dev/null
+}
+
+# inatall updates
+function _dnfup() {
+  sudo nice -n -10 ionice -c 1 -n 2 dnf upgrade --setopt=keepcache=1 $1
+}
