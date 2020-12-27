@@ -12,9 +12,20 @@ function dnfcup() {
 # update and reboot
 function upnboot() {
   _get_updates
-  _dnfup
+  _dnfup "${1}"
   enable_systemctl down
-  play_shutdown reboot
+  (nohup play_shutdown reboot 3) &
+  exit
+
+}
+
+# update and reboot --assumeyes
+function upnbooty() {
+  _get_updates
+  _dnfup "--assumeyes ${1}"
+  enable_systemctl down
+  (nohup play_shutdown reboot 3) &
+  exit
 }
 
 # update and shutdown
@@ -22,15 +33,9 @@ function upnshutdown() {
   _get_updates
   _dnfup
   enable_systemctl down
-  play_shutdown shutdown
-}
+  (nohup play_shutdown shutdown 3) &
+  exit
 
-# update and reboot --assumeyes
-function upnbooty() {
-  _get_updates
-  _dnfup --assumeyes
-  enable_systemctl down
-  play_shutdown
 }
 
 # _dnf_clean_all

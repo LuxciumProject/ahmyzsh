@@ -6,7 +6,7 @@ function enable_startup_() {
 
   function disable_at_shutdown_() {
     # akmods
-    sudo systemctl disable dnf-makecache switcheroo-control docker.socket docker.service containerd.service ModemManager.service bluetooth.service NetworkManager.service avahi-daemon.socket avahi-daemon.service upower.service dnfdaemon.service --now --quiet
+    sudo systemctl disable switcheroo-control dnf-makecache docker.socket docker.service containerd.service ModemManager.service bluetooth.service NetworkManager.service avahi-daemon.socket avahi-daemon.service upower.service dnfdaemon.service --now
 
     sudo systemctl daemon-reload
     sudo systemctl daemon-reexec
@@ -15,11 +15,7 @@ function enable_startup_() {
 
   function enable_at_startup_() {
 
-    sudo systemctl enable NetworkManager.service ModemManager.service bluetooth.service avahi-daemon.service switcheroo-control dnf-makecache --now --quiet
-    sudo akmods
-
-    sudo systemctl daemon-reload
-    sudo systemctl daemon-reexec
+    sudo systemctl enable NetworkManager.service ModemManager.service bluetooth.service avahi-daemon.service switcheroo-control dnf-makecache --now
 
     sudo renice -n -18 -p $(pidof Xorg) &
     sudo renice -n -17 -p $(pidof plasmashell) &
@@ -38,6 +34,13 @@ function enable_startup_() {
     sudo ionice -c 2 -n 2 -p $(pidof startplasma-x11) &
     sudo ionice -c 2 -n 0 -p $(pidof sddm-helper) &
     sudo ionice -c 2 -n 0 -p $(pidof sddm) &
+    sudo systemctl daemon-reload
+    sudo systemctl daemon-reexec
+    echo ''
+    sudo akmods
+
+    # sudo renice -n -35 -p $(pidof gnome-terminal-server) &
+    # sudo ionice -c 1 -n 0 -p $(pidof gnome-terminal-server) &
 
   }
 

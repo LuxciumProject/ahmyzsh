@@ -4,32 +4,30 @@
 
 function play_shutdown_() {
   # #region play_shutdown_ =====================================================¹
-
   (
-
-    nohup play -qv 0.25 /usr/share/sounds/deepin/stereo/system-shutdown.wav &
+    play -qv 0.25 /usr/share/sounds/deepin/stereo/system-shutdown.wav &
     sleep "${2:-4}"
 
-    if [ "${1}" == "reboot" ]; then
-      sudo /sbin/shutdown -t 10 -F -r now
-
+    if [ "${1:-''}" == "reboot" ]; then
+      echo "# sudo /sbin/shutdown -t 10 -rf (${1})"
+      return
     fi
 
-    if [ "${1}" == "shutdown" ]; then
-      sudo /sbin/shutdown -t 10 -F -h now
-
+    if [ "${1:-''}" == "shutdown" ]; then
+      echo "# sudo /sbin/shutdown -t 10 -h (${1})"
+      return
     fi
-
+    echo "${1} is not a valid option try play_shutdown <reboot|shutdown> [TIME (play duration in seconds default  is 4sec)]"
   )
 
   # #endregion play_shutdown_ ==================================================¹
 }
 
 ## Extra code make it easy to copy paste only the function out to use elsewhere
-play_shutdown "${@}"
+play_shutdown_ "${@}"
 
 __EXIT_STATUS="${?}"
 
-unset -f play_shutdown
+unset -f play_shutdown_
 
 exit $__EXIT_STATUS

@@ -15,7 +15,16 @@
 
 # will be working on simplification in a new feature branch
 
+set +m
 function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
+
+  export BOOTTIME_LOGFILE="${AHMYZSH_CACHE}/$(getstamp 20 bootime- .txt)"
+  export BEGIN_BOOTTIME="        ${BEGIN_HOURGLASS_END_1}"
+  export PRINT_BOOTTIME='1'
+  export PRINT_VERSIONS='1'
+  export BOOTTIME='1'
+
+  echo '' >"${BOOTTIME_LOGFILE}"
 
   # Test we are in ZSH.
   export IS_ZSH_="$(ps -o comm= -p $$ | grep 'zsh')"
@@ -33,38 +42,46 @@ function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
 
   # Load settings that are required at an earlier stage of this boot sequence
   load_ "${AHMYZSH}/MAIN_SETTINGS.zsh" "MAIN_SETTINGS"
-  call_ load_all_config_and_settings_files
 
-  echo "${BEGIN_HOURGLASS_END_1} Loaded all_config_and_settings_files $(timer_all)ms" >"${AHMYZSH_CACHE}/bootime.txt"
+  call_ load_all_config_and_settings_files
 
   [[ "${PATH_HASH}" == "0" ]] && call_ "compute_path" && export PATH_HASH="$(set_path_hash_ ${PATH})" && echo '' && echo '' && echo ''
 
-  echo "${BEGIN_HOURGLASS_END_1} Loaded all and compute cached path $(timer_all)ms" >>"${AHMYZSH_CACHE}/bootime.txt"
+  # [[ "${BOOTTIME}" = 1 && "${PATH_HASH}" == "0" ]] && echo "${BEGIN_BOOTTIME} Loaded all and compute cached path ..... $(timer_all) ms" >>"${BOOTTIME_LOGFILE}" &
 
   call_ load_zshenv
 
-  echo "${BEGIN_HOURGLASS_END_1} Loaded zshenv (equivalent) $(timer_all)ms" >>"${AHMYZSH_CACHE}/bootime.txt"
+  [[ "${BOOTTIME}" != 1 ]] || echo "${BEGIN_BOOTTIME} Loaded zshenv (equivalent) ............. $(timer_all) ms" >>"${BOOTTIME_LOGFILE}" &
 
   isinteractive || return 0 #-――――――――― Interactive,login,non-login ――――――――――-#
 
-  set +m
+  TIME_NOW=$(/usr/bin/date +%s%N)
+  call_ fnm_
+  [[ "${BOOTTIME}" != 1 ]] || echo "${BEGIN_BOOTTIME} Load fnm_ .............................. $(timer_all) ms${END_FUNCTION} +$(timer_from_then)ms" >>"${BOOTTIME_LOGFILE}"
 
   TIME_NOW=$(/usr/bin/date +%s%N)
-  echo "${BEGIN_HOURGLASS_END_1} !!! Load now oh_my_zsh after $(timer_all)ms" >>"${AHMYZSH_CACHE}/bootime.txt"
   call_ load_oh_my_zsh
-  echo "  ${END_FUNCTION}Loaded oh_my_zsh in only $(timer_from_then)ms" >>"${AHMYZSH_CACHE}/bootime.txt"
-  echo "${BEGIN_HOURGLASS_END_1} Load oh_my_zsh after $(timer_all)ms" >>"${AHMYZSH_CACHE}/bootime.txt"
+
+  [[ "${BOOTTIME}" != 1 ]] || echo "${BEGIN_BOOTTIME} ${END_FUNCTION}Load oh_my_zsh .........................\u001b[0m\u001b[33;1m\u001b[1m ---  -- ${END_FUNCTION}+$(timer_from_then)ms" >>"${BOOTTIME_LOGFILE}" &
+  TIME_NOW=$(/usr/bin/date +%s%N)
   call_ activate_prompt
+  [[ "${BOOTTIME}" != 1 ]] || echo "${BEGIN_BOOTTIME} Load activate_prompt ................... $(timer_all) ms${END_FUNCTION} +$(timer_from_then)ms" >>"${BOOTTIME_LOGFILE}" &
+  TIME_NOW=$(/usr/bin/date +%s%N)
   call_ load_options_list
   call_ load_options_main
+  [[ "${BOOTTIME}" != 1 ]] || echo "${BEGIN_BOOTTIME} Load load_options_ ..................... $(timer_all) ms${END_FUNCTION} +$(timer_from_then)ms" >>"${BOOTTIME_LOGFILE}" &
+  TIME_NOW=$(/usr/bin/date +%s%N)
   call_ load_autosuggest
+  [[ "${BOOTTIME}" != 1 ]] || echo "${BEGIN_BOOTTIME} Load load_autosuggest .................. $(timer_all) ms${END_FUNCTION} +$(timer_from_then)ms" >>"${BOOTTIME_LOGFILE}" &
+  TIME_NOWx=$(/usr/bin/date +%s%N)
   call_ load_autocomplete
-  call_ fnm_
+  TIME_NOW=$TIME_NOWx
+  [[ "${BOOTTIME}" != 1 ]] || echo "${BEGIN_BOOTTIME} Load load_autocomplete ................. $(timer_all) ms${END_FUNCTION} +$(timer_from_then)ms" >>"${BOOTTIME_LOGFILE}" &
 
   right_prompt_off
 
   source_ "${HOME}/.env"
-  echo "${BEGIN_HOURGLASS_END_1} Loaded zshrc  (equivalent) $(timer_all)ms" >>"${AHMYZSH_CACHE}/bootime.txt"
+  [[ "${BOOTTIME}" != 1 ]] || echo "${BEGIN_BOOTTIME} Loaded zshrc (equivalent) .............. $(timer_all) ms" >>"${BOOTTIME_LOGFILE}" &
 
 }
 

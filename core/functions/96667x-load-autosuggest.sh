@@ -7,4 +7,7 @@ function load_autosuggest() {
 
   zle_highlight=(region:standout special:standout
     suffix:bold isearch:underline paste:none)
+
+  source_ "/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+  source_ "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 }
