@@ -9,12 +9,12 @@ function play_shutdown_() {
     sleep "${2:-4}"
 
     if [ "${1:-''}" == "reboot" ]; then
-      echo "# sudo /sbin/shutdown -t 10 -rf (${1})"
+      sudo /sbin/shutdown -t 10 -rf now
       return
     fi
 
     if [ "${1:-''}" == "shutdown" ]; then
-      echo "# sudo /sbin/shutdown -t 10 -h (${1})"
+      sudo /sbin/shutdown -t 10 -hf now
       return
     fi
     echo "${1} is not a valid option try play_shutdown <reboot|shutdown> [TIME (play duration in seconds default  is 4sec)]"

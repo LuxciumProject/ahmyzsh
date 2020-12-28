@@ -14,7 +14,8 @@
 #* AHMYZSH first entry point
 
 # will be working on simplification in a new feature branch
-
+echo main
+echo $VERBOSA
 set +m
 function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
 
@@ -23,8 +24,6 @@ function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
   export PRINT_BOOTTIME='1'
   export PRINT_VERSIONS='1'
   export BOOTTIME='1'
-
-  echo '' >"${BOOTTIME_LOGFILE}"
 
   # Test we are in ZSH.
   export IS_ZSH_="$(ps -o comm= -p $$ | grep 'zsh')"
@@ -45,43 +44,19 @@ function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
 
   call_ load_all_config_and_settings_files
 
-  [[ "${PATH_HASH}" == "0" ]] && call_ "compute_path" && export PATH_HASH="$(set_path_hash_ ${PATH})" && echo '' && echo '' && echo ''
-
-  # [[ "${BOOTTIME}" = 1 && "${PATH_HASH}" == "0" ]] && echo "${BEGIN_BOOTTIME} Loaded all and compute cached path ..... $(timer_all) ms" >>"${BOOTTIME_LOGFILE}" &
-
   call_ load_zshenv
-
-  [[ "${BOOTTIME}" != 1 ]] || echo "${BEGIN_BOOTTIME} Loaded zshenv (equivalent) ............. $(timer_all) ms" >>"${BOOTTIME_LOGFILE}" &
 
   isinteractive || return 0 #-――――――――― Interactive,login,non-login ――――――――――-#
 
-  TIME_NOW=$(/usr/bin/date +%s%N)
   call_ fnm_
-  [[ "${BOOTTIME}" != 1 ]] || echo "${BEGIN_BOOTTIME} Load fnm_ .............................. $(timer_all) ms${END_FUNCTION} +$(timer_from_then)ms" >>"${BOOTTIME_LOGFILE}"
-
-  TIME_NOW=$(/usr/bin/date +%s%N)
   call_ load_oh_my_zsh
-
-  [[ "${BOOTTIME}" != 1 ]] || echo "${BEGIN_BOOTTIME} ${END_FUNCTION}Load oh_my_zsh .........................\u001b[0m\u001b[33;1m\u001b[1m ---  -- ${END_FUNCTION}+$(timer_from_then)ms" >>"${BOOTTIME_LOGFILE}" &
-  TIME_NOW=$(/usr/bin/date +%s%N)
   call_ activate_prompt
-  [[ "${BOOTTIME}" != 1 ]] || echo "${BEGIN_BOOTTIME} Load activate_prompt ................... $(timer_all) ms${END_FUNCTION} +$(timer_from_then)ms" >>"${BOOTTIME_LOGFILE}" &
-  TIME_NOW=$(/usr/bin/date +%s%N)
   call_ load_options_list
   call_ load_options_main
-  [[ "${BOOTTIME}" != 1 ]] || echo "${BEGIN_BOOTTIME} Load load_options_ ..................... $(timer_all) ms${END_FUNCTION} +$(timer_from_then)ms" >>"${BOOTTIME_LOGFILE}" &
-  TIME_NOW=$(/usr/bin/date +%s%N)
   call_ load_autosuggest
-  [[ "${BOOTTIME}" != 1 ]] || echo "${BEGIN_BOOTTIME} Load load_autosuggest .................. $(timer_all) ms${END_FUNCTION} +$(timer_from_then)ms" >>"${BOOTTIME_LOGFILE}" &
-  TIME_NOWx=$(/usr/bin/date +%s%N)
   call_ load_autocomplete
-  TIME_NOW=$TIME_NOWx
-  [[ "${BOOTTIME}" != 1 ]] || echo "${BEGIN_BOOTTIME} Load load_autocomplete ................. $(timer_all) ms${END_FUNCTION} +$(timer_from_then)ms" >>"${BOOTTIME_LOGFILE}" &
-
   right_prompt_off
-
   source_ "${HOME}/.env"
-  [[ "${BOOTTIME}" != 1 ]] || echo "${BEGIN_BOOTTIME} Loaded zshrc (equivalent) .............. $(timer_all) ms" >>"${BOOTTIME_LOGFILE}" &
 
 }
 
@@ -135,3 +110,27 @@ function load_error_() {
 # Scientia es lux principium is a Trade Mark of Benjamin Vincent Kasapoglu
 # (c) et tm - Benjamin Vincent Kasapoglu (Luxcium) 2017-2020
 # ------------------------------------------------------------------------------~
+
+# echo '' >"${BOOTTIME_LOGFILE}"
+
+# [[ "${PATH_HASH}" == "0" ]] && call_ "compute_path" && export PATH_HASH="$(set_path_hash_ ${PATH})" && echo '' && echo '' && echo ''
+# [[ "${BOOTTIME}" = 1 && "${PATH_HASH}" == "0" ]] && echo "${BEGIN_BOOTTIME} Loaded all and compute cached path ..... $(timer_all) ms" >>"${BOOTTIME_LOGFILE}" &
+# [[ "${BOOTTIME}" != 1 ]] || echo "${BEGIN_BOOTTIME} Loaded zshenv (equivalent) ............. $(timer_all) ms" >>"${BOOTTIME_LOGFILE}" &
+# TIME_NOW=$(/usr/bin/date +%s%N)
+# [[ "${BOOTTIME}" != 1 ]] || echo "${BEGIN_BOOTTIME} Load fnm_ .............................. $(timer_all) ms${END_FUNCTION} +$(timer_from_then)ms" >>"${BOOTTIME_LOGFILE}"
+
+# TIME_NOW=$(/usr/bin/date +%s%N)
+
+# [[ "${BOOTTIME}" != 1 ]] || echo "${BEGIN_BOOTTIME} ${END_FUNCTION}Load oh_my_zsh .........................\u001b[0m\u001b[33;1m\u001b[1m ---  -- ${END_FUNCTION}+$(timer_from_then)ms" >>"${BOOTTIME_LOGFILE}" &
+# TIME_NOW=$(/usr/bin/date +%s%N)
+# [[ "${BOOTTIME}" != 1 ]] || echo "${BEGIN_BOOTTIME} Load activate_prompt ................... $(timer_all) ms${END_FUNCTION} +$(timer_from_then)ms" >>"${BOOTTIME_LOGFILE}" &
+# TIME_NOW=$(/usr/bin/date +%s%N)
+# [[ "${BOOTTIME}" != 1 ]] || echo "${BEGIN_BOOTTIME} Load load_options_ ..................... $(timer_all) ms${END_FUNCTION} +$(timer_from_then)ms" >>"${BOOTTIME_LOGFILE}" &
+# TIME_NOW=$(/usr/bin/date +%s%N)
+# [[ "${BOOTTIME}" != 1 ]] || echo "${BEGIN_BOOTTIME} Load load_autosuggest .................. $(timer_all) ms${END_FUNCTION} +$(timer_from_then)ms" >>"${BOOTTIME_LOGFILE}" &
+# TIME_NOWx=$(/usr/bin/date +%s%N)
+
+# TIME_NOW=$TIME_NOWx
+# [[ "${BOOTTIME}" != 1 ]] || echo "${BEGIN_BOOTTIME} Load load_autocomplete ................. $(timer_all) ms${END_FUNCTION} +$(timer_from_then)ms" >>"${BOOTTIME_LOGFILE}" &
+
+# [[ "${BOOTTIME}" != 1 ]] || echo "${BEGIN_BOOTTIME} Loaded zshrc (equivalent) .............. $(timer_all) ms" >>"${BOOTTIME_LOGFILE}" &

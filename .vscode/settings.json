@@ -1,6 +1,6 @@
 {
   "files.exclude": {
-    "**/*.zwc": true,
+    "**/*.zwc": false,
     "powerlevel10k": true,
     "ohmyzsh": true,
     "powerline": true,

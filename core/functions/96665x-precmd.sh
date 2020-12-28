@@ -14,12 +14,13 @@ function precmd() {
     source_ "${AHMYZSH}/themes/ahmyzhs.sh"
     [[ "${PRINT_VERSIONS}" = 1 ]] && promptversions
     set +m
-    [[ "${BOOTTIME}" != 1 ]] || echo "" >>"${BOOTTIME_LOGFILE}"
-    [[ "${BOOTTIME}" != 1 ]] || echo "${BEGIN_BOOTTIME} Fully ready in                           $(timer_all) ms" >>"${BOOTTIME_LOGFILE}"
-    [[ 1 = "${BOOTTIME}" && 1 = "${PRINT_BOOTTIME}" ]] && cat "${BOOTTIME_LOGFILE}"
-    [[ "${PRINT_VERSIONS}" = 2 ]] && echo ""
-    [[ "${PRINT_VERSIONS}" = 2 ]] && promptversions
-    [[ 1 = "${BOOTTIME}" && 1 = "${PRINT_BOOTTIME}" ]] && echo "${BEGIN_BOOTTIME} Done!                                    $(timer_all) ms" #>>"${BOOTTIME_LOGFILE}"
-    echo -e '\a\u001b[37m'
   fi
 }
+
+# [[ "${BOOTTIME}" != 1 ]] || echo "" >>"${BOOTTIME_LOGFILE}"
+# [[ "${BOOTTIME}" != 1 ]] || echo "${BEGIN_BOOTTIME} Fully ready in                           $(timer_all) ms" >>"${BOOTTIME_LOGFILE}"
+# [[ 1 = "${BOOTTIME}" && 1 = "${PRINT_BOOTTIME}" ]] && cat "${BOOTTIME_LOGFILE}"
+# [[ "${PRINT_VERSIONS}" = 2 ]] && echo ""
+# [[ "${PRINT_VERSIONS}" = 2 ]] && promptversions
+# [[ 1 = "${BOOTTIME}" && 1 = "${PRINT_BOOTTIME}" ]] && echo "${BEGIN_BOOTTIME} Done!                                    $(timer_all) ms" #>>"${BOOTTIME_LOGFILE}"
+# echo -e '\a\u001b[37m'
