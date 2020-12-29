@@ -14,17 +14,17 @@
 #* AHMYZSH basic functions
 
 # Join something adding it first in the path.
-alias prepend_path_="join_path"
-alias prefix_path_="join_path"
-alias tag_path_="join_path"
+alias prepend_path_="join_path_"
+alias prefix_path_="join_path_"
+alias tag_path_="join_path_"
 function join_path_() {
   [ -z $1 ] || export PATH="${1}:${PATH}"
 }
 
 # Put something to the end, adding it last in the path.
-alias append_to_path_="put_to_path"
-alias affix_to_path_="put_to_path"
-alias tag_to_path_="put_to_path"
+alias append_to_path_="put_to_path_"
+alias affix_to_path_="put_to_path_"
+alias tag_to_path_="put_to_path_"
 function put_to_path_() {
   [ -z $1 ] || export PATH="${PATH}:${1}"
 }
@@ -36,36 +36,36 @@ function load_() {
 }
 
 function call_() {
-  if [ -z "${1}" ]; then
-    [ "${VERBOSA}" -gt 4 ] && echo "Error sourcing ' ${1} ' no function call provided"
+  if [[ -z $1 ]]; then
+    [[ $VERBOSA -gt 4 ]] && echo "Error sourcing '${1}' no function call provided"
     return 4
   else
     TIMER_THEN=$(/usr/bin/date +%s%N)
-    eval "${1}"
+    eval "$1"
 
-    returnval="${?}"
-    [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_FUNCTION} $(timer_now) '${1}()' ${END_FUNCTION}"
+    returnval="$?"
+    [[ $VERBOSA -gt 0 ]] && echo "${BEGIN_FUNCTION} $(timer_now) '${1}()' ${END_FUNCTION}"
     return "${returnval}"
   fi
 }
 
 function source_() {
-  if [ -z "${1}" ]; then
-    [ "${VERBOSA}" -gt 4 ] && echo "Error sourcing ' ${1} ' no file provided"
+  if [[ -z $1 ]]; then
+    [[ $VERBOSA -gt 4 ]] && echo "Error sourcing '${1}' no file provided"
     return 4
   else
     TIMER_THEN=$(/usr/bin/date +%s%N)
-    if [[ -f "${1}" ]]; then
-      if [[ -r "${1}" ]]; then
-        source "${1}"
-        [ "${VERBOSA}" -gt 2 ] && echo "${BEGIN_SOURCING} $(timer_now) ${1} ${END_SOURCING}"
+    if [[ -f $1 ]]; then
+      if [[ -r $1 ]]; then
+        source "$1"
+        [[ $VERBOSA -gt 2 ]] && echo "${BEGIN_SOURCING} $(timer_now) ${1} ${END_SOURCING}"
         return 0
       else
-        [ "${VERBOSA}" -gt 6 ] && echo "Error sourcing '${1}' file provided is not redable"
+        [[ $VERBOSA -gt 6 ]] && echo "Error sourcing '${1}' file provided is not redable"
         return 6
       fi
     else
-      [ "${VERBOSA}" -gt 8 ] && echo "Error sourcing '${1}' file provided does not exist"
+      [[ $VERBOSA -gt 8 ]] && echo "Error sourcing '${1}' file provided does not exist"
       return 8
     fi
   fi
@@ -76,13 +76,13 @@ function timer_() {
   local NOW_TIME=$(date +%s%N)
   local timecalc=$((${NOW_TIME} - ${1:=NOW_TIME}))
   local TIMER_VALUE=$((${timecalc} / ${MICROSEC}))
-  if [ ${#TIMER_VALUE} = 0 ]; then
+  if [[ ${#TIMER_VALUE} = 0 ]]; then
     local spacing_="    "
-  elif [ ${#TIMER_VALUE} = 1 ]; then
+  elif [[ ${#TIMER_VALUE} = 1 ]]; then
     local spacing_="   "
-  elif [ ${#TIMER_VALUE} = 2 ]; then
+  elif [[ ${#TIMER_VALUE} = 2 ]]; then
     local spacing_="  "
-  elif [ ${#TIMER_VALUE} = 3 ]; then
+  elif [[ ${#TIMER_VALUE} = 3 ]]; then
     local spacing_=" "
   else
     local spacing_=""

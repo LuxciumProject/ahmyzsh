@@ -18,14 +18,15 @@ source /home/luxcium/ahmyzsh/MAIN-FUNCTIONS.zsh
 function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
   # for now temporary work around to keep all the same until this function
   function fnm_() {
-    eval "$(fnm env --use-on-cd)"
+    if [[ -d "${HOME}/.fnm" ]]; then
+      prefix_path_ "${HOME}/.fnm"
+      eval "$(fnm env --use-on-cd)"
+    fi
   }
 
   source /home/luxcium/ahmyzsh/oh-myzsh-zshrc.zsh
 
-
-prefix_path_
-  call_ fnm_
+  # call_ fnm_
   unset -f fnm_
 }
 
