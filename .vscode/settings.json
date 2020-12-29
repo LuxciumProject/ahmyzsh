@@ -21,6 +21,7 @@
     "**/*.code-search": true,
     "plugins": true,
     "archive": true,
+    "archives": true,
   },
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,

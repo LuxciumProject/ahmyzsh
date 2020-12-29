@@ -1,12 +1,4 @@
-# Lines configured by powerlevel10k code block top start
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-# Lines configured by powerlevel10k code block top end
-
+source "${AHMYZSH}/p10k-instant-prompt.sh"
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.zsh_history
@@ -16,12 +8,24 @@ setopt autocd beep extendedglob nomatch notify
 bindkey -v
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
+
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' menu select=20
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' completer _list _oldlist _expand _complete _ignored _match _correct _approximate _prefix
+zstyle ':completion:*' expand prefix
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:]}={[:upper:]}'
+# zstyle :compinstall filename "${CORE_COMPLETE}/autocomplete.sh"
 zstyle :compinstall filename '/home/luxcium/.zshrc'
 
+autoload -U +X compinit && compinit # autoload -Uz compinit
 autoload -Uz compinit
 compinit
-# End of lines added by compinstall
 
+autoload -U +X bashcompinit && bashcompinit
+
+# End of lines added by compinstall
 
 # The function will not be run in future, but you can run
 # it yourself as follows:
@@ -34,8 +38,6 @@ compinit
 # You should not edit anything between these lines if you intend to
 # run zsh-newuser-install again.  You may, however, edit any other part
 # of the file.
-
-
 
 # Lines configured by ohmyzsh code block start
 # If you come from bash you might have to change your $PATH.
@@ -86,7 +88,7 @@ source /home/luxcium/ahmyzsh/powerlevel10k/powerlevel10k.zsh-theme
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+# COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -102,7 +104,7 @@ COMPLETION_WAITING_DOTS="true"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM="${AHMYZSH}"
+# ZSH_CUSTOM="${AHMYZSH}"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -138,24 +140,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # Lines configured by ohmyzsh code block end
-
-
-  # The following lines were added by compinstall
-
-  zstyle ':completion:*' list-colors ''
-  zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-  zstyle ':completion:*' menu select=20
-  zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-  zstyle ':completion:*' completer _list _oldlist _expand _complete _ignored _match _correct _approximate _prefix
-  zstyle ':completion:*' expand prefix
-  zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:]}={[:upper:]}'
-  zstyle :compinstall filename "${CORE_COMPLETE}/autocomplete.sh"
-
-  autoload -U +X compinit && compinit # autoload -Uz compinit
-
-  autoload -U +X bashcompinit && bashcompinit
-
-  # End of lines added by compinstall
 
 # powerlevel10k code block botom start
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

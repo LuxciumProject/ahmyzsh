@@ -1,0 +1,2 @@
+func() { print This is func; }
+print func is initialized
