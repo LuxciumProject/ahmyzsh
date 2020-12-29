@@ -140,7 +140,26 @@ source $ZSH/oh-my-zsh.sh
 # Lines configured by ohmyzsh code block end
 
 
+  # The following lines were added by compinstall
 
+  zstyle ':completion:*' list-colors ''
+  zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+  zstyle ':completion:*' menu select=20
+  zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+  zstyle ':completion:*' completer _list _oldlist _expand _complete _ignored _match _correct _approximate _prefix
+  zstyle ':completion:*' expand prefix
+  zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:]}={[:upper:]}'
+  zstyle :compinstall filename "${CORE_COMPLETE}/autocomplete.sh"
+
+  autoload -U +X compinit && compinit # autoload -Uz compinit
+
+  autoload -U +X bashcompinit && bashcompinit
+
+
+
+
+
+  # End of lines added by compinstall
 
 # powerlevel10k code block botom start
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

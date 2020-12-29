@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 echo "Start Up Script begin"
-enable_systemctl up
+/home/luxcium/ahmyzsh/archives/core/bin/enable_systemctl up
 
 (
   (nice -15 code-insiders /home/luxcium/ahmyzsh) &
@@ -11,15 +11,15 @@ enable_systemctl up
     (nice -5 ionice -c 2 -n 0 fc-cache -rfE)
   ) &
 
-  (
-    eval $(fnm env)
-    (nice -5 ionice -c 2 -n 0 fnm install 10) &
-    (nice -5 ionice -c 2 -n 0 fnm install 12) &
-    (nice -5 ionice -c 2 -n 0 fnm install 14) &
-    (nice -5 ionice -c 2 -n 0 fnm install 15 && fnm default 15 && fnm use default) &
-  ) &
+  # (
+  #   eval $(fnm env)
+  #   (nice -5 ionice -c 2 -n 0 fnm install 10) &
+  #   (nice -5 ionice -c 2 -n 0 fnm install 12) &
+  #   (nice -5 ionice -c 2 -n 0 fnm install 14) &
+  #   (nice -5 ionice -c 2 -n 0 fnm install 15 && fnm default 15 && fnm use default) &
+  # ) &
 
-  (nice -5 ionice -c 2 -n 0 conda update --all -y)
+  # (nice -5 ionice -c 2 -n 0 conda update --all -y)
 
 )
 
