@@ -13,7 +13,7 @@ HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
 setopt autocd beep extendedglob nomatch notify
-bindkey -e
+bindkey -v
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/luxcium/.zshrc'
@@ -154,10 +154,6 @@ source $ZSH/oh-my-zsh.sh
   autoload -U +X compinit && compinit # autoload -Uz compinit
 
   autoload -U +X bashcompinit && bashcompinit
-
-
-
-
 
   # End of lines added by compinstall
 
