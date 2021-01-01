@@ -1,0 +1,2 @@
+func() { echo This is func; }
+echo func is initialized

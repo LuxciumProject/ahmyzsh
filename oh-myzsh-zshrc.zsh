@@ -1,4 +1,4 @@
-source "${AHMYZSH}/p10k-instant-prompt.sh"
+# source "${AHMYZSH}/p10k-instant-prompt.sh"
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.zsh_history
