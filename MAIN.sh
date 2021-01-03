@@ -14,8 +14,8 @@
 #* AHMYZSH first entry point
 
 # will be working on simplification in a new feature branch
-echo main
-echo $VERBOSA
+# source /home/luxcium/ahmyzsh/themes/ahmyzhs.sh
+# echo $VERBOSA
 set +m
 function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
 
@@ -36,11 +36,11 @@ function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
   MAIN_INIT="start"
 
   # Load functions that are required at an earlier stage of this boot sequence
-  local S1="${AHMYZSH}/MAIN-FUNCTIONS.zsh"
+  local S1="${AHMYZSH}/MAIN-FUNCTIONS.sh"
   [[ -f "${S1}" ]] && source "${S1}" || load_error_ "${S1}"
 
   # Load settings that are required at an earlier stage of this boot sequence
-  load_ "${AHMYZSH}/MAIN_SETTINGS.zsh" "MAIN_SETTINGS"
+  load_ "${AHMYZSH}/MAIN_SETTINGS.sh" "MAIN_SETTINGS"
 
   call_ load_all_config_and_settings_files
 
@@ -55,7 +55,7 @@ function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
   call_ load_options_main
   call_ load_autosuggest
   call_ load_autocomplete
-  right_prompt_off
+  # right_prompt_off
   source_ "${HOME}/.env"
 
 }

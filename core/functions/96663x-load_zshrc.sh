@@ -4,7 +4,6 @@ function load_zshrc() {
 
   # call_ activate_instant_prompt
   call_ activate_normal_prompt
-  #  promptversions
 
   if [ "${PARENT_ENV_LOADED}" != 'true' ]; then
     (compute_path &) # >/dev/null

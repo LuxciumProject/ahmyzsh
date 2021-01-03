@@ -19,7 +19,7 @@ function MAIN_SETTINGS() {
   # PKG_CONFIG_PTH=
   # : ${VERBOSA=10000}
   export VERBOSA=0000
-  echo $VERBOSA
+  # echo $VERBOSA
   : ${VERBOSA=0000}
   : ${PATH_FILE:="${CACHED_PATH}"}
   : ${EDITOR:=code}

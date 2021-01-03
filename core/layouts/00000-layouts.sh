@@ -192,3 +192,126 @@ function hardcls() {
   echo -n '\u001b[2J'
   echo -n '\u001b[0;0H'
 }
+
+# Reset: \u001b[0m
+
+## 8 Colors
+# We have seen how Red and Reset work. The most basic terminals have a set of 8 different colors:
+
+export BLACK8='\u001b[30m'
+export RED8='\u001b[31m'
+export GREEN8='\u001b[32m'
+export YELLOW8='\u001b[33m'
+export BLUE8='\u001b[34m'
+export MAGENTA8='\u001b[35m'
+export CYAN8='\u001b[36m'
+export WHITE8='\u001b[37m'
+
+export RESET8='\u001b[0m'
+
+## 16 Colors
+# Most terminals, apart from the basic set of 8 colors, also support the "bright" or "bold" colors. These have their own set of codes, mirroring the normal colors, but with an additional ;1 in their codes:
+
+export BLACK16='\u001b[30;1m'
+export RED16='\u001b[31;1m'
+export GREEN16='\u001b[32;1m'
+export YELLOW16='\u001b[33;1m'
+export BLUE16='\u001b[34;1m'
+export MAGENTA16='\u001b[35;1m'
+export CYAN16='\u001b[36;1m'
+export WHITE16='\u001b[37;1m'
+
+export RESET16='\u001b[0m'
+
+## Background Colors
+# The Ansi escape codes let you set the color of the text-background the same way it lets you set the color of the foregrond. For example, the 8 background colors correspond to the codes:
+
+export BLACK8B='\u001b[40m'
+export RED8B='\u001b[41m'
+export GREEN8B='\u001b[42m'
+export YELLOW8B='\u001b[43m'
+export BLUE8B='\u001b[44m'
+export MAGENTA8B='\u001b[45m'
+export CYAN8B='\u001b[46m'
+export WHITE8B='\u001b[47m'
+
+export RESET8B='\u001b[0m'
+
+## With the bright versions being:
+
+export BLACK16B='\u001b[40;1m'
+export RED16B='\u001b[41;1m'
+export GREEN16B='\u001b[42;1m'
+export YELLOW16B='\u001b[43;1m'
+export BLUE16B='\u001b[44;1m'
+export MAGENTA16B='\u001b[45;1m'
+export CYAN16B='\u001b[46;1m'
+export WHITE16B='\u001b[47;1m'
+
+export RESET16B='\u001b[0m'
+
+## Decorations
+# Apart from colors, and background-colors, Ansi escape codes also allow decorations on the text:
+
+export BOLD='\u001b[1m'
+export UNDERLINE='\u001b[4m'
+export REVERSED='\u001b[7m'
+
+export RESET='\u001b[0m'
+
+export BOLD_='\u001b[1m'
+export UNDERLINE_='\u001b[4m'
+export REVERSED_='\u001b[7m'
+
+export RESET_='\u001b[0m'
+
+## Cursor Navigation
+# The next set of Ansi escape codes are more complex: they allow you to move the cursor around the terminal window, or erase parts of it. These are the Ansi escape codes that programs like Bash use to let you move your cursor left and right across your input command in response to arrow-keys.
+
+## The most basic of these moves your cursor up, down, left or right:
+
+# Up: \u001b[{n}A moves cursor up by n
+# Down: \u001b[{n}B moves cursor down by n
+# Right: \u001b[{n}C moves cursor right by n
+# Left: \u001b[{n}D moves cursor left by n
+
+## https://en.wikipedia.org/wiki/ANSI_escape_code#CSI_codes
+## There are other terminal commands that would come in useful; Wikipedia's table of escape codes is a good listing (the CSI in that table corresponds to the \u001b in our code) but here are some useful ones:
+
+export MOVEL='\u001b[0F'
+export CLEARL='\u001b[2K'
+export RESETL='\u001b[0m'
+
+export LRESETALL="$CLEARL$MOVEL$RESETL"
+
+# Next Line: \u001b[{n}E moves cursor to beginning of line n lines down
+# Prev Line: \u001b[{n}F moves cursor to beginning of line n lines down
+
+# Set Column: \u001b[{m}G moves cursor to column m
+# Set Position: \u001b[{n};{m}H moves cursor to row n column m
+
+## Clear Screen: \u001b[{n}J clears the screen
+# n=0 clears from cursor until end of screen,
+# n=1 clears from cursor to beginning of screen
+# n=2 clears entire screen
+
+export CLEAR0S='\u001b[0K'
+export CLEAR1S='\u001b[1K'
+export CLEAR2S='\u001b[2K'
+
+## Clear Line: \u001b[{n}K clears the current line
+# n=0 clears from cursor to end of line
+# n=1 clears from cursor to start of line
+# n=2 clears entire line
+
+export CLEAR0L='\u001b[0K'
+export CLEAR1L='\u001b[1K'
+export CLEAR2L='\u001b[2K'
+
+# export CLEAR0='\u001b[0K'
+# export CLEAR1='\u001b[1K'
+# export CLEAR2='\u001b[2K'
+
+# Save Position: \u001b[{s} saves the current cursor position
+# Save Position: \u001b[{u} restores the cursor to the last saved position
+#
