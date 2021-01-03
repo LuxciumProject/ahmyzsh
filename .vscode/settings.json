@@ -2,7 +2,7 @@
   "files.exclude": {
     "**/*.zwc": true,
     "powerlevel10k": true,
-    "ohmyzsh": false,
+    "ohmyzsh": true,
     "powerline": true,
     "crt-profiles": true,
     "archive": true,
