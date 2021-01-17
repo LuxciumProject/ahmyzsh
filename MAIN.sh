@@ -45,18 +45,19 @@ function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
   call_ load_all_config_and_settings_files
 
   call_ load_zshenv
+  call_ fnm_
+
+  source_ "${HOME}/.env"
 
   isinteractive || return 0 #-――――――――― Interactive,login,non-login ――――――――――-#
 
-  call_ fnm_
   call_ load_oh_my_zsh
   call_ activate_prompt
+  right_prompt_off
   call_ load_options_list
   call_ load_options_main
   call_ load_autosuggest
   call_ load_autocomplete
-  # right_prompt_off
-  source_ "${HOME}/.env"
 
 }
 

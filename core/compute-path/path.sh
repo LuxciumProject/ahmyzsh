@@ -65,7 +65,7 @@ function set_path() {
   return
 }
 
-function set_spath() {
+function set_sbin_path() {
   # __compute_base_path
   __append_sbin_to_path
   __compute_extended_path
@@ -269,7 +269,7 @@ function compute_path() {
 }
 
 function compute_spath() {
-  set_spath
+  set_sbin_path
   seting_cache_path_
   return
 }
@@ -314,7 +314,7 @@ function getstamp_() {
 
 SP80="                                                                                "
 alias refresh_path='source_ ${CORE_COMPUTE}/path.sh; set_path; echo -en "${SP80}"; echo_path'
-alias refresh_spath='source_ ${CORE_COMPUTE}/path.sh; set_spath; echo -en "${SP80}"; echo_path'
+alias refresh_spath='source_ ${CORE_COMPUTE}/path.sh; set_sbin_path; echo -en "${SP80}"; echo_path'
 alias reload_path='source_ ${CORE_COMPUTE}/path.sh; compute_path; echo -en "${SP80}"; echo_path'
 alias reload_spath='source_ ${CORE_COMPUTE}/path.sh; compute_spath; echo -en "${SP80}"; echo_path'
 # add_to_path_ "/usr/local/opt/ncurses/bin"

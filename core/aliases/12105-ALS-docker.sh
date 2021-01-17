@@ -1,7 +1,0 @@
-alias images='docker images'
-alias rmallimages='docker rmi $(images -aq) 2> /dev/null'
-alias rmallimagesf='docker rmi --force $(images -aq) 2> /dev/null'
-alias dockerps='docker ps -a'
-alias rmalldocks='docker rm $(docker ps -aq) 2> /dev/null'
-alias rmalldocksf='docker rm --force $(docker ps -aq) 2> /dev/null'
-alias dockerhelloworld='docker run hello-world'

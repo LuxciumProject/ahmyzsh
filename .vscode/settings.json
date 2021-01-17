@@ -5,8 +5,8 @@
     "ohmyzsh": true,
     "powerline": true,
     "crt-profiles": true,
-    "archive": true,
-    "archives": true,
+    "archive": false,
+    "archives": false,
     "images": true,
     "node_modules": true,
     "**/.directory": true

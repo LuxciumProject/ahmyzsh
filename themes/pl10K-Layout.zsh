@@ -1,5 +1,14 @@
 function load_my_powerlevel10k() {
 
+  # Transient prompt works similarly to the builtin transient_rprompt option. It trims down prompt
+  # when accepting a command line. Supported values:
+  #
+  #   - off:      Don't change prompt when accepting a command line.
+  #   - always:   Trim down prompt when accepting a command line.
+  #   - same-dir: Trim down prompt when accepting a command line unless this is the first command
+  #               typed after changing current working directory.
+  typeset -g POWERLEVEL9K_TRANSIENT_PROMPT=always
+
   function pl10k_prompt_loader() {
     pl10k_left_prompt_loader
     pl10k_right_prompt_loader
@@ -18,17 +27,24 @@ function load_my_powerlevel10k() {
     export PL10K_LEFT_PROMPT_OFF='false'
     function pl10k_left_prompt_loader() {
       export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-        os_icon                # os identifier
-        context                #
+        # newline                # !! ============[ Line #1 ]============================
         custom_js              #
-        load                   # CPU load
-        status                 # exit code of the last command
-        newline                # !! ======================[ Line #1 ]===========
-        dir                    # current directory
-        newline                # !! ======================[ Line #2 ]===========
-        vcs                    # git status
+        time                   # current time
         command_execution_time # duration of the last command
-        prompt_char            # prompt symbol
+        # custom_pyt             #
+        virtualenv
+        # anaconda               # conda environment (https://conda.io/)
+        newline         # !! ============[ Line #2 ]============================
+        os_icon         # os identifier
+        context         #
+        load            # CPU load
+        status          # exit code of the last command
+        newline         # !! ============[ Line #3 ]============================
+        dir             # current directory
+        background_jobs # presence of background jobs
+        newline         # !! ============[ Line #4 ]============================
+        vcs             # git status
+        prompt_char     # prompt symbol
       )
       return 0
     }
@@ -85,17 +101,26 @@ function load_my_powerlevel10k() {
     export PL10K_RIGHT_PROMPT_OFF='false'
     function pl10k_right_prompt_loader() {
       export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
-        custom_tsc      #
-        newline         # !! ============[ Line #1 ]============================
-        custom_tsx      #
-        custom_npm      #
-        node_version    # node.js version
-        time            # current time
-        newline         # !! ============[ Line #2 ]============================
-        custom_pyt      #
-        rbenv           # ruby version from rbenv (https://github.com/rbenv/rbenv)
-        anaconda        # conda environment (https://conda.io/)
-        background_jobs # presence of background jobs
+        rbenv      # ruby version from rbenv (https://github.com/rbenv/rbenv)
+        newline    # !! ============[ Line #1 ]============================
+        custom_tsx #
+        custom_tsc
+        custom_tsx #
+        newline    # !! ============[ Line #1 ]============================
+        custom_js  #
+        custom_npm #
+        node_version
+        # custom_tsc      #
+        # newline         # !! ============[ Line #1 ]============================
+        # custom_tsx      #
+        # custom_npm      #
+        # node_version    # node.js version
+        # time            # current time
+        # newline         # !! ============[ Line #2 ]============================
+        # custom_pyt      #
+        # rbenv           # ruby version from rbenv (https://github.com/rbenv/rbenv)
+        # anaconda        # conda environment (https://conda.io/)
+        # background_jobs # presence of background jobs
       )
       return 0
     }
@@ -115,7 +140,19 @@ function load_my_powerlevel10k() {
     export PL10K_RIGHT_PROMPT_ON='false'
     export PL10K_RIGHT_PROMPT_OFF='true'
     function pl10k_right_prompt_loader() {
-      export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+      export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+        rbenv      # ruby version from rbenv (https://github.com/rbenv/rbenv)
+        newline    # !! ============[ Line #1 ]============================
+        custom_tsx #
+        custom_tsc
+        custom_tsx #
+        newline    # !! ============[ Line #1 ]============================
+        custom_js  #
+        custom_npm #
+        node_version
+
+      )
+
       return 0
     }
     return 0

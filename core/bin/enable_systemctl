@@ -1,52 +1,210 @@
 #!/usr/bin/env sh
 
-# enable_startup
-
 function enable_startup_() {
 
   function disable_at_shutdown_() {
-    # akmods
-    sudo systemctl disable switcheroo-control dnf-makecache docker.socket docker.service containerd.service ModemManager.service bluetooth.service NetworkManager.service avahi-daemon.socket avahi-daemon.service upower.service dnfdaemon.service --now
+    # echo -e '\nfunction disable_at_shutdown_()\n'
 
-    sudo systemctl daemon-reload
-    sudo systemctl daemon-reexec
+    sudo nice -n -35 ionice -c 1 -n 0 /bin/sh -c 'sudo /usr/sbin/akmods --from-init --verbose' &
+    sudo nice -n -35 ionice -c 1 -n 0 /bin/sh -c 'sudo /usr/sbin/dkms autoinstall --verbose --kernelver $(uname -r)' &
 
+    sudo nice -n -35 ionice -c 1 -n 0 systemctl disable akmods.service avahi-daemon.service avahi-daemon.socket bluetooth.service dkms.service dmraid-activation.service dnf-makecache.service dnfdaemon.service firewalld.service libvirtd.service ModemManager.service NetworkManager.service packagekit.service pmcd.service pmie.service pmlogger.service switcheroo-control.service systemd-machined.service systemd-udevd.service upower.service --now
+
+    sudo nice -n -35 ionice -c 1 -n 0 systemctl disable containerd docker docker.socket redis_6379.service sshd.service --now
+
+    # sudo nice -n -35 ionice -c 1 -n 0 systemctl daemon-reload
+    sudo nice -n -35 ionice -c 1 -n 0 systemctl daemon-reexec &
+
+  }
+  # sudo nice -n -35 ionice -c 1 -n 0 systemctl enable redis_6379 --now
+  function kill_at_shutdown_() {
+    sleep 0.05
+
+    (
+      sleep 2.8
+      (
+        kill -15 $(pidof -w -x chrome-stable)
+        sleep 1.1
+        kill -9 $(pidof -w -x chrome-stable)
+      ) &
+      (
+        kill -15 $(pidof -w -x chrome)
+        sleep 1.1
+        kill -9 $(pidof -w -x chrome)
+      ) &
+
+      (
+        kill -15 $(pidof -w -x code-insiders)
+        sleep 1.2
+        # kill -9 $(pidof -w -x code-insiders)
+      ) &
+      (
+        kill -15 $(pidof -w -x code)
+        sleep 1.2
+        # kill -9 $(pidof -w -x code)
+      ) &
+      (
+        kill -15 $(pidof -w -x gnome-terminal-server)
+        sleep 1.2
+        # kill -9 $(pidof -w -x gnome-terminal-server)
+      ) &
+      (
+        kill -15 $(pidof -w -x zsh)
+        sleep 1.5
+        kill -9 $(pidof -w -x zsh)
+      ) &
+    ) &
+    sleep 0.05
+    (
+      sleep 1
+      (
+        kill -15 $(pidof -w -x baloo_file)
+        sleep 3
+        kill -9 $(pidof -w -x baloo_file)
+      ) &
+      (
+        kill -15 $(pidof -w -x bluetoothd)
+        sleep 3
+        kill -9 $(pidof -w -x bluetoothd)
+      ) &
+      (
+        kill -15 $(pidof -w -x ckb-next-animations/gradient)
+        sleep 3
+        kill -9 $(pidof -w -x ckb-next-animations/gradient)
+      ) &
+      (
+        kill -15 $(pidof -w -x ckb-next-animations/invaders)
+        sleep 3
+        kill -9 $(pidof -w -x ckb-next-animations/invaders)
+      ) &
+      (
+        kill -15 $(pidof -w -x ckb-next-daemon)
+        sleep 3
+        kill -9 $(pidof -w -x ckb-next-daemon)
+      ) &
+      (
+        kill -15 $(pidof -w -x ckb-next)
+        sleep 3
+        kill -9 $(pidof -w -x ckb-next)
+      ) &
+      (
+        kill -15 $(pidof -w -x colord)
+        sleep 3
+        kill -9 $(pidof -w -x colord)
+      ) &
+      (
+        kill -15 $(pidof -w -x containerd)
+        sleep 3
+        kill -9 $(pidof -w -x containerd)
+      ) &
+      (
+        kill -15 $(pidof -w -x dolphin)
+        sleep 3
+        kill -9 $(pidof -w -x dolphin)
+      ) &
+      (
+        kill -15 $(pidof -w -x gitstatusd-linux-x86_64)
+        sleep 3
+        kill -9 $(pidof -w -x gitstatusd-linux-x86_64)
+      ) &
+      (
+        kill -15 $(pidof -w -x obexd)
+        sleep 3
+        kill -9 $(pidof -w -x obexd)
+      ) &
+      (
+        kill -15 $(pidof -w -x dockerd)
+        sleep 3
+        kill -9 $(pidof -w -x dockerd)
+      ) &
+      (
+        kill -15 $(pidof -w -x ssh-agent)
+        sleep 3
+        kill -9 $(pidof -w -x ssh-agent)
+      ) &
+      (
+        kill -15 $(pidof -w -x upowerd)
+        sleep 3
+        kill -9 $(pidof -w -x upowerd)
+      ) &
+      (
+        kill -15 $(pidof -w -x sssd)
+        sleep 3
+        kill -9 $(pidof -w -x sssd)
+      ) &
+      (
+        kill -15 $(pidof -w -x sssd/sssd_be)
+        sleep 3
+        kill -9 $(pidof -w -x sssd/sssd_be)
+      ) &
+      (
+        kill -15 $(pidof -w -x sssd/sssd_nss)
+        sleep 3
+        kill -9 $(pidof -w -x sssd/sssd_nss)
+      ) &
+    ) &
   }
 
   function enable_at_startup_() {
 
-    sudo systemctl enable NetworkManager.service ModemManager.service bluetooth.service avahi-daemon.service switcheroo-control dnf-makecache --now
+    # echo -e '\nfunction enable_at_startup_()\n'
 
-    sudo renice -n -18 -p $(pidof Xorg) &
-    sudo renice -n -17 -p $(pidof plasmashell) &
-    sudo renice -n -16 -p $(pidof startplasma-x11) &
-    sudo renice -n -15 -p $(pidof plasma_session) &
-    sudo renice -n -14 -p $(pidof sddm-helper) &
-    sudo renice -n -13 -p $(pidof sddm) &
-    sudo renice -n -12 -p $(pidof kwin_x11) &
-    sudo renice -n -11 -p $(pidof ksmserver) &
+    sudo nice -n -35 ionice -c 1 -n 0 systemctl enable akmods.service avahi-daemon.service avahi-daemon.socket bluetooth.service dkms.service dmraid-activation.service dnf-makecache.service dnfdaemon.service firewalld.service libvirtd.service ModemManager.service NetworkManager.service packagekit.service pmcd.service pmie.service pmlogger.service switcheroo-control.service systemd-machined.service systemd-udevd.service upower.service --now
 
-    sudo ionice -c 1 -n 0 -p $(pidof Xorg) &
-    sudo ionice -c 1 -n 2 -p $(pidof plasmashell) &
-    sudo ionice -c 1 -n 4 -p $(pidof plasma_session) &
-    sudo ionice -c 1 -n 6 -p $(pidof kwin_x11) &
-    sudo ionice -c 2 -n 0 -p $(pidof ksmserver) &
-    sudo ionice -c 2 -n 2 -p $(pidof startplasma-x11) &
-    sudo ionice -c 2 -n 0 -p $(pidof sddm-helper) &
-    sudo ionice -c 2 -n 0 -p $(pidof sddm) &
-    sudo systemctl daemon-reload
-    sudo systemctl daemon-reexec
+    sudo renice -n -18 -p $(pidof -w -x Xorg) &
+    sudo renice -n -17 -p $(pidof -w -x plasmashell) &
+    sudo renice -n -16 -p $(pidof -w -x startplasma-x11) &
+    sudo renice -n -15 -p $(pidof -w -x plasma_session) &
+    sudo renice -n -14 -p $(pidof -w -x sddm-helper) &
+    sudo renice -n -13 -p $(pidof -w -x sddm) &
+    sudo renice -n -12 -p $(pidof -w -x kwin_x11) &
+    sudo renice -n -11 -p $(pidof -w -x ksmserver) &
+
+    sudo ionice -c 1 -n 0 -p $(pidof -w -x Xorg) &
+    sudo ionice -c 1 -n 2 -p $(pidof -w -x plasmashell) &
+    sudo ionice -c 1 -n 4 -p $(pidof -w -x plasma_session) &
+    sudo ionice -c 1 -n 6 -p $(pidof -w -x kwin_x11) &
+    sudo ionice -c 2 -n 0 -p $(pidof -w -x ksmserver) &
+    sudo ionice -c 2 -n 2 -p $(pidof -w -x startplasma-x11) &
+    sudo ionice -c 2 -n 0 -p $(pidof -w -x sddm-helper) &
+    sudo ionice -c 2 -n 0 -p $(pidof -w -x sddm) &
+
+    # sudo ionice -c 1 -n 0 systemctl daemon-reexec
+    sudo ionice -c 1 -n 0 systemctl daemon-reload &
+
+    sudo ionice -c 1 -n 0 /bin/sh -c 'sudo /usr/sbin/akmods --from-init --force --verbose' &
+    sudo ionice -c 1 -n 0 /bin/sh -c 'sudo /usr/sbin/dkms autoinstall --force --verbose --kernelver $(uname -r)' &
+
+  }
+
+  function restart_now_() {
+    echo -e '\nfunction rerestart_now_()\n'
+
+    sudo systemctl enable containerd docker docker.socket sshd.service --now
+    sudo systemctl enable redis_6379.service
+
+    sudo ionice -c 2 -n 0 -p $(pidof -w -x chrome) &
+    sudo renice -n -17 -p $(pidof -w -x chrome) &
+    sudo ionice -c 2 -n 1 -p $(pidof -w -x zsh) &
+    sudo renice -n -15 -p $(pidof -w -x zsh) &
+    sudo ionice -c 2 -n 2 -p $(pidof -w -x gnome-terminal-server) &
+    sudo renice -n -12 -p $(pidof -w -x gnome-terminal-server) &
+    sudo ionice -c 2 -n 3 -p $(pidof -w -x dolphin) &
+    sudo renice -n -10 -p $(pidof -w -x dolphin) &
+    sudo ionice -c 1 -n 5 -p $(pidof -w -x code-insiders) &
+    sudo renice -n 5 -p $(pidof -w -x code-insiders) &
+    sudo ionice -c 1 -n 5 -p $(pidof -w -x code) &
+    sudo renice -n 5 -p $(pidof -w -x code) &
+
+    sleep 0.75
     echo ''
-    sudo akmods
-
-    # sudo renice -n -35 -p $(pidof gnome-terminal-server) &
-    # sudo ionice -c 1 -n 0 -p $(pidof gnome-terminal-server) &
 
   }
 
   # enable_systemctl down
   if [[ $1 == 'down' ]]; then
     disable_at_shutdown_
+    kill_at_shutdown_
   fi
 
   # enable_systemctl up
@@ -56,12 +214,11 @@ function enable_startup_() {
 
   # enable_systemctl restart
   if [[ $1 == 'restart' ]]; then
-    disable_at_shutdown_ && enable_at_startup_ || exit 10
+    disable_at_shutdown_ && enable_at_startup_ && restart_now_ || exit 10
   fi
 
 }
 
-## Extra code make it easy to copy paste only the function out to use elsewhere
 enable_startup_ "${@}"
 
 __EXIT_STATUS="${?}"
@@ -70,6 +227,237 @@ unset -f enable_startup_
 
 exit $__EXIT_STATUS
 
+# sudo systemctl enable network.service
+
+# Checking kmods exist for 5.9.16-100.fc32.x86_64            [  OK  ]
+# Warning: Stopping dnf-makecache.service, but it can still be activated by:
+#   dnf-makecache.timer
+# Warning: Stopping libvirtd.service, but it can still be activated by:
+#   libvirtd-ro.socket
+#   libvirtd-admin.socket
+#   libvirtd.socket
+# Warning: Stopping systemd-udevd.service, but it can still be activated by:
+#   systemd-udevd-control.socket
+#   systemd-udevd-kernel.socket
+# Failed to disable unit: Unit file network.service does not exist.
+# redis_6379.service is not a native service, redirecting to systemd-sysv-install.
+# Executing: /usr/lib/systemd/systemd-sysv-install disable redis_6379
+# Removed /etc/systemd/system/sockets.target.wants/docker.socket.
+
+# kill -15 $(pidof -w -x code-insiders) &
+# kill -15 $(pidof -w -x code) &
+# kill -15 $(pidof -w -x upowerd) &
+# kill -15 $(pidof -w -x sssd) &
+# kill -15 $(pidof -w -x sssd/sssd_be) &
+# kill -15 $(pidof -w -x sssd/sssd_nss) &
+# kill -15 $(pidof -w -x gnome-terminal-server)
+# kill -15 $(pidof -w -x zsh)
+# kill -15 $(pidof -w -x abrt-applet)
+# kill -15 $(pidof -w -x abrt-dbus)
+# kill -15 $(pidof -w -x accounts-daemon)
+# kill -15 $(pidof -w -x akonadi_akonotes_resource)
+# kill -15 $(pidof -w -x akonadi_archivemail_agent)
+# kill -15 $(pidof -w -x akonadi_birthdays_resource)
+# kill -15 $(pidof -w -x akonadi_contacts_resource)
+# kill -15 $(pidof -w -x akonadi_control)
+# kill -15 $(pidof -w -x akonadi_followupreminder_agent)
+# kill -15 $(pidof -w -x akonadi_ical_resource)
+# kill -15 $(pidof -w -x akonadi_indexing_agent)
+# kill -15 $(pidof -w -x akonadi_maildir_resource)
+# kill -15 $(pidof -w -x akonadi_maildispatcher_agent)
+# kill -15 $(pidof -w -x akonadi_mailfilter_agent)
+# kill -15 $(pidof -w -x akonadi_migration_agent)
+# kill -15 $(pidof -w -x akonadi_newmailnotifier_agent)
+# kill -15 $(pidof -w -x akonadi_sendlater_agent)
+# kill -15 $(pidof -w -x akonadi_unifiedmailbox_agent)
+# kill -15 $(pidof -w -x akonadiserver)
+# kill -15 $(pidof -w -x alsactl)
+# kill -15 $(pidof -w -x at-spi-bus-launcher)
+# kill -15 $(pidof -w -x at-spi2-registryd)
+# kill -15 $(pidof -w -x atd)
+# kill -15 $(pidof -w -x auditd)
+# kill -15 $(pidof -w -x chronyd)
+# kill -15 $(pidof -w -x crond)
+# kill -15 $(pidof -w -x cupsd)
+# kill -15 $(pidof -w -x dbus-broker-launch)
+# kill -15 $(pidof -w -x dbus-broker)
+# kill -15 $(pidof -w -x dconf-service)
+# kill -15 $(pidof -w -x DiscoverNotifier)
+# kill -15 $(pidof -w -x dnsmasq)
+# kill -15 $(pidof -w -x fusermount)
+# kill -15 $(pidof -w -x gconfd-2)
+# kill -15 $(pidof -w -x geoclue-2.0/demos/agent)
+# kill -15 $(pidof -w -x gmenudbusmenuproxy)
+# kill -15 $(pidof -w -x gnome-keyring-daemon)
+# kill -15 $(pidof -w -x goa-daemon)
+# kill -15 $(pidof -w -x goa-identity-service)
+# kill -15 $(pidof -w -x gssproxy)
+# kill -15 $(pidof -w -x gvfs-afc-volume-monitor)
+# kill -15 $(pidof -w -x gvfs-goa-volume-monitor)
+# kill -15 $(pidof -w -x gvfs-gphoto2-volume-monitor)
+# kill -15 $(pidof -w -x gvfs-mtp-volume-monitor)
+# kill -15 $(pidof -w -x gvfs-udisks2-volume-monitor)
+# kill -15 $(pidof -w -x gvfsd-fuse)
+# kill -15 $(pidof -w -x gvfsd-metadata)
+# kill -15 $(pidof -w -x gvfsd)
+# kill -15 $(pidof -w -x imsettings-daemon)
+# kill -15 $(pidof -w -x irqbalance)
+# kill -15 $(pidof -w -x kaccess)
+# kill -15 $(pidof -w -x kactivitymanagerd)
+# kill -15 $(pidof -w -x kded5)
+# kill -15 $(pidof -w -x kdeinit5)
+# kill -15 $(pidof -w -x kglobalaccel5)
+# kill -15 $(pidof -w -x kio_http_cache_cleaner)
+# kill -15 $(pidof -w -x klauncher)
+# kill -15 $(pidof -w -x korgac)
+# kill -15 $(pidof -w -x kscreen_backend_launcher)
+# kill -15 $(pidof -w -x ksmserver)
+# kill -15 $(pidof -w -x ksysguardd)
+# kill -15 $(pidof -w -x kwalletd5)
+# kill -15 $(pidof -w -x kwin_x11)
+# kill -15 $(pidof -w -x mcelog)
+# kill -15 $(pidof -w -x ModemManager)
+# kill -15 $(pidof -w -x mount.ntfs)
+# kill -15 $(pidof -w -x mysqld)
+# kill -15 $(pidof -w -x nacl_helper)
+# kill -15 $(pidof -w -x NetworkManager)
+# kill -15 $(pidof -w -x org_kde_powerdevil)
+# kill -15 $(pidof -w -x packagekitd)
+# kill -15 $(pidof -w -x pcp/bin/pmcd)
+# kill -15 $(pidof -w -x pcp/bin/pmlogger)
+# kill -15 $(pidof -w -x pcscd)
+# kill -15 $(pidof -w -x pipewire-media-session)
+# kill -15 $(pidof -w -x pipewire)
+# kill -15 $(pidof -w -x plasma_session)
+# kill -15 $(pidof -w -x plasma-browser-integration-host)
+# kill -15 $(pidof -w -x plasmashell)
+# kill -15 $(pidof -w -x pmie)
+# kill -15 $(pidof -w -x polkit-kde-authentication-agent-1)
+# kill -15 $(pidof -w -x polkitd)
+# kill -15 $(pidof -w -x pulse/gconf-helper)
+# kill -15 $(pidof -w -x pulseaudio)
+# kill -15 $(pidof -w -x python3)
+# kill -15 $(pidof -w -x registry)
+# kill -15 $(pidof -w -x rngd)
+# kill -15 $(pidof -w -x rsyslogd)
+# kill -15 $(pidof -w -x rtkit-daemon)
+# kill -15 $(pidof -w -x sddm-helper)
+# kill -15 $(pidof -w -x sddm)
+# kill -15 $(pidof -w -x sedispatch)
+# kill -15 $(pidof -w -x smartd)
+# kill -15 $(pidof -w -x start_kdeinit)
+# kill -15 $(pidof -w -x startplasma-x11)
+# kill -15 $(pidof -w -x stratisd)
+# kill -15 $(pidof -w -x switcheroo-control)
+# kill -15 $(pidof -w -x systemd-homed)
+# kill -15 $(pidof -w -x systemd-journald)
+# kill -15 $(pidof -w -x systemd-logind)
+# kill -15 $(pidof -w -x systemd-machined)
+# kill -15 $(pidof -w -x systemd-udevd)
+# kill -15 $(pidof -w -x systemd-userdbd)
+# kill -15 $(pidof -w -x systemd-userwork)
+# kill -15 $(pidof -w -x systemd)
+# kill -15 $(pidof -w -x tracker-miner-fs)
+# kill -15 $(pidof -w -x tracker-miner-rss)
+# kill -15 $(pidof -w -x tracker-store)
+# kill -15 $(pidof -w -x udisks2/udisksd)
+# kill -15 $(pidof -w -x xdg-desktop-portal-gtk)
+# kill -15 $(pidof -w -x xdg-desktop-portal-kde)
+# kill -15 $(pidof -w -x xdg-desktop-portal)
+# kill -15 $(pidof -w -x xdg-document-portal)
+# kill -15 $(pidof -w -x xdg-permission-store)
+# kill -15 $(pidof -w -x xembedsniproxy)
+# kill -15 $(pidof -w -x xfconfd)
+# kill -15 $(pidof -w -x Xorg)
+
+# ## Signaux standards
+# man free.1
+# man ps.1
+# man uptime.1
+# man atop.1
+# man slabtop.1
+# man vmstat.8
+# man w.1
+## Voici tout d'abord les signaux décrits dans le standard POSIX.1-1990 original :
+#      Signal     Valeur    Action   Commentaire
+#      ─────────────────────────────────────────────────────────────────────────
+# Déconnexion détectée sur le terminal de contrôle ou mort du processus de contrôle:
+#      SIGHUP        1       Term
+#      Les signaux SIGKILL et SIGSTOP ne peuvent ni capturés ni ignorés.
+#      SIGINT        2       Term    Interruption depuis le clavier.
+#      SIGQUIT       3       Core    Demande « Quitter » depuis le clavier.
+#      SIGILL        4       Core    Instruction illégale.
+#      SIGABRT       6       Core    Signal d'arrêt depuis abort(3).
+#      SIGFPE        8       Core    Erreur mathématique virgule flottante.
+#      SIGKILL       9       Term    Signal « KILL ».
+#      SIGSEGV      11       Core    Référence mémoire invalide.
+#      SIGPIPE      13       Term    Écriture dans un tube sans lecteur.
+#      SIGALRM      14       Term    Temporisation alarm(2) écoulée.
+#      SIGTERM      15       Term    Signal de fin.
+#      SIGUSR1      10       Term    Signal utilisateur 1.
+#      SIGUSR2      12       Term    Signal utilisateur 2.
+#      SIGCHLD      17       Ign     Fils arrêté ou terminé.
+#      SIGCONT      18       Cont    Continuer si arrêté.
+#      SIGSTOP      19       Stop    Arrêt du processus.
+#      SIGTSTP      20       Stop    Stop invoqué depuis le terminal.
+#      SIGTTIN      21       Stop    Lecture sur le terminal en arrière-plan.
+#      SIGTTOU      22       Stop    Écriture dans le terminal en arrière-plan.
+#      ────────────────────────────────────────────────────────────────────────
+## Ensuite, les signaux non décrits par POSIX.1-1990, mais présents dans les spécifications SUSv2 et POSIX.1-2001:
+#      SIGBUS         07       Core    Erreur de bus (mauvais accès mémoire).
+#      SIGPROF        27       Term    Expiration de la temporisation pour le suivi.
+#      SIGSYS         31       Core    Mauvais argument de fonction (SVr4).
+#      SIGTRAP        05       Core    Point d'arrêt rencontré.
+#      SIGURG         23       Ign     Condition urgente sur socket (BSD 4.2).
+#      SIGVTALRM      26       Term    Alarme virtuelle (BSD 4.2).
+#      SIGXCPU        24       Core    Limite de temps CPU dépassée (BSD 4.2).
+#      SIGXFSZ        25       Core    Taille de fichier excessive (BSD 4.2).
+#      ─────────────────────────────────────────────────────────────────────────────
+## Puis quelques signaux divers :
+#      SIGIOT         6        Core    Arrêt IOT. Un synonyme de SIGABRT.
+#      SIGSTKFLT      16       Term    Erreur de pile sur coprocesseur (inutilisé).
+#      SIGIO          29       Term    E/S à nouveau possible(BSD 4.2).
+#      SIGPWR         30       Term    Chute d'alimentation (System V).
+#      SIGWINCH       28       Ign     Fenêtre redimensionnée (BSD 4.3, Sun).
+#      SIGUNUSED      31       Core    Synonyme de SIGSYS
+
+# enable_startup
+## Extra code make it easy to copy paste only the function out to use elsewhere
+#% 7.876s dracut-initqueue.service
+#% 4.021s dnf-makecache.service
+#% 2.039s systemd-udev-settle.service
+#%  832ms udisks2.service
+#%  815ms smartd.service
+#%  664ms systemd-logind.service
+#%  656ms pmlogger.service
+#%  651ms akmods.service
+#%  602ms dkms.service
+#%  580ms firewalld.service
+#%  571ms lvm2-monitor.service
+#%  522ms initrd-switch-root.service
+#%  336ms upower.service
+#%  330ms sssd.service
+#%  292ms pmie.service
+#%  287ms systemd-tmpfiles-setup.service
+#%  286ms pmcd.service
+#%  228ms lvm2-pvscan@259:3.service
+#%  218ms avahi-daemon.service
+#%  197ms systemd-journal-flush.service
+#%  194ms rtkit-daemon.service
+#%  194ms libvirtd.service
+#%  189ms initrd-parse-etc.service
+#%  186ms systemd-homed.service
+#%  186ms systemd-machined.service
+#%  165ms user@1000.service
+#%  163ms packagekit.service
+#%  140ms ModemManager.service
+#%  124ms dracut-cmdline.service
+#%  115ms dbus-broker.service
+#%  112ms polkit.service
+#%  111ms dmraid-activation.service
+#  --system              Operate on system systemd instance
+#  --user                Operate on user systemd instance
+#  --global              Operate on global user configuration
 #* /usr/lib/systemd/system/docker.service
 ## Description=Docker Application Container Engine
 ## Documentation=https://docs.docker.com
@@ -79,17 +467,13 @@ exit $__EXIT_STATUS
 # network-online.target
 #& Requires=
 # docker.socket containerd.service
-
 #* [Unit] # /usr/lib/systemd/system/containerd.service
 ## Description=containerd container runtime
 ## Documentation=https://containerd.io
 #& After=network.target local-fs.target
-
 #* [Install]
 #& WantedBy=multi-user.target
-
 # function 8ujn() nji9-plkçèé
-
 # 6+ () {
 #   (
 #     (
@@ -102,111 +486,7 @@ exit $__EXIT_STATUS
 #   )
 #   sudo nice -n -15 ionice -c 1 -n 4 dnf upgrade --setopt=keepcache=1
 # }
-
 # alias XXX="dnfup && playshutdown& sleep 4; sudo reboot"
-
-## systemd-analyze blame |cat
-## 7.879s dracut-initqueue.service
-## 6.021s abrtd.service
-## 1.832s systemd-udev-settle.service
-## 1.263s docker.service
-## 1.180s upower.service
-## 874ms pmlogger_check.service
-## 775ms pmlogger.service
-## 758ms dkms.service
-## 610ms lvm2-monitor.service
-## 560ms systemd-logind.service
-## 547ms firewalld.service
-## 501ms initrd-switch-root.service
-## 439ms udisks2.service
-## 361ms smartd.service
-## 345ms pmie_check.service
-## 342ms pmie.service
-## 317ms sssd.service
-## 296ms pmcd.service
-## 260ms lvm2-pvscan@259:3.service
-## 255ms systemd-tmpfiles-setup.service
-## 218ms libvirtd.service
-## 210ms akmods.service
-## 178ms avahi-daemon.service
-## 177ms user@1000.service
-## 177ms initrd-parse-etc.service
-## 177ms systemd-journal-flush.service
-## 163ms rtkit-daemon.service
-## 162ms switcheroo-control.service
-## 156ms systemd-machined.service
-## 156ms systemd-homed.service
-## 147ms containerd.service
-## 146ms auditd.service
-## 116ms dracut-cmdline.service
-## 113ms polkit.service
-## 110ms dbus-broker.service
-## 100ms systemd-udevd.service
-## 92ms systemd-udev-trigger.service
-## 83ms dmraid-activation.service
-## 76ms systemd-vconsole-setup.service
-## 73ms cups.service
-## 69ms accounts-daemon.service
-## 61ms dracut-pre-pivot.service
-## 52ms var-lib-nfs-rpc_pipefs.mount
-## 52ms ModemManager.service
-## 45ms systemd-journald.service
-## 45ms systemd-tmpfiles-setup-dev.service
-## 45ms systemd-userdbd.service
-## 41ms dracut-pre-udev.service
-## 40ms import-state.service
-## 40ms lm_sensors.service
-## 35ms gssproxy.service
-## 31ms systemd-fsck@dev-disk-by\x2duuid-21BB\x2d9C7B.service
-## 31ms chronyd.service
-## 31ms sshd.service
-## 30ms bluetooth.service
-## 29ms systemd-fsck@dev-mapper-fedora\x2d\x2dnvme\x2dusers_files.service
-## 28ms initrd-cleanup.service
-## 27ms dev-mapper-fedora\x2d\x2dnvme\x2dsystem_swap.swap
-## 27ms systemd-fsck@dev-disk-by\x2duuid-95b1bbf9\x2d5601\x2d4fe5\x2d8460\x2d840644f8c7b9.service
-## 26ms systemd-fsck-root.service
-## 26ms boot-efi.mount
-## 26ms sssd-kcm.service
-## 25ms colord.service
-## 25ms rsyslog.service
-## 25ms plymouth-quit-wait.service
-## 24ms plymouth-quit.service
-## 23ms livesys.service
-## 22ms NetworkManager.service
-## 21ms systemd-remount-fs.service
-## 20ms netcf-transaction.service
-## 20ms user-runtime-dir@1000.service
-## 20ms redis_6379.service
-## 20ms plymouth-switch-root.service
-## 18ms systemd-random-seed.service
-## 14ms systemd-modules-load.service
-## 14ms plymouth-read-write.service
-## 14ms systemd-update-utmp.service
-## 13ms systemd-sysctl.service
-## 13ms initrd-udevadm-cleanup-db.service
-## 13ms plymouth-start.service
-## 12ms home.mount
-## 12ms systemd-update-utmp-runlevel.service
-## 11ms livesys-late.service
-## 11ms sysroot.mount
-## 11ms systemd-user-sessions.service
-## 11ms boot.mount
-## 11ms systemd-repart.service
-## 10ms systemd-rfkill.service
-## 8ms dev-hugepages.mount
-## 7ms dev-mqueue.mount
-## 7ms sys-kernel-debug.mount
-## 7ms kmod-static-nodes.service
-## 6ms dracut-shutdown.service
-## 6ms nfs-convert.service
-## 6ms rpc-statd-notify.service
-## 5ms sys-fs-fuse-connections.mount
-## 3ms tmp.mount
-## 3ms sys-kernel-config.mount
-## 2ms iscsi-shutdown.service
-## 2ms docker.socket
-
 #+ /usr/lib/systemd/system/containerd.service
 #+ /usr/lib/systemd/system/containerd.service
 #+ /usr/lib/systemd/system/containerd.service
@@ -224,17 +504,14 @@ exit $__EXIT_STATUS
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 #* [Unit] containerd.service
 #% Description=containerd container runtime
 #% Documentation=https://containerd.io
 #& After=
 # network.target local-fs.target
-
 #* [Service]
 #& ExecStartPre=-/sbin/modprobe overlay
 #& ExecStart=/usr/bin/containerd
-
 #& Type=notify
 #& Delegate=yes
 #& KillMode=process
@@ -249,15 +526,12 @@ exit $__EXIT_STATUS
 # # Only systemd 226 and above support this version.
 #& TasksMax=infinity
 #& OOMScoreAdjust=-999
-
 #* [Install]
 #& WantedBy=multi-user.target
-
 #+ /usr/lib/systemd/system/docker.service
 #+ /usr/lib/systemd/system/docker.service
 #+ /usr/lib/systemd/system/docker.service
 #+ /usr/lib/systemd/system/docker.service
-
 #* [Unit] docker.service
 #% Description=Docker Application Container Engine
 #% Documentation=https://docs.docker.com
@@ -270,7 +544,6 @@ exit $__EXIT_STATUS
 #& Requires=
 # docker.socket
 # containerd.service
-
 #* [Service]
 #& Type=notify
 ## the default is not to use systemd for cgroups because the delegate issues still
@@ -311,12 +584,10 @@ exit $__EXIT_STATUS
 #&
 #* [Install]
 #& WantedBy=multi-user.target
-
 #+ /etc/systemd/system/docker.socket
 #+ /etc/systemd/system/docker.socket
 #+ /etc/systemd/system/docker.socket
 #+ /etc/systemd/system/docker.socket
-
 #* [Unit] docker.socket
 #% Description=Docker Socket for the API
 #&
@@ -328,14 +599,11 @@ exit $__EXIT_STATUS
 #&
 #* [Install]
 #& WantedBy=sockets.target
-
 # --before
 #            With list-dependencies, show the units that are ordered after the specified unit. In other words, recursively
 #            list units following the Before= dependency.
-
 #            When passed to the list-jobs command, for each printed job show which other jobs it is waiting for. May be
 #            combined with --after to show both the jobs waiting for each job as well as all jobs each job is waiting for.
-
 #+ sudo systemctl list-dependencies NetworkManager.service --no-pager --with-dependencies --before
 #& Show the units that are ordered after the specified unit
 #+ NetworkManager.service
@@ -381,16 +649,13 @@ exit $__EXIT_STATUS
 #+ ● │ └─shutdown.target
 #+ ● └─shutdown.target
 #& show the units that are ordered after the specified unit
-
 #  --after
 #      With list-dependencies, show the units that are ordered before the specified unit. In other words, recursively
 #      list units following the After= dependency.
-
 #      Note that any After= dependency is automatically mirrored to create a Before= dependency. Temporal dependencies
 #      may be specified explicitly, but are also created implicitly for units which are WantedBy= targets (see
 #      systemd.target(5)), and as a result of other directives (for example RequiresMountsFor=). Both explicitly and
 #      implicitly introduced dependencies are shown with list-dependencies.
-
 #-!! sudo systemctl list-dependencies NetworkManager.service --no-pager --with-dependencies --after
 #& Show the units that are ordered before the specified unit
 #-!! NetworkManager.service
