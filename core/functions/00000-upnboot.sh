@@ -16,7 +16,7 @@ function upnboot() {
   (
     nohup enable_systemctl down &
     sleep 1
-    nohup play_shutdown reboot 3.7 &
+    nohup play_shutdown reboot 4 &
   ) &
   bye
 
@@ -27,7 +27,7 @@ function boot() {
   (
     nohup enable_systemctl down &
     sleep 1
-    nohup play_shutdown reboot 3.7 &
+    nohup play_shutdown reboot 4 &
   ) &
   bye
 
@@ -40,7 +40,7 @@ function upnbooty() {
   (
     nohup enable_systemctl down &
     sleep 1
-    nohup play_shutdown reboot 3.7 &
+    nohup play_shutdown reboot 4 &
   ) &
   bye
 }
@@ -50,7 +50,7 @@ function upnshutdown() {
   _get_updates
   _dnfup
   nohup enable_systemctl down &
-  nohup play_shutdown shutdown 3.7 &
+  nohup play_shutdown shutdown 4 &
   bye
 
 }

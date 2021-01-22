@@ -18,12 +18,17 @@
 # echo $VERBOSA
 set +m
 function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
+  DOTNET_CLI_TELEMETRY_OPTOUT=1
 
-  export BOOTTIME_LOGFILE="${AHMYZSH_CACHE}/$(getstamp 20 bootime- .txt)"
-  export BEGIN_BOOTTIME="        ${BEGIN_HOURGLASS_END_1}"
-  export PRINT_BOOTTIME='1'
-  export PRINT_VERSIONS='1'
-  export BOOTTIME='1'
+  LOAD_ENV_COMPLETED='not yet'
+  ENVIRONNEMENT_LOADED='not yet'
+  LOGIN_ENV_LOADED='not yet'
+  INTERACTIVE_ENV_LOADED='not yet'
+
+  : ${LOAD_ENV_COMPLETED_ONCE:='not yet'}
+  : ${ENVIRONNEMENT_LOADED_ONCE:='not yet'}
+  : ${LOGIN_ENV_LOADED_ONCE:= 'not yet'}
+  : ${INTERACTIVE_ENV_LOADED_ONCE:='not yet'}
 
   # Test we are in ZSH.
   export IS_ZSH_="$(ps -o comm= -p $$ | grep 'zsh')"
@@ -111,6 +116,12 @@ function load_error_() {
 # Scientia es lux principium is a Trade Mark of Benjamin Vincent Kasapoglu
 # (c) et tm - Benjamin Vincent Kasapoglu (Luxcium) 2017-2020
 # ------------------------------------------------------------------------------~
+
+# export BOOTTIME_LOGFILE="${AHMYZSH_CACHE}/$(getstamp 20 bootime- .txt)"
+# export BEGIN_BOOTTIME="        ${BEGIN_HOURGLASS_END_1}"
+# export PRINT_BOOTTIME='1'
+# export PRINT_VERSIONS='1'
+# export BOOTTIME='1'
 
 # echo '' >"${BOOTTIME_LOGFILE}"
 

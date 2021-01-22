@@ -34,7 +34,7 @@ function __compute_extended_path() {
   add_to_path_ "/usr/lib64/ccache"
   add_to_path_ "/usr/local/cuda-11.1/bin"
   add_to_path_ "${HOME}/.yarn/bin"
-
+  add_to_path_ "${HOME}/spx:$PATH"
   add_to_path_ "${HOME}/.cargo/bin"
   call_ rust_up_
   add_to_path_ "${HOME}/.rbenv/shims"
