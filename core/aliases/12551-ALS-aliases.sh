@@ -4,7 +4,8 @@ alias upgradesubmodules='latestohmyzsh; latestpowerlevel10k'
 
 LXI_SESSION='luxcium-io'
 clearall='\u001b[2J\u001b[0;0H'
-
+alias qtbuilder='(cd /home/luxcium/dev/questrade-ts; tsc --build --watch)'
+alias qtbuild='(cd /home/luxcium/dev/questrade-ts; tsc --build)'
 alias vsx='cd ${PATH_LXIO}; code -n ${PATH_LXIO}'
 alias vsqt='cd ${PATH_QUESTRADE}; code -n  ${PATH_QUESTRADE}'
 alias vs-iex-cloud='cd ${PATH_IEXCLOUD_API_WRAPPER}; code ${PATH_IEXCLOUD_API_WRAPPER}'
@@ -79,8 +80,10 @@ alias zshcnf='atom ~/.zshrc'
 alias zshcode='code ~/.oh-my-zsh'
 alias zshatom='atom ~/.oh-my-zsh'
 alias clearall='\u001b[2J\u001b[0;0H'
-alias js='hardcls; env NODE_NO_READLINE=1 rlwrap ${NODELATEST}/node ${NODE_REPL_SCRIPT}'
+# alias js='hardcls; env NODE_NO_READLINE=1 rlwrap ${NODELATEST}/node ${NODE_REPL_SCRIPT}'
 alias noderepl='env NODE_NO_READLINE=1 rlwrap node'
+alias nodejs='env NODE_NO_READLINE=1 rlwrap node' # --experimental-repl-await
+alias js='env NODE_NO_READLINE=1 rlwrap node'
 alias rnd4='echo $(sha224hmac <<< $(date +%s%N) | cut -c -4 | tr \[a-z\] \[A-Z\])'
 alias rnd6='echo $(sha224hmac <<< $(date +%s%N) | cut -c -6 | tr \[a-z\] \[A-Z\])'
 alias rnd8='echo $(sha224hmac <<< $(date +%s%N) | cut -c -8 | tr \[a-z\] \[A-Z\])'
@@ -123,9 +126,22 @@ alias c16x9='echo "0.5625 or 1.7777777778"'
 alias p480x16x9='echo 480 x 853'
 alias p720x16x9='echo 1280 x 720'
 alias p1080x16x9='echo 1080 x 1920'
+alias h480x16x9='echo 480 x 853'
+alias h720x16x9='echo 1280 x 720'
+alias h1080x16x9='echo 1080 x 1920'
+alias w480x16x9='echo 480 x 853'
+alias w720x16x9='echo 1280 x 720'
+alias w1080x16x9='echo 1080 x 1920'
+alias p4Kx16x9='echo 2160 x 3840'
+alias h4Kx16x9='echo 2160 x 3840'
+alias w4Kx16x9='echo 2160 x 3840'
+alias p2160x16x9='echo 2160 x 3840'
+alias h2160x16x9='echo 2160 x 3840'
+alias w2160x16x9='echo 2160 x 3840'
+
 alias vmdaloc='az vm deallocate -g "GroupeONE-UKSouth" --name "MEAN-VirtualONE"'
 alias vmstart='az vm start -g "GroupeONE-UKSouth" --name "MEAN-VirtualONE"'
-
+# 3840-2160
 # function load_aliases() {
 
 #   # TODO Section: Fix thiss mess :

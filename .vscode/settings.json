@@ -9,7 +9,8 @@
     "archives": false,
     "images": true,
     "node_modules": true,
-    "**/.directory": true
+    "**/.directory": true,
+    "nohup.out": true
   },
 
   "search.exclude": {

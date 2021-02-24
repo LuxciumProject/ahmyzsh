@@ -18,7 +18,6 @@
 # echo $VERBOSA
 set +m
 function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
-  DOTNET_CLI_TELEMETRY_OPTOUT=1
 
   LOAD_ENV_COMPLETED='not yet'
   ENVIRONNEMENT_LOADED='not yet'

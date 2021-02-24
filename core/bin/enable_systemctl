@@ -175,26 +175,26 @@ function enable_startup_() {
 
     sudo nice -n -35 ionice -c 1 -n 0 systemctl enable akmods.service avahi-daemon.service avahi-daemon.socket bluetooth.service dkms.service dmraid-activation.service dnf-makecache.service dnfdaemon.service firewalld.service libvirtd.service ModemManager.service NetworkManager.service packagekit.service pmcd.service pmie.service pmlogger.service switcheroo-control.service systemd-machined.service systemd-udevd.service upower.service --now
 
-    sudo renice -n -18 -p $(pidof -w -x Xorg) &
-    sudo renice -n -17 -p $(pidof -w -x plasmashell) &
-    sudo renice -n -16 -p $(pidof -w -x startplasma-x11) &
-    sudo renice -n -15 -p $(pidof -w -x plasma_session) &
-    sudo renice -n -14 -p $(pidof -w -x sddm-helper) &
-    sudo renice -n -13 -p $(pidof -w -x sddm) &
-    sudo renice -n -12 -p $(pidof -w -x kwin_x11) &
-    sudo renice -n -11 -p $(pidof -w -x ksmserver) &
+    sudo renice -n -16 -p $(pidof -w -x Xorg) &
+    sudo renice -n -19 -p $(pidof -w -x plasmashell) &
+    sudo renice -n -18 -p $(pidof -w -x startplasma-x11) &
+    sudo renice -n -17 -p $(pidof -w -x plasma_session) &
+    sudo renice -n -16 -p $(pidof -w -x sddm-helper) &
+    sudo renice -n -15 -p $(pidof -w -x sddm) &
+    sudo renice -n -14 -p $(pidof -w -x kwin_x11) &
+    sudo renice -n -13 -p $(pidof -w -x ksmserver) &
 
-    sudo ionice -c 1 -n 0 -p $(pidof -w -x Xorg) &
-    sudo ionice -c 1 -n 2 -p $(pidof -w -x plasmashell) &
+    sudo ionice -c 1 -n 1 -p $(pidof -w -x Xorg) &
+    sudo ionice -c 1 -n 6 -p $(pidof -w -x plasmashell) &
     sudo ionice -c 1 -n 4 -p $(pidof -w -x plasma_session) &
-    sudo ionice -c 1 -n 6 -p $(pidof -w -x kwin_x11) &
-    sudo ionice -c 2 -n 0 -p $(pidof -w -x ksmserver) &
-    sudo ionice -c 2 -n 2 -p $(pidof -w -x startplasma-x11) &
-    sudo ionice -c 2 -n 0 -p $(pidof -w -x sddm-helper) &
-    sudo ionice -c 2 -n 0 -p $(pidof -w -x sddm) &
+    sudo ionice -c 1 -n 7 -p $(pidof -w -x kwin_x11) &
+    sudo ionice -c 2 -n 1 -p $(pidof -w -x ksmserver) &
+    sudo ionice -c 2 -n 7 -p $(pidof -w -x startplasma-x11) &
+    sudo ionice -c 2 -n 1 -p $(pidof -w -x sddm-helper) &
+    sudo ionice -c 2 -n 1 -p $(pidof -w -x sddm) &
 
-    sudo ionice -c 1 -n 0 systemctl daemon-reexec
-    sudo ionice -c 1 -n 0 systemctl daemon-reload &
+    sudo ionice -c 1 -n 1 systemctl daemon-reexec
+    sudo ionice -c 1 -n 1 systemctl daemon-reload &
 
     # sudo ionice -c 1 -n 0 /bin/sh -c 'sudo /usr/sbin/akmods --from-init --force --verbose' &
     # sudo ionice -c 1 -n 0 /bin/sh -c 'sudo /usr/sbin/dkms autoinstall --force --verbose --kernelver $(uname -r)' &

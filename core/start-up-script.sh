@@ -5,11 +5,11 @@ enable_systemctl up
 eval $(fnm env)
 fnm use default
 
-(code-insiders /home/luxcium/ahmyzsh &)
-(gnome-terminal --title='Gnome Terminal' --class=gnome-terminal-Z6C4C35AEx --name=gnome-terminal-Z757425E8x --role=gnome-terminal-ZF987CDA0x &)
+# (code-insiders /home/luxcium/ahmyzsh &)
+# (gnome-terminal --title='Gnome Terminal' --class=gnome-terminal-Z6C4C35AEx --name=gnome-terminal-Z757425E8x --role=gnome-terminal-ZF987CDA0x &)
 
 (
-  sudo ionice -c 1 -n 5 -p $(pidof -w -x code-insiders)
+  sudo ionice -c 1 -n 6 -p $(pidof -w -x code-insiders)
   sudo renice -n 5 -p $(pidof -w -x code-insiders)
   sudo ionice -c 2 -n 1 -p $(pidof -w -x gnome-terminal)
   sudo renice -n 10 -p $(pidof -w -x gnome-terminal)
