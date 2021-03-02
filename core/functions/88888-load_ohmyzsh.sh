@@ -23,6 +23,9 @@ function load_oh_my_zsh() {
     yarn-autocompletions
     zsh-completions
     git
+    node
+    man
+    docker
     redis-cli
   )
   # alias-finder

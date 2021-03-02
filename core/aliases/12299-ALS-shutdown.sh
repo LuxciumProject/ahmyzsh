@@ -1,3 +1,5 @@
+alias grubreboot='sudo dnf upgrade && (sudo dracut --uefi --force -v  && sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg || exit 1) && sudo dkms autoinstall --verbose --all --force && sudo akmods --from-init --verbose --force && echo ―OK― && sleep 2 # && exit 0'
+
 # alias playshutdown="(play -qv 0.25 /usr/share/sounds/deepin/stereo/system-shutdown.wav)"
 # alias dnfup="( ( (sudo nice -n -35 ionice -c 1 -n 0 dnf upgrade --downloadonly --setopt=keepcache=1 -y &) &)>/dev/null)2>/dev/null; sudo nice -n 15 dnf upgrade --setopt=keepcache=1"
 

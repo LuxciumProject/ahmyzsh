@@ -8,7 +8,7 @@ function load_autocomplete_() {
   fpath=(${ZSH_PLUGINS}/yarn-autocompletions ${fpath})
   fpath=(${ZSH_PLUGINS}/zsh-completions/src ${fpath})
   fpath=(${CORE_COMPLETE} ${fpath})
-
+  fpath=(${HOME}/.zsh/completion $fpath)
   source_ "${ZSH_PLUGINS}/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh"
   source_ "${ZSH_PLUGINS}/yarn-autocompletions/yarn-autocompletions.plugin.zsh"
 
@@ -111,16 +111,11 @@ function load_autocomplete_() {
   zstyle ':completion:*' expand prefix
   zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:]}={[:upper:]}'
   zstyle :compinstall filename "${CORE_COMPLETE}/autocomplete.sh"
-
-  # autoload -U +X compinit
-
   autoload -U +X bashcompinit && bashcompinit
 
-  autoload -Uz compinit
-
-  compinit
-
   # End of lines added by compinstall
+
+  autoload -Uz compinit && compinit -i
 
   for dump in "${HOME}/.zcompdump(N.mh+24)"; do
     compinit

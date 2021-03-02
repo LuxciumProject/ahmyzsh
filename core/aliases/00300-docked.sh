@@ -1,5 +1,17 @@
-alias dspxs='sudo docker run -it -v /home/luxcium/spx-data:/data --rm msftspeech/spx synthesize'
+alias drun='docker run'
+alias dpsall='docker ps --all'
+alias psdocker='docker ps'
+alias drmall='docker rm $(docker ps -qa)'
+alias drmallf='docker rm $(docker ps -qa) --force'
+alias dimgall='docker images --all'
+alias imgdocker='docker images'
+alias drmiall='docker rmi $(docker images -qa)'
+alias drmiallf='docker rmi --force $(docker images -qa)'
+alias inspectbridge='docker network inspect bridge'
 
+alias dstart='sudo systemctl enable containerd.service docker.socket docker.service docker-distribution.service --now; sudo systemctl daemon-reload; sudo systemctl daemon-reexec'
+
+alias dspxs='sudo docker run -it -v /home/luxcium/spx-data:/data --rm msftspeech/spx synthesize'
 alias dokr_start='sudo systemctl enable containerd.service docker.socket docker.service docker-distribution.service --now; sudo systemctl daemon-reload; sudo systemctl daemon-reexec'
 
 alias dokr_stop='sudo systemctl disable containerd.service docker.socket docker.service docker-distribution.service --now; sudo systemctl daemon-reload; sudo systemctl daemon-reexec'
