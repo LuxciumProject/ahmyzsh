@@ -31,6 +31,12 @@ conda update --all -y
 
 (dokr_redis &) &
 
+(
+  sleep 20
+  source /home/luxcium/ahmyzsh/core/functions/00000-upnboot.sh
+  dnfcup
+) &
+
 (play -qv 0.85 /usr/share/sounds/Oxygen-Im-Sms.ogg tremolo 10 100 chorus 0.4 0.9 50 0.5 0.25 2 -t 40 0.6 0.2 3 -s 60 0.6 0.3 1.3 -t &)
 
 exit 0

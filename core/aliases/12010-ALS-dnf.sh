@@ -8,11 +8,11 @@
 
 # alias dnfl='dnf list'             # List packages
 # alias dnfli='dnf list --installed'  # List installed packages
-alias dnfgl='dnf grouplist'       # List package groups
-alias dnfp='dnf info'             # Show package information
-alias dnfs='dnf search'           # Search package
-alias dnfu='sudo dnf upgrade'     # Upgrade package
-alias dnfuy='sudo dnf upgrade -y' # Upgrade package
+alias dnfgl='dnf grouplist'                 # List package groups
+alias dnfp='dnf info'                       # Show package information
+alias dnfs='dnf search'                     # Search package
+alias dnfu='sudo dnf upgrade --refresh'     # Upgrade package
+alias dnfuy='sudo dnf upgrade -y --refresh' # Upgrade package
 # alias dnfi='sudo dnf install'       # Install package
 alias dnfgi='sudo dnf groupinstall' # Install package group
 alias dnfr='sudo dnf remove'        # Remove package
@@ -26,7 +26,7 @@ alias dnfxu='sudo nice -n -35 ionice -c 1 -n 1 dnf upgrade' # Upgrade package
 
 ## Additional Aliases
 #@ created by https://github.com/Luxcium
-alias dnfud='sudo dnf upgrade --downloadonly -y' # Upgrade package
+alias dnfud='sudo dnf upgrade --downloadonly -y --refresh' # Upgrade package
 
 ## Functions
 #@ created by https://github.com/Luxcium

@@ -3,22 +3,55 @@
 function enable_startup_() {
 
   function disable_at_shutdown_() {
-    # echo -e '\nfunction disable_at_shutdown_()\n'
+    echo -e '\nfunction disable_at_shutdown_()\n'
 
-    # sudo nice -n -35 ionice -c 1 -n 0 /bin/sh -c 'sudo /usr/sbin/akmods --from-init --verbose' &
-    # sudo nice -n -35 ionice -c 1 -n 0 /bin/sh -c 'sudo /usr/sbin/dkms autoinstall --verbose --kernelver $(uname -r)' &
+    sudo nice -n -35 ionice -c 1 -n 2 /bin/sh -c "sudo nice -n -35 ionice /usr/sbin/akmods --from-init --verbose"
 
-    sudo nice -n -35 ionice -c 1 -n 0 systemctl disable akmods.service avahi-daemon.service avahi-daemon.socket bluetooth.service dkms.service dmraid-activation.service dnf-makecache.service dnfdaemon.service firewalld.service libvirtd.service ModemManager.service NetworkManager.service packagekit.service pmcd.service pmie.service pmlogger.service switcheroo-control.service systemd-machined.service systemd-udevd.service upower.service --now
+    sudo nice -n -35 ionice -c 1 -n 2 /bin/sh -c "sudo nice -n -35 ionice /usr/sbin/dkms autoinstall --verbose --kernelver $(uname -r)"
 
-    sudo nice -n -35 ionice -c 1 -n 0 systemctl disable containerd docker docker.socket redis_6379.service sshd.service --now
+    sudo nice -n -35 ionice -c 1 -n 2 /bin/sh -c "sudo nice -n -35 ionice /usr/sbin/dkms autoinstall --verbose"
+
+    sudo nice -n -35 ionice -c 1 -n 0 systemctl disable \
+      avahi-daemon.service \
+      avahi-daemon.socket \
+      bluetooth.service \
+      dmraid-activation.service \
+      dnf-makecache.service \
+      dnfdaemon.service \
+      firewalld.service \
+      libvirtd.service \
+      ModemManager.service \
+      NetworkManager.service \
+      packagekit.service \
+      --now
+    # pmcd.service
+    # pmie.service
+    # pmlogger.service
+    # switcheroo-control.service
+    # systemd-machined.service
+    # systemd-udevd.service
+    # upower.service --now
+
+    sudo nice -n -35 ionice -c 1 -n 0 systemctl stop \
+      redis_6379.service
+
+    sudo nice -n -35 ionice -c 1 -n 0 systemctl disable \
+      containerd \
+      docker \
+      docker.socket \
+      sshd.service \
+      --now
 
     sudo nice -n -35 ionice -c 1 -n 0 systemctl daemon-reload
     sudo nice -n -35 ionice -c 1 -n 0 systemctl daemon-reexec &
-
+    sudo systemctl enable redis --now
   }
   # sudo nice -n -35 ionice -c 1 -n 0 systemctl enable redis_6379 --now
 
   function kill_at_shutdown_() {
+
+    sudo nice -n -35 ionice -c 1 -n 0 systemctl enable redis_6379.service --now
+
     sudo dkms autoinstall --verbose --all --force
     sudo akmods --from-init --verbose --force
     (
@@ -176,7 +209,42 @@ function enable_startup_() {
 
     # echo -e '\nfunction enable_at_startup_()\n'
 
-    sudo nice -n -35 ionice -c 1 -n 0 systemctl enable akmods.service avahi-daemon.service avahi-daemon.socket bluetooth.service dkms.service dmraid-activation.service dnf-makecache.service dnfdaemon.service firewalld.service libvirtd.service ModemManager.service NetworkManager.service packagekit.service pmcd.service pmie.service pmlogger.service switcheroo-control.service systemd-machined.service systemd-udevd.service upower.service --now
+    sudo nice -n -35 ionice -c 1 -n 0 systemctl enable \
+      avahi-daemon.service \
+      avahi-daemon.socket \
+      bluetooth.service \
+      dmraid-activation.service \
+      dnf-makecache.service \
+      dnfdaemon.service \
+      firewalld.service \
+      libvirtd.service \
+      ModemManager.service \
+      NetworkManager.service \
+      packagekit.service \
+      --now
+    # dkms.service \
+    # akmods.service \
+    # pmcd.service \
+    # pmie.service \
+    # pmlogger.service \
+    # switcheroo-control.service \
+    # systemd-machined.service \
+    # systemd-udevd.service \
+    # upower.service \
+
+    # sudo nice -n -35 ionice -c 1 -n 0 systemctl enable redis_6379.service
+
+    sudo nice -n -35 ionice -c 1 -n 0 systemctl enable \
+      containerd \
+      docker \
+      docker.socket \
+      sshd.service \
+      --now
+
+    sudo ionice -c 1 -n 1 systemctl daemon-reload
+
+    sudo systemctl enable redis
+    sudo systemctl start redis
 
     sudo renice -n -20 -p $(pidof -w -x Xorg) &
     sudo renice -n -16 -p $(pidof -w -x plasmashell) &
@@ -201,14 +269,14 @@ function enable_startup_() {
 
     # sudo ionice -c 1 -n 0 /bin/sh -c 'sudo /usr/sbin/akmods --from-init --force --verbose' &
     # sudo ionice -c 1 -n 0 /bin/sh -c 'sudo /usr/sbin/dkms autoinstall --force --verbose --kernelver $(uname -r)' &
-
+    sudo systemctl enable redis --now
   }
 
   function restart_now_() {
     echo -e '\nfunction rerestart_now_()\n'
 
     sudo systemctl enable containerd docker docker.socket sshd.service --now
-    sudo systemctl enable redis_6379.service
+    sudo systemctl enable redis_6379.service --now
 
     sudo ionice -c 2 -n 0 -p $(pidof -w -x chrome) &
     sudo renice -n -17 -p $(pidof -w -x chrome) &
@@ -225,7 +293,7 @@ function enable_startup_() {
 
     sleep 0.75
     echo ''
-
+    sudo systemctl enable redis --now
   }
 
   # enable_systemctl down

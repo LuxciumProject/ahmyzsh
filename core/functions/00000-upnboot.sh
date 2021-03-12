@@ -1,14 +1,23 @@
 # clean and get updates:
 function dnfcup() {
-  _dnf_clean_all && _get_updates
+  _dnf_clean_all && _get_updates &
   echo ""
   echo "UPGRADE:"
-  sudo nice -n -5 ionice -c 2 -n 0 dnf upgrade --setopt=keepcache=1 --assumeno
+  sudo nice -n -15 ionice -c 1 -n 2 dnf upgrade --setopt=keepcache=1 --assumeno
   echo ""
   echo "DISTRO-SYNC:"
-  sudo nice -n -5 ionice -c 2 -n 0 dnf distro-sync --setopt=keepcache=1 --assumeno
+  sudo nice -n -15 ionice -c 1 -n 2 dnf distro-sync --setopt=keepcache=1 --assumeno
 }
 
+function dnfcleanupgrade() {
+  _dnf_clean_all && _get_updates &
+  echo ""
+  echo "UPGRADE:"
+  sudo nice -n -15 ionice -c 1 -n 2 dnf upgrade --setopt=keepcache=1 -y
+  echo ""
+  echo "DISTRO-SYNC:"
+  sudo nice -n -15 ionice -c 1 -n 2 dnf distro-sync --setopt=keepcache=1 -y
+}
 # update and reboot
 function upnboot() {
   _get_updates
@@ -57,8 +66,8 @@ function upnshutdown() {
 
 # _dnf_clean_all
 function _dnf_clean_all() {
-  sudo dnf clean all --refresh
-  sudo dnf makecache --refresh
+  sudo nice -n -15 ionice -c 1 -n 2 dnf clean all --refresh
+  sudo nice -n -15 ionice -c 1 -n 2 dnf makecache --refresh
 }
 
 # download updates
