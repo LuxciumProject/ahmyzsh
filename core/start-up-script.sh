@@ -37,6 +37,6 @@ conda update --all -y
   dnfcup
 ) &
 
-(play -qv 0.85 /usr/share/sounds/Oxygen-Im-Sms.ogg tremolo 10 100 chorus 0.4 0.9 50 0.5 0.25 2 -t 40 0.6 0.2 3 -s 60 0.6 0.3 1.3 -t &)
+(sudo systemctl enable redis --now && (play -qv 0.85 /usr/share/sounds/Oxygen-Im-Sms.ogg tremolo 10 100 chorus 0.4 0.9 50 0.5 0.25 2 -t 40 0.6 0.2 3 -s 60 0.6 0.3 1.3 -t &) || exit 1)
 
 exit 0

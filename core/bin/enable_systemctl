@@ -7,7 +7,7 @@ function enable_startup_() {
 
     sudo nice -n -35 ionice -c 1 -n 2 /bin/sh -c "sudo nice -n -35 ionice /usr/sbin/akmods --from-init --verbose"
 
-    sudo nice -n -35 ionice -c 1 -n 2 /bin/sh -c "sudo nice -n -35 ionice /usr/sbin/dkms autoinstall --verbose --kernelver $(uname -r)"
+    sudo nice -n -35 ionice -c 1 -n 2 /bin/sh -c "sudo nice -n -35 ionice /usr/sbin/dkms autoinstall --verbose # --kernelver $(uname -r)"
 
     sudo nice -n -35 ionice -c 1 -n 2 /bin/sh -c "sudo nice -n -35 ionice /usr/sbin/dkms autoinstall --verbose"
 
@@ -32,8 +32,8 @@ function enable_startup_() {
     # systemd-udevd.service
     # upower.service --now
 
-    sudo nice -n -35 ionice -c 1 -n 0 systemctl stop \
-      redis_6379.service
+    # sudo nice -n -35 ionice -c 1 -n 0 systemctl stop \
+    #   redis_6379.service
 
     sudo nice -n -35 ionice -c 1 -n 0 systemctl disable \
       containerd \
@@ -42,9 +42,11 @@ function enable_startup_() {
       sshd.service \
       --now
 
+    sudo systemctl enable redis --now
+
     sudo nice -n -35 ionice -c 1 -n 0 systemctl daemon-reload
     sudo nice -n -35 ionice -c 1 -n 0 systemctl daemon-reexec &
-    sudo systemctl enable redis --now
+
   }
   # sudo nice -n -35 ionice -c 1 -n 0 systemctl enable redis_6379 --now
 
@@ -243,7 +245,7 @@ function enable_startup_() {
 
     sudo ionice -c 1 -n 1 systemctl daemon-reload
 
-    sudo systemctl enable redis
+    sudo systemctl enable redis --now
     sudo systemctl start redis
 
     sudo renice -n -20 -p $(pidof -w -x Xorg) &
@@ -264,12 +266,15 @@ function enable_startup_() {
     sudo ionice -c 2 -n 2 -p $(pidof -w -x sddm-helper) &
     sudo ionice -c 2 -n 2 -p $(pidof -w -x sddm) &
 
+    sudo systemctl enable redis --now
+    sudo systemctl start redis
+
     sudo ionice -c 1 -n 1 systemctl daemon-reexec
     sudo ionice -c 1 -n 1 systemctl daemon-reload &
 
     # sudo ionice -c 1 -n 0 /bin/sh -c 'sudo /usr/sbin/akmods --from-init --force --verbose' &
     # sudo ionice -c 1 -n 0 /bin/sh -c 'sudo /usr/sbin/dkms autoinstall --force --verbose --kernelver $(uname -r)' &
-    sudo systemctl enable redis --now
+
   }
 
   function restart_now_() {
