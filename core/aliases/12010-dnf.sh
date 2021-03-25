@@ -24,6 +24,27 @@ alias dnfmkcln='dnfc -v; dnfmc'     # Clean cache & Regenerate metadata cache
 #  sudo nice -n -35 ionice -c 1 -n 1
 alias dnfxu='sudo nice -n -35 ionice -c 1 -n 1 dnf upgrade' # Upgrade package
 
+# clean and get updates:
+function dnfcup() {
+  _dnf_clean_all && _dnf_makecache && _get_updates &
+  echo ""
+  echo "UPGRADE:"
+  sudo nice -n -15 ionice -c 1 -n 2 dnf upgrade --setopt=keepcache=1 --assumeno
+  echo ""
+  echo "DISTRO-SYNC:"
+  sudo nice -n -15 ionice -c 1 -n 2 dnf distro-sync --setopt=keepcache=1 --assumeno
+}
+
+function dnfcleanupgrade() {
+  _dnf_clean_all && _dnf_makecache && _get_updates &
+  echo ""
+  echo "UPGRADE:"
+  sudo nice -n -15 ionice -c 1 -n 2 dnf upgrade --setopt=keepcache=1 -y
+  echo ""
+  echo "DISTRO-SYNC:"
+  sudo nice -n -15 ionice -c 1 -n 2 dnf distro-sync --setopt=keepcache=1 -y
+}
+
 ## Additional Aliases
 #@ created by https://github.com/Luxcium
 alias dnfud='sudo dnf upgrade --downloadonly -y --refresh' # Upgrade package

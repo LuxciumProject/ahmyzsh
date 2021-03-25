@@ -36,32 +36,140 @@ alias dckr_helloworld='docker run hello-world'
 
 #+ // #### # REDIS # ####################################################### // +#
 
-function dckr_redis_start() {
+alias notconnectsound="(play -qv 1 /usr/share/sounds/Oxygen-Im-Cant-Connect.ogg)"
+alias popsound="(play -qv 0.75 /home/luxcium/ahmyzsh/multimedia/sounds/dactylo-cloche.mp3 & sleep 0.375;play -qv 0.50 /home/luxcium/ahmyzsh/multimedia/sounds/pop-up.mp3 &)"
+#
+# alias play-Im-Cant-Connect='(play -qv 1 /usr/share/sounds/Oxygen-Im-Cant-Connect.ogg)'
+#
+
+function dckr_redis_start_6384() {
   dckr_start
-  docker container ls --filter id=$(docker run -d -p 6381:6379 --name=Redis_Main_6381 -l=redis redis)
-  [[ $(redis-cli -p 6381 PING) == "PONG" ]] && popsound
+  docker rm Redis_Main_6384 2>/dev/null
+  docker container ls --filter id=$(docker run -d -p 6384:6379 --name=Redis_Main_6384 -l=redis redis 2>/dev/null)
+  [[ $(redis-cli -p 6384 PING) == "PONG" ]] && popsound || (play -qv 1 /usr/share/sounds/Oxygen-Im-Cant-Connect.ogg)
 }
 
-function dckr_redis_stop() {
+function dckr_redis_stop_6384() {
   (
-    docker stop Redis_Main_6381
-    docker rm Redis_6381
-  ) 2>/dev/null
+    docker stop Redis_Main_6384 2>/dev/null
+    docker rm Redis_Main_6384 2>/dev/null
+  ) # 2>/dev/null
 }
 
-function isRedis6381() {
-  [[ $(redis-cli PING) == "PONG" ]] && popsound || exit
+function isRedis_6384() {
+  [[ $(redis-cli -p 6384 PING PING) == "PONG" ]] && popsound || notconnectsound
+  exit
 }
 
-function dckr_redis_6380() {
+function dckr_redis_start_6383() {
   dckr_start
-  docker container ls --filter id=$(docker run -d -p 6380:6379 --name=Redis_Main_6380 -l=redis redis)
+  docker rm Redis_Main_6383 2>/dev/null
+  docker container ls --filter id=$(docker run -d -p 6383:6379 --name=Redis_Main_6383 -l=redis redis 2>/dev/null)
+  [[ $(redis-cli -p 6383 PING) == "PONG" ]] && popsound || (play -qv 1 /usr/share/sounds/Oxygen-Im-Cant-Connect.ogg)
 }
 
-function dckr_redis_random() {
-  dckr_start
-  docker container ls --filter id=$(docker run -d -P -l=redis redis)
+function dckr_redis_stop_6383() {
+  (
+    docker stop Redis_Main_6383 2>/dev/null
+    docker rm Redis_Main_6383 2>/dev/null
+  ) # 2>/dev/null
 }
+
+function isRedis_6383() {
+  [[ $(redis-cli -p 6383 PING PING) == "PONG" ]] && popsound || notconnectsound
+  exit
+}
+
+function dckr_redis_start_6382() {
+  dckr_start
+  docker rm Redis_Main_6382 2>/dev/null
+  docker container ls --filter id=$(docker run -d -p 6382:6379 --name=Redis_Main_6382 -l=redis redis 2>/dev/null)
+  [[ $(redis-cli -p 6382 PING) == "PONG" ]] && popsound || (play -qv 1 /usr/share/sounds/Oxygen-Im-Cant-Connect.ogg)
+}
+
+function dckr_redis_stop_6382() {
+  (
+    docker stop Redis_Main_6382 2>/dev/null
+    docker rm Redis_Main_6382 2>/dev/null
+  ) # 2>/dev/null
+}
+
+function isRedis_6382() {
+  [[ $(redis-cli -p 6382 PING PING) == "PONG" ]] && popsound || notconnectsound
+  exit
+}
+
+function dckr_redis_start_6381() {
+  dckr_start
+  docker rm Redis_Main_6381 2>/dev/null
+  docker container ls --filter id=$(docker run -d -p 6381:6379 --name=Redis_Main_6381 -l=redis redis 2>/dev/null)
+  [[ $(redis-cli -p 6381 PING) == "PONG" ]] && popsound || (play -qv 1 /usr/share/sounds/Oxygen-Im-Cant-Connect.ogg)
+}
+
+function dckr_redis_stop_6381() {
+  (
+    docker stop Redis_Main_6381 2>/dev/null
+    docker rm Redis_Main_6381 2>/dev/null
+  ) # 2>/dev/null
+}
+
+function isRedis_6381() {
+  [[ $(redis-cli -p 6381 PING PING) == "PONG" ]] && popsound || notconnectsound
+  exit
+}
+
+function dckr_redis_start_6380() {
+  dckr_start
+  docker rm Redis_Main_6380 2>/dev/null
+  docker container ls --filter id=$(docker run -d -p 6380:6379 --name=Redis_Main_6380 -l=redis redis 2>/dev/null)
+  [[ $(redis-cli -p 6380 PING) == "PONG" ]] && popsound || (play -qv 1 /usr/share/sounds/Oxygen-Im-Cant-Connect.ogg)
+}
+
+function dckr_redis_stop_6380() {
+  (
+    docker stop Redis_Main_6380 2>/dev/null
+    docker rm Redis_Main_6380 2>/dev/null
+  ) # 2>/dev/null
+}
+
+function isRedis_6380() {
+  [[ $(redis-cli -p 6380 PING PING) == "PONG" ]] && popsound || notconnectsound
+  exit
+}
+
+function dckr_redis_start_all() {
+  (
+    (dckr_redis_start_6380) 2>/dev/null
+    (dckr_redis_start_6381) 2>/dev/null
+    (dckr_redis_start_6382) 2>/dev/null
+    (dckr_redis_start_6383) 2>/dev/null
+    (dckr_redis_start_6384) 2>/dev/null
+    exit 0
+  )
+
+}
+
+function dckr_redis_stop_all() {
+  (
+    (dckr_redis_stop_6380) 2>/dev/null
+    (dckr_redis_stop_6381) 2>/dev/null
+    (dckr_redis_stop_6382) 2>/dev/null
+    (dckr_redis_stop_6383) 2>/dev/null
+    (dckr_redis_stop_6384) 2>/dev/null
+    exit 0
+  )
+
+}
+
+# function dckr_redis_6380() {
+#   dckr_start
+#   docker container ls --filter id=$(docker run -d -p 6380:6379 --name=Redis_Main_6380 -l=redis redis)
+# }
+
+# function dckr_redis_random() {
+#   dckr_start
+#   docker container ls --filter id=$(docker run -d -P -l=redis redis)
+# }
 
 alias dckr_ls_redis='docker container ls --filter label=redis'
 alias dckr_killall_redis='docker rm --force $(docker container ls --filter label=redis --quiet)'

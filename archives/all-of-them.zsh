@@ -506,8 +506,8 @@ alias cdtmp='cd /tmp'
 alias ctmp='cd /tmp'
 
 function cdir() {
-  mkdir -p "$1" &&
-    cd "$1"
+  mkdir -p "$1" \
+    && cd "$1"
 }
 alias cmdir='cdir'
 alias al='ls -alhSvF -X'
@@ -2047,9 +2047,9 @@ alias gst='git status'
 
 # use the default stash push on git 2.13 and newer
 autoload -Uz is-at-least
-is-at-least 2.13 "$(git --version 2>/dev/null | awk '{print $3}')" &&
-  alias gsta='git stash push' ||
-  alias gsta='git stash save'
+is-at-least 2.13 "$(git --version 2>/dev/null | awk '{print $3}')" \
+  && alias gsta='git stash push' \
+  || alias gsta='git stash save'
 
 alias gstaa='git stash apply'
 alias gstc='git stash clear'
@@ -2227,7 +2227,7 @@ alias debug='yarn run debug'
 # yarn global add eslint@latest
 # yarn global add prettier@latest
 # yarn global add @nestjs/cli@latest
-alias play-Im-Cant-Connect='(play -qv 0.1 /usr/share/sounds/Oxygen-Im-Cant-Connect.ogg)'
+alias play-Im-Cant-Connect='(play -qv 1 /usr/share/sounds/Oxygen-Im-Cant-Connect.ogg)'
 alias play-Im-Connection-Lost='(play -qv 0.1 /usr/share/sounds/Oxygen-Im-Connection-Lost.ogg)'
 alias play-Im-Contact-In='(play -qv 0.1 /usr/share/sounds/Oxygen-Im-Contact-In.ogg)'
 alias play-Im-Contact-Out='(play -qv 0.1 /usr/share/sounds/Oxygen-Im-Contact-Out.ogg)'
@@ -2608,10 +2608,10 @@ alias dnfup="( ( (sudo nice -n -35 ionice -c 1 -n 0 dnf upgrade --downloadonly -
 function dnfcup() {
   (
     (
-      sudo dnf clean all &&
-        dnf makecache
-    ) &&
-      ( (
+      sudo dnf clean all \
+        && dnf makecache
+    ) \
+      && ( (
         sudo nice -n -35 ionice -c 1 -n 2 dnf upgrade --downloadonly -y &
       ) >/dev/null) 2>/dev/null
   )
@@ -2623,9 +2623,9 @@ alias up="sudo nice -n -15 ionice -c 1 -n 3 dnf upgrade --setopt=keepcache=1 && 
 alias upndown="dnfup && playshutdown& sleep 3; sudo shutdown now"
 
 function upnboot() {
-  dnfup &&
-    disable_at_shutdown_ &&
-    playshutdown &
+  dnfup \
+    && disable_at_shutdown_ \
+    && playshutdown &
   sleep 3.5
   sudo reboot
 
