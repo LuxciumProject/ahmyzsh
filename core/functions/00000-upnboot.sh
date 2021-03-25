@@ -1,5 +1,7 @@
 # update and reboot
 function upnboot() {
+  source $HOME/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  play_015
   _get_updates
   _dnfup "${1}"
   (
@@ -24,6 +26,8 @@ function boot() {
 
 # update and reboot --assumeyes
 function upnbooty() {
+  source $HOME/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  play_015
   _get_updates
   _dnfup "--assumeyes ${1}"
   (

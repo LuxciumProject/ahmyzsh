@@ -5,8 +5,11 @@
 function play_shutdown_() {
   # #region play_shutdown_ =====================================================¹
   (
-    play -qv 0.25 /usr/share/sounds/deepin/stereo/system-shutdown.wav &
-    sleep "${2:-4}"
+
+    source $HOME/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+    play -qv 0.9 /home/luxcium/.local/share/sounds/smooth/stereo/desktop-login.oga
+
+    sleep "${2:-0.1}"
 
     if [ "${1:-''}" == "reboot" ]; then
       sudo /sbin/shutdown -t 10 -rf now

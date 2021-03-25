@@ -1,5 +1,6 @@
 #!/usr/bin/env zsh
 source $HOME/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+play_NTV_error_tv3 &
 
 enable_systemctl up && play_005_warning-dialog || play_002_etc-dialog
 
@@ -12,9 +13,9 @@ fnm use default && play_003_menu-select-b || play_002_etc-dialog
 (
   sudo ionice -c 1 -n 6 -p $(pidof -w -x code-insiders) && play_008_information-dialog || play_002_etc-dialog
   sudo renice -n 5 -p $(pidof -w -x code-insiders) && play_004_menu-select-a || play_002_etc-dialog
-  sudo ionice -c 2 -n 1 -p $(pidof -w -x gnome-terminal) && play_008_information-dialog || play_002_etc-dialog
-  sudo renice -n 10 -p $(pidof -w -x gnome-terminal) && play_003_menu-select-b || play_002_etc-dialog
-)
+  # sudo ionice -c 2 -n 1 -p $(pidof -w -x gnome-terminal) && play_008_information-dialog || play_002_etc-dialog
+  # sudo renice -n 10 -p $(pidof -w -x gnome-terminal) && play_003_menu-select-b || play_002_etc-dialog
+) &
 
 (
   conda update --all -y && play_count-down2 || play_002_etc-dialog
@@ -27,14 +28,13 @@ fnm use default && play_003_menu-select-b || play_002_etc-dialog
 
   sudo fc-cache -rfE
   fc-cache -rfE
-)
+) &
 (
   source /home/luxcium/ahmyzsh/core/functions/00000-upnboot.sh
   _dnf_clean_all
   _dnf_makecache
   _get_updates && (
-    play_count-down2
-    play_count-down2
+    play_015
   ) || play_002_etc-dialog
 ) &
 

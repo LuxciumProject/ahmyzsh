@@ -3,9 +3,79 @@
 # play_004_menu-select-a
 # play_003_menu-select-b
 # play_008_information-dialog
-# play_count-down2
 # play_count-down1
+# play_count-down2
 # play_buddylogin
+
+# echo "play_001"
+# sleep 2
+# play_001
+# echo "play_010"
+# sleep 2
+# play_010
+# echo "play_011"
+# sleep 2
+# play_011
+# echo "play_012"
+# sleep 2
+# play_012
+# echo "play_013"
+# sleep 2
+# play_013
+# echo "play_014"
+# sleep 2
+# play_014
+# echo "play_015"
+# sleep 2
+# play_015
+# echo "play_016"
+# sleep 2
+# play_016
+# echo "play_017"
+# sleep 2
+# play_017
+# echo "play_018"
+# sleep 2
+# play_018
+# echo "play_019"
+# sleep 2
+# play_019
+# echo "play_02"
+# sleep 2
+# play_02
+# echo "play_020"
+# sleep 2
+# play_020
+# echo "play_021"
+# sleep 2
+# play_021
+# echo "play_022"
+# sleep 2
+# play_022
+# echo "play_023"
+# sleep 2
+# play_023
+# echo "play_03"
+# sleep 2
+# play_03
+# echo "play_04"
+# sleep 2
+# play_04
+# echo "play_05"
+# sleep 2
+# play_05
+# echo "play_06"
+# sleep 2
+# play_06
+# echo "play_07"
+# sleep 2
+# play_07
+# echo "play_08"
+# sleep 2
+# play_08
+# echo "play_09"
+# sleep 2
+# play_09
 
 alias play_001="(play -qv 0.5 ${HOME}/.local/share/sounds/33932-pc-libre/varios/001.mp3)"
 alias play_010="(play -qv 0.5 ${HOME}/.local/share/sounds/33932-pc-libre/varios/010.mp3)"
@@ -13,7 +83,7 @@ alias play_011="(play -qv 0.5 ${HOME}/.local/share/sounds/33932-pc-libre/varios/
 alias play_012="(play -qv 0.5 ${HOME}/.local/share/sounds/33932-pc-libre/varios/012.mp3)"
 alias play_013="(play -qv 0.5 ${HOME}/.local/share/sounds/33932-pc-libre/varios/013.mp3)"
 alias play_014="(play -qv 0.5 ${HOME}/.local/share/sounds/33932-pc-libre/varios/014.mp3)"
-alias play_015="(play -qv 0.5 ${HOME}/.local/share/sounds/33932-pc-libre/varios/015.mp3)"
+alias play_015="(play -qv 0.1 ${HOME}/.local/share/sounds/33932-pc-libre/varios/015.mp3)"
 alias play_016="(play -qv 0.5 ${HOME}/.local/share/sounds/33932-pc-libre/varios/016.mp3)"
 alias play_017="(play -qv 0.5 ${HOME}/.local/share/sounds/33932-pc-libre/varios/017.mp3)"
 alias play_018="(play -qv 0.5 ${HOME}/.local/share/sounds/33932-pc-libre/varios/018.mp3)"
@@ -31,20 +101,19 @@ alias play_07="(play -qv 0.5 ${HOME}/.local/share/sounds/33932-pc-libre/varios/0
 alias play_08="(play -qv 0.5 ${HOME}/.local/share/sounds/33932-pc-libre/varios/08.mp3)"
 alias play_09="(play -qv 0.5 ${HOME}/.local/share/sounds/33932-pc-libre/varios/09.mp3)"
 alias play_NTV_startup_C9_Long_Versión="(play -qv 0.5 ${HOME}/.local/share/sounds/35889-nostalgia-tv/NTV_startup_C9_Long_Versión.ogg)"
-alias play_NTV_startup_C9_Small_Version="(play -qv 0.5 ${HOME}/.local/share/sounds/35889-nostalgia-tv/NTV_startup_C9_Small_Version.ogg)"
-alias play_Note="(play -qv 0.5 ${HOME}/.local/share/sounds/35889-nostalgia-tv/Note.txt)"
-alias play_NTV_error_tv3="(play -qv 0.5 ${HOME}/.local/share/sounds/35889-nostalgia-tv/NTV_error_tv3.ogg)"
-alias play_NTV_information_t5="(play -qv 0.5 ${HOME}/.local/share/sounds/35889-nostalgia-tv/NTV_information_t5.ogg)"
+alias play_NTV_startup_C9_Small_Version="(play -qv 0.3 ${HOME}/.local/share/sounds/35889-nostalgia-tv/NTV_startup_C9_Small_Version.ogg)"
+alias play_NTV_error_tv3="(play -qv 0.3 ${HOME}/.local/share/sounds/35889-nostalgia-tv/NTV_error_tv3.ogg)"
+alias play_NTV_information_t5="(play -qv 0.3 ${HOME}/.local/share/sounds/35889-nostalgia-tv/NTV_information_t5.ogg)"
 alias play_NTV_logout_a3="(play -qv 0.5 ${HOME}/.local/share/sounds/35889-nostalgia-tv/NTV_logout_a3.ogg)"
 alias play_NTV_question_btv="(play -qv 0.5 ${HOME}/.local/share/sounds/35889-nostalgia-tv/NTV_question_btv.ogg)"
 alias play_001_check-click="(play -qv 0.5 ${HOME}/.local/share/sounds/ater/001_check-click.mp3)"
-alias play_002_etc-dialog="(play -qv 0.2 ${HOME}/.local/share/sounds/ater/002_etc-dialog.mp3)"
-alias play_003_menu-select-b="(play -qv 0.8 ${HOME}/.local/share/sounds/ater/003_menu-select-b.mp3)"
-alias play_004_menu-select-a="(play -qv 0.8 ${HOME}/.local/share/sounds/ater/004_menu-select-a.mp3)"
+alias play_002_etc-dialog="(play -qv 0.5 ${HOME}/.local/share/sounds/ater/002_etc-dialog.mp3)"
+alias play_003_menu-select-b="(play -qv 0.9 ${HOME}/.local/share/sounds/ater/003_menu-select-b.mp3)"
+alias play_004_menu-select-a="(play -qv 0.9 ${HOME}/.local/share/sounds/ater/004_menu-select-a.mp3)"
 alias play_005_warning-dialog="(play -qv 0.9 ${HOME}/.local/share/sounds/ater/005_warning-dialog.mp3)"
 alias play_006_ask-dialog="(play -qv 0.5 ${HOME}/.local/share/sounds/ater/006_ask-dialog.mp3)"
 alias play_007_error-dialog="(play -qv 0.5 ${HOME}/.local/share/sounds/ater/007_error-dialog.mp3)"
-alias play_008_information-dialog="(play -qv 0.8 ${HOME}/.local/share/sounds/ater/008_information-dialog.mp3)"
+alias play_008_information-dialog="(play -qv 0.9 ${HOME}/.local/share/sounds/ater/008_information-dialog.mp3)"
 alias play_009_login-a="(play -qv 0.5 ${HOME}/.local/share/sounds/ater/009_login-a.mp3)"
 alias play_010_logout-a="(play -qv 0.5 ${HOME}/.local/share/sounds/ater/010_logout-a.mp3)"
 alias play_message-new-email="(play -qv 0.5 ${HOME}/.local/share/sounds/enchanted/stereo/_message-new-email.ogg)"
@@ -152,18 +221,18 @@ alias play-Window-Move='(play -qv 0.5 /usr/share/sounds/Oxygen-Window-Move.ogg)'
 alias play-Window-Shade-Down='(play -qv 0.5 /usr/share/sounds/Oxygen-Window-Shade-Down.ogg)'
 alias play-Window-Shade-Up='(play -qv 0.5 /usr/share/sounds/Oxygen-Window-Shade-Up.ogg)'
 alias play_share=/home/luxcium/.local/share/sounds/
-alias play_desktop-login="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/__desktop-login.oga)"
-alias play_desktop-login="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/_desktop-login.oga)"
+alias play_desktop-login4="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/__desktop-login.oga)"
+alias play_desktop-login5="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/_desktop-login.oga)"
 alias play_message-new-email="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/_message-new-email.oga)"
 alias play_window-unminimized="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/_window-unminimized.oga)"
-alias play_audio-channel-front-center="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/audio-channel-front-center.oga)"
-alias play_audio-channel-front-left="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/audio-channel-front-left.oga)"
-alias play_audio-channel-front-right="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/audio-channel-front-right.oga)"
-alias play_audio-channel-rear-center="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/audio-channel-rear-center.oga)"
-alias play_audio-channel-rear-right="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/audio-channel-rear-right.oga)"
-alias play_audio-channel-rear-left="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/audio-channel-rear-left.oga)"
-alias play_audio-channel-side-right="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/audio-channel-side-right.oga)"
-alias play_audio-channel-side-left="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/audio-channel-side-left.oga)"
+# alias play_audio-channel-front-center="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/audio-channel-front-center.oga)"
+# alias play_audio-channel-front-left="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/audio-channel-front-left.oga)"
+# alias play_audio-channel-front-right="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/audio-channel-front-right.oga)"
+# alias play_audio-channel-rear-center="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/audio-channel-rear-center.oga)"
+# alias play_audio-channel-rear-right="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/audio-channel-rear-right.oga)"
+# alias play_audio-channel-rear-left="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/audio-channel-rear-left.oga)"
+# alias play_audio-channel-side-right="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/audio-channel-side-right.oga)"
+# alias play_audio-channel-side-left="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/audio-channel-side-left.oga)"
 alias play_audio-volume-change="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/audio-volume-change.oga)"
 alias play_battery-caution="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/battery-caution.oga)"
 alias play_battery-full="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/battery-full.oga)"
@@ -172,7 +241,7 @@ alias play2_button-pressed="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/ste
 alias play_button-released="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/button-released.oga)"
 alias play2_button-toggle-off="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/button-toggle-off.oga)"
 alias play2_button-toggle-on="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/button-toggle-on.oga)"
-alias play_count-down2="(play -qv 0.2 ${HOME}/.local/share/sounds/smooth/stereo/count-down.oga)"
+alias play_count-down2="(play -qv 0.3 ${HOME}/.local/share/sounds/smooth/stereo/count-down.oga)"
 alias play2_desktop-login="(play -qv 0.3 ${HOME}/.local/share/sounds/smooth/stereo/desktop-login.oga)"
 alias play_desktop-logout="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/desktop-logout.oga)"
 alias play_desktop-switch-left="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/desktop-switch-left.oga)"
@@ -213,7 +282,7 @@ alias play_window-slide="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo
 alias play2_window-switch="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/window-switch.oga)"
 alias play2_window-unmaximized="(play -qv 0.5 ${HOME}/.local/share/sounds/smooth/stereo/window-unmaximized.oga)"
 alias play_action="(play -qv 0.2 ${HOME}/.local/share/sounds/soundset/action.wav)"
-alias play_bling="(play -qv 0.2 ${HOME}/.local/share/sounds/soundset/bling.wav)"
+alias play_bling="(play -qv 0.1 ${HOME}/.local/share/sounds/soundset/bling.wav)"
 alias play_click="(play -qv 0.2 ${HOME}/.local/share/sounds/soundset/click.wav)"
 alias play_com="(play -qv 0.2 ${HOME}/.local/share/sounds/soundset/com.wav)"
 alias play_crystal="(play -qv 0.5 ${HOME}/.local/share/sounds/soundset/crystal.wav)"
@@ -1078,12 +1147,12 @@ function play_all_sounds_2() {
   echo "play_010_logout-a"
   # sleep 1
   play_010_logout-a
-  echo "play_desktop-login"
+  echo "play_desktop-login4"
   # sleep 1
-  play_desktop-login
-  echo "play_desktop-login"
+  play_desktop-login4
+  echo "play_desktop-login5"
   # sleep 1
-  play_desktop-login
+  play_desktop-login5
 
   echo "play_osx1_transformers"
   # sleep 1
@@ -1313,4 +1382,16 @@ function play_all_sounds_wolf() {
   # sleep 1
   play_wolf_dialog-warning
 
+}
+
+function play_them_all() {
+  play_all_sounds_1
+  play_all_sounds_2
+  play_all_sounds_osx1
+  play_all_sounds_osx2
+  play_all_sounds_kdemod
+  play_all_sounds_ringtones
+  play_all_sounds_strawberry
+  play_all_sounds_win7
+  play_all_sounds_wolf
 }

@@ -3,8 +3,7 @@
 function enable_startup_() {
 
   function disable_at_shutdown_() {
-    source $HOME/ahmyzsh/core/aliases/12012-ALS-sounds.sh
-    play2_desktop-login &
+
     echo -e '\nfunction disable_at_shutdown_()\n'
 
     sudo nice -n -35 ionice -c 1 -n 2 /bin/sh -c "sudo nice -n -35 ionice /usr/sbin/akmods --from-init --verbose"

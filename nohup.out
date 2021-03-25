@@ -265,3 +265,75 @@ Checking kmods exist for 5.10.21-100.fc32.x86_64[60G[[1;32m  OK  [0;39m]
 kill: pas assez d'arguments
 kill: pas assez d'arguments
 kill: pas assez d'arguments
+
+function disable_at_shutdown_()
+
+Checking kmods exist for 5.11.7-100.fc32.x86_64[60G[[1;32m  OK  [0;39m]
+Removed /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service.
+Removed /etc/systemd/system/network-online.target.wants/NetworkManager-wait-online.service.
+Removed /etc/systemd/system/dbus-org.freedesktop.nm-dispatcher.service.
+Removed /etc/systemd/system/dbus-org.freedesktop.ModemManager1.service.
+Removed /etc/systemd/system/sockets.target.wants/libvirtd.socket.
+Removed /etc/systemd/system/sockets.target.wants/virtlogd.socket.
+Removed /etc/systemd/system/sockets.target.wants/avahi-daemon.socket.
+Removed /etc/systemd/system/sockets.target.wants/virtlockd.socket.
+Removed /etc/systemd/system/sockets.target.wants/libvirtd-ro.socket.
+Removed /etc/systemd/system/dbus-org.freedesktop.Avahi.service.
+Removed /etc/systemd/system/multi-user.target.wants/ModemManager.service.
+Removed /etc/systemd/system/multi-user.target.wants/libvirtd.service.
+Removed /etc/systemd/system/multi-user.target.wants/firewalld.service.
+Removed /etc/systemd/system/multi-user.target.wants/NetworkManager.service.
+Removed /etc/systemd/system/multi-user.target.wants/avahi-daemon.service.
+Removed /etc/systemd/system/sysinit.target.wants/dmraid-activation.service.
+Removed /etc/systemd/system/dbus-org.bluez.service.
+Removed /etc/systemd/system/bluetooth.target.wants/bluetooth.service.
+/home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh: ligne 410: erreur de syntaxe près du symbole inattendu « ; »
+/home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh: ligne 410: `(play-Sys-App-Negative&; sleep 0.5; play-Sys-App-Negative&; sleep 0.85; play-Sys-App-Negative&; sleep 0.85; play-Sys-App-Negative)'
+Warning: Stopping dnf-makecache.service, but it can still be activated by:
+  dnf-makecache.timer
+Warning: Stopping libvirtd.service, but it can still be activated by:
+  libvirtd.socket
+  libvirtd-admin.socket
+  libvirtd-ro.socket
+Removed /etc/systemd/system/sockets.target.wants/docker.socket.
+Removed /etc/systemd/system/multi-user.target.wants/containerd.service.
+Removed /etc/systemd/system/multi-user.target.wants/docker.service.
+Removed /etc/systemd/system/multi-user.target.wants/sshd.service.
+[0;1;38;5;100msrc/systemctl/systemctl.c:6649[0m: redis_6379.service is not a native service, redirecting to systemd-sysv-install.
+[0;1;38;5;100msrc/systemctl/systemctl.c:6675[0m: Executing: /usr/lib/systemd/systemd-sysv-install enable redis_6379
+[0;1;38;5;100msrc/systemctl/systemctl.c:6088[0m: [0;1;31mFailed to reload daemon: Remote peer disconnected[0m
+Checking kmods exist for 5.11.7-100.fc32.x86_64[60G[[1;32m  OK  [0;39m]
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
+kill: pas assez d'arguments
