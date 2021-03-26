@@ -1,14 +1,13 @@
 # update and reboot
+source $HOME/ahmyzsh/core/aliases/12012-ALS-sounds.sh
 function upnboot() {
-  source $HOME/ahmyzsh/core/aliases/12012-ALS-sounds.sh
-  play_015
+
   _get_updates
   _dnfup "${1}"
   (
-    nohup enable_systemctl down &
-    sleep 1
-    nohup play_shutdown reboot 4 &
+    _play_down_sound "reboot"
   ) &
+  sleep 0.75
   bye
 
 }
@@ -16,10 +15,9 @@ function upnboot() {
 # update and reboot
 function boot() {
   (
-    nohup enable_systemctl down &
-    sleep 1
-    nohup play_shutdown reboot 4 &
+    _play_down_sound "reboot"
   ) &
+  sleep 0.75
   bye
 
 }
@@ -27,14 +25,13 @@ function boot() {
 # update and reboot --assumeyes
 function upnbooty() {
   source $HOME/ahmyzsh/core/aliases/12012-ALS-sounds.sh
-  play_015
+  play_011
   _get_updates
   _dnfup "--assumeyes ${1}"
   (
-    nohup enable_systemctl down &
-    sleep 1
-    nohup play_shutdown reboot 4 &
+    _play_down_sound "reboot"
   ) &
+  sleep 0.75
   bye
 }
 
@@ -42,29 +39,36 @@ function upnbooty() {
 function upnshutdown() {
   _get_updates
   _dnfup
-  nohup enable_systemctl down &
-  nohup play_shutdown shutdown 4 &
+  (
+    _play_down_sound "shutdown"
+  ) &
+  sleep 0.75
   bye
 
 }
 
 function _dnf_clean_all() {
   echo "CLEAN ALL:"
-  sudo nice -n -10 ionice -c 1 -n 2 dnf clean all --refresh
+  sudo nice -n -35 ionice -c 1 -n 1 dnf clean all --refresh
   echo ""
 }
 
 function _dnf_makecache() {
   echo "MAKECACHE:"
-  sudo nice -n -10 ionice -c 1 -n 2 dnf makecache --refresh
+  sudo nice -n -35 ionice -c 1 -n 1 dnf makecache --refresh
   echo ""
 }
 
 # download updates
 function _get_updates() {
+
   (
     (
-      (sudo nice -n -10 ionice -c 1 -n 2 dnf upgrade --downloadonly --setopt=keepcache=1 --assumeyes) &
+      (
+        source $HOME/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+        play_019
+        sudo nice -n -35 ionice -c 1 -n 1 dnf upgrade --downloadonly --setopt=keepcache=1 --assumeyes && play_015 || play_etc-dialog
+      ) &
     ) >/dev/null
   ) 2>/dev/null
 }
@@ -72,4 +76,15 @@ function _get_updates() {
 # inatall updates
 function _dnfup() {
   sudo nice -n -15 ionice -c 1 -n 2 dnf upgrade --setopt=keepcache=1 $1
+}
+
+function _play_down_sound() {
+  (
+    (nohup enable_systemctl down &) >/dev/null
+  ) 2>/dev/null
+  sleep 0.5
+  (
+    (nohup play_shutdown $1 4 &) >/dev/null
+  ) 2>/dev/null
+
 }

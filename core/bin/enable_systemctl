@@ -6,11 +6,11 @@ function enable_startup_() {
 
     echo -e '\nfunction disable_at_shutdown_()\n'
 
-    sudo nice -n -35 ionice -c 1 -n 2 /bin/sh -c "sudo nice -n -35 ionice /usr/sbin/akmods --from-init --verbose"
+    # sudo nice -n -35 ionice -c 1 -n 2 /bin/sh -c "sudo nice -n -35 ionice /usr/sbin/akmods --from-init --verbose"
 
-    sudo nice -n -35 ionice -c 1 -n 2 /bin/sh -c "sudo nice -n -35 ionice /usr/sbin/dkms autoinstall --verbose # --kernelver $(uname -r)"
+    # sudo nice -n -35 ionice -c 1 -n 2 /bin/sh -c "sudo nice -n -35 ionice /usr/sbin/dkms autoinstall --verbose # --kernelver $(uname -r)"
 
-    sudo nice -n -35 ionice -c 1 -n 2 /bin/sh -c "sudo nice -n -35 ionice /usr/sbin/dkms autoinstall --verbose"
+    # sudo nice -n -35 ionice -c 1 -n 2 /bin/sh -c "sudo nice -n -35 ionice /usr/sbin/dkms autoinstall --verbose"
 
     sudo nice -n -35 ionice -c 1 -n 0 systemctl disable \
       avahi-daemon.service \
@@ -43,168 +43,170 @@ function enable_startup_() {
       sshd.service \
       --now
 
+    sudo nice -n -35 ionice -c 1 -n 0 systemctl enable redis_6379.service --now
     sudo systemctl enable redis --now
 
+    sudo dkms autoinstall --verbose --all --force
+    sudo akmods --from-init --verbose --force
+
     sudo nice -n -35 ionice -c 1 -n 0 systemctl daemon-reload
-    sudo nice -n -35 ionice -c 1 -n 0 systemctl daemon-reexec &
+    sudo nice -n -35 ionice -c 1 -n 0 systemctl daemon-reexec
 
   }
   # sudo nice -n -35 ionice -c 1 -n 0 systemctl enable redis_6379 --now
 
   function kill_at_shutdown_() {
 
-    sudo nice -n -35 ionice -c 1 -n 0 systemctl enable redis_6379.service --now
-
-    sudo dkms autoinstall --verbose --all --force
-    sudo akmods --from-init --verbose --force
     (
       (
         sudo kill -15 $(pidof -w -x chrome-stable) &
-        sleep 4
-        sudo kill -9 $(pidof -w -x chrome-stable)
+        sleep 3
+        sudo kill -9 $(pidof -w -x chrome-stable) &
       ) &
+      sleep 0.4
 
       (
         sudo kill -15 $(pidof -w -x chrome) &
-        sleep 4
-        sudo kill -9 $(pidof -w -x chrome)
+        sleep 2.8
+        sudo kill -9 $(pidof -w -x chrome) &
       ) &
-      sleep 0.5
+      sleep 0.4
 
       (
         sudo kill -15 $(pidof -w -x code-insiders) &
-        sleep 3.5
-        sudo kill -9 $(pidof -w -x code-insiders)
+        sleep 2.6
+        sudo kill -9 $(pidof -w -x code-insiders) &
       ) &
+      sleep 0.4
 
       (
         sudo kill -15 $(pidof -w -x code) &
-        sleep 3.5
-        sudo kill -9 $(pidof -w -x code)
+        sleep 2.4
+        sudo kill -9 $(pidof -w -x code) &
       ) &
-      sleep 0.5
+      sleep 0.4
 
       (
         sudo kill -15 $(pidof -w -x gnome-terminal-server) &
-        sleep 2.5
-        sudo kill -9 $(pidof -w -x gnome-terminal-server)
+        sleep 2.2
+        sudo kill -9 $(pidof -w -x gnome-terminal-server) &
       ) &
 
-      sleep 0.5
+      sleep 0.4
 
       (
+        sleep 1
         sudo kill -15 $(pidof -w -x zsh) &
         sleep 2
-        sudo kill -9 $(pidof -w -x zsh)
+        sudo kill -9 $(pidof -w -x zsh) &
       ) &
     ) &
 
-    sleep 0.5
+    sleep 1
 
     (
       (
         sudo kill -15 $(pidof -w -x baloo_file) &
         sleep 3.5
-        sudo kill -9 $(pidof -w -x baloo_file)
+        sudo kill -9 $(pidof -w -x baloo_file) &
       ) &
 
       (
         sudo kill -15 $(pidof -w -x bluetoothd) &
         sleep 3.5
-        sudo kill -9 $(pidof -w -x bluetoothd)
+        sudo kill -9 $(pidof -w -x bluetoothd) &
       ) &
 
       (
         sudo kill -15 $(pidof -w -x ckb-next-animations/gradient) &
         sleep 3.5
-        sudo kill -9 $(pidof -w -x ckb-next-animations/gradient)
+        sudo kill -9 $(pidof -w -x ckb-next-animations/gradient) &
       ) &
 
       (
         sudo kill -15 $(pidof -w -x ckb-next-animations/invaders) &
         sleep 3.5
-        sudo kill -9 $(pidof -w -x ckb-next-animations/invaders)
+        sudo kill -9 $(pidof -w -x ckb-next-animations/invaders) &
       ) &
 
       (
         sudo kill -15 $(pidof -w -x ckb-next-daemon) &
         sleep 3.5
-        sudo kill -9 $(pidof -w -x ckb-next-daemon)
+        sudo kill -9 $(pidof -w -x ckb-next-daemon) &
       ) &
 
       (
         sudo kill -15 $(pidof -w -x ckb-next) &
         sleep 3.5
-        sudo kill -9 $(pidof -w -x ckb-next)
+        sudo kill -9 $(pidof -w -x ckb-next) &
       ) &
 
       (
         sudo kill -15 $(pidof -w -x colord) &
         sleep 3.5
-        sudo kill -9 $(pidof -w -x colord)
+        sudo kill -9 $(pidof -w -x colord) &
       ) &
 
       (
         sudo kill -15 $(pidof -w -x containerd) &
         sleep 3.5
-        sudo kill -9 $(pidof -w -x containerd)
+        sudo kill -9 $(pidof -w -x containerd) &
       ) &
 
       (
         sudo kill -15 $(pidof -w -x dolphin) &
         sleep 3.5
-        sudo kill -9 $(pidof -w -x dolphin)
+        sudo kill -9 $(pidof -w -x dolphin) &
       ) &
 
       (
         sudo kill -15 $(pidof -w -x gitstatusd-linux-x86_64) &
         sleep 3.5
-        sudo kill -9 $(pidof -w -x gitstatusd-linux-x86_64)
+        sudo kill -9 $(pidof -w -x gitstatusd-linux-x86_64) &
       ) &
 
       (
         sudo kill -15 $(pidof -w -x obexd) &
         sleep 3.5
-        sudo kill -9 $(pidof -w -x obexd)
+        sudo kill -9 $(pidof -w -x obexd) &
       ) &
 
       (
         sudo kill -15 $(pidof -w -x dockerd) &
         sleep 3.5
-        sudo kill -9 $(pidof -w -x dockerd)
+        sudo kill -9 $(pidof -w -x dockerd) &
       ) &
 
       (
         sudo kill -15 $(pidof -w -x ssh-agent) &
         sleep 3.5
-        sudo kill -9 $(pidof -w -x ssh-agent)
+        sudo kill -9 $(pidof -w -x ssh-agent) &
       ) &
 
       (
         sudo kill -15 $(pidof -w -x upowerd) &
         sleep 3.5
-        sudo kill -9 $(pidof -w -x upowerd)
+        sudo kill -9 $(pidof -w -x upowerd) &
       ) &
 
       (
         sudo kill -15 $(pidof -w -x sssd) &
         sleep 3.5
-        sudo kill -9 $(pidof -w -x sssd)
+        sudo kill -9 $(pidof -w -x sssd) &
       ) &
 
       (
         sudo kill -15 $(pidof -w -x sssd/sssd_be) &
         sleep 3.5
-        sudo kill -9 $(pidof -w -x sssd/sssd_be)
+        sudo kill -9 $(pidof -w -x sssd/sssd_be) &
       ) &
 
       (
         sudo kill -15 $(pidof -w -x sssd/sssd_nss) &
         sleep 3.5
-        sudo kill -9 $(pidof -w -x sssd/sssd_nss)
+        sudo kill -9 $(pidof -w -x sssd/sssd_nss) &
       ) &
     ) &
-    sleep 0.5
 
   }
 
@@ -304,8 +306,10 @@ function enable_startup_() {
 
   # enable_systemctl down
   if [[ $1 == 'down' ]]; then
-    disable_at_shutdown_
-    kill_at_shutdown_
+    disable_at_shutdown_ &
+    sleep 3
+    kill_at_shutdown_ &
+    sleep 4
   fi
 
   # enable_systemctl up
