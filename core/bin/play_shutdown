@@ -12,13 +12,13 @@ function play_shutdown_() {
     if [ "${1:-''}" == "reboot" ]; then
       (
         (play -qv 0.4 /home/luxcium/.local/share/sounds/zelda/stereo/lowbatt.ogg &) # 0.6191s
-        sleep 0.4
+        sleep 0.6
         (play -qv 0.5 /home/luxcium/.local/share/sounds/zelda/stereo/buddylogin.ogg chorus 0.4 0.9 50 0.5 0.25 2 -t 40 0.6 0.2 3 -s 60 0.6 0.3 1.3 -t &) # 1.4319s
         sleep 1.1
         (play -qv 0.9 /home/luxcium/.local/share/sounds/zelda/stereo/dialog-warning.ogg &) # 0.7116s
         sleep 0.72
       ) &
-      sleep 1.4
+      sleep 1.6
       sudo /sbin/shutdown -t 10 -rf now
       return
     fi
