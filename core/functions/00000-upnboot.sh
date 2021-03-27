@@ -65,9 +65,10 @@ function _get_updates() {
   (
     (
       (
-        source $HOME/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+        source /home/luxcium/ahmyzsh/core/aliases/12012-more-sounds.sh
+        source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
         play_019
-        sudo nice -n -35 ionice -c 1 -n 1 dnf upgrade --downloadonly --setopt=keepcache=1 --assumeyes && play_015 || play_etc-dialog
+        sudo nice -n -35 ionice -c 1 -n 1 dnf upgrade --downloadonly --setopt=keepcache=1 --assumeyes && play-phone_0045 || play_etc-dialog
       ) &
     ) >/dev/null
   ) 2>/dev/null
@@ -80,11 +81,15 @@ function _dnfup() {
 
 function _play_down_sound() {
   (
-    (nohup enable_systemctl down &) >/dev/null
-  ) 2>/dev/null
-  sleep 0.5
+    (
+      (nohup enable_systemctl down &) >/dev/null
+    ) 2>/dev/null
+    sleep 8.5 # for information pupose only should be disabled
+  ) &
+  sleep 1
+
   (
-    (nohup play_shutdown $1 4 &) >/dev/null
+    (nohup play_shutdown $1 5 &) >/dev/null
   ) 2>/dev/null
 
 }

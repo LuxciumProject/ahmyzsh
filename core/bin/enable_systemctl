@@ -58,155 +58,177 @@ function enable_startup_() {
   function kill_at_shutdown_() {
 
     (
+
+      sleep 0.25
       (
         sudo kill -15 $(pidof -w -x chrome-stable) &
-        sleep 3
-        sudo kill -9 $(pidof -w -x chrome-stable) &
+        sleep 6
+        sudo kill -09 $(pidof -w -x chrome-stable) &
       ) &
-      sleep 0.4
 
+      sleep 0.25
       (
         sudo kill -15 $(pidof -w -x chrome) &
-        sleep 2.8
-        sudo kill -9 $(pidof -w -x chrome) &
+        sleep 5.75
+        sudo kill -09 $(pidof -w -x chrome) &
       ) &
-      sleep 0.4
 
+      sleep 0.25
       (
         sudo kill -15 $(pidof -w -x code-insiders) &
-        sleep 2.6
-        sudo kill -9 $(pidof -w -x code-insiders) &
+        sleep 5.5
+        sudo kill -09 $(pidof -w -x code-insiders) &
       ) &
-      sleep 0.4
 
+      sleep 0.25
       (
         sudo kill -15 $(pidof -w -x code) &
-        sleep 2.4
-        sudo kill -9 $(pidof -w -x code) &
+        sleep 5.25
+        sudo kill -09 $(pidof -w -x code) &
       ) &
-      sleep 0.4
 
+      sleep 0.25
+      (
+        sudo kill -15 $(pidof -w -x telegram-desktop) &
+        sleep 5
+        sudo kill -09 $(pidof -w -x telegram-desktop) &
+      ) &
+
+      sleep 0.25
       (
         sudo kill -15 $(pidof -w -x gnome-terminal-server) &
-        sleep 2.2
-        sudo kill -9 $(pidof -w -x gnome-terminal-server) &
+        sleep 4.75
+        sudo kill -09 $(pidof -w -x gnome-terminal-server) &
       ) &
 
-      sleep 0.4
-
-      (
-        sleep 1
-        sudo kill -15 $(pidof -w -x zsh) &
-        sleep 2
-        sudo kill -9 $(pidof -w -x zsh) &
-      ) &
-    ) &
-
-    sleep 1
-
-    (
+      sleep 0.25
       (
         sudo kill -15 $(pidof -w -x baloo_file) &
-        sleep 3.5
-        sudo kill -9 $(pidof -w -x baloo_file) &
+        sleep 4.5
+        sudo kill -09 $(pidof -w -x baloo_file) &
       ) &
 
+      sleep 0.25
       (
         sudo kill -15 $(pidof -w -x bluetoothd) &
-        sleep 3.5
-        sudo kill -9 $(pidof -w -x bluetoothd) &
+        sleep 4.25
+        sudo kill -09 $(pidof -w -x bluetoothd) &
       ) &
 
+      sleep 0.25
       (
         sudo kill -15 $(pidof -w -x ckb-next-animations/gradient) &
-        sleep 3.5
-        sudo kill -9 $(pidof -w -x ckb-next-animations/gradient) &
+        sleep 4
+        sudo kill -09 $(pidof -w -x ckb-next-animations/gradient) &
       ) &
 
+      sleep 0.25
       (
         sudo kill -15 $(pidof -w -x ckb-next-animations/invaders) &
-        sleep 3.5
-        sudo kill -9 $(pidof -w -x ckb-next-animations/invaders) &
+        sleep 3.75
+        sudo kill -09 $(pidof -w -x ckb-next-animations/invaders) &
       ) &
 
+      sleep 0.25
       (
         sudo kill -15 $(pidof -w -x ckb-next-daemon) &
         sleep 3.5
-        sudo kill -9 $(pidof -w -x ckb-next-daemon) &
+        sudo kill -09 $(pidof -w -x ckb-next-daemon) &
       ) &
 
+      sleep 0.25
       (
         sudo kill -15 $(pidof -w -x ckb-next) &
-        sleep 3.5
-        sudo kill -9 $(pidof -w -x ckb-next) &
+        sleep 3.25
+        sudo kill -09 $(pidof -w -x ckb-next) &
       ) &
 
+      sleep 0.25
       (
         sudo kill -15 $(pidof -w -x colord) &
-        sleep 3.5
-        sudo kill -9 $(pidof -w -x colord) &
+        sleep 3
+        sudo kill -09 $(pidof -w -x colord) &
       ) &
 
+      sleep 0.25
       (
         sudo kill -15 $(pidof -w -x containerd) &
-        sleep 3.5
-        sudo kill -9 $(pidof -w -x containerd) &
+        sleep 2.75
+        sudo kill -09 $(pidof -w -x containerd) &
       ) &
 
+      sleep 0.25
       (
         sudo kill -15 $(pidof -w -x dolphin) &
-        sleep 3.5
-        sudo kill -9 $(pidof -w -x dolphin) &
+        sleep 2.5
+        sudo kill -09 $(pidof -w -x dolphin) &
       ) &
 
+      sleep 0.25
       (
         sudo kill -15 $(pidof -w -x gitstatusd-linux-x86_64) &
-        sleep 3.5
-        sudo kill -9 $(pidof -w -x gitstatusd-linux-x86_64) &
+        sleep 2.25
+        sudo kill -09 $(pidof -w -x gitstatusd-linux-x86_64) &
       ) &
 
+      sleep 0.25
       (
         sudo kill -15 $(pidof -w -x obexd) &
-        sleep 3.5
-        sudo kill -9 $(pidof -w -x obexd) &
+        sleep 2
+        sudo kill -09 $(pidof -w -x obexd) &
       ) &
 
+      sleep 0.25
       (
         sudo kill -15 $(pidof -w -x dockerd) &
-        sleep 3.5
-        sudo kill -9 $(pidof -w -x dockerd) &
+        sleep 1.75
+        sudo kill -09 $(pidof -w -x dockerd) &
       ) &
 
+      sleep 0.25
       (
         sudo kill -15 $(pidof -w -x ssh-agent) &
-        sleep 3.5
-        sudo kill -9 $(pidof -w -x ssh-agent) &
+        sleep 1.5
+        sudo kill -09 $(pidof -w -x ssh-agent) &
       ) &
 
+      sleep 0.25
       (
         sudo kill -15 $(pidof -w -x upowerd) &
-        sleep 3.5
-        sudo kill -9 $(pidof -w -x upowerd) &
+        sleep 1.25
+        sudo kill -09 $(pidof -w -x upowerd) &
       ) &
 
+      sleep 0.25
       (
         sudo kill -15 $(pidof -w -x sssd) &
-        sleep 3.5
-        sudo kill -9 $(pidof -w -x sssd) &
+        sleep 1
+        sudo kill -09 $(pidof -w -x sssd) &
       ) &
 
+      sleep 0.25
       (
         sudo kill -15 $(pidof -w -x sssd/sssd_be) &
-        sleep 3.5
-        sudo kill -9 $(pidof -w -x sssd/sssd_be) &
+        sleep 0.75
+        sudo kill -09 $(pidof -w -x sssd/sssd_be) &
       ) &
 
+      sleep 0.25
       (
         sudo kill -15 $(pidof -w -x sssd/sssd_nss) &
-        sleep 3.5
-        sudo kill -9 $(pidof -w -x sssd/sssd_nss) &
+        sleep 0.5
+        sudo kill -09 $(pidof -w -x sssd/sssd_nss) &
       ) &
-    ) &
+
+      sleep 0.25
+      (
+        sudo kill -15 $(pidof -w -x zsh) &
+        sleep 0.25
+        sudo kill -09 $(pidof -w -x zsh) &
+      ) &
+    )&
+
+    sleep 6
 
   }
 
@@ -307,9 +329,9 @@ function enable_startup_() {
   # enable_systemctl down
   if [[ $1 == 'down' ]]; then
     disable_at_shutdown_ &
-    sleep 3
+    sleep 2.5
     kill_at_shutdown_ &
-    sleep 4
+    sleep 6
   fi
 
   # enable_systemctl up

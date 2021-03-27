@@ -49,6 +49,9 @@ function saybye_() {
   sleep 0.05
   echo -en "\e[38;2;252;198;36m                                              BY\e[38;2;255;25;85m\u001b[1000D" # !! NON DRY CODE
   sleep 0.05
+  #+                                                                             #+
+  (play -qv 0.1 ${HOME}/.local/share/sounds/pc-libre/015.mp3) & #                #+ !!+ HARD-CODED CODE
+  #+                                                                             #+
   echo -en "\e[38;2;252;198;36m                                                \e[38;2;255;25;85m\u001b[1000D" # !! NON DRY CODE
   sleep 0.05
   echo -en "\e[38;2;252;198;36m                                                \e[38;2;255;25;85m\u001b[1000D" # !! NON DRY CODE
