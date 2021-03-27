@@ -7,7 +7,7 @@ function upnboot() {
   (
     _play_down_sound "reboot"
   ) &
-  sleep 0.75
+  sleep 1.11
   bye
 
 }
@@ -17,7 +17,7 @@ function boot() {
   (
     _play_down_sound "reboot"
   ) &
-  sleep 0.75
+  sleep 1.11
   bye
 
 }
@@ -31,7 +31,7 @@ function upnbooty() {
   (
     _play_down_sound "reboot"
   ) &
-  sleep 0.75
+  sleep 1.11
   bye
 }
 
@@ -42,7 +42,7 @@ function upnshutdown() {
   (
     _play_down_sound "shutdown"
   ) &
-  sleep 0.75
+  sleep 1.11
   bye
 
 }
@@ -84,7 +84,7 @@ function _play_down_sound() {
     (
       (nohup enable_systemctl down &) >/dev/null
     ) 2>/dev/null
-    sleep 8.5 # for information pupose only should be disabled
+    sleep 9 # for information pupose only should be disabled
   ) &
   sleep 1
 

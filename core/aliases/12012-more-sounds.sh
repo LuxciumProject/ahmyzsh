@@ -47,7 +47,7 @@ alias play-glass_break_0041="(play -qv 0.6 '/home/luxcium/Téléchargements/nouv
 alias play-gun_reloading_0042="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/just-sounds/gun_reloading.ogg')"
 alias play-gun_shot-01_0043="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/just-sounds/gun_shot-01.ogg')"
 alias play-gun_shot-02_0044="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/just-sounds/gun_shot-02.ogg')"
-alias play-phone_0045="(play -qv 0.1 '/home/luxcium/Téléchargements/nouve-sons/just-sounds/phone.ogg')"
+alias play-phone_0045="(play -qv 0.4 '/home/luxcium/Téléchargements/nouve-sons/just-sounds/phone.ogg')"
 alias play-sound_0046="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/just-sounds/sound.ogg')"
 alias play-turning_off_0047="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/just-sounds/turning _off.ogg')"
 ##### alias ######
@@ -244,27 +244,27 @@ alias play-Kopete_User_is_Offline_0224="(play -qv 0.6 '/home/luxcium/Télécharg
 alias play-Kopete_User_is_Online_0225="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/yahoo-sounds/Kopete_User_is_Online.ogg')"
 alias play-Kopete_yahoomail_0226="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/yahoo-sounds/Kopete_yahoomail.ogg')"
 ##### alias ######
-alias play-bell_0227="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/bell.ogg')"
-alias play-buddylogin_0228="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/buddylogin.ogg')"
-alias play-buddylogout_0229="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/buddylogout.ogg')"
-alias play-button-pressed_0230="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/button-pressed.ogg')"
-alias play-button-toggle-off_0231="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/button-toggle-off.ogg')"
-alias play-button-toggle-on_0232="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/button-toggle-on.ogg')"
-alias play-desktop-login_0233="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/desktop-login.ogg')"
-alias play-desktop-logout_0234="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/desktop-logout.ogg')"
-alias play-dialog-error_0235="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/dialog-error.ogg')"
-alias play-dialog-information_0236="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/dialog-information.ogg')"
-alias play-dialog-question_0237="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/dialog-question.ogg')"
-alias play-dialog-warning_0238="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/dialog-warning.ogg')"
-alias play-email_0239="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/email.ogg')"
-alias play-emptytrash_0240="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/emptytrash.ogg')"
-alias play-imreceived_0241="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/imreceived.ogg')"
-alias play-imsent_0242="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/imsent.ogg')"
-alias play-longaction_0-243="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/longaction.ogg')"
-alias play-lowbatt_0-244="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/lowbatt.ogg')"
-alias play-maximize_0245="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/maximize.ogg')"
-alias play-minimize_0246="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/minimize.ogg')"
-alias play-unmaximize_0247="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/unmaximize.ogg')"
+alias play_zelda_bell_0227="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/bell.ogg')"
+alias play_zelda_buddylogin_0228="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/buddylogin.ogg')"
+alias play_zelda_buddylogout_0229="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/buddylogout.ogg')"
+alias play_zelda_button-pressed_0230="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/button-pressed.ogg')"
+alias play_zelda_button-toggle-off_0231="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/button-toggle-off.ogg')"
+alias play_zelda_button-toggle-on_0232="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/button-toggle-on.ogg')"
+alias play_zelda_desktop-login_0233="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/desktop-login.ogg')"
+alias play_zelda_desktop-logout_0234="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/desktop-logout.ogg')"
+alias play_zelda_dialog-error_0235="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/dialog-error.ogg')"
+alias play_zelda_dialog-information_0236="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/dialog-information.ogg')"
+alias play_zelda_dialog-question_0237="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/dialog-question.ogg')"
+alias play_zelda_dialog-warning_0238="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/dialog-warning.ogg')"
+alias play_zelda_email_0239="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/email.ogg')"
+alias play_zelda_emptytrash_0240="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/emptytrash.ogg')"
+alias play_zelda_imreceived_0241="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/imreceived.ogg')"
+alias play_zelda_imsent_0242="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/imsent.ogg')"
+alias play_zelda_longaction_0-243="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/longaction.ogg')"
+alias play_zelda_lowbatt_0-244="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/lowbatt.ogg')"
+alias play_zelda_maximize_0245="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/maximize.ogg')"
+alias play_zelda_minimize_0246="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/minimize.ogg')"
+alias play_zelda_unmaximize_0247="(play -qv 0.6 '/home/luxcium/Téléchargements/nouve-sons/zelda/unmaximize.ogg')"
 ##### alias ######
 alias play-alarm-clock-elapsed_zorin_0248="(play -qv 0.1 '/home/luxcium/Téléchargements/nouve-sons/zorin/alarm-clock-elapsed.oga')"
 alias play-bell_zorin_0249="(play -qv 0.1 '/home/luxcium/Téléchargements/nouve-sons/zorin/bell.wav')"
@@ -1049,69 +1049,83 @@ function play_test_sounds_yahoo-sounds_() {
 
 #
 function play_test_sounds_zelda_() {
-  sleep 0.75
-  echo "play-bell_0227"
-  play-bell_0227
-  sleep 0.75
-  echo "play-buddylogin_0228"
-  play-buddylogin_0228
-  sleep 0.75
-  echo "play-buddylogout_0229"
-  play-buddylogout_0229
-  sleep 0.75
-  echo "play-button-pressed_0230"
-  play-button-pressed_0230
-  sleep 0.75
-  echo "play-button-toggle-off_0231"
-  play-button-toggle-off_0231
-  sleep 0.75
-  echo "play-button-toggle-on_0232"
-  play-button-toggle-on_0232
-  sleep 0.75
-  echo "play-desktop-login_0233"
-  play-desktop-login_0233
-  sleep 0.75
-  echo "play-desktop-logout_0234"
-  play-desktop-logout_0234
-  sleep 0.75
-  echo "play-dialog-error_0235"
-  play-dialog-error_0235
-  sleep 0.75
-  echo "play-dialog-information_0236"
-  play-dialog-information_0236
-  sleep 0.75
-  echo "play-dialog-question_0237"
-  play-dialog-question_0237
-  sleep 0.75
-  echo "play-dialog-warning_0238"
-  play-dialog-warning_0238
-  sleep 0.75
-  echo "play-email_0239"
-  play-email_0239
-  sleep 0.75
-  echo "play-emptytrash_0240"
-  play-emptytrash_0240
-  sleep 0.75
-  echo "play-imreceived_0241"
-  play-imreceived_0241
-  sleep 0.75
-  echo "play-imsent_0242"
-  play-imsent_0242
-  sleep 0.75
-  echo "play-longaction_0-243"
-  play-longaction_0-243
-  sleep 0.75
-  echo "play-lowbatt_0-244"
-  play-lowbatt_0-244
-  sleep 0.75
-  echo "play-maximize_0245"
-  play-maximize_0245
-  sleep 0.75
-  echo "play-minimize_0246"
-  play-minimize_0246
-  sleep 0.75
-  echo "play-unmaximize_0247"
-  play-unmaximize_0247
+  sleep 0.76
+  echo "play_zelda_bell_0227"
+  play_zelda_bell_0227
+  sleep 0.76
+  echo "play_zelda_buddylogin_0228"
+  play_zelda_buddylogin_0228
+  sleep 0.76
+  echo "play_zelda_buddylogout_0229"
+  play_zelda_buddylogout_0229
+  sleep 0.76
+  echo "play_zelda_button-pressed_0230"
+  play_zelda_button-pressed_0230
+  sleep 0.76
+  echo "play_zelda_button-toggle-off_0231"
+  play_zelda_button-toggle-off_0231
+  sleep 0.76
+  echo "play_zelda_button-toggle-on_0232"
+  play_zelda_button-toggle-on_0232
+  sleep 0.76
+  echo "play_zelda_desktop-login_0233"
+  sleep 0.52
+  echo "MUTED" #
+  # play_zelda_desktop-login_0233
+  sleep 0.76
+  echo "play_zelda_desktop-logout_0234"
+  sleep 0.52
+  echo "MUTED" #
+  # play_zelda_desktop-logout_0234
+  sleep 0.76
+  echo "play_zelda_dialog-question_0237"
+  play_zelda_dialog-question_0237
+  sleep 0.76
+  echo "play_zelda_email_0239"
+  play_zelda_email_0239
+  sleep 0.76
+  echo "play_zelda_emptytrash_0240"
+  play_zelda_emptytrash_0240
+  sleep 0.76
+  echo "play_zelda_imreceived_0241"
+  play_zelda_imreceived_0241
+  sleep 0.76
+  echo "play_zelda_imsent_0242"
+  play_zelda_imsent_0242
+  sleep 0.76
+  echo "play_zelda_longaction_0-243"
+  sleep 0.52
+  echo "MUTED" #
+  # play_zelda_longaction_0-243
+  sleep 0.76
+  echo "play_zelda_maximize_0245"
+  play_zelda_maximize_0245
+  sleep 0.76
+  echo "play_zelda_minimize_0246"
+  play_zelda_minimize_0246
+  sleep 0.76
+  echo "play_zelda_unmaximize_0247"
+  play_zelda_unmaximize_0247
+  echo "play_zelda_dialog-error_0235" #
+  sleep 0.52
+  echo "!!!" #
+  play_zelda_dialog-error_0235
+  sleep 0.76
+  echo "play_zelda_dialog-information_0236" #
+  sleep 0.52
+  echo "!!!" #
+  play_zelda_dialog-information_0236
+  sleep 0.76
+  echo "play_zelda_dialog-warning_0238" #
+  sleep 0.52
+  echo "!!!" #
+  play_zelda_dialog-warning_0238
+  sleep 0.76
+  echo "play_zelda_lowbatt_0-244" #
+  sleep 0.52
+  echo "!!!" #
+  play_zelda_lowbatt_0-244
+  sleep 0.76
 }
 
 #

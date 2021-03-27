@@ -20,6 +20,9 @@ function saybye_() {
   source "${AHMYZSH}/themes/ahmyzhs.sh"
   echo -en "\u001b[2A"
   echo -en "\e[38;2;252;198;36m                                               \e[38;2;255;25;85m\u001b[1000D" # !! NON DRY CODE
+  #+                                                                             #+
+  (play -qv 0.1 ${HOME}/.local/share/sounds/pc-libre/015.mp3) & #                #+ !!+ HARD-CODED CODE
+  #+                                                                             #+
   sleep 0.025
   echo -en "\e[38;2;252;198;36m!    \e[38;2;255;25;85m\u001b[1000D" # !! NON DRY CODE
   sleep 0.025
@@ -53,13 +56,10 @@ function saybye_() {
   sleep 0.025
   echo -en "\e[38;2;252;198;36m                                              BY\e[38;2;255;25;85m\u001b[1000D" # !! NON DRY CODE
   sleep 0.025
-  #+                                                                             #+
-  # (play -qv 0.1 ${HOME}/.local/share/sounds/pc-libre/015.mp3) & #                #+ !!+ HARD-CODED CODE
-  #+                                                                             #+
   echo -en "\e[38;2;252;198;36m                                                \e[38;2;255;25;85m\u001b[1000D" # !! NON DRY CODE
   sleep 0.025
   echo -en "\e[38;2;252;198;36m                                                \e[38;2;255;25;85m\u001b[1000D" # !! NON DRY CODE
-  # sleep 0.88
+  sleep 0.88
   # echo -en "\e[38;2;252;198;36m    \u001b[100D${RSET}"
   # clear
 
@@ -74,7 +74,7 @@ function saybye_() {
 
   # exit
   # #+                                                                             #+
-  (play -qv 0.1 /home/luxcium/.local/share/sounds/zelda/email.ogg &) #    #+ !!+ HARD-CODED CODE
+  (play -qv 0.0525 /home/luxcium/.local/share/sounds/zelda/email.ogg &) #    #+ !!+ HARD-CODED CODE
   # #+                                                                             #+
   # sleep 2.0810s
   # sleep 0.8302s
@@ -88,9 +88,9 @@ function saybye_() {
     echo -en " ${YS}${TIME_TO_PATH_STR}                                  "
     sleep 0
   done
-  for y in {0..34}; do # AAA
+  for y in {0..55}; do # AAA
     echo -en " ${CYS}${TIME_TO_PATH_STR}                                 "
-    sleep 0
+    sleep 0.003
   done
   for y in {0..25}; do # 222
     echo -en " ${YS}${TIME_TO_PATH_STR}                       "
@@ -104,7 +104,7 @@ function saybye_() {
     echo -en " ${YS}${TIME_TO_PATH_STR}                          "
     sleep 0
   done
-  for y in {0..34}; do # CCC
+  for y in {0..45}; do # CCC
     echo -en " ${CYS}${TIME_TO_PATH_STR}         "
     sleep 0
   done
@@ -120,7 +120,7 @@ function saybye_() {
     echo -en " ${YS}${TIME_TO_PATH_STR}                      "
     sleep 0
   done
-  for y in {0..34}; do # EEE
+  for y in {0..45}; do # EEE
     echo -en " ${CYS}${TIME_TO_PATH_STR}              "
     sleep 0
   done
@@ -128,13 +128,13 @@ function saybye_() {
     echo -en " ${YS}${TIME_TO_PATH_STR}                                      "
     sleep 0
   done
-  for y in {0..11}; do # X-X-X
+  for y in {0..45}; do # X-X-X
     echo -en " ${WHS}${TIME_TO_PATH_STR}                                      "
     sleep 0
   done
-  for y in {0..200}; do
+  for y in {0..150}; do
     echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-    sleep 0.0001
+    sleep 0.001
   done
 
   # for y in {0..20}; do

@@ -3,9 +3,9 @@
 source $HOME/ahmyzsh/core/aliases/12012-ALS-sounds.sh
 
 (
-  sleep 2.5
-  # play_NTV_question_btv
-  # play_NTV_error_tv3
+  sleep 3
+  # play_NTV_question_btv #  5.4742s
+  play_NTV_error_tv3 # 3.0325s
 ) &
 
 enable_systemctl up && (play_zelda_button-toggle-on &) || (play_osx2_0005_old_school2 &)
@@ -20,7 +20,7 @@ enable_systemctl up && (play_zelda_button-toggle-on &) || (play_osx2_0005_old_sc
 ) &
 # play_kdemod-error
 (
-  (code-insiders /home/luxcium/ahmyzsh && (play_screen-capture &) || (play_osx2_0005_old_school2  &))
+  (code-insiders /home/luxcium/ahmyzsh && (play_screen-capture &) || (play_osx2_0005_old_school2 &))
   (gnome-terminal --title='Gnome Terminal' --class=gnome-terminal-Z6C4C35AEx --name=gnome-terminal-Z757425E8x --role=gnome-terminal-ZF987CDA0x && play_menu-select-a || play_etc-dialog)
 
   sudo ionice -c 1 -n 6 -p $(pidof -w -x code-insiders) && (play_screen-capture &) || (play_osx2_0005_old_school2 &)
