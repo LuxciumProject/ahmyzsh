@@ -36,23 +36,23 @@ source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
 # echo "play_019"
 # play_019
 # sleep 1
-# echo "play_02"
-# play_02
+# echo "play_002"
+# play_002
 # sleep 1
-# echo "play_020"
-# play_020
+# echo "play_0020"
+# play_0020
 # sleep 1
-# echo "play_021"
-# play_021
+# echo "play_0021"
+# play_0021
 # sleep 1
-# echo "play_022"
-# play_022
+# echo "play_0022"
+# play_0022
 # sleep 1
-# echo "play_023"
-# play_023
+# echo "play_0023"
+# play_0023
 # sleep 1
-# echo "play_03"
-# play_03
+# echo "play_003"
+# play_003
 # sleep 1
 # echo "play_04"
 # play_04
@@ -285,152 +285,152 @@ sleep 1
 echo "play2_trash-empty"
 play2_trash-empty
 # sleep 1
-# echo "play-Im-Cant-Connect"
-# play-Im-Cant-Connect
+# echo "play_Im-Cant-Connect"
+# play_Im-Cant-Connect
 # sleep 1
-# echo "play-Im-Connection-Lost"
-# play-Im-Connection-Lost
+# echo "play_Im-Connection-Lost"
+# play_Im-Connection-Lost
 # sleep 1
-# echo "play-Im-Contact-In"
-# play-Im-Contact-In
+# echo "play_Im-Contact-In"
+# play_Im-Contact-In
 # sleep 1
-# echo "play-Im-Contact-Out"
-# play-Im-Contact-Out
+# echo "play_Im-Contact-Out"
+# play_Im-Contact-Out
 # sleep 1
-# echo "play-Im-Error-On-Connection"
-# play-Im-Error-On-Connection
+# echo "play_Im-Error-On-Connection"
+# play_Im-Error-On-Connection
 # sleep 1
-# echo "play-Im-Highlight-Msg"
-# play-Im-Highlight-Msg
+# echo "play_Im-Highlight-Msg"
+# play_Im-Highlight-Msg
 # sleep 1
-# echo "play-Im-Internal-Error"
-# play-Im-Internal-Error
+# echo "play_Im-Internal-Error"
+# play_Im-Internal-Error
 # sleep 1
-# echo "play-Im-Irc-Event"
-# play-Im-Irc-Event
+# echo "play_Im-Irc-Event"
+# play_Im-Irc-Event
 # sleep 1
-# echo "play-Im-Low-Priority-Message"
-# play-Im-Low-Priority-Message
+# echo "play_Im-Low-Priority-Message"
+# play_Im-Low-Priority-Message
 # sleep 1
-# echo "play-Im-Message-In"
-# play-Im-Message-In
+# echo "play_Im-Message-In"
+# play_Im-Message-In
 # sleep 1
-# echo "play-Im-Message-Out"
-# play-Im-Message-Out
+# echo "play_Im-Message-Out"
+# play_Im-Message-Out
 # sleep 1
-# echo "play-Im-Network-Problems"
-# play-Im-Network-Problems
+# echo "play_Im-Network-Problems"
+# play_Im-Network-Problems
 # sleep 1
-# echo "play-Im-New-Mail"
-# play-Im-New-Mail
+# echo "play_Im-New-Mail"
+# play_Im-New-Mail
 # sleep 1
-# echo "play-Im-Nudge"
-# play-Im-Nudge
+# echo "play_Im-Nudge"
+# play_Im-Nudge
 # sleep 1
-# echo "play-Im-Phone-Ring"
-# play-Im-Phone-Ring
+# echo "play_Im-Phone-Ring"
+# play_Im-Phone-Ring
 # sleep 1
-# echo "play-Im-Sms"
-# play-Im-Sms
+# echo "play_Im-Sms"
+# play_Im-Sms
 # sleep 1
-# echo "play-Im-User-Auth"
-# play-Im-User-Auth
+# echo "play_Im-User-Auth"
+# play_Im-User-Auth
 # sleep 1
-# echo "play-K3B-Finish-Error"
-# play-K3B-Finish-Error
+# echo "play_K3B-Finish-Error"
+# play_K3B-Finish-Error
 # sleep 1
-# echo "play-K3B-Finish-Success"
-# play-K3B-Finish-Success
+# echo "play_K3B-Finish-Success"
+# play_K3B-Finish-Success
 # sleep 1
-# echo "play-K3B-Insert-Medium"
-# play-K3B-Insert-Medium
+# echo "play_K3B-Insert-Medium"
+# play_K3B-Insert-Medium
 # sleep 1
-# echo "play-Sys-App-Error-Critical"
-# play-Sys-App-Error-Critical
+# echo "play_Sys-App-Error-Critical"
+# play_Sys-App-Error-Critical
 # sleep 1
-# echo "play-Sys-App-Error-Serious-Very"
-# play-Sys-App-Error-Serious-Very
+# echo "play_Sys-App-Error-Serious-Very"
+# play_Sys-App-Error-Serious-Very
 # sleep 1
-# echo "play-Sys-App-Error-Serious"
-# play-Sys-App-Error-Serious
+# echo "play_Sys-App-Error-Serious"
+# play_Sys-App-Error-Serious
 # sleep 1
-# echo "play-Sys-App-Error"
-# play-Sys-App-Error
+# echo "play_Sys-App-Error"
+# play_Sys-App-Error
 # sleep 1
-# echo "play-Sys-App-Message"
-# play-Sys-App-Message
+# echo "play_Sys-App-Message"
+# play_Sys-App-Message
 # sleep 1
-# echo "play-Sys-App-Negative"
-# play-Sys-App-Negative
+# echo "play_Sys-App-Negative"
+# play_Sys-App-Negative
 # sleep 1
-# echo "play-Sys-App-Positive"
-# play-Sys-App-Positive
+# echo "play_Sys-App-Positive"
+# play_Sys-App-Positive
 # sleep 1
-# echo "play-Sys-Error-Printing"
-# play-Sys-Error-Printing
+# echo "play_Sys-Error-Printing"
+# play_Sys-Error-Printing
 # sleep 1
-# echo "play-Sys-File-Open-Foes"
-# play-Sys-File-Open-Foes
+# echo "play_Sys-File-Open-Foes"
+# play_Sys-File-Open-Foes
 # sleep 1
-# echo "play-Sys-List-End"
-# play-Sys-List-End
+# echo "play_Sys-List-End"
+# play_Sys-List-End
 # sleep 1
-# echo "play-Sys-List-Match-Multiple"
-# play-Sys-List-Match-Multiple
+# echo "play_Sys-List-Match-Multiple"
+# play_Sys-List-Match-Multiple
 # sleep 1
-# echo "play-Sys-List-Match-No"
-# play-Sys-List-Match-No
+# echo "play_Sys-List-Match-No"
+# play_Sys-List-Match-No
 # sleep 1
-# echo "play-Sys-Log-In-Long"
-# play-Sys-Log-In-Long
+# echo "play_Sys-Log-In-Long"
+# play_Sys-Log-In-Long
 # sleep 1
-# echo "play-Sys-Log-In-Short"
-# play-Sys-Log-In-Short
+# echo "play_Sys-Log-In-Short"
+# play_Sys-Log-In-Short
 # sleep 1
-# echo "play-Sys-Log-In"
-# play-Sys-Log-In
+# echo "play_Sys-Log-In"
+# play_Sys-Log-In
 # sleep 1
-# echo "play-Sys-Log-Out"
-# play-Sys-Log-Out
+# echo "play_Sys-Log-Out"
+# play_Sys-Log-Out
 # sleep 1
-# echo "play-Sys-Question"
-# play-Sys-Question
+# echo "play_Sys-Question"
+# play_Sys-Question
 # sleep 1
-# echo "play-Sys-Special"
-# play-Sys-Special
+# echo "play_Sys-Special"
+# play_Sys-Special
 # sleep 1
-# echo "play-Sys-Trash-Emptied"
-# play-Sys-Trash-Emptied
+# echo "play_Sys-Trash-Emptied"
+# play_Sys-Trash-Emptied
 # sleep 1
-# echo "play-Sys-Warning"
-# play-Sys-Warning
+# echo "play_Sys-Warning"
+# play_Sys-Warning
 # sleep 1
-# echo "play-Window-All-Desktops-Not"
-# play-Window-All-Desktops-Not
+# echo "play_Window-All-Desktops-Not"
+# play_Window-All-Desktops-Not
 # sleep 1
-# echo "play-Window-All-Desktops"
-# play-Window-All-Desktops
+# echo "play_Window-All-Desktops"
+# play_Window-All-Desktops
 # sleep 1
-# echo "play-Window-Close"
-# play-Window-Close
+# echo "play_Window-Close"
+# play_Window-Close
 # sleep 1
-# echo "play-Window-Maximize"
-# play-Window-Maximize
+# echo "play_Window-Maximize"
+# play_Window-Maximize
 # sleep 1
-# echo "play-Window-Minimize"
-# play-Window-Minimize
+# echo "play_Window-Minimize"
+# play_Window-Minimize
 # sleep 1
-# echo "play-Window-Move-Stop"
-# play-Window-Move-Stop
+# echo "play_Window-Move-Stop"
+# play_Window-Move-Stop
 # sleep 1
-# echo "play-Window-Move"
-# play-Window-Move
+# echo "play_Window-Move"
+# play_Window-Move
 # sleep 1
-# echo "play-Window-Shade-Down"
-# play-Window-Shade-Down
+# echo "play_Window-Shade-Down"
+# play_Window-Shade-Down
 # sleep 1
-# echo "play-Window-Shade-Up"
-# play-Window-Shade-Up
+# echo "play_Window-Shade-Up"
+# play_Window-Shade-Up
 # sleep 1
 # echo "play_desktop-login4"
 # play_desktop-login4

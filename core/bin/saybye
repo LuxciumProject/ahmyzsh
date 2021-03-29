@@ -67,14 +67,14 @@ function saybye_() {
   # echo "hello"
   # done
   export RAGER10=100
-  for y in {0..200}; do
+  for y in {0..400}; do
     echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-    sleep 0
+    sleep 0.001
   done
 
   # exit
   # #+                                                                             #+
-  (play -qv 0.0525 /home/luxcium/.local/share/sounds/zelda/email.ogg &) #    #+ !!+ HARD-CODED CODE
+  (play -qv 0.05 /home/luxcium/.local/share/sounds/zelda/email.ogg &) #    #+ !!+ HARD-CODED CODE
   # #+                                                                             #+
   # sleep 2.0810s
   # sleep 0.8302s
@@ -132,9 +132,9 @@ function saybye_() {
     echo -en " ${WHS}${TIME_TO_PATH_STR}                                      "
     sleep 0
   done
-  for y in {0..150}; do
+  for y in {0..100}; do
     echo -en " ${THEEND}${TIME_TO_PATH_STR}                                      "
-    sleep 0.001
+    sleep 0.0001
   done
 
   # for y in {0..20}; do

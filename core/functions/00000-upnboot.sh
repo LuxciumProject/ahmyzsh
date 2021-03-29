@@ -1,23 +1,17 @@
+export WAITTIME=2
+export SLEEPTIME=0.5
 # update and reboot
-source $HOME/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+source /home/luxcium/ahmyzsh/core/aliases/12010-dnf.sh
+source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
 function upnboot() {
-
+  source $HOME/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  play_014
   _get_updates
   _dnfup "${1}"
   (
     _play_down_sound "reboot"
   ) &
-  sleep 1.11
-  bye
-
-}
-
-# update and reboot
-function boot() {
-  (
-    _play_down_sound "reboot"
-  ) &
-  sleep 1.11
+  sleep ${SLEEPTIME}
   bye
 
 }
@@ -25,58 +19,39 @@ function boot() {
 # update and reboot --assumeyes
 function upnbooty() {
   source $HOME/ahmyzsh/core/aliases/12012-ALS-sounds.sh
-  play_011
+  play_014
   _get_updates
   _dnfup "--assumeyes ${1}"
   (
     _play_down_sound "reboot"
   ) &
-  sleep 1.11
+  sleep ${SLEEPTIME}
+  bye
+}
+
+# update and reboot
+function boot() {
+  source $HOME/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  play_014
+  (
+    _play_down_sound "reboot"
+  ) &
+  sleep ${SLEEPTIME}
   bye
 }
 
 # update and shutdown
 function upnshutdown() {
+  source $HOME/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  play_014
   _get_updates
   _dnfup
   (
     _play_down_sound "shutdown"
   ) &
-  sleep 1.11
+  sleep ${SLEEPTIME}
   bye
 
-}
-
-function _dnf_clean_all() {
-  echo "CLEAN ALL:"
-  sudo nice -n -35 ionice -c 1 -n 1 dnf clean all --refresh
-  echo ""
-}
-
-function _dnf_makecache() {
-  echo "MAKECACHE:"
-  sudo nice -n -35 ionice -c 1 -n 1 dnf makecache --refresh
-  echo ""
-}
-
-# download updates
-function _get_updates() {
-
-  (
-    (
-      (
-        source /home/luxcium/ahmyzsh/core/aliases/12012-more-sounds.sh
-        source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
-        play_019
-        sudo nice -n -35 ionice -c 1 -n 1 dnf upgrade --downloadonly --setopt=keepcache=1 --assumeyes && play-phone_0045 || play_etc-dialog
-      ) &
-    ) >/dev/null
-  ) 2>/dev/null
-}
-
-# inatall updates
-function _dnfup() {
-  sudo nice -n -15 ionice -c 1 -n 2 dnf upgrade --setopt=keepcache=1 $1
 }
 
 function _play_down_sound() {
@@ -84,12 +59,10 @@ function _play_down_sound() {
     (
       (nohup enable_systemctl down &) >/dev/null
     ) 2>/dev/null
-    sleep 9 # for information pupose only should be disabled
+    # sleep 8 # for information pupose only should be disabled
   ) &
-  sleep 1
-
+  sleep ${WAITTIME}
   (
-    (nohup play_shutdown $1 5 &) >/dev/null
+    (nohup play_shutdown $1 4 &) >/dev/null
   ) 2>/dev/null
-
 }

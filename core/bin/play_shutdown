@@ -5,27 +5,27 @@
 function play_shutdown_() {
   # #region play_shutdown_ =====================================================¹
   (
-    sleep 1.5
+    sleep 1
     play -qv 0.6 '/home/luxcium/.local/share/sounds/smooth/stereo/desktop-login.oga' & # 6.5611s
     sleep "${2:-4}"
 
     if [ "${1:-''}" == "reboot" ]; then
       (
         (play -qv 0.8 '/home/luxcium/.local/share/sounds/zelda/dialog-information.ogg' &)
-        sleep 0.75
+        sleep 0.8 # 0.5481s
         (
           (
             sleep 1
-            play -qv 0.7 '/home/luxcium/Téléchargements/nouve-sons/total-kaoss/desktop-login.ogg' chorus 0.4 0.9 50 0.5 0.25 2 -t 40 0.6 0.2 3 -s 60 0.6 0.3 1.3 -t &
-          )&
+            play -qv 0.9 '/home/luxcium/Téléchargements/nouve-sons/total-kaoss/desktop-login.ogg' chorus 0.4 0.9 50 0.5 0.25 2 -t 40 0.6 0.2 3 -s 60 0.6 0.3 1.3 -t &
+          ) &
           (
-            sleep 3
-            play -qv 0.8 '/home/luxcium/.local/share/sounds/zelda/dialog-warning.ogg' chorus 0.4 0.9 50 0.5 0.25 2 -t 40 0.6 0.2 3 -s 60 0.6 0.3 1.3 -t &
-          )&
-        ) & #0.7828s
+            sleep 2.5
+            play -qv 0.7 '/home/luxcium/.local/share/sounds/zelda/dialog-warning.ogg' chorus 0.4 0.9 50 0.5 0.25 2 -t 40 0.6 0.2 3 -s 60 0.6 0.3 1.3 -t &
+          ) & #0.7165s
+        ) &
 
       ) &
-      sleep 0.5
+      sleep 0.6
       sudo /sbin/shutdown -t 10 -rf now
       return
     fi

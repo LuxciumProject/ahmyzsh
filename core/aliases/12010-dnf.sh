@@ -8,11 +8,11 @@
 
 # alias dnfl='dnf list'             # List packages
 # alias dnfli='dnf list --installed'  # List installed packages
-alias dnfgl='dnf grouplist'                 # List package groups
-alias dnfp='dnf info'                       # Show package information
-alias dnfs='dnf search'                     # Search package
-alias dnfu='sudo dnf upgrade --refresh'     # Upgrade package
-alias dnfuy='sudo dnf upgrade -y --refresh' # Upgrade package
+alias dnfgl='dnf grouplist' # List package groups
+alias dnfp='dnf info'       # Show package information
+alias dnfs='dnf search'     # Search package
+# alias dnfu='sudo dnf upgrade --refresh'     # Upgrade package
+# alias dnfuy='sudo dnf upgrade -y --refresh' # Upgrade package
 # alias dnfi='sudo dnf install'       # Install package
 alias dnfgi='sudo dnf groupinstall' # Install package group
 alias dnfr='sudo dnf remove'        # Remove package
@@ -26,7 +26,7 @@ alias dnfxu='sudo nice -n -35 ionice -c 1 -n 1 dnf upgrade' # Upgrade package
 
 # clean and get updates:
 function dnfcup() {
-  _dnf_clean_all && _dnf_makecache && _get_updates &
+  # _dnf_clean_all && _dnf_makecache && _get_updates &
   echo ""
   echo "UPGRADE:"
   sudo nice -n -15 ionice -c 1 -n 2 dnf upgrade --setopt=keepcache=1 --assumeno
@@ -73,6 +73,38 @@ function dnfxr() {
 
 function dnfxi() {
   sudo nice -n -35 ionice -c 1 -n 1 dnf install "*${@}*"
+}
+
+function _dnf_clean_all() {
+  echo "CLEAN ALL:"
+  sudo nice -n -35 ionice -c 1 -n 1 dnf clean all --refresh
+  echo ""
+}
+
+function _dnf_makecache() {
+  echo "MAKECACHE:"
+  sudo nice -n -35 ionice -c 1 -n 1 dnf makecache --refresh
+  echo ""
+}
+
+# download updates
+function _get_updates() {
+
+  (
+    (
+      (
+        source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+        source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+        play_019
+        sudo nice -n -35 ionice -c 1 -n 1 dnf upgrade --downloadonly --setopt=keepcache=1 --assumeyes && play_phone_0045 || play_etc-dialog
+      ) &
+    ) >/dev/null
+  ) 2>/dev/null
+}
+
+# inatall updates
+function _dnfup() {
+  sudo nice -n -15 ionice -c 1 -n 2 dnf upgrade --setopt=keepcache=1 $1
 }
 
 # -- Excuse my French

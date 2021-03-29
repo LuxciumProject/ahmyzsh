@@ -39,7 +39,7 @@ alias dckr_helloworld='docker run hello-world'
 alias notconnectsound="(play -qv 1 /usr/share/sounds/Oxygen-Im-Cant-Connect.ogg)"
 alias popsound="(play -qv 0.75 /home/luxcium/ahmyzsh/multimedia/sounds/dactylo-cloche.mp3 & sleep 0.375;play -qv 0.50 /home/luxcium/ahmyzsh/multimedia/sounds/pop-up.mp3 &)"
 #
-# alias play-Im-Cant-Connect='(play -qv 1 /usr/share/sounds/Oxygen-Im-Cant-Connect.ogg)'
+# alias play_Im-Cant-Connect='(play -qv 1 /usr/share/sounds/Oxygen-Im-Cant-Connect.ogg)'
 #
 
 function dckr_redis_start_6384() {
