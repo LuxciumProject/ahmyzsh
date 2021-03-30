@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-# (sudo nice -n -10 ionice -c 1 -n 3 dnf clean all) &
+# (sudo nice -n -10 ionice -c 2 -n 3 dnf clean all) &
 
 # (
 #   (nice -5 ionice -c 2 -n 0 sudo fc-cache -rfE)

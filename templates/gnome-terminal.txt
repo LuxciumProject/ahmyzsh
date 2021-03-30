@@ -1,7 +1,7 @@
 gnome-terminal
 
- --class=CLASSE           Classe du programme telle qu’utilisée par le gestionnaire de fenêtres
- --name=NOM             Nom du programme tel qu’utilisé par le gestionnaire de fenêtres
+ --class=CLASSE           Classe du programme telle qu'utilisée par le gestionnaire de fenêtres
+ --name=NOM             Nom du programme tel qu'utilisé par le gestionnaire de fenêtres
 
  Options to open new windows or terminal tabs; more than one of these may be specified:
  --window              Ouvre une nouvelle fenêtre contenant un onglet avec le profil par défaut
@@ -13,7 +13,7 @@ If used before the first --window or --tab argument, sets the default for all wi
  --hide-menubar           Masquer la barre de menus
  --maximize             Maximise la fenêtre
  --full-screen           Fenêtre en plein écran
- --geometry=GÉOMÉTRIE        Définit la taille de la fenêtre ; par exemple : 80x24 ou 80x24+200+200 (COLONNESxLIGNES+X+Y)
+ --geometry=GÉOMÉTRIE        Définit la taille de la fenêtre ; par exemple : 80x24 ou 80x24+200+200 (COLONNESxLIGNES+X+Y)
  --role=RÔLE            Définit le rôle de la fenêtre
  --active              Rend le dernier onglet indiqué actif
 
@@ -23,13 +23,13 @@ If used before the first --window or --tab argument, sets the default for all te
  --profile=NOMDUPROFIL       Utilise le profil indiqué au lieu du profil par défaut
  -t, --title=TITRE         Définit le titre initial du terminal
  --working-directory=RÉPTRAVAIL   Définit le répertoire de travail
- --wait               Attend que l’enfant quitte
+ --wait               Attend que l'enfant quitte
  --fd=Descripteur de fichier    Transfère le descripteur de fichier
  --zoom=ZOOM            Définit le facteur de zoom du terminal (1.0 = taille normale)
 
 Options GTK+
- --class=CLASSE           Classe du programme telle qu’utilisée par le gestionnaire de fenêtres
- --name=NOM             Nom du programme tel qu’utilisé par le gestionnaire de fenêtres
+ --class=CLASSE           Classe du programme telle qu'utilisée par le gestionnaire de fenêtres
+ --name=NOM             Nom du programme tel qu'utilisé par le gestionnaire de fenêtres
  --gdk-debug=DRAPEAUX        Drapeaux de débogage GDK à définir
  --gdk-no-debug=DRAPEAUX      Drapeaux de débogage GDK à ne pas définir
  --gtk-module=MODULES        Charge des modules GTK+ additionnels
@@ -46,10 +46,10 @@ Options to open new windows or terminal tabs; more than one of these may be spec
 
 
 
-Options de l’application :
+Options de l'application :
   --load-config=FICHIER       Charge un fichier de configuration pour le terminal
   --preferences           Afficher la fenêtre de préférences
-  -p, --print-environment      Afficher les variables d’environnement pour interagir avec le terminal
+  -p, --print-environment      Afficher les variables d'environnement pour interagir avec le terminal
   -v, --verbose           Augmenter la verbosité du diagnostic
   -q, --quiet            Supprimer la sortie
   --display=AFFICHAGE        Affichage X à utiliser
@@ -57,7 +57,7 @@ Options de l’application :
 
 
 ❯ gnome-terminal --help-all
-Utilisation :
+Utilisation :
  gnome-terminal --title=TITRE --class=CLASSE --name=NOM --geometry=80x24+200+200 # [OPTION…] [-- COMMANDE …]
 
 

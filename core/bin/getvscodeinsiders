@@ -71,8 +71,8 @@ getvscodeportable 'INSIDERS' "${1}"
 #       WORKING_LOCATION="/tmp/LXCM-vscode-${vsbranch}-${myUXIDlong}" || exit 1
 #       DOWNLOAD_LOCATION="${WORKING_LOCATION}/download" || exit 1
 
-#       sudo nice -n -35 ionice -c 1 -n 1 mkdir -p "${DOWNLOAD_LOCATION}" || exit 1
-#       sudo nice -n -35 ionice -c 1 -n 1 chown -R $(whoami) "${WORKING_LOCATION}" || exit 1
+#       sudo nice -n -15 ionice -c 1 -n 1 mkdir -p "${DOWNLOAD_LOCATION}" || exit 1
+#       sudo nice -n -15 ionice -c 1 -n 1 chown -R $(whoami) "${WORKING_LOCATION}" || exit 1
 #     }
 
 #     ## DOWNLOAD FROM MICROSOFT
@@ -80,14 +80,14 @@ getvscodeportable 'INSIDERS' "${1}"
 #       cd ${DOWNLOAD_LOCATION}
 
 #       echo -e "\n >    download ${vsbranch}.rpm from microsoft server"
-#       sudo nice -n -35 ionice -c 1 -n 1 curl -O -L -J -S# "${VSCODERPM}" || exit 1
+#       sudo nice -n -15 ionice -c 1 -n 1 curl -O -L -J -S# "${VSCODERPM}" || exit 1
 #       myUXIDshort="${vsbranch}-$(date +%s)-${myUXIDlong:7:11}L" || exit 1
 
 #       cd ${WORKING_LOCATION}
 #       for f in $(ls ${DOWNLOAD_LOCATION}/*code*.x86_64.rpm); do
-#         sudo nice -n -35 ionice -c 1 -n 1 rpm2cpio "$f" | sudo nice -n -35 ionice -c 1 -n 1 cpio -idm --no-absolute-filenames &>/dev/null || exit 1
+#         sudo nice -n -15 ionice -c 1 -n 1 rpm2cpio "$f" | sudo nice -n -15 ionice -c 1 -n 1 cpio -idm --no-absolute-filenames &>/dev/null || exit 1
 #       done
-#       sudo nice -n -35 ionice -c 1 -n 1 chown -R $(whoami) "${WORKING_LOCATION}" >/dev/null || exit 1
+#       sudo nice -n -15 ionice -c 1 -n 1 chown -R $(whoami) "${WORKING_LOCATION}" >/dev/null || exit 1
 #     }
 
 #     ## CREATING THE PORTABLE VERSION
@@ -110,9 +110,9 @@ getvscodeportable 'INSIDERS' "${1}"
 #     ## MOVING STUFF TO HOME FOLDER
 #     {
 #       sudo mkdir -p "${HOME}/potable-vscode/" || exit 1
-#       sudo nice -n -35 ionice -c 1 -n 1 chown -R $(whoami) "${WORKING_LOCATION}" || exit 1
+#       sudo nice -n -15 ionice -c 1 -n 1 chown -R $(whoami) "${WORKING_LOCATION}" || exit 1
 #       sudo groupadd "luxcium.io" &>/dev/null
-#       sudo nice -n -35 ionice -c 1 -n 1 chgrp -R "luxcium.io" "${WORKING_LOCATION}" || exit 1
+#       sudo nice -n -15 ionice -c 1 -n 1 chgrp -R "luxcium.io" "${WORKING_LOCATION}" || exit 1
 #       mv "${WORKING_LOCATION}/vs-${VSCODESHORTPATH}/" "${HOME}/potable-vscode/vs-code_${myUXIDshort}/" || exit 1
 #       sudo rm -rf "${WORKING_LOCATION}" || exit 1
 

@@ -2399,11 +2399,11 @@
 Reportez-vous à ce tableau pour déterminer les rôles pris en charge pour chaque voix neuronale.
 TABLE 6
 Voix	Role	Description
-zh-CN-XiaomoNeural	role="YoungAdultFemale"	La voix imite celle d’une jeune femme adulte.
-role="OlderAdultMale"	La voix imite celle d’un homme adulte plus âgé.
-role="Girl"	La voix imite celle d’une petite fille.
-role="Boy"	La voix imite celle d’un petit garçon.
-zh-CN-XiaoxuanNeural	role="YoungAdultFemale"	La voix imite celle d’une jeune femme adulte.
-role="OlderAdultFemale"	La voix imite celle d’une femme adulte plus âgée.
-role="OlderAdultMale"	La voix imite celle d’un homme adulte plus âgé.
+zh-CN-XiaomoNeural	role="YoungAdultFemale"	La voix imite celle d'une jeune femme adulte.
+role="OlderAdultMale"	La voix imite celle d'un homme adulte plus âgé.
+role="Girl"	La voix imite celle d'une petite fille.
+role="Boy"	La voix imite celle d'un petit garçon.
+zh-CN-XiaoxuanNeural	role="YoungAdultFemale"	La voix imite celle d'une jeune femme adulte.
+role="OlderAdultFemale"	La voix imite celle d'une femme adulte plus âgée.
+role="OlderAdultMale"	La voix imite celle d'un homme adulte plus âgé.
 */

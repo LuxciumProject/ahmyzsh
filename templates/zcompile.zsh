@@ -3,13 +3,13 @@
 # zcompile -t file [ name ... ]
 # This builtin command can be used to compile functions or scripts, storing the compiled form in a file, and to examine files containing the compiled form. This allows faster autoloading of functions and sourcing of scripts by avoiding parsing of the text when the files are read.
 
-# The first form (without the -c, -a or -t options) creates a compiled file. If only the file argument is given, the output file has the name ‘file.zwc’ and will be placed in the same directory as the file. The shell will load the compiled file instead of the normal function file when the function is autoloaded; see Functions for a description of how autoloaded functions are searched. The extension .zwc stands for ‘zsh word code’.
+# The first form (without the -c, -a or -t options) creates a compiled file. If only the file argument is given, the output file has the name ‘file.zwc' and will be placed in the same directory as the file. The shell will load the compiled file instead of the normal function file when the function is autoloaded; see Functions for a description of how autoloaded functions are searched. The extension .zwc stands for ‘zsh word code'.
 
-# If there is at least one name argument, all the named files are compiled into the output file given as the first argument. If file does not end in .zwc, this extension is automatically appended. Files containing multiple compiled functions are called ‘digest’ files, and are intended to be used as elements of the FPATH/fpath special array.
+# If there is at least one name argument, all the named files are compiled into the output file given as the first argument. If file does not end in .zwc, this extension is automatically appended. Files containing multiple compiled functions are called ‘digest' files, and are intended to be used as elements of the FPATH/fpath special array.
 
 # The second form, with the -c or -a options, writes the compiled definitions for all the named functions into file. For -c, the names must be functions currently defined in the shell, not those marked for autoloading. Undefined functions that are marked for autoloading may be written by using the -a option, in which case the fpath is searched and the contents of the definition files for those functions, if found, are compiled into file. If both -c and -a are given, names of both defined functions and functions marked for autoloading may be given. In either case, the functions in files written with the -c or -a option will be autoloaded as if the KSH_AUTOLOAD option were unset.
 
-# The reason for handling loaded and not-yet-loaded functions with different options is that some definition files for autoloading define multiple functions, including the function with the same name as the file, and, at the end, call that function. In such cases the output of ‘zcompile -c’ does not include the additional functions defined in the file, and any other initialization code in the file is lost. Using ‘zcompile -a’ captures all this extra information.
+# The reason for handling loaded and not-yet-loaded functions with different options is that some definition files for autoloading define multiple functions, including the function with the same name as the file, and, at the end, call that function. In such cases the output of ‘zcompile -c' does not include the additional functions defined in the file, and any other initialization code in the file is lost. Using ‘zcompile -a' captures all this extra information.
 
 # If the -m option is combined with -c or -a, the names are used as patterns and all functions whose names match one of these patterns will be written. If no name is given, the definitions of all functions currently defined or marked as autoloaded will be written.
 
@@ -29,12 +29,12 @@
 # Aliases are not expanded when compiling the named files.
 
 # -R
-# When the compiled file is read, its contents are copied into the shell’s memory, rather than memory-mapped (see -M). This happens automatically on systems that do not support memory mapping.
+# When the compiled file is read, its contents are copied into the shell's memory, rather than memory-mapped (see -M). This happens automatically on systems that do not support memory mapping.
 
 # When compiling scripts instead of autoloadable functions, it is often desirable to use this option; otherwise the whole file, including the code to define functions which have already been defined, will remain mapped, consequently wasting memory.
 
 # -M
-# The compiled file is mapped into the shell’s memory when read. This is done in such a way that multiple instances of the shell running on the same host will share this mapped file. If neither -R nor -M is given, the zcompile builtin decides what to do based on the size of the compiled file.
+# The compiled file is mapped into the shell's memory when read. This is done in such a way that multiple instances of the shell running on the same host will share this mapped file. If neither -R nor -M is given, the zcompile builtin decides what to do based on the size of the compiled file.
 
 # -k
 # -z

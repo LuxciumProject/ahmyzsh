@@ -1,12 +1,12 @@
 alias obsp='(cd /home/luxcium/obs-studio-portable/bin/64bit && /home/luxcium/obs-studio-portable/bin/64bit/obs)'
-alias runobs='(cd /home/luxcium/obs-studio-portable/bin/64bit && sudo ionice -c 1 -n 0 nice -n -35 sudo -u luxcium /home/luxcium/obs-studio-portable/bin/64bit/obs)'
+alias runobs='(cd /home/luxcium/obs-studio-portable/bin/64bit && sudo ionice -c 1 -n 1 nice -n -15 sudo -u luxcium /home/luxcium/obs-studio-portable/bin/64bit/obs)'
 alias reloadobs='(sudo killall obs; runobs)'
 
-alias getphotosx='(cambat && mkdir ${HOME}/myPic -p && cd ${HOME}/myPic && sudo ionice -c 2 -n 4 nice -n -35  gphoto2 --get-all-files --skip-existing&& lf&)'
-alias getphotos='(cambat && mkdir ${HOME}/myPic -p && cd ${HOME}/myPic && sudo ionice -c 2 -n 4 nice -n -35  gphoto2 --get-all-files --new --skip-existing&& lf&)'
+alias getphotosx='(cambat && mkdir ${HOME}/myPic -p && cd ${HOME}/myPic && sudo ionice -c 2 -n 4 nice -n -15  gphoto2 --get-all-files --skip-existing&& lf&)'
+alias getphotos='(cambat && mkdir ${HOME}/myPic -p && cd ${HOME}/myPic && sudo ionice -c 2 -n 4 nice -n -15  gphoto2 --get-all-files --new --skip-existing&& lf&)'
 alias cambatF='(echo -ne \n\n && cambat && echo -ne \n\n )'
-alias inice0='sudo ionice -c 1 -n 0 nice -n -35'
-alias inice1='sudo ionice -c 1 -n 1 nice -n -35'
+alias inice0='sudo ionice -c 1 -n 1 nice -n -15'
+alias inice1='sudo ionice -c 1 -n 1 nice -n -15'
 # // -probesize 32 -analyzeduration 0 '
 # // gphoto2 --stdout --capture-movie | ffmpeg  -hwaccel nvdec -c:v mjpeg_cuvid -i - -vcodec rawvideo -filter atadenoise -pix_fmt yuv420p -force_key_frames 00:00:00.000 -c:a copy -f v4l2 /dev/video0 -init_hw_device cuda:1
 # // gphoto2 --stdout --capture-movie |

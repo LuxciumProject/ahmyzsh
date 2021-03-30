@@ -4,18 +4,18 @@
 
 ## TODO: REMOVE HARD CONFIGURED LINKS
 
-sudo nice -n -35 ionice -c 1 -n 0 mkdir -p "/etc/vscode-portable/backup/code/data/user-data"
-sudo nice -n -35 ionice -c 1 -n 0 mkdir -p "/etc/vscode-portable/backup/code/data/tmp"
-sudo nice -n -35 ionice -c 1 -n 0 mkdir -p "/etc/vscode-portable/backup/code/data/extensions"
+sudo nice -n -15 ionice -c 1 -n 1 mkdir -p "/etc/vscode-portable/backup/code/data/user-data"
+sudo nice -n -15 ionice -c 1 -n 1 mkdir -p "/etc/vscode-portable/backup/code/data/tmp"
+sudo nice -n -15 ionice -c 1 -n 1 mkdir -p "/etc/vscode-portable/backup/code/data/extensions"
 
-sudo nice -n -35 ionice -c 1 -n 0 mkdir -p "/etc/vscode-portable/backup/code-insiders/data/user-data"
-sudo nice -n -35 ionice -c 1 -n 0 mkdir -p "/etc/vscode-portable/backup/code-insiders/data/tmp"
-sudo nice -n -35 ionice -c 1 -n 0 mkdir -p "/etc/vscode-portable/backup/code-insiders/data/extensions"
+sudo nice -n -15 ionice -c 1 -n 1 mkdir -p "/etc/vscode-portable/backup/code-insiders/data/user-data"
+sudo nice -n -15 ionice -c 1 -n 1 mkdir -p "/etc/vscode-portable/backup/code-insiders/data/tmp"
+sudo nice -n -15 ionice -c 1 -n 1 mkdir -p "/etc/vscode-portable/backup/code-insiders/data/extensions"
 
-(sudo nice -n -35 ionice -c 1 -n 0 cp -vuLr /home/luxcium/.config/Code/* /etc/vscode-portable/backup/code/data/user-data/) &
-(sudo nice -n -35 ionice -c 1 -n 0 cp -vuLr /home/luxcium/.vscode/extensions/* /etc/vscode-portable/backup/code/data/extensions/) &
+(sudo nice -n -15 ionice -c 1 -n 1 cp -vuLr /home/luxcium/.config/Code/* /etc/vscode-portable/backup/code/data/user-data/) &
+(sudo nice -n -15 ionice -c 1 -n 1 cp -vuLr /home/luxcium/.vscode/extensions/* /etc/vscode-portable/backup/code/data/extensions/) &
 
-(sudo nice -n -35 ionice -c 1 -n 0 cp -vuLr /home/luxcium/.config/'Code - Insiders'/* /etc/vscode-portable/backup/code-insiders/data/user-data/) &
-(sudo nice -n -35 ionice -c 1 -n 0 cp -vuLr /home/luxcium/.vscode-insiders/extensions/* /etc/vscode-portable/backup/code-insiders/data/extensions/) &
+(sudo nice -n -15 ionice -c 1 -n 1 cp -vuLr /home/luxcium/.config/'Code - Insiders'/* /etc/vscode-portable/backup/code-insiders/data/user-data/) &
+(sudo nice -n -15 ionice -c 1 -n 1 cp -vuLr /home/luxcium/.vscode-insiders/extensions/* /etc/vscode-portable/backup/code-insiders/data/extensions/) &
 
 exit 0

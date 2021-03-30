@@ -44,19 +44,19 @@ function getvscodeportable_() {
       ## CUSTOM VARIABLES DEFINITIONS
       # † ======================================================================
 
-      # sudo nice -n -35 ionice -c 1 -n 0
+      # sudo nice -n -15 ionice -c 1 -n 1
       _NICE_VAL='35'
       _IONICE_C='2'
       # _IONICE_N='2'
 
-      #       Options :
-      #   -c, --class <classe>  nom ou numéro de classe d’ordonnancement
-      #                           0 : aucune,
-      #                           1 : temps réel,
-      #   -n, --classdata <nbr> priorité (0-7) dans les classes d’ordonnancement
-      #                           2 : au mieux,
-      #   -n, --classdata <nbr> priorité (0-7) dans les classes d’ordonnancement
-      #                           3 : au ralenti
+      #       Options :
+      #   -c, --class <classe>  nom ou numéro de classe d'ordonnancement
+      #                           0 : aucune,
+      #                           1 : temps réel,
+      #   -n, --classdata <nbr> priorité (0-7) dans les classes d'ordonnancement
+      #                           2 : au mieux,
+      #   -n, --classdata <nbr> priorité (0-7) dans les classes d'ordonnancement
+      #                           3 : au ralenti
 
       vscoderpm="${VSCODEURL_STABLE_RPM}"
       vscodeshortpath="${VSCODESHORTPATH_STABLE}"
@@ -139,8 +139,8 @@ function getvscodeportable_() {
 
       for f in $(ls ${download_location}/*code*.x86_64.rpm); do
         (
-          sudo nice -n "${_NICE_VAL}" ionice -c "${_IONICE_C}" -n 1 rpm2cpio "$f" |
-            sudo nice -n "${_NICE_VAL}" ionice -c "${_IONICE_C}" -n 1 cpio -idm --no-absolute-filenames &>/dev/null
+          sudo nice -n "${_NICE_VAL}" ionice -c "${_IONICE_C}" -n 1 rpm2cpio "$f" \
+            | sudo nice -n "${_NICE_VAL}" ionice -c "${_IONICE_C}" -n 1 cpio -idm --no-absolute-filenames &>/dev/null
         ) || exit 1
       done
 
@@ -167,7 +167,7 @@ function getvscodeportable_() {
       cp -r "${working_location}/usr/share/pixmaps/" "${working_location}/vs-${vscodeshortpath}/pixmaps/"
 
       for f in $(ls "${working_location}/tmp-${vscodeshortpath}"); do
-        sudo nice -n "${_NICE_VAL}" ionice -c "${_IONICE_C}" -n 1 cp -r "${working_location}/tmp-${vscodeshortpath}/$f" "${working_location}/vs-${vscodeshortpath}/" ||  exit 1
+        sudo nice -n "${_NICE_VAL}" ionice -c "${_IONICE_C}" -n 1 cp -r "${working_location}/tmp-${vscodeshortpath}/$f" "${working_location}/vs-${vscodeshortpath}/" || exit 1
       done
       # ========================================================================
     }
@@ -186,7 +186,7 @@ function getvscodeportable_() {
 
       mkdir -p "${vs_code_home_path}/"
 
-      (sudo nice -n "${_NICE_VAL}" ionice -c "${_IONICE_C}" -n 1 chown -R ${iamtheuser} "${working_location}") ||  exit 1
+      (sudo nice -n "${_NICE_VAL}" ionice -c "${_IONICE_C}" -n 1 chown -R ${iamtheuser} "${working_location}") || exit 1
       (sudo groupadd "luxcium.io" &>/dev/null)
       (sudo nice -n "${_NICE_VAL}" ionice -c "${_IONICE_C}" -n 1 chgrp -R "luxcium.io" "${working_location}")
 
@@ -212,8 +212,8 @@ function getvscodeportable_() {
       fi
       # ========================================================================
     }
-  ) ||
-    return 1
+  ) \
+    || return 1
   if [[ "${2}" = 'UPDATE' ]]; then
     echo -e "\n   -UPDATE-" && return 0
   else

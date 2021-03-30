@@ -48,13 +48,13 @@
 #   }
 #   {
 #     echo -e " >    create the downlaod folder and the working folder at the same time"
-#     sudo nice -n -35 ionice -c 1 -n 1 mkdir -p "${WORKING_LOCATION}" || exit 1
+#     sudo nice -n -15 ionice -c 1 -n 1 mkdir -p "${WORKING_LOCATION}" || exit 1
 #     echo -ne " >    "
-#     sudo nice -n -35 ionice -c 1 -n 1 mkdir -pv "${DOWNLOAD_LOCATION}" || exit 1
+#     sudo nice -n -15 ionice -c 1 -n 1 mkdir -pv "${DOWNLOAD_LOCATION}" || exit 1
 #     echo -ne " >    "
-#     sudo nice -n -35 ionice -c 1 -n 1 chown -vR $(whoami) "${DOWNLOAD_LOCATION}" || exit 1
+#     sudo nice -n -15 ionice -c 1 -n 1 chown -vR $(whoami) "${DOWNLOAD_LOCATION}" || exit 1
 #     echo -ne " >    "
-#     sudo nice -n -35 ionice -c 1 -n 1 chown -v $(whoami) "${WORKING_LOCATION}" || exit 1
+#     sudo nice -n -15 ionice -c 1 -n 1 chown -v $(whoami) "${WORKING_LOCATION}" || exit 1
 #   }
 #   {
 #     # https://go.microsoft.com/fwlink/?LinkID=760867 (STABLE .rpm)
@@ -67,20 +67,20 @@
 #     cd ${DOWNLOAD_LOCATION}
 #     echo -e '--------------------------------------------------------------------------------\n'
 #     echo -e " >    download STABLE.rpm from microsoft server"
-#     sudo nice -n -35 ionice -c 1 -n 1 curl -O -L -J -S# 'https://go.microsoft.com/fwlink/?LinkID=760867' || exit 1
+#     sudo nice -n -15 ionice -c 1 -n 1 curl -O -L -J -S# 'https://go.microsoft.com/fwlink/?LinkID=760867' || exit 1
 #     myUXIDshort_stable="$(date +%s)-${myUXIDlong:7:11}L" || exit 1
 #     echo -e " >    download INSIDERS.rpm from microsoft server"
-#     sudo nice -n -35 ionice -c 1 -n 1 curl -O -L -J -# 'https://go.microsoft.com/fwlink/?LinkID=760866' || exit 1
+#     sudo nice -n -15 ionice -c 1 -n 1 curl -O -L -J -# 'https://go.microsoft.com/fwlink/?LinkID=760866' || exit 1
 #     myUXIDshort_insiders="$(date +%s)-${myUXIDlong:7:11}L" || exit 1
 #     echo -e '--------------------------------------------------------------------------------'
 
 #     cd ${WORKING_LOCATION}
-#     # sudo nice -n -35 ionice -c 1 -n 1 dnf reinstall "code*" -v --downloadonly --downloaddir ${DOWNLOAD_LOCATION} -y >/dev/null || exit 1
+#     # sudo nice -n -15 ionice -c 1 -n 1 dnf reinstall "code*" -v --downloadonly --downloaddir ${DOWNLOAD_LOCATION} -y >/dev/null || exit 1
 #     echo -e " >    extract the rpm files into the ${WORKING_LOCATION}/usr"
 #     for f in $(ls ${DOWNLOAD_LOCATION}/*code*.x86_64.rpm); do
-#       sudo nice -n -35 ionice -c 1 -n 1 rpm2cpio "$f" | sudo nice -n -35 ionice -c 1 -n 1 cpio -idm --no-absolute-filenames &>/dev/null || exit 1
+#       sudo nice -n -15 ionice -c 1 -n 1 rpm2cpio "$f" | sudo nice -n -15 ionice -c 1 -n 1 cpio -idm --no-absolute-filenames &>/dev/null || exit 1
 #     done
-#     sudo nice -n -35 ionice -c 1 -n 1 chown -R $(whoami) "${WORKING_LOCATION}" >/dev/null || exit 1
+#     sudo nice -n -15 ionice -c 1 -n 1 chown -R $(whoami) "${WORKING_LOCATION}" >/dev/null || exit 1
 #   }
 #   {
 #     cp -r /etc/vscode-portable/vs-code/ ${WORKING_LOCATION} || exit 1
@@ -125,8 +125,8 @@
 #     echo -e " >    make sure the newly created folder and files are inside a group  chgrp -R 'luxcium.io' '${WORKING_LOCATION}' "
 
 #     (
-#       sudo nice -n -35 ionice -c 1 -n 1 chown -R $(whoami) "${WORKING_LOCATION}" || exit 1
-#       sudo nice -n -35 ionice -c 1 -n 1 chgrp -R "luxcium.io" "${WORKING_LOCATION}" || exit 1
+#       sudo nice -n -15 ionice -c 1 -n 1 chown -R $(whoami) "${WORKING_LOCATION}" || exit 1
+#       sudo nice -n -15 ionice -c 1 -n 1 chgrp -R "luxcium.io" "${WORKING_LOCATION}" || exit 1
 
 #       # echo -ne " >    "
 #       sudo mkdir -pv "${home}/potable-vscode/" || exit 1
@@ -135,10 +135,10 @@
 #       mv "${WORKING_LOCATION}/vs-code-insiders/" "${HOME}/potable-vscode/vs-code-insiders_${myUXIDshort_insiders}/" || exit 1
 
 #       (
-#         sudo nice -n -35 ionice -c 1 -n 1 rm -fr "${WORKING_LOCATION}/usr" &
-#         sudo nice -n -35 ionice -c 1 -n 1 rm -fr "${WORKING_LOCATION}/download" &
-#         sudo nice -n -35 ionice -c 1 -n 1 rm -fr "${WORKING_LOCATION}/code" &
-#         sudo nice -n -35 ionice -c 1 -n 1 rm -fr "${WORKING_LOCATION}/code-insiders" &
+#         sudo nice -n -15 ionice -c 1 -n 1 rm -fr "${WORKING_LOCATION}/usr" &
+#         sudo nice -n -15 ionice -c 1 -n 1 rm -fr "${WORKING_LOCATION}/download" &
+#         sudo nice -n -15 ionice -c 1 -n 1 rm -fr "${WORKING_LOCATION}/code" &
+#         sudo nice -n -15 ionice -c 1 -n 1 rm -fr "${WORKING_LOCATION}/code-insiders" &
 #         sudo rm -rf "${WORKING_LOCATION}" &
 #       ) || exit 1
 #     ) || exit 1

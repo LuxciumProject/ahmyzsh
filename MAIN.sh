@@ -31,7 +31,7 @@ function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
 
   # Test we are in ZSH.
   export IS_ZSH_="$(ps -o comm= -p $$ | grep 'zsh')"
-  [[ -z "${IS_ZSH_}" ]] &&  return 1
+  [[ -z "${IS_ZSH_}" ]] && return 1
 
   # Test we are in the session load for the first time
   # or only reload confings and functions.

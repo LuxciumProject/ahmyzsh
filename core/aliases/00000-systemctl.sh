@@ -6,9 +6,9 @@ function systemctllistbefore() {
 
 }
 
-alias redis_6379='sudo nice -n -35 ionice -c 1 -n 0 systemctl enable redis_6379 --now'
-alias redis_6379_on='sudo nice -n -35 ionice -c 1 -n 0 systemctl enable redis_6379 --now'
-alias redis_6379_off='sudo nice -n -35 ionice -c 1 -n 0 systemctl disable redis_6379 --now'
+alias redis_6379='sudo nice -n -15 ionice -c 1 -n 2 systemctl enable redis_6379 --now'
+alias redis_6379_on='sudo nice -n -15 ionice -c 1 -n 2 systemctl enable redis_6379 --now'
+alias redis_6379_off='sudo nice -n -15 ionice -c 1 -n 2 systemctl disable redis_6379 --now'
 
 function systemctllistafter() {
   # Show the units that are ordered before the specified unit.

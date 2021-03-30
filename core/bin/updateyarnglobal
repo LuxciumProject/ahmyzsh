@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 
 function updateyarnglobal_() {
-  yarn global add yarn@latest &&
-    yarn global add \
+  yarn global add yarn@latest \
+    && yarn global add \
       prettier-plugin-sh@latest \
       @nestjs/cli@latest \
       @typescript-eslint/eslint-plugin@latest \
@@ -25,7 +25,7 @@ function updateyarnglobal_() {
       prettier@latest \
       ts-node@latest \
       typescript@next \
-      vsce@latest ||  return 2
+      vsce@latest || return 2
 }
 
 ## Extra code make it easy to copy paste only the function out to use elsewhere

@@ -127,7 +127,7 @@ function my_envs() {
 
 function __LOCALE__() {
 
-  # This variable overrides the value of the ‘LANG’ variable and the value of any of the other variables starting with # ‘LC_’.
+  # This variable overrides the value of the ‘LANG' variable and the value of any of the other variables starting with # ‘LC_'.
   # LC_ALL="fr_CA.UTF-8"
 
   # This variable determines the locale category for character collation information within ranges in glob brackets and # for sorting.

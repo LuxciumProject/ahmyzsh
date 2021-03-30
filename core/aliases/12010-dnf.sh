@@ -2,18 +2,18 @@
 ## Aliases
 
 #@ https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/dnf/dnf.plugin.zsh
-#@ commit:c0b1252
+#@ commit:c0b1252
 #@ created by https://github.com/GioMac
 #@ updated and maintained by https://github.com/mcornella
 
-# alias dnfl='dnf list'             # List packages
-# alias dnfli='dnf list --installed'  # List installed packages
+# alias dnfl='dnf list'       # List packages
+# alias dnfli='dnf list --installed' # List installed packages
 alias dnfgl='dnf grouplist' # List package groups
 alias dnfp='dnf info'       # Show package information
 alias dnfs='dnf search'     # Search package
-# alias dnfu='sudo dnf upgrade --refresh'     # Upgrade package
+# alias dnfu='sudo dnf upgrade --refresh'   # Upgrade package
 # alias dnfuy='sudo dnf upgrade -y --refresh' # Upgrade package
-# alias dnfi='sudo dnf install'       # Install package
+# alias dnfi='sudo dnf install'    # Install package
 alias dnfgi='sudo dnf groupinstall' # Install package group
 alias dnfr='sudo dnf remove'        # Remove package
 alias dnfgr='sudo dnf groupremove'  # Remove package group
@@ -21,36 +21,38 @@ alias dnfmc='dnf makecache'         # Generate metadata cache
 alias dnfc='sudo dnf clean all'     # Clean cache
 alias dnfmkcln='dnfc -v; dnfmc'     # Clean cache & Regenerate metadata cache
 
-#  sudo nice -n -35 ionice -c 1 -n 1
-alias dnfxu='sudo nice -n -35 ionice -c 1 -n 1 dnf upgrade' # Upgrade package
+# sudo nice -n -15 ionice -c 1 -n 1
+alias dnfxu='sudo nice -n -15 ionice -c 1 -n 1 dnf upgrade' # Upgrade package
 
 # clean and get updates:
+
 function dnfcup() {
   # _dnf_clean_all && _dnf_makecache && _get_updates &
-  echo ""
-  echo "UPGRADE:"
+  #  echo ""
+  #  echo "UPGRADE:"
   sudo nice -n -15 ionice -c 1 -n 2 dnf upgrade --setopt=keepcache=1 --assumeno
-  echo ""
-  echo "DISTRO-SYNC:"
+  #  echo ""
+  #  echo "DISTRO-SYNC:"
   sudo nice -n -15 ionice -c 1 -n 2 dnf distro-sync --setopt=keepcache=1 --assumeno
 }
 
 function dnfcleanupgrade() {
   _dnf_clean_all && _dnf_makecache && _get_updates &
-  echo ""
-  echo "UPGRADE:"
+  #  echo ""
+  #  echo "UPGRADE:"
   sudo nice -n -15 ionice -c 1 -n 2 dnf upgrade --setopt=keepcache=1 -y
-  echo ""
-  echo "DISTRO-SYNC:"
+  #  echo ""
+  #  echo "DISTRO-SYNC:"
   sudo nice -n -15 ionice -c 1 -n 2 dnf distro-sync --setopt=keepcache=1 -y
 }
 
-## Additional Aliases
+## Additional Aliases
 #@ created by https://github.com/Luxcium
 alias dnfud='sudo dnf upgrade --downloadonly -y --refresh' # Upgrade package
 
 ## Functions
 #@ created by https://github.com/Luxcium
+
 function dnfl() {
   sudo dnf list "*${@}*"
 }
@@ -68,23 +70,100 @@ function dnfi() {
 }
 
 function dnfxr() {
-  sudo nice -n -35 ionice -c 1 -n 1 dnf remove "*${@}*"
+  sudo nice -n -15 ionice -c 1 -n 1 dnf remove "*${@}*"
 }
 
 function dnfxi() {
-  sudo nice -n -35 ionice -c 1 -n 1 dnf install "*${@}*"
+  sudo nice -n -15 ionice -c 1 -n 1 dnf install "*${@}*"
 }
 
 function _dnf_clean_all() {
-  echo "CLEAN ALL:"
-  sudo nice -n -35 ionice -c 1 -n 1 dnf clean all --refresh
-  echo ""
+  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  #  echo "CLEAN ALL:"
+  sudo nice -25 ionice -c 3 dnf clean all --refresh && play_osx1_0012_critical_chronicles || play_osx2_0002_assend_attention
+  #  echo ""
+}
+
+function _dnf_makecache_quick_update() {
+  _dnf_clean_all
+  # yumFedoraDeactivate
+  # yumFedoraTestingDeactivate
+  yumOthersDeactivate
+  yumMicrosoftDeactivate
+  #  echo "MAKECACHE:"
+  sudo nice -25 ionice -c 3 dnf makecache --refresh
+  #  echo ""
+  _get_updates
+  # yumFedoraActivate
+  # yumFedoraTestingActivate
+  yumOthersActivate
+  yumMicrosoftActivate
+}
+
+function _dnf_makecache_auto_update() {
+  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  _dnf_clean_all
+  yumFedoraDeactivate
+  yumFedoraTestingDeactivate
+  # yumOthersDeactivate && (play_001&)
+  yumMicrosoftDeactivate
+  #  echo "MAKECACHE:"
+  sudo nice -25 ionice -c 3 dnf makecache --refresh && play_osx2_0007_old_school1 || play_osx2_0002_assend_attention
+  #  echo ""
+  sudo dnf upgrade -y && play_phone_0045 || play_osx2_0002_assend_attention
+  yumFedoraActivate
+  yumFedoraTestingActivate
+  # yumOthersActivate
+  yumMicrosoftActivate
+  play_osx2_0005_old_school2 # play_osx2_0007_old_school1
 }
 
 function _dnf_makecache() {
-  echo "MAKECACHE:"
-  sudo nice -n -35 ionice -c 1 -n 1 dnf makecache --refresh
+  # yumFedoraDeactivate
+  # yumFedoraTestingDeactivate
+  # yumOthersDeactivate
+  yumMicrosoftDeactivate
+  #  echo "MAKECACHE:"
+  sudo nice -25 ionice -c 3 dnf makecache --refresh && play_osx2_0007_old_school1
+  #  echo ""
+  # yumFedoraActivate
+  # yumFedoraTestingActivate
+  # yumOthersActivate
+  yumMicrosoftActivate
+  play_osx2_0005_old_school2
+}
+
+function _dnf_makecache_all() {
+  _reset_all_repos
+  echo "MAKECACHE (all):"
+  sudo nice -25 ionice -c 3 dnf makecache --refresh
   echo ""
+  _dnfup
+}
+
+function _dnf_makecache_quick() {
+  # yumFedoraDeactivate
+  yumFedoraTestingDeactivate
+  yumOthersDeactivate
+  yumMicrosoftDeactivate
+  #  echo "MAKECACHE:"
+  sudo nice -25 ionice -c 3 dnf makecache --refresh
+  #  echo ""
+  # yumFedoraActivate
+  yumFedoraTestingActivate
+  yumOthersActivate
+  yumMicrosoftActivate
+}
+
+function _reset_all_repos() {
+  yumFedoraDeactivate
+  yumFedoraTestingDeactivate
+  yumOthersDeactivate
+  yumMicrosoftDeactivate
+  yumFedoraActivate
+  yumFedoraTestingActivate
+  yumOthersActivate
+  yumMicrosoftActivate
 }
 
 # download updates
@@ -94,9 +173,8 @@ function _get_updates() {
     (
       (
         source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
-        source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
         play_019
-        sudo nice -n -35 ionice -c 1 -n 1 dnf upgrade --downloadonly --setopt=keepcache=1 --assumeyes && play_phone_0045 || play_etc-dialog
+        sudo nice -n -15 ionice -c 2 -n 0 dnf upgrade --downloadonly --setopt=keepcache=1 --assumeyes && play_phone_0045 || play_etc-dialog
       ) &
     ) >/dev/null
   ) 2>/dev/null
@@ -107,258 +185,186 @@ function _dnfup() {
   sudo nice -n -15 ionice -c 1 -n 2 dnf upgrade --setopt=keepcache=1 $1
 }
 
-# -- Excuse my French
+function yumFedoraActivate() {
+  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  (play_001 &)
+  #  echo "yumFedoraActivate"
+  #  echo "+++"
+  #  echo "activate: "
+  (sudo mv /etc/yum.repos.d/fedora.repo-off /etc/yum.repos.d/fedora.repo) && play_013
+  #  echo "activate: fedora-updates"
+  (sudo mv /etc/yum.repos.d/fedora-updates.repo-off /etc/yum.repos.d/fedora-updates.repo) && play_013
+  # +++
+  #  echo "activate: fedora-modular"
+  (sudo mv /etc/yum.repos.d/fedora-modular.repo-off /etc/yum.repos.d/fedora-modular.repo) && play_013
+  #  echo "activate: fedora-updates-modular"
+  (sudo mv /etc/yum.repos.d/fedora-updates-modular.repo-off /etc/yum.repos.d/fedora-updates-modular.repo) && play_013
+  # +++
+  #  echo "activate: rpmfusion-free"
+  (sudo mv /etc/yum.repos.d/rpmfusion-free.repo-off /etc/yum.repos.d/rpmfusion-free.repo) && play_013
+  #  echo "activate: rpmfusion-free-updates"
+  (sudo mv /etc/yum.repos.d/rpmfusion-free-updates.repo-off /etc/yum.repos.d/rpmfusion-free-updates.repo) && play_013
+  # +++
+  #  echo "activate: rpmfusion-nonfree"
+  (sudo mv /etc/yum.repos.d/rpmfusion-nonfree.repo-off /etc/yum.repos.d/rpmfusion-nonfree.repo) && play_013
+  #  echo "activate: rpmfusion-nonfree-updates"
+  (sudo mv /etc/yum.repos.d/rpmfusion-nonfree-updates.repo-off /etc/yum.repos.d/rpmfusion-nonfree-updates.repo) && play_013
+  # +++
+  #  echo ""
+}
 
-# usage: dnf [options] COMMAND
+function yumFedoraDeactivate() {
+  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  (play_001 &)
+  #  echo "yumFedoraDeactivate"
+  #  echo "+++"
+  #  echo "deactivate: fedora"
+  (sudo mv /etc/yum.repos.d/fedora.repo /etc/yum.repos.d/fedora.repo-off) && play_013
+  #  echo "deactivate: fedora-updates"
+  (sudo mv /etc/yum.repos.d/fedora-updates.repo /etc/yum.repos.d/fedora-updates.repo-off) && play_013
+  # +++
+  #  echo "deactivate: fedora-modular"
+  (sudo mv /etc/yum.repos.d/fedora-modular.repo /etc/yum.repos.d/fedora-modular.repo-off) && play_013
+  #  echo "deactivate: fedora-updates-modular"
+  (sudo mv /etc/yum.repos.d/fedora-updates-modular.repo /etc/yum.repos.d/fedora-updates-modular.repo-off) && play_013
+  # +++
+  #  echo "deactivate: rpmfusion-free"
+  (sudo mv /etc/yum.repos.d/rpmfusion-free.repo /etc/yum.repos.d/rpmfusion-free.repo-off) && play_013
+  #  echo "deactivate: rpmfusion-free-updates"
+  (sudo mv /etc/yum.repos.d/rpmfusion-free-updates.repo /etc/yum.repos.d/rpmfusion-free-updates.repo-off) && play_013
+  # +++
+  #  echo "deactivate: rpmfusion-nonfree"
+  (sudo mv /etc/yum.repos.d/rpmfusion-nonfree.repo /etc/yum.repos.d/rpmfusion-nonfree.repo-off) && play_013
+  #  echo "deactivate: rpmfusion-nonfree-updates"
+  (sudo mv /etc/yum.repos.d/rpmfusion-nonfree-updates.repo /etc/yum.repos.d/rpmfusion-nonfree-updates.repo-off) && play_013
+  # +++
+  #  echo ""
+}
 
-# Liste des commandes principales :
+function yumFedoraTestingActivate() {
+  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  (play_001 &)
+  #  echo "yumFedoraTestingActivate"
+  #  echo "+++"
 
-# alias                     Liste ou crée les alias de commandes
-# autoremove                supprime tous les paquets non nécessaires installés à l’origine comme dépendances
-# check                     identifier les problèmes dans packagedb
-# check-update              recherche les mises à jour de paquets disponibles
-# clean                     supprime les données du cache
-# deplist                   Liste les dépendances du paquet et indique quels paquets les fournissent
-# distro-sync               synchronise les paquets installés vers leurs versions les plus récentes
-# downgrade                 Rétrograde un paquet
-# group                     affiche ou utilise les informations des groupes
-# help                      affiche un message d’aide à l’utilisation
-# history                   affiche ou utilise l’historique de transaction
-# info                      affiche les détails d’un paquet ou d’un groupe de paquets
-# install                   installe un ou plusieurs paquets sur votre système
-# list                      liste un paquet ou un groupe de paquets
-# makecache                 génération du cache des métadonnées
-# mark                      marquer ou démarquer les paquets installés comme installés par l’utilisateur.
-# module                    Interagit avec les modules.
-# provides                  recherche quel paquet fournit la valeur donnée
-# reinstall                 Réinstalle un paquet
-# remove                    supprime un ou plusieurs paquets de votre système
-# repolist                  affiche les dépôts logiciels configurés
-# repoquery                 recherche les paquets qui correspondent au mot clé
-# repository-packages       exécute des commandes pour chaque paquet d’un dépôt donné
-# search                    recherche les détails du paquet en fonction de la chaîne entrée
-# shell                     exécute un interpréteur de commandes DNF interactif
-# swap                      exécute un interpréteur de commandes DNF interactif pour la suppression et l’installation d’une spécification
-# updateinfo                affiche des avertissements concernant les paquets
-# upgrade                   met à niveau un ou plusieurs paquets de votre système
-# upgrade-minimal           met à jour, mais uniquement les paquets correspondants les plus récents qui résolvent un problème affectant votre système
+  #  echo "activate: fedora-updates-testing"
+  (sudo mv /etc/yum.repos.d/fedora-updates-testing.repo-off /etc/yum.repos.d/fedora-updates-testing.repo) && play_013
+  #  echo "activate: fedora-updates-testing-modular"
+  (sudo mv /etc/yum.repos.d/fedora-updates-testing-modular.repo-off /etc/yum.repos.d/fedora-updates-testing-modular.repo) && play_013
+  #  echo "activate: rpmfusion-free-updates-testing"
+  (sudo mv /etc/yum.repos.d/rpmfusion-free-updates-testing.repo-off /etc/yum.repos.d/rpmfusion-free-updates-testing.repo) && play_013
+  #  echo "activate: rpmfusion-nonfree-updates-testing"
+  (sudo mv /etc/yum.repos.d/rpmfusion-nonfree-updates-testing.repo-off /etc/yum.repos.d/rpmfusion-nonfree-updates-testing.repo) && play_013
+  # +++
+  #  echo ""
+}
 
-# Liste des commandes de greffons :
+function yumFedoraTestingDeactivate() {
+  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  (play_001 &)
+  #  echo "yumFedoraTestingDeactivate"
+  #  echo "+++"
+  #  echo "deactivate: fedora-updates-testing"
+  (sudo mv /etc/yum.repos.d/fedora-updates-testing.repo /etc/yum.repos.d/fedora-updates-testing.repo-off) && play_013
+  #  echo "deactivate: fedora-updates-testing-modular"
+  (sudo mv /etc/yum.repos.d/fedora-updates-testing-modular.repo /etc/yum.repos.d/fedora-updates-testing-modular.repo-off) && play_013
+  #  echo "deactivate: rpmfusion-free-updates-testing"
+  (sudo mv /etc/yum.repos.d/rpmfusion-free-updates-testing.repo /etc/yum.repos.d/rpmfusion-free-updates-testing.repo-off) && play_013
+  #  echo "deactivate: rpmfusion-nonfree-updates-testing"
+  (sudo mv /etc/yum.repos.d/rpmfusion-nonfree-updates-testing.repo /etc/yum.repos.d/rpmfusion-nonfree-updates-testing.repo-off) && play_013
+  # +++
+  #  echo ""
+}
 
-# builddep                  Install build dependencies for package or spec file
-# changelog                 affiche le contenu du journal des changements des paquets
-# config-manager            gestion de la configuration et des dépôts dnf
-# copr                      Interagit avec les dépôts Copr.
-# debug-dump                déverse les informations des paquets rpm installés vers un fichier
-# debug-restore             restaure les paquets enregistrés dans le fichier de déversement de débuggage
-# debuginfo-install         installe les paquets debuginfo
-# download                  Téléchargement du paquet dans le répertoire courant
-# needs-restarting          détermine les binaires mis à jour qui nécessitent un redémarrage
-# playground                Interagit avec le dépôt Playground.
-# repoclosure               Affiche une liste de dépendances non résolues pour les dépôts
-# repodiff                  Liste les différences entre deux ensembles de dépôts
-# repograph                 Sortie d’un graphe de dépendance des paquets complet au format dot
-# repomanage                Gère un dossier de paquets rpm
-# reposync                  télécharger tous les paquets depuis le dépôt distant
+function yumOthersActivate() {
+  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  (play_001 &)
+  #  echo "yumOthersActivate"
+  #  echo "+++"
+  #  echo "activate: gh-cli"
+  (sudo mv /etc/yum.repos.d/gh-cli.repo-off /etc/yum.repos.d/gh-cli.repo) && play_013
+  #  echo "activate: bintray-ookla-rhel"
+  (sudo mv /etc/yum.repos.d/bintray-ookla-rhel.repo-off /etc/yum.repos.d/bintray-ookla-rhel.repo) && play_013
+  #  echo "activate: google-chrome"
+  (sudo mv /etc/yum.repos.d/google-chrome.repo-off /etc/yum.repos.d/google-chrome.repo) && play_013
+  #  echo "activate: google-chrome-beta"
+  (sudo mv /etc/yum.repos.d/google-chrome-beta.repo-off /etc/yum.repos.d/google-chrome-beta.repo) && play_013
+  #  echo "activate: google-chrome-unstable"
+  (sudo mv /etc/yum.repos.d/google-chrome-unstable.repo-off /etc/yum.repos.d/google-chrome-unstable.repo) && play_013
+  #  echo "activate: vscode"
+  (sudo mv /etc/yum.repos.d/vscode.repo-off /etc/yum.repos.d/vscode.repo) && play_013
+  #  echo "activate: mongodb-org-4.4"
+  (sudo mv /etc/yum.repos.d/mongodb-org-4.4.repo-off /etc/yum.repos.d/mongodb-org-4.4.repo) && play_013
+  #  echo "activate: docker-ce"
+  (sudo mv /etc/yum.repos.d/docker-ce.repo-off /etc/yum.repos.d/docker-ce.repo) && play_013
+  #  echo "activate: fedora-cisco-openh264"
+  (sudo mv /etc/yum.repos.d/fedora-cisco-openh264.repo-off /etc/yum.repos.d/fedora-cisco-openh264.repo) && play_013
+  #  echo "activate: cuda-fedora32"
+  (sudo mv /etc/yum.repos.d/cuda-fedora32.repo-off /etc/yum.repos.d/cuda-fedora32.repo) && play_013
+  # +++
+  #  echo ""
+}
 
-# affiche un message d’aide à l’utilisation
+function yumOthersDeactivate() {
+  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  (play_001 &)
+  #  echo "yumOthersDeactivate"
+  #  echo "+++"
+  #  echo "deactivate: gh-cli"
+  (sudo mv /etc/yum.repos.d/gh-cli.repo /etc/yum.repos.d/gh-cli.repo-off) && play_013
+  #  echo "deactivate: bintray-ookla-rhel"
+  (sudo mv /etc/yum.repos.d/bintray-ookla-rhel.repo /etc/yum.repos.d/bintray-ookla-rhel.repo-off) && play_013
+  #  echo "deactivate: google-chrome"
+  (sudo mv /etc/yum.repos.d/google-chrome.repo /etc/yum.repos.d/google-chrome.repo-off) && play_013
+  #  echo "deactivate: google-chrome-beta"
+  (sudo mv /etc/yum.repos.d/google-chrome-beta.repo /etc/yum.repos.d/google-chrome-beta.repo-off) && play_013
+  #  echo "deactivate: google-chrome-unstable"
+  (sudo mv /etc/yum.repos.d/google-chrome-unstable.repo /etc/yum.repos.d/google-chrome-unstable.repo-off) && play_013
+  #  echo "deactivate: vscode"
+  (sudo mv /etc/yum.repos.d/vscode.repo /etc/yum.repos.d/vscode.repo-off) && play_013
+  #  echo "deactivate: mongodb-org-4.4"
+  (sudo mv /etc/yum.repos.d/mongodb-org-4.4.repo /etc/yum.repos.d/mongodb-org-4.4.repo-off) && play_013
+  #  echo "deactivate: docker-ce"
+  (sudo mv /etc/yum.repos.d/docker-ce.repo /etc/yum.repos.d/docker-ce.repo-off) && play_013
+  #  echo "deactivate: fedora-cisco-openh264"
+  (sudo mv /etc/yum.repos.d/fedora-cisco-openh264.repo /etc/yum.repos.d/fedora-cisco-openh264.repo-off) && play_013
+  #  echo "deactivate: cuda-fedora32"
+  (sudo mv /etc/yum.repos.d/cuda-fedora32.repo /etc/yum.repos.d/cuda-fedora32.repo-off) && play_013
+  # +++
+  #  echo ""
+}
 
-# General DNF options:
-#   -c [config file], --config [config file]
-#                         emplacement du fichier de configuration
-#   -q, --quiet           opération silencieuse
-#   -v, --verbose         opération verbeuse
-#   --version             affiche la version de DNF et quitte
-#   --installroot [path]  définit la racine d’installation
-#   --nodocs              ne pas installer les documentations
-#   --noplugins           désactive tous les modules complémentaires
-#   --enableplugin [plugin]
-#                         active les modules complémentaires par nom
-#   --disableplugin [plugin]
-#                         désactive les modules complémentaires par leur nom
-#   --releasever RELEASEVER
-#                         annule la valeur de $releasever dans les fichiers de
-#                         configuration et de dépôts
-#   --setopt SETOPTS      réinitialise la configuration ainsi que les options
-#                         des dépôts
-#   --skip-broken         résout les problèmes de résolutions de dépendance en
-#                         ignorant les paquets
-#   -h, --help, --help-cmd
-#                         affiche l’aide de la commande
-#   --allowerasing        autorise l’effacement des paquets installés pour
-#                         résoudre les dépendances
-#   -b, --best            tente d’utiliser les versions de paquets les plus
-#                         récentes lors des transactions.
-#   --nobest              ne pas limiter la transaction au meilleur candidat
-#   -C, --cacheonly       exécute entièrement depuis le cache système, sans le
-#                         mettre à jour
-#   -R [minutes], --randomwait [minutes]
-#                         temps d’attente maximum de la commande
-#   -d [debug level], --debuglevel [debug level]
-#                         niveau de déboguage pour la sortie
-#   --debugsolver         détaille les résultats de résolution des dépendances
-#                         dans des fichiers
-#   --showduplicates      affiche les doublons dans les dépôts, pour les
-#                         commandes list/search
-#   -e ERRORLEVEL, --errorlevel ERRORLEVEL
-#                         niveau d’erreur pour la sortie
-#   --obsoletes           active la mécanique de traitement des paquets
-#                         obsolètes de dnf pour les mises à jour ou affiche les
-#                         fonctionnalités qu’un paquet rend obsolètes pour les
-#                         commandes « info », « list » et « repoquery »
-#   --rpmverbosity [debug level name]
-#                         niveau de déboguage de rpm pour la sortie
-#   -y, --assumeyes       répond automatiquement oui à toutes les questions
-#   --assumeno            répond automatiquement non à toutes les questions
-#   --enablerepo [repo]   Active les dépôts additionnels. Option de liste. Prend
-#                         en charge les globs, peut être renseigné plusieurs
-#                         fois.
-#   --disablerepo [repo]  Désactive les dépôts. Option de liste. Prend en charge
-#                         les globs, peut être renseigné plusieurs fois.
-#   --repo [repo], --repoid [repo]
-#                         active seulement des dépôts spécifiques par id ou par
-#                         le caractère générique (*), peut être spécifié
-#                         plusieurs fois
-#   --enable              active les dépôts avec la commande config-manager
-#                         (sauvegarde automatiquement)
-#   --disable             désactive les dépôts avec la commande config-manager
-#                         (sauvegarde automatiquement)
-#   -x [package], --exclude [package], --excludepkgs [package]
-#                         exclut des paquets par leur nom ou par le caractère
-#                         générique (*)
-#   --disableexcludes [repo], --disableexcludepkgs [repo]
-#                         désactive « excludepkgs »
-#   --repofrompath [repo,path]
-#                         étiquette et chemin vers un dépôt additionnel (même
-#                         chemin que dans un baseurl), peut être spécifié
-#                         plusieurs fois.
-#   --noautoremove        désactive la suppression des dépendances désormais
-#                         inutilisées
-#   --nogpgcheck          désactive la vérification par signature gpg (si la
-#                         politique RPM le permet)
-#   --color COLOR         contrôle l’utilisation ou pas de la couleur
-#   --refresh             configure les métadonnées comme étant expirées avant
-#                         d’exécuter la commande
-#   -4                    résout en adresses IPv4 uniquement
-#   -6                    résout en adresses IPv6 uniquement
-#   --destdir DESTDIR, --downloaddir DESTDIR
-#                         définit le dossier dans lequel copier les paquets
-#   --downloadonly        télécharge seulement des paquets
-#   --comment COMMENT     ajoute un commentaire à la transaction
-#   --bugfix              Inclut les paquets concernant la correction de bugs
-#                         dans les mises à jour
-#   --enhancement         Inclut les paquets concernant des améliorations dans
-#                         les mises à jour
-#   --newpackage          Inclut les paquets concernant les nouveaux paquets
-#                         dans les mises à jour
-#   --security            Inclure les paquets concernant la sécurité dans les
-#                         mises à jour
-#   --advisory ADVISORY, --advisories ADVISORY
-#                         Inclut dans les mises à jour les paquets nécessaires
-#                         pour résoudre une alerte donnée, dans les mises à jour
-#   --bz BUGZILLA, --bzs BUGZILLA
-#                         Inclut dans les mises à jour les paquets nécessaires
-#                         pour résoudre le ticket BugZilla cité
-#   --cve CVES, --cves CVES
-#                         Inclut dans les mises à jour les paquets nécessaires
-#                         pour résoudre le CVE cité
-#   --sec-severity {Critical,Important,Moderate,Low}, --secseverity {Critical,Important,Moderate,Low}
-#                         Inclut les paquets concernant la sécurité avec une
-#                         certaine sévérité dans les mises à jour
-#   --forcearch ARCH      Force l’utilisation d’une architecture
+function yumMicrosoftActivate() {
+  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  (play_001 &)
+  #  echo "yumMicrosoftActivate"
+  #  echo "+++"
+  #  echo "activate: microsoft-insiders-fast"
+  (sudo mv /etc/yum.repos.d/microsoft-insiders-fast.repo-off /etc/yum.repos.d/microsoft-insiders-fast.repo) && play_013
+  #  echo "activate: microsoft-insiders-slow"
+  (sudo mv /etc/yum.repos.d/microsoft-insiders-slow.repo-off /etc/yum.repos.d/microsoft-insiders-slow.repo) && play_013
+  #  echo "activate: microsoft-prod"
+  (sudo mv /etc/yum.repos.d/microsoft-prod.repo-off /etc/yum.repos.d/microsoft-prod.repo) && play_013
+  #  echo "activate: azure-cli"
+  (sudo mv /etc/yum.repos.d/azure-cli.repo-off /etc/yum.repos.d/azure-cli.repo) && play_013
+  # +++
+  #  echo ""
+}
 
-################################################################################
-## dnfmc --help ################################################################
-################################################################################
-
-# usage: dnf makecache [-c [config file]] [-q] [-v] [--version] [--installroot [path]] [--nodocs] [--noplugins]
-#                      [--enableplugin [plugin]] [--disableplugin [plugin]] [--releasever RELEASEVER] [--setopt SETOPTS]
-#                      [--skip-broken] [-h] [--allowerasing] [-b | --nobest] [-C] [-R [minutes]] [-d [debug level]] [--debugsolver]
-#                      [--showduplicates] [-e ERRORLEVEL] [--obsoletes] [--rpmverbosity [debug level name]] [-y] [--assumeno]
-#                      [--enablerepo [repo]] [--disablerepo [repo] | --repo [repo]] [--enable | --disable] [-x [package]]
-#                      [--disableexcludes [repo]] [--repofrompath [repo,path]] [--noautoremove] [--nogpgcheck] [--color COLOR]
-#                      [--refresh] [-4] [-6] [--destdir DESTDIR] [--downloadonly] [--comment COMMENT] [--bugfix] [--enhancement]
-#                      [--newpackage] [--security] [--advisory ADVISORY] [--bz BUGZILLA] [--cve CVES]
-#                      [--sec-severity {Critical,Important,Moderate,Low}] [--forcearch ARCH] [--timer]
-
-# génération du cache des métadonnées
-
-# General DNF options:
-#   -c [config file], --config [config file]
-#                         emplacement du fichier de configuration
-#   -q, --quiet           opération silencieuse
-#   -v, --verbose         opération verbeuse
-#   --version             affiche la version de DNF et quitte
-#   --installroot [path]  définit la racine d’installation
-#   --nodocs              ne pas installer les documentations
-#   --noplugins           désactive tous les modules complémentaires
-#   --enableplugin [plugin]
-#                         active les modules complémentaires par nom
-#   --disableplugin [plugin]
-#                         désactive les modules complémentaires par leur nom
-#   --releasever RELEASEVER
-#                         annule la valeur de $releasever dans les fichiers de configuration et de dépôts
-#   --setopt SETOPTS      réinitialise la configuration ainsi que les options des dépôts
-#   --skip-broken         résout les problèmes de résolutions de dépendance en ignorant les paquets
-#   -h, --help, --help-cmd
-#                         affiche l’aide de la commande
-#   --allowerasing        autorise l’effacement des paquets installés pour résoudre les dépendances
-#   -b, --best            tente d’utiliser les versions de paquets les plus récentes lors des transactions.
-#   --nobest              ne pas limiter la transaction au meilleur candidat
-#   -C, --cacheonly       exécute entièrement depuis le cache système, sans le mettre à jour
-#   -R [minutes], --randomwait [minutes]
-#                         temps d’attente maximum de la commande
-#   -d [debug level], --debuglevel [debug level]
-#                         niveau de déboguage pour la sortie
-#   --debugsolver         détaille les résultats de résolution des dépendances dans des fichiers
-#   --showduplicates      affiche les doublons dans les dépôts, pour les commandes list/search
-#   -e ERRORLEVEL, --errorlevel ERRORLEVEL
-#                         niveau d’erreur pour la sortie
-#   --obsoletes           active la mécanique de traitement des paquets obsolètes de dnf pour les mises à jour ou affiche les
-#                         fonctionnalités qu’un paquet rend obsolètes pour les commandes « info », « list » et « repoquery »
-#   --rpmverbosity [debug level name]
-#                         niveau de déboguage de rpm pour la sortie
-#   -y, --assumeyes       répond automatiquement oui à toutes les questions
-#   --assumeno            répond automatiquement non à toutes les questions
-#   --enablerepo [repo]   Active les dépôts additionnels. Option de liste. Prend en charge les globs, peut être renseigné plusieurs
-#                         fois.
-#   --disablerepo [repo]  Désactive les dépôts. Option de liste. Prend en charge les globs, peut être renseigné plusieurs fois.
-#   --repo [repo], --repoid [repo]
-#                         active seulement des dépôts spécifiques par id ou par le caractère générique (*), peut être spécifié
-#                         plusieurs fois
-#   --enable              active les dépôts avec la commande config-manager (sauvegarde automatiquement)
-#   --disable             désactive les dépôts avec la commande config-manager (sauvegarde automatiquement)
-#   -x [package], --exclude [package], --excludepkgs [package]
-#                         exclut des paquets par leur nom ou par le caractère générique (*)
-#   --disableexcludes [repo], --disableexcludepkgs [repo]
-#                         désactive « excludepkgs »
-#   --repofrompath [repo,path]
-#                         étiquette et chemin vers un dépôt additionnel (même chemin que dans un baseurl), peut être spécifié
-#                         plusieurs fois.
-#   --noautoremove        désactive la suppression des dépendances désormais inutilisées
-#   --nogpgcheck          désactive la vérification par signature gpg (si la politique RPM le permet)
-#   --color COLOR         contrôle l’utilisation ou pas de la couleur
-#   --refresh             configure les métadonnées comme étant expirées avant d’exécuter la commande
-#   -4                    résout en adresses IPv4 uniquement
-#   -6                    résout en adresses IPv6 uniquement
-#   --destdir DESTDIR, --downloaddir DESTDIR
-#                         définit le dossier dans lequel copier les paquets
-#   --downloadonly        télécharge seulement des paquets
-#   --comment COMMENT     ajoute un commentaire à la transaction
-#   --bugfix              Inclut les paquets concernant la correction de bugs dans les mises à jour
-#   --enhancement         Inclut les paquets concernant des améliorations dans les mises à jour
-#   --newpackage          Inclut les paquets concernant les nouveaux paquets dans les mises à jour
-#   --security            Inclure les paquets concernant la sécurité dans les mises à jour
-#   --advisory ADVISORY, --advisories ADVISORY
-#                         Inclut dans les mises à jour les paquets nécessaires pour résoudre une alerte donnée, dans les mises à
-#                         jour
-#   --bz BUGZILLA, --bzs BUGZILLA
-#                         Inclut dans les mises à jour les paquets nécessaires pour résoudre le ticket BugZilla cité
-#   --cve CVES, --cves CVES
-#                         Inclut dans les mises à jour les paquets nécessaires pour résoudre le CVE cité
-#   --sec-severity {Critical,Important,Moderate,Low}, --secseverity {Critical,Important,Moderate,Low}
-#                         Inclut les paquets concernant la sécurité avec une certaine sévérité dans les mises à jour
-#   --forcearch ARCH      Force l’utilisation d’une architecture
-
-# Makecache command-specific options:
-#   --timer
+function yumMicrosoftDeactivate() {
+  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  (play_001 &)
+  #  echo "yumMicrosoftDeactivate"
+  #  echo "+++"
+  #  echo "deactivate: microsoft-insiders-fast"
+  (sudo mv /etc/yum.repos.d/microsoft-insiders-fast.repo /etc/yum.repos.d/microsoft-insiders-fast.repo-off) && play_013
+  #  echo "deactivate: microsoft-insiders-slow"
+  #  echo "deactivate: microsoft-insiders-slow"
+  (sudo mv /etc/yum.repos.d/microsoft-insiders-slow.repo /etc/yum.repos.d/microsoft-insiders-slow.repo-off) && play_013
+  #  echo "deactivate: microsoft-prod"
+  (sudo mv /etc/yum.repos.d/microsoft-prod.repo /etc/yum.repos.d/microsoft-prod.repo-off) && play_013
+  #  echo "deactivate: azure-cli"
+  (sudo mv /etc/yum.repos.d/azure-cli.repo /etc/yum.repos.d/azure-cli.repo-off) && play_013
+  # +++
+  #  echo ""
+}

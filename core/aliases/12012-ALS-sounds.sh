@@ -1,5 +1,5 @@
-export LOCALSOUNDS = '${HOME}/.local/share/sounds'
-export SYSOUNDS = '/usr/share/sounds'
+export LOCALSOUNDS="${HOME}/.local/share/sounds"
+export SYSOUNDS='/usr/share/sounds'
 
 alias play_NTV_startup_C9_Long_version='(play -qv 0.5 "${LOCALSOUNDS}/35889-nostalgia-tv/NTV_startup_C9_Long_version.ogg")'
 alias play_NTV_startup_C9_small_version='(play -qv 0.3 "${LOCALSOUNDS}/35889-nostalgia-tv/NTV_startup_C9_small_version.ogg")'
@@ -154,8 +154,8 @@ alias play_001='(play -qv 0.5 "${LOCALSOUNDS}/pc-libre/001.mp3")'
 alias play_010='(play -qv 0.5 "${LOCALSOUNDS}/pc-libre/010.mp3")'
 alias play_011='(play -qv 0.5 "${LOCALSOUNDS}/pc-libre/011.mp3")'
 alias play_012='(play -qv 0.5 "${LOCALSOUNDS}/pc-libre/012.mp3")'
-alias play_013='(play -qv 0.5 "${LOCALSOUNDS}/pc-libre/013.mp3")'
-alias play_014='(play -qv 0.5 "${LOCALSOUNDS}/pc-libre/014.mp3")'
+alias play_013='(play -qv 0.1 "${LOCALSOUNDS}/pc-libre/013.mp3")'
+alias play_014='(play -qv 0.1 "${LOCALSOUNDS}/pc-libre/014.mp3")'
 alias play_015='(play -qv 0.3 "${LOCALSOUNDS}/pc-libre/015.mp3")'
 alias play_016='(play -qv 0.5 "${LOCALSOUNDS}/pc-libre/016.mp3")'
 alias play_017='(play -qv 0.5 "${LOCALSOUNDS}/pc-libre/017.mp3")'

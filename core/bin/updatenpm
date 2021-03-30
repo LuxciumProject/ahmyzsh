@@ -1,6 +1,6 @@
 #!/bin/env sh
 
-yarn global add npm@latest ||  exit 1
+yarn global add npm@latest || exit 1
 npm install -g npm@latest || exit 1
 
 exit 0
