@@ -5,31 +5,32 @@
 function play_shutdown_() {
   # #region play_shutdown_ =====================================================¹
   (
-    sleep 1
+    sleep 0.75
     play -qv 0.6 '/home/luxcium/.local/share/sounds/smooth/stereo/desktop-login.oga' & # 6.5611s
     sleep "${2:-4}"
 
     if [ "${1:-''}" == "reboot" ]; then
       (
+        sleep 0.25
         (play -qv 0.8 '/home/luxcium/.local/share/sounds/zelda/dialog-information.ogg' &) &
         sleep 0.8 # 0.5481s
         (
-          sleep 0.5
+          sleep 1.25
           (
-            sleep 1
+            sleep 0.5
             play -qv 0.9 '/home/luxcium/.local/share/sounds/total-kaoss/desktop-login.ogg' chorus 0.4 0.9 50 0.5 0.25 2 -t 40 0.6 0.2 3 -s 60 0.6 0.3 1.3 -t & # 12.8399s
           ) &
           (
-            sleep 14
+            sleep 12
             play -qv 0.9 '/home/luxcium/.local/share/sounds/mgs-sounds/01_konami_sequence.ogg' chorus 0.4 0.9 50 0.5 0.25 2 -t 40 0.6 0.2 3 -s 60 0.6 0.3 1.3 -t & # 10.1152s
           ) &
           (
-            sleep 1.5
+            sleep 1
             play -qv 0.7 '/home/luxcium/.local/share/sounds/zelda/dialog-warning.ogg' chorus 0.4 0.9 50 0.5 0.25 2 -t 40 0.6 0.2 3 -s 60 0.6 0.3 1.3 -t & # 0.7878s
           ) &
         ) &
       ) &
-      sleep 0.6
+      sleep 1.25
       sudo /sbin/shutdown -t 10 -rf now
       return
     fi

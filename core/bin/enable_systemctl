@@ -7,131 +7,6 @@ function enable_startup_() {
       echo -e '\nfunction disable_at_shutdown_()\n'
 
       sudo nice -n -15 ionice -c 1 -n 1 systemctl disable \
-        avahi-daemon.service \
-        avahi-daemon.socket \
-        bluetooth.service \
-        dmraid-activation.service \
-        dnf-makecache.service \
-        dnfdaemon.service \
-        firewalld.service \
-        libvirtd.service \
-        ModemManager.service \
-        NetworkManager.service \
-        packagekit.service \
-        --now
-      # pmcd.service
-      # pmie.service
-      # pmlogger.service
-      # switcheroo-control.service
-      # systemd-machined.service
-      # systemd-udevd.service
-      # upower.service --now
-
-      sudo nice -n -15 ionice -c 1 -n 1 systemctl disable \
-        containerd \
-        docker \
-        docker.socket \
-        sshd.service \
-        --now
-
-      sudo nice -n -15 ionice -c 1 -n 1 systemctl enable redis_6379.service --now
-      sudo systemctl enable redis --now
-
-      sudo dkms autoinstall --verbose --all --force
-      sudo akmods --from-init --verbose --force
-
-      sudo nice -n -15 ionice -c 1 -n 1 systemctl daemon-reload
-      sudo nice -n -15 ionice -c 1 -n 1 systemctl daemon-reexec
-
-    ) &
-  }
-
-  function kill_at_shutdown_() {
-    (
-      sleep 0 # 0.0 ― 5.0
-      (
-        sleep 1 # +@1.0
-        sudo kill -15 $(pidof -w -x gnome-terminal-server) &
-        sleep 3.1 # +@4.1
-        sudo kill -09 $(pidof -w -x gnome-terminal-server) &
-      ) &
-
-      sleep 0.5 # 0.5 ― 4.5
-      (
-        sleep 1.5 # +@2.0
-        sudo kill -15 $(pidof -w -x code) &
-        sleep 0.5 # +@2.5
-        sudo kill -15 $(pidof -w -x code-insiders) &
-        sleep 1.8 # +@4.3
-        sudo kill -09 $(pidof -w -x code) &
-        sudo kill -09 $(pidof -w -x code-insiders) &
-      ) &
-
-      sleep 0.5 # 1.0 ― 4
-      (
-        sudo kill -15 $(pidof -w -x chrome) &
-        sleep 2 # +@3.0
-        sudo kill -15 $(pidof -w -x chrome-stable) &
-        sleep 1.5 # +@4.5
-        sudo kill -09 $(pidof -w -x chrome) &
-        sudo kill -09 $(pidof -w -x chrome-stable) &
-      ) &
-      sleep 0.5 # 1.5 ― 3.5
-      (
-        sleep 2.5 # +@4
-        sudo kill -15 $(pidof -w -x telegram-desktop) &
-        sleep 0.7 # +@4.7
-        sudo kill -09 $(pidof -w -x telegram-desktop) &
-      ) &
-
-      sleep 0.5 # 2 ― 3.8
-      (
-        sleep 2 # +@4.0
-        sudo kill -15 $(pidof -w -x bluetoothd) &
-        sudo kill -15 $(pidof -w -x ckb-next) &
-        sudo kill -15 $(pidof -w -x ckb-next-animations/gradient) &
-        sudo kill -15 $(pidof -w -x ckb-next-animations/invaders) &
-        sudo kill -15 $(pidof -w -x ckb-next-daemon) &
-        sudo kill -15 $(pidof -w -x baloo_file) &
-        sudo kill -15 $(pidof -w -x dockerd) &
-        sudo kill -15 $(pidof -w -x containerd) &
-        sudo kill -15 $(pidof -w -x dolphin) &
-        sudo kill -15 $(pidof -w -x gitstatusd-linux-x86_64) &
-        sudo kill -15 $(pidof -w -x colord) &
-        sudo kill -15 $(pidof -w -x obexd) &
-        sudo kill -15 $(pidof -w -x upowerd) &
-        sudo kill -15 $(pidof -w -x ssh-agent) &
-        sudo kill -15 $(pidof -w -x sssd) &
-        sudo kill -15 $(pidof -w -x zsh) &
-
-        sleep 1 # +@5.0
-        sudo kill -09 $(pidof -w -x bluetoothd) &
-        sudo kill -09 $(pidof -w -x ckb-next) &
-        sudo kill -09 $(pidof -w -x ckb-next-animations/gradient) &
-        sudo kill -09 $(pidof -w -x ckb-next-animations/invaders) &
-        sudo kill -09 $(pidof -w -x ckb-next-daemon) &
-        sudo kill -09 $(pidof -w -x baloo_file) &
-        sudo kill -09 $(pidof -w -x containerd) &
-        sudo kill -09 $(pidof -w -x dolphin) &
-        sudo kill -09 $(pidof -w -x gitstatusd-linux-x86_64) &
-        sudo kill -09 $(pidof -w -x obexd) &
-        sudo kill -09 $(pidof -w -x dockerd) &
-        sudo kill -09 $(pidof -w -x ssh-agent) &
-        sudo kill -09 $(pidof -w -x colord) &
-        sudo kill -09 $(pidof -w -x upowerd) &
-        sudo kill -09 $(pidof -w -x sssd) &
-        sudo kill -09 $(pidof -w -x sssd/sssd_be) &
-        sudo kill -09 $(pidof -w -x sssd/sssd_nss) &
-        sudo kill -09 $(pidof -w -x zsh) &
-      ) &
-    ) &
-  }
-
-  function enable_at_startup_() {
-
-    # echo -e '\nfunction enable_at_startup_()\n'
-
-    sudo nice -n -16 ionice -c 1 -n 1 systemctl enable \
       avahi-daemon.service \
       avahi-daemon.socket \
       bluetooth.service \
@@ -144,51 +19,153 @@ function enable_startup_() {
       NetworkManager.service \
       packagekit.service \
       --now
-    # dkms.service \
-    # akmods.service \
-    # pmcd.service \
-    # pmie.service \
-    # pmlogger.service \
-    # switcheroo-control.service \
-    # systemd-machined.service \
-    # systemd-udevd.service \
-    # upower.service \
 
-    # sudo nice -n -15 ionice -c 1 -n 1 systemctl enable redis_6379.service
-
-    sudo nice -n -16 ionice -c 1 -n 1 systemctl enable \
+      sudo nice -n -15 ionice -c 1 -n 1 systemctl disable \
       containerd \
       docker \
       docker.socket \
       sshd.service \
       --now
 
-    sudo ionice -c 3 systemctl daemon-reload
+      sudo nice -n -15 ionice -c 1 -n 1 systemctl enable redis_6379.service --now
+      sudo systemctl enable redis --now
 
-    sudo systemctl enable redis --now
-    sudo systemctl start redis
+      sudo ionice -c 1 -n 1 /bin/sh -c 'sudo /usr/sbin/akmods --from-init --force --verbose'
+      sudo ionice -c 1 -n 1 /bin/sh -c 'sudo /usr/sbin/dkms autoinstall --force --verbose --kernelver $(uname -r)'
 
-    sudo renice -n -15 -p $(pidof -w -x Xorg) &
-    sudo renice -n 05 -p $(pidof -w -x plasmashell) &
-    sudo renice -n 05 -p $(pidof -w -x startplasma-x11) &
-    sudo renice -n 05 -p $(pidof -w -x plasma_session) &
-    sudo renice -n 05 -p $(pidof -w -x kwin_x11) &
-    sudo renice -n 05 -p $(pidof -w -x ksmserver) &
+      sudo nice -n -15 ionice -c 1 -n 1 systemctl daemon-reload
+      sudo nice -n -15 ionice -c 1 -n 1 systemctl daemon-reexec
 
-    sudo ionice -c 1 -n 1 -p $(pidof -w -x Xorg) &
-    sudo ionice -c 2 -n 2 -p $(pidof -w -x plasmashell) &
-    sudo ionice -c 2 -n 2 -p $(pidof -w -x plasma_session) &
-    sudo ionice -c 2 -n 2 -p $(pidof -w -x kwin_x11) &
-    sudo ionice -c 2 -n 2 -p $(pidof -w -x ksmserver) &
+    ) &
+  }
+
+  function kill_at_shutdown_() {
+    (
+      sleep 0 # 0.0 ― 5.0
+      (
+        sleep 1 # +@1.0
+        sudo kill -15 $(pidof -w -x gnome-terminal-server)
+        sleep 3.1 # +@4.1
+        sudo kill -09 $(pidof -w -x gnome-terminal-server)
+      ) &
+
+      sleep 0.5 # 0.5 ― 4.5
+      (
+        sleep 1.5 # +@2.0
+        sudo kill -15 $(pidof -w -x code)
+        sleep 0.5 # +@2.5
+        sudo kill -15 $(pidof -w -x code-insiders)
+        sleep 1.8 # +@4.3
+        sudo kill -09 $(pidof -w -x code)
+        sudo kill -09 $(pidof -w -x code-insiders)
+      ) &
+
+      sleep 0.5 # 1.0 ― 4
+      (
+        sudo kill -15 $(pidof -w -x chrome)
+        sleep 2 # +@3.0
+        sudo kill -15 $(pidof -w -x chrome-stable)
+        sleep 1.5 # +@4.5
+        sudo kill -09 $(pidof -w -x chrome)
+        sudo kill -09 $(pidof -w -x chrome-stable)
+      ) &
+      sleep 0.5 # 1.5 ― 3.5
+      (
+        sleep 2.5 # +@4
+        sudo kill -15 $(pidof -w -x telegram-desktop)
+        sleep 0.7 # +@4.7
+        sudo kill -09 $(pidof -w -x telegram-desktop)
+      ) &
+
+      sleep 0.5 # 2 ― 3.8
+      (
+        sleep 2 # +@4.0
+        sudo kill -15 $(pidof -w -x bluetoothd)
+        sudo kill -15 $(pidof -w -x ckb-next)
+        sudo kill -15 $(pidof -w -x ckb-next-animations/gradient)
+        sudo kill -15 $(pidof -w -x ckb-next-animations/invaders)
+        sudo kill -15 $(pidof -w -x ckb-next-daemon)
+        sudo kill -15 $(pidof -w -x baloo_file)
+        sudo kill -15 $(pidof -w -x dockerd)
+        sudo kill -15 $(pidof -w -x containerd)
+        sudo kill -15 $(pidof -w -x dolphin)
+        sudo kill -15 $(pidof -w -x gitstatusd-linux-x86_64)
+        sudo kill -15 $(pidof -w -x colord)
+        sudo kill -15 $(pidof -w -x obexd)
+        sudo kill -15 $(pidof -w -x upowerd)
+        sudo kill -15 $(pidof -w -x ssh-agent)
+        sudo kill -15 $(pidof -w -x sssd)
+        sudo kill -15 $(pidof -w -x zsh)
+
+        sleep 1 # +@5.0
+        sudo kill -09 $(pidof -w -x bluetoothd)
+        sudo kill -09 $(pidof -w -x ckb-next)
+        sudo kill -09 $(pidof -w -x ckb-next-animations/gradient)
+        sudo kill -09 $(pidof -w -x ckb-next-animations/invaders)
+        sudo kill -09 $(pidof -w -x ckb-next-daemon)
+        sudo kill -09 $(pidof -w -x baloo_file)
+        sudo kill -09 $(pidof -w -x containerd)
+        sudo kill -09 $(pidof -w -x dolphin)
+        sudo kill -09 $(pidof -w -x gitstatusd-linux-x86_64)
+        sudo kill -09 $(pidof -w -x obexd)
+        sudo kill -09 $(pidof -w -x dockerd)
+        sudo kill -09 $(pidof -w -x ssh-agent)
+        sudo kill -09 $(pidof -w -x colord)
+        sudo kill -09 $(pidof -w -x upowerd)
+        sudo kill -09 $(pidof -w -x sssd)
+        sudo kill -09 $(pidof -w -x sssd/sssd_be)
+        sudo kill -09 $(pidof -w -x sssd/sssd_nss)
+        sudo kill -09 $(pidof -w -x zsh)
+      ) &
+    ) &
+  }
+
+  function enable_at_startup_() {
+
+    echo -e '\nfunction enable_at_startup_()\n'
+
+    sudo nice -n -16 ionice -c 1 -n 1 systemctl enable \
+    avahi-daemon.service \
+    avahi-daemon.socket \
+    bluetooth.service \
+    dmraid-activation.service \
+    dnf-makecache.service \
+    dnfdaemon.service \
+    firewalld.service \
+    libvirtd.service \
+    ModemManager.service \
+    NetworkManager.service \
+    packagekit.service \
+    --now
+
+    sudo nice -n -16 ionice -c 1 -n 1 systemctl enable \
+    containerd \
+    docker \
+    docker.socket \
+    sshd.service \
+    --now
+
+    sudo renice -n -15 -p $(pidof -w -x Xorg)
+    sudo renice -n 7 -p $(pidof -w -x plasmashell)
+    sudo renice -n 7 -p $(pidof -w -x startplasma-x11)
+    sudo renice -n 7 -p $(pidof -w -x plasma_session)
+    sudo renice -n 7 -p $(pidof -w -x kwin_x11)
+    sudo renice -n 7 -p $(pidof -w -x ksmserver)
+
+    sudo ionice -c 1 -n 0 -p $(pidof -w -x Xorg)
+    sudo ionice -c 2 -n 2 -p $(pidof -w -x plasmashell)
+    sudo ionice -c 1 -n 5 -p $(pidof -w -x plasma_session)
+    sudo ionice -c 1 -n 5 -p $(pidof -w -x kwin_x11)
+    sudo ionice -c 1 -n 5 -p $(pidof -w -x ksmserver)
 
     sudo systemctl enable redis --now
     sudo systemctl start redis
 
     sudo ionice -c 3 systemctl daemon-reexec
-    sudo ionice -c 3 systemctl daemon-reload &
+    sudo ionice -c 3 systemctl daemon-reload
 
-    # sudo ionice -c 1 -n 1 /bin/sh -c 'sudo /usr/sbin/akmods --from-init --force --verbose' &
-    # sudo ionice -c 1 -n 1 /bin/sh -c 'sudo /usr/sbin/dkms autoinstall --force --verbose --kernelver $(uname -r)' &
+    sudo ionice -c 1 -n 1 /bin/sh -c 'sudo /usr/sbin/akmods --from-init --force --verbose'
+    sudo ionice -c 1 -n 1 /bin/sh -c 'sudo /usr/sbin/dkms autoinstall --force --verbose --kernelver $(uname -r)'
 
   }
 
@@ -198,7 +175,7 @@ function enable_startup_() {
     sudo systemctl enable containerd docker docker.socket sshd.service --now
     sudo systemctl enable redis_6379.service --now
 
-    sudo ionice -c 2 -n 0 -p $(pidof -w -x chrome) &
+    sudo ionice -c 2 -n 1 -p $(pidof -w -x chrome) &
     sudo renice -n -17 -p $(pidof -w -x chrome) &
     sudo ionice -c 2 -n 1 -p $(pidof -w -x zsh) &
     sudo renice -n -15 -p $(pidof -w -x zsh) &
@@ -868,3 +845,23 @@ exit $__EXIT_STATUS
 # sudo nice -n -15 ionice -c 1 -n 2 /bin/sh -c "sudo nice -n -15 ionice /usr/sbin/dkms autoinstall --verbose # --kernelver $(uname -r)"
 
 # sudo nice -n -15 ionice -c 1 -n 2 /bin/sh -c "sudo nice -n -15 ionice /usr/sbin/dkms autoinstall --verbose"
+
+# dkms.service \
+# akmods.service \
+# pmcd.service \
+# pmie.service \
+# pmlogger.service \
+# switcheroo-control.service \
+# systemd-machined.service \
+# systemd-udevd.service \
+# upower.service \
+
+# sudo nice -n -15 ionice -c 1 -n 1 systemctl enable redis_6379.service
+
+# pmcd.service
+# pmie.service
+# pmlogger.service
+# switcheroo-control.service
+# systemd-machined.service
+# systemd-udevd.service
+# upower.service --now
