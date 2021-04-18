@@ -12,7 +12,6 @@
     "**/.directory": true,
     "nohup.out": true
   },
-
   "search.exclude": {
     // "**/*.zwc": true,
     "powerlevel10k": true,
@@ -35,7 +34,7 @@
   "editor.rulers": [
     {
       "column": 2,
-      "color": "#BD28"
+      "color": "#BD24"
     },
     {
       "column": 80,

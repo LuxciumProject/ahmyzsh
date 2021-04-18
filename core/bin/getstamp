@@ -22,8 +22,8 @@ function getstamp_() {
 ## Extra code make it easy to copy paste only the function out to use elsewhere
 getstamp_ "${@}"
 
+__EXIT_STATUS="${?}"
+
 unset -f getstamp_
 
-exit 0
-
-#
+exit $__EXIT_STATUS
