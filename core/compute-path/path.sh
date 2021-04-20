@@ -8,7 +8,7 @@ export PATH_BAK_0="${PATH}"
 
 #   return
 # }
-
+# /usr/lib64/qt5/bin
 function __append_sbin_to_path() {
   export PATH="/usr/local/sbin"
   append_to_path_ "/usr/local/bin"
@@ -29,10 +29,11 @@ function __append_bin_to_path() {
 }
 
 function __compute_extended_path() {
-  add_to_path_ "/opt/vlang"
-  add_to_path_ "/usr/local/go/bin"
   add_to_path_ "/usr/lib64/ccache"
+  add_to_path_ "/usr/lib64/qt5/bin"
+  add_to_path_ "/usr/local/go/bin"
   add_to_path_ "/usr/local/cuda-11.1/bin"
+  add_to_path_ "/opt/vlang"
   add_to_path_ "${HOME}/.yarn/bin"
   add_to_path_ "${HOME}/spx:$PATH"
   add_to_path_ "${HOME}/.cargo/bin"

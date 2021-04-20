@@ -14,7 +14,7 @@ enable_systemctl up && ( (play_zelda_email)&)
 (
   sudo fc-cache -rfE
   fc-cache -rfE
-) & #  3.4069s 
+) & #  3.4356s
 
 (
   eval $(
