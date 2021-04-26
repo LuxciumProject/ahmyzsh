@@ -124,7 +124,7 @@ function enable_startup_() {
 
     echo -e '\nfunction enable_at_startup_()\n'
 
-    sudo nice -n -16 ionice -c 1 -n 1 systemctl enable \
+    sudo nice -n -18 ionice -c 1 -n 7 systemctl enable \
     avahi-daemon.service \
     avahi-daemon.socket \
     bluetooth.service \
@@ -138,28 +138,31 @@ function enable_startup_() {
     packagekit.service \
     --now
 
-    sudo nice -n -16 ionice -c 1 -n 1 systemctl enable \
+    sudo nice -n -18 ionice -c 1 -n 7 systemctl enable \
     containerd \
     docker \
     docker.socket \
     sshd.service \
     --now
 
-    sudo renice -n -15 -p $(pidof -w -x Xorg)
-    sudo renice -n 7 -p $(pidof -w -x plasmashell)
-    sudo renice -n 7 -p $(pidof -w -x startplasma-x11)
-    sudo renice -n 7 -p $(pidof -w -x plasma_session)
-    sudo renice -n 7 -p $(pidof -w -x kwin_x11)
-    sudo renice -n 7 -p $(pidof -w -x ksmserver)
+    sudo renice -n -14 -p $(pidof -w -x Xorg)
+    sudo renice -n -12 -p $(pidof -w -x plasma_session)
+    sudo renice -n -10 -p $(pidof -w -x kde5)
+    sudo renice -n -8 -p $(pidof -w -x kwin_x11)
+    sudo renice -n -6 -p $(pidof -w -x ksmserver)
+    sudo renice -n -4 -p $(pidof -w -x plasmashell)
+    sudo renice -n -2 -p $(pidof -w -x startplasma-x11)
 
-    sudo ionice -c 1 -n 0 -p $(pidof -w -x Xorg)
-    sudo ionice -c 2 -n 2 -p $(pidof -w -x plasmashell)
-    sudo ionice -c 1 -n 5 -p $(pidof -w -x plasma_session)
-    sudo ionice -c 1 -n 5 -p $(pidof -w -x kwin_x11)
-    sudo ionice -c 1 -n 5 -p $(pidof -w -x ksmserver)
+    sudo ionice -c 1 -n 1 -p $(pidof -w -x Xorg)
+    sudo ionice -c 1 -n 2 -p $(pidof -w -x plasma_session)
+    sudo ionice -c 1 -n 5 -p $(pidof -w -x kde5)
+    sudo ionice -c 1 -n 3 -p $(pidof -w -x kwin_x11)
+    sudo ionice -c 1 -n 4 -p $(pidof -w -x ksmserver)
+    sudo ionice -c 1 -n 6 -p $(pidof -w -x plasmashell)
+    sudo ionice -c 1 -n 7 -p $(pidof -w -x startplasma-x11)
 
-    sudo systemctl enable redis --now
-    sudo systemctl start redis
+    # sudo systemctl enable redis --now
+    # sudo systemctl start redis
 
     sudo ionice -c 3 systemctl daemon-reexec
     sudo ionice -c 3 systemctl daemon-reload

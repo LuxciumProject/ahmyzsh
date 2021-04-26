@@ -192,7 +192,7 @@ function _get_updates() {
 function _dnfup() {
   source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
   play_019
-  sudo nice -n -15 ionice -c 1 -n 2 dnf upgrade --setopt=keepcache=1 $1 || play_etc-dialog
+  sudo nice -n -15 ionice -c 1 -n 2 dnf distro-sync --setopt=keepcache=1 $1 || play_etc-dialog
 }
 
 function yumFedoraActivate() {

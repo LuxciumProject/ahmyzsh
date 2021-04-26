@@ -1,4 +1,4 @@
-export WAITTIME=2
+export WAITTIME=1
 export SLEEPTIME=1
 # update and reboot
 source /home/luxcium/ahmyzsh/core/aliases/12010-dnf.sh
@@ -18,15 +18,15 @@ function upnboot() {
 
 # update and reboot --assumeyes
 function upnbooty() {
-  source $HOME/ahmyzsh/core/aliases/12012-ALS-sounds.sh
-  play_014
-  _get_updates
-  _dnfup "--assumeyes ${1}"
-  (
-    _play_down_sound "reboot"
-  ) &
-  sleep ${SLEEPTIME}
-  bye
+  # source $HOME/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # play_014
+  # _get_updates
+  upnboot "--assumeyes ${1}"
+  # (
+  #    _play_down_sound "reboot"
+  # ) &
+  # sleep ${SLEEPTIME}
+  # bye
 }
 
 # update and reboot
@@ -54,7 +54,7 @@ function upnshutdown() {
 
 }
 
-function _play_down_sound() {
+function  _play_down_sound() {
   (
     (
       (nohup enable_systemctl down &) >/dev/null

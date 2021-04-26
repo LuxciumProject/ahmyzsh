@@ -31,7 +31,7 @@ enable_systemctl up && ( (play_zelda_email)&)
   fnm list
 
   (
-    code-insiders /home/luxcium/ahmyzsh
+    code-insiders /home/luxcium/ahmyzsh &
     sleep 0.5
     sudo renice -n 5 -p $(
       pidof -w -x code-insiders
@@ -44,7 +44,12 @@ enable_systemctl up && ( (play_zelda_email)&)
 
   (
     sleep 2
-    nice -n 5 gnome-terminal --title='Gnome Terminal' --class=gnome-terminal-Z6C4C35AEx --name=gnome-terminal-Z757425E8x --role=gnome-terminal-ZF987CDA0x
+    nice -n 5 terminator --title='Monitoring Terminal' --role=terminator-ZF987CDA0x &
+    # nice -n 5 gnome-terminal --title='Monitoring Terminal' --class=Monitoring-Terminal-Z6C4C35AEx --name=gnome-terminal-Z757425E8x --role=gnome-terminal-ZF987CDA0x
+    sleep 2
+    sudo ionice -c 2 -n 1 -p $(
+      pidof -w -x terminator
+    )
   )&
 
 
