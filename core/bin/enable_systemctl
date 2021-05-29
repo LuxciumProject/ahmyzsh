@@ -45,8 +45,12 @@ function enable_startup_() {
       (
         sleep 1 # +@1.0
         sudo kill -15 $(pidof -w -x gnome-terminal-server)
-        sleep 3.1 # +@4.1
+        sleep 1 # +@2.0
+        sudo kill -15 $(pidof -w -x terminator)
+        sleep 2.1 # +@4.1
         sudo kill -09 $(pidof -w -x gnome-terminal-server)
+        sudo kill -09 $(pidof -w -x terminator)
+
       ) &
 
       sleep 0.5 # 0.5 ― 4.5

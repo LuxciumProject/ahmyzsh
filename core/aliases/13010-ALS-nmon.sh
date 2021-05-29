@@ -1,72 +1,72 @@
 export NMON='mknd.jJ'
 
 # h = This help
-alias monhelp='sudo nice -n -15 ionice -c 2 -n 3 env NMON=h nmon -a'
+alias nmonhelp='sudo nice -n -15 ionice -c 2 -n 3 env NMON=h nmon -a'
 
 # r = Resources OS & Proc
-alias monres='sudo nice -n -15 ionice -c 2 -n 3 env NMON=r nmon -a'
+alias nmonres='sudo nice -n -15 ionice -c 2 -n 3 env NMON=r nmon -a'
 
 # c = CPU Util  C = wide view
-alias moncpu='sudo nice -n -15 ionice -c 2 -n 3 env NMON=c nmon -a'
-alias monccpu='sudo nice -n -15 ionice -c 2 -n 3 env NMON=C nmon -a'
+alias nmoncpu='sudo nice -n -15 ionice -c 2 -n 3 env NMON=c nmon -a'
+alias nmonccpu='sudo nice -n -15 ionice -c 2 -n 3 env NMON=C nmon -a'
 
 # l = longer term CPU averages
-alias monlcpu='sudo nice -n -15 ionice -c 2 -n 3 env NMON=l nmon -a'
+alias nmonlcpu='sudo nice -n -15 ionice -c 2 -n 3 env NMON=l nmon -a'
 
 # m = Memory & Swap    L=Huge
-alias monmem='sudo nice -n -15 ionice -c 2 -n 3 env NMON=m nmon -a'
+alias nmonmem='sudo nice -n -15 ionice -c 2 -n 3 env NMON=m nmon -a'
 
 # V = Virtual Memory
-alias monvirt='sudo nice -n -15 ionice -c 2 -n 3 env NMON=V nmon -a'
+alias nmonvirt='sudo nice -n -15 ionice -c 2 -n 3 env NMON=V nmon -a'
 
 # n = Network
-alias monnetwork='sudo nice -n -15 ionice -c 2 -n 3 env NMON=n nmon -a'
+alias nmonnetwork='sudo nice -n -15 ionice -c 2 -n 3 env NMON=n nmon -a'
 
 # N = NFS
-alias monnfs='sudo nice -n -15 ionice -c 2 -n 3 env NMON=N nmon -a'
+alias nmonnfs='sudo nice -n -15 ionice -c 2 -n 3 env NMON=N nmon -a'
 
 #
 # d = Disk I/O Graphs  D=Stats
-alias mondisk='sudo nice -n -15 ionice -c 2 -n 3 env NMON=d nmon -a'
-alias mondiskstats='sudo nice -n -15 ionice -c 2 -n 3 env NMON=D nmon -a'
+alias nmondisk='sudo nice -n -15 ionice -c 2 -n 3 env NMON=d nmon -a'
+alias nmondiskstats='sudo nice -n -15 ionice -c 2 -n 3 env NMON=D nmon -a'
 
 # o = Disks %Busy Map
 #
 
 # k = Kernel stats & loadavg
-alias monkern='sudo nice -n -15 ionice -c 2 -n 3 env NMON=k nmon -a'
+alias nmonkern='sudo nice -n -15 ionice -c 2 -n 3 env NMON=k nmon -a'
 
 # j = Filesystem Usage J=reduced
-alias monfs='sudo nice -n -15 ionice -c 2 -n 3 env NMON=jJ nmon -a'
-alias monfsall='sudo nice -n -15 ionice -c 2 -n 3 env NMON=j nmon -a'
+alias nmonfs='sudo nice -n -15 ionice -c 2 -n 3 env NMON=jJ nmon -a'
+alias nmonfsall='sudo nice -n -15 ionice -c 2 -n 3 env NMON=j nmon -a'
 
 #
 # M = MHz by thread & CPU
-alias monmhz='sudo nice -n -15 ionice -c 2 -n 3 env NMON=M nmon -a'
+alias nmonmhz='sudo nice -n -15 ionice -c 2 -n 3 env NMON=M nmon -a'
 
 #
 
 # t = TopProcess 1=Priority/Nice/State
 # ReOrder by: 3=CPU 4=RAM 5=I/O
-alias montopnice='sudo nice -n -15 ionice -c 2 -n 3 env NMON=t1 nmon -a'
-alias montopproc='sudo nice -n -15 ionice -c 2 -n 3 env NMON=t3 nmon -a'
-alias montopmem='sudo nice -n -15 ionice -c 2 -n 3 env NMON=t4 nmon -a'
-alias montopio='sudo nice -n -15 ionice -c 2 -n 3 env NMON=t5 nmon -a'
+alias nmontopnice='sudo nice -n -15 ionice -c 2 -n 3 env NMON=t1 nmon -a'
+alias nmontopproc='sudo nice -n -15 ionice -c 2 -n 3 env NMON=t3 nmon -a'
+alias nmontopmem='sudo nice -n -15 ionice -c 2 -n 3 env NMON=t4 nmon -a'
+alias nmontopio='sudo nice -n -15 ionice -c 2 -n 3 env NMON=t5 nmon -a'
 
 # u = TopProc with command line
 # ReOrder by: 3=CPU 4=RAM 5=I/O
-alias montopniceu='sudo nice -n -15 ionice -c 2 -n 3 env NMON=t1u nmon -a'
-alias montopprocu='sudo nice -n -15 ionice -c 2 -n 3 env NMON=t3u nmon -a'
-alias montopmemu='sudo nice -n -15 ionice -c 2 -n 3 env NMON=t4u nmon -a'
-alias montopiou='sudo nice -n -15 ionice -c 2 -n 3 env NMON=t5u nmon -a'
+alias nmontopniceu='sudo nice -n -15 ionice -c 2 -n 3 env NMON=t1u nmon -a'
+alias nmontopprocu='sudo nice -n -15 ionice -c 2 -n 3 env NMON=t3u nmon -a'
+alias nmontopmemu='sudo nice -n -15 ionice -c 2 -n 3 env NMON=t4u nmon -a'
+alias nmontopiou='sudo nice -n -15 ionice -c 2 -n 3 env NMON=t5u nmon -a'
 
 # alias nmonmmm='sudo nice -n -15 ionice -c 2 -n 3 env NMON=MMM nmon -a'
 # alias nmonV='sudo nice -n -15 ionice -c 2 -n 3 env NMON=V nmon -a'
 # alias nmonN='sudo nice -n -15 ionice -c 2 -n 3 env NMON=N nmon -a'
 # alias nmonr='sudo nice -n -15 ionice -c 2 -n 3 env NMON=r nmon -a'
 # alias nmono='sudo nice -n -15 ionice -c 2 -n 3 env NMON=o nmon -a'
-# alias monddisk='sudo nice -n -15 ionice -c 2 -n 3 env NMON=d nmon -a'
-# alias mondisk='sudo nice -n -15 ionice -c 2 -n 3 env NMON=d. nmon -a'
+# alias nmonddisk='sudo nice -n -15 ionice -c 2 -n 3 env NMON=d nmon -a'
+# alias nmondisk='sudo nice -n -15 ionice -c 2 -n 3 env NMON=d. nmon -a'
 
 # nmon -h
 # Hint for nmon version 16k

@@ -97,12 +97,12 @@
 #   sudo killall dd
 #   echo '                                                                       '
 # )
-echo "dirty_background_bytes: $(cat /proc/sys/vm/dirty_background_bytes)"       # =0
-echo "dirty_background_ratio: $(cat /proc/sys/vm/dirty_background_ratio)"       # =0
-echo "dirty_expire_centisecs: $(cat /proc/sys/vm/dirty_expire_centisecs)"       # =20
-echo "dirty_writeback_centisecs: $(cat /proc/sys/vm/dirty_writeback_centisecs)" # =10
-echo "dirtytime_expire_seconds: $(cat /proc/sys/vm/dirtytime_expire_seconds)"   # =60
-echo "dirty_ratio: $(cat /proc/sys/vm/dirty_ratio)"                             # =2
+  echo "dirty_background_bytes: $(cat /proc/sys/vm/dirty_background_bytes)"       # =0
+  echo "dirty_background_ratio: $(cat /proc/sys/vm/dirty_background_ratio)"       # =0
+  echo "dirty_expire_centisecs: $(cat /proc/sys/vm/dirty_expire_centisecs)"       # =20
+  echo "dirty_writeback_centisecs: $(cat /proc/sys/vm/dirty_writeback_centisecs)" # =10
+  echo "dirtytime_expire_seconds: $(cat /proc/sys/vm/dirtytime_expire_seconds)"   # =60
+  echo "dirty_ratio: $(cat /proc/sys/vm/dirty_ratio)"                             # =2
 
 # !!  TMP_dirty_background_bytes=$(cat /proc/sys/vm/dirty_background_bytes)       # =0
 # !!  TMP_dirty_background_ratio=$(cat /proc/sys/vm/dirty_background_ratio)       # =0

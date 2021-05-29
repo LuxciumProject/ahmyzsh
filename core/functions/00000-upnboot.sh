@@ -1,4 +1,4 @@
-export WAITTIME=1
+export WAITTIME=2
 export SLEEPTIME=1
 # update and reboot
 source /home/luxcium/ahmyzsh/core/aliases/12010-dnf.sh
@@ -54,7 +54,7 @@ function upnshutdown() {
 
 }
 
-function  _play_down_sound() {
+function _play_down_sound() {
   (
     (
       (nohup enable_systemctl down &) >/dev/null

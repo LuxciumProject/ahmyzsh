@@ -97,12 +97,12 @@
 #   sudo killall dd
 #   echo '                                                                       '
 # )
-echo "dirty_background_bytes: $(cat /proc/sys/vm/dirty_background_bytes)"       # =0
-echo "dirty_background_ratio: $(cat /proc/sys/vm/dirty_background_ratio)"       # =0
-echo "dirty_expire_centisecs: $(cat /proc/sys/vm/dirty_expire_centisecs)"       # =20
-echo "dirty_writeback_centisecs: $(cat /proc/sys/vm/dirty_writeback_centisecs)" # =10
-echo "dirtytime_expire_seconds: $(cat /proc/sys/vm/dirtytime_expire_seconds)"   # =60
-echo "dirty_ratio: $(cat /proc/sys/vm/dirty_ratio)"                             # =2
+# !!  echo "dirty_background_bytes: $(cat /proc/sys/vm/dirty_background_bytes)"       # =0
+# !!  echo "dirty_background_ratio: $(cat /proc/sys/vm/dirty_background_ratio)"       # =0
+# !!  echo "dirty_expire_centisecs: $(cat /proc/sys/vm/dirty_expire_centisecs)"       # =20
+# !!  echo "dirty_writeback_centisecs: $(cat /proc/sys/vm/dirty_writeback_centisecs)" # =10
+# !!  echo "dirtytime_expire_seconds: $(cat /proc/sys/vm/dirtytime_expire_seconds)"   # =60
+# !!  echo "dirty_ratio: $(cat /proc/sys/vm/dirty_ratio)"                             # =2
 
 # !!  TMP_dirty_background_bytes=$(cat /proc/sys/vm/dirty_background_bytes)       # =0
 # !!  TMP_dirty_background_ratio=$(cat /proc/sys/vm/dirty_background_ratio)       # =0
@@ -140,93 +140,93 @@ echo "dirty_ratio: $(cat /proc/sys/vm/dirty_ratio)"                             
 # !!  echo "${TMP_dirty_ratio}" >/proc/sys/vm/dirty_ratio                             # =2
 
 {
-    function ddsoft() {
-        (
-            sudo ionice -c 3 nice -n 35 dd if=/dev/zero of=/dev/null &
-        )
-    }
+  function ddsoft() {
+    (
+      sudo ionice -c 3 nice -n 35 dd if=/dev/zero of=/dev/null &
+    )
+  }
 
-    function ddhard() {
-        (
-            sudo ionice -c 2 -n 3 nice -n -15 dd if=/dev/zero of=/dev/null &
-        )
-    }
+  function ddhard() {
+    (
+      sudo ionice -c 2 -n 3 nice -n -15 dd if=/dev/zero of=/dev/null &
+    )
+  }
 
-    function ddsoft5() {
-        (
-            sleep 1
-            ddsoft
-            sleep 0.5
-            ddsoft
-            sleep 0.5
-            ddsoft
-            sleep 0.5
-            ddsoft
-            sleep 0.5
-            ddsoft
-        )
-    }
+  function ddsoft5() {
+    (
+      sleep 1
+      ddsoft
+      sleep 0.5
+      ddsoft
+      sleep 0.5
+      ddsoft
+      sleep 0.5
+      ddsoft
+      sleep 0.5
+      ddsoft
+    )
+  }
 
-    function ddhard5() {
-        (
-            sleep 1
-            ddhard
-            sleep 0.5
-            ddhard
-            sleep 0.5
-            ddhard
-            sleep 0.5
-            ddhard
-            sleep 0.5
-            ddhard
+  function ddhard5() {
+    (
+      sleep 1
+      ddhard
+      sleep 0.5
+      ddhard
+      sleep 0.5
+      ddhard
+      sleep 0.5
+      ddhard
+      sleep 0.5
+      ddhard
 
-        )
-    }
+    )
+  }
 }
 
 echo -e '\e[38;2;252;198;36m\n   TEST CPU   ' ## ----------------------------------------------------
 
 (
-    echo 'Will test x60 DDHARD  for 120 sec'
-    echo 'Warm Up 5 sec'
-    (
+  echo 'Will test x60 DDHARD  for 120 sec'
+  echo 'Warm Up 5 sec'
+  (
 
-        ddhard5 &
-        ddhard5 &
+    ddhard5 &
+    ddhard5 &
 
-        ddhard5 &
-        ddhard5 &
+    ddhard5 &
+    ddhard5 &
 
-        ddhard5 &
-        ddhard5 &
+    ddhard5 &
+    ddhard5 &
 
-        ddhard5 &
-        ddhard5 &
+    ddhard5 &
+    ddhard5 &
 
-        ddhard5 &
-        ddhard5 &
+    ddhard5 &
+    ddhard5 &
 
-        ddhard5 &
-        ddhard5 &
+    ddhard5 &
+    ddhard5 &
 
-    )
-    sleep 5
-    echo 'full speed for 120 seconds'
-    sleep 115
-    # \u001b[1000D
-    echo -en "\e[38;2;252;198;36m 5 sec remaining \u001b[1000D\a"
-    sleep 1
-    echo -en "\e[38;2;252;198;36m 4 sec remaining \u001b[1000D\a"
-    sleep 1
-    echo -en "\e[38;2;252;198;36m 3 sec remaining \u001b[1000D\a"
-    sleep 1
-    echo -en "\e[38;2;252;198;36m 2 sec remaining \u001b[1000D\a"
-    sleep 1
-    echo -en "\e[38;2;252;198;36m 1 sec remaining \u001b[1000D\a"
-    sleep 1
-    echo -en "\e[38;2;252;198;36m 0 sec remaining \u001b[1000D\a"
-    sudo killall dd
-    echo '                                                                       '
+  )
+  sleep 5
+  echo 'full speed for 120 seconds'
+  sleep 115
+  # \u001b[1000D
+  echo -en "\e[38;2;252;198;36m 5 sec remaining \u001b[1000D\a"
+  sleep 1
+  echo -en "\e[38;2;252;198;36m 4 sec remaining \u001b[1000D\a"
+  sleep 1
+  echo -en "\e[38;2;252;198;36m 3 sec remaining \u001b[1000D\a"
+  sleep 1
+  echo -en "\e[38;2;252;198;36m 2 sec remaining \u001b[1000D\a"
+  sleep 1
+  echo -en "\e[38;2;252;198;36m 1 sec remaining \u001b[1000D\a"
+  sleep 1
+  echo -en "\e[38;2;252;198;36m 0 sec remaining \u001b[1000D\a"
+  sudo killall dd
+  echo '                                                                       '
 )
 echo ''
 echo "--------------------"
