@@ -36,8 +36,8 @@ function cc_update() {
 }
 
 all_update() {
-  fnm_update
   cc_update
+  fnm_update
   dnf_update -y
 
 }
