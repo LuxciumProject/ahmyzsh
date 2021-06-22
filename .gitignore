@@ -8,5 +8,10 @@ node_modules
 core/env/aliases/Untitled-1.js
 
 !vscode-material-icon-testDirs/**/*.*
-.directory
 nohup.out
+
+.cache
+.directory
+.history
+hello_world/
+hello-world/

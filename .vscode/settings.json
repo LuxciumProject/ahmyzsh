@@ -25,27 +25,17 @@
     "ohmyzsh": true,
     "powerline": true,
     "crt-profiles": true,
-    "archive": false,
-    "archives": false,
     "images": true,
     "**/.directory": true,
     "nohup.out": true,
     ".cache": true,
-    ".editorconfig": false,
-    ".env": false,
-    ".eslintignore": false,
-    ".eslintrc": false,
-    // ".git": false,
     ".github": true,
-    ".gitignore": true,
     ".history": true,
     ".madgerc": true,
     ".markdownlint.jsonc": true,
     ".npmignore": true,
     ".npmrc": true,
-    ".prettierrc": false,
     ".travis.yml": true,
-    ".vscode": false,
     "assets": true,
     "build": true,
     "commmit-text.txt": true,
@@ -54,12 +44,21 @@
     "docker": true,
     "enums": true,
     "jest.config.js": true,
-    "keys": false,
     "lib": true,
-    "LICENSE": false,
     "misc": true,
     "node_modules": true,
     "out": true,
+    "archive": true,
+    "archives": true,
+    ".editorconfig": false,
+    ".env": false,
+    ".eslintignore": false,
+    ".eslintrc": false,
+    ".gitignore": false,
+    ".prettierrc": false,
+    ".vscode": false,
+    "keys": false,
+    "LICENSE": false,
     "package.backup.json": false,
     "package.json": false,
     "README.md": false,
@@ -493,10 +492,10 @@
     //→
     "→": {
       "foreground": "#CF2",
-      "background": "#CF2",
+      "background": "#CF21",
       "iconColour": "#CF2",
       "opacity": 50,
-      "type": "whole-line",
+      "type": "text-and-comment",
       "icon": "cross-reference",
       "gutterIcon": true,
       "rulerLane": "full",
@@ -2437,7 +2436,6 @@
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
   // #endregion: EDITOR RULERS                                                  !
-  // =====2021=====Luxcium=====Author==Benjamin=Vincent=(Luxcium)=License==MIT====
   // #region: RANDOM                                                            !
   /*
 "#F20",
@@ -2701,7 +2699,7 @@
 "+-:",
 ":-:",
 
-*/
+
   //
   // "editor.suggest.showClasses": true,
   // "editor.suggest.showColors": true,
@@ -2734,7 +2732,7 @@
   // "editor.suggest.showWords": true,
   // echo '\n20\n19\n18\n17\n16\n15\n14\n13\n12\n11\n10\n9\n8\n7\n6\n5\n4\n3\n2\n1\n\n'
   // Scientia es lux principium ✨
-  /*
+
         "#F15F",
         "#FB3F",
         "#4AEF",
@@ -3023,4 +3021,5 @@
 
   */
   // #endregion: RANDOM                                                         !
+  // =====2021=====Luxcium=====Author==Benjamin=Vincent=(Luxcium)=License==MIT====
 }

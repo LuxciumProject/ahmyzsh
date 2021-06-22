@@ -36,7 +36,6 @@ function __compute_extended_path() {
   add_to_path_ "/opt/vlang"
   add_to_path_ "${HOME}/.yarn/bin"
   add_to_path_ "${HOME}/spx:$PATH"
-  add_to_path_ "${HOME}/.cargo/bin"
   call_ rust_up_
   add_to_path_ "${HOME}/.rbenv/shims"
   add_to_path_ "${HOME}/.rbenv/bin"
@@ -285,8 +284,8 @@ function rbenv_() {
 }
 
 function rust_up_() {
-  source $HOME/.cargo/env
-
+  add_to_path_ "${HOME}/.cargo/bin"
+  source "$HOME/.cargo/env"
 }
 
 function nvm_() {
