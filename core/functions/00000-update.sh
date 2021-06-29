@@ -1,31 +1,70 @@
+# Current or LTS
+
+function fnm_update_to_lts() {
+  fnm_update_to_14
+}
+function fnm_update_to_current() {
+  fnm_update_to_16
+}
+function fnm_update_to_8() {
+  fnm_update
+  fnm default 8
+  fnm use default
+}
+function fnm_update_to_10() {
+  fnm_update
+  fnm default 10
+  fnm use default
+}
+function fnm_update_to_12() {
+  fnm_update
+  fnm default 12
+  fnm use default
+}
+function fnm_update_to_14() {
+  fnm_update
+  fnm default 14
+  fnm use default
+}
+function fnm_update_to_16() {
+  fnm_update
+  fnm default 16
+  fnm use default
+}
 function fnm_update() {
-  npm install -g npm@latest yarn@latest typescript@latest
+  fnm install 8
+  (
+    fnm use 8
+    npm install -g npm@latest yarn@latest typescript@latest gulp-cli@latest
+    exit
+  )
   fnm install 10
   (
     fnm use 10
-    npm install -g npm@latest yarn@latest typescript@latest
+    npm install -g npm@latest yarn@latest typescript@latest gulp-cli@latest
     exit
   )
   fnm install 12
   (
     fnm use 12
-    npm install -g npm@latest yarn@latest typescript@latest
+    npm install -g npm@latest yarn@latest typescript@latest gulp-cli@latest
     exit
   )
   fnm install 14
   (
     fnm use 14
-    npm install -g npm@latest yarn@latest typescript@latest
+    npm install -g npm@latest yarn@latest typescript@latest gulp-cli@latest
     exit
   )
   fnm install 16
   (
     fnm use 16
-    npm install -g npm@latest yarn@latest typescript@latest
+    npm install -g npm@latest yarn@latest typescript@latest gulp-cli@latest
     exit
   )
-  fnm default 16
-  fnm use 14
+  fnm use default
+  npm install -g npm@latest yarn@latest typescript@latest gulp-cli@latest
+
 }
 
 function cc_update() {
@@ -42,6 +81,12 @@ all_update() {
 
 }
 
+update_nboot() {
+  cc_update
+  fnm_update
+  dnf_update $1
+  sudo reboot
+}
 # † Scientia es lux principium✨ ™
 
 # Copyright © 2020 Luxcium (Benjamin Vincent Kasapoglu)
