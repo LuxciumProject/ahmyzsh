@@ -42,12 +42,13 @@ function getvscodeportable_() {
     vscode_url="${VSCODE_URL_STABLE}"
     vscode_shortpath="${VSCODE_SHORTPATH_STABLE}"
     vscode_channel="${VSCODE_CHANNEL_STABLE}"
+    vschannel='STABLE' # 'STABLE' or 'INSIDER'
 
-    vschannel="${1}" # 'STABLE' or 'INSIDERS'
-    if [[ "${vschannel}" = 'INSIDERS' ]]; then
+    if [[ "${1}" = 'INSIDER' ]]; then
       vscode_url="${VSCODE_URL_INSIDER}"
       vscode_shortpath="${VSCODE_SHORTPATH_INSIDER}"
       vscode_channel="${VSCODE_CHANNEL_INSIDER}"
+      vschannel='INSIDER'
     fi
 
     ## INTERNAL VARIABLES DEFINITIONS
@@ -56,6 +57,7 @@ function getvscodeportable_() {
     myuxidlong="$(LUXID)"
     working_location="/tmp/$(echo LXCM/vscode-${vscode_channel}/$(shortID))"
     download_location="${working_location}/download"
+    myUXIDshort=$(shortID)
 
     ## CREATE THE DOWNLOAD FOLDER IN /tmp
     # † ======================================================================
@@ -99,16 +101,16 @@ function getvscodeportable_() {
 
     for file_ in $(ls ${download_location}/${vscode_shortpath}-x64-*.tar.gz); do
       (
-        sudo tar --extract -f ${file_} --overwrite #--one-top-level="vs-${vscodeshortpath}" ## WHERE THE MAGIC HAPPENS
+        sudo tar --extract -f ${file_} --overwrite ## WHERE THE MAGIC HAPPENS
       ) || exit 6
     done
     # ========================================================================
   }
 
   {
-    mv "${working_location}/VSCode-linux-x64" "${working_location}/vs-${vscodeshortpath}"
+    mv "${working_location}/VSCode-linux-x64" "${working_location}/vs-${vscode_shortpath}"
 
-    sudo mkdir -p "${working_location}/vs-${vscodeshortpath}/data/tmp"
+    sudo mkdir -p "${working_location}/vs-${vscode_shortpath}/data/tmp"
     vs_code_='code_'
     if [[ "${2}" = 'UPDATE' ]]; then
       vs_code_='code_update_'
@@ -123,21 +125,37 @@ function getvscodeportable_() {
     (sudo chown -R ${iamtheuser} "${working_location}")
     (sudo chgrp -R "luxcium.io" "${working_location}")
 
-    cp -r /etc/vscode-portable/templates/vs-code/icons/ ${working_location}/vs-${vscodeshortpath}/
-    cp -r /etc/vscode-portable/templates/vs-code/.directory ${working_location}/vs-${vscodeshortpath}/
-    cp -r "${working_location}/vs-${vscodeshortpath}/" "${full_path_to_vscode_home_folder}/"
-    cp -r "/etc/vscode-portable/templates/vs-code/icons/folder-vscode.svg" "${full_path_to_vscode_home_folder}/code.svg"
+    sudo cp -r /etc/vscode-portable/empty/vs-code-${vscode_channel}/* "${working_location}/vs-${vscode_shortpath}/"
+    sudo cp -r /etc/vscode-portable/empty/vs-code-${vscode_channel}/.directory "${working_location}/vs-${vscode_shortpath}/"
+    sudo cp -r "${working_location}/vs-${vscode_shortpath}/" "${full_path_to_vscode_home_folder}/"
+    if [[ "${2}" = 'UPDATE' ]]; then
+      sudo rm "${full_path_to_vscode_home_folder}/code.png"
+      sudo cp -r "/etc/vscode-portable/templates/vs-code/icons/vscode.svg" "${full_path_to_vscode_home_folder}/code.svg"
+
+    else
+      sudo rm "${full_path_to_vscode_home_folder}/code.png"
+      sudo cp -r "/etc/vscode-portable/templates/vs-code/icons/folder-vscode.svg" "${full_path_to_vscode_home_folder}/code.svg"
+
+    fi
+
+    (sudo groupadd -f "vs-${vscode_channel}" &>/dev/null)
+    (sudo chown -R ${iamtheuser} "${full_path_to_vscode_home_folder}")
+    (sudo chgrp -R "vs-${vscode_channel}" "${full_path_to_vscode_home_folder}")
+
     sudo rm -rf "${working_location}"
+
     # ========================================================================
   } || (
     EX_STATUS="${?}"
     echo -e "\n   -ERROR-" && exit ${EX_STATUS}
   ) &&
-    if [[ "${2}" = 'UPDATE' ]]; then
-      echo -e "\n   -UPDATE-" && return 0
-    else
-      echo -e "\n   -OK-" && return 0
-    fi
+    # if [[ "${2}" = 'UPDATE' ]]; then
+    #   echo -e "\n   ― ${vschannel} ―"
+    #   echo -e "   ― UPDATE ―\n" && exit 0
+
+    # else
+    echo -e "\n   ― ${vschannel} ―\n" && exit 0
+  # fi
 }
 # ==============================================================================
 
