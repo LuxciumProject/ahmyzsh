@@ -23,8 +23,8 @@
 #$ Scientia es lux principium✨ ™
 
 # /home/luxcium/ahmyzsh/custom-zsh/sources/functions/getvscodeportable.zsh
+# /home/luxcium/ahmyzsh/core/bin/getvscodeportable-v2
 function getvscodeportable_() {
-
   ## CONSTANTS AND VARIABLES DEFINITIONS
   {
     # † ======================================================================
@@ -62,7 +62,7 @@ function getvscodeportable_() {
     vschannel="${VSCODESTABLECHANNEL}"
 
     iamtheuser="$(whoami)"
-
+    echo iamtheuser="$(whoami)"
     # else
     vschannel="${VSCODESTABLECHANNEL}"
     vscodetargz="${VSCODEURL_STABLE_TAR_GZ}"
@@ -86,6 +86,12 @@ function getvscodeportable_() {
       return 0
     }
 
+    function shortID() {
+      local fooZ="$(date +%s)-x$(RANDMX 4)"
+
+      echo -n $fooZ
+      return 0
+    }
     function LUXID() {
       local myxuidhash="$(RANDMX 10)"
       local myxuiddate="$(date +%C%y%m%d%H%M%S)$(date +%N | cut -c -3)"
@@ -93,7 +99,7 @@ function getvscodeportable_() {
       local fooZ="${fooY:0:1}${fooY:13:2}${fooY:1:1}${fooY:15:2}${fooY:2:1}${fooY:17:2}${fooY:3:1}${fooY:19:2}${fooY:4:1}${fooY:21:2}${fooY:5:1}${fooY:23:2}${fooY:6:1}${fooY:10:2}${fooY:30:2}${fooY:12:1}${fooY:7:1}${fooY:25:2}${fooY:8:1}${fooY:27:3}${fooY:9:1}"
 
       echo -n $fooZ
-      return 0
+      exit 0
     }
     # (LUXID)
     # ========================================================================
@@ -102,10 +108,9 @@ function getvscodeportable_() {
     # † ======================================================================
 
     myuxidlong="$(LUXID)"
-    working_location="$(echo LXCM-vscode-$(date +%s)-${myuxidlong}-${vschannel} | tr \[a-z\] \[A-Z\])"
+    working_location="$(echo LXCM/vscode-${vschannel}/$(shortID))"
     working_location="/tmp/${working_location}"
     download_location="${working_location}/download"
-
     ## CREATE THE DOWNLOAD FOLDER IN /tmp
     # † ======================================================================
 
@@ -142,56 +147,54 @@ function getvscodeportable_() {
     cd ${download_location}
 
     #  code-stable-x64-1620838810.tar.gz
-
-    echo -e "\n >    download ${vschannel}.x86_64.tar.gz from microsoft server"
-    (sudo curl -O -L -J -S# 'https://go.microsoft.com/fwlink/?LinkID=620884') || exit 4
+    # //  code-stable-x64-
+    echo -e "> download ${vschannel}-x64.tar.gz from microsoft server"
+    (sudo curl -LORJS# 'https://update.code.visualstudio.com/latest/linux-x64/stable') || exit 4
     # ========================================================================
-
-    myUXIDshort="$(date +%s)-${myuxidlong:7:11}L-${vschannel}"
+    # myUXIDshort="$(date +%s)-${myuxidlong:7:11}L-${vschannel}"
 
     cd ${working_location}
 
     (ls ${download_location}/code-stable-x64-*.tar.gz) || exit 5
+
     for file_ in $(ls ${download_location}/code-stable-x64-*.tar.gz); do
       (
-        tar --extract -f ${file_} --overwrite #--one-top-level="vs-${vscodeshortpath}" ## WHERE THE MAGIC HAPPENS
-        # sudo nice -n "${_NICE_VAL}" ionice -c "${_IONICE_C}" -n 1 rpm2cpio "$f" |
-        # sudo nice -n "${_NICE_VAL}" ionice -c "${_IONICE_C}" -n 1 cpio -idm --no-absolute-filenames &>/dev/null
+        sudo tar --extract -f ${file_} --overwrite #--one-top-level="vs-${vscodeshortpath}" ## WHERE THE MAGIC HAPPENS
       ) || exit 6
     done
-    (cp -r "/etc/vscode-portable/templates/vs-${vscodeshortpath}" "${working_location}") || exit 8
 
-    # (sudo nice -n "${_NICE_VAL}" ionice -c "${_IONICE_C}" -n 1
-    #  >/dev/null)
-    (sudo chown -R ${iamtheuser} "${working_location}") || exit 7
+    mv "${working_location}/VSCode-linux-x64" "${working_location}/vs-${vscodeshortpath}"
+
+    sudo mkdir -p "${working_location}/vs-${vscodeshortpath}/data/tmp"
+    vs_code_='code_'
+    if [[ "${2}" = 'UPDATE' ]]; then
+      vs_code_='code_update_'
+    fi
+
+    vs_code_home_path="${HOME}/portable-vscode"
+    full_path_to_vscode_home_folder="${vs_code_home_path}/$(date +%d-%m-%C%y_%Hh%Mm%Ss)_${vs_code_}${myUXIDshort}"
+
+    mkdir -p "${vs_code_home_path}/"
+
+    (sudo groupadd -f "luxcium.io" &>/dev/null)
+    (sudo chown -R ${iamtheuser} "${working_location}")
+    (sudo chgrp -R "luxcium.io" "${working_location}")
+
+    cp -r /etc/vscode-portable/templates/vs-code/icons/ ${working_location}/vs-${vscodeshortpath}/
+    cp -r /etc/vscode-portable/templates/vs-code/.directory ${working_location}/vs-${vscodeshortpath}/
+    cp -r "${working_location}/vs-${vscodeshortpath}/" "${full_path_to_vscode_home_folder}/"
+    cp -r "/etc/vscode-portable/templates/vs-code/icons/folder-vscode.svg" "${full_path_to_vscode_home_folder}/code.svg"
+    sudo rm -rf "${working_location}"
     # ========================================================================
-  }
-  (
-    # Backup my vscode and my insiders into /etc/vscode-portable/backup
-
-    sudo mkdir -p "/etc/vscode-portable/backup/code/data/user-data"
-    sudo mkdir -p "/etc/vscode-portable/backup/code/data/tmp"
-    sudo mkdir -p "/etc/vscode-portable/backup/code/data/extensions"
-
-    sudo mkdir -p "/etc/vscode-portable/backup/code-insiders/data/user-data"
-    sudo mkdir -p "/etc/vscode-portable/backup/code-insiders/data/tmp"
-    sudo mkdir -p "/etc/vscode-portable/backup/code-insiders/data/extensions"
-
-    ## TODO: REMOVE HARD CONFIGURED LINKS
-    (sudo cp -vuLr /home/luxcium/.config/Code/* /etc/vscode-portable/backup/code/data/user-data/)
-    (sudo cp -vuLr /home/luxcium/.vscode/extensions/* /etc/vscode-portable/backup/code/data/extensions/)
-
-    (sudo cp -vuLr /home/luxcium/.config/'Code - Insiders'/* /etc/vscode-portable/backup/code-insiders/data/user-data/)
-    (sudo cp -vuLr /home/luxcium/.vscode-insiders/extensions/* /etc/vscode-portable/backup/code-insiders/data/extensions/)
-  ) &>/dev/null
-  if [[ -d "/etc/vscode-portable/vs-${vscodeshortpath}/" ]]; then
-    (cp -r "/etc/vscode-portable/templates/vs-${vscodeshortpath}/" "${working_location}") || exit 8
-    echo "cp -r /etc/vscode-portable/templates/vs-${vscodeshortpath}/ into: ${working_location}"
-    exit 108
-  else
-    (mkdir -p "${working_location}/vs-${vscodeshortpath}/data/tmp") || exit 9
-    exit 109
-  fi
+  } || (
+    EX_STATUS="${?}"
+    echo -e "\n   -ERROR-" && exit ${EX_STATUS}
+  ) &&
+    if [[ "${2}" = 'UPDATE' ]]; then
+      echo -e "\n   -UPDATE-" && return 0
+    else
+      echo -e "\n   -OK-" && return 0
+    fi
 }
 # ==============================================================================
 function getvscodeportable_old() {
@@ -525,3 +528,53 @@ function oss() {
 # (sudo chown -R "$(whoami)" /etc/vscode-portable/src/latest)
 # npm install -g yarn@latest
 # yarn install
+
+function dothe_() {
+  (
+    # Backup my vscode and my insiders into /etc/vscode-portable/backup
+
+    sudo mkdir -p "/etc/vscode-portable/backup/code/data/user-data"
+    sudo mkdir -p "/etc/vscode-portable/backup/code/data/tmp"
+    sudo mkdir -p "/etc/vscode-portable/backup/code/data/extensions"
+
+    sudo mkdir -p "/etc/vscode-portable/backup/code-insiders/data/user-data"
+    sudo mkdir -p "/etc/vscode-portable/backup/code-insiders/data/tmp"
+    sudo mkdir -p "/etc/vscode-portable/backup/code-insiders/data/extensions"
+
+    ## TODO: REMOVE HARD CONFIGURED LINKS
+    (sudo cp -vuLr /home/luxcium/.config/Code/* /etc/vscode-portable/backup/code/data/user-data/)
+    (sudo cp -vuLr /home/luxcium/.vscode/extensions/* /etc/vscode-portable/backup/code/data/extensions/)
+
+    (sudo cp -vuLr /home/luxcium/.config/'Code - Insiders'/* /etc/vscode-portable/backup/code-insiders/data/user-data/)
+    (sudo cp -vuLr /home/luxcium/.vscode-insiders/extensions/* /etc/vscode-portable/backup/code-insiders/data/extensions/)
+  ) &>/dev/null
+  if [[ -d "/etc/vscode-portable/vs-${vscodeshortpath}/" ]]; then
+    (cp -r "/etc/vscode-portable/templates/vs-${vscodeshortpath}/" "${working_location}") || exit 8
+    echo "cp -r /etc/vscode-portable/templates/vs-${vscodeshortpath}/ into: ${working_location}"
+    exit 108
+  else
+    (mkdir -p "${working_location}/vs-${vscodeshortpath}/data/tmp") || exit 9
+    exit 109
+  fi
+}
+
+function move_over() {
+
+  echo "'${myUXIDshort}':"
+  echo "${full_path_to_vscode_home_folder}/"
+  echo "${full_path_to_vscode_home_folder}/bin/code"
+  cd "${full_path_to_vscode_home_folder}/"
+
+  if [[ "${2}" = 'UPDATE' ]]; then
+    rm -fr "${full_path_to_vscode_home_folder}/project"
+    rm -fr "${full_path_to_vscode_home_folder}/data"
+
+    if [[ "${1}" = 'INSIDERS' ]]; then
+      rm -fr "${full_path_to_vscode_home_folder}/code-insiders.png"
+      cp "${full_path_to_vscode_home_folder}/icons/visual-studio-code-insiders..bsvg" "${full_path_to_vscode_home_folder}/code-insiders.svg"
+    else
+      rm -fr "${full_path_to_vscode_home_folder}/code.png"
+      cp "${full_path_to_vscode_home_folder}/icons/visualstudiocode.svg" "${full_path_to_vscode_home_folder}/code.svg"
+    fi
+  fi
+}
