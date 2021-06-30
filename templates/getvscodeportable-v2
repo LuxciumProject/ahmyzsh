@@ -33,59 +33,83 @@ function getvscodeportable_() {
     VSCODEURL_STABLE_TAR_GZ='https://go.microsoft.com/fwlink/?LinkID=620884'
     VSCODEURL_INSIDERS_RPM='https://go.microsoft.com/fwlink/?LinkID=760866'
     VSCODEURL_INSIDERS_TAR_GZ='https://go.microsoft.com/fwlink/?LinkId=723968'
+    VSCODESHORTPATH_STABLE='code'
+    VSCODESHORTPATH_INSIDERS='code-insiders'
+    VSINSIDERSCHANNEL='INSIDERS'
+    VSCODESTABLECHANNEL='STABLE'
 
-    VSCODE_URL_STABLE='https://update.code.visualstudio.com/latest/linux-x64/stable'
-    VSCODE_SHORTPATH_STABLE='code-stable'
-    VSCODE_CHANNEL_STABLE='stable'
-
-    VSCODE_URL_INSIDER='https://update.code.visualstudio.com/latest/linux-x64/insider'
-    VSCODE_SHORTPATH_INSIDER='code-insider'
-    VSCODE_CHANNEL_INSIDER='insider'
+    # ========================================================================
 
     ## CUSTOM VARIABLES DEFINITIONS
     # † ======================================================================
 
-    vscode_url="${VSCODE_URL_STABLE}"
-    vscode_shortpath="${VSCODE_SHORTPATH_STABLE}"
-    vscode_channel="${VSCODE_CHANNEL_STABLE}"
+    # sudo nice -n -15 ionice -c 1 -n 1
+    _NICE_VAL='35'
+    _IONICE_C='2'
+    # _IONICE_N='2'
 
-    vschannel="${1}" # 'STABLE' or 'INSIDERS'
-    if [[ "${vschannel}" = 'INSIDERS' ]]; then
-      vscode_url="${VSCODE_URL_INSIDER}"
-      vscode_shortpath="${VSCODE_SHORTPATH_INSIDER}"
-      vscode_channel="${VSCODE_CHANNEL_INSIDER}"
+    #       Options :
+    #   -c, --class <classe>  nom ou numéro de classe d'ordonnancement
+    #                           0 : aucune,
+    #                           1 : temps réel,
+    #   -n, --classdata <nbr> priorité (0-7) dans les classes d'ordonnancement
+    #                           2 : au mieux,
+    #   -n, --classdata <nbr> priorité (0-7) dans les classes d'ordonnancement
+    #                           3 : au ralenti
+
+    vscodetargz="${VSCODEURL_STABLE_TAR_GZ}"
+    vscodeshortpath="${VSCODESHORTPATH_STABLE}"
+    vschannel="${VSCODESTABLECHANNEL}"
+
+    iamtheuser="$(whoami)"
+    echo iamtheuser="$(whoami)"
+
+    vschannel="${VSCODESTABLECHANNEL}"
+    vscodetargz="${VSCODEURL_STABLE_TAR_GZ}"
+    vscodeshortpath="${VSCODESHORTPATH_STABLE}"
+
+    ## vschannel="${1}" # 'STABLE' or 'INSIDERS'
+    if [[ "${1}" = 'INSIDERS' ]]; then
+      vschannel="${VSINSIDERSCHANNEL}"
+      vscodetargz="${VSCODEURL_INSIDERS_TAR_GZ}"
+      vscodeshortpath="${VSCODESHORTPATH_INSIDERS}"
     fi
+
+    # ========================================================================
 
     ## INTERNAL VARIABLES DEFINITIONS
     # † ======================================================================
 
     myuxidlong="$(LUXID)"
-    working_location="/tmp/$(echo LXCM/vscode-${vschannel}/$(shortID))"
+    working_location="$(echo LXCM/vscode-${vschannel}/$(shortID))"
+    working_location="/tmp/${working_location}"
     download_location="${working_location}/download"
-
     ## CREATE THE DOWNLOAD FOLDER IN /tmp
     # † ======================================================================
 
-    iamtheuser="$(whoami)"
-    echo iamtheuser="$(whoami)"
     (sudo mkdir -p "${download_location}") || exit 2
     (sudo chown -R ${iamtheuser} "${working_location}") || exit 3
 
     # ========================================================================
 
+    # echo VSCODEURL_STABLE_TAR_GZ: $VSCODEURL_STABLE_TAR_GZ
+    # echo VSCODESHORTPATH_STABLE: $VSCODESHORTPATH_STABLE
+    # echo VSCODESTABLECHANNEL: $VSCODESTABLECHANNEL
+    # echo VSINSIDERSCHANNEL: $VSINSIDERSCHANNEL
+    # echo VSCODEURL_INSIDERS_RPM: $VSCODEURL_INSIDERS_RPM
+    # echo VSCODESHORTPATH_INSIDERS: $VSCODESHORTPATH_INSIDERS
+    # echo rand1: $rand1
+
     unset -v VSCODEURL_STABLE_RPM
     unset -v VSCODEURL_STABLE_TAR_GZ
     unset -v VSCODEURL_INSIDERS_RPM
     unset -v VSCODEURL_INSIDERS_TAR_GZ
-    unset -v VSCODE_URL_STABLE
-    unset -v VSCODE_SHORTPATH_STABLE
-    unset -v VSCODE_CHANNEL_STABLE
-    unset -v VSCODE_URL_INSIDER
-    unset -v VSCODE_SHORTPATH_INSIDER
-    unset -v VSCODE_CHANNEL_INSIDER
-
-    # ========================================================================
-
+    unset -v VSCODESHORTPATH_STABLE
+    unset -v VSCODESHORTPATH_INSIDERS
+    unset -v VSINSIDERSCHANNEL
+    unset -v VSCODESTABLECHANNEL
+    unset -f RANDMX
+    unset -f LUXID
   }
 
   ## DOWNLOAD FROM MICROSOFT
@@ -96,7 +120,7 @@ function getvscodeportable_() {
     (ls ${download_location}) || exit 5
     cd ${download_location}
 
-    echo -e "> download ${vscode_channel}-x64.tar.gz from microsoft server"
+    echo -e "> download ${vschannel}-x64.tar.gz from microsoft server"
     (sudo curl -LORJS# 'https://update.code.visualstudio.com/latest/linux-x64/stable') || exit 4
 
     # ========================================================================
@@ -559,8 +583,3 @@ function getvscodeportable_old() {
       echo -e "\n   -OK-" && return 0
     fi
 }
-
-# sudo curl -LORJS#v 'https://go.microsoft.com/fwlink/?LinkID=620884'
-# code-stable-x64-1623937300.tar.gz
-# sudo curl -LORJS#v 'https://go.microsoft.com/fwlink/?LinkId=723968'
-# code-insider-x64-1625031189.tar.gz
