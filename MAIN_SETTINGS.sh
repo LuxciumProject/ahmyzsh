@@ -18,6 +18,9 @@ function MAIN_SETTINGS() {
   bindkey -e
   # PKG_CONFIG_PTH=
   # : ${VERBOSA=10000}
+  export arch=$(uname -p)
+  export basearch=$(uname -p)
+
   export VERBOSA=0000
   # echo $VERBOSA
   : ${VERBOSA=0000}

@@ -62,7 +62,7 @@ function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
   call_ load_options_main
   call_ load_autosuggest
   call_ load_autocomplete
-
+  source ${AHMYZSH}/tmux/MAIN.zsh
 }
 
 function prompt_() {
