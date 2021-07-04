@@ -18,25 +18,28 @@ function MAIN_SETTINGS() {
   bindkey -e
   # PKG_CONFIG_PTH=
   # : ${VERBOSA=10000}
-  export arch=$(uname -p)
-  export basearch=$(uname -p)
+  # : ${EDITOR:="nano"}
+  # export arch=$(uname -p)
+  # export basearch=$(uname -p)
 
-  export VERBOSA=0000
+  # export VERBOSA=0000
   # echo $VERBOSA
-  : ${VERBOSA=0000}
-  : ${PATH_FILE:="${CACHED_PATH}"}
-  : ${EDITOR:=code}
-  : ${ENV_LOADED:="false"}
-  : ${ZLE_RPROMPT_INDENT:=0}
-  : ${SHOW_LOAD_CUTLS:="true"}
+  : ${VERBOSA:=0000}
   : ${AHMYZSH:="${HOME}/ahmyzsh"}
-  : ${ZSH_CUSTOM:="${AHMYZSH}"}
-  : ${AHMYZSH_CORE:="${AHMYZSH}/core"}
   : ${AH_LIBRARIES:="${AHMYZSH}/libraries"}
-  : ${EDITOR:="nano"}
-  : ${PAGER:="/usr/bin/most -s"}
+  : ${AHMYZSH_CORE:="${AHMYZSH}/core"}
+  : ${ZSH_CUSTOM:="${AHMYZSH}"}
   : ${AHMYZSH_CACHE:="${HOME}/.cache/ahmyzsh"}
   : ${CACHED_PATH:="${AHMYZSH_CACHE}/path.env"}
+  : ${PATH_FILE:="${CACHED_PATH}"}
+  : ${arch:="$(uname -p)"}
+  : ${basearch:="$(uname -p)"}
+  : ${EDITOR:=code}
+  : ${ENV_LOADED:="false"}
+  : ${PAGER:="/usr/bin/most -s"}
+  : ${SHOW_LOAD_CUTLS:="true"}
+  : ${SYSTEMD_PAGER:="less"}
+  : ${ZLE_RPROMPT_INDENT:=0}
 
   __LOCALE__
 
