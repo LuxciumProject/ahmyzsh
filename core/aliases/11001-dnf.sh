@@ -38,11 +38,11 @@ alias dnfpi='dnf info'                                     # Show package inform
 #@ created by https://github.com/Luxcium
 
 function dnfl() {
-  sudo dnf list --forcearch $(uname -p) "*${1}*" "${2}"
+  sudo dnf list "*${1}*" "${2}"
 }
 
 function dnfli() {
-  sudo dnf list --installed --forcearch $(uname -p) "*${1}*" "${2}"
+  sudo dnf list --installed "*${1}*" "${2}"
 }
 
 function dnfr() {
@@ -50,7 +50,7 @@ function dnfr() {
 }
 
 function dnfi() {
-  sudo dnf install --forcearch $(uname -p) "*${1}*" "${2}"
+  sudo dnf install "*${1}*" # "${2}"
 }
 
 function dnfxr() {

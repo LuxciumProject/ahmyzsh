@@ -79,3 +79,47 @@ alias mvu="mv -uv"
 
 #+ CONFORMITÉ
 #+        POSIX.2, sauf que les hiérarchies de répertoires ne peuvent pas être déplacés entre systèmes de fichiers différents.
+
+alias unsplash="mv './*unsplash*.jpg' './*unsplash*.png' ${HOME}/Images/unsplash"
+
+function isthere() {
+  ( (ls "${1}") 2>/dev/null 1>&2) 1>/dev/null
+  return $?
+}
+
+function __mvx_() {
+  local dir01="${1}s"
+  local ext01="${1}"
+
+  mkdir -p ./${dir01}
+  mv *.${ext01} ./${dir01}
+}
+
+function mp4s() {
+  __mvx_ mp4
+}
+
+function jpgs() {
+  __mvx_ jpg
+  mv *.jpeg ./jpgs
+}
+
+function pngs() {
+  __mvx_ png
+}
+
+function gifs() {
+  __mvx_ gif
+}
+
+function imgs() {
+  unsplash
+  mp4s
+  pngs
+  gifs
+  jpgs
+}
+
+# ( (ls *.mp4) 2>/dev/null 1>&2)
+# ls *.mp4 1&2> /dev/null
+# /home/luxcium/Téléchargements/

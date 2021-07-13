@@ -13,3 +13,5 @@ alias rmshrinkwrap='rm -f ./npm-shrinkwrap.json'
 alias rmyerr='rm -f ./yarn-error.log'
 alias rmyarn='(rmyarnlock& rmyerr& rmnodmod&)'
 alias npmreinstall='(rmyarnlock& rmpaklock& rmyerr& rmnodmod& rmshrinkwrap&)'
+
+alias rmthumb='rm -fr /home/luxcium/.cache/thumbnails/**'

@@ -16,6 +16,9 @@ alias copt='cd /opt'
 alias cdvar='cd /var'
 alias cvar='cd /var'
 
+alias cdapp='cd /usr/share/applications/'
+alias capp='cd /usr/share/applications/'
+
 function cdir() {
   mkdir -p "$1" &&
     cd "$1"
