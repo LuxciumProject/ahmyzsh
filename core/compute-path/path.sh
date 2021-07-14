@@ -1,5 +1,6 @@
 export MINICONDA3="${HOME}/miniconda3"
 export DOTNET_ROOT="/usr/lib64/dotnet/"
+export DOTNET_CLI_TELEMETRY_OPTOUT=true
 export PATH_BAK_0="${PATH}"
 
 # function __compute_base_path() {

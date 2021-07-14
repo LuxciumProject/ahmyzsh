@@ -40,7 +40,7 @@ function MAIN_SETTINGS() {
   : ${SHOW_LOAD_CUTLS:="true"}
   : ${SYSTEMD_PAGER:="less"}
   : ${ZLE_RPROMPT_INDENT:=0}
-
+  export DOTNET_CLI_TELEMETRY_OPTOUT=1
   __LOCALE__
 
   export VERBOSA
