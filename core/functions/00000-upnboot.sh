@@ -1,8 +1,8 @@
 export WAITTIME=2
 export SLEEPTIME=1
 # update and reboot
-source /home/luxcium/ahmyzsh/core/aliases/12010-dnf.sh
-source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+source $HOME/ahmyzsh/core/aliases/11001-dnf.sh
+source $HOME/ahmyzsh/core/aliases/12012-ALS-sounds.sh
 
 function upnboot() {
   source $HOME/ahmyzsh/core/aliases/12012-ALS-sounds.sh

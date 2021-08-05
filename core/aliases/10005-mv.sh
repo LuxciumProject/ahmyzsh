@@ -80,8 +80,13 @@ alias mvu="mv -uv"
 #+ CONFORMITÉ
 #+        POSIX.2, sauf que les hiérarchies de répertoires ne peuvent pas être déplacés entre systèmes de fichiers différents.
 
-alias unsplash="mv './*unsplash*.jpg' './*unsplash*.png' ${HOME}/Images/unsplash"
+# alias unsplash="mv ./*unsplash*.jpg ./*unsplash*.png ${HOME}/Images/unsplash"
+alias unsplash="mv ./*unsplash*.*p*g ${HOME}/Images/unsplash"
 
+function unsplash() {
+  "mv ./*unsplash*.jpg ${HOME}/Images/unsplash"
+  "mv ./*unsplash*.png ${HOME}/Images/unsplash"
+}
 function isthere() {
   ( (ls "${1}") 2>/dev/null 1>&2) 1>/dev/null
   return $?

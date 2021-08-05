@@ -3,6 +3,10 @@ alias shtop="sudo ionice -c 3 nice -n -15 htop -d 5"
 alias a80='echo "1-------10--------20--------30--------40--------50--------60--------70--------80!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"'
 alias a120='echo "1-------10--------20--------30--------40--------50--------60--------70--------80--------90-------100-------110-------120!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"'
 
+alias scientia='echo † Scientia es lux principium✨ ™'
+alias gitscientia="git commit -am '† Scientia es lux principium✨ ™'"
+alias gitscientia_initi="git commit -am '†Scientia es lux principium✨ ™ ― initial commit...'"
+
 # lynis --pentest
 # sudo chkrootkit
 # sudo rkhunter -c --sk

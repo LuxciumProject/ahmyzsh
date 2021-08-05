@@ -1,21 +1,17 @@
 # Current or LTS
 
+function _npm_update() {
+  npm --version
+  npm install -g yarn@latest typescript@latest gulp-cli@latest ts-node@latest vsce@latest jest@latest
+}
+
 function fnm_update_to_lts() {
   fnm_update_to_14
 }
 function fnm_update_to_current() {
   fnm_update_to_16
 }
-function fnm_update_to_8() {
-  fnm_update
-  fnm default 8
-  fnm use default
-}
-function fnm_update_to_10() {
-  fnm_update
-  fnm default 10
-  fnm use default
-}
+
 function fnm_update_to_12() {
   fnm_update
   fnm default 12
@@ -32,59 +28,72 @@ function fnm_update_to_16() {
   fnm use default
 }
 function fnm_update() {
-  fnm install 8
-  (
-    fnm use 8
-    npm install -g npm@latest yarn@latest typescript@latest gulp-cli@latest
-    exit
-  )
-  fnm install 10
-  (
-    fnm use 10
-    npm install -g npm@latest yarn@latest typescript@latest gulp-cli@latest
-    exit
-  )
+
   fnm install 12
   (
     fnm use 12
-    npm install -g npm@latest yarn@latest typescript@latest gulp-cli@latest
+    _npm_update
+    npm install -g npm@latest
+    npm --version
     exit
   )
   fnm install 14
   (
     fnm use 14
-    npm install -g npm@latest yarn@latest typescript@latest gulp-cli@latest
+    _npm_update
+    npm install -g npm@latest
+    npm --version
     exit
   )
   fnm install 16
   (
     fnm use 16
-    npm install -g npm@latest yarn@latest typescript@latest gulp-cli@latest
+    _npm_update
+    npm install -g npm@latest
+    npm --version
     exit
   )
   fnm use default
-  npm install -g npm@latest yarn@latest typescript@latest gulp-cli@latest
-
+  (
+    _npm_update
+    npm install -g npm@latest
+    npm --version
+    exit
+  )
 }
 
 function cc_update() {
   conda update conda -y
   conda update --all -y
-  rustup update
-  rustc --version
+  # rustup update
+  # rustc --version
+}
+
+function dnf_downloadonly() {
+  echo 'dnf makecache --refresh'
+  echo 'dnf upgrade --downloadonly'
+  (
+    (
+      (
+        sudo nice -15 ionice -c 1 -n 2 dnf makecache --refresh --assumeyes
+        sudo nice -n -15 ionice -c 1 -n 2 dnf upgrade --downloadonly --setopt=keepcache=1 --assumeyes
+      ) &
+    ) >/dev/null
+  ) 2>/dev/null
 }
 
 all_update() {
+  dnf_downloadonly &
   cc_update
   fnm_update
-  dnf_update -y
-
+  sudo rustup update
+  rustc --version
+  sudo dnf update --assumeyes
 }
 
+alias update_all=all_update
 update_nboot() {
-  cc_update
-  fnm_update
-  dnf_update $1
+  update_all
   sudo reboot
 }
 # † Scientia es lux principium✨ ™

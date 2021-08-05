@@ -63,6 +63,7 @@ function git_main_branch() {
   fi
 }
 
+alias save_configs='(cd /home/luxcium/.config;git status; gaa; git commit -am "Check-point $(date)" ;push; git status)'
 #
 # Aliases
 # (sorted alphabetically)

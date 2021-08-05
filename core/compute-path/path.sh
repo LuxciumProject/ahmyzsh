@@ -24,6 +24,7 @@ function __append_sbin_to_path() {
 function __append_bin_to_path() {
   export PATH="/usr/local/bin"
   append_to_path_ "/usr/bin"
+  append_to_path_ "/app/bin"
   append_to_path_ "/bin"
   append_to_path_ "${AHMYZSH}/core/bin"
   return
@@ -35,6 +36,7 @@ function __compute_extended_path() {
   add_to_path_ "/usr/local/go/bin"
   add_to_path_ "/usr/local/cuda-11.1/bin"
   add_to_path_ "/opt/vlang"
+  add_to_path_ "/app/bin"
   add_to_path_ "${HOME}/.yarn/bin"
   add_to_path_ "${HOME}/spx:$PATH"
   call_ rust_up_
