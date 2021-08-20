@@ -88,16 +88,45 @@ function unsplash() {
   "mv ./*unsplash*.png ${HOME}/Images/unsplash"
 }
 function isthere() {
-  ( (ls "${1}") 2>/dev/null 1>&2) 1>/dev/null
-  return $?
+  (ls $1 &>/dev/null)
+  __result=$?
+  return $__result
 }
 
 function __mvx_() {
+  if [[ -o no_match ]]; then
+    __no_match=1
+    # echo no_match was set
+    unsetopt NOMATCH
+  else
+    __no_match=0
+    # echo no_match is not set
+  fi
+
   local dir01="${1}s"
   local ext01="${1}"
+  unsetopt NOMATCH
+  # echo "isthere *.${ext01}"
+  isthere *.${ext01}
+  local _STATUS_ext=$?
+  # echo "isthere ./${dir01}"
+  isthere ./${dir01}
+  local _STATUS_dir=$?
 
-  mkdir -p ./${dir01}
-  mv *.${ext01} ./${dir01}
+  if [[ _STATUS_ext -eq 0 ]]; then
+    if [[ _STATUS_dir -ne 0 ]]; then
+      mkdir -p ./${dir01}
+    fi
+    mv *.${ext01} ./${dir01}
+    __result=$?
+  fi
+
+  if [[ __no_match -eq 1 ]]; then
+    setopt NOMATCH
+    # echo no_match is set back
+  fi
+
+  return $__result
 }
 
 function mp4s() {
@@ -105,8 +134,21 @@ function mp4s() {
 }
 
 function jpgs() {
-  __mvx_ jpg
-  mv *.jpeg ./jpgs
+  if [[ -o no_match ]]; then
+    __no_match=1
+    # echo no_match was set
+    unsetopt NOMATCH
+  else
+    __no_match=0
+    # echo no_match is not set
+  fi
+  __mvx_ jpeg
+  mv *.jpg ./jpegs
+
+  if [[ __no_match -eq 1 ]]; then
+    setopt NOMATCH
+    # echo no_match is set back
+  fi
 }
 
 function pngs() {
@@ -117,14 +159,24 @@ function gifs() {
   __mvx_ gif
 }
 
-function imgs() {
-  unsplash
+function webps() {
+  __mvx_ webp
+}
+
+function webvs() {
+  __mvx_ webv
+}
+
+function mv_imgs() {
+  # unsplash
   mp4s
   pngs
   gifs
   jpgs
+  webps
+  webvs
 }
-
+# mkdir jpegs pngs gifs webps
 # ( (ls *.mp4) 2>/dev/null 1>&2)
 # ls *.mp4 1&2> /dev/null
 # /home/luxcium/Téléchargements/

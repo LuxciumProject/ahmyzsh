@@ -69,7 +69,7 @@
   },
   "search.exclude": {
     // "**/*.zwc": true,
-    "powerlevel10k": true,
+    "powerlevel10k": false,
     "ohmyzsh": true,
     "powerline": true,
     "**/node_modules": true,

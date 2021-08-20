@@ -25,6 +25,7 @@ function cdir() {
 }
 alias cmdir='cdir'
 
+alias cmtmp='cd $(mktemp -d)'
 #bin
 #boot
 #com

@@ -13,6 +13,79 @@ function load_my_powerlevel10k() {
     pl10k_left_prompt_loader
     pl10k_right_prompt_loader
     return 0
+
+    # Transparent background.
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_BACKGROUND=
+    # Green prompt symbol if the last command succeeded.
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_VIINS_FOREGROUND=76
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_VICMD_FOREGROUND=76
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_VIVIS_FOREGROUND=76
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_VIOWR_FOREGROUND=76
+    # Red prompt symbol if the last command failed.
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_VIINS_FOREGROUND=196
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_VICMD_FOREGROUND=196
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_VIVIS_FOREGROUND=196
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_VIOWR_FOREGROUND=196
+    # Default prompt symbol ok.
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_VIINS_CONTENT_EXPANSION='❯'
+    # Default prompt symbol error.
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_VIINS_CONTENT_EXPANSION='⌃'
+    # Prompt symbol in command vi mode.
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_VICMD_CONTENT_EXPANSION='❮'
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_VICMD_CONTENT_EXPANSION='❮'
+    # Prompt symbol in visual vi mode.
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_VIVIS_CONTENT_EXPANSION='V'
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_VIVIS_CONTENT_EXPANSION='V'
+    # Prompt symbol in overwrite vi mode.
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_VIOWR_CONTENT_EXPANSION='▶'
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_VIOWR_CONTENT_EXPANSION='▶'
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_OVERWRITE_STATE=true
+    # No line terminator if prompt_char is the last segment.
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=
+    # No line introducer if prompt_char is the first segment.
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL=
+    # No surrounding whitespace.
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_LEFT_WHITESPACE=
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_RIGHT_WHITESPACE=
+
+    # local -i i=1
+    # while (( i <= $#_POWERLEVEL9K_TRANSIENT_ELEMENTS )); do
+    #   local segment=${${(U)_POWERLEVEL9K_TRANSIENT_ELEMENTS[i]}//İ/I}
+    #   local var=POWERLEVEL9K_${segment}_LEFT_DISABLED
+    #   (( $+parameters[$var] )) || var=POWERLEVEL9K_${segment}_DISABLED
+    #   if [[ ${(P)var} == true ]]; then
+    #     _POWERLEVEL9K_TRANSIENT_ELEMENTS[i,i]=()
+    #   else
+    #     (( ++i ))
+    #   fi
+    # done
+
+    if [[ $_POWERLEVEL9K_TRANSIENT_PROMPT != off ]]; then
+      local sep=$'\1'
+      _p9k_transient_prompt='%b%k%s%u%(?'$sep
+      _p9k_color prompt_prompt_char_OK_VIINS FOREGROUND 76
+      _p9k_foreground $_p9k__ret
+      _p9k_transient_prompt+=$_p9k__ret
+      _p9k_transient_prompt+='${${P9K_CONTENT::="❯"}+}'
+      _p9k_param prompt_prompt_char_OK_VIINS CONTENT_EXPANSION '${P9K_CONTENT}'
+      _p9k_transient_prompt+='${:-"'$_p9k__ret'"}'
+      _p9k_transient_prompt+=$sep
+      _p9k_color prompt_prompt_char_ERROR_VIINS FOREGROUND 196
+      _p9k_foreground $_p9k__ret
+      _p9k_transient_prompt+=$_p9k__ret
+      _p9k_transient_prompt+='${${P9K_CONTENT::="❯"}+}'
+      _p9k_param prompt_prompt_char_ERROR_VIINS CONTENT_EXPANSION '${P9K_CONTENT}'
+      _p9k_transient_prompt+='${:-"'$_p9k__ret'"}'
+      _p9k_transient_prompt+=')%b%k%f%s%u '
+      if [[ $ITERM_SHELL_INTEGRATION_INSTALLED == Yes ]]; then
+        if (($ + _z4h_iterm_cmd && _z4h_can_save_restore_screen == 1)); then
+          _p9k_transient_prompt=$'%{\ePtmux;\e\e]133;A\a\e\\%}'$_p9k_transient_prompt$'%{\ePtmux;\e\e]133;B\a\e\\%}'
+        else
+          _p9k_transient_prompt=$'%{\e]133;A\a%}'$_p9k_transient_prompt$'%{\e]133;B\a%}'
+        fi
+      fi
+    fi
+
   }
 
   function pl10k_prompt_on() {
@@ -26,11 +99,13 @@ function load_my_powerlevel10k() {
     export PL10K_LEFT_PROMPT_ON='true'
     export PL10K_LEFT_PROMPT_OFF='false'
     function pl10k_left_prompt_loader() {
+      # export POWERLEVEL9K_TRANSIENT_PROMPT_ELEMENTS=()
       export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
         # newline                # !! ============[ Line #1 ]============================
         custom_js              #
         time                   # current time
         command_execution_time # duration of the last command
+        status                 # exit code of the last command
         # custom_pyt             #
         virtualenv
         # anaconda               # conda environment (https://conda.io/)
@@ -38,7 +113,6 @@ function load_my_powerlevel10k() {
         os_icon         # os identifier
         context         #
         load            # CPU load
-        status          # exit code of the last command
         newline         # !! ============[ Line #3 ]============================
         dir             # current directory
         background_jobs # presence of background jobs
