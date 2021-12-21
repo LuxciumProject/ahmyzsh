@@ -1,72 +1,44 @@
 # Current or LTS
-
+#  typescript@latest gulp-cli@latest ts-node@latest vsce@latest jest@latest
+#  typescript@latest gulp-cli@latest ts-node@latest prettier@latest jest@latest
+PACKAGES_NPM='typescript@latest gulp-cli@latest ts-node@latest prettier@latest vsce@latest jest@latest tslib@latest @types/node@latest npm@latest'
 function _npm_update() {
   npm --version
-  npm install -g yarn@latest typescript@latest gulp-cli@latest ts-node@latest vsce@latest jest@latest
+  npm install -g ${PACKAGES_NPM}
 }
 
 function fnm_update_to_lts() {
-  fnm_update_to_14
-}
-function fnm_update_to_current() {
   fnm_update_to_16
 }
 
-function fnm_update_to_12() {
-  fnm_update
-  fnm default 12
-  fnm use default
+function fnm_update_to_current() {
+  fnm_update_to_17
 }
+
 function fnm_update_to_14() {
-  fnm_update
+  fnm install 14
   fnm default 14
   fnm use default
+  _npm_update
 }
+
 function fnm_update_to_16() {
-  fnm_update
+  fnm install 16
   fnm default 16
   fnm use default
+  _npm_update
 }
-function fnm_update() {
 
-  fnm install 12
-  (
-    fnm use 12
-    _npm_update
-    npm install -g npm@latest
-    npm --version
-    exit
-  )
-  fnm install 14
-  (
-    fnm use 14
-    _npm_update
-    npm install -g npm@latest
-    npm --version
-    exit
-  )
-  fnm install 16
-  (
-    fnm use 16
-    _npm_update
-    npm install -g npm@latest
-    npm --version
-    exit
-  )
+function fnm_update_to_17() {
+  fnm install 17
+  fnm default 17
   fnm use default
-  (
-    _npm_update
-    npm install -g npm@latest
-    npm --version
-    exit
-  )
+  _npm_update
 }
 
 function cc_update() {
   conda update conda -y
   conda update --all -y
-  # rustup update
-  # rustc --version
 }
 
 function dnf_downloadonly() {
@@ -85,17 +57,22 @@ function dnf_downloadonly() {
 all_update() {
   dnf_downloadonly &
   cc_update
-  fnm_update
   sudo rustup update
   rustc --version
   sudo dnf update --assumeyes
+  fnm_update_to_14
+  fnm_update_to_16
+  fnm_update_to_17
+  yarn global add $(echo $PACKAGES_NPM)
 }
 
 alias update_all=all_update
+
 update_nboot() {
   update_all
   sudo reboot
 }
+
 # † Scientia es lux principium✨ ™
 
 # Copyright © 2020 Luxcium (Benjamin Vincent Kasapoglu)

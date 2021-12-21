@@ -1,7 +1,7 @@
 alias latestohmyzsh='( builtin cd ${AHMYZSH}/ohmyzsh &&  git pull origin) '
 alias latestpowerlevel10k='( builtin cd ${AHMYZSH}/powerlevel10k &&  git pull origin) '
 alias upgradesubmodules='latestohmyzsh; latestpowerlevel10k'
-
+alias gaytube='node "/run/media/luxcium/2TB-Seagate/images-tubes/gayboystube/src/code/from-prompt.js"'
 LXI_SESSION='luxcium-io'
 clearall='\u001b[2J\u001b[0;0H'
 alias qtbuilder='(cd /home/luxcium/dev/questrade-ts; tsc --build --watch)'

@@ -2,7 +2,10 @@ export MINICONDA3="${HOME}/miniconda3"
 export DOTNET_ROOT="/usr/lib64/dotnet/"
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 export PATH_BAK_0="${PATH}"
+export LD_LIBRARY_PATH=/usr/local/cuda-11.5/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
+# export PATH=/usr/local/cuda-11.5/bin${PATH:+:${PATH}}
+# export PATH=/opt/nvidia/nsight-compute/${PATH:+:${PATH}}
 # function __compute_base_path() {
 #   # append_to_path_
 #   export PATH="/usr/bin"
@@ -34,7 +37,8 @@ function __compute_extended_path() {
   add_to_path_ "/usr/lib64/ccache"
   add_to_path_ "/usr/lib64/qt5/bin"
   add_to_path_ "/usr/local/go/bin"
-  add_to_path_ "/usr/local/cuda-11.1/bin"
+  add_to_path_ "/usr/local/cuda-11.5/bin"
+  add_to_path_ "/opt/nvidia/nsight-compute"
   add_to_path_ "/opt/vlang"
   add_to_path_ "/app/bin"
   add_to_path_ "${HOME}/.yarn/bin"
@@ -51,6 +55,7 @@ function __compute_extended_path() {
   add_to_path_ "${HOME}/.fnm"
   add_to_path_ "${HOME}/bin"
   # add_to_path_ "${HOME}/azure/canada-central/functions"
+
   return
 }
 
@@ -75,6 +80,10 @@ function set_sbin_path() {
   __dedup_path
   return
 }
+
+alias add_sbin=set_sbin_path
+alias sbin_path=set_sbin_path
+alias set_sbin=set_sbin_path
 
 function cached_path_log() {
   export CACHED_PATH_LOG="${CACHED_PATH}-logs/$(getstamp_ 8 'path-' 'x' "${PATH}")-$(getepochstamp)-$(getdateyy)-$(date +%A | tr \[a-z\] \[A-Z\])-$(gettimestampz).log"

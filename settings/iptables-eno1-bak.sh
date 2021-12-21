@@ -13,20 +13,20 @@ echo 'Load main Settings for ENO1_I and ENO1_O'
 # $ Main Settings ENO1_I and ENO1_O
 ## Accept packets belonging to established and related connections
 
-# sudo iptables -t filter -P FORWARD ACCEPT
+sudo iptables -t filter -P FORWARD ACCEPT
 
-# sudo iptables -t filter -A $ENO1_I -m state --state ESTABLISHED,RELATED -j ACCEPT
-# sudo iptables -t filter -A $ENO1_O -j ACCEPT
+sudo iptables -t filter -A $ENO1_I -m state --state ESTABLISHED,RELATED -j ACCEPT
+sudo iptables -t filter -A $ENO1_O -j ACCEPT
 
-# sudo iptables -t filter -A $ENP4S0_I -j DROP
-# sudo iptables -t filter -A $ENP4S0_O -j DROP
+sudo iptables -t filter -A $ENP4S0_I -j DROP
+sudo iptables -t filter -A $ENP4S0_O -j DROP
 
-# sudo iptables -t filter -I $ENO1_IF -j ACCEPT
-# sudo iptables -t filter -I $ENO1_OF -j ACCEPT
-# sudo iptables -t filter -I $ENP4S0_IF -j ACCEPT
-# sudo iptables -t filter -I $ENP4S0_OF -j ACCEPT
-# sudo iptables -t filter -I $LO_IF -j ACCEPT
-# sudo iptables -t filter -I $LO_OF -j ACCEPT
+sudo iptables -t filter -I $ENO1_IF -j ACCEPT
+sudo iptables -t filter -I $ENO1_OF -j ACCEPT
+sudo iptables -t filter -I $ENP4S0_IF -j ACCEPT
+sudo iptables -t filter -I $ENP4S0_OF -j ACCEPT
+sudo iptables -t filter -I $LO_IF -j ACCEPT
+sudo iptables -t filter -I $LO_OF -j ACCEPT
 
 echo 'iptables -t nat -S'
 sudo iptables -t nat -S

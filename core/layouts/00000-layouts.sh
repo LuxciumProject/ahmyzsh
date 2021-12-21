@@ -1,3 +1,15 @@
+export LBOLD='\u001b[1m' # Bold: \u001b[1m
+export LUND='\u001b[4m'  # Underline: \u001b[4m
+export LREV='\u001b[7m'  # Reversed: \u001b[7m
+export RSET='\u001b[0m'
+export RVSD='\u001b[7m'
+export bold="$LBOLD"
+export normal="$RSET"
+function hardcls() {
+  echo -n '\u001b[2J'
+  echo -n '\u001b[0;0H'
+}
+
 export FBK='\u001b[30m' # BK Black: \u001b[30m
 export FRD='\u001b[31m' # RD Red: \u001b[31m
 export FGR='\u001b[32m' # GR Green: \u001b[32m
@@ -181,17 +193,6 @@ export RD_COGS_PROMPT="${normal}${CLRLN}${BRL9K_COGS}$(tput setaf 1) ${COG_ICO} 
 # export BASE_LAYOUTS="${ZSH_SOURCES}/layouts/base-layouts.sh"
 # . BASE_LAYOUTS
 # load_layouts
-export LBOLD='\u001b[1m' # Bold: \u001b[1m
-export LUND='\u001b[4m'  # Underline: \u001b[4m
-export LREV='\u001b[7m'  # Reversed: \u001b[7m
-export RSET='\u001b[0m'
-export RVSD='\u001b[7m'
-export bold="$LBOLD"
-export normal="$RSET"
-function hardcls() {
-  echo -n '\u001b[2J'
-  echo -n '\u001b[0;0H'
-}
 
 # Reset: \u001b[0m
 

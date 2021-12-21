@@ -16,7 +16,9 @@
 # will be working on simplification in a new feature branch
 # source /home/luxcium/ahmyzsh/themes/ahmyzhs.sh
 # echo $VERBOSA
+sudo auditctl -e 0
 set +m
+
 function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
 
   LOAD_ENV_COMPLETED='not yet'
@@ -63,6 +65,7 @@ function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
   call_ load_autosuggest
   call_ load_autocomplete
   source ${AHMYZSH}/tmux/MAIN.zsh
+  compaudit | xargs chmod g-w,o-w 2>/dev/null
 }
 
 function prompt_() {
