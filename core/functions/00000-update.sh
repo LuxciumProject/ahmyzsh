@@ -3,74 +3,82 @@
 #  typescript@latest gulp-cli@latest ts-node@latest prettier@latest jest@latest
 PACKAGES_NPM='typescript@latest gulp-cli@latest ts-node@latest prettier@latest vsce@latest jest@latest tslib@latest @types/node@latest npm@latest'
 function _npm_update() {
-  npm --version
-  npm install -g ${PACKAGES_NPM}
+    echo ''
+    echo npm version $(npm --version)
+    echo ''
+    npm install -g $(echo ${PACKAGES_NPM})
+    echo ''
+    compute_pl10K_now
+    echo npm version $(npm --version)
+    echo TypeScript $(tsc -v)
+    echo NodeJS $(node -v)
+    echo ''
 }
 
 function fnm_update_to_lts() {
-  fnm_update_to_16
+    fnm_update_to_16
 }
 
 function fnm_update_to_current() {
-  fnm_update_to_17
+    fnm_update_to_17
 }
 
 function fnm_update_to_14() {
-  fnm install 14
-  fnm default 14
-  fnm use default
-  _npm_update
+    fnm install 14
+    fnm default 14
+    fnm use default
+    _npm_update
 }
 
 function fnm_update_to_16() {
-  fnm install 16
-  fnm default 16
-  fnm use default
-  _npm_update
+    fnm install 16
+    fnm default 16
+    fnm use default
+    _npm_update
 }
 
 function fnm_update_to_17() {
-  fnm install 17
-  fnm default 17
-  fnm use default
-  _npm_update
+    fnm install 17
+    fnm default 17
+    fnm use default
+    _npm_update
 }
 
 function cc_update() {
-  conda update conda -y
-  conda update --all -y
+    conda update conda -y
+    conda update --all -y
 }
 
 function dnf_downloadonly() {
-  echo 'dnf makecache --refresh'
-  echo 'dnf upgrade --downloadonly'
-  (
+    echo 'dnf makecache --refresh'
+    echo 'dnf upgrade --downloadonly'
     (
-      (
-        sudo nice -15 ionice -c 1 -n 2 dnf makecache --refresh --assumeyes
-        sudo nice -n -15 ionice -c 1 -n 2 dnf upgrade --downloadonly --setopt=keepcache=1 --assumeyes
-      ) &
-    ) >/dev/null
-  ) 2>/dev/null
+        (
+            (
+                sudo nice -15 ionice -c 1 -n 2 dnf makecache --refresh --assumeyes
+                sudo nice -n -15 ionice -c 1 -n 2 dnf upgrade --downloadonly --setopt=keepcache=1 --assumeyes
+            ) &
+        ) >/dev/null
+    ) 2>/dev/null
 }
 
 all_update() {
-  dnf_downloadonly &
-  cc_update
-  sudo rustup update
-  rustc --version
-  sudo dnf update --assumeyes
-  fnm_update_to_14
-  fnm_update_to_16
-  fnm_update_to_17
-  yarn global add $(echo $PACKAGES_NPM)
+    dnf_downloadonly &
+    cc_update
+    sudo rustup update
+    rustc --version
+    sudo dnf update --assumeyes
+    fnm_update_to_14
+    fnm_update_to_16
+    fnm_update_to_17
+    yarn global add $(echo $PACKAGES_NPM)
 }
 
 alias update_all=all_update
 
 update_nboot() {
-  update_all
-  sudo reboot
+    update_all
+    sudo reboot
 }
 
 # † Scientia es lux principium✨ ™

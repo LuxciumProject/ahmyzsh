@@ -15,7 +15,7 @@
 
 # will be working on simplification in a new feature branch
 # source /home/luxcium/ahmyzsh/themes/ahmyzhs.sh
-echo $VERBOSA
+# echo $VERBOSA
 #
 set +m
 
