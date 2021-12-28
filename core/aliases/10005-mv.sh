@@ -142,8 +142,8 @@ function jpgs() {
     __no_match=0
     # echo no_match is not set
   fi
-  __mvx_ jpeg
-  mv *.jpg ./jpegs
+  __mvx_ jpg
+  mv *.jpeg ./jpgs
 
   if [[ __no_match -eq 1 ]]; then
     setopt NOMATCH

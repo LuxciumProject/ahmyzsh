@@ -278,15 +278,8 @@ export RESET_='\u001b[0m'
 
 ## https://en.wikipedia.org/wiki/ANSI_escape_code#CSI_codes
 ## There are other terminal commands that would come in useful; Wikipedia's table of escape codes is a good listing (the CSI in that table corresponds to the \u001b in our code) but here are some useful ones:
-
-export MOVEL='\u001b[0F'
-export CLEARL='\u001b[2K'
-export RESETL='\u001b[0m'
-
-export LRESETALL="$CLEARL$MOVEL$RESETL"
-
+# Prev Line: \u001b[{n}F moves cursor to beginning of line n lines UP
 # Next Line: \u001b[{n}E moves cursor to beginning of line n lines down
-# Prev Line: \u001b[{n}F moves cursor to beginning of line n lines down
 
 # Set Column: \u001b[{m}G moves cursor to column m
 # Set Position: \u001b[{n};{m}H moves cursor to row n column m
@@ -296,9 +289,9 @@ export LRESETALL="$CLEARL$MOVEL$RESETL"
 # n=1 clears from cursor to beginning of screen
 # n=2 clears entire screen
 
-export CLEAR0S='\u001b[0K'
-export CLEAR1S='\u001b[1K'
-export CLEAR2S='\u001b[2K'
+export CLEAR0S='\u001b[0J'
+export CLEAR1S='\u001b[1J'
+export CLEAR2S='\u001b[2J'
 
 ## Clear Line: \u001b[{n}K clears the current line
 # n=0 clears from cursor to end of line
@@ -316,3 +309,147 @@ export CLEAR2L='\u001b[2K'
 # Save Position: \u001b[{s} saves the current cursor position
 # Save Position: \u001b[{u} restores the cursor to the last saved position
 #
+
+## Prev Line: \u001b[{n}F moves cursor to beginning of line n lines UP
+export MOVEL='\u001b[1F'
+## Clear Line: \u001b[2K clears the clears entire current line
+export CLEARL='\u001b[2K'
+export RESETL='\u001b[0m'
+
+export LRESETALL="$CLEARL$MOVEL$RESETL"
+
+#+ All attributes off
+# 0  Reset or normal
+#+ As with faint, the color change is a PC (SCO / CGA) invention.[28][better source needed]
+# 1  Bold or increased intensity
+#+ May be implemented as a light font weight like bold.[29]
+# 2  Faint, decreased intensity, or dim
+#+ Not widely supported. Sometimes treated as inverse or blink.[28]
+# 3  Italic
+#+ Style extensions exist for Kitty, VTE, mintty and iTerm2.[30][31]
+# 4  Underline
+#+ Sets blinking to less than 150 times per minute
+# 5  Slow blink
+#+ MS-DOS ANSI.SYS, 150+ per minute; not widely supported
+# 6  Rapid blink
+#+ Swap foreground and background colors; inconsistent emulation[32]
+# 7  Reverse video or invert
+#+ Not widely supported.
+# 8  Conceal or hide
+#+ Characters legible but marked as if for deletion.
+# 9  Crossed-out, or strike
+#+
+# 10  Primary (default) font
+#+ Select alternative font n − 10
+# 11–19  Alternative font
+#+ Rarely supported
+# 20  Fraktur (Gothic)
+#+ Double-underline per ECMA-48,[5]: 8.3.117  but instead disables bold intensity
+#+ on several terminals, including in the Linux kernel's console before version 4.17.
+# 21  Doubly underlined; or: not bold
+#+ Neither bold nor faint; color changes where intensity is implemented as such.
+# 22  Normal intensity
+#+
+# 23  Neither italic, nor blackletter
+#+ Neither singly nor doubly underlined
+# 24  Not underlined
+#+ Turn blinking off
+# 25  Not blinking
+#+ ITU T.61 and T.416, not known to be used on terminals
+# 26  Proportional spacing
+#+
+# 27  Not reversed
+#+ Not concealed
+# 28  Reveal
+#+
+# 29  Not crossed out
+#+
+# 30–37  Set foreground color
+#+ Next arguments are 5;n or 2;r;g;b
+# 38  Set foreground color
+#+ Implementation defined (according to standard)
+# 39  Default foreground color
+#+
+# 40–47  Set background color
+#+ Next arguments are 5;n or 2;r;g;b
+# 48  Set background color
+#+ Implementation defined (according to standard)
+# 49  Default background color
+#+ T.61 and T.416
+# 50  Disable proportional spacing
+#+ -- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --
+#+ Implemented as "emoji variation selector" in mintty.
+# 51  Framed
+# 52  Encircled
+#+
+# 53  Overlined
+#+
+# 54  Neither framed nor encircled
+#+
+# 55  Not overlined
+#+ Not in standard; implemented in Kitty, VTE, mintty, and iTerm2.
+#+ Next arguments are 5;n or 2;r;g;b.
+# 58  Set underline color
+#+ Not in standard; implemented in Kitty, VTE, mintty, and iTerm2.
+# 59  Default underline color
+#+ -- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --
+#+ Rarely supported
+# 60  Ideogram underline or right side line
+# 61  Ideogram double underline, or double line on the right side
+# 62  Ideogram overline or left side line
+# 63  Ideogram double overline, or double line on the left side
+# 64  Ideogram stress marking
+#+ -- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --
+#+ Reset the effects of all of 60–64
+# 65  No ideogram attributes
+#+ -- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --
+#+ Implemented only in mintty[34]
+# 73  Superscript
+# 74  Subscript
+# 75  Neither superscript nor subscript
+#+ -- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --
+#+ Not in standard; originally implemented by aixterm[20]
+# 90–97  Set bright foreground color
+# 100–107  Set bright background color
+
+#* 256-color mode — foreground: ESC[38;5;#m   background: ESC[48;5;#m
+#* ESC → \u001b[
+## Standard foreground colors
+export black256f='\u001b[38;5;0m'  #? 0_f
+export red256f='\u001b[38;5;1m'    #? 1_f
+export green256f='\u001b[38;5;2m'  #? 2_f
+export yellow256f='\u001b[38;5;3m' #? 3_f
+export blue256f='\u001b[38;5;4m'   #? 4_f
+export purple256f='\u001b[38;5;5m' #? 5_f
+export cyan256f='\u001b[38;5;6m'   #? 6_f
+export white256f='\u001b[38;5;7m'  #? 7_f
+
+## High-intensity foreground colors
+export Black256f='\u001b[38;5;8m'   #? 8_f
+export Red256f='\u001b[38;5;9m'     #? 9_f
+export Green256f='\u001b[38;5;10m'  #? 10_f
+export Yellow256f='\u001b[38;5;11m' #? 11_f
+export Blue256f='\u001b[38;5;12m'   #? 12_f
+export Purple256f='\u001b[38;5;13m' #? 13_f
+export Cyan256f='\u001b[38;5;14m'   #? 14_f
+export White256f='\u001b[38;5;15m'  #? 15_f
+
+## Standard background colors
+export black256b='\u001b[48;5;0m'  #? 0_b
+export red256b='\u001b[48;5;1m'    #? 1_b
+export green256b='\u001b[48;5;2m'  #? 2_b
+export yellow256b='\u001b[48;5;3m' #? 3_b
+export blue256b='\u001b[48;5;4m'   #? 4_b
+export purple256b='\u001b[48;5;5m' #? 5_b
+export cyan256b='\u001b[48;5;6m'   #? 6_b
+export white256b='\u001b[48;5;7m'  #? 7_b
+
+## High-intensity background colors
+export Black256b='\u001b[48;5;8m'   #? 8_b
+export Red256b='\u001b[48;5;9m'     #? 9_b
+export Green256b='\u001b[48;5;10m'  #? 10_b
+export Yellow256b='\u001b[48;5;11m' #? 11_b
+export Blue256b='\u001b[48;5;12m'   #? 12_b
+export Purple256b='\u001b[48;5;13m' #? 13_b
+export Cyan256b='\u001b[48;5;14m'   #? 14_b
+export White256b='\u001b[48;5;15m'  #? 15_b
