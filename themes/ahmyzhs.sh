@@ -4,13 +4,13 @@ MINIMU_SIZE_2=40
 
 function LEADERBOARD() {
 
-    # echo -e "${LGNS}1-------10--------20--------30--------40--------50--------60--------70--------80${CE}"
-    BCOL="${BS}     ${COL}     "
-    COLB="${COL}     ${BS}     "
-    _HSIZE=$(stty size | cut -d" " -f2)
-    ([ "${_HSIZE}" -ge "${MINIMU_SIZE_1}" ] && leaderOne) || ([ "${_HSIZE}" -ge "${MINIMU_SIZE_2}" ] && leaderTwo)
-    # echo -e "${YS}# ${COL}>  ${LGNS}---10--------20--------30--------40--------50--------60--------70--------80${CE}"
-    # Scientia es lux principium
+  # echo -e "${LGNS}1-------10--------20--------30--------40--------50--------60--------70--------80${CE}"
+  BCOL="${BS}     ${COL}     "
+  COLB="${COL}     ${BS}     "
+  _HSIZE=$(stty size | cut -d" " -f2)
+  ([ "${_HSIZE}" -ge "${MINIMU_SIZE_1}" ] && leaderOne) || ([ "${_HSIZE}" -ge "${MINIMU_SIZE_2}" ] && leaderTwo)
+  # echo -e "${YS}# ${COL}>  ${LGNS}---10--------20--------30--------40--------50--------60--------70--------80${CE}"
+  # Scientia es lux principium
 }
 # =
 # echo -e "$COL
@@ -23,40 +23,39 @@ function LEADERBOARD() {
 # under certain conditions.
 
 function leaderOne() {
-    echo -e "\u001b[3A"
-    # echo -e "${COL}                                                                                ${CE}"
-    echo -e "${BCOL}${BCOL}${BCOL}${BCOL}${BCOL}${BCOL}${BCOL}${BCOL}${CE}"
-    echo -e "${COL}         ${RS}${bold}Scientia es lux principium™${normal}${COL}                                            ${CE}"
-    echo -e "${COL}                                                ${BS}${TIME_TO_PATH_STR}$COL            ${CE}"
-    echo -e "${COL}         █████╗ ██╗  ██╗  ███╗   ███╗██╗   ██╗  ███████╗███████╗██╗  ██╗        ${CE}"
-    echo -e "${COL}        ██╔══██╗██║  ██║  ████╗ ████║╚██╗ ██╔╝  ╚══███╔╝██╔════╝██║  ██║        ${CE}"
-    echo -e "${COL}        ███████║███████║  ██╔████╔██║ ╚████╔╝     ███╔╝ ███████╗███████║        ${CE}"
-    echo -e "${COL}        ██╔══██║██╔══██║  ██║╚██╔╝██║  ╚██╔╝     ███╔╝  ╚════██║██╔══██║        ${CE}"
-    echo -e "${COL}        ██║  ██║██║  ██║  ██║ ╚═╝ ██║   ██║     ███████╗███████║██║  ██║        ${CE}"
-    echo -e "${COL}        ╚═╝  ╚═╝╚═╝  ╚═╝  ╚═╝     ╚═╝   ╚═╝     ╚══════╝╚══════╝╚═╝  ╚═╝        ${CE}"
-    echo -e "${COL}        ${START_UP_TIME}${COL}                                                    ${CE}"
-    echo -e "${COL}                                                ${bold}${WHS}by${COL}  ${YS}L·U·X·C·I·U·M${COL}               ${CE}"
-    echo -e "${COLB}${COLB}${COLB}${COLB}${COLB}${COLB}${COLB}${COLB}${CE}"
+  echo -e "\u001b[3A"
+  # echo -e "${COL}                                                                                ${CE}"
+  echo -e "${BCOL}${BCOL}${BCOL}${BCOL}${BCOL}${BCOL}${BCOL}${BCOL}${CE}"
+  echo -e "${COL}         ${RS}${bold}Scientia es lux principium™${normal}${COL}                                            ${CE}"
+  echo -e "${COL}                                                ${BS}${TIME_TO_PATH_STR}$COL            ${CE}"
+  echo -e "${COL}         █████╗ ██╗  ██╗  ███╗   ███╗██╗   ██╗  ███████╗███████╗██╗  ██╗        ${CE}"
+  echo -e "${COL}        ██╔══██╗██║  ██║  ████╗ ████║╚██╗ ██╔╝  ╚══███╔╝██╔════╝██║  ██║        ${CE}"
+  echo -e "${COL}        ███████║███████║  ██╔████╔██║ ╚████╔╝     ███╔╝ ███████╗███████║        ${CE}"
+  echo -e "${COL}        ██╔══██║██╔══██║  ██║╚██╔╝██║  ╚██╔╝     ███╔╝  ╚════██║██╔══██║        ${CE}"
+  echo -e "${COL}        ██║  ██║██║  ██║  ██║ ╚═╝ ██║   ██║     ███████╗███████║██║  ██║        ${CE}"
+  echo -e "${COL}        ╚═╝  ╚═╝╚═╝  ╚═╝  ╚═╝     ╚═╝   ╚═╝     ╚══════╝╚══════╝╚═╝  ╚═╝        ${CE}"
+  echo -e "${COL}        ${START_UP_TIME}${COL}                                                    ${CE}"
+  echo -e "${COL}                                                ${bold}${WHS}by${COL}  ${YS}L·U·X·C·I·U·M${COL}               ${CE}"
+  echo -e "${COLB}${COLB}${COLB}${COLB}${COLB}${COLB}${COLB}${COLB}${CE}"
 
 }
 
-
 function leaderTwo() {
-    _SPACER=" "
-    _SPACE="$((((($(stty size | cut -d' ' -f2)-40)/2)-1)))"
-    [ "${_SPACE}" -ge "11" ] && _SPACE="$((($_SPACE/2)))"
-    [ "${_SPACE}" -ge "0" ] && _SP=" "
-    _Sx=$(perl -E "say '${_SPACER}' x ${_SPACE}")
+  _SPACER=" "
+  _SPACE="$((((($(stty size | cut -d' ' -f2) - 40) / 2) - 1)))"
+  [ "${_SPACE}" -ge "11" ] && _SPACE="$((($_SPACE / 2)))"
+  [ "${_SPACE}" -ge "0" ] && _SP=" "
+  _Sx=$(perl -E "say '${_SPACER}' x ${_SPACE}")
 
-    echo "${_SP}${_Sx}${BCOL}${BCOL}${BCOL}${BCOL}${CE}${_Sx} "
-    echo "${_SP}${_Sx}${COL}${RS}${bold} Scientia es lux principium™${normal}${RS}            ${COL}${CE}${_Sx}${_SP}"
-    echo "${_SP}${_Sx}${COL}${BS}                   ${TIME_TO_PATH_STR} $COL${CE}${_Sx}${_SP}"
-    echo "${_SP}${_Sx}${COL}   ▄▀▄ █▄█   █▄ ▄█ ▀▄▀   ▀█▀ ▄▀▀ █▄█    ${CE}${_Sx}${_SP}"
-    echo "${_SP}${_Sx}${COL}   █▀█ █ █   █ ▀ █  █    █▄▄ ▄██ █ █    ${CE}${_Sx}${_SP}"
-    echo "${_SP}${_Sx}                                        ${_Sx}${_SP}"
-    echo "${_SP}${_Sx}${COL} ${START_UP_TIME}${COL}                   ${CE}${_Sx}${_SP}"
-    echo "${_SP}${_Sx}${YS}                      ${bold}${WHS}by${YS}  ${YS}L·U·X·C·I·U·M${YS}${YS} ${CE}${_Sx}${_SP}"
-    echo "${_SP}${_Sx}${COLB}${COLB}${COLB}${COLB}${CE}${_Sx}${_SP}"
+  echo "${_SP}${_Sx}${BCOL}${BCOL}${BCOL}${BCOL}${CE}"                                                   #${_Sx} "
+  echo "${_SP}${_Sx}${COL}${RS}${bold} Scientia es lux principium™${normal}${RS}            ${COL}${CE}" #${_Sx}${_SP}"
+  echo "${_SP}${_Sx}${COL}${BS}                   ${TIME_TO_PATH_STR} $COL${CE}"                         #${_Sx}${_SP}"
+  echo "${_SP}${_Sx}${COL}   ▄▀▄ █▄█   █▄ ▄█ ▀▄▀   ▀█▀ ▄▀▀ █▄█    ${CE}"                                 #${_Sx}${_SP}"
+  echo "${_SP}${_Sx}${COL}   █▀█ █ █   █ ▀ █  █    █▄▄ ▄██ █ █    ${CE}"                                 #${_Sx}${_SP}"
+  echo "${_SP}${_Sx}                                        "                                            #${_Sx}${_SP}"
+  echo "${_SP}${_Sx}${COL} ${START_UP_TIME}${COL}                   ${CE}"                               #${_Sx}${_SP}"
+  echo "${_SP}${_Sx}${YS}                      ${bold}${WHS}by${YS}  ${YS}L·U·X·C·I·U·M${YS}${YS} ${CE}" #${_Sx}${_SP}"
+  echo "${_SP}${_Sx}${COLB}${COLB}${COLB}${COLB}${CE}"                                                   #${_Sx}${_SP}"
 }
 
 # by  L·U·X·C·I·U·M
