@@ -1,32 +1,58 @@
 #!/usr/bin/env zsh
 
-# source $HOME/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+source $HOME/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+enable_systemctl up && ( (play_zelda_email) &)
+
 source $AHMYZSH/settings/iptables-eno1.sh
 
-# enable_systemctl up && ( (play_zelda_email)&)
+(
+  conda update -n base conda -y && (play_screen-capture &)
+  conda update --all -y && (play_screen-capture &)
+) &
+
+(
+  sudo fc-cache -rfE
+  fc-cache -rfE
+) & #  0.0308s
 
 # (
-#   conda update -n base conda -y && (play_screen-capture &)
-#   conda update --all -y && (play_screen-capture &)
-# ) &
+eval $(
+  fnm env
+)
 
-# (
-#   sudo fc-cache -rfE
-#   fc-cache -rfE
-# ) & #  3.4356s
-
-# (
-#   eval $(
-#     fnm env
-#   )
-
-#   fnm install 10  #&& (play_zelda_maximize &sleep 0.075) || (play_zelda_minimize&sleep 0.175)
-#   fnm install 12  #&& (play_zelda_maximize &sleep 0.075) || (play_zelda_minimize&sleep 0.175)
-#   (fnm install 14  && fnm default 14) #  && (play_zelda_maximize &sleep 0.075) || (play_zelda_minimize&sleep 0.175)
-#   (fnm install 15  && fnm default 15) #  && (play_zelda_maximize &sleep 0.075) || (play_zelda_minimize&sleep 0.175)
-#   (fnm install 16  && fnm default 16) # && (play_zelda_maximize &sleep 0.075) || (play_zelda_minimize&sleep 0.175)
-#   (fnm install 17  && fnm default 17) # && (play_zelda_maximize &sleep 0.075) || (play_zelda_minimize&sleep 0.175)
-#   fnm list
+# Erbium
+(fnm install 12 && fnm default 12) && (
+  play_zelda_maximize &
+  sleep 0.075
+) || (
+  play_zelda_minimize &
+  sleep 0.175
+)
+# Fermium
+(fnm install 14 && fnm default 14) && (
+  play_zelda_maximize &
+  sleep 0.075
+) || (
+  play_zelda_minimize &
+  sleep 0.175
+)
+# Gallium # Active LTS
+(fnm install 16 && fnm default 16) && (
+  play_zelda_maximize &
+  sleep 0.075
+) || (
+  play_zelda_minimize &
+  sleep 0.175
+)
+# Current
+(fnm install 17 && fnm default 17) && (
+  play_zelda_maximize &
+  sleep 0.075
+) || (
+  play_zelda_minimize &
+  sleep 0.175
+)
+fnm list
 
 #   (
 #     code-insiders /home/luxcium/ahmyzsh &

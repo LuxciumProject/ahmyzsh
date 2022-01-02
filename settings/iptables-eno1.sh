@@ -75,4 +75,4 @@ eno1_ping_test
 ## List connections informations and status
 ipinfos
 
-exit 0 #
+# exit 0 #

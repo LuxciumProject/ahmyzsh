@@ -1,5 +1,7 @@
 # gh repo clone openAVproductions/openAV-Ctlra
 
+alias cdtemp='cd /home/luxcium/src/temp'
+alias ctemp='cd /home/luxcium/src/temp'
 alias cdsrc='cd /home/luxcium/src'
 alias csrc='cd /home/luxcium/src'
 alias cddev='cd /home/luxcium/dev'
@@ -26,6 +28,29 @@ function cdir() {
 alias cmdir='cdir'
 
 alias cmtmp='cd $(mktemp -d)'
+
+function __vsCodeTarget() {
+  (
+    TARGET_=$1
+    cd $TARGET_
+    code $TARGET_
+  )
+}
+# alias=( TARGET_=''; cd $TARGET_; code $TARGET_ )
+alias vscacorn="__vsCodeTarget '${HOME}/src/temp/acorn'"
+alias vsccli="__vsCodeTarget '${HOME}/src/temp/cli'"
+alias vsceslint="__vsCodeTarget '${HOME}/src/temp/eslint'"
+alias vscespree="__vsCodeTarget '${HOME}/src/temp/espree'"
+alias vscfpts="__vsCodeTarget '${HOME}/src/temp/fp-ts'"
+alias vscmocha="__vsCodeTarget '${HOME}/src/temp/mocha'"
+alias vscnode="__vsCodeTarget '${HOME}/src/temp/node'"
+alias vscPython-3.9.5="__vsCodeTarget '${HOME}/src/temp/Python-3.9.5'"
+alias vscsyntax="__vsCodeTarget '${HOME}/src/temp/syntax'"
+alias vscTypeScript="__vsCodeTarget '${HOME}/src/temp/TypeScript'"
+alias vscvscode="__vsCodeTarget '${HOME}/src/temp/vscode'"
+alias vscworkerpool="__vsCodeTarget '${HOME}/src/temp/workerpool'"
+alias vsczsh-code="__vsCodeTarget '${HOME}/src/temp/zsh-code'"
+
 #bin
 #boot
 #com

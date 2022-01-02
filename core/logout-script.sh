@@ -24,5 +24,5 @@
 # # sudo dnf remove -y xorg-x11-drv-amdgpu xorg-x11-drv-nouveau
 
 # (play -qv 0.1 /usr/share/sounds/Oxygen-Sys-Log-Out.ogg chorus 0.4 0.9 50 0.5 0.25 2 -t 40 0.6 0.2 3 -s 60 0.6 0.3 1.3 -t)
-# # reboot
-# exit
+reboot
+exit
