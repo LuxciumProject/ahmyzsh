@@ -1,0 +1,22 @@
+#!/usr/bin/env sh
+
+#. ----------------------------------------------------------------------------- ~
+#. Scientia es lux principium -tm-
+#. Copyright © 2019-2020 Benjamin Vincent Kasapoglu (Luxcium)
+#. MIT LICENSE ― PROVIDED "AS IS" ― *NOT* fit for any particular use or purpose!
+#. ----------------------------------------------------------------------------- ~
+
+# toupper
+# set az text to upper case
+function watchmem_1_() {
+  gnome-terminal --window --profile='meminfowatch_1' --role='meminfowatch miw_1' -t 'meminfowatch' -- meminfowatch $@
+}
+
+## Extra code make it easy to copy paste only the function to use elsewhere
+watchmem_1_ "${@}"
+
+EXIT_="${?}"
+
+unset -f watchmem_1_
+
+exit $EXIT_
