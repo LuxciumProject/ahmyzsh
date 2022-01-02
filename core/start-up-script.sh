@@ -54,25 +54,26 @@ eval $(
 )
 fnm list
 
-#   (
-#     code-insiders /home/luxcium/ahmyzsh &
-#     sleep 0.5
-#     sudo renice -n 5 -p $(
-#       pidof -w -x code-insiders
-#     )
-#     sudo ionice -c 2 -n 1 -p $(
-#       pidof -w -x code-insiders
-#     )
-#   ) &
+(
+  code-insiders /home/luxcium/ahmyzsh &
+  sleep 0.5
+  sudo renice -n 5 -p $(
+    pidof -w -x code-insiders
+  )
+  sudo ionice -c 2 -n 1 -p $(
+    pidof -w -x code-insiders
+  )
+) &
 
-#   (
-#     sleep 2
-#     nice -n 5 terminator --title='Monitoring Terminal' --role=terminator-ZF987CDA0x &
-#     # nice -n 5 gnome-terminal --title='Monitoring Terminal' --class=Monitoring-Terminal-Z6C4C35AEx --name=gnome-terminal-Z757425E8x --role=gnome-terminal-ZF987CDA0x
-#     sleep 2
-#     sudo ionice -c 2 -n 1 -p $(
-#       pidof -w -x terminator
-#     )
-#   )&
+(
+  sleep 2
+  nice -n 5 terminator --title='Monitoring Terminal' --role=terminator-ZF987CDA0x &
+  # nice -n 5 gnome-terminal --title='Monitoring Terminal' --class=Monitoring-Terminal-Z6C4C35AEx --name=gnome-terminal-Z757425E8x --role=gnome-terminal-ZF987CDA0x
+  sleep 2
+  sudo ionice -c 2 -n 1 -p $(
+    pidof -w -x terminator
+  )
+) &
 
 # ) & #  0.6995s 
+# //  /dev/pts/11
