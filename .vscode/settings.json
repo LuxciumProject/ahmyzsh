@@ -201,11 +201,11 @@
   |-···――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――···-|
   ―― ERRORLENS
   */
-  "errorLens.annotationPrefix": [
-    "🍒 ~> ", // ―1 error
-    "⚠️ => ", // ―2 warning
-    "✨ -> ", // ―3 info
-    "🎯 +> ", // ―4 hint
+  "errorLens.severityText": [
+    "🍒 ~>",
+    "⚠️ =>",
+    "🧩 -→",
+    "🎯 ->"
   ],
   "errorLens.enabledDiagnosticLevels": [
     "error", //    0- #F36F
@@ -217,8 +217,11 @@
     "may be converted to an ES6 module",
     "!is declared but its value is never read!"
   ],
-  "errorLens.addAnnotationTextPrefixes": true,
-  "errorLens.addNumberOfDiagnostics": true,
+  "errorLens.fontSize": "1.1rem",
+  "errorLens.fontFamily": "'VictorMono Nerd Font',Victor Mono, Fira Code iScript",
+  "errorLens.fontStyleItalic": true,
+  "errorLens.fontWeight": "bold",
+  "errorLens.messageTemplate": "$severity $message [$source #$code] ($count)",
   "errorLens.borderRadius": "10px",
   "errorLens.delay": 0,
   "errorLens.errorGutterIconPath": "",
