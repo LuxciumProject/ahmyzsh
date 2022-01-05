@@ -540,8 +540,8 @@
       "gutterIcon": true,
       "rulerLane": "center",
     },
-    // ERROR HANDLER: //-?
-    "ERROR HANDLER:": {
+    //-? // ERROR HANDLER:
+    "-?": {
       "foreground": "#FC9",
       "background": "#F359",
       "borderRadius": "7px",
@@ -550,9 +550,9 @@
       "gutterIcon": true,
       "type": "tag-and-comment",
       "rulerLane": "center",
-      // "ERROR HANDLER:",
+      //-?
     },
-    "-?": {
+    "ERROR HANDLER:": {
       "foreground": "#FDB",
       "background": "#F14",
       "opacity": 30,
@@ -562,6 +562,7 @@
       "hideFromStatusBar": true,
       "rulerLane": "none",
       "borderRadius": "0px",
+      //  ERROR HANDLER:
     },
     "FIXME:": {
       "foreground": "#224",
