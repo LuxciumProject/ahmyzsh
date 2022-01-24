@@ -1,3 +1,7 @@
+function redisping() {
+  redis-cli -p $1 ping "PONG ${1}" 2>/dev/null
+}
+
 alias red_cli='redis-cli'
 alias red_all='redis-cli --raw keys \*'
 alias smembers='redis-cli smembers'

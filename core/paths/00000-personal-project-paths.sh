@@ -3,6 +3,13 @@ alias ahmyzsh="cd ${AHMYZSH}"
 export CACHE_FOLDER_="${HOME}/envs/cache/p10k-${USER}"
 alias cache_folder="cd ${CACHE_FOLDER_}"
 
+export WSD_250="${HOME}/WSD_250"
+alias wsd250="cd ${WSD_250}"
+export REDIS_DATA="${WSD_250}/redis/data"
+alias redis_data="cd ${REDIS_DATA}"
+export REDIS_6382=${WSD_250}/redis/6382/data
+alias redis_6382="cd ${REDIS_6382}"
+
 export DEV_FOLDER="${HOME}/dev"
 alias cddev="cd ${DEV_FOLDER}"
 export LXI_PROJCT="${DEV_FOLDER}/luxcium-projects"
