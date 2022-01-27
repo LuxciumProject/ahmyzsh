@@ -4,3 +4,11 @@ url = https://github.com/romkatv/powerlevel10k
 [submodule "ohmyzsh"]
 path = ohmyzsh
 url = https://github.com/ohmyzsh/ohmyzsh.git
+
+[submodule "node-repl"]
+path = node-repl
+url = https://github.com/Luxcium/node-repl.git
+
+[submodule "python-repl"]
+path = python-repl
+url = https://github.com/Luxcium/python-repl.git
