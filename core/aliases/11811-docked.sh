@@ -66,8 +66,11 @@ function isRedis_6381() {
 
 function dckr_redis_start_6382() {
   echo path using REDIS_6382:$REDIS_6382
+
   dckr_start
+
   (docker stop Redis_JSON_6382 && docker rm Redis_JSON_6382) 2>/dev/null
+
   docker container ls \
     --no-trunc \
     --filter id=$(docker run -d -p 6382:6379 \
@@ -81,12 +84,12 @@ function dckr_redis_start_6382() {
       --loadmodule /usr/lib/redis/modules/rejson.so \
       --loadmodule /usr/lib/redis/modules/redisearch.so \
       2>/dev/null) && [[ $(redis-cli -p 6382 PING) == "PONG" ]] && (
-    play -qv 0.75 /home/luxcium/ahmyzsh/multimedia/sounds/dactylo-cloche.mp3 &
+    play -qv 0.75 "${MY_SOUNDS}"//dactylo-cloche.mp3 &
     (
       sleep 0.1875
-      play -qv 0.50 /home/luxcium/ahmyzsh/multimedia/sounds/pop-up.mp3
+      play -qv 0.50 "${MY_SOUNDS}"/pop-up.mp3
     ) &
-  ) || (play -qv 1 /usr/share/sounds/Oxygen-Im-Cant-Connect.ogg)
+  ) || (play -qv 1 "${MY_SOUNDS}"/Oxygen-Im-Cant-Connect.ogg)
 }
 # function dckr_redis_start_6382() {
 #   # // redislabs/rejson:latest

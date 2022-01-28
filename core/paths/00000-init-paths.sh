@@ -25,6 +25,11 @@ export AHMYZSH_CORE="${AHMYZSH}/core"
   export CORE_TEMP="${AHMYZSH_CORE}/temp"
 }
 
+export MY_MULTIMEDIA="${AHMYZSH}/multimedia"
+{
+  export MY_SOUNDS="${MY_MULTIMEDIA}/sounds"
+}
+
 # {
 #   # export ZSH_BIN="${CUSTOM_ZSH}/bin"
 #   {
