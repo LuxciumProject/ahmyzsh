@@ -84,7 +84,7 @@ function dckr_redis_start_6382() {
       --loadmodule /usr/lib/redis/modules/rejson.so \
       --loadmodule /usr/lib/redis/modules/redisearch.so \
       2>/dev/null) && [[ $(redis-cli -p 6382 PING) == "PONG" ]] && (
-    play -qv 0.75 "${MY_SOUNDS}"//dactylo-cloche.mp3 &
+    play -qv 0.75 "${MY_SOUNDS}"/dactylo-cloche.mp3 &
     (
       sleep 0.1875
       play -qv 0.50 "${MY_SOUNDS}"/pop-up.mp3
@@ -175,7 +175,7 @@ function isRedis_6380() {
 }
 
 function dckr_redis_start_all() {
-  (
+  ( 
     (dckr_redis_start_6380) 2>/dev/null
     (dckr_redis_start_6381) 2>/dev/null
     (dckr_redis_start_6382) 2>/dev/null
@@ -187,7 +187,7 @@ function dckr_redis_start_all() {
 }
 
 function dckr_redis_stop_all() {
-  (
+  ( 
     (dckr_redis_stop_6380) 2>/dev/null
     (dckr_redis_stop_6381) 2>/dev/null
     (dckr_redis_stop_6382) 2>/dev/null
