@@ -6,8 +6,8 @@ path = ohmyzsh
 url = https://github.com/ohmyzsh/ohmyzsh.git
 
 [submodule "node-repl"]
-path = node-repl
-url = https://github.com/Luxcium/node-repl.git
+	path = node-repl
+	url = https://github.com/Luxcium/node-repl.git
 
 [submodule "python-repl"]
 path = python-repl
