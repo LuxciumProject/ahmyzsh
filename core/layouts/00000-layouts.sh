@@ -125,6 +125,12 @@ export WARN_ICO='\uf071'
 export GNU_ICO='\ue779'
 export NPM_ICO='\ue71e'
 export NPM_FOLDER_ICO='\ue5fa'
+## nf-ple:
+export pix_squares_big_mirrored='e0c7'   # 
+export pix_squares_small_mirrored='e0c5' # 
+export pix_squares_big='e0c6'            # 
+export pix_squares_small='e0c4'          # 
+
 export separator1='e0bc' # 
 export separator2='e0b8' # 
 export separator3='e0b0' # 
@@ -144,9 +150,9 @@ export LIGHT_2_="${LBOLD}${FGR_}${LIGHTBULB}"   #// \uf835  LIGHTBULB
 export LIGHT_0="${LBOLD}${FRD_}${LIGHTBULB_ON}" #// \uf834  LIGHTBULB_ON
 export LIGHT_1="${LBOLD}${FYL_}${LIGHTBULB_ON}" #// \uf834  LIGHTBULB_ON
 export LIGHT_2="${LBOLD}${FGR_}${LIGHTBULB_ON}" #// \uf834  LIGHTBULB_ON
-export LEFT_SEPRATOR="${U}${separator3}"
-export LEFT_SEPRATOR2="${U}${separator3}"
-export RIGHT_SEPRATOR="${U}${e0ba}"
+export LEFT_SEPRATOR="${U}${pix_squares_big}"
+export LEFT_SEPRATOR2="${U}${pix_squares_big}"
+export RIGHT_SEPRATOR="${U}${pix_squares_small_mirrored}" #"${U}${e0ba}"
 export LEFT_TERMINATOR="\u001b[0m\u001b[30m${U}${separator3}${FNR}"
 export LD_ICO_COLR="\u001b[0m\u001b[33m"
 export LD_ICO_COLR_0="\u001b[0m${FBG}"

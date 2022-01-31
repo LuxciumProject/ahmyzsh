@@ -8,6 +8,7 @@ function load_my_powerlevel10k() {
   #   - same-dir: Trim down prompt when accepting a command line unless this is the first command
   #               typed after changing current working directory.
   typeset -g POWERLEVEL9K_TRANSIENT_PROMPT=always
+  # typeset POWERLEVEL9K_TIME_UPDATE_ON_COMMAND=
 
   function pl10k_prompt_loader() {
     pl10k_left_prompt_loader
@@ -95,6 +96,15 @@ function load_my_powerlevel10k() {
     return 0
   }
 
+  # function __p10k-on-pre-prompt() {
+  #   echo p10k-on-pre-prompt
+  #   prompt_command_execution_time
+  # }
+
+  # function __p10k-on-post-prompt() {
+  #   echo p10k-on-post-prompt
+
+  # }
   function pl10k_left_prompt_on() {
     export PL10K_LEFT_PROMPT_ON='true'
     export PL10K_LEFT_PROMPT_OFF='false'
@@ -354,17 +364,17 @@ function load_my_powerlevel10k() {
     export POWERLEVEL9K_DISK_USAGE_WARNING_BACKGROUND='black'
 
     # Disk Usage: Critically Full
-    export POWERLEVEL9K_DISK_USAGE_CRITICAL_LEVEL='92'
-    export POWERLEVEL9K_DISK_USAGE_CRITICAL_FOREGROUND='black'
-    export POWERLEVEL9K_DISK_USAGE_CRITICAL_BACKGROUND='red'
+    # export POWERLEVEL9K_DISK_USAGE_CRITICAL_LEVEL='92'
+    # export POWERLEVEL9K_DISK_USAGE_CRITICAL_FOREGROUND='black'
+    # export POWERLEVEL9K_DISK_USAGE_CRITICAL_BACKGROUND='red'
 
-    export POWERLEVEL9K_DISK_USAGE_NORMAL_ICON=$'\uf7c9'
-    export POWERLEVEL9K_DISK_USAGE_WARNING_ICON=$'\uf7c9'
-    export POWERLEVEL9K_DISK_USAGE_CRITICAL_ICON=$'\uf7c9'
+    # export POWERLEVEL9K_DISK_USAGE_NORMAL_ICON=$'\uf7c9'
+    # export POWERLEVEL9K_DISK_USAGE_WARNING_ICON=$'\uf7c9'
+    # export POWERLEVEL9K_DISK_USAGE_CRITICAL_ICON=$'\uf7c9'
 
-    export POWERLEVEL9K_DISK_USAGE_NORMAL_ICON_COLOR='blue'
-    export POWERLEVEL9K_DISK_USAGE_WARNING_ICON_COLOR='yellow'
-    export POWERLEVEL9K_DISK_USAGE_CRITICAL_ICON_COLOR='black'
+    # export POWERLEVEL9K_DISK_USAGE_NORMAL_ICON_COLOR='blue'
+    # export POWERLEVEL9K_DISK_USAGE_WARNING_ICON_COLOR='yellow'
+    # export POWERLEVEL9K_DISK_USAGE_CRITICAL_ICON_COLOR='black'
     # Time
     export POWERLEVEL9K_TIME_ICON_COLOR='008'
     export POWERLEVEL9K_TIME_FOREGROUND='008'

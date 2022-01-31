@@ -132,8 +132,8 @@ function dckr_redis_stop_6384() {
 }
 
 function isRedis_6384() {
-  [[ $(redis-cli -p 6384 PING PING) == "PONG" ]] && popsound || notconnectsound
-  exit
+  [[ $(redis-cli -p 6384 PING) == "PONG" ]] && popsound || notconnectsound
+  return
 }
 
 function dckr_redis_start_6383() {
@@ -151,8 +151,8 @@ function dckr_redis_stop_6383() {
 }
 
 function isRedis_6383() {
-  [[ $(redis-cli -p 6383 PING PING) == "PONG" ]] && popsound || notconnectsound
-  exit
+  [[ $(redis-cli -p 6383 PING) == "PONG" ]] && popsound || notconnectsound
+  return
 }
 
 function dckr_redis_start_6380() {
@@ -170,12 +170,12 @@ function dckr_redis_stop_6380() {
 }
 
 function isRedis_6380() {
-  [[ $(redis-cli -p 6380 PING PING) == "PONG" ]] && popsound || notconnectsound
-  exit
+  [[ $(redis-cli -p 6380 PING) == "PONG" ]] && popsound || notconnectsound
+  return
 }
 
 function dckr_redis_start_all() {
-  ( 
+  (
     (dckr_redis_start_6380) 2>/dev/null
     (dckr_redis_start_6381) 2>/dev/null
     (dckr_redis_start_6382) 2>/dev/null
@@ -187,7 +187,7 @@ function dckr_redis_start_all() {
 }
 
 function dckr_redis_stop_all() {
-  ( 
+  (
     (dckr_redis_stop_6380) 2>/dev/null
     (dckr_redis_stop_6381) 2>/dev/null
     (dckr_redis_stop_6382) 2>/dev/null

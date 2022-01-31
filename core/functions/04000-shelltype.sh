@@ -49,6 +49,14 @@ function isnotlogin() {
   islogin && return 1 || return 0
 } 2>/dev/null
 
+function isloginorinteractive() {
+  (islogin) || (isinteractive)
+}
+
+function isloginandinteractive() {
+  (islogin) && (isinteractive)
+}
+
 #+ ------------------------------------------------------------------------------
 
 # function isloginshell() { #+ I'm a login shell

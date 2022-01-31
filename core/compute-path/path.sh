@@ -9,7 +9,7 @@ export LD_LIBRARY_PATH=/usr/local/cuda-11.5/lib64${LD_LIBRARY_PATH:+:${LD_LIBRAR
 # function __compute_base_path() {
 #   # append_to_path_
 #   export PATH="/usr/bin"
-
+# source $HOME/.cargo/env
 #   return
 # }
 # /usr/lib64/qt5/bin
