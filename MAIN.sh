@@ -20,63 +20,63 @@
 set +m
 
 function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
-  # VERBOSA=000
-  LOAD_ENV_COMPLETED='not yet'
-  ENVIRONNEMENT_LOADED='not yet'
-  LOGIN_ENV_LOADED='not yet'
-  INTERACTIVE_ENV_LOADED='not yet'
+    # VERBOSA=000
+    LOAD_ENV_COMPLETED='not yet'
+    ENVIRONNEMENT_LOADED='not yet'
+    LOGIN_ENV_LOADED='not yet'
+    INTERACTIVE_ENV_LOADED='not yet'
 
-  : ${LOAD_ENV_COMPLETED_ONCE:='not yet'}
-  : ${ENVIRONNEMENT_LOADED_ONCE:='not yet'}
-  : ${LOGIN_ENV_LOADED_ONCE:= 'not yet'}
-  : ${INTERACTIVE_ENV_LOADED_ONCE:='not yet'}
+    : ${LOAD_ENV_COMPLETED_ONCE:='not yet'}
+    : ${ENVIRONNEMENT_LOADED_ONCE:='not yet'}
+    : ${LOGIN_ENV_LOADED_ONCE:= 'not yet'}
+    : ${INTERACTIVE_ENV_LOADED_ONCE:='not yet'}
 
-  # Test we are in ZSH.
-  export IS_ZSH_="$(ps -o comm= -p $$ | grep 'zsh')"
-  [[ -z "${IS_ZSH_}" ]] && return 1
+    # Test we are in ZSH.
+    export IS_ZSH_="$(ps -o comm= -p $$ | grep 'zsh')"
+    [[ -z "${IS_ZSH_}" ]] && return 1
 
-  # Test we are in the session load for the first time
-  # or only reload confings and functions.
-  [[ -z "${MAIN_INIT}" ]] || reload_alias_and_conf
-  [[ -z "${MAIN_INIT}" ]] || (prompt_ "Reloaded alias files functions and conf" && return)
-  MAIN_INIT="start"
+    # Test we are in the session load for the first time
+    # or only reload confings and functions.
+    [[ -z "${MAIN_INIT}" ]] || reload_alias_and_conf
+    [[ -z "${MAIN_INIT}" ]] || (prompt_ "Reloaded alias files functions and conf" && return)
+    MAIN_INIT="start"
 
-  # Load functions that are required at an earlier stage of this boot sequence
-  local S1="${AHMYZSH}/MAIN-FUNCTIONS.sh"
-  [[ -f "${S1}" ]] && source "${S1}" || load_error_ "${S1}"
+    # Load functions that are required at an earlier stage of this boot sequence
+    local S1="${AHMYZSH}/MAIN-FUNCTIONS.sh"
+    [[ -f "${S1}" ]] && source "${S1}" || load_error_ "${S1}"
 
-  # Load settings that are required at an earlier stage of this boot sequence
-  load_ "${AHMYZSH}/MAIN_SETTINGS.sh" "MAIN_SETTINGS"
+    # Load settings that are required at an earlier stage of this boot sequence
+    load_ "${AHMYZSH}/MAIN_SETTINGS.sh" "MAIN_SETTINGS"
 
-  call_ load_all_config_and_settings_files
+    call_ load_all_config_and_settings_files
 
-  call_ load_zshenv
-  call_ fnm_
+    call_ load_zshenv
+    call_ fnm_
 
-  source_ "${HOME}/.env"
+    source_ "${HOME}/.env"
 
-  isinteractive || return 0 #-――――――――― Interactive,login,non-login ――――――――――-#
+    isinteractive || return 0 #-――――――――― Interactive,login,non-login ――――――――――-#
 
-  call_ load_oh_my_zsh
-  call_ activate_prompt
-  right_prompt_off
-  call_ load_options_list
-  call_ load_options_main
-  call_ load_autosuggest
-  call_ load_autocomplete
-  source ${AHMYZSH}/tmux/MAIN.zsh
-  compaudit | xargs chmod g-w,o-w 2>/dev/null
-  (sudo auditctl -e 0) >/dev/null
-  # echo -n 'sudo auditctl -e 0'
+    call_ load_oh_my_zsh
+    call_ activate_prompt
+    # right_prompt_off
+    call_ load_options_list
+    call_ load_options_main
+    call_ load_autosuggest
+    call_ load_autocomplete
+    source ${AHMYZSH}/tmux/MAIN.zsh
+    compaudit | xargs chmod g-w,o-w 2>/dev/null
+    (sudo auditctl -e 0) >/dev/null
+    # echo -n 'sudo auditctl -e 0'
 }
 
 function prompt_() {
-  isinteractive && echo "${@}"
+    isinteractive && echo "${@}"
 }
 
 function load_error_() {
-  prompt_ "Error: '${1}' path can not be resolved"
-  return 1
+    prompt_ "Error: '${1}' path can not be resolved"
+    return 1
 }
 
 # ·――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――· #

@@ -10,6 +10,9 @@ export OHMYZSH="${AHMYZSH}/ohmyzsh"
 export POWERLEVEL10K="${AHMYZSH}/powerlevel10k"
 export ZSH_PLUGINS="${AHMYZSH}/plugins"
 export ZSH_THEMES="${AHMYZSH}/themes"
+{
+  export ZSH_PL10K="${ZSH_THEMES}/pl10K"
+}
 
 export AHMYZSH_CORE="${AHMYZSH}/core"
 {

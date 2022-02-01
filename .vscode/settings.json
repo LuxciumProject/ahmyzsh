@@ -2440,7 +2440,7 @@
     "output"
   ],
   "[shellscript]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format"
+    "editor.defaultFormatter": "shakram02.bash-beautify"
   },
   // #endregion: EDITOR RULERS                                                  !
   // #region: RANDOM                                                            !
