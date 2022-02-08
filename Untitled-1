@@ -1,0 +1,104 @@
+mv /home/luxcium/ahmyzsh/core/functions/z86667-path_operations.sh /home/luxcium/ahmyzsh/core/functions/z86667-path_operations--zsh--0004.sh
+mv /home/luxcium/ahmyzsh/core/aliases/12010-ALS-tsc.sh /home/luxcium/ahmyzsh/core/aliases/12010-ALS-tsc--zsh--0006.sh
+mv /home/luxcium/ahmyzsh/core/compute-path/path.sh /home/luxcium/ahmyzsh/core/compute-path/path--zsh--0007.sh
+mv /home/luxcium/ahmyzsh/core/functions/00000-update.sh /home/luxcium/ahmyzsh/core/functions/00000-update--zsh--0008.sh
+mv /home/luxcium/ahmyzsh/core/functions/01000-zsh_version.sh /home/luxcium/ahmyzsh/core/functions/01000-zsh_version--zsh--0008.sh
+mv /home/luxcium/ahmyzsh/core/functions/z86665-load_intearctive_login_state.sh /home/luxcium/ahmyzsh/core/functions/z86665-load_intearctive_login_state--zsh--0009.sh
+mv /home/luxcium/ahmyzsh/core/functions/z96660x-load_options.sh /home/luxcium/ahmyzsh/core/functions/z96660x-load_options--zsh--0009.sh
+mv /home/luxcium/ahmyzsh/core/aliases/10001-rm.sh /home/luxcium/ahmyzsh/core/aliases/10001-rm--zsh--0010.sh
+mv /home/luxcium/ahmyzsh/core/functions/00001-load_bash.sh /home/luxcium/ahmyzsh/core/functions/00001-load_bash--zsh--0010.sh
+mv /home/luxcium/ahmyzsh/core/functions/10000-detectprofile.sh /home/luxcium/ahmyzsh/core/functions/10000-detectprofile--zsh--0010.sh
+mv /home/luxcium/ahmyzsh/core/functions/z86663-load_aliases.sh /home/luxcium/ahmyzsh/core/functions/z86663-load_aliases--zsh--0010.sh
+mv /home/luxcium/ahmyzsh/core/functions/00000-init-projects.sh /home/luxcium/ahmyzsh/core/functions/00000-init-projects--zsh--0011.sh
+mv /home/luxcium/ahmyzsh/core/functions/02950-mkloopback.sh /home/luxcium/ahmyzsh/core/functions/02950-mkloopback--zsh--0011.sh
+mv /home/luxcium/ahmyzsh/core/aliases/10005-mv.sh /home/luxcium/ahmyzsh/core/aliases/10005-mv--zsh--0012.sh
+mv /home/luxcium/ahmyzsh/core/aliases/12000-systemctl.sh /home/luxcium/ahmyzsh/core/aliases/12000-systemctl--zsh--0012.sh
+mv /home/luxcium/ahmyzsh/core/aliases/12010-ALS-vscode.sh /home/luxcium/ahmyzsh/core/aliases/12010-ALS-vscode--zsh--0012.sh
+mv /home/luxcium/ahmyzsh/core/functions/01000-custom_cd.sh /home/luxcium/ahmyzsh/core/functions/01000-custom_cd--zsh--0012.sh
+mv /home/luxcium/ahmyzsh/core/functions/01000-dockerhelper.sh /home/luxcium/ahmyzsh/core/functions/01000-dockerhelper--zsh--0012.sh
+mv /home/luxcium/ahmyzsh/core/functions/02000-parse_options.sh /home/luxcium/ahmyzsh/core/functions/02000-parse_options--zsh--0012.sh
+mv /home/luxcium/ahmyzsh/core/functions/z86664-load_autocomplete_now.sh /home/luxcium/ahmyzsh/core/functions/z86664-load_autocomplete_now--zsh--0012.sh
+mv /home/luxcium/ahmyzsh/core/functions/z86668-load_path.sh /home/luxcium/ahmyzsh/core/functions/z86668-load_path--zsh--0012.sh
+mv /home/luxcium/ahmyzsh/core/aliases/10002-cd.sh /home/luxcium/ahmyzsh/core/aliases/10002-cd--zsh--0013.sh
+mv /home/luxcium/ahmyzsh/core/aliases/10004-cp.sh /home/luxcium/ahmyzsh/core/aliases/10004-cp--zsh--0013.sh
+mv /home/luxcium/ahmyzsh/core/aliases/10006-ip.sh /home/luxcium/ahmyzsh/core/aliases/10006-ip--zsh--0013.sh
+mv /home/luxcium/ahmyzsh/core/aliases/11000-kill.sh /home/luxcium/ahmyzsh/core/aliases/11000-kill--zsh--0013.sh
+mv /home/luxcium/ahmyzsh/core/aliases/12010-ALS-npm.sh /home/luxcium/ahmyzsh/core/aliases/12010-ALS-npm--zsh--0013.sh
+mv /home/luxcium/ahmyzsh/core/aliases/12010-ALS-yarn.sh /home/luxcium/ahmyzsh/core/aliases/12010-ALS-yarn--zsh--0013.sh
+mv /home/luxcium/ahmyzsh/core/aliases/12015-ALS-canon-obs.sh /home/luxcium/ahmyzsh/core/aliases/12015-ALS-canon-obs--zsh--0013.sh
+mv /home/luxcium/ahmyzsh/core/aliases/12060-ALS-fille-access.sh /home/luxcium/ahmyzsh/core/aliases/12060-ALS-fille-access--zsh--0013.sh
+mv /home/luxcium/ahmyzsh/core/aliases/12299-ALS-shutdown.sh /home/luxcium/ahmyzsh/core/aliases/12299-ALS-shutdown--zsh--0013.sh
+mv /home/luxcium/ahmyzsh/core/functions/00010-git.sh /home/luxcium/ahmyzsh/core/functions/00010-git--zsh--0013.sh
+mv /home/luxcium/ahmyzsh/core/functions/00050-dedup_pathvarfn.sh /home/luxcium/ahmyzsh/core/functions/00050-dedup_pathvarfn--zsh--0013.sh
+mv /home/luxcium/ahmyzsh/core/functions/00150-vscode.sh /home/luxcium/ahmyzsh/core/functions/00150-vscode--zsh--0013.sh
+mv /home/luxcium/ahmyzsh/core/functions/00299-iptables.sh /home/luxcium/ahmyzsh/core/functions/00299-iptables--zsh--0013.sh
+mv /home/luxcium/ahmyzsh/core/functions/00300-brio-web-cam.sh /home/luxcium/ahmyzsh/core/functions/00300-brio-web-cam--zsh--0013.sh
+mv /home/luxcium/ahmyzsh/core/functions/01000-eslint_global.sh /home/luxcium/ahmyzsh/core/functions/01000-eslint_global--zsh--0013.sh
+mv /home/luxcium/ahmyzsh/core/functions/01000-mkramdir.sh /home/luxcium/ahmyzsh/core/functions/01000-mkramdir--zsh--0013.sh
+mv /home/luxcium/ahmyzsh/core/functions/01000-vscodeportable.sh /home/luxcium/ahmyzsh/core/functions/01000-vscodeportable--zsh--0013.sh
+mv /home/luxcium/ahmyzsh/core/functions/02000-load_my_powerlevel10k_now.sh /home/luxcium/ahmyzsh/core/functions/02000-load_my_powerlevel10k_now--zsh--0013.sh
+mv /home/luxcium/ahmyzsh/core/functions/05000-az.sh /home/luxcium/ahmyzsh/core/functions/05000-az--zsh--0013.sh
+mv /home/luxcium/ahmyzsh/core/functions/05000-ddrandom.sh /home/luxcium/ahmyzsh/core/functions/05000-ddrandom--zsh--0013.sh
+mv /home/luxcium/ahmyzsh/core/functions/z86662-compute_pl10k_now.sh /home/luxcium/ahmyzsh/core/functions/z86662-compute_pl10k_now--zsh--0013.sh
+mv /home/luxcium/ahmyzsh/core/functions/z88888-load_ohmyzsh.sh /home/luxcium/ahmyzsh/core/functions/z88888-load_ohmyzsh--zsh--0013.sh
+mv /home/luxcium/ahmyzsh/core/functions/z96662x-load_zshenv.sh /home/luxcium/ahmyzsh/core/functions/z96662x-load_zshenv--zsh--0013.sh
+mv /home/luxcium/ahmyzsh/core/functions/z96663x-load_zshrc.sh /home/luxcium/ahmyzsh/core/functions/z96663x-load_zshrc--zsh--0013.sh
+mv /home/luxcium/ahmyzsh/core/functions/z96667x-load-autosuggest.sh /home/luxcium/ahmyzsh/core/functions/z96667x-load-autosuggest--zsh--0013.sh
+mv /home/luxcium/ahmyzsh/core/paths/00000-personal-project-paths.sh /home/luxcium/ahmyzsh/core/paths/00000-personal-project-paths--zsh--0013.sh
+mv /home/luxcium/ahmyzsh/core/aliases/10000-images-files.sh /home/luxcium/ahmyzsh/core/aliases/10000-images-files--zsh--0014.sh
+mv /home/luxcium/ahmyzsh/core/aliases/10003-ls.sh /home/luxcium/ahmyzsh/core/aliases/10003-ls--zsh--0014.sh
+mv /home/luxcium/ahmyzsh/core/aliases/11001-dnf.sh /home/luxcium/ahmyzsh/core/aliases/11001-dnf--zsh--0014.sh
+mv /home/luxcium/ahmyzsh/core/aliases/11811-docked.sh /home/luxcium/ahmyzsh/core/aliases/11811-docked--zsh--0014.sh
+mv /home/luxcium/ahmyzsh/core/aliases/12010-ALS-cht-sh.sh /home/luxcium/ahmyzsh/core/aliases/12010-ALS-cht-sh--zsh--0014.sh
+mv /home/luxcium/ahmyzsh/core/aliases/12012-more-sounds.sh /home/luxcium/ahmyzsh/core/aliases/12012-more-sounds--zsh--0014.sh
+mv /home/luxcium/ahmyzsh/core/aliases/12020-ALS-misc.sh /home/luxcium/ahmyzsh/core/aliases/12020-ALS-misc--zsh--0014.sh
+mv /home/luxcium/ahmyzsh/core/aliases/12022-ALS-stmp.sh /home/luxcium/ahmyzsh/core/aliases/12022-ALS-stmp--zsh--0014.sh
+mv /home/luxcium/ahmyzsh/core/aliases/12551-ALS-aliases.sh /home/luxcium/ahmyzsh/core/aliases/12551-ALS-aliases--zsh--0014.sh
+mv /home/luxcium/ahmyzsh/core/aliases/13010-ALS-nmon.sh /home/luxcium/ahmyzsh/core/aliases/13010-ALS-nmon--zsh--0014.sh
+mv /home/luxcium/ahmyzsh/core/aliases/20000-Terminator.sh /home/luxcium/ahmyzsh/core/aliases/20000-Terminator--zsh--0014.sh
+mv /home/luxcium/ahmyzsh/core/aliases/include-dnf.repos.sh /home/luxcium/ahmyzsh/core/aliases/include-dnf.repos--zsh--0014.sh
+mv /home/luxcium/ahmyzsh/core/compute-path/conda-initialize.sh /home/luxcium/ahmyzsh/core/compute-path/conda-initialize--zsh--0014.sh
+mv /home/luxcium/ahmyzsh/core/env/00000.sh /home/luxcium/ahmyzsh/core/env/00000--zsh--0014.sh
+mv /home/luxcium/ahmyzsh/core/functions/01000-custom_clear_local_screen.sh /home/luxcium/ahmyzsh/core/functions/01000-custom_clear_local_screen--zsh--0014.sh
+mv /home/luxcium/ahmyzsh/core/functions/01000-get_latest_ms_vscode_sources.sh /home/luxcium/ahmyzsh/core/functions/01000-get_latest_ms_vscode_sources--zsh--0014.sh
+mv /home/luxcium/ahmyzsh/core/functions/05000-foreach.sh /home/luxcium/ahmyzsh/core/functions/05000-foreach--zsh--0014.sh
+mv /home/luxcium/ahmyzsh/core/functions/05000-zsh_compile.sh /home/luxcium/ahmyzsh/core/functions/05000-zsh_compile--zsh--0014.sh
+mv /home/luxcium/ahmyzsh/core/functions/z86660-activate_instant_prompt.sh /home/luxcium/ahmyzsh/core/functions/z86660-activate_instant_prompt--zsh--0014.sh
+mv /home/luxcium/ahmyzsh/core/functions/z86661-activate_prompt.sh /home/luxcium/ahmyzsh/core/functions/z86661-activate_prompt--zsh--0014.sh
+mv /home/luxcium/ahmyzsh/core/functions/z96661x-load_options_list.sh /home/luxcium/ahmyzsh/core/functions/z96661x-load_options_list--zsh--0014.sh
+mv /home/luxcium/ahmyzsh/core/functions/z96664x-load_zlogout.sh /home/luxcium/ahmyzsh/core/functions/z96664x-load_zlogout--zsh--0014.sh
+mv /home/luxcium/ahmyzsh/core/functions/z96665x-precmd.sh /home/luxcium/ahmyzsh/core/functions/z96665x-precmd--zsh--0014.sh
+mv /home/luxcium/ahmyzsh/core/paths/00000-init-paths.sh /home/luxcium/ahmyzsh/core/paths/00000-init-paths--zsh--0014.sh
+mv /home/luxcium/ahmyzsh/core/functions/00000-upnboot.sh /home/luxcium/ahmyzsh/core/functions/00000-upnboot--zsh--0015.sh
+mv /home/luxcium/ahmyzsh/core/functions/01000-03000_saybye.sh /home/luxcium/ahmyzsh/core/functions/01000-03000_saybye--zsh--0015.sh
+mv /home/luxcium/ahmyzsh/core/functions/04000-shelltype.sh /home/luxcium/ahmyzsh/core/functions/04000-shelltype--zsh--0015.sh
+mv /home/luxcium/ahmyzsh/core/aliases/11812-redis.sh /home/luxcium/ahmyzsh/core/aliases/11812-redis--zsh--0016.sh
+mv /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds--zsh--0016.sh
+mv /home/luxcium/ahmyzsh/core/aliases/12975-ALS-zsh-lovers.sh /home/luxcium/ahmyzsh/core/aliases/12975-ALS-zsh-lovers--zsh--0016.sh
+mv /home/luxcium/ahmyzsh/core/aliases/13002-setfont.sh /home/luxcium/ahmyzsh/core/aliases/13002-setfont--zsh--0016.sh
+mv /home/luxcium/ahmyzsh/core/aliases/12010-ALS-git.sh /home/luxcium/ahmyzsh/core/aliases/12010-ALS-git.sh--zsh--0029.sh
+mv /home/luxcium/ahmyzsh/core/layouts/00000-layouts.sh /home/luxcium/ahmyzsh/core/layouts/00000-layouts.sh--zsh--0031.sh
+mv /home/luxcium/ahmyzsh/core/layouts/00001-mycolors.sh /home/luxcium/ahmyzsh/core/layouts/00001-mycolors.sh--zsh--0033.sh
+
+#    > 14   'load_all_config_and_settings_files()'
+#    > 15   /home/luxcium/.cache/ahmyzsh/path.env
+#    > 31   'load_path()'
+
+     load_zshenv in 1505ms!
+
+#    > 60   'load_zshenv()'
+#    > 56   'fnm_()'
+#    > 14   /home/luxcium/.env
+#    > 324  'load_oh_my_zsh()'
+#    > 13   /home/luxcium/ahmyzsh/powerlevel10k/powerlevel10k.zsh-theme
+#    > 6    /home/luxcium/ahmyzsh/themes/pl10K-Layout.zsh
+#    > 21   'load_my_powerlevel10k_now()'
+#    > 26   'activate_prompt()'
+#    > 3    'load_options_list()'
+#    > 3    'load_options_main()'
+#    > 8    /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+#    > 49   /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#    > 52   'load_autosuggest()'
+#    > 1    /home/luxcium/ahmyzsh/core/complete.d/autocomplete.sh
+#    > 3    /home/luxcium/ahmyzsh/plugins/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh
+#    > 3    /home/luxcium/ahmyzsh/plugins/yarn-autocompletions/yarn-autocompletions.plugin.zsh

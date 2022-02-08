@@ -20,7 +20,7 @@
 set +m
 
 function SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
-  VERBOSA=1000
+  # VERBOSA=1000
   LOAD_ENV_COMPLETED='not yet'
   ENVIRONNEMENT_LOADED='not yet'
   LOGIN_ENV_LOADED='not yet'
