@@ -131,6 +131,8 @@ function __mvx_() {
 
 function mp4s() {
   __mvx_ mp4
+  mv *.MP4 ./mp4s
+  mv *.MOV ./mp4s
 }
 
 function jpgs() {

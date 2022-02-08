@@ -1,4 +1,5 @@
-export MINICONDA3="${HOME}/miniconda3"
+# export MINICONDA3="${HOME}/miniconda3"
+export _CONDA3="${HOME}/anaconda3"
 export DOTNET_ROOT="/usr/lib64/dotnet/"
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 export PATH_BAK_0="${PATH}"
@@ -13,6 +14,7 @@ export LD_LIBRARY_PATH=/usr/local/cuda-11.5/lib64${LD_LIBRARY_PATH:+:${LD_LIBRAR
 #   return
 # }
 # /usr/lib64/qt5/bin
+# anaconda3_init
 function __append_sbin_to_path() {
   export PATH="/usr/local/sbin"
   append_to_path_ "/usr/local/bin"
@@ -47,8 +49,10 @@ function __compute_extended_path() {
   add_to_path_ "${HOME}/.rbenv/shims"
   add_to_path_ "${HOME}/.rbenv/bin"
   call_ rbenv_
-  add_to_path_ "${MINICONDA3}/bin"
-  add_to_path_ "${MINICONDA3}/condabin"
+  # add_to_path_ "${MINICONDA3}/bin" # CONDA3
+  add_to_path_ "${_CONDA3}/bin" # CONDA3
+  # add_to_path_ "${MINICONDA3}/condabin"
+  add_to_path_ "${_CONDA3}/condabin"
   call_ conda_
   add_to_path_ "${HOME}/.config/yarn/global/node_modules/.bin"
   add_to_path_ "${HOME}/.local/bin"
@@ -306,7 +310,7 @@ function nvm_() {
 }
 
 function conda_() {
-  load_ "${AHMYZSH}/core/compute-path/conda-initialize.sh" "conda_init"
+  load_ "${AHMYZSH}/core/compute-path/conda-initialize.sh" "anaconda3_init"
 }
 
 function getstamp_() {

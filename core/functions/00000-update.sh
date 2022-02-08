@@ -1,7 +1,8 @@
 # Current or LTS
 #  typescript@latest gulp-cli@latest ts-node@latest vsce@latest jest@latest
 #  typescript@latest gulp-cli@latest ts-node@latest prettier@latest jest@latest
-PACKAGES_NPM='typescript@latest gulp-cli@latest ts-node@latest prettier@latest vsce@latest jest@latest tslib@latest @types/node@latest npm@latest'
+PACKAGES_NPM='corepack@latest gulp-cli@latest jest@latest n@latest node@latest node-gyp@latest npm@latest prettier@latest ts-node@latest typescript@latest vsce@latest yarn@latest'
+
 function _npm_update() {
     echo ''
     echo npm version $(npm --version)
@@ -63,7 +64,7 @@ function dnf_downloadonly() {
 }
 
 all_update() {
-    dnf_downloadonly &
+    dnf_downloadonly
     cc_update
     sudo rustup update
     rustc --version

@@ -1,10 +1,37 @@
+## Drives
+export SDC1_SEAGATE="/media/sdc1/seagate"
+alias sdc1_seagate="cd ${SDC1_SEAGATE}"
+export SDB2_ARCHIVE="/media/sdb2/archive"
+alias sdb2_archive="cd ${SDB2_ARCHIVE}"
+export WSD_250="${HOME}/WSD_250"
+alias wsd250="cd ${WSD_250}"
+
+PROJECT_PATHS=( ~/src ~/projects )
+## pj my-project:
+#  cd to the directory named "my-project" found in one of the $PROJECT_PATHS directories. If there are several directories named the same, the first one to appear in $PROJECT_PATHS has preference.
+
+# pjo my-project
+# Open the project directory with your defined $EDITOR. This follows the same directory rules as the pj command above.
+
+# Note: pjo is an alias of pj open.
+
+function localMount(){
+    (
+        sudo mkdir -p /media/sdc1/seagate
+        sudo mount /dev/sdc1 /media/sdc1/seagate
+        sudo mkdir -p /media/sdb2/archive
+        sudo mount /dev/sdb2 /media/sdb2/archive
+    ) 2>/dev/null
+    sudo df -H
+}
+
+
 export AHMYZSH="${HOME}/ahmyzsh"
 alias ahmyzsh="cd ${AHMYZSH}"
 export CACHE_FOLDER_="${HOME}/envs/cache/p10k-${USER}"
 alias cache_folder="cd ${CACHE_FOLDER_}"
 
-export WSD_250="${HOME}/WSD_250"
-alias wsd250="cd ${WSD_250}"
+
 export REDIS_DATA="${WSD_250}/redis/data"
 alias redis_data="cd ${REDIS_DATA}"
 export REDIS_6382=${WSD_250}/redis/6382/data

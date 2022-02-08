@@ -16,17 +16,28 @@ function load_oh_my_zsh() {
   # under VCS as dirty. This makes repository status check for large repositories
   # much, much faster.
   DISABLE_UNTRACKED_FILES_DIRTY="true"
+  # PROJECT_PATHS=(~/src ~/work ~/"dir with spaces")
   plugins=(
+    colorize
+    copydir
+    copyfile
+    cp
+    docker
+    git
+    man
+    node
+    npm
+    pj
+    redis-cli
+    safe-paste
+    yarn-autocompletions
+    zsh-better-npm-completion
+    zsh-completions
+    # autojump
+    # github
+    # zoxide
     # zsh-autosuggestions
     # zsh-syntax-highlighting
-    zsh-better-npm-completion
-    yarn-autocompletions
-    zsh-completions
-    git
-    node
-    man
-    docker
-    redis-cli
   )
   autoload -U compinit && compinit
   # alias-finder

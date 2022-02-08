@@ -10,7 +10,7 @@ alias ZSH_LOVERS="man ZSH-LOVERS"
 # NAME
 # ----
 # zsh-lovers - tips, tricks and examples for the Z shell
-
+alias rzsh="exec zsh"
 alias -s tex=vim
 alias -s html=w3m
 alias -s org=w3m
