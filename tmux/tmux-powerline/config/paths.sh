@@ -1,14 +1,3 @@
-# Paths
-
-export TMUX_POWERLINE_DIR_LIB="$TMUX_POWERLINE_DIR_HOME/lib"
-export TMUX_POWERLINE_DIR_SEGMENTS="$TMUX_POWERLINE_DIR_HOME/segments"
-export TMUX_POWERLINE_DIR_TEMPORARY="/tmp/tmux-powerline_${USER}"
-export TMUX_POWERLINE_DIR_THEMES="$TMUX_POWERLINE_DIR_HOME/themes"
-if [ -z "$TMUX_POWERLINE_RCFILE" ]; then
-	export TMUX_POWERLINE_RCFILE="$HOME/.tmux-powerlinerc"
-fi
-export TMUX_POWERLINE_RCFILE_DEFAULT="${TMUX_POWERLINE_RCFILE}.default"
-
-if [ ! -d "$TMUX_POWERLINE_DIR_TEMPORARY" ]; then
-	mkdir "$TMUX_POWERLINE_DIR_TEMPORARY"
-fi
+version https://git-lfs.github.com/spec/v1
+oid sha256:fe4a0e5567773a4ea7cdc7e61728fb15a45de5b6de3e0c8315f6ea2f131ff526
+size 539

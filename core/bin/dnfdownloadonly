@@ -1,7 +1,3 @@
-#!/bin/bash
-
-(
-  sudo dnf reinstall code-insiders code --downloadonly -y
-  sudo dnf upgrade --downloadonly -y
-  # sudo dnf group upgrade -y
-)
+version https://git-lfs.github.com/spec/v1
+oid sha256:8f2862b769d1be43d7313eb609158ae3d772a7bd787180652354c7ff71ddfc19
+size 142

@@ -1,5 +1,3 @@
-# Terminator - Multiple GNOME terminals in one window
-
-# terminator [options]
-
-# ~/.config/terminator/config
+version https://git-lfs.github.com/spec/v1
+oid sha256:dd3c9e27f601d4cd7c2b18e4ce1ea962cfe42613bab238280b5a6103fb33073b
+size 109

@@ -1,7 +1,3 @@
-function activate_prompt() {
-
-  typeset -g ZSH_THEME="../../powerlevel10k/powerlevel10k"
-  source_ "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
-  call_ load_my_powerlevel10k_now
-
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:b1f58e2ab06500e63c5c2534f1d6b453c300de79cb936efc7db682f63ff854f8
+size 191

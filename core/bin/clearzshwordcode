@@ -1,14 +1,3 @@
-#!/bin/env sh
-
-function clearzshwordcode_() {
-  builtin cd $AHMYZSH && find $(pwd) | grep .zwc | foreachline rm -f
-}
-
-## Extra code make it easy to copy paste only the function out to use elsewhere
-clearzshwordcode_ "$@"
-
-EXIT_="${?}"
-
-unset -f clearzshwordcode_
-
-exit $EXIT_
+version https://git-lfs.github.com/spec/v1
+oid sha256:5dd7a16f7cf9318f0f6109ad17c6e614eb182e5a2046f85e751c1c5da3ad387b
+size 276

@@ -1,9 +1,3 @@
-#!/bin/zsh
-(
-  cd /home/luxcium/virtualram/luxcium.io
-  lf
-  git add .
-  git commit -am "working in ram doing constant backups"
-  git push
-)
-exit 0
+version https://git-lfs.github.com/spec/v1
+oid sha256:ea89f2849775b5ebbcd03106cdd4b2da67667702554a61593062982bb5099b0e
+size 148

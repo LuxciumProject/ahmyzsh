@@ -1,14 +1,3 @@
-# Print out Memory, cpu and load using https://github.com/thewtex/tmux-mem-cpu-load
-
-run_segment() {
-	type tmux-mem-cpu-load >/dev/null 2>&1
-	if [ "$?" -ne 0 ]; then
-		return
-	fi
-
-	stats=$(tmux-mem-cpu-load)
-	if [ -n "$stats" ]; then
-		echo "$stats";
-	fi
-	return 0
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:d25aa3d5ff551bc9c16567ca3cf7dd73fe4d0ec4f1f57a751f6d356c5a2b44f9
+size 267

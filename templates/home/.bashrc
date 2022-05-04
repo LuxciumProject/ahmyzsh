@@ -1,25 +1,3 @@
-# .bashrc
-
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
-fi
-
-# User specific environment
-if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
-then
-    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
-fi
-export PATH
-
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
-
-# User specific aliases and functions
-
-# fnm
-export PATH=/home/luxcium/.fnm:$PATH
-eval "`fnm env`"
-
-
-. ~/.bash.d/cht.sh
+version https://git-lfs.github.com/spec/v1
+oid sha256:ede0bfd2989c8df1f9ae78107d310a452c873aa875596a5e95b51dea5fc334a4
+size 458

@@ -1,12 +1,3 @@
-#!/usr/bin/env sh
-# function ll() {}
-# (
-
-#   local mypath="${@:-$(pwd)}"
-#   echo ''
-#   builtin cd "${mypath}"
-#   pw
-#   colorls -lA --sd --gs
-#   pw
-#   echo ''
-# )
+version https://git-lfs.github.com/spec/v1
+oid sha256:042013d7eb4946fb1ddd539d0fffb237d2594ffedd354887a4e009a4ab6330db
+size 169

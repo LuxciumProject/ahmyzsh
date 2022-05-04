@@ -1,5 +1,3 @@
-#!/bin/zsh
-
-nice -n 35 ionice -c 3 watch -d -t -n 1 meminfo
-
-exit 0
+version https://git-lfs.github.com/spec/v1
+oid sha256:bddc9776edb4d1f15e712c1c4366c6d133ffa2ce785009183cb4aa8511e960e3
+size 68

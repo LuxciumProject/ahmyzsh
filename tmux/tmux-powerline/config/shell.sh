@@ -1,20 +1,3 @@
-# Shell Configuration
-# vi: sw=8 ts=8 noet
-
-ostype() { echo $OSTYPE | tr '[A-Z]' '[a-z]'; }
-
-export SHELL_PLATFORM='unknown'
-
-case "$(ostype)" in
-	*'linux'*	) SHELL_PLATFORM='linux'	;;
-	*'darwin'*	) SHELL_PLATFORM='osx'		;;
-	*'bsd'*		) SHELL_PLATFORM='bsd'		;;
-esac
-
-shell_is_linux() { [[ $SHELL_PLATFORM == 'linux' || $SHELL_PLATFORM == 'bsd' ]]; }
-shell_is_osx()   { [[ $SHELL_PLATFORM == 'osx' ]]; }
-shell_is_bsd()   { [[ $SHELL_PLATFORM == 'bsd' || $SHELL_PLATFORM == 'osx' ]]; }
-
-export -f shell_is_linux
-export -f shell_is_osx
-export -f shell_is_bsd
+version https://git-lfs.github.com/spec/v1
+oid sha256:27e5a8fb0de0c7cce991ac823caadfd36fb175537b9b7fb281446dd0f88d8679
+size 556

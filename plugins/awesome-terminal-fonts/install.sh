@@ -1,10 +1,3 @@
-#!/usr/bin/env sh
-
-cd "$(dirname "$0")"
-
-mkdir -p ~/.fonts
-cp -f ./build/*.ttf ~/.fonts
-cp -f ./build/*.sh ~/.fonts
-mkdir -p ~/.config/fontconfig/conf.d
-cp -f ./config/* ~/.config/fontconfig/conf.d
-fc-cache -fv ~/.fonts
+version https://git-lfs.github.com/spec/v1
+oid sha256:3170a1f30d2ccd35c560c076c2a7d21645b6f97b9c0e1a23f02777111c93a7e9
+size 220

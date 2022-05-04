@@ -1,24 +1,3 @@
-{
-    "terminalCursor.foreground": "#C02030",
-    "terminalCursor.background": "#29153A",
-    "terminal.ansiBlack": "#221B25",
-    "terminal.ansiBrightBlack": "#928374",
-    "terminal.ansiBlue": "#458588",
-    "terminal.ansiBrightBlue": "#99C6CA",
-    "terminal.ansiCyan": "#689D6A",
-    "terminal.ansiBrightCyan": "#8AE180",
-    "terminal.ansiGreen": "#98971A",
-    "terminal.ansiBrightGreen": "#B5C033",
-    "terminal.ansiMagenta": "#B16286",
-    "terminal.ansiBrightMagenta": "#D66282",
-    "terminal.ansiRed": "#CC241D",
-    "terminal.ansiBrightRed": "#F42C3E",
-    "terminal.ansiWhite": "#C0B0A0",
-    "terminal.ansiBrightWhite": "#DDCCAA",
-    "terminal.ansiYellow": "#E7A931",
-    "terminal.ansiBrightYellow": "#FABD2F",
-    "terminal.background": "#221D25",
-    "terminal.border": "#77116633",
-    "terminal.foreground": "#DDBC9A",
-    "terminal.selectionBackground": "#3277"
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:bb0085e20d16c06b6f0b8da6fe55f9bddc8d74c0eeece0bef9365c89b160fa65
+size 886

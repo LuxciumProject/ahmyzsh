@@ -1,4 +1,3 @@
-#!/usr/bin/env sh
-# function cls() {}
-# print "${clearall}"
-# pw
+version https://git-lfs.github.com/spec/v1
+oid sha256:0ae8a53ec3dd68311f2b6aa1ee961d18b69430fb389c53e43083a59f7878923a
+size 65

@@ -1,2 +1,3 @@
-#!/usr/bin/env sh
-echo -en "$(sha224hmac <<<$(date +%D%s%N) | cut -c -2 | tr \[a-z\] \[A-Z\])"
+version https://git-lfs.github.com/spec/v1
+oid sha256:51b512768b69ef2d1e829fde044b4a8416897209b71654a70454218ce507e123
+size 95

@@ -1,15 +1,3 @@
-#!/usr/bin/sh
-
-## The nice way
-if test -n "${GPG_AGENT_INFO}"; then
-  GPG_AGENT_PID=`echo ${GPG_AGENT_INFO} | cut -d: -f2` && kill ${GPG_AGENT_PID} ||:
-  unset GPG_AGENT_INFO
-fi
-
-## The not so nice way
-## NOTE: a root login will kill *all* users' gpg-agents
-#killall gpg-agent
-
-## clean/remove .gpg-agent-info
-## (we'll let the startup script reap stale entries)
-#rm -f $HOME/.gpg-agent-info
+version https://git-lfs.github.com/spec/v1
+oid sha256:5d6fdfe6183e673b75da95c16d796d82ff318012db7dd8791d3d5ad959d91067
+size 392

@@ -1,12 +1,3 @@
-#!/usr/bin/sh
-#
-# $XFree86$
-
-# The output of this script is displayed in the chooser window.
-# (instead of "Willing to manage")
-
-load="`uptime|sed -e 's/^.*load[^0-9]*//'`"
-nrusers="`who|cut -c 1-8|sort -u|wc -l|sed 's/^[ 	]*//'`"
-s=""; [ "$nrusers" != 1 ] && s=s
-
-echo "${nrusers} user${s}, load: ${load}"
+version https://git-lfs.github.com/spec/v1
+oid sha256:ab2eb38037c6262175f8a4c9c092758d7682c417426fc74bb5b362bbce9065e4
+size 307

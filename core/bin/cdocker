@@ -1,17 +1,3 @@
-#!/usr/bin/env sh
-
-function cdocker_() {
-  NEW_DIR_="${HOME}/dev/dockers/$(date +%y)$(date +%m%d)$(date +%Z)$(date +%H%M)$(getstamp 6 Z '')"
-  mkdir -p "${NEW_DIR_}"
-  echo -n "${NEW_DIR_}"
-  cd $NEW_DIR_
-}
-
-## Extra code make it easy to copy paste only the function out to use elsewhere
-echo -n $(cdocker_ "${@}")
-
-__EXIT_STATUS="${?}"
-
-unset -f cdocker_
-
-exit $__EXIT_STATUS
+version https://git-lfs.github.com/spec/v1
+oid sha256:7f954e0819d885b66b9b8402c7a6e9e2fa9809f20a05a599e881eef74a3f67c9
+size 377

@@ -1,16 +1,3 @@
-  # region [Credit]{@link https://stackoverflow.com/questions/18215973}
-  # how-to-check-if-running-as-root-in-a-bash-script
-
-  # if [ "$EUID" -ne 0 ]
-  # if [[ $EUID > 0 ]]; then
-  #   echo "Please run as root"
-  #   exit
-  # fi
-
-  # SUDO=''
-  # if (($EUID != 0)); then
-  #   SUDO='sudo'
-  # fi
-  # $SUDO a_command
-
-  # endregion [Credit]{@link https://stackoverflow.com/questions/18215973}
+version https://git-lfs.github.com/spec/v1
+oid sha256:bd4dd00ef2e7611725858bfae622660df201642a1c7855ca8a07acfaaf180fbf
+size 392

@@ -1,9 +1,3 @@
-#!/usr/bin/sh
-cat <<EOF
-if [ -f  \${config_directory}/custom.cfg ]; then
-  source \${config_directory}/custom.cfg
-elif [ -z "\${config_directory}" -a -f  \$prefix/custom.cfg ]; then
-  source \$prefix/custom.cfg;
-fi
-EOF
-
+version https://git-lfs.github.com/spec/v1
+oid sha256:3472cb82a1762f235be26be81cdb25cdf5146456e2887e9c99f297be4bf8da15
+size 220

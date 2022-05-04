@@ -1,11 +1,3 @@
-# The following lines were added by compinstall
-
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-zstyle ':completion:*' menu select=20
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle :compinstall filename '/home/luxcium/ahmyzsh/comp.sh'
-
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
+version https://git-lfs.github.com/spec/v1
+oid sha256:71b7433018992e7043aedf915a1332fa738cf664fb13cf7fc6da23ee77aeb6db
+size 428

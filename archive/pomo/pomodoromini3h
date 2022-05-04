@@ -1,13 +1,3 @@
-#! /bin/env zsh
-
-: ${HOME:="/home/luxcium"}
-: ${AHMYZSH:="${HOME}/ahmyzsh"}
-: ${CUSTOM_ZSH:="${AHMYZSH}/custom-zsh"}
-: ${CUSTOM_ZSH_BIN:="${CUSTOM_ZSH}/bin"}
-: ${POMODORO:="${CUSTOM_ZSH_BIN}/pomodoro.zsh"}
-
-. ${POMODORO}
-
-minipomodoro3h_
-
-exit 0
+version https://git-lfs.github.com/spec/v1
+oid sha256:6d0288e4c7c01becdfdb76849c7b83b167df52b0407e84efcd73704c5524adfd
+size 246

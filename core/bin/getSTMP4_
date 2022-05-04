@@ -1,3 +1,3 @@
-#!/usr/bin/env sh
-# getSTMP4_
-  echo -en $(sha224hmac <<<$(date +%D%s%N) | cut -c -4 | tr \[a-z\] \[A-Z\])
+version https://git-lfs.github.com/spec/v1
+oid sha256:c9018fd69d237d29bed2db8550b3e808d11036def76a25b5182448b00a93d453
+size 107

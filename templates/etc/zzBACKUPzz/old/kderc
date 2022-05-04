@@ -1,7 +1,3 @@
-[Directories]
-kioskAdmin=root:
-profileDirsPrefix=/usr/share/kde-settings/kde-profile/
-userProfileMapFile=/etc/kde-user-profile
-
-[Directories-default]
-prefixes=/usr/share/kde-settings/kde-profile/default/
+version https://git-lfs.github.com/spec/v1
+oid sha256:315cd974407c85a2f8294525158164cbf68092ee23919f9610dd20d7aa9eb40a
+size 204

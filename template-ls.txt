@@ -1,4 +1,3 @@
-ls -R ./ | awk '
-/:$/&&f{s=$0;f=0}
-/:$/&&!f{sub(/:$/,"");s=$0;f=1;next}
-NF&&f{ print s"/"$0 }' | grep code >> code-listing.log
+version https://git-lfs.github.com/spec/v1
+oid sha256:18bdbaafafca928ae21ff1b0e103c87dc7b11633722bba2fc3ed353d770b6a81
+size 127

@@ -1,13 +1,3 @@
-function load_path() {
-  ## load_path
-  if [ -f "${CACHED_PATH}" ]; then
-    source_ "${CACHED_PATH}"
-    (compute_path &) >/dev/null
-  else
-    compute_path
-  fi
-}
-
-function re_load_path() {
-  compute_path
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:81c83c2b65f26fee617599eb8807fcc06fcec38a9e50444e5b8c74c005ccccc0
+size 222

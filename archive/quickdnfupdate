@@ -1,5 +1,3 @@
-#!/bin/zsh
-
-sudo nice -n -20 taskset -c 0,1,5,8 ionice -c 1 -n 1 $(which dnfupdateall)
-
-exit 0
+version https://git-lfs.github.com/spec/v1
+oid sha256:41b4d7d5288d52499dac5b070dc7707140357cf343d8e6d29cd210858bb18bf7
+size 95

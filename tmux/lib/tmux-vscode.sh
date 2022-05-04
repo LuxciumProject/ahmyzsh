@@ -1,22 +1,3 @@
-function tmux_vscode() {
-    TMUX_SESSION='VSCODE'
-    TMUX_WINDOW_0='VS-Code'
-
-    tmux has-session -t $LXI_SESSION 2>/dev/null
-    if [ $? != 0 ]; then
-        tmux new -D -s $LXI_SESSION -d -n $TMUX_WINDOW_0 -c $PATH_LXIO
-    else
-        tmux new-window -t $LXI_SESSION -n $TMUX_WINDOW_0 -c $PATH_LXIO
-    fi
-
-    tmux has-session -t $VS_CODE_SESSION 2>/dev/null
-    if [ $? != 0 ]; then
-        tmux new -D -s $VS_CODE_SESSION -d -n $TMUX_WINDOW_0 -c $PATH_LXIO
-    fi
-
-    tmux link-window -s $LXI_SESSION -t $VS_CODE_SESSION
-    tmux attach -t $TMUX_SESSION
-    tmux source "$TMUX_CONFIGS"/common.tmux.conf
-    # tmux source "$TMUX_CONFIGS"/theme.tmux.conf
-
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:501a6c9d41e365972331c59ac72aa3cdf8577b9cd4f19cee7e77d04cf8f7af62
+size 667

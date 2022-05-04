@@ -1,14 +1,3 @@
-#!/usr/bin/env sh
-
-it_has_() {
-  type "$1" >/dev/null 2>&1 && (echo true && exit 0) || (echo false && exit 1)
-}
-
-## Extra code make it easy to copy paste only the function out to use elsewhere
-it_has_ "${@}"
-
-__EXIT_STATUS="${?}"
-
-unset -f it_has_
-
-exit $__EXIT_STATUS
+version https://git-lfs.github.com/spec/v1
+oid sha256:21c41300b88ce52b62b76558be83fdad41ae4acb7c2d8653272c2528fb4a7931
+size 269

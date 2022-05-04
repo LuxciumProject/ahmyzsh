@@ -1,17 +1,3 @@
-!*.png
-!*.j*
-!*.t*
-*.zwc
-*.ZWC
-node_modules
-!templates/vscode-material-icon-testDirs/node_modules
-core/env/aliases/Untitled-1.js
-
-!vscode-material-icon-testDirs/**/*.*
-nohup.out
-
-.cache
-.directory
-.history
-hello_world/
-hello-world/
+version https://git-lfs.github.com/spec/v1
+oid sha256:dab3ca8f9012d855a745ee90468558fe04bef0a064f631ea842ca900a17f7ba7
+size 232

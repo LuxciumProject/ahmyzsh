@@ -1,22 +1,3 @@
-#
-# /etc/zprofile and ~/.zprofile are run for login shells
-#
-
-PATH="$PATH:$HOME/bin"
-export PATH
-
-_src_etc_profile()
-{
-    #  Make /etc/profile happier, and have possible ~/.zshenv options like
-    # NOMATCH ignored.
-    #
-    emulate -L ksh
-
-    # source profile
-    if [ -f /etc/profile ]; then
-	    source /etc/profile
-    fi
-}
-_src_etc_profile
-
-unset -f _src_etc_profile
+version https://git-lfs.github.com/spec/v1
+oid sha256:e3c3625d966c8277274798f26241857df5fc520e18674deba6cc356f6b022d63
+size 375

@@ -1,22 +1,3 @@
-#!/usr/bin/env bash
-
-export TMUX_POWERLINE_DIR_HOME="$(dirname $0)"
-
-source "${TMUX_POWERLINE_DIR_HOME}/config/helpers.sh"
-source "${TMUX_POWERLINE_DIR_HOME}/config/paths.sh"
-source "${TMUX_POWERLINE_DIR_HOME}/config/shell.sh"
-source "${TMUX_POWERLINE_DIR_HOME}/config/defaults.sh"
-
-source "${TMUX_POWERLINE_DIR_LIB}/arg_processing.sh"
-source "${TMUX_POWERLINE_DIR_LIB}/formatting.sh"
-source "${TMUX_POWERLINE_DIR_LIB}/muting.sh"
-source "${TMUX_POWERLINE_DIR_LIB}/powerline.sh"
-source "${TMUX_POWERLINE_DIR_LIB}/rcfile.sh"
-
-if ! powerline_muted "$1"; then
-  process_settings
-  check_arg_side "$1"
-  print_powerline "$1"
-fi
-
-exit 0
+version https://git-lfs.github.com/spec/v1
+oid sha256:b89e615a475ed93588fe475e65b1cadc6e91ebebd2b2eb7b8fde1944caa8729c
+size 631

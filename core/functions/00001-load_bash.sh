@@ -1,15 +1,3 @@
-# if [ -n "${IS_BASH_}" ]; then #? IF NOT IS_BASH_
-#   # shopt -q login_shell && echo 'Login shell' || echo 'Not login shell'
-#   # [[ $- == *i* ]] && echo 'Interactive' || echo 'Not interactive'
-#   if [ -z "${MAIN_INIT}" ]; then
-#     MAIN_INIT="start"
-#     echo pwd=$(pwd)
-#     echo 'using bash'
-#   else
-#     [ -o interactive ] && echo \
-#       "Already loaded reload not yet implemented"
-#     return 1
-#   fi
-# fi
-
-# export IS_BASH_="$(ps -o comm= -p $$ | grep 'bash')"
+version https://git-lfs.github.com/spec/v1
+oid sha256:b75f78470025983913629c22da9a4fb7036fbdf941a5bb297ce6c7cff2bab5de
+size 480

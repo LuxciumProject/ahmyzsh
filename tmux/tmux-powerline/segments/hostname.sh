@@ -1,31 +1,3 @@
-# Prints the hostname.
-
-TMUX_POWERLINE_SEG_HOSTNAME_FORMAT_DEFAULT="short"
-
-generate_segmentrc() {
-	read -d '' rccontents  << EORC
-# Use short or long format for the hostname. Can be {"short, long"}.
-export TMUX_POWERLINE_SEG_HOSTNAME_FORMAT="${TMUX_POWERLINE_SEG_HOSTNAME_FORMAT_DEFAULT}"
-EORC
-	echo "$rccontents"
-}
-
-__process_settings() {
-	if [ -z "$TMUX_POWERLINE_SEG_HOSTNAME_FORMAT" ]; then
-		export TMUX_POWERLINE_SEG_HOSTNAME_FORMAT="${TMUX_POWERLINE_SEG_HOSTNAME_FORMAT_DEFAULT}"
-	fi
-}
-run_segment() {
-	__process_settings
-	local opts=""
-	if [ "$TMUX_POWERLINE_SEG_HOSTNAME_FORMAT" == "short" ]; then
-		if shell_is_osx || shell_is_bsd; then
-			opts="-s"
-		else
-			opts="--short"
-		fi
-	fi
-
-	hostname ${opts}
-	return 0
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:c009ebd53d824b1352b9622744840ab2b1e8449977310a8fef5feabd49673c89
+size 726

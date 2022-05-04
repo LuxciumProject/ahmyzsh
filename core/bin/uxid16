@@ -1,10 +1,3 @@
-#!/bin/env sh
-
-# /home/luxcium/ahmyzsh/plugins/bin/uxid
-
-function uxid16() {
-  local fooZ="$(/home/luxcium/ahmyzsh/plugins/bin/uxid)"
-  echo -n "${fooZ:1:17}R"
-}
-uxid16
-exit 0
+version https://git-lfs.github.com/spec/v1
+oid sha256:528c367d34e840a9038069a5036824de0532c52c8119c4b408c5dfa54da4b04b
+size 176

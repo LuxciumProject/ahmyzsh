@@ -1,24 +1,3 @@
-#!/usr/bin/env/ sh
-
-function mkloopback_() {
-  (
-    cd /usr/src/v4l2loopback &&
-      sudo make clean &&
-      sudo git pull origin &&
-      sudo make &&
-      sudo make install &&
-      sudo depmod -a -v &&
-      sudo modprobe -v v4l2loopback &&
-      cd /sys/devices/virtual/video4linux/ ||
-      ( (sudo wall "ERROR IN MAKE LOOPBACK") && exit 1)
-  ) && ( (sudo wall "Video loop back in /sys/devices/virtual/video4linux/$(ls /sys/devices/virtual/video4linux)/ ") && exit 0)
-}
-
-## Extra code make it easy to copy paste only the function out to use elsewhere
-mkloopback_ $@
-
-__EXIT_STATUS="${?}"
-
-unset -f mkloopback_
-
-exit $__EXIT_STATUS
+version https://git-lfs.github.com/spec/v1
+oid sha256:f8dfc9893edf5c6b484c6247f7cadd628d7b2b60df5fecff040a1cf4a0503c92
+size 640

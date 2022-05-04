@@ -1,6 +1,3 @@
-function compute_pl10K_now() {
-    (env echo $(npm -v) >"${CACHE_FOLDER_}/NPM_VERSION.raw.txt")
-    (env echo "$(cut -d ' ' -f 2 <<<$(tsc -v))" >"${CACHE_FOLDER_}/TSC_VERSION.raw.txt")
-
-    call_ "compute_pl10k_"
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:12b21138318df622b4fede9cb7111b27495e2102b90c0fe2158f4fb6b471cc6a
+size 223

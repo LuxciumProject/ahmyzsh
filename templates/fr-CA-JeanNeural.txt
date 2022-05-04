@@ -1,1 +1,3 @@
-fr-CA-JeanNeural
+version https://git-lfs.github.com/spec/v1
+oid sha256:3f0cdb22ba784a6e00640bed4faa327fde3ba704d3e1ca8c93bda5cd753cbc27
+size 17

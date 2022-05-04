@@ -1,17 +1,3 @@
-function load_zshrc() {
-  #   #$ Interactive,login,non-login
-  # source_ "${AHMYZSH}/themes/ahmyzhs.sh"
-
-  # call_ activate_instant_prompt
-  call_ activate_normal_prompt
-
-  if [ "${PARENT_ENV_LOADED}" != 'true' ]; then
-    (compute_path &) # >/dev/null
-  fi
-
-  call_ load_oh_my_zsh
-  call_ load_options_list
-  call_ load_options
-  call_ load_autocomplete_now
-
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:f766e9c71f7277926750378a97ef3094d3c1bc6ab53d4bbe626de329d805fdb0
+size 375

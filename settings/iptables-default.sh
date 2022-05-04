@@ -1,27 +1,3 @@
-# IPv6
-
-##
-## set default policies to let everything in
-sudo ip6tables --policy INPUT   ACCEPT;
-sudo ip6tables --policy OUTPUT  ACCEPT;
-sudo ip6tables --policy FORWARD ACCEPT;
-
-##
-## start fresh
-sudo ip6tables -Z; # zero counters
-sudo ip6tables -F; # flush (delete) rules
-sudo ip6tables -X; # delete all extra chains
-
-# IPv4
-
-##
-## set default policies to let everything in
-sudo iptables --policy INPUT   ACCEPT;
-sudo iptables --policy OUTPUT  ACCEPT;
-sudo iptables --policy FORWARD ACCEPT;
-
-##
-## start fresh
-sudo iptables -Z; # zero counters
-sudo iptables -F; # flush (delete) rules
-sudo iptables -X; # delete all extra chains
+version https://git-lfs.github.com/spec/v1
+oid sha256:94427a66e1661c04194bd2a9819b8b9d15812593e28661ec646bb98a62796f12
+size 629

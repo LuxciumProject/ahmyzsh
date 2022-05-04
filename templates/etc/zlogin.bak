@@ -1,8 +1,3 @@
-#
-# /etc/zlogin and .zlogin are sourced in login shells.  It should
-# contain commands that should be executed only in
-# login shells.  It should be used to set the terminal
-# type and run a series of external commands (fortune,
-# msgs, from, etc).
-#
-
+version https://git-lfs.github.com/spec/v1
+oid sha256:9d7c9b0422a019dedeadfd26b89acb2d18731caebfd747f1ff068fb2417f73eb
+size 252

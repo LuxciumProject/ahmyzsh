@@ -1,7 +1,3 @@
-function load_my_powerlevel10k_now() {
-  ## load_my_pl10K_layout_now
-  source_ "${AHMYZSH}/themes/pl10K-Layout.zsh"
-  load_my_powerlevel10k
-  pl10k_prompt_on
-
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:c9c06ff6207e1de94bdea11398773e4fb8f732d3685e5d6709c08b476ae339fb
+size 174

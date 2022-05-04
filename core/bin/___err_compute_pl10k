@@ -1,22 +1,3 @@
-#!/bin/env sh
-
-#. ----------------------------------------------------------------------------- ~
-#. Scientia es lux principium -tm-
-#. Copyright © 2019-2020 Benjamin Vincent Kasapoglu (Luxcium)
-#. MIT LICENSE ― PROVIDED "AS IS" ― *NOT* fit for any particular use or purpose!
-#. ----------------------------------------------------------------------------- ~
-
-function compute_pl10k__() {
-  #@:  ligne 11: compute_pl10k_ : commande introuvable
-  compute_pl10k_ "${@}"
-}
-
-## Extra code make it easy to copy paste only the function out to use elsewhere
-
-compute_pl10k__ "${@}"
-
-EXIT_="${?}"
-
-unset -f compute_pl10k__
-
-exit $EXIT_
+version https://git-lfs.github.com/spec/v1
+oid sha256:56324624477ac11361fc23e368945c52864c581f912f46f55d9e1551d3d00719
+size 633

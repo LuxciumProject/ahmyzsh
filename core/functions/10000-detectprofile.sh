@@ -1,36 +1,3 @@
-detectprofile() {
-  if [ "${PROFILE-}" = '/dev/null' ]; then
-    # the user has specifically requested NOT to have nvm touch their profile
-    return
-  fi
-
-  if [ -n "${PROFILE}" ] && [ -f "${PROFILE}" ]; then
-    echo "${PROFILE}"
-    return
-  fi
-
-  local DETECTED_PROFILE
-  DETECTED_PROFILE=''
-
-  if [ -n "${BASH_VERSION-}" ]; then
-    if [ -f "$HOME/.bashrc" ]; then
-      DETECTED_PROFILE="$HOME/.bashrc"
-    elif [ -f "$HOME/.bash_profile" ]; then
-      DETECTED_PROFILE="$HOME/.bash_profile"
-    fi
-  elif [ -n "${ZSH_VERSION-}" ]; then
-    DETECTED_PROFILE="$HOME/.zshrc"
-  fi
-
-  if [ -z "$DETECTED_PROFILE" ]; then
-    for EACH_PROFILE in ".profile" ".bashrc" ".bash_profile" ".zshrc"; do
-      if DETECTED_PROFILE="$(nvm_try_profile "${HOME}/${EACH_PROFILE}")"; then
-        break
-      fi
-    done
-  fi
-
-  if [ -n "$DETECTED_PROFILE" ]; then
-    echo "$DETECTED_PROFILE"
-  fi
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:4fd21add9505148c185701c7a27066d33e71787bf9f89c7342937eb91ec08ad5
+size 901

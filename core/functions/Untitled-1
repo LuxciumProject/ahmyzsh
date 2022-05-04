@@ -1,14 +1,3 @@
-function dnfcup() {
-  (
-    (
-      sudo dnf clean all &&
-        sudo dnf makecache
-    ) &&
-      (
-        (
-          sudo nice -n -15 ionice -c 1 -n 2 dnf upgrade --downloadonly -y &
-        ) >/dev/null
-      ) 2>/dev/null
-  ) &&
-    sudo nice -n -15 ionice -c 2 -n 0 dnf upgrade --setopt=keepcache=1
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:40e0e76b0178db962d17a21f31e1e379ee0aa0e523550af2fa8d411f4c944ba5
+size 1053

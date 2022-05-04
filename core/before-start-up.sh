@@ -1,9 +1,3 @@
-#!/usr/bin/env sh
-
-# sudo dnf update --downloadonly -v -y
-
-(
-  (nice -5 ionice -c 2 -n 0 sudo dnf remove xorg-x11-drv-amdgpu xorg-x11-drv-nouveau -y) &
-  (nice -5 ionice -c 2 -n 0 sudo dnf -4 makecache -y)
-  (nice -5 ionice -c 2 -n 0 sudo dnf upgrade --downloadonly -y)
-) &
+version https://git-lfs.github.com/spec/v1
+oid sha256:22b52cc80220c7608aa8a77d41ad9d3f22faf7186fd48d0c7442e115022d7091
+size 274

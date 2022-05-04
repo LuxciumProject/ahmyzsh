@@ -1,15 +1,3 @@
-# echo "\u001b[35m# LOADING... (**  USER   .inputrc)"
-# source "${BASH_BIN}/.inputrc.sh"
-
-# /bin/bash
-#        The bash executable
-# /etc/profile
-#        The systemwide initialization file, executed for login shells
-# ~/.bash_profile
-#        The personal initialization file, executed for login shells
-# ~/.bashrc
-#        The individual per-interactive-shell startup file
-# ~/.bash_logout
-#        The individual login shell cleanup file, executed when a login shell exits
-# ~/.inputrc
-#        Individual readline initialization file
+version https://git-lfs.github.com/spec/v1
+oid sha256:023633e93b16c6bad10c0346a246ecc332a05230bbeb07c656af954095d8a5b1
+size 538

@@ -1,25 +1,3 @@
-function cd() {
-  local catchupPATH=$(/bin/pwd)
-  local tentativePath=${@:-${HOME}}
-  local effectivePATH="$(builtin cd ${tentativePath} 2>/dev/null && echo -n "${tentativePath}" || echo -n ${catchupPATH})"
-  local _MESSAGE=$(
-    [[ "${effectivePATH}" = "${tentativePath}" ]] \
-      || echo "ERROR: Path not found or not a directory cd back to ${effectivePATH}"
-  )
-
-  [[ "${effectivePATH}" = "${HOME}" ]] && [[ "${catchupPATH}" != "${HOME}" ]] \
-    && echo "cd to $HOME"
-
-  builtin cd "${effectivePATH}"
-  echo ''
-  echo -n "$LBOLD $FRD $_MESSAGE $RSET"
-  echo ''
-  [[ -x $(which lolcat) ]] && (pwd | lolcat) || ([[ -x $(which /bin/pwd) ]] && /bin/pwd)
-  [[ -x $(which colorls) ]] && (colorls -lA --sd -d --gs) || ([[ -x $(which /bin/ls) ]] && /bin/ls --color=auto -hal)
-  [[ -x $(which lolcat) ]] && (pwd | lolcat) || ([[ -x $(which /bin/pwd) ]] && /bin/pwd)
-  echo -n "$LBOLD $FRD $_MESSAGE $RSET"
-  echo ''
-
-  [[ -z "$_MESSAGE" ]] || return 1
-
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:7c8cffc1c6ecb57a87e34e0165181cc008c7b1a3a9222998c5317f4acc1f0fb2
+size 966

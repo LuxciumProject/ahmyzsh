@@ -1,8 +1,3 @@
-#!/usr/bin/sh
-#
-# An example hook script to prepare a packed repository for use over
-# dumb transports.
-#
-# To enable this hook, rename this file to "post-update".
-
-exec git update-server-info
+version https://git-lfs.github.com/spec/v1
+oid sha256:d0d00b057e31fbe8207f3a1496797050fcadad75df883842e979a965bd6a298f
+size 193

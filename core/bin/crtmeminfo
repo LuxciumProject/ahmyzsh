@@ -1,8 +1,3 @@
-#!/bin/zsh
-
-( 
-  (
-    exec ionice -c 3 nice -n 35 cool-retro-term -T 'cool-retro-term meminfo' --profile 'meminfo-003' -e zsh -c meminfowatch
-  ) &>/dev/null
-) &
-exit 0
+version https://git-lfs.github.com/spec/v1
+oid sha256:0e3b3ff46f857434fd412d7b36dbd7e507e486a450d8880f07b7d96e3a2fc278
+size 170

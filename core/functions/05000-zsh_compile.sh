@@ -1,32 +1,3 @@
-function zsh_compile_all_R() {
-  (find "${AHMYZSH}/" -name '*.*sh' | while read line; do eval "zcompile -R ${line}"; done) 2>/dev/null
-}
-
-function zsh_compile_all_M() {
-  # (find "${AHMYZSH}/core" -name '*.*sh' | while read line; do eval "zcompile -M  ${line}"; done ) 2>/dev/null
-  (find "${AHMYZSH}/" -name '*.*sh' | while read line; do eval "zcompile -M  ${line}"; done) 2>/dev/null
-  # (find "${AHMYZSH}/" -name '*.*sh' | while read line; do eval "zcompile -M  ${line}"; done ) 2>/dev/null
-  # (find "${AHMYZSH}/" -name '*.*sh' | while read line; do eval "zcompile -M  ${line}"; done ) 2>/dev/null
-  # clearzshwordcode
-  # (find "${AHMYZSH}/archive/" -name '*.*sh' | while read line; do eval "zcompile -M  ${line}"; done)
-  # (find "${AHMYZSH}/archives/" -name '*.*sh' | while read line; do eval "zcompile -M  ${line}"; done)
-  # (find "${AHMYZSH}/core/" -name '*.*sh' | while read line; do eval "zcompile -M  ${line}"; done)
-  # (find "${AHMYZSH}/MAIN.zsh" -name '*.*sh' | while read line; do eval "zcompile -M  ${line}"; done)
-  # (find "${AHMYZSH}/MAIN_SETTINGS.zsh" -name '*.*sh' | while read line; do eval "zcompile -M  ${line}"; done)
-  # (find "${AHMYZSH}/MAIN-FUNCTIONS.zsh" -name '*.*sh' | while read line; do eval "zcompile -M  ${line}"; done)
-  # (find "${AHMYZSH}/services.sh" -name '*.*sh' | while read line; do eval "zcompile -M  ${line}"; done)
-  # (find "${AHMYZSH}/plugins/" -name '*.*sh' | while read line; do eval "zcompile -M  ${line}"; done)
-  # (find "${AHMYZSH}/templates/" -name '*.*sh' | while read line; do eval "zcompile -M  ${line}"; done)
-  # (find "${AHMYZSH}/themes/" -name '*.*sh' | while read line; do eval "zcompile -M  ${line}"; done)
-  # (find "${AHMYZSH}/ohmyzsh/" -name '*.*sh' | while read line; do eval "zcompile -M  ${line}"; done)
-  # (find "${AHMYZSH}/powerlevel10k/" -name '*.*sh' | while read line; do eval "zcompile -M  ${line}"; done)
-
-}
-
-function zsh_compile_all() {
-  (find "${AHMYZSH}/" -name '*.*sh' | while read line; do eval "zcompile ${line}"; done) 2>/dev/null
-
-}
-
-# /home/luxcium/ahmyzsh/ohmyzsh/
-# /home/luxcium/ahmyzsh/powerlevel10k/
+version https://git-lfs.github.com/spec/v1
+oid sha256:6b74dc4a88db5031241e15634d4bdddc6af8fafd9a5cddaf3aea08e9d005585f
+size 2109

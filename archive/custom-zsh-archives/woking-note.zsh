@@ -1,30 +1,3 @@
-# /bin/bash ~ The bash executable
-# /etc/profile ~ The systemwide initialization file, executed for login shells
-# ~/.bash_profile ~ The personal initialization file, executed for login shells
-# ~/.bashrc ~ The individual per-interactive-shell startup file
-# ~/.bash_logout ~ The individual login shell cleanup file, executed when a login shell exits
-# ~/.inputrc ~ Individual readline initialization file
-
-# You will also have these commands:
-# imgcat filename
-#   Displays the image inline.
-# imgls
-#   Shows a directory listing with image thumbnails.
-# it2api
-#   Command-line utility to manipulate iTerm2.
-# it2attention start|stop|fireworks
-#   Gets your attention.
-# it2check
-#   Checks if the terminal is iTerm2.
-# it2copy [filename]
-#   Copies to the pasteboard.
-# it2dl filename
-#   Downloads the specified file, saving it in your Downloads folder.
-# it2setcolor ...
-#   Changes individual color settings or loads a color preset.
-# it2setkeylabel ...
-#   Changes Touch Bar function key labels.
-# it2ul
-#   Uploads a file.
-# it2universion
-#   Sets the current unicode version.
+version https://git-lfs.github.com/spec/v1
+oid sha256:7ae47b5317d49b4564a2cdf79e3fc19dd927e744212a995273c07ddfb83e9b43
+size 1085

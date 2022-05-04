@@ -1,23 +1,3 @@
-# Prints the current time.
-
-TMUX_POWERLINE_SEG_TIME_FORMAT_DEFAULT="%H:%M"
-
-generate_segmentrc() {
-	read -d '' rccontents  << EORC
-# date(1) format for the time. Americans might want to have "%I:%M %p".
-export TMUX_POWERLINE_SEG_TIME_FORMAT="${TMUX_POWERLINE_SEG_TIME_FORMAT_DEFAULT}"
-EORC
-	echo "$rccontents"
-}
-
-__process_settings() {
-	if [ -z "$TMUX_POWERLINE_SEG_TIME_FORMAT" ]; then
-		export TMUX_POWERLINE_SEG_TIME_FORMAT="${TMUX_POWERLINE_SEG_TIME_FORMAT_DEFAULT}"
-	fi
-}
-
-run_segment() {
-        __process_settings
-	date +"$TMUX_POWERLINE_SEG_TIME_FORMAT"
-	return 0
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:9a98fc87ad8303903a917a3cd400b747f60f26d6fa8b32e9c3ff972bc4f1aa64
+size 574

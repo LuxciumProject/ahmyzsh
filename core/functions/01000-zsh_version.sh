@@ -1,6 +1,3 @@
-function zsh_version() {
-  local ZSH_X=$(echo $0)
-  local ZSH_V=$($(echo "${ZSH_X/'-'/}" --version))
-  export MY_ZSH_VERSION=" ${TERM_ICO}  ${ZSH_V%%' (x86)'*}"
-  echo "${normal}$CLRLN$BYL9K_TERM$(tput setaf 2)${MY_ZSH_VERSION} ${BKBK}${normal}"
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:1dc0afe70c574771bb00e19abf200f4234d64cb2823c26b909d1724824864dda
+size 263

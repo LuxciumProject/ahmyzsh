@@ -1,8 +1,3 @@
-
-# WARNINGS
-
- - Sounds should all (_probably_) be opensourced but **NO GUARANTEE** is provided.
-
- - Credits to autors and copyright infromation is missing.
-
- - Most files are from _»_ [KDE Store | System Sounds](https://store.kde.org/browse?cat=316)
+version https://git-lfs.github.com/spec/v1
+oid sha256:15944a443d8093dc6962dfb5537e0730eef39847fa580f236f9cdb2e136b2d3e
+size 251

@@ -1,32 +1,3 @@
-#!/usr/bin/env sh
-
-# core/bin/defaultprocvm
-
-function default_proc_vm_() {
-  # #region default_proc_vm_ =================================================== ¹
-  # (
-  #   systemctl -w vm.dirty_background_bytes = 0 &&
-  #     systemctl -w vm.dirty_background_ratio = 10 &&
-  #     systemctl -w vm.dirty_expire_centisecs = 3000 &&
-  #     systemctl -w vm.dirty_writeback_centisecs = 500 &&
-  #     systemctl -w vm.dirtytime_expire_seconds = 43200 &&
-  #     systemctl -w vm.dirty_ratio = 20 &&
-  #     exit 0 ||
-  #     exit 10
-  # )
-
-  # #endregion default_proc_vm_ ================================================ ¹
-}
-
-## Extra code make it easy to copy paste only the function out to use elsewhere
-default_proc_vm_ "${@}"
-
-__EXIT_STATUS="${?}"
-
-unset -f default_proc_vm_
-
-exit $__EXIT_STATUS
-
-mkloopback_ $@
-
-unset -f mkloopback_
+version https://git-lfs.github.com/spec/v1
+oid sha256:cc7db73aaa809e2287e6ad3dd6a606387e024787df56fbba0ab2c21a7e64baf3
+size 832

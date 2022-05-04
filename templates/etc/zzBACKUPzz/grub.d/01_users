@@ -1,11 +1,3 @@
-#!/usr/bin/sh -e
-cat << EOF
-if [ -f \${prefix}/user.cfg ]; then
-  source \${prefix}/user.cfg
-  if [ -n "\${GRUB2_PASSWORD}" ]; then
-    set superusers="root"
-    export superusers
-    password_pbkdf2 root \${GRUB2_PASSWORD}
-  fi
-fi
-EOF
+version https://git-lfs.github.com/spec/v1
+oid sha256:b6949685995c8ac27a703bc30348a887d3802ed1637bdb5af0015f3ea47c200f
+size 236

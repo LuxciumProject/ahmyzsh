@@ -1,8 +1,3 @@
-#!/usr/bin/env sh
-
-(
-  sudo dnf clean all
-  sudo dnf reinstall code-insiders code --downloadonly -y --refresh
-  sudo dnf upgrade --downloadonly -y --refresh
-  # sudo dnf group upgrade -y
-)
+version https://git-lfs.github.com/spec/v1
+oid sha256:740e8d57fde5aafd0742ffa60f2ad04474f953f1c5350488972bd98b11105148
+size 189

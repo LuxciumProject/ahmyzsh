@@ -1,24 +1,3 @@
-# #!/usr/bin/env sh
-# function yarn-update() {
-#   yarn global add \
-#     @nestjs/cli@latest \
-#     bash-language-server@latest \
-#     concurrently@latest \
-#     create-react-app@latest \
-#     eslint-config-prettier@latest \
-#     eslint@latest \
-#     install-peerdeps@latest \
-#     npm-check-unused@latest \
-#     npm-check@latest \
-#     prettier@latest \
-#     serve@latest \
-#     shelljs@latest \
-#     shx@latest \
-#     standard-version@latest \
-#     ts-node@latest \
-#     typescript@latest \
-#     vsce@latest \
-#     yarn@latest
-# }
-
-# yarn-update
+version https://git-lfs.github.com/spec/v1
+oid sha256:9cfa193fb58ecb75cf39fc8a5d5c8ae2efe91c965437ef6b88034049a96d3250
+size 566

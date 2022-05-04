@@ -1,15 +1,3 @@
-function mkramdir() {
-  # LASTVIRTUALRAM
-  if [ -d "${MYVIRTUALRAM_PATH}" ]; then
-
-    LASTVIRTUALRAM="${MYVIRTUALRAM_PATH}/${1}"
-    mkdir -p "${LASTVIRTUALRAM}"
-    chmod 1777 "${LASTVIRTUALRAM}"
-    # cd "${LASTVIRTUALRAM}"
-    # ln -s LASTVIRTUALRAM -v
-    export LASTVIRTUALRAM
-
-  fi
-  # echo "'\$@:' $@, \n'\$1:' $1, \n'\$2:' $2, \n'\$3:' $3, \n'\$4:' $4"
-
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:523c961b3e949d02d16daff06fc15f863bf01a7f2b07da6e2491a9ae5b07c926
+size 378

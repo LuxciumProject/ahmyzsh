@@ -1,10 +1,3 @@
-#!/usr/bin/env bash
-
-export TMUX_POWERLINE_DIR_HOME="$(dirname $0)"
-source "${TMUX_POWERLINE_DIR_HOME}/config/paths.sh"
-source "${TMUX_POWERLINE_DIR_LIB}/muting.sh"
-source "${TMUX_POWERLINE_DIR_LIB}/arg_processing.sh"
-
-side="$1"
-check_arg_side "$side"
-toggle_powerline_mute_status "$side"
+version https://git-lfs.github.com/spec/v1
+oid sha256:7dc79ea72d48a6cf249084e33f5fdbf220a4ed7d24add455a6eeb641c65ac890
+size 289

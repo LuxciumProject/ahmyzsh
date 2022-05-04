@@ -1,10 +1,3 @@
-# You can put files here to add functionality separated per file, which
-# will be ignored by git.
-# Files on the custom/ directory will be automatically loaded by the init
-# script, in alphabetical order.
-
-# For example: add yourself some shortcuts to projects you often work on.
-#
-# brainstormr=~/Projects/development/planetargon/brainstormr
-# cd $brainstormr
-#
+version https://git-lfs.github.com/spec/v1
+oid sha256:89c2ba53c669522c2517b83da3884cf6300e89d849449954601380edcd737a0c
+size 363

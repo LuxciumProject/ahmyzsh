@@ -1,6 +1,3 @@
-#!/bin/env zsh
-
-ts-node "/home/luxcium/development/luxcium.io/server/lib/tedis/seters/implementation/questrade-snp500.ts"
-ts-node "/home/luxcium/development/luxcium.io/server/lib/tedis/seters/implementation/questrade-iex.ts"
-ts-node "/home/luxcium/development/luxcium.io/server/lib/tedis/seters/implementation/iexlist.ts" &
-ts-node "/home/luxcium/development/luxcium.io/server/lib/tedis/seters/implementation/snp500list.ts" &
+version https://git-lfs.github.com/spec/v1
+oid sha256:62bd6d8efea5807ecc7950fdbc7b1991a36430d1e965625e3eeac6d7292c3e55
+size 426

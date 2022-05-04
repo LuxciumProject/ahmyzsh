@@ -1,10 +1,3 @@
-function load_zshenv() {
-  #   #$ Interactive,Script,login,non-login
-
-  ## load_path_now
-  call_ load_path
-
-  ## load_functions_now
-  # call_ load_functions_definitions
-  [ "${VERBOSA}" -gt 0 ] && echo "\n${LD_COLR}${BEGIN_HOURGLASS_END_1}     load_zshenv in $(timer_all)ms!${END_FUNCTION}\n"
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:9b6184740b08d2376eee1e514d7caddf2897157adc6c6e9d96042172dc4c6923
+size 308

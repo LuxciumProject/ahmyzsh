@@ -1,21 +1,3 @@
-#!/usr/bin/env zsh
-
-# Backup my vscode and my insiders into /etc/vscode-portable/backup
-
-## TODO: REMOVE HARD CONFIGURED LINKS
-
-sudo mkdir -p "/etc/vscode-portable/backup/code/data/user-data"
-sudo mkdir -p "/etc/vscode-portable/backup/code/data/tmp"
-sudo mkdir -p "/etc/vscode-portable/backup/code/data/extensions"
-
-sudo mkdir -p "/etc/vscode-portable/backup/code-insiders/data/user-data"
-sudo mkdir -p "/etc/vscode-portable/backup/code-insiders/data/tmp"
-sudo mkdir -p "/etc/vscode-portable/backup/code-insiders/data/extensions"
-
-(sudo cp -vuLr /home/luxcium/.config/Code/* /etc/vscode-portable/backup/code/data/user-data/) &
-(sudo cp -vuLr /home/luxcium/.vscode/extensions/* /etc/vscode-portable/backup/code/data/extensions/) &
-
-(sudo cp -vuLr /home/luxcium/.config/'Code - Insiders'/* /etc/vscode-portable/backup/code-insiders/data/user-data/) &
-(sudo cp -vuLr /home/luxcium/.vscode-insiders/extensions/* /etc/vscode-portable/backup/code-insiders/data/extensions/) &
-
-exit 0
+version https://git-lfs.github.com/spec/v1
+oid sha256:61293420cffd9190a489bfea838730c6d88c3b35f10219bcd2e89bd645d4d98d
+size 978

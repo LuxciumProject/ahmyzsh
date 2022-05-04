@@ -1,27 +1,3 @@
-
-
-/usr/lib/tmpfiles.d/kdm.conf:1:
- Line references path below legacy directory /var/run/,
-  updating /var/run/kdm/ → /run/kdm/;
-   please update the tmpfiles.d/ drop-in file accordingly.
-
-
-/usr/lib/tmpfiles.d/kdm.conf:2:
-
- Line references path below legacy directory /var/run/,
-  updating /var/run/xdmctl → /run/xdmctl;
-   please update the tmpfiles.d/ drop-in file accordingly.
-
-
-/usr/lib/tmpfiles.d/kubernetes.conf:1:
-
- Line references path below legacy directory /var/run/,
-  updating /var/run/kubernetes → /run/kubernetes;
-   please update the tmpfiles.d/ drop-in file accordingly.
-
-
-/usr/lib/tmpfiles.d/opensips.conf:1:
-
- Line references path below legacy directory /var/run/,
-  updating /var/run/opensips → /run/opensips;
-   please update the tmpfiles.d/ drop-in file accordingly.
+version https://git-lfs.github.com/spec/v1
+oid sha256:dd193de2759c0746f1f2ef57e1494aed6ba446aa9abf388f345d616516490e2c
+size 795

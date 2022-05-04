@@ -1,11 +1,3 @@
-if [ -z "$1" ]; then
-  echo "Plugins directory not specified, please pass your zsh plugins directory as a parameter."
-  exit 1
-fi
-
-if [ ! -d $1/yarn-autocompletions ]; then
-  mkdir $1/yarn-autocompletions
-fi
-
-cp ./yarn-autocompletions.plugin.zsh $1/yarn-autocompletions
-cp ./yarn-autocompletions $1/yarn-autocompletions
+version https://git-lfs.github.com/spec/v1
+oid sha256:b0ad8676408a2f59a1f408e89afefe7f6ca350b656196fd55464de489bb171fb
+size 320

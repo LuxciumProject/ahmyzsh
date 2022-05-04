@@ -1,6 +1,3 @@
-#!/usr/bin/env sh
-# function conda-update_() {}
-# (
-#   conda update conda -y
-#   conda update --all -y
-# )
+version https://git-lfs.github.com/spec/v1
+oid sha256:356b60d3663ef1a07b3835ff1741a83c9b4b8111d0b48817affbb0134799c425
+size 108

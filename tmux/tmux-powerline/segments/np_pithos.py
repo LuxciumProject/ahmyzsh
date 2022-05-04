@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-import dbus
-
-pithos_bus = dbus.SessionBus()
-
-pithos = pithos_bus.get_object('net.kevinmehall.Pithos', '/net/kevinmehall/Pithos')
-props = pithos.get_dbus_method('GetCurrentSong', 'net.kevinmehall.Pithos')
-
-print props()["artist"] + " - " + props()["title"]
+version https://git-lfs.github.com/spec/v1
+oid sha256:7001667a0c9db7656520c4961fc1b0e15cf224d8f4e35d61d86bcfd07645320e
+size 278

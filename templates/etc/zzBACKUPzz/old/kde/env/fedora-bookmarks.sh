@@ -1,9 +1,3 @@
-#! /bin/sh
-
-# copy default bookmarks to users homedir if not existing yet
-if [ ! -e $HOME/.kde/share/apps/konqueror/bookmarks.xml ] \
-   && [ -e /usr/share/kde-settings/kde-profile/default/share/apps/konqueror/bookmarks.xml ]; then
-  mkdir -p $HOME/.kde/share/apps/konqueror/
-  cp -p /usr/share/kde-settings/kde-profile/default/share/apps/konqueror/bookmarks.xml \
-     $HOME/.kde/share/apps/konqueror/bookmarks.xml
-fi
+version https://git-lfs.github.com/spec/v1
+oid sha256:78b1b5e138589c0d41aecca5ad9afd614b65e8444994f6c8f5d5d3fb326b4eae
+size 419

@@ -1,9 +1,3 @@
-{
-  "scripts": {
-    "update": "yarn add -D prettier@latest prettier-plugin-sh@latest"
-  },
-  "devDependencies": {
-    "prettier": "^2.2.1",
-    "prettier-plugin-sh": "^0.6.0"
-  }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:bb0a0d593e47b7d6aa5ff4089bbe09c4d150cdb34b1b49ad0cd7b655aedadc5d
+size 182
