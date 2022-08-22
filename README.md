@@ -44,7 +44,7 @@ any security issues or vulnerability on the issues page of the main repo site:
 
 ## MIT License
 
-Copyright © 2019-2020 Benjamin Vincent Kasapoglu (Luxcium) and contributors
+Copyright © 2019-2022 Benjamin Vincent Kasapoglu (Luxcium) and contributors
 (https://github.com/Luxcium/ahmyzsh/contributors)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
