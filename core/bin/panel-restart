@@ -1,0 +1,5 @@
+#!/bin/bash
+# panel-restart is for KDE Panel Restart.
+(killall plasmashell || kstart5 plasmashell)
+(nohup kwin_x11 --replace >/dev/null 2>&1 &)
+(nohup kstart5 plasmashell >/dev/null 2>&1 &)
