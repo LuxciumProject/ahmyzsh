@@ -1,0 +1,46 @@
+#!/bin/sh
+
+distro=ubuntu2204
+arch=x86_64
+# https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html
+
+echo 2.4. Verify the System has the Correct Kernel Headers and Development Packages Installed
+echo manually ensure the correct version of the kernel headers and development packages are installed
+sudo apt-get install -y "linux-headers-$(uname -r)"
+
+echo sudo ./mlnxofedinstall --with-nvmf --with-nfsrdma --enable-gds --add-kernel-support --dkms
+
+echo Install the new cuda-keyring package:
+wget "https://developer.download.nvidia.com/compute/cuda/repos/${distro}/${arch}/cuda-keyring_1.0-1_all.deb"
+sudo dpkg -i cuda-keyring_1.0-1_all.deb
+
+echo Enroll the new signing key manually:
+wget "https://developer.download.nvidia.com/compute/cuda/repos/${distro}/${arch}/cuda-${distro-keyring}.gpg"
+sudo mv "cuda-${distro-keyring}.gpg" "/usr/share/keyrings/cuda-archive-keyring.gpg"
+
+echo Enable the network repository:
+echo "deb [signed-by=/usr/share/keyrings/cuda-archive-keyring.gpg] https://developer.download.nvidia.com/compute/cuda/repos/${distro}/${arch}/ /" | sudo tee "/etc/apt/sources.list.d/cuda-${distro-}${arch}.list"
+
+echo Add pin file to prioritize CUDA repository:
+wget "https://developer.download.nvidia.com/compute/cuda/repos/${distro}/${arch}/cuda-${distro}.pin"
+sudo mv "cuda-${distro}.pin" "/etc/apt/preferences.d/cuda-repository-pin-600"
+
+echo Update the Apt repository cache:
+sudo apt-get update
+
+echo Install CUDA SDK:
+echo 1- Note: These two commands must be executed separately.
+sudo apt-get install -y cuda
+
+echo 2- To include all GDS packages:
+sudo apt-get install -y nvidia-gds
+
+echo 13.3.1. Install Third-party Libraries
+sudo apt-get install -y g++ freeglut3-dev build-essential libx11-dev \
+  libxmu-dev libxi-dev libglu1-mesa libglu1-mesa-dev libfreeimage-dev
+
+echo After installation is complete, for the changes to take effect, use update -initramfs and reboot.
+sudo update-initramfs -u -k all
+sudo update-grub2
+#& Reboot the system
+#& sudo reboot

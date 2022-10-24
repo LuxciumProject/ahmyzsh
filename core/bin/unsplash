@@ -1,0 +1,25 @@
+#!/bin/bash
+
+#. ----------------------------------------------------------------------------- ~
+#. Scientia es lux principium -tm-
+#. Copyright © 2019-2020 Benjamin Vincent Kasapoglu (Luxcium)
+#. MIT LICENSE ― PROVIDED "AS IS" ― *NOT* fit for any particular use or purpose!
+#. ----------------------------------------------------------------------------- ~
+
+# tolower
+# set AZ text to lower case
+
+function unsplash_() {
+  echo "${HOME}"/Images/unsplash/
+  ( (mv ./*unsplash*.*p*g "${HOME}"/Images/unsplash/) 2>/dev/null)
+
+}
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+unsplash_ "${@}"
+
+EXIT_="${?}"
+
+unset -f unsplash_
+
+exit $EXIT_
