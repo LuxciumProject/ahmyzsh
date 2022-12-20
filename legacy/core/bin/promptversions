@@ -1,0 +1,26 @@
+#!/usr/bin/env sh
+
+mkdir -p "${AHMYZSH_CACHE}/versions-files/"
+version_LOGFILE="${AHMYZSH_CACHE}/versions-files/$(getstamp 20 versions- .txt)"
+# echo '#!/usr/bin/env sh' >"${version_LOGFILE}"
+echo -en "    \e[38;2;255;25;85m    > Ruby: $(ruby --version | cut -f 2 -d ' ' | cut -f 1 -d 'p') \u001b[31m\n" >>"${version_LOGFILE}" &
+echo -en "    \e[38;2;203;56;55m    > NPM: $(npm --version) \u001b[31m\n" >>"${version_LOGFILE}" &
+echo -en "    \e[38;2;0;122;204m    > Yarn: $(yarn --version) \u001b[31m\n" >>"${version_LOGFILE}" &
+echo -en "    \e[38;2;0;122;204m    > Code: $(code -v | grep '1\.') \u001b[31m\n" >>"${version_LOGFILE}" &
+echo -en "    \e[38;2;0;122;204m    > Docker: $(docker --version | cut -f 1 -d ',' | cut -f 3 -d ' ')  \u001b[31m\n" >>"${version_LOGFILE}" &
+echo -en "    \e[37m    > ZSH: $(zsh --version | grep zsh | cut -f 2 -d ' ') \u001b[31m\n" >>"${version_LOGFILE}" &
+echo -en "    \e[38;2;252;198;36m    > $(uname): $(uname -r | cut -f 1 -d '-') \u001b[31m\n" >>"${version_LOGFILE}" &
+echo -en "    \e[38;2;51;153;51m    > Node: $(node --version) \u001b[31m\n" >>"${version_LOGFILE}" &
+echo -en "    \e[38;2;0;122;204m    > TSC: $(tsc --version | cut -f 2 -d ' ') \u001b[31m\n" >>"${version_LOGFILE}" &
+echo -en "    \e[38;2;0;122;204m    > Python: $(python --version | cut -f 2 -d ' ') \u001b[31m\n" >>"${version_LOGFILE}" &
+
+echo "cat ${version_LOGFILE}" >"${AHMYZSH_CACHE}/versions-files/version-prompt.sh"
+chmod +x "${AHMYZSH_CACHE}/versions-files/version-prompt.sh"
+[[ $1 == 1 ]] && echo "${version_LOGFILE}"
+[[ $1 == 2 ]] && echo "${AHMYZSH_CACHE}/versions-files/version-prompt.sh"
+
+# sleep 0.2
+
+# echo -e "\u001b[37m" >>"${version_LOGFILE}" &
+# "${AHMYZSH_CACHE}/versions-files/version-prompt.sh"
+exit 1

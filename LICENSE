@@ -1,3 +1,46 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:7812508ab1d8c034393cbd59076dd7ea19cb579f33cc9aecc3d1140f00bcf8eb
-size 3097
+# ·――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――· #
+# !!―――――――――――――――――――――――――!!! SECURITY WARNING !!!―――――――――――――――――――――――――!! #
+# !!                                                                          !! #
+# !! AUDIT ANY FILES YOU IMPORT FROM THIS PROJECT PRIOR: DOWNLOAD/INSTALL/USE !! #
+# !!    Please asses security risks by yourself before using this product.    !! #
+# !!        You must report any security problemes or vulnerability on        !! #
+# !!                  the issues page of the main repo site:                  !! #
+# !!   [AHMYZSH project issues](https://github.com/Luxcium/ahmyzsh/issues/)   !! #
+# !!                                                                          !! #
+# !!―――――――――――――――――――――――――!!! SECURITY WARNING !!!―――――――――――――――――――――――――!! #
+# ·――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――· #
+
+# ============================================================================== ≈
+#
+# Luxcium License: NO PERMISSION GRANTED - PROVIDED "AS IS" - WITHOUT WARRANTY
+
+Copyright © 2019-2022 · LUXCIUM · (Benjamin Vincent Kasapoglu) · luxcium﹫neb401.com
+and contributors (https://github.com/Luxcium/ahmyzsh/contributors)
+
+    THESE FILES ARE *NOT* FIT FOR ANY PARTICULAR PURPOSE IN IT'S CURRENT FORM
+    THESE FILES HAVE NOT BEEN TESTED OR RUN YET IN ALL ENVIRONMENTS! *DO NOT*
+    RUN THESE FILES UNLESS YOU HAVE REVIEWED THE FULL CONTENT AND TAKE FULL
+    RESPONSIBILITY OF ANY PROBLEME IT MAY CAUSE TO YOU (or anyone) OR YOUR
+    MACHINE (or any machine).
+
+NO PERMISSION ARE GRANTED FOR THIS SOFTWARE:
+
+    1) NOT TO PUBLISH;
+    2) NOT TO DISTRIBUTE;
+    3) NOT TO SUBLICENSE;
+    4) NOT TO SELL COPIES OF;
+
+**† Scientia es lux principium✨ ™**
+
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ALL KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ALL CLAIM, DAMAGES OR
+# OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+# ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+# DEALINGS IN THE SOFTWARE.
+# ==============================================================================≈
+# Scientia es lux principium is a Trade Mark of Benjamin Vincent Kasapoglu
+# (c) et tm - Benjamin Vincent Kasapoglu (Luxcium) 2017-2020
+# ------------------------------------------------------------------------------~

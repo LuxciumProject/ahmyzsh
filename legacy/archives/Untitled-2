@@ -1,0 +1,27 @@
+
+
+/usr/lib/tmpfiles.d/kdm.conf:1:
+ Line references path below legacy directory /var/run/,
+  updating /var/run/kdm/ → /run/kdm/;
+   please update the tmpfiles.d/ drop-in file accordingly.
+
+
+/usr/lib/tmpfiles.d/kdm.conf:2:
+
+ Line references path below legacy directory /var/run/,
+  updating /var/run/xdmctl → /run/xdmctl;
+   please update the tmpfiles.d/ drop-in file accordingly.
+
+
+/usr/lib/tmpfiles.d/kubernetes.conf:1:
+
+ Line references path below legacy directory /var/run/,
+  updating /var/run/kubernetes → /run/kubernetes;
+   please update the tmpfiles.d/ drop-in file accordingly.
+
+
+/usr/lib/tmpfiles.d/opensips.conf:1:
+
+ Line references path below legacy directory /var/run/,
+  updating /var/run/opensips → /run/opensips;
+   please update the tmpfiles.d/ drop-in file accordingly.

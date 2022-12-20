@@ -1,0 +1,151 @@
+#!/usr/bin/env sh
+
+# † Scientia es lux principium✨ ™
+
+# Copyright © 2020 Luxcium (Benjamin Vincent Kasapoglu)
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+# « †Scientia es lux principium✨ » IS A TRADEMARK OF BENJAMIN VINCENT KASAPOGLU
+# (™ & © 2016-2020 ALL RIGHT RESERVED)
+
+__SAVE_PREV_VERSION_INFO__=VERSION
+VERSION="0.0.2"
+
+# Help
+# ==============================================================================≈
+Help() {
+  # Display Help
+  printf "Loop through each sub-directory and dot-directory in a directory."
+  printf
+  printf "Syntax: foreachdirdo [-H|h|L|l|V|v] [<before>|<after>|<justBefore>|<justAfter>]"
+  printf
+  printf "options:"
+  printf " -H or -h      Print this Help."
+  printf " -L or -l      Print the MIT license notification."
+  printf " -V or -v      Print software version (v %s) and exit." ${VERSION}
+  printf
+  printf "Will produce a string and evaluate it with the ITEM placed in the middle"
+  printf "BEFORE__JUSTBEFORE-ITEM-JUSTAFTER__AFTER"
+  printf "Where '__' represent a blank space and '-' represent no space at all"
+  printf "use empty string to bypass i.e. \"\" or \'\' if you need to skip to next"
+  printf
+  printf "You can use \$ITEM or \$DIR to represenmt the currently iterated Directory name"
+  printf
+  printf "before       Command will be placed before folowed by a space."
+  printf "after        Command will be placed after preceded by a space."
+  printf "justBefore   Command will be placed directly before whitout space."
+  printf "justAfter    Command will be placed directly after whitout space."
+  printf
+  printf   '\e[31m†Scientia es lux principium✨ ™\e[37m'
+  printf
+
+}
+
+License() {
+  # Display License
+  printf
+  printf
+  printf '\e[31m†Scientia es lux principium✨ ™\e[37m'
+  printf
+  printf "\e[37;1m\e[1mCopyright © 2020 Luxcium (Benjamin Vincent Kasapoglu)"
+  printf "\e[22m\e[37m"
+  printf "Permission is hereby granted, free of charge, to any person obtaining a copy"
+  printf "of this software and associated documentation files (the \"Software\"), to deal"
+  printf "in the Software without restriction, including without limitation the rights"
+  printf "to use, copy, modify, merge, publish, distribute, sublicense, and/or sell"
+  printf "copies of the Software, and to permit persons to whom the Software is"
+  printf "furnished to do so, subject to the following conditions:"
+  printf
+  printf "The above copyright notice and this permission notice shall be included in"
+  printf "all copies or substantial portions of the Software."
+  printf
+  printf "\e[37;1m\e[1mTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR"
+  printf "IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,"
+  printf "FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE"
+  printf "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+  printf "LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,"
+  printf "OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE"
+  printf "SOFTWARE."
+  printf "\e[22m\e[37m"
+  printf "« †Scientia es lux principium✨ » IS A TRADEMARK OF BENJAMIN VINCENT KASAPOGLU"
+  printf "(™ & © 2016-2020 ALL RIGHT RESERVED)"
+  printf
+  printf '\e[0m'
+
+}
+
+Version() {
+  # Display License
+  printf "v%s" ${VERSION}
+  printf
+  printf '\e[31m†Scientia es lux principium✨ ™\e[37m'
+}
+
+# Main program                                                                 #
+# ==============================================================================≈
+
+# Process the input options. Add options as needed.                            #
+# ==============================================================================≈
+# Get the options
+
+while getopts ":hHvVlL" option; do
+  case $option in
+  h | H) # display Help
+    Help
+    exit
+    ;;
+
+  v | V) # Version
+    Version
+    exit
+    ;;
+
+  l | L) # License
+    License
+    exit
+    ;;
+
+  \?) # incorrect option
+    echo "Error: Invalid option"
+    exit 1
+    ;;
+  esac
+done
+
+unset -f Help
+unset -f License
+unset -f Version
+
+for d in .* *; do
+  __SAVE_PREV_ITEM__=ITEM
+  __SAVE_PREV_DIR__=DIR
+  ITEM=d
+  DIR=d
+  [ -d "${d}" ] && eval "${1:-'echo'} ${3}${d}${4} ${2}"
+  export ITEM=__SAVE_PREV_ITEM__
+  export DIR=__SAVE_PREV_DIR__
+  unset -v __SAVE_PREV_ITEM__
+  unset -v __SAVE_PREV_DIR__
+done
+
+VERSION=__SAVE_PREV_VERSION_INFO__
+unset -v __SAVE_PREV_VERSION_INFO__
+
+exit 0

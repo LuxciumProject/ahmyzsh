@@ -1,0 +1,28 @@
+#!/usr/bin/env sh
+
+function renicer_() {
+
+  pidof "${1}" >/dev/null || return 1
+  [[ -z "${2}" && "${3}" -gt 3 ]] && return 4
+  [[ -z "${2}" && -z "${3}" && -z "${4}" ]] && (
+    sudo renice -n 0 -p $(pidof "${1}")
+    sudo ionice -c 2 -n 4 -p $(pidof "${1}")
+    exit 0
+  ) && return 0
+  [[ -z "${2}" ]] || sudo renice -n "${2}" -p $(pidof "${1}")
+  [[ "${3}" -eq 3 ]] && sudo ionice -c 3 -p $(pidof "${1}") && return
+  [[ "${4}" -gt 7 ]] && return $(((${4} % 128 + 1)))
+  [[ -z "${3}" || -z "${4}" ]] || sudo ionice -c "${3}" -n "${4}" -p $(pidof "${1}") && return
+  [[ -z "${3}" && -n "${4}" ]] && sudo ionice -c 2 -n "${4}" -p $(pidof "${1}") && return
+  return 5
+
+}
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+renicer_ "${@}"
+
+__EXIT_STATUS="${?}"
+
+unset -f renicer_
+
+exit $__EXIT_STATUS

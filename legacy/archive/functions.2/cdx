@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+# function cdx_() {
+# mypath="${@:-$HOME}"
+#   echo ''
+#   builtin cd "$(echo $mypath)"
+# #   # pw
+#   [[ -x $(which colorls) ]] && (colorls -lA --sd -d) || ([[ -x $(which /bin/ls) ]] && /bin/ls --color -al)
+#   pw
+#   echo ''
+# }
+
+# cdx_ $@
+
+# unset cdx_
+
+# exit 0

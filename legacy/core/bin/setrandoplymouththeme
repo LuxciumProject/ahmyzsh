@@ -1,0 +1,29 @@
+#!/bin/env sh
+
+# "${AHMYZSH}/core/bin/setrandoplymouththeme"
+# "${AHMYZSH}/core/bin/getrandoplymouththeme"
+# "${AHMYZSH}/core/bin/getrandomelement"
+
+#. ----------------------------------------------------------------------------- ~
+#. Scientia es lux principium -tm-
+#. Copyright © 2019-2020 Benjamin Vincent Kasapoglu (Luxcium)
+#. MIT LICENSE ― PROVIDED "AS IS" ― *NOT* fit for any particular use or purpose!
+#. ----------------------------------------------------------------------------- ~
+
+function getrandomelement_() {
+  [ $(eval $1 | wc -w) -gt 0 ] || return 10
+  WHICH_ONE_="$(($RANDOM % $(eval $1 | wc -w) + 1))"
+  echo -n "$(eval $1 | head -n $WHICH_ONE_ | tail -n 1)"
+}
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+
+plymouth-set-default-theme "$(getrandomelement_ 'plymouth-set-default-theme --list')" --rebuild-initrd
+
+EXIT_="${?}"
+
+unset -f getrandomelement_
+
+exit $EXIT_
+
+#  dnf update -y && plymouth-set-default-theme "$(/home/luxcium/ahmyzsh/core/bin/getrandomelement 'plymouth-set-default-theme --list')" && dracut --uefi --force -v  && grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg && sudo grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0"; reboot

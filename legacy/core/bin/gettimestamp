@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+# gettimestamp
+  echo -en $(date +%H%M%S)

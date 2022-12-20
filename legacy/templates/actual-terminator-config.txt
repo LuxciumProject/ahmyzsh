@@ -1,0 +1,151 @@
+[global_config]
+  title_transmit_fg_color = "#000000"
+  title_transmit_bg_color = "#fabe2f"
+  title_receive_fg_color = "#000000"
+  title_receive_bg_color = "#f42c3e"
+  title_inactive_bg_color = "#b5c033"
+  inactive_color_offset = 0.75
+  enabled_plugins = CustomCommandsMenu, LaunchpadBugURLHandler, LaunchpadCodeURLHandler, APTURLHandler, TestPlugin, TerminalShot, MavenPluginURLHandler, Logger, ActivityWatch, InactivityWatch
+  suppress_multiple_term_dialog = True
+[keybindings]
+[profiles]
+  [[default]]
+    audible_bell = True
+    visible_bell = True
+    urgent_bell = True
+    background_color = "#202010"
+    background_darkness = 0.83
+    cursor_color = "#ff3333"
+    cursor_color_fg = False
+    font = Terminus Bold 14
+    foreground_color = "#8ae234"
+    scrollback_infinite = True
+    palette = "#201020:#cc241d:#98971a:#e7a931:#458588:#b16286:#689e6a:#c0b0a0:#928374:#f42c3e:#b5c033:#fabe2f:#99c6ca:#d66282:#8ae180:#ddccaa"
+    use_system_font = False
+[layouts]
+  [[default]]
+    [[[child0]]]
+      type = Window
+      parent = ""
+      order = 0
+      position = 1920:42
+      maximised = True
+      fullscreen = False
+      size = 3840, 1947
+      title = /bin/zsh
+      last_active_term = 54c1b104-e91a-4341-bf9a-831bbf4947b6
+      last_active_window = True
+    [[[child1]]]
+      type = HPaned
+      parent = child0
+      order = 0
+      position = 3407
+      ratio = 0.8883963494132986
+    [[[child2]]]
+      type = HPaned
+      parent = child1
+      order = 0
+      position = 2523
+      ratio = 0.7416225749559083
+    [[[child3]]]
+      type = VPaned
+      parent = child2
+      order = 0
+      position = 825
+      ratio = 0.42481977342945415
+    [[[terminal4]]]
+      type = Terminal
+      parent = child3
+      order = 0
+      profile = default
+      uuid = ab4b846b-814e-4846-98fb-133cf01720b1
+      command = /bin/zsh -c shtop
+    [[[child5]]]
+      type = HPaned
+      parent = child3
+      order = 1
+      position = 1337
+      ratio = 0.5309769658459095
+    [[[child6]]]
+      type = VPaned
+      parent = child5
+      order = 0
+      position = 558
+      ratio = 0.5
+    [[[terminal7]]]
+      type = Terminal
+      parent = child6
+      order = 0
+      profile = default
+      uuid = 54c1b104-e91a-4341-bf9a-831bbf4947b6
+      command = ""
+    [[[terminal8]]]
+      type = Terminal
+      parent = child6
+      order = 1
+      profile = default
+      uuid = e29ed4a2-066d-4031-b502-2dbfcfa49872
+    [[[child9]]]
+      type = VPaned
+      parent = child5
+      order = 1
+      position = 494
+      ratio = 0.44265232974910396
+    [[[terminal10]]]
+      type = Terminal
+      parent = child9
+      order = 0
+      profile = default
+      uuid = d86359d7-1ac7-4f6b-b76e-3c73ad2da473
+      command = env NMON=m nmon -a
+      directory = ""
+    [[[terminal11]]]
+      type = Terminal
+      parent = child9
+      order = 1
+      profile = default
+      uuid = 6c19e3ff-6b8f-4409-bc2d-987a72b9dbc4
+      command = env NMON=kn nmon -a
+      directory = ""
+    [[[child12]]]
+      type = VPaned
+      parent = child2
+      order = 1
+      position = 653
+      ratio = 0.33625128733264675
+    [[[terminal13]]]
+      type = Terminal
+      parent = child12
+      order = 0
+      profile = default
+      uuid = ebbb8a46-1d54-4470-89f0-44a02bb87c47
+      command = " watch -n 0.1 -d sensors"
+    [[[child14]]]
+      type = VPaned
+      parent = child12
+      order = 1
+      position = 802
+      ratio = 0.6226708074534162
+    [[[terminal15]]]
+      type = Terminal
+      parent = child14
+      order = 0
+      profile = default
+      uuid = 7bfdee65-6300-442a-bea7-e789da5ffe7a
+      command = env NMON=MMM nmon -a
+    [[[terminal16]]]
+      type = Terminal
+      parent = child14
+      order = 1
+      profile = default
+      uuid = 10da19a8-210b-46e7-a8bd-608b79c33c4e
+      command = env NMON=C nmon -a
+    [[[terminal17]]]
+      type = Terminal
+      parent = child1
+      order = 1
+      profile = default
+      uuid = 120b4765-aebc-49c2-af5f-481385e0d2ea
+      directory = ""
+      command = " watch -n 1 -d meminfo"
+[plugins]

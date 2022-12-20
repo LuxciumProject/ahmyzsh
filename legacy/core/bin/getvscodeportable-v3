@@ -1,0 +1,196 @@
+#!/bin/env sh
+
+#$ LUXCIUM LICENSE *NO* PERMISSION GRANTED - PROVIDED "AS IS" - WITHOUT WARRANTY
+#$
+#% Copyright © 2020 - LUXCIUM† (Benjamin Vincent Kasapoglu) <luxcium@neb401.com>
+#%
+#% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ALL KIND, EXPRESS OR
+#% IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#% FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+#% AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ALL CLAIM, DAMAGES OR OTHER
+#% LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#% OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+#% SOFTWARE.
+#&
+#& *NO* PERMISSION ARE GRANTED. NOT TO PUBLISH, NOT TO DISTRIBUTE, NOT TO
+#& SUBLICENSE, AND/OR NOT TO SELL COPIES OF THE SOFTWARE.
+#& YOU MAY USE IT ONLY FOR YOURSELF AND YOU HAVE THE RIGHT TO: DISTRIBUTE TO
+#& YOUR FRIENDS, TO YOUR STUDENTS, OR TO YOU COWORKER FOR PERSONAL USE AT HOME
+#& AT SCHOOL OR AT WORK.
+#&
+#& IN ANY CASES THE COPYRIGHT AND NOTICE ABOVE MUST BE INCLUDED.
+#$
+#$ Scientia es lux principium✨ ™
+
+# /home/luxcium/ahmyzsh/core/bin/getvscodeportable-v3
+getvscodeportable_() {
+  ## CONSTANTS AND VARIABLES DEFINITIONS
+  {
+    # † ======================================================================
+
+    VSCODE_URL_STABLE='https://update.code.visualstudio.com/latest/linux-x64/stable'
+    VSCODE_SHORTPATH_STABLE='code-stable'
+    VSCODE_CHANNEL_STABLE='stable'
+
+    VSCODE_URL_INSIDER='https://update.code.visualstudio.com/latest/linux-x64/insider'
+    VSCODE_SHORTPATH_INSIDER='code-insider'
+    VSCODE_CHANNEL_INSIDER='insider'
+
+    ## CUSTOM VARIABLES DEFINITIONS
+    # † ======================================================================
+
+    vscode_url="${VSCODE_URL_STABLE}"
+    vscode_shortpath="${VSCODE_SHORTPATH_STABLE}"
+    vscode_channel="${VSCODE_CHANNEL_STABLE}"
+    vschannel='STABLE' # 'STABLE' or 'INSIDER'
+
+    if [ "${1}" = 'INSIDER' ]; then
+      vscode_url="${VSCODE_URL_INSIDER}"
+      vscode_shortpath="${VSCODE_SHORTPATH_INSIDER}"
+      vscode_channel="${VSCODE_CHANNEL_INSIDER}"
+      vschannel='INSIDER'
+    fi
+
+    ## INTERNAL VARIABLES DEFINITIONS
+    # † ======================================================================
+
+    # myuxidlong="$(LUXID)"
+    working_location="/tmp/LXCM/vscode-${vscode_channel}/$(shortID)"
+    download_location="${working_location}/download"
+    myUXIDshort=$(shortID)
+
+    ## CREATE THE DOWNLOAD FOLDER IN /tmp
+    # † ======================================================================
+
+    iamtheuser="$(whoami)"
+    (sudo mkdir -p "${download_location}") || exit 2
+    (sudo chown -R "${iamtheuser}" "${working_location}") || exit 3
+
+    # echo iamtheuser="$(whoami)"
+
+    # ========================================================================
+
+    unset -v VSCODE_URL_STABLE
+    unset -v VSCODE_SHORTPATH_STABLE
+    unset -v VSCODE_CHANNEL_STABLE
+    unset -v VSCODE_URL_INSIDER
+    unset -v VSCODE_SHORTPATH_INSIDER
+    unset -v VSCODE_CHANNEL_INSIDER
+
+    # ========================================================================
+
+  }
+
+  ## DOWNLOAD FROM MICROSOFT
+  {
+    # † ======================================================================
+
+    (ls "${download_location}") || exit 5
+    cd "${download_location}" || exit
+
+    echo "> download ${vscode_channel}-x64.tar.gz FROM MICROSOFT (into $download_location)"
+    (sudo curl -LORJS# "${vscode_url}") || exit 4
+
+    # ========================================================================
+  }
+
+  ## EXTRACT FROM TAR FILE
+  {
+    # † ======================================================================
+    cd "${working_location}" || exit
+    (ls "${download_location}"/${vscode_shortpath}-x64-*.tar.gz) || exit 5
+
+    for file_ in "${download_location}"/"${vscode_shortpath}"-x64-*.tar.gz; do
+      (
+        sudo tar --extract -f "${file_}" --overwrite ## WHERE THE MAGIC HAPPENS
+      ) || exit 6
+    done
+    # ========================================================================
+  }
+
+  {
+    mv "${working_location}/VSCode-linux-x64" "${working_location}/vs-${vscode_shortpath}"
+
+    sudo mkdir -p "${working_location}/vs-${vscode_shortpath}/data/tmp"
+    vs_code_='code_'
+    if [ "${2}" = 'UPDATE' ]; then
+      vs_code_='code_update_'
+    fi
+
+    vs_code_home_path="${HOME}/portable-vscode"
+    full_path_to_vscode_home_folder="${vs_code_home_path}/$(date +%d-%m-%C%y_%Hh%Mm%Ss)_${vs_code_}${myUXIDshort}"
+
+    mkdir -p "${vs_code_home_path}/"
+
+    (sudo groupadd -f "luxcium.io" >/dev/null 2>&1)
+    (sudo chown -R "${iamtheuser}" "${working_location}")
+    (sudo chgrp -R "luxcium.io" "${working_location}")
+
+    sudo cp -r /etc/vscode-portable/empty/vs-code-${vscode_channel}/* "${working_location}/vs-${vscode_shortpath}/"
+    sudo cp -r /etc/vscode-portable/empty/vs-code-${vscode_channel}/.directory "${working_location}/vs-${vscode_shortpath}/"
+    sudo cp -r "${working_location}/vs-${vscode_shortpath}/" "${full_path_to_vscode_home_folder}/"
+    if [ "${2}" = 'UPDATE' ]; then
+      sudo rm "${full_path_to_vscode_home_folder}/code.png"
+      sudo cp -r "/etc/vscode-portable/templates/vs-code/icons/vscode.svg" "${full_path_to_vscode_home_folder}/code.svg"
+
+    else
+      sudo rm "${full_path_to_vscode_home_folder}/code.png"
+      sudo cp -r "/etc/vscode-portable/templates/vs-code/icons/folder-vscode.svg" "${full_path_to_vscode_home_folder}/code.svg"
+
+    fi
+
+    (sudo groupadd -f "vs-${vscode_channel}" >/dev/null 2>&1)
+    (sudo chown -R "${iamtheuser}" "${full_path_to_vscode_home_folder}")
+    (sudo chgrp -R "vs-${vscode_channel}" "${full_path_to_vscode_home_folder}")
+
+    sudo rm -rf "${working_location}"
+
+    # ========================================================================
+  } || (
+    EX_STATUS="${?}"
+    printf "\n   -ERROR-" && exit ${EX_STATUS}
+  ) &&
+    # if [[ "${2}" = 'UPDATE' ]]; then
+    #   printf "\n   ― ${vschannel} ―"
+    #   printf "   ― UPDATE ―\n" && exit 0
+
+    # else
+    printf "\n   ― %s ―\n${vschannel}" && exit 0
+  # fi
+}
+# ==============================================================================
+
+## UTILITY FUNCTIONS DEFINITIONS
+# † ======================================================================
+
+RANDMX() {
+  rand1=$("$(date +%s)" | cut -c -"${1}" | tr "[:lower:]" "[:upper:]" | sha224sum)
+  echo "${rand1}"
+  return 0
+}
+
+shortID() {
+  fooZ="$(date +%s)-x$(RANDMX 4)"
+
+  echo "$fooZ"
+  return 0
+} #
+LUXID() {
+  myxuidhash="$(RANDMX 10)"
+  myxuiddate="$(date +%C%y%m%d%H%M%S)$(date + | cut -c -3)"
+  fooY="${myxuidhash}LXZ${myxuiddate}ID"
+  fooZ="${fooY:0:1}${fooY:13:2}${fooY:1:1}${fooY:15:2}${fooY:2:1}${fooY:17:2}${fooY:3:1}${fooY:19:2}${fooY:4:1}${fooY:21:2}${fooY:5:1}${fooY:23:2}${fooY:6:1}${fooY:10:2}${fooY:30:2}${fooY:12:1}${fooY:7:1}${fooY:25:2}${fooY:8:1}${fooY:27:3}${fooY:9:1}"
+
+  echo "$fooZ"
+  exit 0
+}
+# ==============================================================================
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+getvscodeportable_ "${@}"
+
+EX_STATUS="${?}"
+
+unset -f getvscodeportable_
+
+exit ${EX_STATUS}

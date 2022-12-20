@@ -1,3 +1,15 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:dcf3aa6292d5f9fdd354f211e810ce92a195a6a063cbb5db7ea2947ea0083021
-size 363
+[submodule "powerlevel10k"]
+path = powerlevel10k
+url = https://github.com/romkatv/powerlevel10k
+
+[submodule "ohmyzsh"]
+path = ohmyzsh
+url = https://github.com/ohmyzsh/ohmyzsh.git
+
+[submodule "node-repl"]
+path = node-repl
+url = https://github.com/Luxcium/node-repl.git
+
+[submodule "python-repl"]
+path = python-repl
+url = https://github.com/Luxcium/python-repl.git

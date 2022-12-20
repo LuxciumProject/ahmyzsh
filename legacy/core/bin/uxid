@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+
+# /home/luxcium/ahmyzsh/core/bin/uxid
+
+function uxid32() {
+  local myxuidhash="$(/home/luxcium/ahmyzsh/core/bin/randx 10)"
+  local myxuiddate="$(date +%C%y%m%d%H%M%S)$(date +%N | cut -c -3)"
+  local fooY="${myxuidhash}LXZ${myxuiddate}ID"
+  local fooZ="${fooY:0:1}${fooY:13:2}${fooY:1:1}${fooY:15:2}${fooY:2:1}${fooY:17:2}${fooY:3:1}${fooY:19:2}${fooY:4:1}${fooY:21:2}${fooY:5:1}${fooY:23:2}${fooY:6:1}${fooY:10:2}${fooY:30:2}${fooY:12:1}${fooY:7:1}${fooY:25:2}${fooY:8:1}${fooY:27:3}${fooY:9:1}"
+
+  echo -n $fooZ
+  return 0
+  # 420420007117619A123UXIDZ0557357F
+}
+uxid32
+exit 0

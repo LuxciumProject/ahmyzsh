@@ -1,0 +1,16 @@
+#!/usr/bin/env zsh
+
+it_does_not_contain_() {
+  (ls "${1}" >/dev/null 2>&1)
+  local stat_=$?
+  [[ $stat_ == 0 ]] && exit 1 || exit 0
+}
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+it_does_not_contain_ "${@}"
+
+_stat_=$?
+
+unset -f it_does_not_contain_
+
+exit $_stat_

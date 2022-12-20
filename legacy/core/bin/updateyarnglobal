@@ -1,0 +1,38 @@
+#!/usr/bin/env sh
+
+function updateyarnglobal_() {
+  yarn global add yarn@latest \
+    && yarn global add \
+      prettier-plugin-sh@latest \
+      @nestjs/cli@latest \
+      @typescript-eslint/eslint-plugin@latest \
+      @typescript-eslint/parser@latest \
+      concurrently@latest \
+      eslint-plugin-flowtype@latest \
+      eslint-plugin-import@latest \
+      eslint-plugin-jest@latest \
+      eslint-plugin-jsx-a11y@latest \
+      eslint-plugin-node@latest \
+      eslint-plugin-prettier@latest \
+      eslint-plugin-react-hooks@latest \
+      eslint-plugin-react@latest \
+      eslint-plugin-simple-import-sort@latest \
+      eslint-plugin-unicorn@latest \
+      eslint@latest \
+      jest@latest \
+      nyc@latest \
+      pnpm@latest \
+      prettier@latest \
+      ts-node@latest \
+      typescript@next \
+      vsce@latest || return 2
+}
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+updateyarnglobal_ "${@}"
+
+__EXIT_STATUS="${?}"
+
+unset -f updateyarnglobal_
+
+exit $__EXIT_STATUS

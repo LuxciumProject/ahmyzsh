@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+(
+  sudo dnf reinstall code-insiders code -y
+)
+exit 0

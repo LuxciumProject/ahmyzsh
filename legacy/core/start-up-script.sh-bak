@@ -1,0 +1,606 @@
+#!/usr/bin/env zsh
+
+source $HOME/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+
+(
+  sleep 2.5
+  play_NTV_question_btv #  5.4742s
+  # play_NTV_error_tv3 # 3.0325s
+) &
+
+enable_systemctl up
+
+# # && (
+# #   play_zelda_button-toggle-on &
+# # ) || (
+# #   play_etc-dialog &
+# # )
+
+# # (
+
+# #   (
+
+# #     (
+
+# #       source /home/luxcium/ahmyzsh/core/functions/00000-upnboot.sh
+# #       _dnf_makecache_auto_update
+# #       _dnf_makecache_all
+# #     ) && (
+# #       play_complete1 &
+# #     ) || exit 1
+# #   ) || (
+# #     play_etc-dialog &
+# #   )
+# # ) &
+
+# # play_kdemod-error
+# # p-lay_osx2_0002_assend_attention
+# # (
+
+#   (
+#     code-insiders /home/luxcium/ahmyzsh
+#       sudo ionice -c 2 -n 1 -p $(
+#     pidof -w -x code-insiders
+#   )
+#     sudo renice -n 5 -p $(
+#     pidof -w -x code-insiders
+#   )
+#     # && (
+#     #
+#     # ) || (
+#     #   play_etc-dialog &
+#     # )
+#   )
+#   (
+#     gnome-terminal --title='Gnome Terminal' --class=gnome-terminal-Z6C4C35AEx --name=gnome-terminal-Z757425E8x --role=gnome-terminal-ZF987CDA0x && (
+#       play_menu-select-a &
+#     ) || (
+#       play_etc-dialog &
+#     )
+#   )
+
+#   sudo ionice -c 2 -n 1 -p $(
+#     pidof -w -x code-insiders
+#   ) && (
+#
+#   ) || (
+#     play_etc-dialog &
+#   )
+#   sudo renice -n 5 -p $(
+#     pidof -w -x code-insiders
+#   ) && (
+#
+#   ) || (
+#     play_etc-dialog &
+#   )
+#   sudo ionice -c 2 -n 1 -p $(
+#     pidof -w -x gnome-terminal
+#   ) && (
+#
+#   ) || (
+#     play_etc-dialog &
+#   )
+#   sudo renice -n 10 -p $(
+#     pidof -w -x gnome-terminal
+#   ) && (
+#
+#   ) || (
+#     play_etc-dialog &
+#   )
+# # ) &
+
+# (
+
+#   (
+#     sudo fc-cache -rfE && (
+
+#       play_information-dialog &
+#     ) || (
+#       play_etc-dialog &
+#     )
+#   ) &
+#   (
+
+#
+# (
+
+#       play_information-dialog &
+#     ) || (
+#       play_etc-dialog &
+#     )
+#   ) &
+
+#   (
+
+#     eval $(
+#       fnm env
+#     ) && (
+
+#       play_information-dialog &
+#     ) || (
+#       play_etc-dialog && exit 1
+#     )
+#   ) && (
+
+#     (
+#       (
+#         fnm install 10
+
+#     (
+#       (
+#         fnm install 12
+
+#     (
+#       (
+#         fnm install 14
+
+#     (
+#       (
+#         fnm install 15
+
+#     (
+#       (
+#         fnm install 16
+
+
+#     fnm use default && (
+
+#       (
+#         play_information-dialog &
+#       )
+#     ) || (
+#       play_etc-dialog &
+#     )
+#   )
+
+# ) &
+
+# (
+# conda update -n base conda -y
+# conda update --all -y
+# - && (
+#
+#
+#   ) || (
+#     (
+#       play_etc-dialog &
+#     ) &
+#   )
+# )
+
+# (
+
+#   sudo systemctl enable redis --now && (
+#
+#   ) || (
+#     (
+#       play_etc-dialog &
+#     ) &
+#   )
+#   exit 1
+# )
+
+# (
+# sleep 1.105
+# echo "play_zelda_desktop-login"&
+# sleep 0.243
+# play_zelda_desktop-login
+# sleep 1.105
+# echo "play_zelda_desktop-logout" &
+# sleep 0.243
+# play_zelda_desktop-logout
+# echo "play_zelda_buddylogin" &
+# sleep 0.243
+# play_zelda_buddylogin
+# sleep 1.105
+# echo "play_zelda_longaction" &
+# sleep 0.243
+# play_zelda_longaction
+# sleep 1.105
+# echo "play_zelda_bell" &
+# sleep 0.243
+# play_zelda_bell
+# sleep 1.105
+# echo "play_zelda_button-toggle (on & off)" &
+# sleep 0.243
+# play_zelda_button-toggle-on
+# sleep 1.105
+# echo "play_zelda_button-pressed" &
+# sleep 0.243
+# play_zelda_button-pressed
+# sleep 1.105
+# echo "play_zelda_emptytrash" &
+# sleep 0.243
+# play_zelda_emptytrash
+# sleep 1.105
+# echo "play_zelda_minimize" &
+# sleep 0.243
+# play_zelda_minimize
+# sleep 1.105
+# echo "play_zelda_maximize" &
+# sleep 0.243
+# play_zelda_maximize
+# sleep 1.105
+# echo "play_zelda_unmaximize" &
+# sleep 0.243
+# play_zelda_unmaximize
+# sleep 1.105
+# echo "play_zelda_imsent" &
+# sleep 0.243
+# play_zelda_imsent
+# sleep 1.105
+# echo "play_zelda_imreceived" &
+# sleep 0.243
+# play_zelda_imreceived
+# sleep 1.105
+# echo "play_zelda_email" &
+# sleep 0.243
+# play_zelda_email
+# sleep 1.105
+# echo "play_zelda_lowbatt" &
+# sleep 0.243
+# play_zelda_lowbatt
+# sleep 1.105
+# echo "play_zelda_dialog-information" &
+# sleep 0.243
+# play_zelda_dialog-information
+# sleep 1.105
+# echo "play_zelda_dialog-warning" &
+# sleep 0.243
+# play_zelda_dialog-warning
+# sleep 1.105
+# echo "play_zelda_dialog-error" &
+# sleep 0.243
+# play_zelda_dialog-error
+# sleep 1.105
+# echo "play_zelda_buddylogout" &
+# sleep 0.243
+# play_zelda_buddylogout1
+# sleep 1.105)&
+# clear
+
+
+# # echo "play_zelda_button-toggle-off"
+# # sleep 0.243
+# # play_zelda_button-toggle-off
+# # sleep 1.105
+
+# # echo "play_zelda_dialog-question"
+# # sleep 0.243
+# # play_zelda_dialog-question
+# # sleep 1.105
+
+# # ////
+# # play_zelda_desktop-logout_0234
+# # play_zelda_buddylogout_0229
+# # play_zelda_email_0239
+# # play_zelda_lowbatt_0-244
+# # play_zelda_bell_0227
+# # play_zelda_button-toggle-on_0232
+# # play_zelda_dialog-question_0237
+# # play_zelda_imsent_0242
+# # play_zelda_unmaximize_0247
+# # play_zelda_button-pressed_0230
+# # play_zelda_dialog-error_0235
+# # play_zelda_emptytrash_0240
+# # play_zelda_maximize_0245
+# # play_zelda_buddylogin_0228
+# # play_zelda_desktop-login_0233
+# # play_zelda_dialog-warning_0238
+# # play_zelda_longaction_0-243
+# # play_zoom_0103
+# # play_zelda_button-toggle-off_0231
+# # play_zelda_dialog-information_0236
+# # play_zelda_imreceived_0241
+# # play_zelda_minimize_0246
+# # echo "play_zoom"
+# # sleep 0.243
+# # play_zoom
+# # sleep 1.105
+
+
+
+# # && (
+# #   play_zelda_button-toggle-on &
+# # ) || (
+# #   play_etc-dialog &
+# # )
+
+# # (
+
+# #   (
+
+# #     (
+
+# #       source /home/luxcium/ahmyzsh/core/functions/00000-upnboot.sh
+# #       _dnf_makecache_auto_update
+# #       _dnf_makecache_all
+# #     ) && (
+# #       play_complete1 &
+# #     ) || exit 1
+# #   ) || (
+# #     play_etc-dialog &
+# #   )
+# # ) &
+
+# # play_kdemod-error
+# # p-lay_osx2_0002_assend_attention
+# # (
+
+#   (
+#     code-insiders /home/luxcium/ahmyzsh
+#       sudo ionice -c 2 -n 1 -p $(
+#     pidof -w -x code-insiders
+#   )
+#     sudo renice -n 5 -p $(
+#     pidof -w -x code-insiders
+#   )
+#     # && (
+#     #
+#     # ) || (
+#     #   play_etc-dialog &
+#     # )
+#   )
+#   (
+#     gnome-terminal --title='Gnome Terminal' --class=gnome-terminal-Z6C4C35AEx --name=gnome-terminal-Z757425E8x --role=gnome-terminal-ZF987CDA0x && (
+#       play_menu-select-a &
+#     ) || (
+#       play_etc-dialog &
+#     )
+#   )
+
+#   sudo ionice -c 2 -n 1 -p $(
+#     pidof -w -x code-insiders
+#   ) && (
+#
+#   ) || (
+#     play_etc-dialog &
+#   )
+#   sudo renice -n 5 -p $(
+#     pidof -w -x code-insiders
+#   ) && (
+#
+#   ) || (
+#     play_etc-dialog &
+#   )
+#   sudo ionice -c 2 -n 1 -p $(
+#     pidof -w -x gnome-terminal
+#   ) && (
+#
+#   ) || (
+#     play_etc-dialog &
+#   )
+#   sudo renice -n 10 -p $(
+#     pidof -w -x gnome-terminal
+#   ) && (
+#
+#   ) || (
+#     play_etc-dialog &
+#   )
+# # ) &
+
+# (
+
+#   (
+#     sudo fc-cache -rfE && (
+
+#       play_information-dialog &
+#     ) || (
+#       play_etc-dialog &
+#     )
+#   ) &
+#   (
+#     fc-cache -rfE && (
+
+#       play_information-dialog &
+#     ) || (
+#       play_etc-dialog &
+#     )
+#   ) &
+
+#   (
+
+#     eval $(
+#       fnm env
+#     ) && (
+
+#       play_information-dialog &
+#     ) || (
+#       play_etc-dialog && exit 1
+#     )
+#   ) && (
+
+#     (
+#       (
+#         fnm install 10
+
+#     (
+#       (
+#         fnm install 12
+
+#     (
+#       (
+#         fnm install 14
+
+#     (
+#       (
+#         fnm install 15
+
+#     (
+#       (
+#         fnm install 16
+
+
+#     fnm use default && (
+
+#       (
+#         play_information-dialog &
+#       )
+#     ) || (
+#       play_etc-dialog &
+#     )
+#   )
+
+# ) &
+
+# (
+
+#   conda update --all -y && (
+#
+#   ) || (
+#     (
+#       play_etc-dialog &
+#     ) &
+#   )
+# )
+
+# (
+
+#   sudo systemctl enable redis --now && (
+#
+#   ) || (
+#     (
+#       play_etc-dialog &
+#     ) &
+#   )
+#   exit 1
+# )
+
+# (
+# # sleep 1.105
+# # echo "play_zelda_desktop-login"&
+# # sleep 0.243
+# # play_zelda_desktop-login
+# # sleep 1.105
+# # echo "play_zelda_desktop-logout" &
+# # sleep 0.243
+# # play_zelda_desktop-logout
+# # echo "play_zelda_buddylogin" &
+# # sleep 0.243
+# # play_zelda_buddylogin
+# # sleep 1.105
+# # echo "play_zelda_longaction" &
+# # sleep 0.243
+# # play_zelda_longaction
+# # sleep 1.105
+# # echo "play_zelda_bell" &
+# # sleep 0.243
+# # play_zelda_bell
+# # sleep 1.105
+# # echo "play_zelda_button-toggle (on & off)" &
+# # sleep 0.243
+# # play_zelda_button-toggle-on
+# # sleep 1.105
+# # echo "play_zelda_button-pressed" &
+# # sleep 0.243
+# # play_zelda_button-pressed
+# # sleep 1.105
+# # echo "play_zelda_emptytrash" &
+# # sleep 0.243
+# # play_zelda_emptytrash
+# # sleep 1.105
+# # echo "play_zelda_minimize" &
+# # sleep 0.243
+# # play_zelda_minimize
+# # sleep 1.105
+# # echo "play_zelda_maximize" &
+# # sleep 0.243
+# # play_zelda_maximize
+# # sleep 1.105
+# # echo "play_zelda_unmaximize" &
+# # sleep 0.243
+# # play_zelda_unmaximize
+# # sleep 1.105
+# # echo "play_zelda_imsent" &
+# # sleep 0.243
+# # play_zelda_imsent
+# # sleep 1.105
+# # echo "play_zelda_imreceived" &
+# # sleep 0.243
+# # play_zelda_imreceived
+# # sleep 1.105
+# # echo "play_zelda_email" &
+# # sleep 0.243
+# # play_zelda_email
+# # sleep 1.105
+# # echo "play_zelda_lowbatt" &
+# # sleep 0.243
+# # play_zelda_lowbatt
+# # sleep 1.105
+# # echo "play_zelda_dialog-information" &
+# # sleep 0.243
+# # play_zelda_dialog-information
+# # sleep 1.105
+# # echo "play_zelda_dialog-warning" &
+# # sleep 0.243
+# # play_zelda_dialog-warning
+# # sleep 1.105
+# # echo "play_zelda_dialog-error" &
+# # sleep 0.243
+# # play_zelda_dialog-error
+# # sleep 1.105
+# # echo "play_zelda_buddylogout" &
+# # sleep 0.243
+# # play_zelda_buddylogout1
+# # sleep 1.105)&
+# # clear
+
+
+# # echo "play_zelda_button-toggle-off"
+# # sleep 0.243
+# # play_zelda_button-toggle-off
+# # sleep 1.105
+
+# # echo "play_zelda_dialog-question"
+# # sleep 0.243
+# # play_zelda_dialog-question
+# # sleep 1.105
+
+# # ////
+# # play_zelda_desktop-logout_0234
+# # play_zelda_buddylogout_0229
+# # play_zelda_email_0239
+# # play_zelda_lowbatt_0-244
+# # play_zelda_bell_0227
+# # play_zelda_button-toggle-on_0232
+# # play_zelda_dialog-question_0237
+# # play_zelda_imsent_0242
+# # play_zelda_unmaximize_0247
+# # play_zelda_button-pressed_0230
+# # play_zelda_dialog-error_0235
+# # play_zelda_emptytrash_0240
+# # play_zelda_maximize_0245
+# # play_zelda_buddylogin_0228
+# # play_zelda_desktop-login_0233
+# # play_zelda_dialog-warning_0238
+# # play_zelda_longaction_0-243
+# # play_zoom_0103
+# # play_zelda_button-toggle-off_0231
+# # play_zelda_dialog-information_0236
+# # play_zelda_imreceived_0241
+# # play_zelda_minimize_0246
+# # echo "play_zoom"
+# # sleep 0.243
+# # play_zoom
+# # sleep 1.105
+
+# play_screen-capture &
+# play_screen-capture &
+# play_screen-capture &
+# play_screen-capture &
+# play_screen-capture &
+# play_screen-capture &
+# play_screen-capture &
+# play_screen-capture &
+# play_screen-capture &
+# play_screen-capture &
+# play_screen-capture &
+# play_screen-capture &
+# play_screen-capture &
+# play_screen-capture &
+
+# (
+#   # sleep 2.5
+#   # play_NTV_question_btv #  5.4742s
+#   # play_NTV_error_tv3 # 3.0325s
+# ) &

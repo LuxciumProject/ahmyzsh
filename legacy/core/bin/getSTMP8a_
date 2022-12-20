@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+# getSTMP8a_
+  echo -en "$(getSTMP4_)-$(getSTMP4_)x"

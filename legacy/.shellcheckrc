@@ -1,0 +1,9 @@
+external-sources=true
+
+## Disable individual error codes with `,`
+## Disable a range of error codes with `-`
+disable=SC2009 # Consider using pgrep instead of grepping ps output.
+# disable=SC3037 # Rewrite in terms of the more robust and standardized printf.
+# SC3037
+
+disable=SC1071

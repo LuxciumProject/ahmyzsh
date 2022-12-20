@@ -1,0 +1,51 @@
+  azure-cli.repo
+  bintray-ookla-rhel.repo
+  _copr_phracek-PyCharm.repo
+  docker-ce.repo
+  fedora-cisco-openh264.repo
+  fedora-modular.repo
+  fedora.repo
+  fedora-updates-modular.repo
+  fedora-updates.repo
+  fedora-updates-testing-modular.repo
+  fedora-updates-testing.repo
+  gh-cli.repo
+  google-chrome.repo
+  microsoft-prod.repo
+  mongodb-org-4.4.repo
+  rpmfusion-free.repo
+  rpmfusion-free-updates.repo
+  rpmfusion-free-updates-testing.repo
+  rpmfusion-nonfree-nvidia-driver.repo
+  rpmfusion-nonfree.repo
+  rpmfusion-nonfree-steam.repo
+  rpmfusion-nonfree-updates.repo
+  rpmfusion-nonfree-updates-testing.repo
+  teamviewer.repo
+  vscode.repo
+
+azure-cli.repo
+bintray-ookla-rhel.repo
+_copr_phracek-PyCharm.repo.pycharm-off
+docker-ce.repo
+fedora-cisco-openh264.repo
+fedora-modular.repo
+fedora.repo
+fedora-updates-modular.repo
+fedora-updates.repo
+fedora-updates-testing-modular.repo
+fedora-updates-testing.repo
+gh-cli.repo
+google-chrome.repo
+microsoft-prod.repo
+mongodb-org-4.4.repo
+rpmfusion-free.repo
+rpmfusion-free-updates.repo
+rpmfusion-free-updates-testing.repo
+rpmfusion-nonfree-nvidia-driver.repo
+rpmfusion-nonfree.repo
+rpmfusion-nonfree-steam.repo
+rpmfusion-nonfree-updates.repo
+rpmfusion-nonfree-updates-testing.repo
+teamviewer.repo
+vscode.repo

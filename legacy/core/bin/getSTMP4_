@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+# getSTMP4_
+echo -en $(sha224sum <<<$(date +%D%s%N) | cut -c -4 | tr \[a-z\] \[A-Z\])

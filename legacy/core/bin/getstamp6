@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+echo -en \#$(sha224sum <<<$(date +%D%s%N) | cut -c -6 | tr \[a-z\] \[A-Z\])

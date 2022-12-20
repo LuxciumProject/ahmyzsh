@@ -1,0 +1,48 @@
+# export MY_DESTINATION_="/run/media/luxcium/D:\ Archive locale/blobs"
+# export MY_SOURCE_="/run/media/luxcium/250GB-Storage/blobs"
+# export MY_SOURCE_="/run/media/luxcium/D:\ Archive locale/blobs"
+# export MY_DESTINATION_="/run/media/luxcium/250GB-Storage/blobs"
+export MY_SOURCE_="/dev/zero"
+export MY_DESTINATION_="/dev/null"
+
+
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random000.bX1 /so-big.random000.bX1
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random001.bX1 /so-big.random001.bX1
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random002.bX1 /so-big.random002.bX1
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random003.bX1 /so-big.random003.bX1
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random004.bX1 /so-big.random004.bX1
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random005.bX1 /so-big.random005.bX1
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random006.bX1 /so-big.random006.bX1
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random007.bX1 /so-big.random007.bX1
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random008.bX1 /so-big.random008.bX1
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random009.bX1 /so-big.random009.bX1
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random010.bX1 /so-big.random010.bX1
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random011.bX1 /so-big.random011.bX1
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random012.bX1 /so-big.random012.bX1
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random013.bX1 /so-big.random013.bX1
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random014.bX1 /so-big.random014.bX1
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random015.bX1 /so-big.random015.bX1
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random016.bX1 /so-big.random016.bX1
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random017.bX1 /so-big.random017.bX1
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random018.bX1 /so-big.random018.bX1
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random019.bX1 /so-big.random019.bX1
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random000.bX2 /so-big.random000.bX2
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random001.bX2 /so-big.random001.bX2
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random002.bX2 /so-big.random002.bX2
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random003.bX2 /so-big.random003.bX2
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random004.bX2 /so-big.random004.bX2
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random005.bX2 /so-big.random005.bX2
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random006.bX2 /so-big.random006.bX2
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random007.bX2 /so-big.random007.bX2
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random008.bX2 /so-big.random008.bX2
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random009.bX2 /so-big.random009.bX2
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random010.bX2 /so-big.random010.bX2
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random011.bX2 /so-big.random011.bX2
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random012.bX2 /so-big.random012.bX2
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random013.bX2 /so-big.random013.bX2
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random014.bX2 /so-big.random014.bX2
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random015.bX2 /so-big.random015.bX2
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random016.bX2 /so-big.random016.bX2
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random017.bX2 /so-big.random017.bX2
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random018.bX2 /so-big.random018.bX2
+(sudo dd if="${MY_SOURCE_}" of="${MY_DESTINATION_}" count=64 bs=1048576)& # /big.random019.bX2 /so-big.random019.bX2
