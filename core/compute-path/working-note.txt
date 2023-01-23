@@ -1,0 +1,107 @@
+ls /sys/block/
+cat /sys/block/dm-0/queue/scheduler
+none
+
+echo 'mq-deadline' > /sys/block/nvme0n1/queue/scheduler
+cat /sys/block/nvme0n1/queue/scheduler
+#[none] mq-deadline kyber bfq
+echo 'mq-deadline' > /sys/block/nvme1n1/queue/scheduler
+cat /sys/block/nvme1n1/queue/scheduler
+#[none] mq-deadline kyber bfq
+
+cat /sys/block/sda/queue/scheduler
+echo 'kyber' > /sys/block/sda/queue/scheduler
+cat /sys/block/sda/queue/scheduler
+echo WAS: mq-deadline kyber [bfq] none
+cat /sys/block/sdb/queue/scheduler
+echo 'kyber' > /sys/block/sdb/queue/scheduler
+cat /sys/block/sdb/queue/scheduler
+echo WAS: mq-deadline kyber [bfq] none
+
+cat /sys/block/sdc/queue/scheduler
+mq-deadline kyber [bfq] none
+cat /sys/block/sdd/queue/scheduler
+mq-deadline kyber [bfq] none
+cat /sys/block/zram0/queue/scheduler
+none
+
+cat /sys/block/
+/queue/scheduler
+
+
+2TB-Seagate -> slower spinning disk HDD ata-ST2000DL001 more than 1.8Tio ext4 -> ../../sdb
+ARCHIVES -> slower spinning disk HDD ata-WDC more than  2.6Tio ext4 -> ../../sda
+nvme-Samsung_SSD_960_PRO 512GB -> ../../nvme1n1
+SYSTEM PARTITIONS (boot, home, projects, sources, swap, system) nvme-Samsung_SSD_980_PRO 1TB multi partition mostly BTRFS -> ../../nvme0n1
+
+
+2TB-Seagate -> ../../sdb1
+ANACONDA -> ../../sdc2
+ARCHIVES -> ../../sda1
+boot -> ../../nvme0n1p1
+home -> ../../nvme0n1p3
+projects -> ../../nvme0n1p6
+sources -> ../../nvme0n1p5
+swap -> ../../nvme0n1p4
+system -> ../../nvme0n1p2
+
+x250Mio -> ../../dm-0
+X299TUF1 -> ../../sdd1
+
+drwxr-xr-x. 9 root root 180 18 jan 14:57 ../
+
+ata-ST2000DL001-9VT156_5YD2KGM3-part1 -> ../../sdb1
+
+ata-WDC_WD30EZRZ-00GXCB0_WD-WCC7K3CPJTKH-part1 -> ../../sda1
+ata-WDC_WD30EZRZ-00GXCB0_WD-WCC7K3CPJTKH-part2 -> ../../sda2
+dm-name-luks-024a252f-d475-41b5-8c19-fd1305df1996 -> ../../dm-0
+dm-uuid-CRYPT-LUKS1-024a252fd47541b58c19fd1305df1996-luks-024a252f-d475-41b5-8c19-fd1305df1996 -> ../../dm-0
+nvme-eui.0025385571b25136 -> ../../nvme1n1
+nvme-eui.0025385571b25136-part1 -> ../../nvme1n1p1
+nvme-eui.0025385571b25136-part2 -> ../../nvme1n1p2
+nvme-eui.002538b821a0fb06 -> ../../nvme0n1
+nvme-eui.002538b821a0fb06-part1 -> ../../nvme0n1p1
+nvme-eui.002538b821a0fb06-part2 -> ../../nvme0n1p2
+nvme-eui.002538b821a0fb06-part3 -> ../../nvme0n1p3
+nvme-eui.002538b821a0fb06-part4 -> ../../nvme0n1p4
+nvme-eui.002538b821a0fb06-part5 -> ../../nvme0n1p5
+nvme-eui.002538b821a0fb06-part6 -> ../../nvme0n1p6
+nvme-eui.002538b821a0fb06-part7 -> ../../nvme0n1p7
+
+nvme-Samsung_SSD_960_PRO_512GB_S3EWNX0J533575Z-part1 -> ../../nvme1n1p1
+nvme-Samsung_SSD_960_PRO_512GB_S3EWNX0J533575Z-part2 -> ../../nvme1n1p2
+
+nvme-Samsung_SSD_980_PRO_1TB_S5P2NL0T825417A-part1 -> ../../nvme0n1p1
+nvme-Samsung_SSD_980_PRO_1TB_S5P2NL0T825417A-part2 -> ../../nvme0n1p2
+nvme-Samsung_SSD_980_PRO_1TB_S5P2NL0T825417A-part3 -> ../../nvme0n1p3
+nvme-Samsung_SSD_980_PRO_1TB_S5P2NL0T825417A-part4 -> ../../nvme0n1p4
+nvme-Samsung_SSD_980_PRO_1TB_S5P2NL0T825417A-part5 -> ../../nvme0n1p5
+nvme-Samsung_SSD_980_PRO_1TB_S5P2NL0T825417A-part6 -> ../../nvme0n1p6
+nvme-Samsung_SSD_980_PRO_1TB_S5P2NL0T825417A-part7 -> ../../nvme0n1p7
+usb-Kingston_DataTraveler_3.0_408D5C1EF726B1A1590830FC-0:0 -> ../../sdc
+usb-Kingston_DataTraveler_3.0_408D5C1EF726B1A1590830FC-0:0-part1 -> ../../sdc1
+usb-Kingston_DataTraveler_3.0_408D5C1EF726B1A1590830FC-0:0-part2 -> ../../sdc2
+usb-Kingston_DataTraveler_3.0_408D5C1EF726B1A1590830FC-0:0-part3 -> ../../sdc3
+usb-_USB_Flash_Memory_00D0C9CE66AAED81A0005BFE-0:0 -> ../../sdd
+usb-_USB_Flash_Memory_00D0C9CE66AAED81A0005BFE-0:0-part1 -> ../../sdd1
+wwn-0x5000c5002fe5fd79 -> ../../sdb
+wwn-0x5000c5002fe5fd79-part1 -> ../../sdb1
+wwn-0x50014ee20e735fc4 -> ../../sda
+wwn-0x50014ee20e735fc4-part1 -> ../../sda1
+wwn-0x50014ee20e735fc4-part2 -> ../../sda2
+
+sudo sh -c "echo noop > /sys/block/sda/queue/scheduler"
+sudo sh -c "echo noop > /sys/block/sdb/queue/scheduler"
+
+golang-github-felixge-httpsnoop-devel.noarch
+libsocket_wrapper_noop.i686
+libsocket_wrapper_noop.x86_64
+libsocket_wrapper_noop-devel.i686
+libsocket_wrapper_noop-devel.x86_64
+python3-pysnooper.noarch
+retsnoop.x86_64
+rust-noop_proc_macro+default-devel.noarch
+rust-noop_proc_macro-devel.noarch
+snoopy.i686
+snoopy.x86_64
+stripesnoop.x86_64
