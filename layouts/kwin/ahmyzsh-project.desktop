@@ -1,0 +1,19 @@
+[Desktop Entry]
+Type=Application
+Name=Visual Studio Code (Ahmyzsh Project)
+Comment=Launch Visual Studio Code with the Ahmyzsh project
+Exec=/home/luxcium/ahmyzsh/layouts/kwin/ahmyzsh-project-loader.sh --new-window %F
+Icon=/home/luxcium/.local/share/icons/vscode-material-icon-theme/folder-vm-open.svg
+Terminal=false
+GenericName=VSCODE Text Editor
+Categories=Development;IDE;TextEditor;
+MimeType=text/plain;inode/directory;application/x-code-workspace;
+Keywords=vscode;code;development;editor;ide;ahmyzsh;project;
+StartupNotify=true
+StartupWMClass="°Ah! MYZSH°"
+
+[Desktop Action new-empty-window]
+Name=New Empty main vscode Window
+Comment=Launch Visual Studio Code with a new empty window
+Exec=/home/luxcium/main-vscode/bin/code --new-window %F
+Icon=com.visualstudio.code

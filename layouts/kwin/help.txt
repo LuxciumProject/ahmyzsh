@@ -1,0 +1,88 @@
+❯ kstart5 --help-all
+Usage: kstart5 [options]
+Utilitaire pour lancer des applications avec des propriétés spéciales de fenêtre
+telles que réduite, maximisée, sur un certain bureau virtuel,
+une décoration spéciale, etc.
+
+Options:
+  -h, --help                           Displays help on commandline options.
+  --help-all                           Displays help including Qt specific
+                                       options.
+  -v, --version                        Displays version information.
+  --author                             Afficher les informations sur l'auteur.
+  --license                            Afficher les informations sur la
+                                       licence.
+  --desktopfile <nom du fichier>       La base du nom de fichier de l'entrée
+                                       desktop pour cette application.
+  --!+command                          Commande à exécuter
+  --service <desktopfile>              Alternative à la <command> : emplacement
+                                       du fichier de bureau à démarrer. La
+                                       sortie du service « D-Bus » sera dirigée
+                                       vers la sortie standard « stdout ».
+                                       Déconseillé: utiliser « --application »
+  --application <desktopfile>          Alternative à la <command> : fichier de
+                                       bureau à démarrer.
+  --url <url>                          URL facultative pour passer le
+                                       <desktopfile>, lors de l'utilisation de «
+                                       --service »
+  --window <regexp>                    Une expression rationnelle correspondant
+                                       au titre de la fenêtre
+  --windowclass <class>                Une chaîne correspondant à la classe de
+                                       la fenêtre (propriété « WM_CLASS »).
+                                       La classe d'une fenêtre peut être trouvée
+                                       en exécutant la commande « xprop | grep
+                                       WM_CLASS » et en cliquant sur la fenêtre
+                                       (utilisez soit les deux parties séparées
+                                       par une espace, soit la partie de
+                                       droite).
+                                       Remarque : si vous ne spécifiez ni le
+                                       titre de la fenêtre ni la classe de la
+                                       fenêtre, alors, la toute première fenêtre
+                                       qui apparaîtra sera prise en compte, ce
+                                       qui n'est PAS recommandé.
+  --desktop <number>                   Bureau sur lequel faire apparaître la
+                                       fenêtre
+  --currentdesktop                     Forcer la fenêtre à apparaître sur le
+                                       bureau qui était actif lorsque
+                                       l'application a été lancée
+  --alldesktops                        Faire apparaître la fenêtre sur tous les
+                                       bureaux
+  --iconify                            Réduire la fenêtre
+  --maximize                           Maximiser la fenêtre
+  --maximize-vertically                Maximiser la fenêtre verticalement
+  --maximize-horizontally              Maximiser la fenêtre horizontalement
+  --fullscreen                         Afficher la fenêtre en plein écran
+  --type <type>                        Le type de fenêtre : « Normale », «
+                                       Bureau », « Dock », « Barre d'outils »,
+                                       « Menu », « Dialogue », « Menu principal
+                                       » ou « Modifiée »
+  --activate                           Aller à la fenêtre même si elle est
+                                       lancée sur un
+                                       bureau virtuel différent
+  --ontop, --keepabove                 Essayer de maintenir la fenêtre
+                                       au-dessus des autres
+  --onbottom, --keepbelow              Essayer de maintenir la fenêtre en
+                                       dessous des autres
+  --skiptaskbar                        La fenêtre n'apparaît pas dans la barre
+                                       de tâches
+  --skippager                          La fenêtre n'apparaît pas dans le
+                                       gestionnaire de bureaux
+  --qmljsdebugger <value>              Activates the QML/JS debugger with a
+                                       specified port. The value must be of
+                                       format port:1234[,block]. "block" makes
+                                       the application wait for a connection.
+  --platform <platformName[:options]>  QPA plugin. See QGuiApplication
+                                       documentation for available options for
+                                       each plugin.
+  --platformpluginpath <path>          Path to the platform plugins.
+  --platformtheme <theme>              Platform theme.
+  --plugin <plugin>                    Additional plugins to load, can be
+                                       specified multiple times.
+  --qwindowgeometry <geometry>         Window geometry for the main window,
+                                       using the X11-syntax, like 100x100+50+50.
+  --qwindowicon <icon>                 Default window icon.
+  --qwindowtitle <title>               Title of the first window.
+  --reverse                            Sets the application's layout direction
+                                       to Qt::RightToLeft (debugging helper).
+  --session <session>                  Restores the application from an earlier
+                                       session.

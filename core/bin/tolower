@@ -1,0 +1,23 @@
+#!/usr/bin/bash
+
+#. ----------------------------------------------------------------------------- ~
+#. Scientia es lux principium -tm-
+#. Copyright © 2019-2020 Benjamin Vincent Kasapoglu (Luxcium)
+#. MIT LICENSE ― PROVIDED "AS IS" ― *NOT* fit for any particular use or purpose!
+#. ----------------------------------------------------------------------------- ~
+
+# tolower
+# set AZ text to lower case
+
+function tolower_() {
+  (echo -n "${@}" | tr "[:upper:]" "[:lower:]")
+}
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+tolower_ "${@}"
+
+EXIT_="${?}"
+
+unset -f tolower_
+
+exit $EXIT_

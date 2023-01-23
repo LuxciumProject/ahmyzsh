@@ -1,0 +1,713 @@
+# #
+# # Set default policies for INPUT, FORWARD and OUTPUT chains
+# #
+sudo iptables -t filter -P INPUT DROP
+sudo iptables -t filter -P FORWARD DROP
+sudo iptables -t filter -P OUTPUT DROP
+# #
+# # Flush all current rules from iptables
+# #
+# #// Flush All Iptables Chains/Firewall rules #
+sudo iptables -t filter -F
+# #// Delete all Iptables Chains #
+sudo iptables -t filter -X
+# #// Flush all counters too #
+sudo iptables -t filter -Z
+# #
+## Name the chains
+sudo iptables -t filter -N ENO1_I
+sudo iptables -t filter -N ENO1_O
+sudo iptables -t filter -N ENO1_IF
+sudo iptables -t filter -N ENO1_OF
+## Name the chains
+sudo iptables -t filter -N ENP4S0_I
+sudo iptables -t filter -N ENP4S0_O
+sudo iptables -t filter -N ENP4S0_IF
+sudo iptables -t filter -N ENP4S0_OF
+# #
+## Link the chains
+sudo iptables -t filter -I INPUT -i eno1 -j ENO1_I
+sudo iptables -t filter -I OUTPUT -o eno1 -j ENO1_O
+sudo iptables -t filter -A FORWARD -i eno1 -j ENO1_IF
+sudo iptables -t filter -A FORWARD -o eno1 -j ENO1_OF
+## Link the chains
+sudo iptables -t filter -A INPUT -i enp4s0 -j ENP4S0_I
+sudo iptables -t filter -A OUTPUT -o enp4s0 -j ENP4S0_O
+sudo iptables -t filter -A FORWARD -i enp4s0 -j ENP4S0_IF
+sudo iptables -t filter -A FORWARD -o enp4s0 -j ENP4S0_OF
+
+# # Disallow SSH connections on tcp port 22
+# #
+sudo iptables -t filter -A INPUT -p tcp --dport 22 -j DROP
+sudo iptables -t filter -A ENO1_I -p tcp --dport 22 -j DROP
+sudo iptables -t filter -A ENP4S0_I -p tcp --dport 22 -j DROP
+# #
+# # Set access for localhost
+# #
+sudo iptables -t filter -A INPUT -i lo -j ACCEPT
+sudo iptables -t filter -A OUTPUT -o lo -j ACCEPT
+# #
+# # Accept packets belonging to established and related connections
+# * sudo iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+# #
+# $ Main Settings ENP4S0_I and ENP4S0_O
+# sudo iptables -t filter -A ENP4S0_I -m state --state ESTABLISHED,RELATED -j ACCEPT
+# sudo iptables -t filter -A ENP4S0_O -j ACCEPT
+
+# sudo iptables -t filter -A ENO1_I -j DROP
+# sudo iptables -t filter -A ENO1_O -j DROP
+# #
+# $ Main Settings ENP4S0_I and ENP4S0_O
+# #
+# nmcli con reload eno1
+# #
+# !! Alternative Settings ENO1_I and ENO1_O
+# # Accept packets belonging to established and related connections
+sudo iptables -t filter -A ENO1_I -m state --state ESTABLISHED,RELATED -j ACCEPT
+sudo iptables -t filter -A ENO1_O -j ACCEPT
+
+sudo iptables -t filter -A ENP4S0_I -j DROP
+sudo iptables -t filter -A ENP4S0_O -j DROP
+# #
+# !! Alternative Settings ENO1_I and ENO1_O
+# #
+
+sudo iptables -t filter -A ENO1_IF -j DROP
+sudo iptables -t filter -A ENO1_OF -j DROP
+sudo iptables -t filter -A ENP4S0_IF -j DROP
+sudo iptables -t filter -A ENP4S0_OF -j DROP
+
+# sudo iptables -t filter -A ENO1_I -m state --state ESTABLISHED,RELATED -j ACCEPT
+# sudo iptables -t filter -A ENP4S0_I -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+# sudo iptables -A ENO1_I -j DROP
+# sudo iptables -A ENO1_O -j ACCEPT
+# sudo iptables -A ENO1_IF -j DROP
+# sudo iptables -A ENO1_OF -j DROP
+# sudo iptables -A ENP4S0_I -j DROP
+# sudo iptables -A ENP4S0_O -j ACCEPT
+# sudo iptables -A ENP4S0_IF -j DROP
+# sudo iptables -A ENP4S0_OF -j DROP
+# sudo ifconfig eno1 down
+# sudo ifconfig enp4s0 down
+# sleep 1
+# sudo ifconfig eno1 up
+# sudo ifconfig enp4s0 up
+
+sudo nmcli con reload eno1
+sudo nmcli con reload enp4s0
+
+# #
+# # List rules
+# #
+# iptables -L -v
+echo 'sudo iptables -t filter -L'
+echo 4444444444-------------------------------------------------------------4444444444
+sudo iptables -t filter -L
+echo
+
+# #
+# # Save settings
+# #
+#  /sbin/service iptables save
+sudo iptables-save
+sudo ip6tables-save
+# echo
+# echo ---------------------------------------------------------------------------------
+# sleep 0.5
+# echo -n -e '\u001b[2K5.....'
+# sleep 0.25
+# echo -n -e '...\u001b[10D'
+# sleep 0.25
+# echo -n -e '5   \u001b[10D'
+# sleep 0.5
+# echo -n -e '\u001b[2K4....'
+# sleep 0.25
+# echo -n -e '...\u001b[10D'
+# sleep 0.25
+# echo -n -e '4   \u001b[10D'
+# sleep 0.5
+# echo -n -e '\u001b[2K3...'
+# sleep 0.25
+# echo -n -e '...\u001b[10D'
+# sleep 0.25
+# echo -n -e '3   \u001b[10D'
+# sleep 0.5
+# echo -n -e '\u001b[2K2..'
+# sleep 0.25
+# echo -n -e '...\u001b[10D'
+# sleep 0.25
+# echo -n -e '2   \u001b[10D'
+# sleep 0.5
+# echo -n -e '\u001b[2K1.'
+# sleep 0.25
+# echo -n -e '...\u001b[10D'
+# sleep 0.25
+# echo -n -e '1   \u001b[10D'
+# sleep 0.5
+# echo -n -e '\u001b[2K0'
+# sleep 0.25
+# echo -n -e '   \u001b[10D'
+# sleep 0.25
+# echo -n -e '\u001b[10D'
+# sleep 0.25
+# echo '\u001b[2K'
+
+echo '## enp4s0 WHITE LINK'
+echo
+ping -W 0.51 -I enp4s0 -c 2 8.8.8.8 && echo && ping -I enp4s0 -c 2 1.1.1.1 && echo '\u001b[1m\u001b[32;1menp4s0 ping (ACCEPTED)\u001b[0m' || echo -e '\u001b[1m\u001b[31;1menp4s0 ping FAILURE (DROPED)\u001b[0m'
+echo
+echo '## eno1 BLUE LINK'
+echo
+ping -W 0.51 -I eno1 -c 2 8.8.8.8 && echo && ping -I eno1 -c 2 1.1.1.1 && echo '\u001b[1m\u001b[32;1meno1 ping (ACCEPTED)\u001b[0m' || echo -e '\u001b[1m\u001b[31;1meno1 ping (DROPED)\u001b[0m'
+echo
+echo ---------------------------------------------------------------------------------
+echo
+
+sudo ip -c -br -0 addres show
+sudo ip -c -br -6 addres show
+sudo ip -c -br -4 addres show
+sudo ip -c -br -4 -r addres show
+
+# nmcli -t -c yes -o
+# nmcli -t -c yes -o con show
+# nmcli -t -c yes -o dev show
+
+exit 0 #
+
+echo 'sudo ip6tables -t raw -S'
+echo 6666666666------------------------------------------6666666666
+sudo ip6tables -t raw -S
+echo
+echo 'sudo ip6tables -t security -S'
+echo 6666666666------------------------------------------6666666666
+sudo ip6tables -t security -S
+echo
+echo 'sudo ip6tables -t mangle -S'
+echo 6666666666------------------------------------------6666666666
+sudo ip6tables -t mangle -S
+echo
+echo 'sudo ip6tables -t nat -S'
+echo 6666666666------------------------------------------6666666666
+sudo ip6tables -t nat -S
+echo
+echo 'sudo ip6tables -t filter -S'
+echo 6666666666------------------------------------------6666666666
+sudo ip6tables -t filter -S
+echo
+
+echo 'sudo iptables -t raw -S'
+echo 4444444444------------------------------------------4444444444
+sudo iptables -t raw -S
+echo
+echo 'sudo iptables -t security -S'
+echo 4444444444------------------------------------------4444444444
+sudo iptables -t security -S
+echo
+echo 'sudo iptables -t mangle -S'
+echo 4444444444------------------------------------------4444444444
+sudo iptables -t mangle -S
+echo
+echo 'sudo iptables -t nat -S'
+echo 4444444444------------------------------------------4444444444
+sudo iptables -t nat -S
+echo
+echo 'sudo iptables -t filter -S'
+echo 4444444444------------------------------------------4444444444
+sudo iptables -t filter -S
+echo
+
+exit 0 #
+
+# sudo iptables -A ENP4S0_I -j ACCEPT
+# sudo iptables -A ENP4S0_O -j ACCEPT
+
+# sudo iptables -A ENO1_I -j ACCEPT
+# sudo iptables -A ENO1_O -j ACCEPT
+
+# sudo iptables -N ENO1_I
+# sudo iptables -N ENO1_O
+# sudo iptables -N ENP4S0_I
+# sudo iptables -N ENP4S0_O
+
+# sudo iptables -I INPUT -i eno1 -j ENO1_I
+# sudo iptables -I OUTPUT -o eno1 -j ENO1_O
+
+# sudo iptables -A INPUT -i enp4s0 -j ENP4S0_I
+# sudo iptables -A OUTPUT -o enp4s0 -j ENP4S0_O
+
+# sudo iptables -A ENP4S0_I -j ACCEPT
+# sudo iptables -A ENP4S0_O -j ACCEPT
+
+# sudo iptables -A ENO1_I -j ACCEPT
+# sudo iptables -A ENO1_O -j ACCEPT
+
+# iptables -A INPUT -p tcp --dport 22 -j DROP
+
+# sudo iptables -A ENP4S0_I -j ACCEPT
+# sudo iptables -A ENP4S0_O -j DROP
+
+# sudo iptables -A ENO1_I -j DROP
+# sudo iptables -A ENO1_O -j ACCEPT
+
+# sudo iptables -A ENO1_I -j ACCEPT
+# sudo iptables -A ENO1_O -j ACCEPT
+
+# sudo iptables -A ENP4S0_I -j RETURN
+# sudo iptables -A ENP4S0_O -j RETURN
+
+# sudo iptables -A INPUT  -i enp4s0 -j DROP
+# sudo iptables -A OUTPUT  -o enp4s0 -j DROP
+
+# sudo iptables -I INPUT  -i eno1 -j ACCEPT
+# sudo iptables -I OUTPUT  -o eno1 -j ACCEPT
+
+# sudo ip6tables -t raw
+# echo 6666666666------------------------------------------6666666666
+# sudo ip6tables -t raw -P PREROUTING DROP
+# sudo ip6tables -t raw -P OUTPUT DROP
+#
+# sudo ip6tables -t security
+# echo 6666666666------------------------------------------6666666666
+# sudo ip6tables -t security -P INPUT DROP
+# sudo ip6tables -t security -P FORWARD DROP
+# sudo ip6tables -t security -P OUTPUT DROP
+#
+# sudo ip6tables -t mangle
+# echo 6666666666------------------------------------------6666666666
+# sudo ip6tables -t mangle -P PREROUTING DROP
+# sudo ip6tables -t mangle -P INPUT DROP
+# sudo ip6tables -t mangle -P FORWARD DROP
+# sudo ip6tables -t mangle -P OUTPUT DROP
+# sudo ip6tables -t mangle -P POSTROUTING DROP
+#
+# sudo ip6tables -t nat
+# echo 6666666666------------------------------------------6666666666
+# sudo ip6tables -t nat -P PREROUTING ACCEPT
+# sudo ip6tables -t nat -P INPUT ACCEPT
+# sudo ip6tables -t nat -P OUTPUT ACCEPT
+# sudo ip6tables -t nat -P POSTROUTING ACCEPT
+#
+# sudo ip6tables -t filter
+# echo 6666666666------------------------------------------6666666666
+# sudo ip6tables -t filter -P INPUT DROP
+# sudo ip6tables -t filter -P FORWARD DROP
+# sudo ip6tables -t filter -P OUTPUT DROP
+
+# sudo iptables -t raw
+# echo 4444444444------------------------------------------4444444444
+# sudo iptables -t raw -P PREROUTING ACCEPT
+# sudo iptables -t raw -P OUTPUT ACCEPT
+#
+# sudo iptables -t security -S
+# echo 4444444444------------------------------------------4444444444
+# sudo iptables -t security -P INPUT ACCEPT
+# sudo iptables -t security -P FORWARD ACCEPT
+# sudo iptables -t security -P OUTPUT ACCEPT
+#
+# sudo iptables -t mangle -S
+# echo 4444444444------------------------------------------4444444444
+# sudo iptables -t mangle -P PREROUTING ACCEPT
+# sudo iptables -t mangle -P INPUT ACCEPT
+# sudo iptables -t mangle -P FORWARD ACCEPT
+# sudo iptables -t mangle -P OUTPUT ACCEPT
+# sudo iptables -t mangle -P POSTROUTING ACCEPT
+#
+# sudo iptables -t nat -S
+# echo 4444444444------------------------------------------4444444444
+# sudo iptables -t nat -P PREROUTING ACCEPT
+# sudo iptables -t nat -P INPUT ACCEPT
+# sudo iptables -t nat -P OUTPUT ACCEPT
+# sudo iptables -t nat -P POSTROUTING ACCEPT
+#
+# sudo iptables -t filter -S
+# echo 4444444444------------------------------------------4444444444
+# sudo iptables -t filter -P INPUT ACCEPT
+# sudo iptables -t filter -P FORWARD ACCEPT
+# sudo iptables -t filter -P OUTPUT ACCEPT
+
+# #// Flush All Iptables Chains/Firewall rules #
+# sudo ip6tables -t raw -F
+# sudo ip6tables -t security -F
+# sudo ip6tables -t mangle -F
+# sudo ip6tables -t nat -F
+# sudo ip6tables -t filter -F
+
+# sudo iptables -t raw -F
+# sudo iptables -t security -F
+# sudo iptables -t mangle -F
+# sudo iptables -t nat -F
+# sudo iptables -t filter -F
+
+# #// Delete all Iptables Chains #
+# sudo ip6tables -t raw -X
+# sudo ip6tables -t security -X
+# sudo ip6tables -t mangle -X
+# sudo ip6tables -t nat -X
+# sudo ip6tables -t filter -X
+
+# sudo iptables -t raw -X
+# sudo iptables -t security -X
+# sudo iptables -t mangle -X
+# sudo iptables -t nat -X
+# sudo iptables -t filter -X
+
+# #// Flush all counters too #
+# sudo ip6tables -t raw -Z
+# sudo ip6tables -t security -Z
+# sudo ip6tables -t mangle -Z
+# sudo ip6tables -t nat -Z
+# sudo ip6tables -t filter -Z
+
+# sudo iptables -t raw -Z
+# sudo iptables -t security -Z
+# sudo iptables -t mangle -Z
+# sudo iptables -t nat -Z
+# sudo iptables -t filter -Z
+
+# sudo iptables -N DOCKER
+# sudo iptables -N DOCKER-ISOLATION-STAGE-1
+# sudo iptables -N DOCKER-ISOLATION-STAGE-2
+# sudo iptables -N DOCKER-USER
+
+# sudo iptables -A FORWARD -j DOCKER-USER
+# sudo iptables -A FORWARD -j DOCKER-ISOLATION-STAGE-1
+# sudo iptables -A FORWARD -o docker0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+# sudo iptables -A FORWARD -o docker0 -j DOCKER
+# sudo iptables -A FORWARD -i docker0 ! -o docker0 -j ACCEPT
+# sudo iptables -A FORWARD -i docker0 -o docker0 -j ACCEPT
+
+# sudo iptables -A DOCKER-ISOLATION-STAGE-1 -i docker0 ! -o docker0 -j DOCKER-ISOLATION-STAGE-2
+# sudo iptables -A DOCKER-ISOLATION-STAGE-1 -j RETURN
+# sudo iptables -A DOCKER-ISOLATION-STAGE-2 -o docker0 -j DROP
+# sudo iptables -A DOCKER-ISOLATION-STAGE-2 -j RETURN
+# sudo iptables -A DOCKER-USER -j RETURN
+
+# sudo iptables -X DOCKER
+# sudo iptables -X DOCKER-ISOLATION-STAGE-1
+# sudo iptables -X DOCKER-ISOLATION-STAGE-2
+# sudo iptables -X DOCKER-USER
+
+# sudo iptables -X LIBVIRT_FWI
+# sudo iptables -X LIBVIRT_FWO
+# sudo iptables -X LIBVIRT_FWX
+# sudo iptables -X LIBVIRT_INP
+# sudo iptables -X LIBVIRT_OUT
+
+# sudo iptables -D LIBVIRT_FWI 1 #-d 192.168.124.0/24 -o virbr0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+# sudo iptables -D LIBVIRT_FWI 1 #-o virbr0 -j REJECT --reject-with icmp-port-unreachable
+# sudo iptables -D LIBVIRT_FWO 1 #-s 192.168.124.0/24 -i virbr0 -j ACCEPT
+# sudo iptables -D LIBVIRT_FWO 1 #-i virbr0 -j REJECT --reject-with icmp-port-unreachable
+# sudo iptables -D LIBVIRT_FWX 1 #-i virbr0 -o virbr0 -j ACCEPT
+# sudo iptables -D LIBVIRT_INP 1 #-i virbr0 -p udp -m udp --dport 53 -j ACCEPT
+# sudo iptables -D LIBVIRT_INP 1 #-i virbr0 -p tcp -m tcp --dport 53 -j ACCEPT
+# sudo iptables -D LIBVIRT_INP 1 #-i virbr0 -p udp -m udp --dport 67 -j ACCEPT
+# sudo iptables -D LIBVIRT_INP 1 #-i virbr0 -p tcp -m tcp --dport 67 -j ACCEPT
+# sudo iptables -D LIBVIRT_OUT 1 #-o virbr0 -p udp -m udp --dport 53 -j ACCEPT
+# sudo iptables -D LIBVIRT_OUT 1 #-o virbr0 -p tcp -m tcp --dport 53 -j ACCEPT
+# sudo iptables -D LIBVIRT_OUT 1 #-o virbr0 -p udp -m udp --dport 68 -j ACCEPT
+# sudo iptables -D LIBVIRT_OUT 1 #-o virbr0 -p tcp -m tcp --dport 68 -j ACCEPT
+
+# sudo ip6tables -X LIBVIRT_FWI
+# sudo ip6tables -X LIBVIRT_FWO
+# sudo ip6tables -X LIBVIRT_FWX
+# sudo ip6tables -X LIBVIRT_INP
+# sudo ip6tables -X LIBVIRT_OUT
+# sudo ip6tables -D INPUT   1 # -j LIBVIRT_INP
+# sudo ip6tables -D FORWARD 1 # -j LIBVIRT_FWX
+# sudo ip6tables -D FORWARD 1 # -j LIBVIRT_FWI
+# sudo ip6tables -D FORWARD 1 # -j LIBVIRT_FWO
+# sudo ip6tables -D OUTPUT  1 #-j LIBVIRT_OUT
+
+# sudo iptables -P INPUT ACCEPT
+# sudo iptables -P FORWARD DROP
+# sudo iptables -P OUTPUT ACCEPT
+# sudo iptables -N DOCKER
+# sudo iptables -N DOCKER-ISOLATION-STAGE-1
+# sudo iptables -N DOCKER-ISOLATION-STAGE-2
+# sudo iptables -N DOCKER-USER
+# sudo iptables -N LIBVIRT_FWI
+# sudo iptables -N LIBVIRT_FWO
+# sudo iptables -N LIBVIRT_FWX
+# sudo iptables -N LIBVIRT_INP
+# sudo iptables -N LIBVIRT_OUT
+# sudo iptables -A INPUT -j LIBVIRT_INP
+# sudo iptables -A FORWARD -j DOCKER-USER
+# sudo iptables -A FORWARD -j DOCKER-ISOLATION-STAGE-1
+# sudo iptables -A FORWARD -o docker0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+# sudo iptables -A FORWARD -o docker0 -j DOCKER
+# sudo iptables -A FORWARD -i docker0 ! -o docker0 -j ACCEPT
+# sudo iptables -A FORWARD -i docker0 -o docker0 -j ACCEPT
+# sudo iptables -A FORWARD -j LIBVIRT_FWX
+# sudo iptables -A FORWARD -j LIBVIRT_FWI
+# sudo iptables -A FORWARD -j LIBVIRT_FWO
+# sudo iptables -A OUTPUT -j LIBVIRT_OUT
+# sudo iptables -A DOCKER-ISOLATION-STAGE-1 -i docker0 ! -o docker0 -j DOCKER-ISOLATION-STAGE-2
+# sudo iptables -A DOCKER-ISOLATION-STAGE-1 -j RETURN
+# sudo iptables -A DOCKER-ISOLATION-STAGE-2 -o docker0 -j DROP
+# sudo iptables -A DOCKER-ISOLATION-STAGE-2 -j RETURN
+# sudo iptables -A DOCKER-USER -j RETURN
+# sudo iptables -A LIBVIRT_FWI -d 192.168.124.0/24 -o virbr0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+# sudo iptables -A LIBVIRT_FWI -o virbr0 -j REJECT --reject-with icmp-port-unreachable
+# sudo iptables -A LIBVIRT_FWO -s 192.168.124.0/24 -i virbr0 -j ACCEPT
+# sudo iptables -A LIBVIRT_FWO -i virbr0 -j REJECT --reject-with icmp-port-unreachable
+# sudo iptables -A LIBVIRT_FWX -i virbr0 -o virbr0 -j ACCEPT
+# sudo iptables -A LIBVIRT_INP -i virbr0 -p udp -m udp --dport 53 -j ACCEPT
+# sudo iptables -A LIBVIRT_INP -i virbr0 -p tcp -m tcp --dport 53 -j ACCEPT
+# sudo iptables -A LIBVIRT_INP -i virbr0 -p udp -m udp --dport 67 -j ACCEPT
+# sudo iptables -A LIBVIRT_INP -i virbr0 -p tcp -m tcp --dport 67 -j ACCEPT
+# sudo iptables -A LIBVIRT_OUT -o virbr0 -p udp -m udp --dport 53 -j ACCEPT
+# sudo iptables -A LIBVIRT_OUT -o virbr0 -p tcp -m tcp --dport 53 -j ACCEPT
+# sudo iptables -A LIBVIRT_OUT -o virbr0 -p udp -m udp --dport 68 -j ACCEPT
+# sudo iptables -A LIBVIRT_OUT -o virbr0 -p tcp -m tcp --dport 68 -j ACCEPT
+
+# sudo iptables -P INPUT ACCEPT
+# sudo iptables -P FORWARD ACCEPT
+# sudo iptables -P OUTPUT ACCEPT
+
+# sudo iptables -P INPUT DROP
+# sudo iptables -P FORWARD DROP
+# sudo iptables -P OUTPUT DROP
+
+# sudo iptables -D INPUT 1
+# sudo iptables -D INPUT 1
+# sudo iptables -D INPUT 1
+# sudo iptables -D INPUT 1
+
+# sudo iptables -D OUTPUT 1
+# sudo iptables -D OUTPUT 1
+# sudo iptables -D OUTPUT 1
+# sudo iptables -D OUTPUT 1
+
+# sudo iptables -I INPUT  -i eno1 -j DROP
+# sudo iptables -I OUTPUT  -o eno1 -j DROP
+
+# sudo iptables -A INPUT  -i enp4s0 -j DROP
+# sudo iptables -A OUTPUT  -o enp4s0 -j DROP
+
+# sudo iptables -I INPUT  -i eno1 -j ACCEPT
+# sudo iptables -I OUTPUT  -o eno1 -j ACCEPT
+
+# sudo iptables -A INPUT  -i enp4s0 -j ACCEPT
+# sudo iptables -A OUTPUT  -o enp4s0 -j ACCEPT
+
+# sudo iptables -X ENO1_I
+# sudo iptables -X ENO1_O
+# sudo iptables -X ENP4S0_I
+# sudo iptables -X ENP4S0_O
+
+# sudo iptables -I INPUT  -i eno1 -j ENO1_I
+# sudo iptables -I OUTPUT  -o eno1 -j ENO1_O
+
+# sudo iptables -A INPUT  -i enp4s0 -j ENP4S0_I
+# sudo iptables -A OUTPUT  -o enp4s0 -j ENP4S0_O
+
+# sudo iptables -I INPUT -s 0.0.0.0 -d 74.12.170.74  -i eno1 -j ENO1_I
+# sudo iptables -I OUTPUT -s 74.12.170.74 -d 0.0.0.0  -o eno1 -j ENO1_O
+
+# sudo iptables -A INPUT -s 0.0.0.0 -d 192.168.15.15 -i enp4s0 -j ENP4S0_I
+# sudo iptables -A OUTPUT -s 192.168.15.15  -d 0.0.0.0 -o enp4s0 -j ENP4S0_O
+
+# sudo iptables -I INPUT -s 74.12.170.74 -d 0.0.0.0 -i eno1 -j ENO1_I
+# sudo iptables -I OUTPUT -s 0.0.0.0 -d 74.12.170.74  -o eno1 -j ENO1_O
+
+# sudo iptables -A INPUT -s 192.168.15.15  -d 0.0.0.0 -i enp4s0 -j ENP4S0_I
+# sudo iptables -A OUTPUT -s 0.0.0.0 -d 192.168.15.15 -o enp4s0 -j ENP4S0_O
+
+# sudo iptables -D INPUT 1
+# sudo iptables -D INPUT 1
+
+# sudo iptables -D OUTPUT 1
+# sudo iptables -D OUTPUT 1
+
+# sudo iptables -D INPUT 1
+# sudo iptables -D INPUT 1
+
+# sudo iptables -D OUTPUT 1
+# sudo iptables -D OUTPUT 1
+
+# sudo iptables -A ENO1_I ACCEPT
+# sudo iptables -A ENO1_O ACCEPT
+
+# sudo iptables -R ENO1_I 1 -j DROP
+# sudo iptables -R ENO1_O 1 -j DROP
+
+# sudo iptables -R ENO1_I 1 -j RETURN
+# sudo iptables -R ENO1_O 1 -j RETURN
+
+# sudo iptables -R ENO1_I 1 -j ACCEPT
+# sudo iptables -R ENO1_O 1 -j ACCEPT
+
+# ---
+
+# sudo iptables -A ENP4S0_I ACCEPT
+# sudo iptables -A ENP4S0_O ACCEPT
+
+# sudo iptables -R ENP4S0_I 1 -j DROP
+# sudo iptables -R ENP4S0_O 1 -j DROP
+
+# sudo iptables -R ENP4S0_I 1 -j RETURN
+# sudo iptables -R ENP4S0_O 1 -j RETURN
+
+# sudo iptables -R ENP4S0_I 1 -j ACCEPT
+# sudo iptables -R ENP4S0_O 1 -j ACCEPT
+
+exit 0
+# ------------------------------------------------------------------------------
+exit 0
+
+# echo 'sudo ip6tables -t raw -S'
+# echo 6666666666------------------------------------------6666666666
+# sudo ip6tables -t raw -S
+# echo
+# echo 'sudo ip6tables -t security -S'
+# echo 6666666666------------------------------------------6666666666
+# sudo ip6tables -t security -S
+# echo
+# echo 'sudo ip6tables -t mangle -S'
+# echo 6666666666------------------------------------------6666666666
+# sudo ip6tables -t mangle -S
+# echo
+# echo 'sudo ip6tables -t nat -S'
+# echo 6666666666------------------------------------------6666666666
+# sudo ip6tables -t nat -S
+# echo
+# echo 'sudo ip6tables -t filter -S'
+# echo 6666666666------------------------------------------6666666666
+# sudo ip6tables -t filter -S
+# echo
+
+# echo 'sudo iptables -t raw -S'
+# echo 4444444444------------------------------------------4444444444
+# sudo iptables -t raw -S
+# echo
+# echo 'sudo iptables -t security -S'
+# echo 4444444444------------------------------------------4444444444
+# sudo iptables -t security -S
+# echo
+# echo 'sudo iptables -t mangle -S'
+# echo 4444444444------------------------------------------4444444444
+# sudo iptables -t mangle -S
+# echo
+# echo 'sudo iptables -t nat -S'
+# echo 4444444444------------------------------------------4444444444
+# sudo iptables -t nat -S
+# echo
+# echo 'sudo iptables -t filter -S'
+# echo 4444444444------------------------------------------4444444444
+# sudo iptables -t filter -S
+# echo
+
+# ❯ sudo iptables -t filter -L --line-numbers
+# Chain INPUT (policy ACCEPT)
+# num  target     prot opt source               destination
+# 1    LIBVIRT_INP  all  --  anywhere             anywhere
+
+# Chain FORWARD (policy DROP)
+# num  target     prot opt source               destination
+# 1    DOCKER-USER  all  --  anywhere             anywhere
+# 2    DOCKER-ISOLATION-STAGE-1  all  --  anywhere             anywhere
+# 3    ACCEPT     all  --  anywhere             anywhere             ctstate RELATED,ESTABLISHED
+# 4    DOCKER     all  --  anywhere             anywhere
+# 5    ACCEPT     all  --  anywhere             anywhere
+# 6    ACCEPT     all  --  anywhere             anywhere
+# 7    LIBVIRT_FWX  all  --  anywhere             anywhere
+# 8    LIBVIRT_FWI  all  --  anywhere             anywhere
+# 9    LIBVIRT_FWO  all  --  anywhere             anywhere
+
+# Chain OUTPUT (policy ACCEPT)
+# num  target     prot opt source               destination
+# 1    LIBVIRT_OUT  all  --  anywhere             anywhere
+
+# Chain DOCKER (1 references)
+# num  target     prot opt source               destination
+
+# Chain DOCKER-ISOLATION-STAGE-1 (1 references)
+# num  target     prot opt source               destination
+# 1    DOCKER-ISOLATION-STAGE-2  all  --  anywhere             anywhere
+# 2    RETURN     all  --  anywhere             anywhere
+
+# Chain DOCKER-ISOLATION-STAGE-2 (1 references)
+# num  target     prot opt source               destination
+# 1    DROP       all  --  anywhere             anywhere
+# 2    RETURN     all  --  anywhere             anywhere
+
+# Chain DOCKER-USER (1 references)
+# num  target     prot opt source               destination
+# 1    RETURN     all  --  anywhere             anywhere
+
+# Chain LIBVIRT_FWI (1 references)
+# num  target     prot opt source               destination
+# 1    ACCEPT     all  --  anywhere             192.168.124.0/24     ctstate RELATED,ESTABLISHED
+# 2    REJECT     all  --  anywhere             anywhere             reject-with icmp-port-unreachable
+
+# Chain LIBVIRT_FWO (1 references)
+# num  target     prot opt source               destination
+# 1    ACCEPT     all  --  192.168.124.0/24     anywhere
+# 2    REJECT     all  --  anywhere             anywhere             reject-with icmp-port-unreachable
+
+# Chain LIBVIRT_FWX (1 references)
+# num  target     prot opt source               destination
+# 1    ACCEPT     all  --  anywhere             anywhere
+
+# Chain LIBVIRT_INP (1 references)
+# num  target     prot opt source               destination
+# 1    ACCEPT     udp  --  anywhere             anywhere             udp dpt:domain
+# 2    ACCEPT     tcp  --  anywhere             anywhere             tcp dpt:domain
+# 3    ACCEPT     udp  --  anywhere             anywhere             udp dpt:bootps
+# 4    ACCEPT     tcp  --  anywhere             anywhere             tcp dpt:bootps
+
+# Chain LIBVIRT_OUT (1 references)
+# num  target     prot opt source               destination
+# 1    ACCEPT     udp  --  anywhere             anywhere             udp dpt:domain
+# 2    ACCEPT     tcp  --  anywhere             anywhere             tcp dpt:domain
+# 3    ACCEPT     udp  --  anywhere             anywhere             udp dpt:bootpc
+# 4    ACCEPT     tcp  --  anywhere             anywhere             tcp dpt:bootpc
+
+# sudo iptables -R INPUT  -i eno1 -j ENO1
+
+# # -s 0.0.0.0        -d 74.12.170.74
+# # -s 74.12.170.74   -d 0.0.0.0
+# # -s 192.168.15.15  -d 0.0.0.0
+# # -s 0.0.0.0        -d 192.168.15.15
+
+# -p tcp -s 0.0.0.0 -d 74.12.170.74/1 -j ACCEPT --dports 8088 #,443 -m state --state NEW,ESTABLISHED -j ACCEPT
+# sudo iptables -A OUTPUT -o eno1 -p tcp -d 74.12.170.74 -s 0.0.0.0 -j ACCEPT --sport 8088 #,443 -m state --state ESTABLISHED -j ACCEPT
+
+# iptables -A INPUT  -i enp4s0 -p tcp -s 0.0.0.0 -d <IP> --dports 80,443 -m state --state NEW,ESTABLISHED -j ACCEPT
+# iptables -A OUTPUT -o enp4s0 -p tcp -s <IP> -d 0.0.0.0 --sports 80,443 -m state --state ESTABLISHED -j ACCEPT
+
+# 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+# link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+# inet 127.0.0.1/8 scope host lo
+# valid_lft forever preferred_lft forever
+# inet6 ::1/128 scope host
+# valid_lft forever preferred_lft forever
+# 2: enp4s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+# link/ether 10:7b:44:54:c3:53 brd ff:ff:ff:ff:ff:ff
+# inet 192.168.15.15/24 brd 192.168.15.255 scope global noprefixroute enp4s0
+# valid_lft forever preferred_lft forever
+# inet6 fe80::f010:827f:90f8:e32a/64 scope link noprefixroute
+# valid_lft forever preferred_lft forever
+# 3: eno1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+# link/ether 10:7b:44:54:c3:50 brd ff:ff:ff:ff:ff:ff
+# altname enp0s31f6
+# inet 74.12.170.74/1 brd 127.255.255.255 scope global dynamic noprefixroute eno1
+# valid_lft 79939sec preferred_lft 79939sec
+# inet6 fe80::378a:1de3:30b0:c3e6/64 scope link noprefixroute
+# valid_lft forever preferred_lft forever
+# 4: virbr0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default qlen 1000
+# link/ether 52:54:00:be:cc:2a brd ff:ff:ff:ff:ff:ff
+# inet 192.168.124.1/24 brd 192.168.124.255 scope global virbr0
+# valid_lft forever preferred_lft forever
+# 6: docker0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default
+# link/ether 02:42:6f:da:79:31 brd ff:ff:ff:ff:ff:ff
+# inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+# valid_lft forever preferred_lft forever
+# inet6 fe80::42:6fff:feda:7931/64 scope link
+# valid_lft forever preferred_lft forever
+# 59: veth0a57f06@if58: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master docker0 state UP group default
+# link/ether 36:b8:43:45:ab:d8 brd ff:ff:ff:ff:ff:ff link-netnsid 1
+# inet6 fe80::34b8:43ff:fe45:abd8/64 scope link
+# valid_lft forever preferred_lft forever

@@ -1,0 +1,86 @@
+❯ konsole --help-all
+Usage: konsole [options] [args]
+Émulateur de terminal
+
+Options:
+  -h, --help                           Displays help on commandline options.
+  --help-all                           Displays help including Qt specific
+                                       options.
+  -v, --version                        Displays version information.
+  --author                             Afficher les informations sur l'auteur.
+  --license                            Afficher les informations sur la
+                                       licence.
+  --desktopfile <nom du fichier>       La base du nom de fichier de l'entrée
+                                       desktop pour cette application.
+  --profile <name>                     Nom du profil à utiliser pour une
+                                       nouvelle instance de Konsole
+  --layout <file>                      Fichier « json » de disposition devant
+                                       être chargé pour utiliser une nouvelle
+                                       instance de Konsole
+  --builtin-profile                    Utiliser un profil intégré à la place du
+                                       profil par défaut
+  --workdir <dir>                      Définir le dossier initial de travail
+                                       pour un nouvel onglet ou fenêtre à «
+                                       dossier »
+  --hold, --noclose                    Ne pas fermer automatiquement la session
+                                       initiale lorsqu'elle se termine.
+  --new-tab                            Créer un nouvel onglet dans une fenêtre
+                                       existante plutôt que créer une nouvelle
+                                       fenêtre (L'option « Lancer toutes les
+                                       fenêtres dans un unique processus » doit
+                                       être activée).
+  --tabs-from-file <file>              Créer des onglets comme défini dans le
+                                       fichier fourni pour la configuration des
+                                       onglets
+  --background-mode                    Démarrer Konsole en arrière-plan et
+                                       l'afficher lorsque la touche «
+                                       Ctrl+Maj+F12 » (par défaut) est utilisée
+  --separate, --nofork                 Exécuter dans un processus distinct
+  --show-menubar                       Afficher la barre de menus en écrasant
+                                       la configuration par défaut
+  --hide-menubar                       Masquer la barre de menus en écrasant la
+                                       configuration par défaut
+  --show-tabbar                        Afficher la barre des onglets en
+                                       écrasant la configuration par défaut
+  --hide-tabbar                        Masquer la barre des onglets en écrasant
+                                       la configuration par défaut
+  --fullscreen                         Démarrer Konsole en mode plein écran
+  --notransparency                     Désactiver les arrières-plans
+                                       transparents, même si le système les
+                                       prend en charge.
+  --list-profiles                      Lister les profils disponibles
+  --list-profile-properties            Lister tous les noms des propriétés du
+                                       profil, ainsi que leurs types (à utiliser
+                                       avec « -p »)
+  -p <property=value>                  Modifier la valeur d'une propriété du
+                                       profil.
+  -e <cmd>                             Commande à exécuter. Cette option
+                                       prendra en compte tous les arguments
+                                       suivants. Veuillez donc l'utiliser comme
+                                       dernière option.
+  --force-reuse                        Forcer la réutilisation de l’instance
+                                       existante même si elle casse la
+                                       fonctionnalité, par exemple, --new-tab.
+                                       Principalement pour le débogage.
+  --qmljsdebugger <value>              Activates the QML/JS debugger with a
+                                       specified port. The value must be of
+                                       format port:1234[,block]. "block" makes
+                                       the application wait for a connection.
+  --platform <platformName[:options]>  QPA plugin. See QGuiApplication
+                                       documentation for available options for
+                                       each plugin.
+  --platformpluginpath <path>          Path to the platform plugins.
+  --platformtheme <theme>              Platform theme.
+  --plugin <plugin>                    Additional plugins to load, can be
+                                       specified multiple times.
+  --qwindowgeometry <geometry>         Window geometry for the main window,
+                                       using the X11-syntax, like 100x100+50+50.
+  --qwindowicon <icon>                 Default window icon.
+  --qwindowtitle <title>               Title of the first window.
+  --reverse                            Sets the application's layout direction
+                                       to Qt::RightToLeft (debugging helper).
+  --session <session>                  Restores the application from an earlier
+                                       session.
+
+Arguments:
+  [args]                               Arguments passés à la commande

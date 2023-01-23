@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+DitheringMode() {
+    # '[DPY:DP-0]/DitheringMode=1' Dynamic 2x2
+    # '[DPY:DP-0]/DitheringMode=2' Static 2x2
+    # '[DPY:DP-0]/DitheringMode=3' Temporal
+    
+    nvidia-settings -a '[DPY:DP-0]/Dithering=1'
+    nvidia-settings -a '[DPY:DP-0]/DitheringMode=2'
+    nvidia-settings -a '[DPY:DP-0]/DitheringDepth=1'
+    nvidia-settings -a '[DPY:DP-0]/DigitalVibrance=0'
+    
+}
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+DitheringMode "${@}"
+
+__EXIT_STATUS="${?}"
+
+unset -f DitheringMode
+
+exit $__EXIT_STATUS
+
+
+# nvidia-settings -a '[DPY:DP-0]/Dithering=2'
+# nvidia-settings -a '[DPY:DP-0]/DitheringMode=1' Dynamic 2x2
+# nvidia-settings -a '[DPY:DP-0]/DitheringMode=2' Static 2x2
+# nvidia-settings -a '[DPY:DP-0]/DitheringMode=3' Temporal
+# nvidia-settings -a '[DPY:DP-0]/DitheringDepth=1'
+# nvidia-settings -a '[DPY:DP-0]/DigitalVibrance=0'

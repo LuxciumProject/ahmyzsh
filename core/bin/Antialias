@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+Antialias() {
+    
+    nvidia-settings -a 'LogAniso=4'
+    nvidia-settings -a 'FSAA=11'
+    nvidia-settings -a 'TextureClamping=1'
+    nvidia-settings -a 'FXAA=0'
+    nvidia-settings -a 'FSAAAppControlled=0'
+    nvidia-settings -a 'LogAnisoAppControlled=0'
+    nvidia-settings -a 'OpenGLImageSettings=3'
+    nvidia-settings -a 'FSAAAppEnhanced=0'
+    nvidia-settings -a 'ShowGraphicsVisualIndicator=0'
+    nvidia-settings -a 'XVideoSyncToDisplayID=DP-2'
+}
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+Antialias "${@}"
+
+__EXIT_STATUS="${?}"
+
+unset -f OpenGLImagePerform
+
+exit $__EXIT_STATUS
+
+# corsair-one:0.0/SyncToVBlank=1
+# corsair-one:0.0/LogAniso=3
+# corsair-one:0.0/FSAA=10
+# corsair-one:0.0/TextureClamping=1
+# corsair-one:0.0/FXAA=0
+# corsair-one:0.0/AllowFlipping=1
+# corsair-one:0.0/FSAAAppControlled=0
+# corsair-one:0.0/LogAnisoAppControlled=0
+# corsair-one:0.0/OpenGLImageSettings=3
+# corsair-one:0.0/FSAAAppEnhanced=0
+# corsair-one:0.0/ShowGraphicsVisualIndicator=0
+# corsair-one:0.0/XVideoSyncToDisplayID=DP-2
+
+
+# corsair-one:0.0/LogAniso=4
+# corsair-one:0.0/FSAA=11
+
+
+
+# using git to rename an unpublish brancn

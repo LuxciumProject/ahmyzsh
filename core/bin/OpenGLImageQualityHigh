@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+OpenGLImageQualityHigh() {
+    nvidia-settings -a 'OpenGLImageSettings=0'
+}
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+OpenGLImageQualityHigh "${@}"
+
+__EXIT_STATUS="${?}"
+
+unset -f OpenGLImageQualityHigh
+
+exit $__EXIT_STATUS

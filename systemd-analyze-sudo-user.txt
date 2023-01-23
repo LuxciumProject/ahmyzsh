@@ -1,0 +1,2522 @@
+
+
+# 7.876s :
+
+# /usr/lib/systemd/system/dracut-initqueue.service
+#  This file is part of dracut.
+
+[Unit]
+Description=dracut initqueue hook
+Documentation=man:dracut-initqueue.service(8) man:dracut.bootup(7)
+DefaultDependencies=no
+Before=remote-fs-pre.target
+Wants=remote-fs-pre.target
+After=systemd-udev-trigger.service
+Wants=systemd-udev-trigger.service
+ConditionPathExists=/usr/lib/initrd-release
+ConditionPathExists=|/lib/dracut/need-initqueue
+ConditionKernelCommandLine=|rd.break=initqueue
+Conflicts=shutdown.target emergency.target
+
+[Service]
+Environment=DRACUT_SYSTEMD=1
+Environment=NEWROOT=/sysroot
+Type=oneshot
+ExecStart=-/bin/dracut-initqueue
+StandardInput=null
+StandardError=journal+console
+KillMode=process
+RemainAfterExit=yes
+
+# Bash ignores SIGTERM, so we send SIGHUP instead, to ensure that bash
+# terminates cleanly.
+KillSignal=SIGHUP
+
+
+# 4.021s :
+
+# /usr/lib/systemd/system/dnf-makecache.service
+[Unit]
+Description=dnf makecache
+# On systems managed by either rpm-ostree/ostree, dnf is read-only;
+# while someone might theoretically want the cache updated, in practice
+# anyone who wants that could override this via a file in /etc.
+ConditionPathExists=!/run/ostree-booted
+
+After=network-online.target
+
+[Service]
+Type=oneshot
+Nice=19
+IOSchedulingClass=2
+IOSchedulingPriority=7
+Environment="ABRT_IGNORE_PYTHON=1"
+ExecStart=/usr/bin/dnf makecache --timer
+
+
+# 2.039s :
+
+# /usr/lib/systemd/system/systemd-udev-settle.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+# This service can dynamically be pulled-in by legacy services which
+# cannot reliably cope with dynamic device configurations, and wrongfully
+# expect a populated /dev during bootup.
+
+[Unit]
+Description=Wait for udev To Complete Device Initialization
+Documentation=man:systemd-udev-settle.service(8)
+DefaultDependencies=no
+Wants=systemd-udevd.service
+After=systemd-udev-trigger.service
+Before=sysinit.target
+ConditionPathIsReadWrite=/sys
+
+[Service]
+Type=oneshot
+TimeoutSec=180
+RemainAfterExit=yes
+ExecStart=udevadm settle
+
+
+#  832ms :
+
+# /usr/lib/systemd/system/udisks2.service
+[Unit]
+Description=Disk Manager
+Documentation=man:udisks(8)
+
+[Service]
+Type=dbus
+BusName=org.freedesktop.UDisks2
+ExecStart=/usr/libexec/udisks2/udisksd
+KillSignal=SIGINT
+
+[Install]
+WantedBy=graphical.target
+
+
+#  815ms :
+
+# /usr/lib/systemd/system/smartd.service
+[Unit]
+Description=Self Monitoring and Reporting Technology (SMART) Daemon
+Documentation=man:smartd(8) man:smartd.conf(5)
+
+# Typically physical storage devices are managed by the host physical machine
+# Override it if you are using PCI/USB passthrough
+ConditionVirtualization=no
+
+[Service]
+Type=notify
+EnvironmentFile=-/etc/sysconfig/smartmontools
+ExecStart=/usr/sbin/smartd -n $smartd_opts
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target
+
+
+#  664ms :
+
+# /usr/lib/systemd/system/systemd-logind.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=User Login Management
+Documentation=man:sd-login(3)
+Documentation=man:systemd-logind.service(8)
+Documentation=man:logind.conf(5)
+Documentation=man:org.freedesktop.login1(5)
+
+Wants=user.slice modprobe@drm.service
+After=nss-user-lookup.target user.slice modprobe@drm.service
+
+# Ask for the dbus socket.
+Wants=dbus.socket
+After=dbus.socket
+
+[Service]
+BusName=org.freedesktop.login1
+CapabilityBoundingSet=CAP_SYS_ADMIN CAP_MAC_ADMIN CAP_AUDIT_CONTROL CAP_CHOWN CAP_DAC_READ_SEARCH CAP_DAC_OVERRIDE CAP_FOWNER CAP_SYS_TTY_CONFIG CAP_LINUX_IMMUTABLE
+DeviceAllow=block-* r
+DeviceAllow=char-/dev/console rw
+DeviceAllow=char-drm rw
+DeviceAllow=char-input rw
+DeviceAllow=char-tty rw
+DeviceAllow=char-vcs rw
+ExecStart=/usr/lib/systemd/systemd-logind
+FileDescriptorStoreMax=512
+IPAddressDeny=any
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+NoNewPrivileges=yes
+PrivateTmp=yes
+# We don't use ProtectProc= since we need to look for usernames and tty for wall messages
+ProtectClock=yes
+ProtectControlGroups=yes
+ProtectHome=yes
+ProtectHostname=yes
+ProtectKernelLogs=yes
+ProtectKernelModules=yes
+ProtectSystem=strict
+ReadWritePaths=/etc /run
+Restart=always
+RestartSec=0
+RestrictAddressFamilies=AF_UNIX AF_NETLINK
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+RuntimeDirectory=systemd/sessions systemd/seats systemd/users systemd/inhibit systemd/shutdown
+RuntimeDirectoryPreserve=yes
+StateDirectory=systemd/linger
+SystemCallArchitectures=native
+SystemCallErrorNumber=EPERM
+SystemCallFilter=@system-service
+
+
+# Increase the default a bit in order to allow many simultaneous logins since
+# we keep one fd open per session.
+LimitNOFILE=524288
+
+# /usr/lib/systemd/system/systemd-logind.service.d/10-grub2-logind-service.conf
+[Service]
+Environment=SYSTEMD_REBOOT_TO_BOOT_LOADER_MENU=true
+
+
+#  656ms :
+
+
+
+#  651ms :
+
+
+
+#  602ms :
+
+
+
+#  580ms :
+
+# /usr/lib/systemd/system/firewalld.service
+[Unit]
+Description=firewalld - dynamic firewall daemon
+Before=network-pre.target
+Wants=network-pre.target
+After=dbus.service
+After=polkit.service
+Conflicts=iptables.service ip6tables.service ebtables.service ipset.service nftables.service
+Documentation=man:firewalld(1)
+
+[Service]
+EnvironmentFile=-/etc/sysconfig/firewalld
+ExecStart=/usr/sbin/firewalld --nofork --nopid $FIREWALLD_ARGS
+ExecReload=/bin/kill -HUP $MAINPID
+# supress to log debug and error output also to /var/log/messages
+StandardOutput=null
+StandardError=null
+Type=dbus
+BusName=org.fedoraproject.FirewallD1
+KillMode=mixed
+
+[Install]
+WantedBy=multi-user.target
+Alias=dbus-org.fedoraproject.FirewallD1.service
+
+
+#  571ms :
+
+# /usr/lib/systemd/system/lvm2-monitor.service
+[Unit]
+Description=Monitoring of LVM2 mirrors, snapshots etc. using dmeventd or progress polling
+Documentation=man:dmeventd(8) man:lvcreate(8) man:lvchange(8) man:vgchange(8)
+Requires=dm-event.socket
+After=dm-event.socket dm-event.service lvm2-activation.service
+Before=local-fs-pre.target shutdown.target
+DefaultDependencies=no
+Conflicts=shutdown.target
+
+[Service]
+Type=oneshot
+Environment=LVM_SUPPRESS_LOCKING_FAILURE_MESSAGES=1
+ExecStart=/usr/sbin/lvm vgchange --monitor y
+ExecStop=/usr/sbin/lvm vgchange --monitor n
+RemainAfterExit=yes
+
+[Install]
+WantedBy=sysinit.target
+
+
+#  522ms :
+
+# /usr/lib/systemd/system/initrd-switch-root.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=Switch Root
+
+AssertPathExists=/etc/initrd-release
+
+DefaultDependencies=no
+Wants=initrd-switch-root.target
+AllowIsolate=yes
+OnFailure=emergency.target
+OnFailureJobMode=replace-irreversibly
+
+[Service]
+Type=oneshot
+ExecStart=systemctl --no-block switch-root /sysroot
+
+
+#  336ms :
+
+# /usr/lib/systemd/system/upower.service
+[Unit]
+Description=Daemon for power management
+Documentation=man:upowerd(8)
+
+[Service]
+Type=dbus
+BusName=org.freedesktop.UPower
+ExecStart=/usr/libexec/upowerd
+Restart=on-failure
+
+# Filesystem lockdown
+ProtectSystem=strict
+# Needed by keyboard backlight support
+ProtectKernelTunables=false
+ProtectControlGroups=true
+ReadWritePaths=/var/lib/upower
+StateDirectory=upower
+ProtectHome=true
+PrivateTmp=true
+
+# Network
+# PrivateNetwork=true would block udev's netlink socket
+IPAddressDeny=any
+RestrictAddressFamilies=AF_UNIX AF_NETLINK
+
+# Execute Mappings
+MemoryDenyWriteExecute=true
+
+# Modules
+ProtectKernelModules=true
+
+# Real-time
+RestrictRealtime=true
+
+# Privilege escalation
+NoNewPrivileges=true
+
+# Capabilities
+CapabilityBoundingSet=
+
+# System call interfaces
+LockPersonality=yes
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallFilter=ioprio_get
+
+# Namespaces
+PrivateUsers=yes
+RestrictNamespaces=yes
+
+# Locked memory
+LimitMEMLOCK=0
+
+[Install]
+WantedBy=graphical.target
+
+
+#  330ms :
+
+# /usr/lib/systemd/system/sssd.service
+[Unit]
+Description=System Security Services Daemon
+# SSSD must be running before we permit user sessions
+Before=systemd-user-sessions.service nss-user-lookup.target
+Wants=nss-user-lookup.target
+StartLimitIntervalSec=50s
+StartLimitBurst=5
+ConditionPathExists=|/etc/sssd/sssd.conf
+ConditionDirectoryNotEmpty=|/etc/sssd/conf.d/
+
+[Service]
+Environment=DEBUG_LOGGER=--logger=files
+EnvironmentFile=-/etc/sysconfig/sssd
+ExecStart=/usr/sbin/sssd -i ${DEBUG_LOGGER}
+Type=notify
+NotifyAccess=main
+PIDFile=/run/sssd.pid
+CapabilityBoundingSet=  CAP_IPC_LOCK CAP_CHOWN CAP_DAC_READ_SEARCH CAP_KILL CAP_NET_ADMIN CAP_SYS_NICE CAP_FOWNER CAP_SETGID CAP_SETUID CAP_SYS_ADMIN CAP_SYS_RESOURCE CAP_BLOCK_SUSPEND
+Restart=on-abnormal
+
+[Install]
+WantedBy=multi-user.target
+
+
+#  292ms :
+
+
+
+#  287ms :
+
+# /usr/lib/systemd/system/systemd-tmpfiles-setup.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=Create Volatile Files and Directories
+Documentation=man:tmpfiles.d(5) man:systemd-tmpfiles(8)
+
+DefaultDependencies=no
+After=local-fs.target systemd-sysusers.service systemd-journald.service
+Before=sysinit.target
+Conflicts=shutdown.target initrd-switch-root.target
+Before=shutdown.target initrd-switch-root.target
+RefuseManualStop=yes
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=systemd-tmpfiles --create --remove --boot --exclude-prefix=/dev
+SuccessExitStatus=DATAERR CANTCREAT
+
+
+#  286ms :
+
+
+
+#  218ms :
+
+# /usr/lib/systemd/system/avahi-daemon.service
+# This file is part of avahi.
+#
+# avahi is free software; you can redistribute it and/or modify it
+# under the terms of the GNU Lesser General Public License as
+# published by the Free Software Foundation; either version 2 of the
+# License, or (at your option) any later version.
+#
+# avahi is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+# or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+# License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with avahi; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
+# USA.
+
+[Unit]
+Description=Avahi mDNS/DNS-SD Stack
+Requires=avahi-daemon.socket
+
+[Service]
+Type=dbus
+BusName=org.freedesktop.Avahi
+ExecStart=/usr/sbin/avahi-daemon -s
+ExecReload=/usr/sbin/avahi-daemon -r
+NotifyAccess=main
+
+[Install]
+WantedBy=multi-user.target
+Also=avahi-daemon.socket
+Alias=dbus-org.freedesktop.Avahi.service
+
+
+#  197ms :
+
+# /usr/lib/systemd/system/systemd-journal-flush.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=Flush Journal to Persistent Storage
+Documentation=man:systemd-journald.service(8) man:journald.conf(5)
+DefaultDependencies=no
+Wants=systemd-journald.service
+After=systemd-journald.service systemd-remount-fs.service
+Before=systemd-tmpfiles-setup.service
+RequiresMountsFor=/var/log/journal
+ConditionPathExists=!/etc/initrd-release
+
+[Service]
+ExecStart=journalctl --flush
+ExecStop=journalctl --smart-relinquish-var
+Type=oneshot
+RemainAfterExit=yes
+TimeoutSec=90s
+
+
+#  194ms :
+
+# /usr/lib/systemd/system/rtkit-daemon.service
+# This file is part of RealtimeKit.
+#
+# Copyright 2010 Lennart Poettering
+#
+# RealtimeKit is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# RealtimeKit is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with RealtimeKit. If not, see <http://www.gnu.org/licenses/>.
+
+[Unit]
+Description=RealtimeKit Scheduling Policy Service
+
+[Service]
+ExecStart=/usr/libexec/rtkit-daemon
+Type=dbus
+BusName=org.freedesktop.RealtimeKit1
+NotifyAccess=main
+CapabilityBoundingSet=CAP_SYS_NICE CAP_DAC_READ_SEARCH CAP_SYS_PTRACE CAP_SYS_CHROOT CAP_SETGID CAP_SETUID
+PrivateTmp=yes
+PrivateNetwork=yes
+
+[Install]
+WantedBy=graphical.target
+
+
+#  194ms :
+
+
+
+#  189ms :
+
+# /usr/lib/systemd/system/initrd-parse-etc.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=Reload Configuration from the Real Root
+DefaultDependencies=no
+Requires=initrd-root-fs.target
+After=initrd-root-fs.target
+OnFailure=emergency.target
+OnFailureJobMode=replace-irreversibly
+AssertPathExists=/etc/initrd-release
+
+[Service]
+Type=oneshot
+ExecStartPre=-systemctl daemon-reload
+# we have to retrigger initrd-fs.target after daemon-reload
+ExecStart=-systemctl --no-block start initrd-fs.target
+ExecStart=systemctl --no-block start initrd-cleanup.service
+
+
+#  186ms :
+
+# /usr/lib/systemd/system/systemd-homed.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=Home Area Manager
+Documentation=man:systemd-homed.service(8)
+Documentation=man:org.freedesktop.home1(5)
+After=home.mount dbus.service
+
+[Service]
+BusName=org.freedesktop.home1
+CapabilityBoundingSet=CAP_SYS_ADMIN CAP_CHOWN CAP_DAC_OVERRIDE CAP_FOWNER CAP_FSETID CAP_SETGID CAP_SETUID CAP_SYS_RESOURCE CAP_SETPCAP CAP_DAC_READ_SEARCH CAP_SETFCAP
+DeviceAllow=/dev/loop-control rw
+DeviceAllow=/dev/mapper/control rw
+DeviceAllow=block-* rw
+DeviceAllow=char-hidraw rw
+ExecStart=/usr/lib/systemd/systemd-homed
+KillMode=mixed
+LimitNOFILE=524288
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+NoNewPrivileges=yes
+RestrictAddressFamilies=AF_UNIX AF_NETLINK AF_ALG AF_INET AF_INET6
+RestrictNamespaces=mnt user
+RestrictRealtime=yes
+StateDirectory=systemd/home
+SystemCallArchitectures=native
+SystemCallErrorNumber=EPERM
+SystemCallFilter=@system-service @mount
+TimeoutStopSec=3min
+
+
+[Install]
+WantedBy=multi-user.target
+Alias=dbus-org.freedesktop.home1.service
+Also=systemd-homed-activate.service systemd-userdbd.service
+
+
+#  186ms :
+
+
+
+#  163ms :
+
+# /usr/lib/systemd/system/packagekit.service
+[Unit]
+Description=PackageKit Daemon
+# PK doesn't know how to do anything on ostree-managed systems;
+# currently the design is to have dedicated daemons like
+# eos-updater and rpm-ostree, and gnome-software talks to those.
+ConditionPathExists=!/run/ostree-booted
+Wants=network-online.target
+
+[Service]
+Type=dbus
+BusName=org.freedesktop.PackageKit
+User=root
+ExecStart=/usr/libexec/packagekitd
+
+
+#  140ms :
+
+# /usr/lib/systemd/system/ModemManager.service
+[Unit]
+Description=Modem Manager
+After=polkit.service
+Requires=polkit.service
+ConditionVirtualization=!container
+
+[Service]
+Type=dbus
+BusName=org.freedesktop.ModemManager1
+ExecStart=/usr/sbin/ModemManager
+StandardError=null
+Restart=on-abort
+CapabilityBoundingSet=CAP_SYS_ADMIN CAP_NET_ADMIN
+ProtectSystem=true
+ProtectHome=true
+PrivateTmp=true
+RestrictAddressFamilies=AF_NETLINK AF_UNIX AF_QIPCRTR
+NoNewPrivileges=true
+User=root
+
+[Install]
+WantedBy=multi-user.target
+Alias=dbus-org.freedesktop.ModemManager1.service
+
+
+#  124ms :
+
+# /usr/lib/systemd/system/dracut-cmdline.service
+#  This file is part of dracut.
+
+[Unit]
+Description=dracut cmdline hook
+Documentation=man:dracut-cmdline.service(8) man:dracut.bootup(7)
+DefaultDependencies=no
+Before=dracut-pre-udev.service
+After=systemd-journald.socket
+Wants=systemd-journald.socket
+ConditionPathExists=/usr/lib/initrd-release
+ConditionPathExistsGlob=|/etc/cmdline.d/*.conf
+ConditionDirectoryNotEmpty=|/lib/dracut/hooks/cmdline
+ConditionKernelCommandLine=|rd.break=cmdline
+ConditionKernelCommandLine=|resume
+ConditionKernelCommandLine=|noresume
+Conflicts=shutdown.target emergency.target
+
+[Service]
+Environment=DRACUT_SYSTEMD=1
+Environment=NEWROOT=/sysroot
+Type=oneshot
+ExecStart=-/bin/dracut-cmdline
+StandardInput=null
+StandardError=journal+console
+KillMode=process
+RemainAfterExit=yes
+
+# Bash ignores SIGTERM, so we send SIGHUP instead, to ensure that bash
+# terminates cleanly.
+KillSignal=SIGHUP
+
+
+#  115ms :
+
+# /usr/lib/systemd/system/dbus-broker.service
+[Unit]
+Description=D-Bus System Message Bus
+Documentation=man:dbus-broker-launch(1)
+DefaultDependencies=false
+After=dbus.socket
+Before=basic.target shutdown.target
+Requires=dbus.socket
+Conflicts=shutdown.target
+
+[Service]
+Type=notify
+Sockets=dbus.socket
+OOMScoreAdjust=-900
+LimitNOFILE=16384
+ProtectSystem=full
+PrivateTmp=true
+PrivateDevices=true
+ExecStart=/usr/bin/dbus-broker-launch --scope system --audit
+ExecReload=/usr/bin/busctl call org.freedesktop.DBus /org/freedesktop/DBus org.freedesktop.DBus ReloadConfig
+
+[Install]
+Alias=dbus.service
+
+
+#  112ms :
+
+# /usr/lib/systemd/system/polkit.service
+[Unit]
+Description=Authorization Manager
+Documentation=man:polkit(8)
+
+[Service]
+Type=dbus
+BusName=org.freedesktop.PolicyKit1
+ExecStart=/usr/lib/polkit-1/polkitd --no-debug
+
+
+#  111ms :
+
+# /usr/lib/systemd/system/dmraid-activation.service
+[Unit]
+Description=Activation of DM RAID sets
+DefaultDependencies=no
+Conflicts=shutdown.target
+After=systemd-udev-settle.service
+Before=lvm2-activation-early.service cryptsetup.target local-fs-pre.target shutdown.target
+Wants=systemd-udev-settle.service
+
+[Service]
+ExecStart=/lib/systemd/fedora-dmraid-activation
+Type=oneshot
+
+[Install]
+WantedBy=sysinit.target
+
+
+#   99ms :
+
+# /usr/lib/systemd/system/systemd-udevd.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=Rule-based Manager for Device Events and Files
+Documentation=man:systemd-udevd.service(8) man:udev(7)
+DefaultDependencies=no
+After=systemd-sysusers.service systemd-hwdb-update.service
+Before=sysinit.target
+ConditionPathIsReadWrite=/sys
+
+[Service]
+CapabilityBoundingSet=~CAP_SYS_TIME CAP_WAKE_ALARM
+Delegate=pids
+Type=notify
+# Note that udev will reset the value internally for its workers
+OOMScoreAdjust=-1000
+Sockets=systemd-udevd-control.socket systemd-udevd-kernel.socket
+Restart=always
+RestartSec=0
+ExecStart=/usr/lib/systemd/systemd-udevd
+ExecReload=udevadm control --reload --timeout 0
+KillMode=mixed
+TasksMax=infinity
+PrivateMounts=yes
+ProtectHostname=yes
+MemoryDenyWriteExecute=yes
+RestrictAddressFamilies=AF_UNIX AF_NETLINK AF_INET AF_INET6
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+SystemCallFilter=@system-service @module @raw-io bpf
+SystemCallFilter=~@clock
+SystemCallErrorNumber=EPERM
+SystemCallArchitectures=native
+LockPersonality=yes
+IPAddressDeny=any
+
+
+
+#   86ms :
+
+# /usr/lib/systemd/system/systemd-udev-trigger.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=Coldplug All udev Devices
+Documentation=man:udev(7) man:systemd-udevd.service(8)
+DefaultDependencies=no
+Wants=systemd-udevd.service
+After=systemd-udevd-kernel.socket systemd-udevd-control.socket
+Before=sysinit.target
+ConditionPathIsReadWrite=/sys
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=-udevadm trigger --type=all --action=add --prioritized-subsystem=module,block,tpmrm,tty,net
+
+# /usr/lib/systemd/system/systemd-udev-trigger.service.d/systemd-udev-trigger-no-reload.conf
+[Unit]
+# https://bugzilla.redhat.com/show_bug.cgi?id=1378974#c17
+RefuseManualStop=true
+
+
+#   83ms :
+
+# /usr/lib/systemd/system/NetworkManager.service
+[Unit]
+Description=Network Manager
+Documentation=man:NetworkManager(8)
+Wants=network.target
+After=network-pre.target dbus.service
+Before=network.target network.service
+
+[Service]
+Type=dbus
+BusName=org.freedesktop.NetworkManager
+ExecReload=/usr/bin/busctl call org.freedesktop.NetworkManager /org/freedesktop/NetworkManager org.freedesktop.NetworkManager Reload u 0
+#ExecReload=/bin/kill -HUP $MAINPID
+ExecStart=/usr/sbin/NetworkManager --no-daemon
+Restart=on-failure
+# NM doesn't want systemd to kill its children for it
+KillMode=process
+
+# CAP_DAC_OVERRIDE: required to open /run/openvswitch/db.sock socket.
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_DAC_OVERRIDE CAP_NET_RAW CAP_NET_BIND_SERVICE CAP_SETGID CAP_SETUID CAP_SYS_MODULE CAP_AUDIT_WRITE CAP_KILL CAP_SYS_CHROOT
+
+ProtectSystem=true
+ProtectHome=read-only
+
+# We require file descriptors for DHCP etc. When activating many interfaces,
+# the default limit of 1024 is easily reached.
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
+Also=NetworkManager-dispatcher.service
+
+# We want to enable NetworkManager-wait-online.service whenever this service
+# is enabled. NetworkManager-wait-online.service has
+# WantedBy=network-online.target, so enabling it only has an effect if
+# network-online.target itself is enabled or pulled in by some other unit.
+Also=NetworkManager-wait-online.service
+
+
+#   73ms :
+
+# /usr/lib/systemd/system/dracut-pre-pivot.service
+#  This file is part of dracut.
+
+[Unit]
+Description=dracut pre-pivot and cleanup hook
+Documentation=man:dracut-pre-pivot.service(8) man:dracut.bootup(7)
+DefaultDependencies=no
+After=initrd.target initrd-parse-etc.service sysroot.mount
+After=dracut-initqueue.service dracut-pre-mount.service dracut-mount.service
+Before=initrd-cleanup.service
+Wants=remote-fs.target
+After=remote-fs.target
+ConditionPathExists=/usr/lib/initrd-release
+ConditionDirectoryNotEmpty=|/lib/dracut/hooks/pre-pivot
+ConditionDirectoryNotEmpty=|/lib/dracut/hooks/cleanup
+ConditionKernelCommandLine=|rd.break=pre-pivot
+ConditionKernelCommandLine=|rd.break=cleanup
+ConditionKernelCommandLine=|rd.break
+ConditionPathExists=|/dev/root
+ConditionPathExists=|/dev/nfs
+Conflicts=shutdown.target emergency.target
+
+[Service]
+Environment=DRACUT_SYSTEMD=1
+Environment=NEWROOT=/sysroot
+Type=oneshot
+ExecStart=-/bin/dracut-pre-pivot
+StandardInput=null
+StandardError=journal+console
+KillMode=process
+RemainAfterExit=yes
+KeyringMode=shared
+
+# Bash ignores SIGTERM, so we send SIGHUP instead, to ensure that bash
+# terminates cleanly.
+KillSignal=SIGHUP
+
+
+#   71ms :
+
+# /usr/lib/systemd/system/accounts-daemon.service
+[Unit]
+Description=Accounts Service
+
+# In order to avoid races with identity-providing services like SSSD or
+# winbind, we need to ensure that Accounts Service starts after
+# nss-user-lookup.target
+After=nss-user-lookup.target
+Wants=nss-user-lookup.target
+
+[Service]
+Type=dbus
+BusName=org.freedesktop.Accounts
+ExecStart=/usr/libexec/accounts-daemon
+Environment=GVFS_DISABLE_FUSE=1
+Environment=GIO_USE_VFS=local
+Environment=GVFS_REMOTE_VOLUME_MONITOR_IGNORE=1
+
+StateDirectory=AccountsService
+StateDirectoryMode=0775
+
+ProtectSystem=strict
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+# Write access is needed to create home directories:
+ProtectHome=false
+# Needed sometime for data shared like icons
+PrivateTmp=false
+PrivateNetwork=true
+# We need access to the canonical user database:
+PrivateUsers=false
+# For D-Bus:
+RestrictAddressFamilies=AF_UNIX
+SystemCallArchitectures=native
+SystemCallFilter=~@mount
+RestrictNamespaces=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+RestrictRealtime=true
+RemoveIPC=true
+
+# In addition to the below paths,
+#  - /var/lib/AccountsService/users/ and
+#  - /var/lib/AccountsService/icons/
+# are read/written by the daemon. See StateDirectory= above.
+#
+# The paths in /etc are not directly modified by AccountsService, but by
+# usermod, which it spawns.
+#
+# The paths in /var/log and /var/mail are touched by useradd/userdel when adding
+# or deleting users.
+ReadWritePaths=\
+  -/etc/gdm/custom.conf \
+  /etc/ \
+  -/proc/self/loginuid \
+  -/var/log/lastlog \
+  -/var/log/tallylog \
+  -/var/mail/
+ReadOnlyPaths=\
+  /usr/share/accountsservice/interfaces/ \
+  /usr/share/dbus-1/interfaces/ \
+  /var/log/wtmp \
+  /run/systemd/seats/
+
+[Install]
+# We pull this in by graphical.target instead of waiting for the bus
+# activation, to speed things up a little: gdm uses this anyway so it is nice
+# if it is already around when gdm wants to use it and doesn't have to wait for
+# it.
+WantedBy=graphical.target
+
+
+#   69ms :
+
+# /usr/lib/systemd/system/systemd-vconsole-setup.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=Setup Virtual Console
+Documentation=man:systemd-vconsole-setup.service(8) man:vconsole.conf(5)
+DefaultDependencies=no
+Before=initrd-switch-root.target shutdown.target
+ConditionPathExists=/dev/tty0
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/lib/systemd/systemd-vconsole-setup
+
+
+#   66ms :
+
+# /usr/lib/systemd/system/lm_sensors.service
+[Unit]
+Description=Hardware Monitoring Sensors
+
+[Service]
+EnvironmentFile=/etc/sysconfig/lm_sensors
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=-/usr/libexec/lm_sensors/lm_sensors-modprobe-wrapper $BUS_MODULES $HWMON_MODULES
+ExecStart=/usr/libexec/lm_sensors/lm_sensors-wrapper
+ExecStop=-/usr/libexec/lm_sensors/lm_sensors-modprobe-r-wrapper $BUS_MODULES $HWMON_MODULES
+
+[Install]
+WantedBy=multi-user.target
+
+
+#   61ms :
+
+# /usr/lib/systemd/system/cups.service
+[Unit]
+Description=CUPS Scheduler
+Documentation=man:cupsd(8)
+After=network.target nss-user-lookup.target nslcd.service
+Requires=cups.socket
+
+[Service]
+ExecStart=/usr/sbin/cupsd -l
+Type=notify
+Restart=on-failure
+
+
+[Install]
+Also=cups.socket cups.path
+WantedBy=printer.target multi-user.target
+
+
+#   57ms :
+
+# /usr/lib/systemd/system/bluetooth.service
+[Unit]
+Description=Bluetooth service
+Documentation=man:bluetoothd(8)
+ConditionPathIsDirectory=/sys/class/bluetooth
+
+[Service]
+Type=dbus
+BusName=org.bluez
+ExecStart=/usr/libexec/bluetooth/bluetoothd
+NotifyAccess=main
+#WatchdogSec=10
+#Restart=on-failure
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+LimitNPROC=1
+
+# Filesystem lockdown
+ProtectHome=true
+ProtectSystem=strict
+PrivateTmp=true
+ProtectKernelTunables=true
+ProtectControlGroups=true
+StateDirectory=bluetooth
+StateDirectoryMode=0700
+ConfigurationDirectory=bluetooth
+ConfigurationDirectoryMode=0555
+
+# Execute Mappings
+MemoryDenyWriteExecute=true
+
+# Privilege escalation
+NoNewPrivileges=true
+
+# Real-time
+RestrictRealtime=true
+
+[Install]
+WantedBy=bluetooth.target
+Alias=dbus-org.bluez.service
+
+
+#   46ms :
+
+# /usr/lib/systemd/system/sshd.service
+[Unit]
+Description=OpenSSH server daemon
+Documentation=man:sshd(8) man:sshd_config(5)
+After=network.target sshd-keygen.target
+Wants=sshd-keygen.target
+
+[Service]
+Type=notify
+EnvironmentFile=-/etc/sysconfig/sshd
+ExecStart=/usr/sbin/sshd -D $OPTIONS
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=on-failure
+RestartSec=42s
+
+[Install]
+WantedBy=multi-user.target
+
+
+#   44ms :
+
+# /usr/lib/systemd/system/gssproxy.service
+[Unit]
+Description=GSSAPI Proxy Daemon
+# GSSPROXY will not be started until syslog is
+After=syslog.target network.target
+Before=rpc-gssd.service
+
+[Service]
+Environment=KRB5RCACHEDIR=/var/lib/gssproxy/rcache
+ExecStart=/usr/sbin/gssproxy -D
+# These two should be used with traditional UNIX forking daemons
+# consult systemd.service(5) for more details
+Type=forking
+PIDFile=/run/gssproxy.pid
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target
+
+
+#   44ms :
+
+# /usr/lib/systemd/system/systemd-userdbd.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=User Database Manager
+Documentation=man:systemd-userdbd.service(8)
+Requires=systemd-userdbd.socket
+After=systemd-userdbd.socket
+Before=sysinit.target
+DefaultDependencies=no
+
+[Service]
+CapabilityBoundingSet=CAP_DAC_READ_SEARCH
+ExecStart=/usr/lib/systemd/systemd-userdbd
+IPAddressDeny=any
+LimitNOFILE=524288
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+NoNewPrivileges=yes
+PrivateDevices=yes
+ProtectProc=invisible
+ProtectControlGroups=yes
+ProtectHome=yes
+ProtectHostname=yes
+ProtectKernelLogs=yes
+ProtectKernelModules=yes
+ProtectSystem=strict
+RestrictAddressFamilies=AF_UNIX AF_NETLINK AF_INET AF_INET6
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+SystemCallArchitectures=native
+SystemCallErrorNumber=EPERM
+SystemCallFilter=@system-service
+Type=notify
+
+
+[Install]
+Also=systemd-userdbd.socket
+
+
+#   43ms :
+
+# /usr/lib/systemd/system/auditd.service
+[Unit]
+Description=Security Auditing Service
+DefaultDependencies=no
+## If auditd is sending or recieving remote logging, copy this file to
+## /etc/systemd/system/auditd.service and comment out the first After and
+## uncomment the second so that network-online.target is part of After.
+## then comment the first Before and uncomment the second Before to remove
+## sysinit.target from "Before".
+After=local-fs.target systemd-tmpfiles-setup.service
+##After=network-online.target local-fs.target systemd-tmpfiles-setup.service
+Before=sysinit.target shutdown.target
+##Before=shutdown.target
+Conflicts=shutdown.target
+RefuseManualStop=yes
+ConditionKernelCommandLine=!audit=0
+ConditionKernelCommandLine=!audit=off
+
+Documentation=man:auditd(8) https://github.com/linux-audit/audit-documentation
+
+[Service]
+Type=forking
+PIDFile=/run/auditd.pid
+ExecStart=/sbin/auditd
+## To not use augenrules, copy this file to /etc/systemd/system/auditd.service
+## and comment/delete the next line and uncomment the auditctl line.
+## NOTE: augenrules expect any rules to be added to /etc/audit/rules.d/
+ExecStartPost=-/sbin/augenrules --load
+#ExecStartPost=-/sbin/auditctl -R /etc/audit/audit.rules
+# By default we don't clear the rules on exit. To enable this, uncomment
+# the next line after copying the file to /etc/systemd/system/auditd.service
+#ExecStopPost=/sbin/auditctl -R /etc/audit/audit-stop.rules
+Restart=on-failure
+# Do not restart for intentional exits. See EXIT CODES section in auditd(8).
+RestartPreventExitStatus=2 4 6
+
+### Security Settings ###
+MemoryDenyWriteExecute=true
+LockPersonality=true
+ProtectControlGroups=true
+ProtectKernelModules=true
+RestrictRealtime=true
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+#   42ms :
+
+# /run/systemd/generator.late/livesys.service
+# Automatically generated by systemd-sysv-generator
+
+[Unit]
+Documentation=man:systemd-sysv-generator(8)
+SourcePath=/etc/rc.d/init.d/livesys
+Description=LSB: Init script for live image.
+Before=multi-user.target
+Before=multi-user.target
+Before=graphical.target
+Before=display-manager.service
+Before=chronyd.service
+Before=livesys-late.service
+
+[Service]
+Type=forking
+Restart=no
+TimeoutSec=5min
+IgnoreSIGPIPE=no
+KillMode=process
+GuessMainPID=no
+RemainAfterExit=yes
+SuccessExitStatus=5 6
+ExecStart=/etc/rc.d/init.d/livesys start
+ExecStop=/etc/rc.d/init.d/livesys stop
+
+
+#   42ms :
+
+# /usr/lib/systemd/system/chronyd.service
+[Unit]
+Description=NTP client/server
+Documentation=man:chronyd(8) man:chrony.conf(5)
+After=ntpdate.service sntp.service ntpd.service
+Conflicts=ntpd.service systemd-timesyncd.service
+ConditionCapability=CAP_SYS_TIME
+
+[Service]
+Type=forking
+PIDFile=/run/chrony/chronyd.pid
+EnvironmentFile=-/etc/sysconfig/chronyd
+ExecStart=/usr/sbin/chronyd $OPTIONS
+
+CapabilityBoundingSet=~CAP_AUDIT_CONTROL CAP_AUDIT_READ CAP_AUDIT_WRITE
+CapabilityBoundingSet=~CAP_BLOCK_SUSPEND CAP_KILL CAP_LEASE CAP_LINUX_IMMUTABLE
+CapabilityBoundingSet=~CAP_MAC_ADMIN CAP_MAC_OVERRIDE CAP_MKNOD CAP_SYS_ADMIN
+CapabilityBoundingSet=~CAP_SYS_BOOT CAP_SYS_CHROOT CAP_SYS_MODULE CAP_SYS_PACCT
+CapabilityBoundingSet=~CAP_SYS_PTRACE CAP_SYS_RAWIO CAP_SYS_TTY_CONFIG CAP_WAKE_ALARM
+DeviceAllow=char-pps rw
+DeviceAllow=char-ptp rw
+DeviceAllow=char-rtc rw
+DevicePolicy=closed
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProcSubset=pid
+ProtectControlGroups=yes
+ProtectHome=yes
+ProtectHostname=yes
+ProtectKernelLogs=yes
+ProtectKernelModules=yes
+ProtectKernelTunables=yes
+ProtectProc=invisible
+ProtectSystem=strict
+ReadWritePaths=/run /var/lib/chrony -/var/log
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+RestrictNamespaces=yes
+RestrictSUIDSGID=yes
+SystemCallArchitectures=native
+SystemCallFilter=~@cpu-emulation @debug @module @mount @obsolete @raw-io @reboot @swap
+
+# Adjust restrictions for /usr/sbin/sendmail (mailonchange directive)
+NoNewPrivileges=no
+ReadWritePaths=-/var/spool
+RestrictAddressFamilies=AF_NETLINK
+
+[Install]
+WantedBy=multi-user.target
+
+
+#   41ms :
+
+
+
+#   41ms :
+
+# /usr/lib/systemd/system/dracut-pre-udev.service
+#  This file is part of dracut.
+
+[Unit]
+Description=dracut pre-udev hook
+Documentation=man:dracut-pre-udev.service(8) man:dracut.bootup(7)
+DefaultDependencies=no
+Before=systemd-udevd.service dracut-pre-trigger.service
+After=dracut-cmdline.service
+Wants=dracut-cmdline.service
+ConditionPathExists=/usr/lib/initrd-release
+ConditionDirectoryNotEmpty=|/lib/dracut/hooks/pre-udev
+ConditionKernelCommandLine=|rd.break=pre-udev
+ConditionKernelCommandLine=|rd.driver.blacklist
+ConditionKernelCommandLine=|rd.driver.pre
+ConditionKernelCommandLine=|rd.driver.post
+ConditionPathExistsGlob=|/etc/cmdline.d/*.conf
+Conflicts=shutdown.target emergency.target
+
+[Service]
+Environment=DRACUT_SYSTEMD=1
+Environment=NEWROOT=/sysroot
+Type=oneshot
+ExecStart=-/bin/dracut-pre-udev
+StandardInput=null
+StandardError=journal+console
+KillMode=process
+RemainAfterExit=yes
+
+# Bash ignores SIGTERM, so we send SIGHUP instead, to ensure that bash
+# terminates cleanly.
+KillSignal=SIGHUP
+
+
+#   40ms :
+
+
+
+#   40ms :
+
+# /usr/lib/systemd/system/import-state.service
+[Unit]
+Description=Import network configuration from initramfs
+DefaultDependencies=no
+ConditionPathIsReadWrite=/
+ConditionDirectoryNotEmpty=/run/initramfs/state
+Conflicts=shutdown.target
+Before=shutdown.target emergency.service emergency.target systemd-tmpfiles-setup.service sysinit.target
+After=local-fs.target
+
+[Service]
+ExecStart=/usr/libexec/import-state
+Type=oneshot
+TimeoutSec=0
+RemainAfterExit=yes
+
+[Install]
+WantedBy=sysinit.target
+
+
+#   39ms :
+
+# /usr/lib/systemd/system/var-lib-nfs-rpc_pipefs.mount
+[Unit]
+Description=RPC Pipe File System
+DefaultDependencies=no
+After=systemd-tmpfiles-setup.service
+Conflicts=umount.target
+
+[Mount]
+What=sunrpc
+Where=/var/lib/nfs/rpc_pipefs
+Type=rpc_pipefs
+
+
+#   32ms :
+
+# /usr/lib/systemd/system/systemd-tmpfiles-setup-dev.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=Create Static Device Nodes in /dev
+Documentation=man:tmpfiles.d(5) man:systemd-tmpfiles(8)
+
+DefaultDependencies=no
+After=systemd-sysusers.service
+Before=sysinit.target local-fs-pre.target systemd-udevd.service
+Conflicts=shutdown.target initrd-switch-root.target
+Before=shutdown.target initrd-switch-root.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=systemd-tmpfiles --prefix=/dev --create --boot
+SuccessExitStatus=DATAERR CANTCREAT
+
+
+#   32ms :
+
+# /usr/lib/systemd/system/systemd-journald.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=Journal Service
+Documentation=man:systemd-journald.service(8) man:journald.conf(5)
+DefaultDependencies=no
+Requires=systemd-journald.socket
+After=systemd-journald.socket systemd-journald-dev-log.socket systemd-journald-audit.socket syslog.socket
+Before=sysinit.target
+
+[Service]
+DeviceAllow=char-* rw
+ExecStart=/usr/lib/systemd/systemd-journald
+FileDescriptorStoreMax=4224
+IPAddressDeny=any
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+NoNewPrivileges=yes
+OOMScoreAdjust=-250
+ProtectClock=yes
+Restart=always
+RestartSec=0
+RestrictAddressFamilies=AF_UNIX AF_NETLINK
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+RuntimeDirectory=systemd/journal
+RuntimeDirectoryPreserve=yes
+Sockets=systemd-journald.socket systemd-journald-dev-log.socket systemd-journald-audit.socket
+StandardOutput=null
+SystemCallArchitectures=native
+SystemCallErrorNumber=EPERM
+SystemCallFilter=@system-service
+Type=notify
+
+
+# In case you're wondering why CAP_SYS_PTRACE is needed, access to
+# /proc/<pid>/exe requires this capability. Thus if this capability is missing
+# the _EXE=/OBJECT_EXE= fields will be missing from the journal entries.
+CapabilityBoundingSet=CAP_SYS_ADMIN CAP_DAC_OVERRIDE CAP_SYS_PTRACE CAP_SYSLOG CAP_AUDIT_CONTROL CAP_AUDIT_READ CAP_CHOWN CAP_DAC_READ_SEARCH CAP_FOWNER CAP_SETUID CAP_SETGID CAP_MAC_OVERRIDE
+
+# If there are many split up journal files we need a lot of fds to access them
+# all in parallel.
+LimitNOFILE=524288
+
+
+#   32ms :
+
+
+
+#   32ms :
+
+# /usr/lib/systemd/system/flatpak-system-helper.service
+[Unit]
+Description=flatpak system helper
+
+[Service]
+BusName=org.freedesktop.Flatpak.SystemHelper
+Environment=XDG_DATA_DIRS=/var/lib/flatpak/exports/share/:/usr/local/share/:/usr/share/
+ExecStart=/usr/libexec/flatpak-system-helper
+Type=dbus
+IOSchedulingClass=idle
+
+
+#   29ms :
+
+# /usr/lib/systemd/system/plymouth-quit-wait.service
+[Unit]
+Description=Hold until boot process finishes up
+After=rc-local.service plymouth-start.service systemd-user-sessions.service
+
+[Service]
+ExecStart=-/usr/bin/plymouth --wait
+Type=oneshot
+RemainAfterExit=yes
+TimeoutSec=0
+
+
+#   29ms :
+
+# /usr/lib/systemd/system/plymouth-quit.service
+[Unit]
+Description=Terminate Plymouth Boot Screen
+After=rc-local.service plymouth-start.service systemd-user-sessions.service
+
+[Service]
+ExecStart=-/usr/bin/plymouth quit
+Type=oneshot
+RemainAfterExit=yes
+TimeoutSec=20
+
+
+#   28ms :
+
+# /usr/lib/systemd/system/rsyslog.service
+[Unit]
+Description=System Logging Service
+;Requires=syslog.socket
+Documentation=man:rsyslogd(8)
+Documentation=https://www.rsyslog.com/doc/
+
+[Service]
+Type=notify
+EnvironmentFile=-/etc/sysconfig/rsyslog
+ExecStart=/usr/sbin/rsyslogd -n $SYSLOGD_OPTIONS
+ExecReload=/usr/bin/kill -HUP $MAINPID
+UMask=0066
+StandardOutput=null
+Restart=on-failure
+
+# Increase the default a bit in order to allow many simultaneous
+# files to be monitored, we might need a lot of fds.
+LimitNOFILE=16384
+
+[Install]
+WantedBy=multi-user.target
+;Alias=syslog.service
+
+
+#   27ms :
+
+# /usr/lib/systemd/system/systemd-fsck-root.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=File System Check on Root Device
+Documentation=man:systemd-fsck-root.service(8)
+DefaultDependencies=no
+Conflicts=shutdown.target
+Before=local-fs.target shutdown.target
+ConditionPathIsReadWrite=!/
+OnFailure=emergency.target
+OnFailureJobMode=replace-irreversibly
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/lib/systemd/systemd-fsck
+TimeoutSec=0
+
+
+#   26ms :
+
+# /run/systemd/generator/boot-efi.mount
+# Automatically generated by systemd-fstab-generator
+
+[Unit]
+Documentation=man:fstab(5) man:systemd-fstab-generator(8)
+SourcePath=/etc/fstab
+Before=local-fs.target
+Requires=systemd-fsck@dev-disk-by\x2duuid-A736\x2d7274.service
+After=systemd-fsck@dev-disk-by\x2duuid-A736\x2d7274.service
+After=blockdev@dev-disk-by\x2duuid-A736\x2d7274.target
+
+[Mount]
+What=/dev/disk/by-uuid/A736-7274
+Where=/boot/efi
+Type=vfat
+Options=umask=0077,shortname=winnt
+
+
+#   25ms :
+
+# /usr/lib/systemd/system/initrd-cleanup.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=Cleaning Up and Shutting Down Daemons
+DefaultDependencies=no
+AssertPathExists=/etc/initrd-release
+OnFailure=emergency.target
+OnFailureJobMode=replace-irreversibly
+After=initrd-root-fs.target initrd-fs.target initrd.target
+
+[Service]
+Type=oneshot
+ExecStart=systemctl --no-block isolate initrd-switch-root.target
+
+
+#   23ms :
+
+# /usr/lib/systemd/system/sssd-kcm.service
+[Unit]
+Description=SSSD Kerberos Cache Manager
+Documentation=man:sssd-kcm(5)
+Requires=sssd-kcm.socket
+After=sssd-kcm.socket
+
+[Install]
+Also=sssd-kcm.socket
+
+[Service]
+Environment=DEBUG_LOGGER=--logger=files
+ExecStartPre=-/usr/sbin/sssd --genconf-section=kcm
+ExecStart=/usr/libexec/sssd/sssd_kcm --uid 0 --gid 0 ${DEBUG_LOGGER}
+CapabilityBoundingSet=  CAP_IPC_LOCK CAP_CHOWN CAP_DAC_READ_SEARCH CAP_FOWNER CAP_SETGID CAP_SETUID
+
+
+#   22ms :
+
+# /usr/lib/systemd/system/systemd-random-seed.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=Load/Save Random Seed
+Documentation=man:systemd-random-seed.service(8) man:random(4)
+DefaultDependencies=no
+RequiresMountsFor=/var/lib/systemd/random-seed
+Conflicts=shutdown.target
+After=systemd-remount-fs.service
+Before=first-boot-complete.target shutdown.target
+Wants=first-boot-complete.target
+ConditionVirtualization=!container
+ConditionPathExists=!/etc/initrd-release
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/lib/systemd/systemd-random-seed load
+ExecStop=/usr/lib/systemd/systemd-random-seed save
+
+# This service waits until the kernel's entropy pool is initialized, and may be
+# used as ordering barrier for service that require an initialized entropy
+# pool. Since initialization can take a while on entropy-starved systems, let's
+# increase the timeout substantially here.
+TimeoutSec=10min
+
+
+#   21ms :
+
+# /usr/lib/systemd/system/plymouth-switch-root.service
+[Unit]
+Description=Plymouth switch root service
+DefaultDependencies=no
+ConditionPathExists=/etc/initrd-release
+Before=initrd-switch-root.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=-/usr/bin/plymouth update-root-fs --new-root-dir=/sysroot
+StandardInput=null
+StandardOutput=null
+StandardError=null
+
+
+#   21ms :
+
+
+
+#   20ms :
+
+# /usr/lib/systemd/system/colord.service
+[Unit]
+Description=Manage, Install and Generate Color Profiles
+
+[Service]
+Type=dbus
+BusName=org.freedesktop.ColorManager
+ExecStart=/usr/libexec/colord
+User=colord
+# We think that udev's AF_NETLINK messages are being filtered when
+# network namespacing is on.
+# PrivateNetwork=yes
+PrivateTmp=yes
+
+
+#   18ms :
+
+# /usr/lib/systemd/system/systemd-user-sessions.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=Permit User Sessions
+Documentation=man:systemd-user-sessions.service(8)
+After=remote-fs.target nss-user-lookup.target network.target home.mount
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/lib/systemd/systemd-user-sessions start
+ExecStop=/usr/lib/systemd/systemd-user-sessions stop
+
+
+#   17ms :
+
+# /usr/lib/systemd/system/systemd-update-utmp-runlevel.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=Record Runlevel Change in UTMP
+Documentation=man:systemd-update-utmp-runlevel.service(8) man:utmp(5)
+DefaultDependencies=no
+RequiresMountsFor=/var/log/wtmp
+Conflicts=shutdown.target
+Requisite=systemd-update-utmp.service
+After=systemd-update-utmp.service
+After=runlevel1.target runlevel2.target runlevel3.target runlevel4.target runlevel5.target
+Before=shutdown.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/lib/systemd/systemd-update-utmp runlevel
+
+
+#   17ms :
+
+# /run/systemd/generator/home.mount
+# Automatically generated by systemd-fstab-generator
+
+[Unit]
+Documentation=man:fstab(5) man:systemd-fstab-generator(8)
+SourcePath=/etc/fstab
+Before=local-fs.target
+After=blockdev@dev-disk-by\x2duuid-d9787e5a\x2d7a5e\x2d4fcb\x2db9ac\x2dc06e5835a55b.target
+
+[Mount]
+What=/dev/disk/by-uuid/d9787e5a-7a5e-4fcb-b9ac-c06e5835a55b
+Where=/home
+Type=btrfs
+
+
+#   16ms :
+
+# /usr/lib/systemd/system/plymouth-start.service
+[Unit]
+Description=Show Plymouth Boot Screen
+DefaultDependencies=no
+Wants=systemd-ask-password-plymouth.path systemd-vconsole-setup.service
+After=systemd-vconsole-setup.service systemd-udev-trigger.service systemd-udevd.service
+Before=systemd-ask-password-plymouth.service
+ConditionKernelCommandLine=!plymouth.enable=0
+ConditionVirtualization=!container
+IgnoreOnIsolate=true
+
+[Service]
+ExecStart=/usr/sbin/plymouthd --mode=boot --pid-file=/run/plymouth/pid --attach-to-session
+ExecStartPost=-/usr/bin/plymouth show-splash
+Type=forking
+RemainAfterExit=yes
+KillMode=mixed
+SendSIGKILL=no
+
+
+#   14ms :
+
+# /usr/lib/systemd/system/systemd-modules-load.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=Load Kernel Modules
+Documentation=man:systemd-modules-load.service(8) man:modules-load.d(5)
+DefaultDependencies=no
+Conflicts=shutdown.target
+Before=sysinit.target shutdown.target
+ConditionCapability=CAP_SYS_MODULE
+ConditionDirectoryNotEmpty=|/lib/modules-load.d
+ConditionDirectoryNotEmpty=|/usr/lib/modules-load.d
+ConditionDirectoryNotEmpty=|/usr/local/lib/modules-load.d
+ConditionDirectoryNotEmpty=|/etc/modules-load.d
+ConditionDirectoryNotEmpty=|/run/modules-load.d
+ConditionKernelCommandLine=|modules-load
+ConditionKernelCommandLine=|rd.modules-load
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/lib/systemd/systemd-modules-load
+TimeoutSec=90s
+
+
+#   14ms :
+
+# /usr/lib/systemd/system/plymouth-read-write.service
+[Unit]
+Description=Tell Plymouth To Write Out Runtime Data
+DefaultDependencies=no
+After=local-fs.target
+Before=sysinit.target
+ConditionPathExists=!/etc/initrd-release
+
+[Service]
+ExecStart=-/usr/bin/plymouth update-root-fs --read-write
+Type=oneshot
+RemainAfterExit=yes
+
+
+#   12ms :
+
+
+
+#   12ms :
+
+# /usr/lib/systemd/system/systemd-repart.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=Repartition Root Disk
+Documentation=man:systemd-repart.service(8)
+DefaultDependencies=no
+Conflicts=shutdown.target
+After=initrd-usr-fs.target
+Before=initrd-root-fs.target shutdown.target
+ConditionVirtualization=!container
+ConditionDirectoryNotEmpty=|/usr/lib/repart.d
+ConditionDirectoryNotEmpty=|/usr/local/lib/repart.d
+ConditionDirectoryNotEmpty=|/etc/repart.d
+ConditionDirectoryNotEmpty=|/run/repart.d
+ConditionDirectoryNotEmpty=|/sysroot/usr/lib/repart.d
+ConditionDirectoryNotEmpty=|/sysroot/usr/local/lib/repart.d
+ConditionDirectoryNotEmpty=|/sysroot/etc/repart.d
+ConditionDirectoryNotEmpty=|/sysusr/usr/lib/repart.d
+ConditionDirectoryNotEmpty=|/sysusr/usr/local/lib/repart.d
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/systemd-repart --dry-run=no
+
+# The tool returns 77 if there's no existing GPT partition table
+SuccessExitStatus=77
+
+
+#   12ms :
+
+# /run/systemd/generator.late/livesys-late.service
+# Automatically generated by systemd-sysv-generator
+
+[Unit]
+Documentation=man:systemd-sysv-generator(8)
+SourcePath=/etc/rc.d/init.d/livesys-late
+Description=SYSV: Late init script for live image.
+Before=multi-user.target
+Before=multi-user.target
+Before=graphical.target
+After=livesys.service
+
+[Service]
+Type=forking
+Restart=no
+TimeoutSec=5min
+IgnoreSIGPIPE=no
+KillMode=process
+GuessMainPID=no
+RemainAfterExit=yes
+ExecStart=/etc/rc.d/init.d/livesys-late start
+ExecStop=/etc/rc.d/init.d/livesys-late stop
+
+
+#   12ms :
+
+
+
+#   11ms :
+
+# /usr/lib/systemd/system/systemd-rfkill.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=Load/Save RF Kill Switch Status
+Documentation=man:systemd-rfkill.service(8)
+DefaultDependencies=no
+BindsTo=sys-devices-virtual-misc-rfkill.device
+Conflicts=shutdown.target
+After=sys-devices-virtual-misc-rfkill.device
+Before=shutdown.target
+
+[Service]
+ExecStart=/usr/lib/systemd/systemd-rfkill
+NoNewPrivileges=yes
+StateDirectory=systemd/rfkill
+TimeoutSec=30s
+Type=notify
+
+
+#   11ms :
+
+# /usr/lib/systemd/system/initrd-udevadm-cleanup-db.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=Cleanup udev Database
+DefaultDependencies=no
+AssertPathExists=/etc/initrd-release
+Conflicts=systemd-udevd.service systemd-udevd-control.socket systemd-udevd-kernel.socket systemd-udev-trigger.service systemd-udev-settle.service
+After=systemd-udevd.service systemd-udevd-control.socket systemd-udevd-kernel.socket systemd-udev-trigger.service systemd-udev-settle.service
+Before=initrd-switch-root.target
+
+[Service]
+Type=oneshot
+ExecStart=-udevadm info --cleanup-db
+
+
+#    9ms :
+
+# /usr/lib/systemd/system/sys-kernel-config.mount
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=Kernel Configuration File System
+Documentation=https://www.kernel.org/doc/Documentation/filesystems/configfs/configfs.txt
+Documentation=https://www.freedesktop.org/wiki/Software/systemd/APIFileSystems
+DefaultDependencies=no
+ConditionPathExists=/sys/kernel/config
+ConditionCapability=CAP_SYS_RAWIO
+Before=sysinit.target
+
+# These dependencies are used to make certain that the module is fully
+# loaded. Indeed udev starts this unit when it receives an uevent for the
+# module but the kernel sends it too early, ie before the init() of the module
+# is fully operational and /sys/kernel/config is created, see issue#17586.
+
+After=modprobe@configfs.service
+Requires=modprobe@configfs.service
+
+[Mount]
+What=configfs
+Where=/sys/kernel/config
+Type=configfs
+Options=nosuid,nodev,noexec
+
+
+#    9ms :
+
+# /usr/lib/systemd/system/sys-fs-fuse-connections.mount
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=FUSE Control File System
+Documentation=https://www.kernel.org/doc/Documentation/filesystems/fuse.txt
+Documentation=https://www.freedesktop.org/wiki/Software/systemd/APIFileSystems
+DefaultDependencies=no
+ConditionPathExists=/sys/fs/fuse/connections
+ConditionCapability=CAP_SYS_ADMIN
+ConditionVirtualization=!private-users
+Before=sysinit.target
+
+# These dependencies are used to make certain that the module is fully
+# loaded. Indeed udev starts this unit when it receives an uevent for the
+# module but the kernel sends it too early, ie before the init() of the module
+# is fully operational and /sys/fs/fuse/connections is created, see issue#17586.
+
+After=modprobe@fuse.service
+Requires=modprobe@fuse.service
+
+[Mount]
+What=fusectl
+Where=/sys/fs/fuse/connections
+Type=fusectl
+Options=nosuid,nodev,noexec
+
+
+#    7ms :
+
+# /usr/lib/systemd/system/dev-hugepages.mount
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=Huge Pages File System
+Documentation=https://www.kernel.org/doc/Documentation/vm/hugetlbpage.txt
+Documentation=https://www.freedesktop.org/wiki/Software/systemd/APIFileSystems
+DefaultDependencies=no
+Before=sysinit.target
+ConditionPathExists=/sys/kernel/mm/hugepages
+ConditionCapability=CAP_SYS_ADMIN
+ConditionVirtualization=!private-users
+
+[Mount]
+What=hugetlbfs
+Where=/dev/hugepages
+Type=hugetlbfs
+
+
+#    7ms :
+
+# /usr/lib/systemd/system/tmp.mount
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=Temporary Directory /tmp
+Documentation=https://systemd.io/TEMPORARY_DIRECTORIES
+Documentation=man:file-hierarchy(7)
+Documentation=https://www.freedesktop.org/wiki/Software/systemd/APIFileSystems
+ConditionPathIsSymbolicLink=!/tmp
+DefaultDependencies=no
+Conflicts=umount.target
+Before=local-fs.target umount.target
+After=swap.target
+
+[Mount]
+What=tmpfs
+Where=/tmp
+Type=tmpfs
+Options=mode=1777,strictatime,nosuid,nodev,size=50%%,nr_inodes=1m
+
+
+#    7ms :
+
+# /usr/lib/systemd/system/dev-mqueue.mount
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=POSIX Message Queue File System
+Documentation=man:mq_overview(7)
+Documentation=https://www.freedesktop.org/wiki/Software/systemd/APIFileSystems
+DefaultDependencies=no
+Before=sysinit.target
+ConditionPathExists=/proc/sys/fs/mqueue
+ConditionCapability=CAP_SYS_ADMIN
+
+[Mount]
+What=mqueue
+Where=/dev/mqueue
+Type=mqueue
+Options=nosuid,nodev,noexec
+
+
+#    7ms :
+
+# /usr/lib/systemd/system/kmod-static-nodes.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=Create List of Static Device Nodes
+DefaultDependencies=no
+Before=sysinit.target systemd-tmpfiles-setup-dev.service
+ConditionCapability=CAP_SYS_MODULE
+ConditionFileNotEmpty=/lib/modules/%v/modules.devname
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/kmod static-nodes --format=tmpfiles --output=/run/tmpfiles.d/static-nodes.conf
+
+
+#    6ms :
+
+# /usr/lib/systemd/system/iscsi-shutdown.service
+[Unit]
+Description=Logout off all iSCSI sessions on shutdown
+Documentation=man:iscsid(8) man:iscsiadm(8)
+DefaultDependencies=no
+Conflicts=shutdown.target
+After=systemd-remount-fs.service network.target iscsid.service iscsiuio.service
+Before=remote-fs-pre.target
+Wants=remote-fs-pre.target
+RefuseManualStop=yes
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=-/usr/bin/true
+ExecStop=-/usr/sbin/iscsiadm -m node --logoutall=all
+
+
+#    6ms :
+
+# /usr/lib/systemd/system/systemd-update-utmp.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=Record System Boot/Shutdown in UTMP
+Documentation=man:systemd-update-utmp.service(8) man:utmp(5)
+DefaultDependencies=no
+RequiresMountsFor=/var/log/wtmp
+Conflicts=shutdown.target
+After=systemd-remount-fs.service systemd-tmpfiles-setup.service auditd.service
+Before=sysinit.target shutdown.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/lib/systemd/systemd-update-utmp reboot
+ExecStop=/usr/lib/systemd/systemd-update-utmp shutdown
+
+
+#    6ms :
+
+# /usr/lib/systemd/system/systemd-sysctl.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=Apply Kernel Variables
+Documentation=man:systemd-sysctl.service(8) man:sysctl.d(5)
+DefaultDependencies=no
+Conflicts=shutdown.target
+After=systemd-modules-load.service
+Before=sysinit.target shutdown.target
+ConditionPathIsReadWrite=/proc/sys/net/
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/lib/systemd/systemd-sysctl
+TimeoutSec=90s
+
+
+#    6ms :
+
+# /usr/lib/systemd/system/rpc-statd-notify.service
+[Unit]
+Description=Notify NFS peers of a restart
+DefaultDependencies=no
+Wants=network-online.target
+After=local-fs.target network-online.target nss-lookup.target
+
+# if we run an nfs server, it needs to be running before we
+# tell clients that it has restarted.
+After=nfs-server.service
+
+PartOf=nfs-utils.service
+
+[Service]
+Type=forking
+ExecStart=-/usr/sbin/sm-notify
+RemainAfterExit=yes
+
+
+#    6ms :
+
+
+
+#    6ms :
+
+# /usr/lib/systemd/system/dracut-shutdown.service
+#  This file is part of dracut.
+
+[Unit]
+Description=Restore /run/initramfs on shutdown
+Documentation=man:dracut-shutdown.service(8)
+After=local-fs.target boot.mount boot.automount
+Wants=local-fs.target
+ConditionPathExists=!/run/initramfs/bin/sh
+OnFailure=dracut-shutdown-onfailure.service
+
+[Service]
+RemainAfterExit=yes
+Type=oneshot
+ExecStart=/bin/true
+ExecStop=/usr/lib/dracut/dracut-initramfs-restore
+
+
+#    3ms :
+
+
+
+#$  228ms : 
+
+# /usr/lib/systemd/system/lvm2-pvscan@.service
+[Unit]
+Description=LVM event activation on device %i
+Documentation=man:pvscan(8)
+DefaultDependencies=no
+StartLimitIntervalSec=0
+BindsTo=dev-block-%i.device
+Before=shutdown.target
+Conflicts=shutdown.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/lvm pvscan --cache --activate ay %i
+ExecStop=/usr/sbin/lvm pvscan --cache %i
+
+
+#$  165ms :
+
+# /usr/lib/systemd/system/user@.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=User Manager for UID %i
+Documentation=man:user@.service(5)
+After=systemd-user-sessions.service user-runtime-dir@%i.service dbus.service
+Requires=user-runtime-dir@%i.service
+IgnoreOnIsolate=yes
+
+[Service]
+User=%i
+PAMName=systemd-user
+Type=notify
+ExecStart=/usr/lib/systemd/systemd --user
+Slice=user-%i.slice
+KillMode=mixed
+Delegate=pids memory
+TasksMax=infinity
+TimeoutStopSec=120s
+KeyringMode=inherit
+OOMScoreAdjust=100
+
+# /usr/lib/systemd/system/user@.service.d/00-uresourced.conf
+[Unit]
+After=uresourced.service
+
+[Service]
+Delegate=cpu io memory
+
+# /etc/systemd/system.control/user@1000.service.d/50-CPUWeight.conf
+# This is a drop-in unit file extension, created via "systemctl set-property"
+# or an equivalent operation. Do not edit.
+[Service]
+CPUWeight=500
+
+# /etc/systemd/system.control/user@1000.service.d/50-IOWeight.conf
+# This is a drop-in unit file extension, created via "systemctl set-property"
+# or an equivalent operation. Do not edit.
+[Service]
+IOWeight=500
+
+# /etc/systemd/system.control/user@1000.service.d/50-MemoryLow.conf
+# This is a drop-in unit file extension, created via "systemctl set-property"
+# or an equivalent operation. Do not edit.
+[Service]
+MemoryLow=0
+
+# /etc/systemd/system.control/user@1000.service.d/50-MemoryMin.conf
+# This is a drop-in unit file extension, created via "systemctl set-property"
+# or an equivalent operation. Do not edit.
+[Service]
+MemoryMin=262144000
+
+
+#$   34ms :
+
+# /usr/lib/systemd/system/systemd-fsck@.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=File System Check on %f
+Documentation=man:systemd-fsck@.service(8)
+DefaultDependencies=no
+BindsTo=%i.device
+Conflicts=shutdown.target
+After=%i.device systemd-fsck-root.service local-fs-pre.target
+Before=systemd-quotacheck.service shutdown.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/lib/systemd/systemd-fsck %f
+TimeoutSec=0
+
+
+#$   32ms :
+
+# /usr/lib/systemd/system/systemd-fsck@.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=File System Check on %f
+Documentation=man:systemd-fsck@.service(8)
+DefaultDependencies=no
+BindsTo=%i.device
+Conflicts=shutdown.target
+After=%i.device systemd-fsck-root.service local-fs-pre.target
+Before=systemd-quotacheck.service shutdown.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/lib/systemd/systemd-fsck %f
+TimeoutSec=0
+
+
+#$   28ms :
+
+# /usr/lib/systemd/system/systemd-fsck@.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=File System Check on %f
+Documentation=man:systemd-fsck@.service(8)
+DefaultDependencies=no
+BindsTo=%i.device
+Conflicts=shutdown.target
+After=%i.device systemd-fsck-root.service local-fs-pre.target
+Before=systemd-quotacheck.service shutdown.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/lib/systemd/systemd-fsck %f
+TimeoutSec=0
+
+
+#$   25ms :
+
+
+
+#$   xxms :
+
+# /usr/lib/systemd/system/systemd-remount-fs.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=Remount Root and Kernel File Systems
+Documentation=man:systemd-remount-fs.service(8)
+Documentation=https://www.freedesktop.org/wiki/Software/systemd/APIFileSystems
+DefaultDependencies=no
+Conflicts=shutdown.target
+After=systemd-fsck-root.service
+Before=local-fs-pre.target local-fs.target shutdown.target
+Wants=local-fs-pre.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/lib/systemd/systemd-remount-fs
+
+
+#$   21ms :
+
+# /usr/lib/systemd/system/user-runtime-dir@.service
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=User Runtime Directory /run/user/%i
+Documentation=man:user@.service(5)
+After=systemd-user-sessions.service dbus.service
+StopWhenUnneeded=yes
+IgnoreOnIsolate=yes
+
+[Service]
+ExecStart=/usr/lib/systemd/systemd-user-runtime-dir start %i
+ExecStop=/usr/lib/systemd/systemd-user-runtime-dir stop %i
+Type=oneshot
+RemainAfterExit=yes
+Slice=user-%i.slice

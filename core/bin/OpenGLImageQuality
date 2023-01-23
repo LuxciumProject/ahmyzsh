@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+OpenGLImageQuality() {
+    nvidia-settings -a 'OpenGLImageSettings=1'
+}
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+OpenGLImageQuality "${@}"
+
+__EXIT_STATUS="${?}"
+
+unset -f OpenGLImageQuality
+
+exit $__EXIT_STATUS

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+OpenGLImagePerform() {
+    nvidia-settings -a 'OpenGLImageSettings=2'
+}
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+OpenGLImagePerform "${@}"
+
+__EXIT_STATUS="${?}"
+
+unset -f OpenGLImagePerform
+
+exit $__EXIT_STATUS

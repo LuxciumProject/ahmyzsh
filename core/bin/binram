@@ -1,0 +1,34 @@
+#!/usr/bin/bash
+
+# binram
+
+function binram_() {
+
+  (
+    mkdir -p /opt/ramdisk || exit 1
+    sudo mount -t tmpfs -o size=2048M tmpfs /opt/ramdisk || exit 2
+    cp -r /bin/ /opt/ramdisk || exit 3
+    cp -r /sbin/ /opt/ramdisk || exit 4
+    sudo chown -R "$USER" /opt/ramdisk || exit 5
+    mkdir -p /opt/ramdisk/core || exit 6
+    cp -r -t /opt/ramdisk/core /home/luxcium/bin/* || exit 7
+    cp -r -t /opt/ramdisk/core /home/luxcium/ahmyzsh/core/bin/* || exit 8
+    add_to_path_() {
+      [ -z "$1" ] || [ -d "$1" ] && export PATH="${1}:${PATH}"
+    }
+    add_to_path_ /opt/ramdisk/sbin || exit 9
+    add_to_path_ /opt/ramdisk/bin || exit 10
+    add_to_path_ /opt/ramdisk/core || exit 11
+    echo "$PATH"
+  )
+  return
+}
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+binram_ "${@}"
+
+__EXIT_STATUS="${?}"
+
+unset -f binram_
+
+exit $__EXIT_STATUS

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+OpenGLImagePerformHigh() {
+    nvidia-settings -a 'OpenGLImageSettings=3'
+}
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+OpenGLImagePerformHigh "${@}"
+
+__EXIT_STATUS="${?}"
+
+unset -f OpenGLImagePerformHigh
+
+exit $__EXIT_STATUS

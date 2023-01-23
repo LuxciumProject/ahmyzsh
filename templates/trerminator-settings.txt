@@ -1,0 +1,5 @@
+# Terminator - Multiple GNOME terminals in one window
+
+# terminator [options]
+
+# ~/.config/terminator/config

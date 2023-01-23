@@ -1,0 +1,19 @@
+[Desktop Entry]
+Type=Application
+Name=Visual Studio Code (POP-N-LOCK Insiders Project)
+Comment=Launch Visual Studio Code with the POP-N-LOCK Insiders Project
+Exec=/projects/main-POP-N-LOCK-x1DF2/bin/code-insiders %U
+Icon=/projects/main-POP-N-LOCK-x1DF2/visual-studio-code-insiders.svg
+Terminal=false
+GenericName=VSCODE Text Editor
+Categories=Development;IDE;TextEditor;
+MimeType=text/plain;inode/directory;application/x-code-workspace;
+Keywords=vscode;code;development;editor;ide;ahmyzsh;project;POP-N-LOCK;insiders;vscode-insiders;
+StartupNotify=true
+StartupWMClass="°POP-N-LOCK°"
+
+[Desktop Action new-empty-window]
+Name=New Empty Insiders vscode Window
+Comment=Launch Visual Studio Code Insiders with a new empty window
+Exec=/projects/main-POP-N-LOCK-x1DF2/bin/code-insiders --new-window %F
+Icon=com.visualstudio.code
