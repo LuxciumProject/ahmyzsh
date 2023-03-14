@@ -1,6 +1,6 @@
-#!/bin/zsh
+#!/usr/bin/env bash
 (
-  cd /home/luxcium/virtualram/luxcium.io
+  cd /home/luxcium/virtualram/luxcium.io || exit
   lf
   git add .
   git commit -am "SAFETY CATCH: working in ram doing last backup loging out"

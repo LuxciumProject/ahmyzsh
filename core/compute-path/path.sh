@@ -4,12 +4,12 @@ export CUDA_VERSION="cuda-12.0"
 export DOTNET_ROOT="/usr/lib64/dotnet/"
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 export PATH_BAK_0="${PATH}"
-export LD_LIBRARY_PATH=/usr/local/${CUDA_VERSION}/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+export LD_LIBRARY_PATH=/usr/local/${CUDA_VERSION}${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 export PNPM_HOME="${HOME}/.local/share/pnpm"
 export NVM_DIR="$HOME/.nvm"
 export FNM_PATH="${HOME}/.local/share/fnm"
 export RBENV_PATH="${HOME}/.rbenv/bin:${HOME}/.rbenv/shims"
-
+export LD_LIBRARY_PATH="/home/luxcium/mystic-mercury/lib"${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 function add_to_path_() {
     [ -z "$1" ] || [ -d "$1" ] && export PATH="${1}:${PATH}"
 }
@@ -26,51 +26,51 @@ append_to_path() {
     export PATH
 }
 
-
 function dedup_pathvar_() {
     # #region Deduplicate path variables =======================================¹
     # https://unix.stackexchange.com/a/149054/431235
     # © 2014 by https://unix.stackexchange.com/users/1010
     # © CC BY-SA 3.0 ¹ (User: Ryan C. Thompson ― Aug 7 '14 at 17:35)
-    
+
     ## If you want some more structure around it,
     ## as well as the ability to deduplicate other variables as well,
     ## try this snippet, which I'm currently using in my own config:
-    
+
     _get_var() {
         eval 'printf "%s\n" "${'"$1"'}"'
     }
-    
+
     _set_var() {
         eval "$1=\"\$2\""
     }
-    
+
     _dedup_pathvar() {
         pathvar_name="$1"
         pathvar_value="$(_get_var "$pathvar_name")"
         deduped_path="$(perl -e 'print join(":",grep { not $seen{$_}++ } split(/:/, $ARGV[0]))' "$pathvar_value")"
         _set_var "$pathvar_name" "$deduped_path"
     }
-    
+
     ## That code will deduplicate both PATH and MANPATH,
     ## and you can easily call dedup_pathvar on other variables that hold
     ## colon-separated lists of paths (e.g. PYTHONPATH).
-    
+
     # #endregion Deduplicate path variables ====================================¹
     _dedup_pathvar "${@}"
-    
+
     unset -f _dedup_pathvar
     unset -f _get_var
     unset -f _set_var
-    
+
 }
 
 function conda_init_mystic-mercury() {
     echo init mystic-mercury
+
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
-    __conda_setup="$('/home/luxcium/mystic-mercury/bin/conda' 'shell.bash' 'hook' 2>/dev/null)"
-    if [ "$SELECTION" -eq 0 ]; then
+    __conda_setup="$('/home/luxcium/mystic-mercury/bin/conda' 'shell.zsh' 'hook' 2>/dev/null)"
+    if [ $? -eq 0 ]; then
         eval "$__conda_setup"
     else
         if [ -f "/home/luxcium/mystic-mercury/etc/profile.d/conda.sh" ]; then
@@ -81,15 +81,18 @@ function conda_init_mystic-mercury() {
     fi
     unset __conda_setup
     # <<< conda initialize <<<
-}
+    # If you'd prefer that conda's base environment not be activated on startup,
+    #    set the auto_activate_base parameter to false:
+    # conda config --set auto_activate_base false
 
+}
 
 function usenvm() {
     export NVM_DIR="$HOME/.nvm"
     # shellcheck source=/dev/null
     # This loads nvm
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    
+
     # shellcheck source=/dev/null
     # This loads nvm bash_completion
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
@@ -98,6 +101,12 @@ function usenvm() {
 function rbenv_() {
     # echo 'export PATH="${HOME}/.rbenv/bin:$PATH"' >>~/.zshrc
     eval "$(rbenv init -)"
+}
+
+function rust_up_() {
+    add_to_path_ "${HOME}/.cargo/bin"
+    # shellcheck source=/home/luxcium/.cargo/env
+    source "${HOME}/.cargo/env"
 }
 
 function __append_sbin_to_path() {
@@ -121,7 +130,6 @@ function __append_bin_to_path() {
     return
 }
 
-
 function __compute_extended_path() {
     add_to_path_ "/usr/lib64/ccache"
     add_to_path_ "/usr/lib64/qt5/bin"
@@ -132,24 +140,30 @@ function __compute_extended_path() {
     add_to_path_ "/app/bin"
     add_to_path_ "${HOME}/.yarn/bin"
     # add_to_path_ "${HOME}/spx"
-    # call_ rust_up_
+    add_to_path_ "/src/webcamoid/bin"
+    add_to_path_ "${HOME}/.cargo/bin"
     add_to_path_ '/usr/local/go/bin'
+    # call_ rust_up_
     add_to_path_ "${HOME}/.rbenv/shims"
     add_to_path_ "${HOME}/.rbenv/bin"
-    call_ rbenv_
-    add_to_path_ "${RBENV_PATH}"
+    # call_ rbenv_
+    # add_to_path_ "${RBENV_PATH}"
+    conda_init_mystic-mercury &
+    usenvm &
+    rbenv_ &
+    rust_up_ &
+    echo waiting path
+    wait
+    echo continue path
     add_to_path_ "${HOME}/.nvm"
-    # call_ __NVM
-    # call_ conda_
-    add_to_path_ '/home/luxcium/main-vscode/bin'
+    add_to_path_ "${HOME}/main-vscode/bin"
     add_to_path_ '/projects/main-POP-N-LOCK-x1DF2/bin'
-    # add_to_path_ '/home/luxcium/.local/share'
+    add_to_path_ "${HOME}/mystic-mercury/bin"
     add_to_path_ "$PNPM_HOME"
     add_to_path_ "${HOME}/.config/yarn/global/node_modules/.bin"
     add_to_path_ "${HOME}/.local/bin"
     add_to_path_ "${FNM_PATH}"
     add_to_path_ "${HOME}/bin"
-    
     return
 }
 
@@ -165,7 +179,7 @@ function set_path() {
     add_to_path_ '/home/luxcium/.local/share/fnm'
     add_to_path_ eval "$(fnm env)"
     __compute_extended_path
-    conda_init_mystic-mercury
+    # conda_init_mystic-mercury
     __dedup_path
     return
 }
@@ -191,14 +205,17 @@ reload_path() {
     echo PATH was:
     echo "$PATH" | tr ":" "\n"
     source /home/luxcium/ahmyzsh/core/compute-path/path.sh
+    # . /home/luxcium/ahmyzsh/core/compute-path/path.sh
     SP80="                                                                                "
     __append_bin_to_path
     set_path
     cache_path
-    source_ "${CORE_COMPUTE}"/path.sh
+    # source_ "${CORE_COMPUTE}"/path.sh
     compute_path
     echo -en "${SP80}"
     echo_path
     echo PATH now is:
     echo "$PATH" | tr ":" "\n"
 }
+
+# source "$HOME/.cargo/env"

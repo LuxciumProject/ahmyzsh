@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+nvidiaset_() {
+    nvidia-settings \
+    -a '[GPU:0]/GPULogoBrightness=0' \
+    -a '[GPU:1]/GPULogoBrightness=0'
+    
+    nvidia-settings \
+    -a 'LogAniso=4' \
+    -a 'FSAA=11' \
+    -a 'FXAA=0' \
+    -a 'FSAAAppControlled=0' \
+    -a 'FSAAAppEnhanced=1' \
+    -a 'LogAnisoAppControlled=0'
+    
+    nvidia-settings \
+    -a 'SyncToVBlank=1' \
+    -a 'TextureClamping=1' \
+    -a 'AllowFlipping=1' \
+    -a 'OpenGLImageSettings=1' \
+    -a 'XVideoSyncToDisplayID=DP-2' \
+    -a 'ShowGraphicsVisualIndicator=0'
+    
+    nvidia-settings \
+    -a '[DPY:DP-0]/Dithering=1' \
+    -a '[DPY:DP-0]/DitheringMode=2' \
+    -a '[DPY:DP-0]/DitheringDepth=1'
+    
+    nvidia-settings \
+    -a '[DPY:DP-2]/Dithering=1' \
+    -a '[DPY:DP-2]/DitheringMode=2' \
+    -a '[DPY:DP-2]/DitheringDepth=1'
+    
+    nvidia-settings \
+    -a '[GPU:0]/GPUPowerMizerMode=0' \
+    -a '[GPU:1]/GPUPowerMizerMode=0'
+    gputhermalbrightness
+}
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+nvidiaset_ "${@}" >/dev/null
+
+__EXIT_STATUS="${?}"
+
+unset -f nvidiaset_
+
+exit $__EXIT_STATUS

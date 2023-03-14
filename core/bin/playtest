@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env bash
 source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
 # cat /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
 

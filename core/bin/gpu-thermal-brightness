@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+
+# gpu-thermal-brightness
+
+# Constants for configurable settings
+PID_FILE="/tmp/gpu-thermal-brightness.pid"
+SLEEP_INTERVAL=2
+
+touch $PID_FILE || exit 1
+# echo $$ >>"$PID_FILE"
+
+run_command() {
+    # write the PID of the script to the PID file
+    echo $$ >"$PID_FILE"
+    # cat "$PID_FILE"
+    # check for the PID file before running the command
+    while [ -f "$PID_FILE" ]; do
+        # run the command here
+        /home/luxcium/ahmyzsh/core/bin/gputhermalbrightness >/dev/null 2>&1
+        sleep "$SLEEP_INTERVAL"
+    done
+}
+
+case "$1" in
+start)
+    echo start
+    echo PID: $$
+    run_command &
+    sleep 1 && cat "$PID_FILE" &
+    ;;
+stop)
+    echo stop $$
+    # echo $$ >>"$PID_FILE"
+    cat "$PID_FILE"
+    echo $$
+    echo stopping...
+    kill "$(cat "$PID_FILE")" || exit 1
+    # remove the PID file when the script exits
+    rm "$PID_FILE"
+    kill $$
+    ;;
+*)
+    echo "Usage: $0 {start|stop}"
+    exit 1
+    ;;
+esac
+
+# Aliases for easier usage:
+# Add the following lines to your shell profile (e.g. ~/.bashrc)
+# alias script-start='gpu-thermal-brightness start'
+# alias script-stop='gpu-thermal-brightness stop'
+# /home/luxcium/ahmyzsh/core/bin/gpu-thermal-brightness
+
+## Please consider using this:
+# ❯ echo \$AHMYZSH_CORE=$AHMYZSH_CORE
+# $AHMYZSH_CORE=/home/luxcium/ahmyzsh/core
+#

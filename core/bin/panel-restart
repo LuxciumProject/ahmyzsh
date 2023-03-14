@@ -1,30 +1,30 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # panel-restart is for KDE Panel Restart.
 nvidia-settings -a \
-'AllowFlipping=1' -a \
-'FSAA=9' -a \
-'FSAAAppControlled=0' -a \
-'FSAAAppEnhanced=0' -a \
-'FXAA=0' -a \
-'LogAniso=3' -a \
-'LogAnisoAppControlled=0' -a \
-'OpenGLImageSettings=3' -a \
-'ShowGraphicsVisualIndicator=0' -a \
-'SyncToVBlank=1' -a \
-'TextureClamping=1' -a \
-'XVideoSyncToDisplayID=DP-2' -a \
-'[DPY:DP-0]/Dithering=1' -a \
-'[DPY:DP-0]/DitheringDepth=1' -a \
-'[DPY:DP-0]/DitheringMode=2' -a \
-'[DPY:DP-2]/Dithering=1' -a \
-'[DPY:DP-2]/DitheringDepth=1' -a \
-'[DPY:DP-2]/DitheringMode=3' -a \
-'[GPU:0]/GPULogoBrightness=100' -a \
-'[GPU:0]/GPUPowerMizerMode=0' -a \
-'[GPU:0]/GPUPowerMizerMode=1' -a \
-'[GPU:1]/GPULogoBrightness=100' -a \
-'[GPU:1]/GPUPowerMizerMode=0' -a \
-'[GPU:1]/GPUPowerMizerMode=2'
+    'AllowFlipping=1' -a \
+    'FSAA=9' -a \
+    'FSAAAppControlled=0' -a \
+    'FSAAAppEnhanced=0' -a \
+    'FXAA=0' -a \
+    'LogAniso=3' -a \
+    'LogAnisoAppControlled=0' -a \
+    'OpenGLImageSettings=3' -a \
+    'ShowGraphicsVisualIndicator=0' -a \
+    'SyncToVBlank=1' -a \
+    'TextureClamping=1' -a \
+    'XVideoSyncToDisplayID=DP-2' -a \
+    '[DPY:DP-0]/Dithering=1' -a \
+    '[DPY:DP-0]/DitheringDepth=1' -a \
+    '[DPY:DP-0]/DitheringMode=2' -a \
+    '[DPY:DP-2]/Dithering=1' -a \
+    '[DPY:DP-2]/DitheringDepth=1' -a \
+    '[DPY:DP-2]/DitheringMode=3' -a \
+    '[GPU:0]/GPULogoBrightness=100' -a \
+    '[GPU:0]/GPUPowerMizerMode=0' -a \
+    '[GPU:0]/GPUPowerMizerMode=1' -a \
+    '[GPU:1]/GPULogoBrightness=100' -a \
+    '[GPU:1]/GPUPowerMizerMode=0' -a \
+    '[GPU:1]/GPUPowerMizerMode=2'
 
 (
     cd /tmp/ || return 1
@@ -36,27 +36,27 @@ nvidia-settings -a \
 sleep 15
 
 nvidia-settings -a \
-'AllowFlipping=1' -a \
-'FSAA=9' -a \
-'FSAAAppControlled=0' -a \
-'FSAAAppEnhanced=0' -a \
-'FXAA=0' -a \
-'LogAniso=3' -a \
-'LogAnisoAppControlled=0' -a \
-'OpenGLImageSettings=3' -a \
-'ShowGraphicsVisualIndicator=0' -a \
-'SyncToVBlank=1' -a \
-'TextureClamping=1' -a \
-'XVideoSyncToDisplayID=DP-2' -a \
-'[DPY:DP-0]/Dithering=1' -a \
-'[DPY:DP-0]/DitheringDepth=1' -a \
-'[DPY:DP-0]/DitheringMode=2' -a \
-'[DPY:DP-2]/Dithering=1' -a \
-'[DPY:DP-2]/DitheringDepth=1' -a \
-'[DPY:DP-2]/DitheringMode=3' -a \
-'[GPU:0]/GPULogoBrightness=100' -a \
-'[GPU:0]/GPUPowerMizerMode=0' -a \
-'[GPU:0]/GPUPowerMizerMode=1' -a \
-'[GPU:1]/GPULogoBrightness=100' -a \
-'[GPU:1]/GPUPowerMizerMode=0' -a \
-'[GPU:1]/GPUPowerMizerMode=2'
+    'AllowFlipping=1' -a \
+    'FSAA=9' -a \
+    'FSAAAppControlled=0' -a \
+    'FSAAAppEnhanced=0' -a \
+    'FXAA=0' -a \
+    'LogAniso=3' -a \
+    'LogAnisoAppControlled=0' -a \
+    'OpenGLImageSettings=3' -a \
+    'ShowGraphicsVisualIndicator=0' -a \
+    'SyncToVBlank=1' -a \
+    'TextureClamping=1' -a \
+    'XVideoSyncToDisplayID=DP-2' -a \
+    '[DPY:DP-0]/Dithering=1' -a \
+    '[DPY:DP-0]/DitheringDepth=1' -a \
+    '[DPY:DP-0]/DitheringMode=2' -a \
+    '[DPY:DP-2]/Dithering=1' -a \
+    '[DPY:DP-2]/DitheringDepth=1' -a \
+    '[DPY:DP-2]/DitheringMode=3' -a \
+    '[GPU:0]/GPULogoBrightness=100' -a \
+    '[GPU:0]/GPUPowerMizerMode=0' -a \
+    '[GPU:0]/GPUPowerMizerMode=1' -a \
+    '[GPU:1]/GPULogoBrightness=100' -a \
+    '[GPU:1]/GPUPowerMizerMode=0' -a \
+    '[GPU:1]/GPUPowerMizerMode=2'

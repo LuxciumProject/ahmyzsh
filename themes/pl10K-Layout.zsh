@@ -167,13 +167,13 @@ function load_my_powerlevel10k() {
         if [ "${1}" = 'off' ]; then
             left_prompt_off
             return 0
-            elif [ "${1}" = 'on' ]; then
+        elif [ "${1}" = 'on' ]; then
             left_prompt_on
             return 0
-            elif [ $PL10K_LEFT_PROMPT_ON = 'true' ]; then
+        elif [ $PL10K_LEFT_PROMPT_ON = 'true' ]; then
             left_prompt_off
             return 0
-            elif [ $PL10K_LEFT_PROMPT_OFF = 'true' ]; then
+        elif [ $PL10K_LEFT_PROMPT_OFF = 'true' ]; then
             left_prompt_on
             return 0
         fi
@@ -185,17 +185,17 @@ function load_my_powerlevel10k() {
         export PL10K_RIGHT_PROMPT_OFF='false'
         function pl10k_right_prompt_loader() {
             export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
-                rbenv      # ruby version from rbenv (https://github.com/rbenv/rbenv)
-                newline    # !! ============[ Line #1 ]============================
                 custom_tsx #
                 custom_tsc
                 custom_tsx #
+                rbenv      # ruby version from rbenv (https://github.com/rbenv/rbenv)
+                newline    # !! ============[ Line #2 ]============================
+                anaconda   # conda environment (https://conda.io/)
                 newline    # !! ============[ Line #1 ]============================
                 custom_js  #
                 custom_npm #
                 node_version
-                # custom_tsc      #
-                # newline         # !! ============[ Line #1 ]============================
+                # custom_tsc      #1
                 # custom_tsx      #
                 # custom_npm      #
                 # node_version    # node.js version
@@ -203,7 +203,7 @@ function load_my_powerlevel10k() {
                 # newline         # !! ============[ Line #2 ]============================
                 # custom_pyt      #
                 # rbenv           # ruby version from rbenv (https://github.com/rbenv/rbenv)
-                # anaconda        # conda environment (https://conda.io/)
+                # newline         # !! ============[ Line #3 ]============================
                 # background_jobs # presence of background jobs
             )
             return 0
@@ -225,11 +225,12 @@ function load_my_powerlevel10k() {
         export PL10K_RIGHT_PROMPT_OFF='true'
         function pl10k_right_prompt_loader() {
             export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
-                rbenv      # ruby version from rbenv (https://github.com/rbenv/rbenv)
-                newline    # !! ============[ Line #1 ]============================
                 custom_tsx #
                 custom_tsc
                 custom_tsx #
+                rbenv      # ruby version from rbenv (https://github.com/rbenv/rbenv)
+                newline    # !! ============[ Line #2 ]============================
+                anaconda   # conda environment (https://conda.io/)
                 newline    # !! ============[ Line #1 ]============================
                 custom_js  #
                 custom_npm #
@@ -255,13 +256,13 @@ function load_my_powerlevel10k() {
         if [ "${1}" = 'off' ]; then
             right_prompt_off
             return 0
-            elif [ "${1}" = 'on' ]; then
+        elif [ "${1}" = 'on' ]; then
             right_prompt_on
             return 0
-            elif [ $PL10K_RIGHT_PROMPT_ON = 'true' ]; then
+        elif [ $PL10K_RIGHT_PROMPT_ON = 'true' ]; then
             right_prompt_off
             return 0
-            elif [ $PL10K_RIGHT_PROMPT_OFF = 'true' ]; then
+        elif [ $PL10K_RIGHT_PROMPT_OFF = 'true' ]; then
             right_prompt_on
             return 0
         fi
@@ -300,6 +301,9 @@ function load_my_powerlevel10k() {
         export POWERLEVEL9K_RBENV_PROMPT_ALWAYS_SHOW=true
         export POWERLEVEL9K_RBENV_FOREGROUND='red'
         export POWERLEVEL9K_RBENV_BACKGROUND='black'
+
+        export POWERLEVEL9K_ANACONDA_FOREGROUND='yellow'
+        export POWERLEVEL9K_ANACONDA_BACKGROUND='black'
 
         export POWERLEVEL9K_COLOR_SCHEME='dark'
         export POWERLEVEL9K_BACKGROUND_JOBS_VERBOSE=false

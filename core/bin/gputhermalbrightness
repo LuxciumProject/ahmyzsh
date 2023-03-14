@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-ThermalSensorCeli=90
+ThermalSensorCeli=100
 ThermalSensorFloor=30
 
 
@@ -15,22 +15,19 @@ GPULogoBrightness1=$(( (ThermalSensor1 - ThermalSensorFloor)*100/ThermalSensorCe
 
 # check if the value is within the range of 0-100
 if [ "$(bc <<< "$GPULogoBrightness0 < 0")" -eq 1 ]; then
-    GPULogoBrightness0=0
+    GPULogoBrightness0=5
 fi
 if [ "$(bc <<< "$GPULogoBrightness0 > 100")" -eq 1 ]; then
     GPULogoBrightness0=100
 fi
 
 if [ "$(bc <<< "$GPULogoBrightness1 < 0")" -eq 1 ]; then
-    GPULogoBrightness1=0
+    GPULogoBrightness1=5
 fi
 if [ "$(bc <<< "$GPULogoBrightness1 > 100")" -eq 1 ]; then
     GPULogoBrightness1=100
 fi
 
 # set the GPU logo brightness
-nvidia-settings -tq '[thermalsensor:0]/ThermalSensorReading'
-nvidia-settings -a "[GPU:0]/GPULogoBrightness=$GPULogoBrightness0"
-echo ''
-nvidia-settings -tq '[thermalsensor:1]/ThermalSensorReading'
-nvidia-settings -a "[GPU:1]/GPULogoBrightness=$GPULogoBrightness1"
+echo "$(nvidia-settings -a "[GPU:0]/GPULogoBrightness=$GPULogoBrightness0")" "$ThermalSensor0" °C &
+echo "$(nvidia-settings -a "[GPU:1]/GPULogoBrightness=$GPULogoBrightness1")" "$ThermalSensor1" °C

@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env bash
 
 nice -n 35 ionice -c 3 watch -d -t -n 1 meminfo
 

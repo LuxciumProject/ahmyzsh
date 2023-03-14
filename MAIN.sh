@@ -100,6 +100,20 @@ load_error_() {
   return 1
 }
 
+my_term="$(ps -p "$PPID" -o comm= | awk '{print $1}')"
+export my_term
+
+# Fig pre block. Keep at the top of this file.
+# [[ "$(ps -p $(echo $PPID) -o comm= | awk '{print $1}')" != "konsole" ]] && [[ -f "$HOME/.fig/shell/bashrc.pre.bash" ]] && builtin source "$HOME/.fig/shell/bashrc.pre.bash"
+
+# Fig post block. Keep at the bottom of this file.
+# [[ "$(ps -p $(echo $PPID) -o comm= | awk '{print $1}')" != "konsole" ]] && [[ -f "$HOME/.fig/shell/bash_profile.post.bash" ]] && builtin source "$HOME/.fig/shell/bash_profile.post.bash"
+
+# Fig pre block. Keep at the top of this file.
+# [[ -f "$HOME/.fig/shell/bashrc.pre.bash" ]] && builtin source "$HOME/.fig/shell/bashrc.pre.bash"
+# Fig post block. Keep at the bottom of this file.
+# [[ -f "$HOME/.fig/shell/bash_profile.post.bash" ]] && builtin source "$HOME/.fig/shell/bash_profile.post.bash"
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.

@@ -7,3 +7,4 @@ disable=SC2009 # Consider using pgrep instead of grepping ps output.
 # SC3037
 
 disable=SC1071
+disable=SC2181

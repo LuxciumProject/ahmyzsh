@@ -11,6 +11,9 @@
 # export AHMYZSH=${AHMYZSH:="/home/luxcium/ahmyzsh"}
 # source "${AHMYZSH:='/home/luxcium/ahmyzsh'}/source-me-in-etc-zshenv.sh"
 TIMER_ALL_THEN=$(/usr/bin/date +%s%N)
+# Fig pre block. Keep at the top of this file.
+[[ "$(ps -p "$PPID" -o comm= | awk '{print $1}')" != "konsole" ]] && [[ -f "$HOME/.fig/shell/bashrc.pre.bash" ]] && builtin source "$HOME/.fig/shell/bashrc.pre.bash" && echo -n pre_block
+
 export TIMER_ALL_THEN
 export AHMYZSH="${AHMYZSH:="/home/luxcium/ahmyzsh"}"
 export AHMYZSH_CACHE="${AHMYZSH_CACHE:="${HOME}/.cache/ahmyzsh"}"
@@ -62,6 +65,8 @@ else
   unset -v MAIN_BOOTSTRAP
 fi
 
+# Fig post block. Keep at the bottom of this file.
+[[ "$(ps -p "$PPID" -o comm= | awk '{print $1}')" != "konsole" ]] && [[ -f "$HOME/.fig/shell/bash_profile.post.bash" ]] && builtin source "$HOME/.fig/shell/bash_profile.post.bash" && echo -n post_block
 # -------------------------- !!! SECURITY WARNING !!! --------------------------≈
 # AUDIT ANY FILES YOU IMPORT FROM THIS PROJECT PRIOR: DOWNLOAD / INSTALL / USE
 # Please asses security risks by yourself befor to use the product and report
