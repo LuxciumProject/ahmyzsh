@@ -1,5 +1,5 @@
 #!/bin/bash
-[[ "$(ps -p "$PPID" -o comm= | awk '{print $1}')" != "konsole" ]] && [[ -f "$HOME/.fig/shell/bashrc.pre.bash" ]] && builtin source "$HOME/.fig/shell/bashrc.pre.bash" && echo -n pre_block
+# [[ "$(ps -p "$PPID" -o comm= | awk '{print $1}')" != "konsole" ]] && [[ -f "$HOME/.fig/shell/bashrc.pre.bash" ]] && builtin source "$HOME/.fig/shell/bashrc.pre.bash" && echo -n pre_block
 
 export TIMER_ALL_THEN
 export AHMYZSH="${AHMYZSH:="/home/luxcium/ahmyzsh"}"
@@ -21,17 +21,14 @@ if [ -f "${CACHED_PATH}" ]; then
 
     TIMER_NOW=$(/usr/bin/date +%s%N)
     TIMER_VALUE="$(((TIMER_NOW - TIMER_ALL_THEN) / 1000))"
-
-    TIME_TO_PATH="$(
-        HEADPART=${TIMER_VALUE:0:-3}
-        echo "${HEADPART:-0}"
-    ).${TIMER_VALUE:${#TIMER_VALUE}-3}" 2>/dev/null
+    HEADPART=${TIMER_VALUE:0:-3}
+    TIME_TO_PATH="${HEADPART:-0}.${TIMER_VALUE:${#TIMER_VALUE}-3}"
 else
     TIME_TO_PATH='INFINITE'
     export PATH_HASH=0
 fi
 export TIME_TO_PATH
-# echo time to path $TIME_TO_PATH
+
 #* 2) LOAD AHMYZSH  B O O T S T R A P
 export MAIN_BOOTSTRAP="${MAIN_BOOTSTRAP="${AHMYZSH}/MAIN.sh"}"
 if [ -f "${MAIN_BOOTSTRAP}" ]; then
@@ -41,10 +38,9 @@ if [ -f "${MAIN_BOOTSTRAP}" ]; then
     SCIENTIA_ES_LUX_PRINCIPIUM
 
 else
-    [ -o interactive ] &&
-        echo "Error: Path to file: '${MAIN_BOOTSTRAP}' can not be resolved"
+    [ -o interactive ] && echo "Error: Path to file: '${MAIN_BOOTSTRAP}' can not be resolved"
     unset -v MAIN_BOOTSTRAP
 fi
 
-# Fig post block. Keep at the bottom of this file.
-[[ "$(ps -p "$PPID" -o comm= | awk '{print $1}')" != "konsole" ]] && [[ -f "$HOME/.fig/shell/bash_profile.post.bash" ]] && builtin source "$HOME/.fig/shell/bash_profile.post.bash" && echo -n post_block
+# # Fig post block. Keep at the bottom of this file.
+# [[ "$(ps -p "$PPID" -o comm= | awk '{print $1}')" != "konsole" ]] && [[ -f "$HOME/.fig/shell/bash_profile.post.bash" ]] && builtin source "$HOME/.fig/shell/bash_profile.post.bash" && echo -n post_block
