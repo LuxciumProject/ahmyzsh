@@ -2,14 +2,14 @@
 
 /usr/bin/nvidia-settings -a \
     ":0.0/SyncToVBlank=1" -a \
-    ":0.0/LogAniso=4" -a \
-    ":0.0/FSAA=11" -a \
+    ":0.0/LogAniso=3" -a \
+    ":0.0/FSAA=10" -a \
     ":0.0/TextureClamping=1" -a \
     ":0.0/FXAA=0" -a \
     ":0.0/AllowFlipping=1" -a \
     ":0.0/FSAAAppControlled=0" -a \
     ":0.0/LogAnisoAppControlled=0" -a \
-    ":0.0/OpenGLImageSettings=0" -a \
+    ":0.0/OpenGLImageSettings=3" -a \
     ":0.0/FSAAAppEnhanced=0" -a \
     ":0.0/ShowGraphicsVisualIndicator=0" -a \
     ":0.0/XVideoSyncToDisplayID=DP-2" -a \
@@ -18,7 +18,7 @@
     "[GPU:1]/GPULogoBrightness=6" -a \
     "[GPU:0]/GPUPowerMizerMode=1" -a \
     "[GPU:1]/GPUPowerMizerMode=0" -a \
-    ":0[DPY:DP-0]/DigitalVibrance=255" -a \
+    ":0[DPY:DP-0]/DigitalVibrance=127" -a \
     ":0[DPY:DP-0]/RedBrightness=0" -a \
     ":0[DPY:DP-0]/GreenBrightness=0" -a \
     ":0[DPY:DP-0]/BlueBrightness=0" -a \
@@ -50,5 +50,5 @@
     ":0[DPY:DP-2]/ColorRange=0" -a \
     ":0[DPY:DP-2]/SynchronousPaletteUpdates=0"
 
-/home/luxcium/ahmyzsh/core/bin/OpenGLImagePerform
+/home/luxcium/ahmyzsh/core/bin/OpenGLImagePerformHigh
 /home/luxcium/ahmyzsh/core/bin/gputhermalbrightness
