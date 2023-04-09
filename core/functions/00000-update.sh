@@ -3,13 +3,38 @@
 # Current or LTS
 #  typescript@latest gulp-cli@latest ts-node@latest vsce@latest jest@latest
 #  typescript@latest gulp-cli@latest ts-node@latest prettier@latest jest@latest
-export PACKAGES_NPM='eslint@latest jest@latest n@latest node-gyp@latest npm@latest prettier@latest ts-node@latest typescript@latest vsce@latest yarn@latest grunt-cli@latest'
-export NPM_PACKAGES=$PACKAGES_NPM
+# export PACKAGES_NPM='eslint@latest jest@latest node-gyp@latest npm@latest prettier@latest ts-node@latest typescript@latest vsce@latest yarn@latest grunt-cli@latest'
+# export NPM_PACKAGES=$PACKAGES_NPM
 function _npm_update() {
   echo ''
   echo npm version "$(npm --version)"
   echo ''
-  npm install -g eslint@latest jest@latest n@latest node-gyp@latest npm@latest prettier@latest ts-node@latest typescript@latest vsce@latest yarn@latest grunt-cli@latest
+
+  echo 'eslint@latest +++++++++++++++++++++++++++++++++++++++++++++++++++++'
+  npm uninstall -g eslint
+  npm install -g eslint@latest
+  echo 'jest@latest +++++++++++++++++++++++++++++++++++++++++++++++++++++'
+  npm uninstall -g jest
+  npm install -g jest@latest
+  # echo 'node-gyp@latest +++++++++++++++++++++++++++++++++++++++++++++++++++++'
+  # npm uninstall -g node-gyp
+  # npm install -g node-gyp@latest
+  # echo 'npm@latest +++++++++++++++++++++++++++++++++++++++++++++++++++++'
+  # npm uninstall -g npm
+  # npm install -g npm@latest
+  echo 'prettier@latest +++++++++++++++++++++++++++++++++++++++++++++++++++++'
+  npm uninstall -g prettier
+  npm install -g prettier@latest
+  echo 'ts-node@latest +++++++++++++++++++++++++++++++++++++++++++++++++++++'
+  npm uninstall -g ts-node
+  npm install -g ts-node@latest
+  echo 'typescript@latest +++++++++++++++++++++++++++++++++++++++++++++++++++++'
+  npm uninstall -g typescript
+  npm install -g typescript@latest
+  # echo 'grunt-cli@latest +++++++++++++++++++++++++++++++++++++++++++++++++++++'
+  # npm uninstall -g grunt-cli
+  # npm install -g grunt-cli@latest
+
   echo ''
   compute_pl10K_now
   echo npm version "$(npm --version)"
@@ -57,6 +82,84 @@ function cc_update() {
   conda update --all -y
 }
 
+function update_fnm() {
+
+  CURRENT=19
+
+  fnm unalias Hydrogen
+  fnm unalias lts-hydrogen
+  fnm unalias lts
+  fnm unalias active
+
+  fnm install 18
+  fnm use 18
+  _npm_update
+  fnm default 18
+  fnm alias 18 active
+
+  fnm alias 18 lts-hydrogen
+  fnm alias 18 lts
+  fnm alias 18 Hydrogen
+
+  fnm unalias current
+  fnm install ${CURRENT}
+  fnm use ${CURRENT}
+  _npm_update
+  fnm alias ${CURRENT} current
+
+  fnm unalias Argon
+  fnm unalias Boron
+  fnm unalias Carbon
+  fnm unalias Dubnium
+  fnm unalias Erbium
+  fnm unalias Fermium
+  fnm unalias Gallium
+
+  fnm unalias eol-argon
+  fnm unalias eol-boron
+  fnm unalias eol-carbon
+  fnm unalias eol-dubnium
+  fnm unalias eol-erbium
+  fnm unalias maintenance-fermium
+  fnm unalias maintenance-gallium
+
+  fnm install 4
+  fnm install 6
+  fnm install 8
+  fnm install 10
+  fnm use 10
+  _npm_update
+  fnm install 12
+  fnm use 12
+  _npm_update
+  fnm install 14
+  fnm use 14
+  _npm_update
+  fnm install 16
+  fnm use 16
+  _npm_update
+
+  fnm alias 4 Argon
+  fnm alias 6 Boron
+  fnm alias 8 Carbon
+  fnm alias 10 Dubnium
+  fnm alias 12 Erbium
+
+  fnm alias 4 eol-argon
+  fnm alias 6 eol-boron
+  fnm alias 8 eol-carbon
+  fnm alias 10 eol-dubnium
+  fnm alias 12 eol-erbium
+  fnm alias 14 Fermium
+  fnm alias 14 maintenance-fermium
+  fnm alias 16 Gallium
+  fnm alias 16 maintenance-gallium
+
+  fnm use default
+  fnm list
+
+}
+
 # function dnf_downloadonly() {
 #   echo 'dnf makecache --refresh'
 #   echo 'dnf upgrade --downloadonly'
@@ -80,8 +183,8 @@ all_update() {
   fnm_update_to_18
   npm install -g @yarn@latest
 }
-  # shell/check disable=SC2046,SC2086
-  # yarn global add $PACKAGES_NPM
+# shell/check disable=SC2046,SC2086
+# yarn global add $PACKAGES_NPM
 
 alias update_all=all_update
 

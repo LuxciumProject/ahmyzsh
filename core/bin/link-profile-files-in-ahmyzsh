@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+# Set parameters for home and private directories
+HOME_DIR="${HOME}"
+PRIVATE_DIR="${AHMYZSH}/private"
+ENV_DIR="${PRIVATE_DIR}/env"
+
+# Validate home and private directories
+if [[ ! -d "${HOME_DIR}" ]]; then
+    echo "Home directory does not exist."
+    exit 1
+fi
+
+if [[ ! -d "${PRIVATE_DIR}" ]]; then
+    echo "Private directory does not exist. Creating directory..."
+    mkdir "${PRIVATE_DIR}"
+fi
+
+if [[ ! -d "${ENV_DIR}" ]]; then
+    echo "Env directory does not exist. Creating directory..."
+    mkdir "${ENV_DIR}"
+fi
+
+# Create the environment directory if it does not exist
+mkdir -p "${ENV_DIR}/bash_completion.d"
+mkdir -p "${ENV_DIR}/profile.d"
+
+# Create soft links to files in "${HOME}" to "${AHMYZSH}/private"
+ln -sf "${HOME_DIR}/.zprofile" "${PRIVATE_DIR}/.zprofile"
+ln -sf "${HOME_DIR}/.zshenv" "${PRIVATE_DIR}/.zshenv"
+ln -sf "${HOME_DIR}/.zsh_history" "${PRIVATE_DIR}/.zsh_history"
+ln -sf "${HOME_DIR}/.zshrc" "${PRIVATE_DIR}/.zshrc"
+ln -sf "${HOME_DIR}/.bash_logout" "${PRIVATE_DIR}/.bash_logout"
+ln -sf "${HOME_DIR}/.bash_profile" "${PRIVATE_DIR}/.bash_profile"
+ln -sf "${HOME_DIR}/.bashrc" "${PRIVATE_DIR}/.bashrc"
+
+# Create soft links to files in "/etc" to "${AHMYZSH}/private/env"
+ln -sf "/etc/zlogin" "${ENV_DIR}/zlogin"
+ln -sf "/etc/zlogout" "${ENV_DIR}/zlogout"
+ln -sf "/etc/zprofile" "${ENV_DIR}/zprofile"
+ln -sf "/etc/zshenv" "${ENV_DIR}/zshenv"
+ln -sf "/etc/zshrc" "${ENV_DIR}/zshrc"
+ln -sf "/etc/profile" "${ENV_DIR}/profile"
+ln -sf "/etc/bashrc" "${ENV_DIR}/bashrc"
+
+# Soft link files from /etc/bash_completion.d to ${ENV_DIR}/bash_completion.d
+for file in /etc/bash_completion.d/*; do
+    if [[ -f "$file" ]]; then
+        ln -sf "$file" "${ENV_DIR}/bash_completion.d/$(basename "$file")"
+    fi
+done
+
+# Soft link files from /etc/profile.d to ${ENV_DIR}/profile.d
+for file in /etc/profile.d/*; do
+    if [[ -f "$file" ]]; then
+        ln -sf "$file" "${ENV_DIR}/profile.d/$(basename "$file")"
+    fi
+done

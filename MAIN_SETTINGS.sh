@@ -174,6 +174,35 @@ function __LOCALE__() {
 
 }
 
+function _LOCALE_() {
+
+  local language=${1:-'fr'}
+  local region=${2:+_${2}}
+  local encodings=${3:+.${3}}
+  : "${encoding:-.'UTF-8'}"
+
+  local locale="${language}${region}${encodings}"
+
+  if [[ "${language}" == "fr" ]]; then
+    LC_TIME="fr_FR.UTF-8"
+  else
+    LC_TIME="${locale}"
+  fi
+  export LC_TIME
+  export LANG="${locale}"
+  export LC_CTYPE="${locale}"
+  export LC_NUMERIC="${locale}"
+  export LC_COLLATE="${locale}"
+  export LC_MONETARY="${locale}"
+  export LC_MESSAGES="${locale}"
+  export LC_PAPER="${locale}"
+  export LC_NAME="${locale}"
+  export LC_ADDRESS="${locale}"
+  export LC_TELEPHONE="${locale}"
+  export LC_MEASUREMENT="${locale}"
+  export LC_IDENTIFICATION="${locale}"
+
+}
 # ·――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――· #
 # !!―――――――――――――――――――――――――!!! SECURITY WARNING !!!―――――――――――――――――――――――――!! #
 # !!                                                                          !! #

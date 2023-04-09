@@ -2,8 +2,8 @@
 
 /usr/bin/nvidia-settings -a \
     ":0.0/SyncToVBlank=1" -a \
-    ":0.0/LogAniso=3" -a \
-    ":0.0/FSAA=10" -a \
+    ":0.0/LogAniso=4" -a \
+    ":0.0/FSAA=9" -a \
     ":0.0/TextureClamping=1" -a \
     ":0.0/FXAA=0" -a \
     ":0.0/AllowFlipping=1" -a \

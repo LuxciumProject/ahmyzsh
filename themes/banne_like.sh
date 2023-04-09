@@ -3,9 +3,10 @@
 # Define the initial colors as ANSI color codes
 # color_array=(196 160 124 88 52)
 
-color_array=(196 160 124 88 52 52)
-color_array=(202 196 124 88 52 52)
-# color_array=(88 124 196 166 172 214)
+# color_array=(196 160 124 88 52 52)
+# color_array=(202 196 124 88 52 52)
+color_array=(172 166 124 88 52 52)
+# color_array=(88 124 196 166 172 214) 172
 
 banner=("            █████╗ ██╗  ██╗  ███╗   ███╗██╗   ██╗  ███████╗███████╗██╗  ██╗        "
     "           ██╔══██╗██║  ██║  ████╗ ████║╚██╗ ██╔╝  ╚══███╔╝██╔════╝██║  ██║        "
@@ -68,4 +69,4 @@ print_banner() {
 }
 
 # Call the function to print the banner with the updated colors
-print_banner 0.075
+print_banner 0.025

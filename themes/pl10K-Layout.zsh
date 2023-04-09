@@ -225,6 +225,7 @@ function load_my_powerlevel10k() {
         export PL10K_RIGHT_PROMPT_OFF='true'
         function pl10k_right_prompt_loader() {
             export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+                ''
                 custom_tsx #
                 custom_tsc
                 custom_tsx #

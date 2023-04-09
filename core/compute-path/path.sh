@@ -1,15 +1,17 @@
 #!/bin/bash
-export _CONDA3="${HOME}/minerva3"
-export CUDA_VERSION="cuda-12.0"
-export DOTNET_ROOT="/usr/lib64/dotnet/"
-export DOTNET_CLI_TELEMETRY_OPTOUT=true
+export _CONDA3="${HOME}/esoteric-argentum"
+export CUDA_VERSION="cuda-12.1"
+# export DOTNET_ROOT="/usr/lib64/dotnet/"
+# export DOTNET_CLI_TELEMETRY_OPTOUT=true
 export PATH_BAK_0="${PATH}"
-export LD_LIBRARY_PATH=/usr/local/${CUDA_VERSION}${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 export PNPM_HOME="${HOME}/.local/share/pnpm"
-export NVM_DIR="$HOME/.nvm"
+# export NVM_DIR="$HOME/.nvm"
 export FNM_PATH="${HOME}/.local/share/fnm"
 export RBENV_PATH="${HOME}/.rbenv/bin:${HOME}/.rbenv/shims"
-export LD_LIBRARY_PATH="/home/luxcium/mystic-mercury/lib"${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+export LD_LIBRARY_PATH=/usr/local/${CUDA_VERSION}${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+export LD_LIBRARY_PATH="/home/luxcium/esoteric-argentum/lib"${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+# export LD_LIBRARY_PATH=/usr/lib64:$LD_LIBRARY_PATH
+# /usr/local/${CUDA_VERSION}/bin
 function add_to_path_() {
     [ -z "$1" ] || [ -d "$1" ] && export PATH="${1}:${PATH}"
 }
@@ -18,11 +20,19 @@ function append_to_path_() {
     [ -z "$1" ] || [ -d "$1" ] && export PATH="${PATH}:${1}"
 }
 
-append_to_path() {
+function append_to_path() {
     if [ -z "$1" ] || [ ! -d "$1" ]; then
         return 1
     fi
-    PATH="$PATH:$1"
+    PATH="${PATH:+${PATH}:}$1"
+    export PATH
+}
+
+function prepend_to_path() {
+    if [ -z "$1" ] || [ ! -d "$1" ]; then
+        return 1
+    fi
+    PATH="$1${PATH:+:${PATH}}"
     export PATH
 }
 
@@ -64,28 +74,28 @@ function dedup_pathvar_() {
 
 }
 
-function conda_init_mystic-mercury() {
-    echo init mystic-mercury
+# function conda_init_mystic-mercury() {
+#     echo init mystic-mercury
 
-    # >>> conda initialize >>>
-    # !! Contents within this block are managed by 'conda init' !!
-    __conda_setup="$('/home/luxcium/mystic-mercury/bin/conda' 'shell.zsh' 'hook' 2>/dev/null)"
-    if [ $? -eq 0 ]; then
-        eval "$__conda_setup"
-    else
-        if [ -f "/home/luxcium/mystic-mercury/etc/profile.d/conda.sh" ]; then
-            . "/home/luxcium/mystic-mercury/etc/profile.d/conda.sh"
-        else
-            export PATH="/home/luxcium/mystic-mercury/bin:$PATH"
-        fi
-    fi
-    unset __conda_setup
-    # <<< conda initialize <<<
-    # If you'd prefer that conda's base environment not be activated on startup,
-    #    set the auto_activate_base parameter to false:
-    # conda config --set auto_activate_base false
+#     # >>> conda initialize >>>
+#     # !! Contents within this block are managed by 'conda init' !!
+#     __conda_setup="$('/home/luxcium/mystic-mercury/bin/conda' 'shell.zsh' 'hook' 2>/dev/null)"
+#     if [ $? -eq 0 ]; then
+#         eval "$__conda_setup"
+#     else
+#         if [ -f "/home/luxcium/mystic-mercury/etc/profile.d/conda.sh" ]; then
+#             . "/home/luxcium/mystic-mercury/etc/profile.d/conda.sh"
+#         else
+#             export PATH="/home/luxcium/mystic-mercury/bin:$PATH"
+#         fi
+#     fi
+#     unset __conda_setup
+#     # <<< conda initialize <<<
+#     # If you'd prefer that conda's base environment not be activated on startup,
+#     #    set the auto_activate_base parameter to false:
+#     # conda config --set auto_activate_base false
 
-}
+# }
 
 function usenvm() {
     export NVM_DIR="$HOME/.nvm"
@@ -148,14 +158,12 @@ function __compute_extended_path() {
     add_to_path_ "${HOME}/.rbenv/bin"
     # call_ rbenv_
     # add_to_path_ "${RBENV_PATH}"
-    conda_init_mystic-mercury &
-    usenvm &
-    rbenv_ &
-    rust_up_ &
-    echo waiting path
-    wait
-    echo continue path
-    add_to_path_ "${HOME}/.nvm"
+    add_to_path_ /home/luxcium/mystic-mercury/bin
+    call_ conda_init_mystic-mercury
+    # call_ usenvm
+    call_ rbenv_
+    call_ rust_up_
+    # add_to_path_ "${HOME}/.nvm"
     add_to_path_ "${HOME}/main-vscode/bin"
     add_to_path_ '/projects/main-POP-N-LOCK-x1DF2/bin'
     add_to_path_ "${HOME}/mystic-mercury/bin"
@@ -164,6 +172,7 @@ function __compute_extended_path() {
     add_to_path_ "${HOME}/.local/bin"
     add_to_path_ "${FNM_PATH}"
     add_to_path_ "${HOME}/bin"
+    export LD_LIBRARY_PATH=/usr/lib64:$LD_LIBRARY_PATH
     return
 }
 
@@ -201,7 +210,7 @@ function cache_path() {
     echo "export PATH=$PATH" >"$CACHED_PATH"
 }
 
-reload_path() {
+function reload_path() {
     echo PATH was:
     echo "$PATH" | tr ":" "\n"
     source /home/luxcium/ahmyzsh/core/compute-path/path.sh

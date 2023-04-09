@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+# Fetch remote versions and filter even versions including the current one
+versions=$(fnm list-remote | grep -E -o 'v([0-9]{2}\.|[0-9]{1,2}\.)([0-9]{1,2}\.)([0-9]{1,2})' | grep -E -w '(v[0-9]*[02468]\..*)|current' | tac)
+
+declare -A codenames=(
+    ["8"]="Carbon"
+    ["10"]="Dubnium"
+    ["12"]="Erbium"
+    ["14"]="Fermium"
+    ["16"]="Gallium"
+    ["18"]="Hydrogen"
+)
+
+for version in $versions; do
+    # Check if it's the current version
+    if [[ ${version} == "current" ]]; then
+        alias_name="current"
+    else
+        major_version=$(echo "${version}" | cut -d. -f1 | tr -d 'v')
+        alias_name="${codenames[${major_version}]}"
+    fi
+
+    # Install the version if not already installed
+    if ! fnm list | grep -q "${version}"; then
+        echo "Installing Node.js ${version}"
+        fnm install "${version}"
+    fi
+
+    # Alias the version
+    existing_alias=$(fnm alias | grep "${alias_name}" | awk '{print $NF}')
+    if [[ -n ${existing_alias} && ${existing_alias} != "${version}" ]]; then
+        echo "Untagging ${alias_name}"
+        fnm unalias "${alias_name}"
+    fi
+
+    echo "Aliasing ${version} to ${alias_name}"
+    fnm alias "${version}" "${alias_name}"
+
+    # Set the default version to the latest LTS version
+    if [[ ${major_version} -eq 18 ]]; then
+        echo "Setting ${version} as the default version"
+        fnm default "${version}"
+    fi
+done
