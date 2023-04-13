@@ -15,7 +15,7 @@ TIMER_ALL_THEN=$(/usr/bin/date +%s%N)
 [[ "$(ps -p "$PPID" -o comm= | awk '{print $1}')" != "konsole" ]] && [[ -f "$HOME/.fig/shell/bashrc.pre.bash" ]] && builtin source "$HOME/.fig/shell/bashrc.pre.bash" && echo -n pre_block
 
 export TIMER_ALL_THEN
-export AHMYZSH="${AHMYZSH:="/home/luxcium/ahmyzsh"}"
+export AHMYZSH="${AHMYZSH:="/ahmyzsh"}"
 export AHMYZSH_CACHE="${AHMYZSH_CACHE:="${HOME}/.cache/ahmyzsh"}"
 export CACHED_PATH="${CACHED_PATH:="${AHMYZSH_CACHE}/path.env"}"
 
