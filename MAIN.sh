@@ -15,6 +15,32 @@ set +m
 #+ =============================================================================≈
 #* AHMYZSH first entry point
 
+export VERBOSA="0"
+noop() {
+    noop_2
+    noop_2
+    noop_2
+    noop_2
+    noop_2
+    noop_2
+    noop_2
+    noop_2
+    noop_2
+    noop_2
+    noop_2
+    noop_2
+    noop_2
+    noop_2
+    noop_2
+    noop_2
+    noop_2
+    noop_2
+    noop_2
+    noop_2
+}
+noop_2() {
+    time true
+}
 SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
     export LOAD_ENV_COMPLETED='not yet'
     export ENVIRONNEMENT_LOADED='not yet'
@@ -44,11 +70,11 @@ SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
     call_ load_all_config_and_settings_files
 
     call_ load_zshenv
-    source_ "${HOME}/.env"
+    source_ "${HOME}/.env" || touch "${HOME}/.env"
     call_ fnm_
 
     isinteractive || return 0
-
+    call_ noop
     call_ activate_prompt
 
     call_ load_oh_my_zsh

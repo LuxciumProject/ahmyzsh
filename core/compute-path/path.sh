@@ -74,29 +74,6 @@ function dedup_pathvar_() {
 
 }
 
-# function conda_init_mystic-mercury() {
-#     echo init mystic-mercury
-
-#     # >>> conda initialize >>>
-#     # !! Contents within this block are managed by 'conda init' !!
-#     __conda_setup="$('/home/luxcium/mystic-mercury/bin/conda' 'shell.zsh' 'hook' 2>/dev/null)"
-#     if [ $? -eq 0 ]; then
-#         eval "$__conda_setup"
-#     else
-#         if [ -f "/home/luxcium/mystic-mercury/etc/profile.d/conda.sh" ]; then
-#             . "/home/luxcium/mystic-mercury/etc/profile.d/conda.sh"
-#         else
-#             export PATH="/home/luxcium/mystic-mercury/bin:$PATH"
-#         fi
-#     fi
-#     unset __conda_setup
-#     # <<< conda initialize <<<
-#     # If you'd prefer that conda's base environment not be activated on startup,
-#     #    set the auto_activate_base parameter to false:
-#     # conda config --set auto_activate_base false
-
-# }
-
 function usenvm() {
     export NVM_DIR="$HOME/.nvm"
     # shellcheck source=/dev/null
@@ -159,7 +136,7 @@ function __compute_extended_path() {
     # call_ rbenv_
     # add_to_path_ "${RBENV_PATH}"
     add_to_path_ /home/luxcium/mystic-mercury/bin
-    call_ conda_init_mystic-mercury
+    call_ conda_init_esoteric-argentum
     # call_ usenvm
     call_ rbenv_
     call_ rust_up_
@@ -188,7 +165,7 @@ function set_path() {
     add_to_path_ '/home/luxcium/.local/share/fnm'
     add_to_path_ eval "$(fnm env)"
     __compute_extended_path
-    # conda_init_mystic-mercury
+    # conda_init_esoteric-argentum
     __dedup_path
     return
 }

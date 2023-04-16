@@ -18,4 +18,4 @@ function conda_init_esoteric-argentum() {
 
   # <<< conda initialize <<<
 }
-alias conda_init_mystic-mercury=conda_init_esoteric-argentum
+# alias conda_init_mystic-mercury=conda_init_esoteric-argentum

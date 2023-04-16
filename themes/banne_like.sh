@@ -31,6 +31,7 @@ average_rgb() {
     g=0
     b=0
     for color in "${colors[@]}"; do
+        # shellcheck disable=SC2207
         rgb=($(hex_to_rgb "$color"))
         r=$((r + rgb[1]))
         g=$((g + rgb[2]))
@@ -53,7 +54,10 @@ rgb_to_ansi() {
 
 # Calculate the 6th color by taking the average RGB values of the given hex colors
 colors=("#E62525" "#801414" "#CD2121" "#B31D1D" "#9A1919" "#801414" "#801414")
+# Disable SC2207 warning for the following line
+# shellcheck disable=SC2207
 avg_rgb=($(average_rgb "${colors[@]}"))
+# shellcheck disable=SC2207
 color_array+=($(rgb_to_ansi "${avg_rgb[1]}" "${avg_rgb[2]}" "${avg_rgb[3]}"))
 
 # Define a function to print the banner with the updated colors
@@ -69,4 +73,4 @@ print_banner() {
 }
 
 # Call the function to print the banner with the updated colors
-print_banner 0.025
+print_banner 0.017

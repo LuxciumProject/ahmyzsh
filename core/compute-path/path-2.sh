@@ -1,14 +1,5 @@
 #!/bin/bash
 
-
-
-
-
-
-
-
-
-
 function __dedup_path() {
     dedup_pathvar_ PATH
     export PATH
@@ -21,7 +12,7 @@ function set_path() {
     add_to_path_ '/home/luxcium/.local/share/fnm'
     add_to_path_ eval "$(fnm env)"
     __compute_extended_path
-    conda_init_mystic-mercury
+    conda_init_esoteric-argentum
     __dedup_path
     return
 }
@@ -67,8 +58,6 @@ function cache_path() {
 # add_to_path_ "/usr/local/share/zsh/site-functions"
 # add_to_path_ "/home/luxcium/.nvm/versions/node/v14.4.0/bin"
 # }
-
-
 
 ## shellcheck source=/home/luxcium/.cache/ahmyzsh/path.env
 # add_to_path_ "/usr/local/opt/ncurses/bin"

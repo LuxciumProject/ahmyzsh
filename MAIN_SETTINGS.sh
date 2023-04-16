@@ -19,7 +19,7 @@ function MAIN_SETTINGS() {
   my_envs
   bindkey -v
   # PKG_CONFIG_PTH=
-  # : ${VERBOSA=10000}
+  # : "${VERBOSA:=10000}"
   # : ${EDITOR:="nano"}
   # export arch=$(uname -p)
   # export basearch=$(uname -p)

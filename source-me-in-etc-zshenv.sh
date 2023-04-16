@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # [[ "$(ps -p "$PPID" -o comm= | awk '{print $1}')" != "konsole" ]] && [[ -f "$HOME/.fig/shell/bashrc.pre.bash" ]] && builtin source "$HOME/.fig/shell/bashrc.pre.bash" && echo -n pre_block
-TIMER_ALL_THEN=$(/usr/bin/date +%s%N)
+export TIMER_ALL_THEN="${TIMER_ALL_THEN:="$(/usr/bin/date +%s%N)"}"
 export AHMYZSH="${AHMYZSH:="/ahmyzsh"}"
 export AHMYZSH_CACHE="${AHMYZSH_CACHE:="${HOME}/.cache/ahmyzsh"}"
 export CACHED_PATH="${CACHED_PATH:="${AHMYZSH_CACHE}/path.env"}"
@@ -24,6 +24,15 @@ if [ -f "${CACHED_PATH}" ]; then
     TIME_TO_PATH="${HEADPART:-0}.${TIMER_VALUE:${#TIMER_VALUE}-3}"
 else
     TIME_TO_PATH='INFINITE'
+    . "${AHMYZSH}/core/compute-path/path.sh"
+    mkdir -p "${AHMYZSH_CACHE}"
+    cache_path
+
+    TIMER_NOW=$(/usr/bin/date +%s%N)
+    TIMER_VALUE="$(((TIMER_NOW - TIMER_ALL_THEN) / 1000))"
+    HEADPART=${TIMER_VALUE:0:-3}
+    TIME_TO_PATH="${HEADPART:-0}.${TIMER_VALUE:${#TIMER_VALUE}-3}"
+
     export PATH_HASH=0
 fi
 export TIME_TO_PATH
