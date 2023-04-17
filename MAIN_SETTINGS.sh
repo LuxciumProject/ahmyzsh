@@ -27,7 +27,7 @@ function MAIN_SETTINGS() {
   # export VERBOSA=0000
   # echo $VERBOSA
   : "${VERBOSA:=0000}"
-  : "${AHMYZSH:="${HOME}/ahmyzsh"}"
+  : "${AHMYZSH:="/ahmyzsh"}"
   : "${AH_LIBRARIES:="${AHMYZSH}/libraries"}"
   : "${AHMYZSH_CORE:="${AHMYZSH}/core"}"
   : "${ZSH_CUSTOM:="${AHMYZSH}"}"

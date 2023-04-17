@@ -17,7 +17,7 @@
 # echo $TIMER_ALL_THEN2
 
 export TIMER_ALL_THEN2=$(/bin/date +%s%N) 2>/dev/null
-export AHMYZSH="${HOME}/ahmyzsh"
+export AHMYZSH="/ahmyzsh"
 S1="${AHMYZSH}/MAIN.sh"
 if [ -f "${S1}" ]; then
   . ${S1}

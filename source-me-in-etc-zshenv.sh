@@ -13,11 +13,11 @@ export LC_ALL=fr_CA.UTF-8
 export LINGUAS=fr_CA:en_US
 
 #* 1) LOAD PATH
-export PATH_HASH=999
+
+# export PATH_HASH=999
 if [ -f "${CACHED_PATH}" ]; then
     # shellcheck source=/home/luxcium/.cache/ahmyzsh/path.env
     . "${CACHED_PATH}"
-
     TIMER_NOW=$(/usr/bin/date +%s%N)
     TIMER_VALUE="$(((TIMER_NOW - TIMER_ALL_THEN) / 1000))"
     HEADPART=${TIMER_VALUE:0:-3}
@@ -32,10 +32,13 @@ else
     TIMER_VALUE="$(((TIMER_NOW - TIMER_ALL_THEN) / 1000))"
     HEADPART=${TIMER_VALUE:0:-3}
     TIME_TO_PATH="${HEADPART:-0}.${TIMER_VALUE:${#TIMER_VALUE}-3}"
-
-    export PATH_HASH=0
 fi
 export TIME_TO_PATH
+
+source "${AHMYZSH}/MAIN-FUNCTIONS.sh"
+source "${AHMYZSH}/core/compute-path/path.sh"
+source "${AHMYZSH}/core/compute-path/conda-initialize.sh"
+__compute_extended_path
 
 #* 2) LOAD AHMYZSH  B O O T S T R A P
 export MAIN_BOOTSTRAP="${MAIN_BOOTSTRAP="${AHMYZSH}/MAIN.sh"}"

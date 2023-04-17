@@ -15,31 +15,10 @@ set +m
 #+ =============================================================================≈
 #* AHMYZSH first entry point
 
-export VERBOSA="0"
+export VERBOSA="1"
+
 noop() {
-    noop_2
-    noop_2
-    noop_2
-    noop_2
-    noop_2
-    noop_2
-    noop_2
-    noop_2
-    noop_2
-    noop_2
-    noop_2
-    noop_2
-    noop_2
-    noop_2
-    noop_2
-    noop_2
-    noop_2
-    noop_2
-    noop_2
-    noop_2
-}
-noop_2() {
-    time true
+    true
 }
 SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
     export LOAD_ENV_COMPLETED='not yet'
@@ -60,10 +39,10 @@ SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
     [ -z "${MAIN_INIT}" ] || { prompt_ "Reloaded alias files functions and conf" && return; }
     MAIN_INIT="start"
 
-    S1="${AHMYZSH}/MAIN-FUNCTIONS.sh"
+    # S1="${AHMYZSH}/MAIN-FUNCTIONS.sh"
     # shellcheck source=./MAIN-FUNCTIONS.sh
     # shellcheck disable=SC2015
-    { [ -f "${S1}" ] && . "${S1}"; } || load_error_ "${S1}"
+    # { [ -f "${S1}" ] && . "${S1}"; } || load_error_ "${S1}"
 
     load_ "${AHMYZSH}/MAIN_SETTINGS.sh" "MAIN_SETTINGS"
 
@@ -74,7 +53,6 @@ SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
     call_ fnm_
 
     isinteractive || return 0
-    call_ noop
     call_ activate_prompt
 
     call_ load_oh_my_zsh

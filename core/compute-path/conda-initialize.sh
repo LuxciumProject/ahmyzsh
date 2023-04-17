@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 function conda_init_esoteric-argentum() {
-  echo init esoteric-argentum!!
+  # echo init esoteric-argentum!!
   # >>> conda initialize >>>
   # !! Contents within this block are managed by 'conda init' !!
   __conda_setup="$('/home/luxcium/esoteric-argentum/bin/conda' 'shell.bash' 'hook' 2>/dev/null)"

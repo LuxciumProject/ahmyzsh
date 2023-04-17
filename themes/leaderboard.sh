@@ -24,7 +24,7 @@ function LEADERBOARD() {
 # under certain conditions.
 
 function leaderOne_() {
-  echo -e "\u001b[0J"
+  # echo -e "\u001b[0J"
   # echo -e "${COL}                                                                                ${CE}"
   echo -e "${BCOL}${BCOL}${BCOL}${BCOL}${BCOL}${BCOL}${BCOL}${BCOL}${CE}"
   echo -e "${COL}       ${RS}${bold} † Scientia es lux principium✨ ™${normal}${COL}                                        ${CE}"
