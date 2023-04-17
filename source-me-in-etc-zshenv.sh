@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # [[ "$(ps -p "$PPID" -o comm= | awk '{print $1}')" != "konsole" ]] && [[ -f "$HOME/.fig/shell/bashrc.pre.bash" ]] && builtin source "$HOME/.fig/shell/bashrc.pre.bash" && echo -n pre_block
+echo -n -e '\u001b[0m\u001b[32;1m\u001b[1m'
 export TIMER_ALL_THEN="${TIMER_ALL_THEN:="$(/usr/bin/date +%s%N)"}"
 export AHMYZSH="${AHMYZSH:="/ahmyzsh"}"
 export AHMYZSH_CACHE="${AHMYZSH_CACHE:="${HOME}/.cache/ahmyzsh"}"

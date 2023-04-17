@@ -8,7 +8,6 @@ function load_autocomplete_() {
   # eval "$(minikube completion zsh)"
   # eval "$(fnm completions)"
   # eval "$(npm completion zsh)"
-
   fpath=("${ZSH_PLUGINS}/nestjs-cli-completion" "${fpath[@]}")
   fpath=("${ZSH_PLUGINS}/zsh-better-npm-completion" "${fpath[@]}")
   fpath=("${ZSH_PLUGINS}/yarn-autocompletions" "${fpath[@]}")
@@ -18,14 +17,14 @@ function load_autocomplete_() {
   source_ "${ZSH_PLUGINS}/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh"
   source_ "${ZSH_PLUGINS}/yarn-autocompletions/yarn-autocompletions.plugin.zsh"
 
-  zstyle ':completion:*' list-colors ''
-  zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-  zstyle ':completion:*' menu select=20
-  zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-  zstyle ':completion:*' completer _list _oldlist _expand _complete _ignored _match _correct _approximate _prefix
-  zstyle ':completion:*' expand prefix
-  zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:]}={[:upper:]}'
-  zstyle :compinstall filename "${CORE_COMPLETE}/autocomplete.sh"
+  # zstyle ':completion:*' list-colors ''
+  # zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+  # zstyle ':completion:*' menu select=20
+  # zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+  # zstyle ':completion:*' completer _list _oldlist _expand _complete _ignored _match _correct _approximate _prefix
+  # zstyle ':completion:*' expand prefix
+  # zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:]}={[:upper:]}'
+  # zstyle :compinstall filename "${CORE_COMPLETE}/autocomplete.sh"
   autoload -U +X bashcompinit && bashcompinit
 
   # {
@@ -33,7 +32,7 @@ function load_autocomplete_() {
   #   [ -f "${HOME}/.config/tabtab/zsh/__tabtab.zsh" ] && . "${HOME}/.config/tabtab/zsh/__tabtab.zsh"
   # } || true
 
-  autoload -U compinit -d "${AHMYZSH}/cache/.zcompdump" && compinit -d "${AHMYZSH}/cache/.zcompdump_"
+  # autoload -U compinit -d "${AHMYZSH}/cache/.zcompdump" && compinit -d "${AHMYZSH}/cache/.zcompdump_"
 }
 
 # autoload -U compinit && compinit

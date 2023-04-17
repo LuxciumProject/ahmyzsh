@@ -17,7 +17,7 @@
 
 function load_all_config_and_settings_files() {
 
-  if [ "${VERBOSA}" -gt 5 ]; then
+  if [ "${VERBOSA}" -gt 15 ]; then
 
     export BEGIN_SOURCING_FILES="\u001b[0m\u001b[34m#   \u001b[0m\u001b[33m\uf085\u001b[0m\u001b[34m  >"
     export END_SOURCING_FILES="\u001b[0m\u001b[31;1m\u001b[1m"

@@ -15,7 +15,7 @@ set +m
 #+ =============================================================================≈
 #* AHMYZSH first entry point
 
-export VERBOSA="0"
+export VERBOSA="11"
 
 noop() {
     true
@@ -66,6 +66,7 @@ SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
         (compaudit | xargs chmod g-w,o-w 2>/dev/null) &
         (zsh_compile_all_R) &
     )
+
     bindkey -v
     return 0
 }

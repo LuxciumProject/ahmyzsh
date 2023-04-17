@@ -16,7 +16,7 @@
 #* AHMYZSH custom settings
 
 function MAIN_SETTINGS() {
-  my_envs
+  call_ my_envs
   bindkey -v
   # PKG_CONFIG_PTH=
   # : "${VERBOSA:=10000}"
@@ -43,7 +43,7 @@ function MAIN_SETTINGS() {
   : "${SYSTEMD_PAGER:="less"}"
   : "${ZLE_RPROMPT_INDENT:=0}"
   export DOTNET_CLI_TELEMETRY_OPTOUT=1
-  __LOCALE__
+  call_ __LOCALE__
 
   export VERBOSA
   export PATH_FILE

@@ -1,5 +1,7 @@
 #!/bin/bash
 export _CONDA3="${HOME}/esoteric-argentum"
+export CONDA3="${_CONDA3}/bin"
+
 export CUDA_VERSION="cuda-12.1"
 # export DOTNET_ROOT="/usr/lib64/dotnet/"
 # export DOTNET_CLI_TELEMETRY_OPTOUT=true
@@ -116,8 +118,9 @@ function __append_bin_to_path() {
     append_to_path_ "/snap/bin"
     return
 }
-
+echo decalre __compute_extended_path
 function __compute_extended_path() {
+    echo invoke __compute_extended_path
     add_to_path_ "/usr/lib64/ccache"
     add_to_path_ "/usr/lib64/qt5/bin"
     add_to_path_ "/usr/local/go/bin"
@@ -143,7 +146,7 @@ function __compute_extended_path() {
     # add_to_path_ "${HOME}/.nvm"
     add_to_path_ "${HOME}/main-vscode/bin"
     add_to_path_ '/projects/main-POP-N-LOCK-x1DF2/bin'
-    add_to_path_ "${HOME}/mystic-mercury/bin"
+    add_to_path_ "${CONDA3}"
     add_to_path_ "$PNPM_HOME"
     add_to_path_ "${HOME}/.config/yarn/global/node_modules/.bin"
     add_to_path_ "${HOME}/.local/bin"
@@ -152,29 +155,29 @@ function __compute_extended_path() {
     export LD_LIBRARY_PATH=/usr/lib64:$LD_LIBRARY_PATH
     return
 }
-
+alias esoteric-argentum="conda_init_esoteric-argentum"
 function __dedup_path() {
-    dedup_pathvar_ PATH
+    call_ dedup_pathvar_ PATH
     export PATH
     return
 }
 
 function set_path() {
     # __compute_base_path
-    __append_bin_to_path
+    call_ __append_bin_to_path
     add_to_path_ '/home/luxcium/.local/share/fnm'
     add_to_path_ eval "$(fnm env)"
-    __compute_extended_path
+    call_ __compute_extended_path
     # conda_init_esoteric-argentum
-    __dedup_path
+    call_ __dedup_path
     return
 }
 # PATH=$PATH:$(go env GOPATH)/bin
 function set_sbin_path() {
     # __compute_base_path
-    __append_sbin_to_path
-    __compute_extended_path
-    __dedup_path
+    call_ __append_sbin_to_path
+    call_ __compute_extended_path
+    call_ __dedup_path
     return
 }
 
@@ -190,7 +193,7 @@ function cache_path() {
 function reload_path() {
     echo PATH was:
     echo "$PATH" | tr ":" "\n"
-    source ${AHMYZSH}/core/compute-path/path.sh
+    source "${AHMYZSH}"/core/compute-path/path.sh
     # . ${AHMYZSH}/core/compute-path/path.sh
     SP80="                                                                                "
     __append_bin_to_path
