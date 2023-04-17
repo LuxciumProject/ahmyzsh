@@ -15,7 +15,7 @@ set +m
 #+ =============================================================================≈
 #* AHMYZSH first entry point
 
-export VERBOSA="1"
+export VERBOSA="0"
 
 noop() {
     true

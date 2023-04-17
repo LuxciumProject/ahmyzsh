@@ -22,8 +22,8 @@
 #$
 #$ Scientia es lux principium✨ ™
 
-# /home/luxcium/ahmyzsh/custom-zsh/sources/functions/getvscodeportable.zsh
-# /home/luxcium/ahmyzsh/core/bin/getvscodeportable-v2
+# ${AHMYZSH}/custom-zsh/sources/functions/getvscodeportable.zsh
+# ${AHMYZSH}/core/bin/getvscodeportable-v2
 function getvscodeportable_() {
   ## CONSTANTS AND VARIABLES DEFINITIONS
   {

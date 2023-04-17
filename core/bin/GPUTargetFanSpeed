@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 GPUTargetFanSpeed() {
     nvidia-settings \
-    -a '[GPU:0]/GPULogoBrightness=0' \
-    -a '[GPU:1]/GPULogoBrightness=0'
-    
-    sudo nvidia-settings -a "[fan:$1]/GPUTargetFanSpeed=$2" && \
-    gputhermalbrightness
+        -a '[GPU:0]/GPULogoBrightness=0' \
+        -a '[GPU:1]/GPULogoBrightness=0'
+
+    sudo nvidia-settings -a "[fan:$1]/GPUTargetFanSpeed=$2" &&
+        gputhermalbrightness
 }
 # nvidia-settings -q "[fan:1]/GPUTargetFanSpeed"
 ## Extra code make it easy to copy paste only the function out to use elsewhere
@@ -17,7 +17,7 @@ unset -f GPUTargetFanSpeed
 
 exit $__EXIT_STATUS
 
-# /home/luxcium/ahmyzsh/core/bin/gpu-target-fan-speed
+# ${AHMYZSH}/core/bin/gpu-target-fan-speed
 # nvidia-settings --help
 
 # nvidia-settings:  version 525.60.13

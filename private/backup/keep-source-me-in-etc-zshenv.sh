@@ -8,8 +8,8 @@
 # echo ZSH verry first entry point
 
 # Put the folowing lines into '/etc/zshenv' or '/etc/zsh/zshenv' :
-# export AHMYZSH=${AHMYZSH:="/home/luxcium/ahmyzsh"}
-# source "${AHMYZSH:='/home/luxcium/ahmyzsh'}/source-me-in-etc-zshenv.sh"
+# export AHMYZSH=${AHMYZSH:="${AHMYZSH}"}
+# source "${AHMYZSH:='${AHMYZSH}'}/source-me-in-etc-zshenv.sh"
 TIMER_ALL_THEN=$(/usr/bin/date +%s%N)
 # Fig pre block. Keep at the top of this file.
 [[ "$(ps -p "$PPID" -o comm= | awk '{print $1}')" != "konsole" ]] && [[ -f "$HOME/.fig/shell/bashrc.pre.bash" ]] && builtin source "$HOME/.fig/shell/bashrc.pre.bash" && echo -n pre_block

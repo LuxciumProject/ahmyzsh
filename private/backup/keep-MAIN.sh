@@ -15,7 +15,7 @@
 #* AHMYZSH first entry point
 
 # will be working on simplification in a new feature branch
-# source /home/luxcium/ahmyzsh/themes/leaderboard.sh
+# source ${AHMYZSH}/themes/leaderboard.sh
 # echo $VERBOSA
 #
 set +m
@@ -83,7 +83,7 @@ SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
 
   call_ load_autosuggest
   call_ load_autocomplete
-  ( 
+  (
     (compaudit | xargs chmod g-w,o-w 2>/dev/null) &
     (zsh_compile_all_R) &
   )

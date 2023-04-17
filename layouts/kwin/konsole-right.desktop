@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Exec=/home/luxcium/ahmyzsh/layouts/kwin/konsole-purple-loader.sh
+Exec=${AHMYZSH}/layouts/kwin/konsole-purple-loader.sh
 Icon=/home/luxcium/.local/share/icons/vscode-material-icon-theme/console.svg
 Categories=Qt;KDE;System;TerminalEmulator;
 Actions=NewWindow;NewTab;

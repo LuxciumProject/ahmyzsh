@@ -190,8 +190,8 @@ function cache_path() {
 function reload_path() {
     echo PATH was:
     echo "$PATH" | tr ":" "\n"
-    source /home/luxcium/ahmyzsh/core/compute-path/path.sh
-    # . /home/luxcium/ahmyzsh/core/compute-path/path.sh
+    source ${AHMYZSH}/core/compute-path/path.sh
+    # . ${AHMYZSH}/core/compute-path/path.sh
     SP80="                                                                                "
     __append_bin_to_path
     set_path

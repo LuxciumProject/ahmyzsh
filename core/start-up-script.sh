@@ -8,7 +8,7 @@
   sudo chown -R "$USER" /opt/ramdisk || exit 5
   mkdir -p /opt/ramdisk/core || exit 6
   cp -r -t /opt/ramdisk/core /home/luxcium/bin/* || exit 7
-  cp -r -t /opt/ramdisk/core /home/luxcium/ahmyzsh/core/bin/* || exit 8
+  cp -r -t /opt/ramdisk/core ${AHMYZSH}/core/bin/* || exit 8
   add_to_path_() {
     [ -z "$1" ] || [ -d "$1" ] && export PATH="${1}:${PATH}"
   }

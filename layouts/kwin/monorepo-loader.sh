@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # File name: "ahmyzsh-project-loader.sh"
-# File location "/home/luxcium/ahmyzsh/layouts/kwin/ahmyzsh-project-loader.sh"
+# File location "${AHMYZSH}/layouts/kwin/ahmyzsh-project-loader.sh"
 
 # Using KDE kstart5 to launch Visual Studio Code with a specific project
 # /projects/monorepo-one/library/mapping-tools

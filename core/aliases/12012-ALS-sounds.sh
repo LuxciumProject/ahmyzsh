@@ -1484,88 +1484,88 @@ function play_test_sounds_zorin_() {
 }
 
 function play_test_sounds_artistic1() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   play_test_sounds_artistic1_
 }
 
 function play_test_sounds_dexter-sounds() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   play_test_sounds_dexter-sounds_
 }
 function play_test_sounds_dragon-sound-pack() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   play_test_sounds_dragon-sound-pack_
 }
 function play_test_sounds_itw-sounds() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   play_test_sounds_itw-sounds_
 }
 function play_test_sounds_just-sounds() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   play_test_sounds_just-sounds_
 }
 function play_test_sounds_kdelove() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   play_test_sounds_kdelove_
 }
 function play_test_sounds_kinper() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   play_test_sounds_kinper_
 }
 function play_test_sounds_kmess-sounds() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   play_test_sounds_kmess-sounds_
 }
 function play_test_sounds_megaman-5() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   play_test_sounds_megaman-5_
 }
 function play_test_sounds_mgs-sounds() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   play_test_sounds_mgs-sounds_
 }
 function play_test_sounds_pclos-hu-system() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   play_test_sounds_pclos-hu-system_
 }
 function play_test_sounds_sons() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   play_test_sounds_sons_
 }
 function play_test_sounds_soundset1() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   play_test_sounds_soundset1_
 }
 function play_test_sounds_star-labs() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   play_test_sounds_star-labs_
 }
 function play_test_sounds_total-kaoss() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   play_test_sounds_total-kaoss_
 }
 function play_test_sounds_ubuntu-alternate() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   play_test_sounds_ubuntu-alternate_
 }
 function play_test_sounds_windows-10() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   play_test_sounds_windows-10_
 }
 function play_test_sounds_windows-eight() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   play_test_sounds_windows-eight_
 }
 function play_test_sounds_yahoo-sounds() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   play_test_sounds_yahoo-sounds_
 }
 function play_test_sounds_zelda() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   play_test_sounds_zelda_
 }
 function play_test_sounds_zorin() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   play_test_sounds_zorin_
 }
 

@@ -57,7 +57,7 @@ export CUSTOM_TMUX="${AHMYZSH}/tmux"
 #   }
 # }
 
-# # /home/luxcium/ahmyzsh/core
+# # ${AHMYZSH}/core
 
 # # export CORE_FUNCTIONS="${AHMYZSH_CORE}/functions.1"
 # # export CORE_FUNCTIONS="${AHMYZSH_CORE}/functions.2"

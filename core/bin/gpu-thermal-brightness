@@ -16,7 +16,7 @@ run_command() {
     # check for the PID file before running the command
     while [ -f "$PID_FILE" ]; do
         # run the command here
-        /home/luxcium/ahmyzsh/core/bin/gputhermalbrightness >/dev/null 2>&1
+        ${AHMYZSH}/core/bin/gputhermalbrightness >/dev/null 2>&1
         sleep "$SLEEP_INTERVAL"
     done
 }
@@ -49,9 +49,9 @@ esac
 # Add the following lines to your shell profile (e.g. ~/.bashrc)
 # alias script-start='gpu-thermal-brightness start'
 # alias script-stop='gpu-thermal-brightness stop'
-# /home/luxcium/ahmyzsh/core/bin/gpu-thermal-brightness
+# ${AHMYZSH}/core/bin/gpu-thermal-brightness
 
 ## Please consider using this:
 # ❯ echo \$AHMYZSH_CORE=$AHMYZSH_CORE
-# $AHMYZSH_CORE=/home/luxcium/ahmyzsh/core
+# $AHMYZSH_CORE=${AHMYZSH}/core
 #

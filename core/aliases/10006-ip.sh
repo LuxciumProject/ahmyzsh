@@ -11,7 +11,7 @@ alias ip0addresses="sudo ip -c -h -p -a -4 -0 addres show"
 alias ipeno1reset="zsh \${AHMYZSH}/settings/iptables-eno1.sh"
 alias ipreset="zsh  \${AHMYZSH}/settings/iptables-reset.sh"
 alias ipenable="zsh  \${AHMYZSH}/settings/iptables-enabler.sh"
-# enp0s31f6 /home/luxcium/ahmyzsh/settings/iptables-enabler.sh
+# enp0s31f6 ${AHMYZSH}/settings/iptables-enabler.sh
 
 # sudo ip -c -br -0 addres show
 # sudo ip -c -br -6 addres show

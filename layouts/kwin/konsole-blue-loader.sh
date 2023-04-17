@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # File name: "konsole-blue-loader.sh"
-# File location "/home/luxcium/ahmyzsh/layouts/kwin/konsole-blue-loader.sh"
+# File location "${AHMYZSH}/layouts/kwin/konsole-blue-loader.sh"
 
 # Using KDE kstart5 to launch Visual Studio Code with a specific project
 

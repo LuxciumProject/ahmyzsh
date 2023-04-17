@@ -1,6 +1,6 @@
 ❯ pwd
 ls
-/home/luxcium/ahmyzsh/core/bin-2
+${AHMYZSH}/core/bin-2
 dir1 dir2 dir3
 
 ❯ ls -alh dir1
@@ -29,13 +29,13 @@ total 60K
 drwxr-xr-x  2 luxcium luxcium 4,0K 30 déc 10:15 .
 drwxr-xr-x  5 luxcium luxcium 4,0K 30 déc 10:16 ..
 -rw-r--r-- 10 luxcium luxcium 5,1K 30 déc 10:25 listing_pwd_0_T
-lrwxrwxrwx  1 luxcium luxcium   50 30 déc 10:11 listing_pwd_0_Ts **** -> /home/luxcium/ahmyzsh/core/bin-2/dir2/dir1/listing
+lrwxrwxrwx  1 luxcium luxcium   50 30 déc 10:11 listing_pwd_0_Ts **** -> ${AHMYZSH}/core/bin-2/dir2/dir1/listing
 lrwxrwxrwx  1 luxcium luxcium   12 30 déc 10:11 listing_pwd_0_Tsr **** -> dir1/listing
 lrwxrwxrwx  1 luxcium luxcium   15 30 déc 10:14 listing_pwd_0_Tsr_x -> ../dir1/listing
-lrwxrwxrwx  1 luxcium luxcium   45 30 déc 10:14 listing_pwd_0_Ts_x -> /home/luxcium/ahmyzsh/core/bin-2/dir1/listing
+lrwxrwxrwx  1 luxcium luxcium   45 30 déc 10:14 listing_pwd_0_Ts_x -> ${AHMYZSH}/core/bin-2/dir1/listing
 -rw-r--r-- 10 luxcium luxcium 5,1K 30 déc 10:25 listing_pwd_0_T_x
 lrwxrwxrwx  1 luxcium luxcium   15 30 déc 10:15 listing_pwd_pwd_Tsr_x2 -> ../dir1/listing
-lrwxrwxrwx  1 luxcium luxcium   45 30 déc 10:15 listing_pwd_pwd_Ts_x2 -> /home/luxcium/ahmyzsh/core/bin-2/dir1/listing
+lrwxrwxrwx  1 luxcium luxcium   45 30 déc 10:15 listing_pwd_pwd_Ts_x2 -> ${AHMYZSH}/core/bin-2/dir1/listing
 -rw-r--r-- 10 luxcium luxcium 5,1K 30 déc 10:25 listing_pwd_pwd_T_x2
 -rw-r--r-- 10 luxcium luxcium 5,1K 30 déc 10:25 listing_T
 -rw-r--r-- 10 luxcium luxcium 5,1K 30 déc 10:25 listing_TP
@@ -49,7 +49,7 @@ lrwxrwxrwx  1 luxcium luxcium   25 30 déc 09:53 nom_original4_s_r -> ../dir1/no
 lrwxrwxrwx  1 luxcium luxcium   21 30 déc 09:52 nom_original7_s_ **** -> dir1/nom_original7_s_
 lrwxrwxrwx  1 luxcium luxcium   24 30 déc 09:51 nom_original_s_r **** -> ../dir1/nom_original_s_r
 lrwxrwxrwx  1 luxcium luxcium   25 30 déc 09:56 nom_original_x_1a -> ../dir1/nom_original_x_1a
-lrwxrwxrwx  1 luxcium luxcium   55 30 déc 09:57 nom_original_x_1b -> /home/luxcium/ahmyzsh/core/bin-2/dir1/nom_original_x_1b
+lrwxrwxrwx  1 luxcium luxcium   55 30 déc 09:57 nom_original_x_1b -> ${AHMYZSH}/core/bin-2/dir1/nom_original_x_1b
 lrwxrwxrwx  1 luxcium luxcium   24 30 déc 09:57 nom_original_x_1c **** -> ./dir1/nom_original_x_1c
 
 ❯ ls -alh dir3
@@ -63,10 +63,10 @@ lrwxrwxrwx  1 luxcium luxcium   15 30 déc 10:21 listing_0_pwd_Tsr_x3 -> ../dir1
 lrwxrwxrwx  1 luxcium luxcium   14 30 déc 10:21 listing_0_pwd_Ts_x3 **** -> ./dir1/listing
 -rw-r--r-- 10 luxcium luxcium 5,1K 30 déc 10:25 listing_0_pwd_T_x3
 lrwxrwxrwx  1 luxcium luxcium   15 30 déc 10:21 listing_pwd_0_Tsr_x3 -> ../dir1/listing
-lrwxrwxrwx  1 luxcium luxcium   45 30 déc 10:21 listing_pwd_0_Ts_x3 -> /home/luxcium/ahmyzsh/core/bin-2/dir1/listing
+lrwxrwxrwx  1 luxcium luxcium   45 30 déc 10:21 listing_pwd_0_Ts_x3 -> ${AHMYZSH}/core/bin-2/dir1/listing
 -rw-r--r-- 10 luxcium luxcium 5,1K 30 déc 10:25 listing_pwd_0_T_x3
 lrwxrwxrwx  1 luxcium luxcium   15 30 déc 10:21 listing_pwd_pwd_Tsr_x3 -> ../dir1/listing
-lrwxrwxrwx  1 luxcium luxcium   45 30 déc 10:21 listing_pwd_pwd_Ts_x3 -> /home/luxcium/ahmyzsh/core/bin-2/dir1/listing
+lrwxrwxrwx  1 luxcium luxcium   45 30 déc 10:21 listing_pwd_pwd_Ts_x3 -> ${AHMYZSH}/core/bin-2/dir1/listing
 -rw-r--r-- 10 luxcium luxcium 5,1K 30 déc 10:25 listing_pwd_pwd_T_x3
 
 ln -Tsr $(pwd)/dir1/listing $(pwd)/dir3/listing_pwd_pwd_Tsr_x3

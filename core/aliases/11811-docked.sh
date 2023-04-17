@@ -44,10 +44,10 @@ function dckr_redis_start_6381() {
   (docker stop Redis_Main_6381 && docker rm Redis_Main_6381) 2>/dev/null
   docker container ls --no-trunc --filter id="$(docker run -d -p 6381:6379 -v "${REDIS_DATA}":/data --name=Redis_Main_6381 -l=redis redis:alpine redis-server --save 60 1 --loglevel warning 2>/dev/null)"
   ([[ $(redis-cli -p 6381 PING) == "PONG" ]] && (
-    play -qv 0.75 /home/luxcium/ahmyzsh/multimedia/sounds/dactylo-cloche.mp3 &
+    play -qv 0.75 ${AHMYZSH}/multimedia/sounds/dactylo-cloche.mp3 &
     (
       sleep 0.1875
-      play -qv 0.50 /home/luxcium/ahmyzsh/multimedia/sounds/pop-up.mp3
+      play -qv 0.50 ${AHMYZSH}/multimedia/sounds/pop-up.mp3
     ) &
   )) || (play -qv 1 /usr/share/sounds/Oxygen-Im-Cant-Connect.ogg)
   # docker ps --no-trunc
@@ -114,7 +114,7 @@ function isRedis_6382() {
 }
 
 alias notconnectsound="(play -qv 1 /usr/share/sounds/Oxygen-Im-Cant-Connect.ogg)"
-alias popsound="(play -qv 0.75 /home/luxcium/ahmyzsh/multimedia/sounds/dactylo-cloche.mp3 & sleep 0.375;play -qv 0.50 /home/luxcium/ahmyzsh/multimedia/sounds/pop-up.mp3 &)"
+alias popsound="(play -qv 0.75 ${AHMYZSH}/multimedia/sounds/dactylo-cloche.mp3 & sleep 0.375;play -qv 0.50 ${AHMYZSH}/multimedia/sounds/pop-up.mp3 &)"
 #
 # alias play_Im-Cant-Connect='(play -qv 1 /usr/share/sounds/Oxygen-Im-Cant-Connect.ogg)'
 #

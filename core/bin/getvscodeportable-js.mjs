@@ -22,109 +22,98 @@
  $
  $ Scientia es lux principium✨ ™
 */
-import {
-    exec, execSync,
-    spawn,
-    spawnSync
-} from 'child_process';
+import { exec, execSync, spawn, spawnSync } from "child_process";
 
-
-
-// # /home/luxcium/ahmyzsh/core/bin/getvscodeportable-v3
+// # ${AHMYZSH}/core/bin/getvscodeportable-v3
 // function getvscodeportable_() {
 //   {
 // # CONSTANTS AND VARIABLES DEFINITIONS
 // † ======================================================================
 
-const VSCODE_URL_STABLE = 'https://update.code.visualstudio.com/latest/linux-x64/stable';
-const VSCODE_SHORTPATH_STABLE = 'code-stable';
-const VSCODE_CHANNEL_STABLE = 'stable';
+const VSCODE_URL_STABLE =
+  "https://update.code.visualstudio.com/latest/linux-x64/stable";
+const VSCODE_SHORTPATH_STABLE = "code-stable";
+const VSCODE_CHANNEL_STABLE = "stable";
 
-export const VSCODE_URL_INSIDER = 'https://update.code.visualstudio.com/latest/linux-x64/insider';
-export const VSCODE_SHORTPATH_INSIDER = 'code-insider';
-export const VSCODE_CHANNEL_INSIDER = 'insider';
+export const VSCODE_URL_INSIDER =
+  "https://update.code.visualstudio.com/latest/linux-x64/insider";
+export const VSCODE_SHORTPATH_INSIDER = "code-insider";
+export const VSCODE_CHANNEL_INSIDER = "insider";
 
 // # CUSTOM VARIABLES DEFINITIONS
 // † ===========================================================================
 
-
 export let vscode_url = `${VSCODE_URL_STABLE}`;
 export let vscode_shortpath = `${VSCODE_SHORTPATH_STABLE}`;
-export let vscode_channel = `${VSCODE_CHANNEL_STABLE}`;;
+export let vscode_channel = `${VSCODE_CHANNEL_STABLE}`;
 
-console.log(process.cwd())
-exec('pwd', (err, stdout, stderr) => {
+console.log(process.cwd());
+exec("pwd", (err, stdout, stderr) => {
   if (err) {
     console.error(err);
     console.error(stderr);
     return;
   }
   console.log(stdout);
-
 });
 
-
-const cp =  {exec,
-  execSync,
-  spawn,
-  spawnSync,}
+const cp = { exec, execSync, spawn, spawnSync };
 // const cp = require('child_process');
 
 const exec_options = {
-    cwd: null,
-    env: null,
-    encoding: 'utf8',
-    timeout: 0,
-    maxBuffer: 200 * 1024,
-    killSignal: 'SIGTERM'
+  cwd: null,
+  env: null,
+  encoding: "utf8",
+  timeout: 0,
+  maxBuffer: 200 * 1024,
+  killSignal: "SIGTERM",
 };
 
 // exec
-cp.exec('ls -l', exec_options, (err, stdout, stderr) => {
-    console.log('#1. exec')
-    console.log(stdout);
+cp.exec("ls -l", exec_options, (err, stdout, stderr) => {
+  console.log("#1. exec");
+  console.log(stdout);
   console.error(stderr);
-if (err) console.error(err);
+  if (err) console.error(err);
 });
-
 
 // exec sync
 try {
-    const data = cp.execSync('ls -l', exec_options);
-    console.log('#2. exec sync')
-    console.log(data.toString());
-} catch (err) {
-
-}
-
+  const data = cp.execSync("ls -l", exec_options);
+  console.log("#2. exec sync");
+  console.log(data.toString());
+} catch (err) {}
 
 const spawn_options = {
-    cwd: null,
-    env: null,
-    detached: false
+  cwd: null,
+  env: null,
+  detached: false,
 };
 
 // spawn
-const ls = cp.spawn('ls', ['-l'], spawn_options);
+const ls = cp.spawn("ls", ["-l"], spawn_options);
 
-ls.stdout.on('data', stdout => {
-    console.log('#3. spawn')
-    console.log(stdout.toString());
+ls.stdout.on("data", (stdout) => {
+  console.log("#3. spawn");
+  console.log(stdout.toString());
 });
 
-ls.stderr.on('data', stderr => {
-    console.log(stderr.toString());
+ls.stderr.on("data", (stderr) => {
+  console.log(stderr.toString());
 });
 
-ls.on('close', code => {
-    // ended with code
+ls.on("close", (code) => {
+  // ended with code
   console.log(code.toString());
 });
 
-
 // spawn sync
-const { stdout, stderr, pid, status } = cp.spawnSync('ls', ['-l','--color'], spawn_options);
-console.log('#4. spawn sync')
+const { stdout, stderr, pid, status } = cp.spawnSync(
+  "ls",
+  ["-l", "--color"],
+  spawn_options
+);
+console.log("#4. spawn sync");
 console.log(stdout.toString());
 console.error(stderr.toString());
 console.info(status.toString());
@@ -140,7 +129,7 @@ console.info(pid.toString());
 
 // });
 
-    // vschannel='STABLE' # 'STABLE' or 'INSIDER'
+// vschannel='STABLE' # 'STABLE' or 'INSIDER'
 
 //     if [[ "${1}" = 'INSIDER' ]]; then
 //       vscode_url="${VSCODE_URL_INSIDER}"

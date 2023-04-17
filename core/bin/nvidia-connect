@@ -50,5 +50,5 @@
     ":0[DPY:DP-2]/ColorRange=0" -a \
     ":0[DPY:DP-2]/SynchronousPaletteUpdates=0"
 
-/home/luxcium/ahmyzsh/core/bin/OpenGLImagePerformHigh
-/home/luxcium/ahmyzsh/core/bin/gputhermalbrightness
+${AHMYZSH}/core/bin/OpenGLImagePerformHigh
+${AHMYZSH}/core/bin/gputhermalbrightness

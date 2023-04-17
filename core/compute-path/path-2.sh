@@ -38,7 +38,7 @@ function cache_path() {
 # reload_path() {
 #     echo PATH was:
 #     echo "$PATH" | tr ":" "\n"
-#     source /home/luxcium/ahmyzsh/core/compute-path/path.sh
+#     source ${AHMYZSH}/core/compute-path/path.sh
 #    export SP80="                                                                                "
 #     __append_bin_to_path
 #     set_path

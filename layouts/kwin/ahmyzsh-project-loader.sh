@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # File name: "ahmyzsh-project-loader.sh"
-# File location "/home/luxcium/ahmyzsh/layouts/kwin/ahmyzsh-project-loader.sh"
+# File location "${AHMYZSH}/layouts/kwin/ahmyzsh-project-loader.sh"
 
 # Using KDE kstart5 to launch Visual Studio Code with a specific project
 
@@ -9,13 +9,6 @@
 # What are the setting that can be changed and how they would impact my experience with copilot?
 # the mos important thing to consider whne usinc copilot is not oly yhe top_p but mor important is to consider top_k and the temperature setting
 # one other consideration is to make sure copilot can analyse all your codebase by setting the max codebase size to 0 as there is no limit to the size of codebase that can be used you can change this setting in the copilot settings menu or by editing the settings json file in your home directory. this is an example of how to do it: { "copilot": { "max_codebase_size": 0 } }
-
-
-
-
-
-
-
 
 true
 APP_PATH="/home/luxcium/main-vscode/bin/code"

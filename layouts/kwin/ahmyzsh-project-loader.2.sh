@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # File name: "ahmyzsh-project-loader.sh"
-# File location "/home/luxcium/ahmyzsh/layouts/kwin/ahmyzsh-project-loader.sh"
+# File location "${AHMYZSH}/layouts/kwin/ahmyzsh-project-loader.sh"
 
 # Using KDE kstart5 to launch Visual Studio Code with a specific project
 
@@ -9,7 +9,7 @@ true
 APP_PATH="/home/luxcium/main-vscode/bin/code"
 ICON_FILE="/home/luxcium/.local/share/icons/vscode-material-icon-theme/folder-vm-open.svg"
 WM_CLASS="°Ah! MYZSH°"
-VSCODE_PROJECT_PATH="/home/luxcium/ahmyzsh"
+VSCODE_PROJECT_PATH="${AHMYZSH}"
 
 kstart5 --qwindowicon "${ICON_FILE}" --windowclass "${WM_CLASS}" --currentdesktop --activate "${APP_PATH}" "${VSCODE_PROJECT_PATH}"
 

@@ -3,11 +3,11 @@
 export WAITTIME=2
 export SLEEPTIME=1
 # update and reboot
-source "$HOME"/ahmyzsh/core/aliases/11001-dnf.sh
-source "$HOME"/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+source "${AHMYZSH}"/core/aliases/11001-dnf.sh
+source "${AHMYZSH}"/core/aliases/12012-ALS-sounds.sh
 
 function upnboot() {
-  source "$HOME"/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source "${AHMYZSH}"/core/aliases/12012-ALS-sounds.sh
   play_014
   _get_updates
   _dnfup "${1}"
@@ -21,7 +21,7 @@ function upnboot() {
 
 # update and reboot --assumeyes
 function upnbooty() {
-  # source $HOME/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   # play_014
   # _get_updates
   upnboot "--assumeyes ${1}"
@@ -34,7 +34,7 @@ function upnbooty() {
 
 # update and reboot
 function boot() {
-  source "$HOME"/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source "${AHMYZSH}"/core/aliases/12012-ALS-sounds.sh
   play_014
   (
     _play_down_sound "reboot"
@@ -45,7 +45,7 @@ function boot() {
 
 # update and shutdown
 function upnshutdown() {
-  source "$HOME"/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source "${AHMYZSH}"/core/aliases/12012-ALS-sounds.sh
   play_014
   _get_updates
   _dnfup

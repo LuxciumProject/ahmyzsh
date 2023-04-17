@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 # shellcheck disable=all
-source "$HOME"/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+source "${AHMYZSH}"/core/aliases/12012-ALS-sounds.sh
 enable_systemctl up && ( (play_zelda_email) &)
 
 source "$AHMYZSH"/settings/iptables-eno1.sh
@@ -55,7 +55,7 @@ eval $(
 fnm list
 
 (
-  code-insiders /home/luxcium/ahmyzsh &
+  code-insiders ${AHMYZSH} &
   sleep 0.5
   sudo renice -n 5 -p $(
     pidof -w -x code-insiders
