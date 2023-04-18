@@ -8,6 +8,7 @@ function load_path() {
   else
     compute_path
   fi
+  __compute_extended_path
 }
 
 function re_load_path() {

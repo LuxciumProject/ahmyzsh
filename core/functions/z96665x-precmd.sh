@@ -7,6 +7,7 @@ function precmd() {
   #* example, when a notification about an exiting job is displayed.
 
   if [ "$LOAD_ENV_COMPLETED" != 'true' ]; then
+    # echo "done"
     export PARENT_ENV_LOADED='true'
     LOAD_ENV_COMPLETED='true'
     set +m
@@ -16,4 +17,5 @@ function precmd() {
     source_ "${AHMYZSH}/themes/leaderboard.sh"
   fi
   echo -e "${LRESETALL}"
+
 }

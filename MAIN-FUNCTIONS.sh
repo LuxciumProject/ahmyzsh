@@ -142,7 +142,7 @@ function call_() {
     eval "${1}"
 
     returnval=$?
-    [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_FUNCTION} $(timer_now) '${1}()' ${END_FUNCTION}"
+    [ "${VERBOSA}" -gt 1 ] && echo "${BEGIN_FUNCTION} $(timer_now) '${1}()' ${END_FUNCTION}"
     return "${returnval}"
   fi
 }

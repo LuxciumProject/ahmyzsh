@@ -118,9 +118,9 @@ function __append_bin_to_path() {
     append_to_path_ "/snap/bin"
     return
 }
-echo decalre __compute_extended_path
+# echo decalre __compute_extended_path
 function __compute_extended_path() {
-    echo invoke __compute_extended_path
+    # echo invoke __compute_extended_path
     add_to_path_ "/usr/lib64/ccache"
     add_to_path_ "/usr/lib64/qt5/bin"
     add_to_path_ "/usr/local/go/bin"
