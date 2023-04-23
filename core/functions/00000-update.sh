@@ -84,9 +84,8 @@ function cc_update() {
 
 function update_fnm() {
 
-  CURRENT=19
+  CURRENT=20
 
-  fnm unalias Hydrogen
   fnm unalias lts-hydrogen
   fnm unalias lts
   fnm unalias active
@@ -95,11 +94,10 @@ function update_fnm() {
   fnm use 18
   _npm_update
   fnm default 18
-  fnm alias 18 active
 
+  fnm alias 18 active
   fnm alias 18 lts-hydrogen
   fnm alias 18 lts
-  fnm alias 18 Hydrogen
 
   fnm unalias current
   fnm install ${CURRENT}
@@ -114,6 +112,7 @@ function update_fnm() {
   fnm unalias Erbium
   fnm unalias Fermium
   fnm unalias Gallium
+  fnm unalias Hydrogen
 
   fnm unalias eol-argon
   fnm unalias eol-boron
@@ -127,11 +126,7 @@ function update_fnm() {
   fnm install 6
   fnm install 8
   fnm install 10
-  fnm use 10
-  _npm_update
   fnm install 12
-  fnm use 12
-  _npm_update
   fnm install 14
   fnm use 14
   _npm_update
@@ -154,6 +149,12 @@ function update_fnm() {
   fnm alias 14 maintenance-fermium
   fnm alias 16 Gallium
   fnm alias 16 maintenance-gallium
+  fnm alias 18 Hydrogen
+  # fnm alias 18 maintenance-hydrogen
+
+  fnm install 19
+  fnm use 19
+  _npm_update
 
   fnm use default
   fnm list
