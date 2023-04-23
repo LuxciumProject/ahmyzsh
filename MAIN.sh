@@ -49,6 +49,7 @@ SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
     call_ load_all_config_and_settings_files
 
     call_ load_zshenv
+    # return 0
     source_ "${HOME}/.env" || touch "${HOME}/.env"
     call_ fnm_
 

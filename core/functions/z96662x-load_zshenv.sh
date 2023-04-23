@@ -4,7 +4,8 @@ function load_zshenv() {
   #   #$ Interactive,Script,login,non-login
 
   ## load_path_now
-  call_ load_path
+  # call_
+  load_path
 
   ## load_functions_now
   # call_ load_functions_definitions

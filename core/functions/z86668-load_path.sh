@@ -14,3 +14,7 @@ function load_path() {
 function re_load_path() {
   compute_path
 }
+
+# function load_path() {
+#   echo "inside load path"
+# }

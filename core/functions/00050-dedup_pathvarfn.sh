@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function dedup_pathvar_() {
+function dedup_pathvar_X_() {
   # #region Deduplicate path variables =========================================¹
   # https://unix.stackexchange.com/a/149054/431235
   # © 2014 by https://unix.stackexchange.com/users/1010

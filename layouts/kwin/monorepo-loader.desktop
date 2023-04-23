@@ -2,7 +2,7 @@
 Type=Application
 Name=Visual Studio Code (MonoRepoONE Project)
 Comment=Launch Visual Studio Code with the MonoRepoONE project
-Exec=${AHMYZSH}/layouts/kwin/monorepo-loader.sh --new-window %F
+Exec=/ahmyzsh/layouts/kwin/monorepo-loader.sh --new-window %F
 Icon=/home/luxcium/.local/share/icons/vscode-material-icon-theme/folder-global.svg
 Terminal=false
 GenericName=VSCODE Text Editor

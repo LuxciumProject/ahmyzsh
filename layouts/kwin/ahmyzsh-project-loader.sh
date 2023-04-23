@@ -50,8 +50,8 @@ kstart5 --qwindowicon "${ICON_FILE}" --windowclass "${WM_CLASS}" --currentdeskto
 # _NET_WM_BYPASS_COMPOSITOR(CARDINAL) = 2
 # _GTK_THEME_VARIANT(UTF8_STRING) = "dark"
 # _GTK_HIDE_TITLEBAR_WHEN_MAXIMIZED(CARDINAL) = 1
-# __WM_NAME(UTF8_STRING) = "°Ah! MYZSH° ✨Visual Studio Code✨ ~/ahmyzsh zsh"
-# _NET_WM_NAME(UTF8_STRING) = "°Ah! MYZSH° ✨Visual Studio Code✨ ~/ahmyzsh zsh"
+# __WM_NAME(UTF8_STRING) = "°Ah! MYZSH° ✨Visual Studio Code✨ /ahmyzsh zsh"
+# _NET_WM_NAME(UTF8_STRING) = "°Ah! MYZSH° ✨Visual Studio Code✨ /ahmyzsh zsh"
 # __WM_WINDOW_ROLE(STRING) = "browser-window"
 # __WM_CLASS(STRING) = "code", "Code"
 # _NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_NORMAL

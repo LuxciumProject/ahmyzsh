@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Application
-Exec=${AHMYZSH}/layouts/kwin/konsole-purple-loader.sh
+TryExec=konsole
+Exec=/ahmyzsh/layouts/kwin/konsole-purple-loader.sh
 Icon=/home/luxcium/.local/share/icons/vscode-material-icon-theme/console.svg
 Categories=Qt;KDE;System;TerminalEmulator;
 Actions=NewWindow;NewTab;
@@ -8,8 +9,8 @@ X-DocPath=konsole/index.html
 X-DBUS-StartupType=Unique
 StartupNotify=true
 X-KDE-AuthorizeAction=shell_access
-StartupWMClass=konsole-purple
-Keywords=Purple Konsole;right konsole;right;purpleterminal;console;script;run;execute;command;command-line;commandline;cli;bash;sh;shell;zsh;cmd;command prompt
+StartupWMClass=Purple_Console
+Keywords=Purple Konsole;right konsole;right;purple;terminal;console;script;run;execute;command;command-line;commandline;cli;bash;sh;shell;zsh;cmd;command prompt
 Name=Purple Konsole
 GenericName=Terminal
 Comment=Command line access
@@ -17,9 +18,11 @@ Comment=Command line access
 [Desktop Action NewWindow]
 Name=Open a New Window
 Icon=window-new
+StartupWMClass=Purple_Console
 Exec=konsole
 
 [Desktop Action NewTab]
 Name=Open a New Tab
 Icon=tab-new
+StartupWMClass=Purple_Console
 Exec=konsole --new-tab
