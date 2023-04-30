@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 export WAITTIME=2
 export SLEEPTIME=1

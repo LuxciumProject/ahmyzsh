@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # if [ -n "${IS_BASH_}" ]; then #? IF NOT IS_BASH_
 #   # shopt -q login_shell && echo 'Login shell' || echo 'Not login shell'
 #   # [[ $- == *i* ]] && echo 'Interactive' || echo 'Not interactive'
