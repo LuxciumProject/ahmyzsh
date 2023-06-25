@@ -1,55 +1,56 @@
-lockfileVersion: 5.4
-
-specifiers:
-  '-': ^0.0.1
-  npm: ^7.24.2
-  pnpm: ^7.21.0
-  prettier: ^2.2.1
-  prettier-plugin-sh: ^0.6.0
+lockfileVersion: '6.0'
 
 dependencies:
-  '-': 0.0.1
-  npm: 7.24.2
-  pnpm: 7.21.0
+  '-':
+    specifier: ^0.0.1
+    version: 0.0.1
+  npm:
+    specifier: ^9.7.2
+    version: 9.7.2
+  pnpm:
+    specifier: ^7.21.0
+    version: 7.21.0
 
 devDependencies:
-  prettier: 2.8.1
-  prettier-plugin-sh: 0.6.1_prettier@2.8.1
+  prettier:
+    specifier: ^2.2.1
+    version: 2.8.1
+  prettier-plugin-sh:
+    specifier: ^0.6.0
+    version: 0.6.1(prettier@2.8.1)
 
 packages:
 
-  /-/0.0.1:
+  /-@0.0.1:
     resolution: {integrity: sha512-3HfneK3DGAm05fpyj20sT3apkNcvPpCuccOThOPdzz8sY7GgQGe0l93XH9bt+YzibcTIgUAIMoyVJI740RtgyQ==}
     dev: false
 
-  /mvdan-sh/0.5.0:
+  /mvdan-sh@0.5.0:
     resolution: {integrity: sha512-UWbdl4LHd2fUnaEcOUFVWRdWGLkNoV12cKVIPiirYd8qM5VkCoCTXErlDubevrkEG7kGohvjRxAlTQmOqG80tw==}
     dev: true
 
-  /npm/7.24.2:
-    resolution: {integrity: sha512-120p116CE8VMMZ+hk8IAb1inCPk4Dj3VZw29/n2g6UI77urJKVYb7FZUDW8hY+EBnfsjI/2yrobBgFyzo7YpVQ==}
-    engines: {node: '>=10'}
+  /npm@9.7.2:
+    resolution: {integrity: sha512-LLoOudiSURxzRxfGj+vsD+hKKv2EfxyshDOznxruIkZMouvbaF5sFm4yAwHqxS8aVaOdRl03pRmGpcrFMqMt3g==}
+    engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     hasBin: true
     dev: false
     bundledDependencies:
       - '@isaacs/string-locale-compare'
       - '@npmcli/arborist'
-      - '@npmcli/ci-detect'
       - '@npmcli/config'
       - '@npmcli/map-workspaces'
       - '@npmcli/package-json'
       - '@npmcli/run-script'
       - abbrev
-      - ansicolors
-      - ansistyles
       - archy
       - cacache
       - chalk
-      - chownr
+      - ci-info
       - cli-columns
       - cli-table3
       - columnify
       - fastest-levenshtein
+      - fs-minipass
       - glob
       - graceful-fs
       - hosted-git-info
@@ -69,10 +70,9 @@ packages:
       - libnpmteam
       - libnpmversion
       - make-fetch-happen
+      - minimatch
       - minipass
       - minipass-pipeline
-      - mkdirp
-      - mkdirp-infer-owner
       - ms
       - node-gyp
       - nopt
@@ -84,17 +84,16 @@ packages:
       - npm-registry-fetch
       - npm-user-validate
       - npmlog
-      - opener
+      - p-map
       - pacote
       - parse-conflict-json
+      - proc-log
       - qrcode-terminal
       - read
-      - read-package-json
-      - read-package-json-fast
-      - readdir-scoped-modules
-      - rimraf
       - semver
+      - sigstore
       - ssri
+      - supports-color
       - tar
       - text-table
       - tiny-relative-date
@@ -103,13 +102,13 @@ packages:
       - which
       - write-file-atomic
 
-  /pnpm/7.21.0:
+  /pnpm@7.21.0:
     resolution: {integrity: sha512-zDsRciscnXmp8AVD0u9eSoJrGfXywepuwMmFstsd+Vfl/wDZUxgaSaZ/6Nkx3bBftC+oBpWFkAGBRyjy58jvZg==}
     engines: {node: '>=14.6'}
     hasBin: true
     dev: false
 
-  /prettier-plugin-sh/0.6.1_prettier@2.8.1:
+  /prettier-plugin-sh@0.6.1(prettier@2.8.1):
     resolution: {integrity: sha512-Weelg53FBb1Z5Q1/GpQIb4s//BdhmPAABjJfe6VTQ3m8upQjM36sVVboNOUVvYn3K+LMwzW4vkxhqLQ+vvfBKQ==}
     peerDependencies:
       prettier: ^2.0.5
@@ -118,7 +117,7 @@ packages:
       prettier: 2.8.1
     dev: true
 
-  /prettier/2.8.1:
+  /prettier@2.8.1:
     resolution: {integrity: sha512-lqGoSJBQNJidqCHE80vqZJHWHRFoNYsSpP9AjFhlhi9ODCJA541svILes/+/1GM3VaL/abZi7cpFzOpdR9UPKg==}
     engines: {node: '>=10.13.0'}
     hasBin: true
