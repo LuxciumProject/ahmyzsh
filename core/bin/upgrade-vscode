@@ -85,41 +85,45 @@ backup_vscode() {
 
 confirm_update() {
     # If the -y flag is provided, automatically close any running instances of VS Code
-    if [[ "${1:-}" == "-y" ]]; then
-        if pgrep "$CODE_PROCESS_NAME" >/dev/null; then
-            close_running_instances
+    if pgrep "$CODE_PROCESS_NAME" >/dev/null; then
+        if [[ "${1:-}" == "-y" ]]; then
+            if pgrep "$CODE_PROCESS_NAME" >/dev/null; then
+                close_running_instances
+            else
+                echo "VS Code is not running. Will continue"
+            fi
         else
-            echo "VS Code is not running. Will continue"
+            # Ask for confirmation before proceeding
+            pwd
+            while true; do
+                read -rp "Are you sure you want to update VS Code? [Y/n] " yn
+                case $yn in
+                [OoYy]* | "") # Acceptable affirmative answers in English or French
+
+                    if pgrep "$CODE_PROCESS_NAME" >/dev/null; then
+                        echo "Will close any running instances of VS Code..."
+                        for i in {5..1}; do
+                            echo -n " $i"
+                            sleep 1
+                        done
+                        echo ""
+                        close_running_instances
+                    else
+                        echo "VS Code is not running. Will continue"
+                    fi
+                    break
+                    ;;
+                [Nn]*) # Any answer starting with N or n is not acceptable
+                    echo -e 'Exit before doing any modifications \b'
+                    exit 0
+                    ;;
+                *) # Any other answer will prompt for a re-ask
+                    echo "Please answer Y or n." ;;
+                esac
+            done
         fi
     else
-        # Ask for confirmation before proceeding
-        pwd
-        while true; do
-            read -rp "Are you sure you want to update VS Code? [Y/n] " yn
-            case $yn in
-            [OoYy]* | "") # Acceptable affirmative answers in English or French
-
-                if pgrep "$CODE_PROCESS_NAME" >/dev/null; then
-                    echo "Will close any running instances of VS Code..."
-                    for i in {5..1}; do
-                        echo -n " $i"
-                        sleep 1
-                    done
-                    echo ""
-                    close_running_instances
-                else
-                    echo "VS Code is not running. Will continue"
-                fi
-                break
-                ;;
-            [Nn]*) # Any answer starting with N or n is not acceptable
-                echo -e 'Exit before doing any modifications \b'
-                exit 0
-                ;;
-            *) # Any other answer will prompt for a re-ask
-                echo "Please answer Y or n." ;;
-            esac
-        done
+        echo "VS Code is not running. Will continue"
     fi
 }
 

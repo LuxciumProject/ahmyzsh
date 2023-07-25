@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 set +m
 
 #& Scientia es lux principium
@@ -52,7 +52,7 @@ SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
     # return 0
     source_ "${HOME}/.env" || touch "${HOME}/.env"
     call_ fnm_
-
+    echo -en '\u001b[0m'
     isinteractive || return 0
     call_ activate_prompt
 

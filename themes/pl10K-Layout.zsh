@@ -269,16 +269,17 @@ function load_my_powerlevel10k() {
         fi
         return 3
     }
-
+    #  $(print -P '%F{#dadada}red%f'.
     function load_pl10K() {
         export TS_ICON=$'\uf071'
         export JS_BG='yellow'
         export JS_FG='black'
-        export NODE_BG='green'
-        export NODE_FG='black'
-        export NPM_BG='green'
-        export NPM_FG='black'
+        export NODE_FG='green'
+        export NODE_BG='black'
+        export NPM_FG='red'
+        export NPM_BG='black'
         export TS_FG='black'
+        export THIS_WHITE='253'
 
         export TS_ICON='$TS_ICO'
         export TS_BG='blue'
@@ -311,7 +312,7 @@ function load_my_powerlevel10k() {
         export POWERLEVEL9K_BACKGROUND_JOBS_VERBOSE_ALWAYS=false
 
         export POWERLEVEL9K_TIME_FORMAT='%D{%H:%M:%S}'
-        export POWERLEVEL9K_TIME_FOREGROUND='white'
+        export POWERLEVEL9K_TIME_FOREGROUND=$THIS_WHITE # !! THIS_WHITE
         export POWERLEVEL9K_TIME_BACKGROUND='black'
 
         export POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
@@ -343,16 +344,16 @@ function load_my_powerlevel10k() {
         export POWERLEVEL9K_DIR_ETC_ICON=$'\uf085'
         # dir - HOME
         export POWERLEVEL9K_DIR_HOME_BACKGROUND='blue'
-        export POWERLEVEL9K_DIR_HOME_FOREGROUND='black'
+        export POWERLEVEL9K_DIR_HOME_FOREGROUND=$THIS_WHITE # !! THIS_WHITE
         # dir - HOME_SUBFOLDER
         export POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='blue'
-        export POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='black'
+        export POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND=$THIS_WHITE # !! THIS_WHITE
         # dir - DEFAULT
         export POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='blue'
-        export POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='black'
+        export POWERLEVEL9K_DIR_DEFAULT_FOREGROUND=$THIS_WHITE # !! THIS_WHITE
         # dir - ETC
         export POWERLEVEL9K_DIR_ETC_BACKGROUND='blue'
-        export POWERLEVEL9K_DIR_ETC_FOREGROUND='black'
+        export POWERLEVEL9K_DIR_ETC_FOREGROUND=$THIS_WHITE # !! THIS_WHITE
 
         # Create prompt section
         # export POWERLEVEL9K_CUSTOM_PROMPT='echo -n '.''
@@ -388,14 +389,14 @@ function load_my_powerlevel10k() {
         export POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR="${LEFT_SEPRATOR}"
         export POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR="${RIGHT_SEPRATOR}"
 
-        export POWERLEVEL9K_CUSTOM_NODE_FOREGROUND='black'
+        export POWERLEVEL9K_CUSTOM_NODE_FOREGROUND=$NODE_FG
         export POWERLEVEL9K_CUSTOM_NODE_BACKGROUND=$NODE_BG
 
-        export POWERLEVEL9K_CUSTOM_NPMR_FOREGROUND='black'
+        export POWERLEVEL9K_CUSTOM_NPMR_FOREGROUND=$NPM_FG
         export POWERLEVEL9K_CUSTOM_NPMR_BACKGROUND=$NPM_BG
 
-        export POWERLEVEL9K_CUSTOM_NPM_FOREGROUND=$NPM_BG
-        export POWERLEVEL9K_CUSTOM_NPM_BACKGROUND='black'
+        export POWERLEVEL9K_CUSTOM_NPM_FOREGROUND=$NPM_FG
+        export POWERLEVEL9K_CUSTOM_NPM_BACKGROUND=$NPM_BG
 
         export POWERLEVEL9K_CUSTOM_TS_FOREGROUND='black'
         export POWERLEVEL9K_CUSTOM_TS_BACKGROUND=$TS_BG
