@@ -35,6 +35,16 @@ export MY_MULTIMEDIA="${AHMYZSH}/multimedia"
   export MY_SOUNDS="${MY_MULTIMEDIA}/sounds"
 }
 
+function comfyui() {
+  cd /home/luxcium/seagate/stable-diffusion-models/ComfyUI/ || return 15
+  conda activate sdxl
+  return
+}
+function auto1111() {
+  cd /home/luxcium/seagate/stable-diffusion-models/stable-diffusion-webui || return 15
+  conda activate sdxl
+  return
+}
 export CUSTOM_TMUX="${AHMYZSH}/tmux"
 # . "${CUSTOM_TMUX}/paths.sh"
 # {

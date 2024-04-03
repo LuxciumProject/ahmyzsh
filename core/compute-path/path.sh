@@ -1,17 +1,28 @@
 #!/bin/bash
 
-export _CONDA3="${HOME}/esoteric-argentum"
-export CONDA3="${_CONDA3}/bin"
-export CUDA_VERSION="cuda-12.1"
+# export _CONDA3="${HOME}/esoteric-argentum"
+# export CONDA3="${_CONDA3}/bin"
+# export LD_LIBRARY_PATH="${_CONDA3}/lib"${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+
+export CUDA_VERSION="cuda-12.3"
+export CUDA_HOME="/usr/local/${CUDA_VERSION}"
+# export CUDA_PATH="/usr/local/${CUDA_VERSION}"
+
+export CUDA_BIN="${CUDA_HOME}/bin"
+export CUDA_LIB="${CUDA_HOME}/lib64"
+
 export FNM_PATH="${HOME}/.local/share/fnm"
-export LD_LIBRARY_PATH="/home/luxcium/esoteric-argentum/lib"${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-export LD_LIBRARY_PATH=/usr/local/${CUDA_VERSION}${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+
 export PATH_BAK_0="${PATH}"
 export PNPM_HOME="${HOME}/.local/share/pnpm"
 export RBENV_PATH="${HOME}/.rbenv/bin:${HOME}/.rbenv/shims"
+export DOTNET_ROOT="/usr/lib64/dotnet/"
+
+# export PATH=/usr/local/cuda-12.3/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=${CUDA_LIB}${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 # /usr/local/${CUDA_VERSION}/bin
+# export LD_LIBRARY_PATH=/usr/local/${CUDA_VERSION}${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 # export DOTNET_CLI_TELEMETRY_OPTOUT=true
-# export DOTNET_ROOT="/usr/lib64/dotnet/"
 # export LD_LIBRARY_PATH=/usr/lib64:$LD_LIBRARY_PATH
 # export NVM_DIR="$HOME/.nvm"
 
@@ -107,15 +118,19 @@ function __append_sbin_to_path() {
     append_to_path_ "/sbin"
     append_to_path_ "/bin"
     append_to_path_ "${AHMYZSH}/core/bin"
+    append_to_path_ "${HOME}/.local/bin"
+    append_to_path_ "${HOME}/.bun/bin"
+    append_to_path_ "/snap/bin"
     return
 }
 
 function __append_bin_to_path() {
     export PATH="/usr/local/bin"
     append_to_path_ "/usr/bin"
-    append_to_path_ "/app/bin"
     append_to_path_ "/bin"
     append_to_path_ "${AHMYZSH}/core/bin"
+    append_to_path_ "${HOME}/.local/bin"
+    append_to_path_ "${HOME}/.bun/bin"
     append_to_path_ "/snap/bin"
     return
 }
@@ -130,7 +145,6 @@ function __compute_extended_path() {
     add_to_path_ "/opt/nvidia/nsight-compute"
     add_to_path_ "/app/bin"
     add_to_path_ "${HOME}/.yarn/bin"
-    # add_to_path_ "${HOME}/spx"
     add_to_path_ "/src/webcamoid/bin"
     add_to_path_ "${HOME}/.cargo/bin"
     add_to_path_ '/usr/local/go/bin'
@@ -153,10 +167,11 @@ function __compute_extended_path() {
     add_to_path_ "${HOME}/.local/bin"
     add_to_path_ "${FNM_PATH}"
     add_to_path_ "${HOME}/bin"
-    export LD_LIBRARY_PATH=/usr/lib64:$LD_LIBRARY_PATH
+    export LD_LIBRARY_PATH="/usr/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"
+    export LD_LIBRARY_PATH="${CUDA_LIB}${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"
     return
 }
-alias esoteric-argentum="conda_init_esoteric-argentum"
+# alias esoteric-argentum="conda_init_esoteric-argentum"
 function __dedup_path() {
     dedup_pathvar_ PATH
     export PATH
@@ -169,7 +184,6 @@ function set_path() {
     add_to_path_ '/home/luxcium/.local/share/fnm'
     add_to_path_ eval "$(fnm env)"
     __compute_extended_path
-    # conda_init_esoteric-argentum
     __dedup_path
     return
 }

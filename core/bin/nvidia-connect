@@ -3,20 +3,20 @@
 /usr/bin/nvidia-settings -a \
     ":0.0/SyncToVBlank=1" -a \
     ":0.0/LogAniso=4" -a \
-    ":0.0/FSAA=9" -a \
+    ":0.0/FSAA=10" -a \
     ":0.0/TextureClamping=1" -a \
     ":0.0/FXAA=0" -a \
     ":0.0/AllowFlipping=1" -a \
     ":0.0/FSAAAppControlled=0" -a \
     ":0.0/LogAnisoAppControlled=0" -a \
-    ":0.0/OpenGLImageSettings=3" -a \
+    ":0.0/OpenGLImageSettings=1" -a \
     ":0.0/FSAAAppEnhanced=0" -a \
     ":0.0/ShowGraphicsVisualIndicator=0" -a \
     ":0.0/XVideoSyncToDisplayID=DP-2" -a \
     ":0[DPY:DP-2]/DigitalVibrance=127" -a \
     "[GPU:0]/GPULogoBrightness=4" -a \
     "[GPU:1]/GPULogoBrightness=6" -a \
-    "[GPU:0]/GPUPowerMizerMode=1" -a \
+    "[GPU:0]/GPUPowerMizerMode=0" -a \
     "[GPU:1]/GPUPowerMizerMode=0" -a \
     ":0[DPY:DP-0]/DigitalVibrance=127" -a \
     ":0[DPY:DP-0]/RedBrightness=0" -a \
@@ -30,7 +30,7 @@
     ":0[DPY:DP-0]/BlueGamma=1" -a \
     ":0[DPY:DP-0]/Dithering=1" -a \
     ":0[DPY:DP-0]/DitheringMode=3" -a \
-    ":0[DPY:DP-0]/DitheringDepth=1" -a \
+    ":0[DPY:DP-0]/DitheringDepth=2" -a \
     ":0[DPY:DP-0]/ColorSpace=0" -a \
     ":0[DPY:DP-0]/ColorRange=0" -a \
     ":0[DPY:DP-0]/SynchronousPaletteUpdates=0" -a \
@@ -45,10 +45,10 @@
     ":0[DPY:DP-2]/BlueGamma=1" -a \
     ":0[DPY:DP-2]/Dithering=1" -a \
     ":0[DPY:DP-2]/DitheringMode=3" -a \
-    ":0[DPY:DP-2]/DitheringDepth=1" -a \
+    ":0[DPY:DP-2]/DitheringDepth=2" -a \
     ":0[DPY:DP-2]/ColorSpace=0" -a \
     ":0[DPY:DP-2]/ColorRange=0" -a \
     ":0[DPY:DP-2]/SynchronousPaletteUpdates=0"
 
-${AHMYZSH}/core/bin/OpenGLImagePerformHigh
-${AHMYZSH}/core/bin/gputhermalbrightness
+"${AHMYZSH}"/core/bin/OpenGLImageQuality
+"${AHMYZSH}"/core/bin/gputhermalbrightness

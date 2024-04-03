@@ -8,7 +8,8 @@ function cd() {
   current_dir=$(pwd)
 
   # Call the built-in cd command
-  builtin cd "$@" || exit
+  builtin cd "$@"
+
   local new_current_dir
   new_current_dir=$(pwd)
 

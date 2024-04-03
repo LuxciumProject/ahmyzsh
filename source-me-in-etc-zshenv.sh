@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# [[ "$(ps -p "$PPID" -o comm= | awk '{print $1}')" != "konsole" ]] && [[ -f "$HOME/.fig/shell/bashrc.pre.bash" ]] && builtin source "$HOME/.fig/shell/bashrc.pre.bash" && echo -n pre_block
 echo -n -e '\u001b[0m\u001b[31;1m\u001b[1m'
 export TIMER_ALL_THEN="${TIMER_ALL_THEN:="$(/usr/bin/date +%s%N)"}"
 export AHMYZSH="${AHMYZSH:="/ahmyzsh"}"
@@ -40,7 +39,6 @@ source "${AHMYZSH}/MAIN-FUNCTIONS.sh"
 source "${AHMYZSH}/core/compute-path/path.sh"
 source "${AHMYZSH}/core/compute-path/conda-initialize.sh"
 __compute_extended_path
-
 #* 2) LOAD AHMYZSH  B O O T S T R A P
 export MAIN_BOOTSTRAP="${MAIN_BOOTSTRAP="${AHMYZSH}/MAIN.sh"}"
 if [ -f "${MAIN_BOOTSTRAP}" ]; then
@@ -53,6 +51,3 @@ else
     [ -o interactive ] && echo "Error: Path to file: '${MAIN_BOOTSTRAP}' can not be resolved"
     unset -v MAIN_BOOTSTRAP
 fi
-
-# # Fig post block. Keep at the bottom of this file.
-# [[ "$(ps -p "$PPID" -o comm= | awk '{print $1}')" != "konsole" ]] && [[ -f "$HOME/.fig/shell/bash_profile.post.bash" ]] && builtin source "$HOME/.fig/shell/bash_profile.post.bash" && echo -n post_block

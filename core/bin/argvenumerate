@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+// core/bin/argvenumerate
+process.argv.forEach((val, index) => {
+  console.log(`${index}: ${val}`);
+});
+
+console.log("\nNode.js", process.version);

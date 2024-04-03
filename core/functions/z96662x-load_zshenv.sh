@@ -5,7 +5,7 @@ function load_zshenv() {
 
   ## load_path_now
   # call_
-  load_path
+  # load_path
 
   ## load_functions_now
   # call_ load_functions_definitions

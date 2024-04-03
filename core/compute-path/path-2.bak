@@ -12,7 +12,7 @@ function set_path() {
     add_to_path_ '/home/luxcium/.local/share/fnm'
     add_to_path_ eval "$(fnm env)"
     __compute_extended_path
-    conda_init_esoteric-argentum
+    # conda_init_esoteric-argentum
     __dedup_path
     return
 }

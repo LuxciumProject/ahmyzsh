@@ -48,7 +48,8 @@ SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
 
     call_ load_all_config_and_settings_files
 
-    call_ load_zshenv
+    # call_ load_zshenv
+
     # return 0
     source_ "${HOME}/.env" || touch "${HOME}/.env"
     call_ fnm_
@@ -60,13 +61,11 @@ SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
 
     call_ load_options_list
     call_ load_options_main
-
     call_ load_autosuggest
     call_ load_autocomplete
-    (
-        (compaudit | xargs chmod g-w,o-w 2>/dev/null) &
-        (zsh_compile_all_R) &
-    )
+
+    compaudit | xargs chmod g-w,o-w 2>/dev/null
+    zsh_compile_all_R
 
     bindkey -v
     return 0

@@ -2,6 +2,9 @@
 
 alias dps='docker ps'
 alias dpsa='docker ps --all'
+alias dpsa_stopped='docker ps -a --filter "status=exited"'
+alias dpsa_running='docker ps -a --filter "status=running"'
+
 alias dmi='docker images'
 alias dimg='docker images'
 alias dmia='docker images --all'
@@ -13,11 +16,14 @@ alias drmia='((docker rmi $(docker images -qa))2>/dev/null|| exit 5)'
 alias drmiaf='((docker rmi --force $(docker images -qa))2>/dev/null|| exit 5)'
 alias inspectbridge='docker network inspect bridge'
 
-alias dstart='sudo systemctl enable containerd.service docker.socket docker.service docker-distribution.service --now; sudo systemctl daemon-reload; sudo systemctl daemon-reexec'
+alias dstart='docker start'
+alias dstop='docker stop'
+
+alias startdckr='sudo systemctl enable containerd.service docker.socket docker.service docker-distribution.service --now; sudo systemctl daemon-reload; sudo systemctl daemon-reexec'
 
 alias dspxs='sudo docker run -it -v /home/luxcium/spx-data:/data --rm msftspeech/spx synthesize'
-alias dckr_start='sudo systemctl enable containerd.service docker.socket docker.service docker-distribution.service --now; sudo systemctl daemon-reload; sudo systemctl daemon-reexec'
 
+alias dckr_start='sudo systemctl enable containerd.service docker.socket docker.service docker-distribution.service --now; sudo systemctl daemon-reload; sudo systemctl daemon-reexec'
 alias dckr_stop='sudo systemctl disable containerd.service docker.socket docker.service docker-distribution.service --now; sudo systemctl daemon-reload; sudo systemctl daemon-reexec'
 
 alias dckr_ls_redis='docker container ls --filter label=redis'

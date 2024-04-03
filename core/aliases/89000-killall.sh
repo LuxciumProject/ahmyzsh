@@ -9,6 +9,7 @@ alias kkwrite='killall kwrite'
 alias kgwenview='killall gwenview'
 
 function killmore() {
+    nohup bash -c "
     (
 
         sleep 0.125
@@ -37,8 +38,9 @@ function killmore() {
 
     sleep 1.75
     kkonsole
+    " >/dev/null 2>&1 &
 }
-
+# >/dev/null 2>&1 &
 # alias killmore=''
 alias killmorecode='(sleep 1.5; kcode) & killmore'
 alias killcodemore='(sleep 1.5; kcode) & killmore'
@@ -52,3 +54,5 @@ alias killdolphin='kdolphin'
 alias killcode='kcode'
 alias killkwrite='kkwrite'
 alias killgwenview='kgwenview'
+
+alias reboot='(sleep 1.45; /sbin/reboot) & killcodemore'
