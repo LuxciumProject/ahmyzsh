@@ -4,7 +4,7 @@
 # export CONDA3="${_CONDA3}/bin"
 # export LD_LIBRARY_PATH="${_CONDA3}/lib"${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
-export CUDA_VERSION="cuda-12.3"
+export CUDA_VERSION="cuda-12.4"
 export CUDA_HOME="/usr/local/${CUDA_VERSION}"
 # export CUDA_PATH="/usr/local/${CUDA_VERSION}"
 
@@ -153,9 +153,9 @@ function __compute_extended_path() {
     add_to_path_ "${HOME}/.rbenv/bin"
     # call_ rbenv_
     # add_to_path_ "${RBENV_PATH}"
-    add_to_path_ /home/luxcium/mystic-mercury/bin
     call_ conda_init_esoteric-argentum
     # call_ usenvm
+    add_to_path_ "${CUDA_BIN}"
     call_ rbenv_
     call_ rust_up_
     # add_to_path_ "${HOME}/.nvm"
@@ -166,6 +166,7 @@ function __compute_extended_path() {
     add_to_path_ "${HOME}/.config/yarn/global/node_modules/.bin"
     add_to_path_ "${HOME}/.local/bin"
     add_to_path_ "${FNM_PATH}"
+    append_to_path_ "${HOME}/.bun/bin"
     add_to_path_ "${HOME}/bin"
     export LD_LIBRARY_PATH="/usr/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"
     export LD_LIBRARY_PATH="${CUDA_LIB}${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"
@@ -179,7 +180,6 @@ function __dedup_path() {
 }
 
 function set_path() {
-    # __compute_base_path
     __append_bin_to_path
     add_to_path_ '/home/luxcium/.local/share/fnm'
     add_to_path_ eval "$(fnm env)"

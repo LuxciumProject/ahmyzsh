@@ -11,8 +11,8 @@ ICON_FILE="/home/luxcium/.local/share/icons/vscode-material-icon-theme/folder-gl
 WM_CLASS="°MonoRepoONE°"
 VSCODE_PROJECT_PATH="/projects/monorepo-one/monorepo-one.code-workspace"
 
-kstart5 --qwindowicon "${ICON_FILE}" --windowclass "${WM_CLASS}" --currentdesktop --activate "${APP_PATH}" "${VSCODE_PROJECT_PATH}"
-
+# kstart5 --qwindowicon "${ICON_FILE}" --windowclass "${WM_CLASS}" --currentdesktop --activate "${APP_PATH}" --max-memory=8192 "${VSCODE_PROJECT_PATH}"
+kstart5 --qwindowicon "${ICON_FILE}" --windowclass "${WM_CLASS}" --currentdesktop --activate -- "${APP_PATH}" --max-memory=4096 "${VSCODE_PROJECT_PATH}"
 #--args "--new-window --project ${VSCODE_PROJECT_PATH}"
 
 # kstart5 \

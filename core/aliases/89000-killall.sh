@@ -9,41 +9,42 @@ alias kkwrite='killall kwrite'
 alias kgwenview='killall gwenview'
 
 function killmore() {
-    nohup bash -c "
-    (
+
+    nohup bash -c "(
 
         sleep 0.125
-        kkwrite
+        killall kwrite
     ) &
 
     (
         sleep 0.25
-        kgwenview
+        killall gwenview
     ) &
 
     (
         sleep 0.5
-        kchrome
+        killall chrome || killall chrome-stable
     ) &
 
     (
         sleep 1
-        kdolphin
+        killall dolphin
     ) &
 
     (
         sleep 1.25
-        kmsedge
+        killall msedge
     ) &
 
     sleep 1.75
-    kkonsole
-    " >/dev/null 2>&1 &
+    killall konsole
+
+    )" >/dev/null 2>&1 &
 }
 # >/dev/null 2>&1 &
 # alias killmore=''
-alias killmorecode='(sleep 1.5; kcode) & killmore'
-alias killcodemore='(sleep 1.5; kcode) & killmore'
+alias killmorecode='nohup bash -c "(sleep 1.5; killall code)" >/dev/null 2>&1 & killmore'
+alias killcodemore='nohup bash -c "(sleep 1.5; killall code)" >/dev/null 2>&1 & killmore'
 
 alias killchrome='kchrome'
 alias killmsedge='kmsedge'
@@ -55,4 +56,4 @@ alias killcode='kcode'
 alias killkwrite='kkwrite'
 alias killgwenview='kgwenview'
 
-alias reboot='(sleep 1.45; /sbin/reboot) & killcodemore'
+alias reboot='nohup bash -c "(sleep 2; /sbin/reboot)" >/dev/null 2>&1 & nohup bash -c "(sleep 1.25; killall code)" >/dev/null 2>&1 & killmore &'
