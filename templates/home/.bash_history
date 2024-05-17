@@ -4,20 +4,20 @@ which sh
 echo $PATH
 sh -v
 exit 1
-. /home/luxcium/ahmyzsh/MAIN.sh
-source  /home/luxcium/ahmyzsh/MAIN.sh
-source  /home/luxcium/ahmyzsh/MAIN.sh
+. ${AHMYZSH}/MAIN.sh
+source  ${AHMYZSH}/MAIN.sh
+source  ${AHMYZSH}/MAIN.sh
 bash
 echo $IS_BASH_
 IS_BASH_="$(ps -o comm= -p $$ | grep 'bash')"
 echo $IS_BASH_
 echo $IS_BASH_
 echo $IS_ZSH_ $IS_BASH_
-source  /home/luxcium/ahmyzsh/MAIN.sh
+source  ${AHMYZSH}/MAIN.sh
 echo $IS_ZSH_ $IS_BASH_
 SCIENTIA_ES_LUX_PRINCIPIUM
 echo $IS_ZSH_ $IS_BASH_
-source  /home/luxcium/ahmyzsh/MAIN.sh
+source  ${AHMYZSH}/MAIN.sh
 SCIENTIA_ES_LUX_PRINCIPIUM
 SCIENTIA_ES_LUX_PRINCIPIUM
 SCIENTIA_ES_LUX_PRINCIPIUM
@@ -34,22 +34,22 @@ Bash_Login_Start
 function isloginshell() { #+ I'm a login shell
   if [[ -o login ]]; then     echostdout "I'm a login shell"       && return 0;   else     echostderr "I'm a non login shell"       && return 1;   fi }
 isloginshell
-source /etc/zshenv 
+source /etc/zshenv
 SCIENTIA_ES_LUX_PRINCIPIUM
 SCIENTIA_ES_LUX_PRINCIPIUM
 SCIENTIA_ES_LUX_PRINCIPIUM
-source /etc/zshenv 
+source /etc/zshenv
 SCIENTIA_ES_LUX_PRINCIPIUM
-source /etc/zshenv 
+source /etc/zshenv
 SCIENTIA_ES_LUX_PRINCIPIUM
 SCIENTIA_ES_LUX_PRINCIPIUM
-source /etc/zshenv 
+source /etc/zshenv
 ps -o comm= -p $$ | grep 'bash'
 echo $IS_BASH_
 [ -z "${IS_BASH_}" ] && echo bash
 [ -z "${IS_BASH_}" ] ||  echo bash
 echo "$(ps -o comm= -p $$ | grep 'zsh')"
-source /etc/zshenv 
+source /etc/zshenv
 SCIENTIA_ES_LUX_PRINCIPIUM
 SCIENTIA_ES_LUX_PRINCIPIUM
 SCIENTIA_ES_LUX_PRINCIPIUM
@@ -99,4 +99,4 @@ zsh -c env
 sudo reboot
 zsh -x
 env
-echo $PKG_CONFIG_PATH 
+echo $PKG_CONFIG_PATH

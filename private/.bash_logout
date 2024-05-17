@@ -1,0 +1,1 @@
+/home/luxcium/.bash_logout

@@ -224,9 +224,9 @@ function rust_up_() {
   source "$HOME/.cargo/env"
 }
 
-function conda_() {
-  load_ "${AHMYZSH}/core/compute-path/conda-initialize.sh" "conda_init_minerva3"
-}
+# function conda_() {
+#   load_ "${AHMYZSH}/core/compute-path/conda-initialize.sh" "conda_init_minerva3"
+# }
 
 function getstamp_() {
 

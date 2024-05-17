@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+CURRENT=19
+
+fnm unalias Hydrogen
+fnm unalias lts-hydrogen
+fnm unalias lts
+
+fnm install 18
+
+fnm default 18
+fnm alias 18 active
+
+fnm alias 18 lts-hydrogen
+fnm alias 18 lts
+fnm alias 18 Hydrogen
+
+fnm unalias current
+fnm install ${CURRENT}
+fnm alias ${CURRENT} current
+
+fnm unalias Argon
+fnm unalias Boron
+fnm unalias Carbon
+fnm unalias Dubnium
+fnm unalias Erbium
+fnm unalias Fermium
+fnm unalias Gallium
+
+fnm unalias eol-argon
+fnm unalias eol-boron
+fnm unalias eol-carbon
+fnm unalias eol-dubnium
+fnm unalias eol-erbium
+fnm unalias maintenance-fermium
+fnm unalias maintenance-gallium
+
+fnm install 4
+fnm install 6
+fnm install 8
+fnm install 10
+fnm install 12
+fnm install 14
+fnm install 16
+
+fnm alias 4 Argon
+fnm alias 6 Boron
+fnm alias 8 Carbon
+fnm alias 10 Dubnium
+fnm alias 12 Erbium
+
+fnm alias 4 eol-argon
+fnm alias 6 eol-boron
+fnm alias 8 eol-carbon
+fnm alias 10 eol-dubnium
+fnm alias 12 eol-erbium
+fnm alias 14 Fermium
+fnm alias 14 maintenance-fermium
+fnm alias 16 Gallium
+fnm alias 16 maintenance-gallium
+
+fnm list

@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-source $HOME/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
 (
   sleep 2.5
@@ -22,7 +22,7 @@ enable_systemctl up
 
 # #     (
 
-# #       source /home/luxcium/ahmyzsh/core/functions/00000-upnboot.sh
+# #       source ${AHMYZSH}/core/functions/00000-upnboot.sh
 # #       _dnf_makecache_auto_update
 # #       _dnf_makecache_all
 # #     ) && (
@@ -38,7 +38,7 @@ enable_systemctl up
 # # (
 
 #   (
-#     code-insiders /home/luxcium/ahmyzsh
+#     code-insiders ${AHMYZSH}
 #       sudo ionice -c 2 -n 1 -p $(
 #     pidof -w -x code-insiders
 #   )
@@ -141,7 +141,6 @@ enable_systemctl up
 #     (
 #       (
 #         fnm install 16
-
 
 #     fnm use default && (
 
@@ -259,7 +258,6 @@ enable_systemctl up
 # sleep 1.105)&
 # clear
 
-
 # # echo "play_zelda_button-toggle-off"
 # # sleep 0.243
 # # play_zelda_button-toggle-off
@@ -298,8 +296,6 @@ enable_systemctl up
 # # play_zoom
 # # sleep 1.105
 
-
-
 # # && (
 # #   play_zelda_button-toggle-on &
 # # ) || (
@@ -312,7 +308,7 @@ enable_systemctl up
 
 # #     (
 
-# #       source /home/luxcium/ahmyzsh/core/functions/00000-upnboot.sh
+# #       source ${AHMYZSH}/core/functions/00000-upnboot.sh
 # #       _dnf_makecache_auto_update
 # #       _dnf_makecache_all
 # #     ) && (
@@ -328,7 +324,7 @@ enable_systemctl up
 # # (
 
 #   (
-#     code-insiders /home/luxcium/ahmyzsh
+#     code-insiders ${AHMYZSH}
 #       sudo ionice -c 2 -n 1 -p $(
 #     pidof -w -x code-insiders
 #   )
@@ -429,7 +425,6 @@ enable_systemctl up
 #     (
 #       (
 #         fnm install 16
-
 
 #     fnm use default && (
 
@@ -544,7 +539,6 @@ enable_systemctl up
 # # play_zelda_buddylogout1
 # # sleep 1.105)&
 # # clear
-
 
 # # echo "play_zelda_button-toggle-off"
 # # sleep 0.243

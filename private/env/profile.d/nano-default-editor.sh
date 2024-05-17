@@ -1,0 +1,1 @@
+/etc/profile.d/nano-default-editor.sh

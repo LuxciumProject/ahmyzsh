@@ -1,5 +1,7 @@
 #!/bin/bash
 # source "${AHMYZSH}/themes/colors.sh"
+script_dir="$(dirname "$(readlink -f "$0")")"
+# Shellcheck source="$script_dir/banne_like.sh"
 
 function LEADERBOARD() {
 
@@ -21,8 +23,10 @@ function LEADERBOARD() {
 # This is free software, and you are welcome to redistribute it
 # under certain conditions.
 
-function leaderOne() {
-  echo -e "\u001b[3A"
+function leaderOne_() {
+  [ "${VERBOSA}" -gt 0 ] || echo -e '\u001b[1J'
+  [ "${VERBOSA}" -gt 0 ] || echo -e '\u001b[3J'
+  [ "${VERBOSA}" -gt 0 ] || echo -e -n '\u001b[2J\u001b[H'
   # echo -e "${COL}                                                                                ${CE}"
   echo -e "${BCOL}${BCOL}${BCOL}${BCOL}${BCOL}${BCOL}${BCOL}${BCOL}${CE}"
   echo -e "${COL}       ${RS}${bold} † Scientia es lux principium✨ ™${normal}${COL}                                        ${CE}"
@@ -39,10 +43,35 @@ function leaderOne() {
 
 }
 
+function leaderOne() {
+  # echo -e "\u001b[3A"
+  [ "${VERBOSA}" -gt 0 ] || echo -e '\u001b[1J'
+  [ "${VERBOSA}" -gt 0 ] || echo -e '\u001b[3J'
+  [ "${VERBOSA}" -gt 0 ] || echo -e -n '\u001b[2J\u001b[H'
+
+  # echo -e "${COL}                                                                                ${CE}"
+  echo -e "${BCOL}${BCOL}${BCOL}${BCOL}${BCOL}${BCOL}${BCOL}${BCOL}${CE}"
+  echo -e "${COL}       ${RS}${bold} † Scientia es lux principium✨ ™${normal}${COL}                                        ${CE}"
+  echo -ne "${COL}                                                ${BS}${TIME_TO_PATH_STR}$COL            ${CE}"
+  # print_banner
+  source "$script_dir/banne_like.sh"
+  # echo ''
+  # echo -e "${COL}         █████╗ ██╗  ██╗  ███╗   ███╗██╗   ██╗  ███████╗███████╗██╗  ██╗        ${CE}"
+  # echo -e "${COL}        ██╔══██╗██║  ██║  ████╗ ████║╚██╗ ██╔╝  ╚══███╔╝██╔════╝██║  ██║        ${CE}"
+  # echo -e "${COL}        ███████║███████║  ██╔████╔██║ ╚████╔╝     ███╔╝ ███████╗███████║        ${CE}"
+  # echo -e "${COL}        ██╔══██║██╔══██║  ██║╚██╔╝██║  ╚██╔╝     ███╔╝  ╚════██║██╔══██║        ${CE}"
+  # echo -e "${COL}        ██║  ██║██║  ██║  ██║ ╚═╝ ██║   ██║     ███████╗███████║██║  ██║        ${CE}"
+  # echo -e "${COL}        ╚═╝  ╚═╝╚═╝  ╚═╝  ╚═╝     ╚═╝   ╚═╝     ╚══════╝╚══════╝╚═╝  ╚═╝        ${CE}"
+  echo -e "${COL}        ${START_UP_TIME}${COL}                                                    ${CE}"
+  echo -e "${COL}                                                ${bold}${WHS}by${COL}  ${YS}L·U·X·C·I·U·M${COL}               ${CE}"
+  echo -e "${COLB}${COLB}${COLB}${COLB}${COLB}${COLB}${COLB}${COLB}${CE}"
+
+}
+
 function leaderTwo() {
   _SPACER=" "
-  _SPACE="$((((($(stty size | cut -d' ' -f2) - 40) / 2) - 1)))"
-  [ "${_SPACE}" -ge "11" ] && _SPACE="$(((_SPACE / 2)))"
+  _SPACE="$(((($(stty size | cut -d' ' -f2) - 40) / 2) - 1))"
+  [ "${_SPACE}" -ge "11" ] && _SPACE="$((_SPACE / 2))"
   [ "${_SPACE}" -ge "0" ] && _SP=" "
   _Sx=$(perl -E "say '${_SPACER}' x ${_SPACE}")
 

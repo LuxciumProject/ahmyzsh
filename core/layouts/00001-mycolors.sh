@@ -93,7 +93,7 @@ export BBG107w="${ansiBrightWhiteFG}"
 # This program comes with ABSOLUTELY NO WARRANTY.
 # This is free software, and you are welcome to redistribute it
 # under certain conditions.
-source /home/luxcium/ahmyzsh/core/layouts/00000-layouts.sh
+source ${AHMYZSH}/core/layouts/00000-layouts.sh
 # echo -e ""
 # VERSION="2.1.4"
 # # color end

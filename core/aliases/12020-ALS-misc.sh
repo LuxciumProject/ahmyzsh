@@ -1,6 +1,11 @@
 #!/bin/bash
 
-alias shtop="sudo ionice -c 3 nice -n -15 htop -d 5"
+alias shtop="sudo ionice -c 3 nice -n -15 /usr/bin/shtop -d 5"
+
+alias renicecode='sudo renice -n -15 $(pidof code)'
+alias renicecodemore='sudo renice -n -20 -g $(pidof code)'
+alias nicecodeless='sudo renice -n 5 -g $(pidof code)'
+alias nicecode='sudo renice -n 5 $(pidof code)'
 
 alias a80='echo "1-------10--------20--------30--------40--------50--------60--------70--------80!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"'
 alias a120='echo "1-------10--------20--------30--------40--------50--------60--------70--------80--------90-------100-------110-------120!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"'
@@ -8,11 +13,14 @@ alias a120='echo "1-------10--------20--------30--------40--------50--------60--
 alias scientia='echo † Scientia es lux principium✨ ™'
 alias gitscientia="git commit -am '† Scientia es lux principium✨ ™'"
 alias gitscientia_initi="git commit -am '†Scientia es lux principium✨ ™ ― initial commit...'"
+alias xscientia='echo "† Scientia es lux principium✨ ™" | tee >(xclip -selection clipboard)'
 
 # lynis --pentest
 # sudo chkrootkit
 # sudo rkhunter -c --sk
-
+alias redis_run_6383='/projects/monorepo-one/services/image-scout/docker_run_redis'
+alias redis_start_6383='/projects/monorepo-one/examples/phash-scout/scripts/start_6383.sh'
+alias start_6383='/projects/monorepo-one/examples/phash-scout/scripts/start_6383.sh'
 function ctrl() {
   echo "'Tab' Auto complete"
   echo ""

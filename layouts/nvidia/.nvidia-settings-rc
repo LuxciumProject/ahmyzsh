@@ -1,8 +1,8 @@
 #
-# /home/luxcium/ahmyzsh/layouts/nvidia/.nvidia-settings-rc
+# /ahmyzsh/layouts/nvidia/.nvidia-settings-rc
 #
 # Configuration file for nvidia-settings - the NVIDIA Settings utility
-# Generated on Sun Jan 22 16:12:10 2023
+# Generated on Thu Jul 27 08:12:08 2023
 #
 
 # ConfigProperties:
@@ -12,24 +12,24 @@ DisplayStatusBar = Yes
 SliderTextEntries = Yes
 IncludeDisplayNameInConfigFile = Yes
 UpdateRulesOnProfileNameChange = Yes
-Timer = PowerMizer_Monitor_(GPU_1),Yes,1000
-Timer = Thermal_Monitor_(GPU_1),Yes,1000
-Timer = Memory_Used_(GPU_1),Yes,3000
-Timer = PowerMizer_Monitor_(GPU_0),Yes,1000
-Timer = Thermal_Monitor_(GPU_0),Yes,1000
 Timer = Memory_Used_(GPU_0),Yes,3000
+Timer = Thermal_Monitor_(GPU_0),Yes,1000
+Timer = PowerMizer_Monitor_(GPU_0),Yes,1000
+Timer = Memory_Used_(GPU_1),Yes,3000
+Timer = Thermal_Monitor_(GPU_1),Yes,1000
+Timer = PowerMizer_Monitor_(GPU_1),Yes,1000
 
 # Attributes:
 
 corsair-one:0.0/SyncToVBlank=1
 corsair-one:0.0/LogAniso=4
-corsair-one:0.0/FSAA=11
+corsair-one:0.0/FSAA=10
 corsair-one:0.0/TextureClamping=1
 corsair-one:0.0/FXAA=0
 corsair-one:0.0/AllowFlipping=1
 corsair-one:0.0/FSAAAppControlled=0
 corsair-one:0.0/LogAnisoAppControlled=0
-corsair-one:0.0/OpenGLImageSettings=3
+corsair-one:0.0/OpenGLImageSettings=1
 corsair-one:0.0/FSAAAppEnhanced=0
 corsair-one:0.0/ShowGraphicsVisualIndicator=0
 corsair-one:0.0/XVideoSyncToDisplayID=DP-2
@@ -50,8 +50,8 @@ corsair-one:0[DPY:DP-0]/GreenGamma=1.000000
 corsair-one:0[DPY:DP-0]/BlueGamma=1.000000
 corsair-one:0[DPY:DP-0]/Dithering=1
 corsair-one:0[DPY:DP-0]/DitheringMode=3
-corsair-one:0[DPY:DP-0]/DitheringDepth=1
-corsair-one:0[DPY:DP-0]/DigitalVibrance=0
+corsair-one:0[DPY:DP-0]/DitheringDepth=2
+corsair-one:0[DPY:DP-0]/DigitalVibrance=127
 corsair-one:0[DPY:DP-0]/ColorSpace=0
 corsair-one:0[DPY:DP-0]/ColorRange=0
 corsair-one:0[DPY:DP-0]/SynchronousPaletteUpdates=0
@@ -72,8 +72,8 @@ corsair-one:0[DPY:DP-2]/GreenGamma=1.000000
 corsair-one:0[DPY:DP-2]/BlueGamma=1.000000
 corsair-one:0[DPY:DP-2]/Dithering=1
 corsair-one:0[DPY:DP-2]/DitheringMode=3
-corsair-one:0[DPY:DP-2]/DitheringDepth=1
-corsair-one:0[DPY:DP-2]/DigitalVibrance=0
+corsair-one:0[DPY:DP-2]/DitheringDepth=2
+corsair-one:0[DPY:DP-2]/DigitalVibrance=127
 corsair-one:0[DPY:DP-2]/ColorSpace=0
 corsair-one:0[DPY:DP-2]/ColorRange=0
 corsair-one:0[DPY:DP-2]/SynchronousPaletteUpdates=0
@@ -137,7 +137,7 @@ corsair-one:0[DPY:DP-1-5]/DitheringDepth=0
 corsair-one:0[DPY:DP-1-5]/ColorSpace=0
 corsair-one:0[DPY:DP-1-5]/ColorRange=0
 corsair-one:0[DPY:DP-1-5]/SynchronousPaletteUpdates=0
-[GPU:0]/GPUPowerMizerMode=1
-[GPU:0]/GPULogoBrightness=10
-[GPU:1]/GPUPowerMizerMode=2
-[GPU:1]/GPULogoBrightness=10
+[GPU:0]/GPUPowerMizerMode=0
+[GPU:0]/GPULogoBrightness=40
+[GPU:1]/GPUPowerMizerMode=0
+[GPU:1]/GPULogoBrightness=60

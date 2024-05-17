@@ -120,8 +120,8 @@ alias rdharddry='rdfind -n true -deterministic true -followsymlinks true -remove
 # alias apt-get='sudo nice -n -15 ionice -c 2 -n 3 dnf'
 # alias apt='sudo nice -n -15 ionice -c 2 -n 3 dnf'
 # alias dnf='sudo nice -n -15 ionice -c 2 -n 3 apt'
-alias ahmy='code ~/ahmyzsh'
-alias myzsh='code ~/ahmyzsh'
+alias ahmy='code /ahmyzsh'
+alias myzsh='code /ahmyzsh'
 alias testtext='echo "0OoLl1IiGQgq;&function;=>*const;fi;!@ ( ) [ ] { } « » < > (‽)-?"'
 
 alias c16x9='echo "0.5625 or 1.7777777778"'

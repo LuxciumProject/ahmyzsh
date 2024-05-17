@@ -167,13 +167,13 @@ function load_my_powerlevel10k() {
         if [ "${1}" = 'off' ]; then
             left_prompt_off
             return 0
-            elif [ "${1}" = 'on' ]; then
+        elif [ "${1}" = 'on' ]; then
             left_prompt_on
             return 0
-            elif [ $PL10K_LEFT_PROMPT_ON = 'true' ]; then
+        elif [ $PL10K_LEFT_PROMPT_ON = 'true' ]; then
             left_prompt_off
             return 0
-            elif [ $PL10K_LEFT_PROMPT_OFF = 'true' ]; then
+        elif [ $PL10K_LEFT_PROMPT_OFF = 'true' ]; then
             left_prompt_on
             return 0
         fi
@@ -185,17 +185,17 @@ function load_my_powerlevel10k() {
         export PL10K_RIGHT_PROMPT_OFF='false'
         function pl10k_right_prompt_loader() {
             export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
-                rbenv      # ruby version from rbenv (https://github.com/rbenv/rbenv)
-                newline    # !! ============[ Line #1 ]============================
                 custom_tsx #
                 custom_tsc
                 custom_tsx #
+                rbenv      # ruby version from rbenv (https://github.com/rbenv/rbenv)
+                newline    # !! ============[ Line #2 ]============================
+                anaconda   # conda environment (https://conda.io/)
                 newline    # !! ============[ Line #1 ]============================
                 custom_js  #
                 custom_npm #
                 node_version
-                # custom_tsc      #
-                # newline         # !! ============[ Line #1 ]============================
+                # custom_tsc      #1
                 # custom_tsx      #
                 # custom_npm      #
                 # node_version    # node.js version
@@ -203,7 +203,7 @@ function load_my_powerlevel10k() {
                 # newline         # !! ============[ Line #2 ]============================
                 # custom_pyt      #
                 # rbenv           # ruby version from rbenv (https://github.com/rbenv/rbenv)
-                # anaconda        # conda environment (https://conda.io/)
+                # newline         # !! ============[ Line #3 ]============================
                 # background_jobs # presence of background jobs
             )
             return 0
@@ -225,11 +225,13 @@ function load_my_powerlevel10k() {
         export PL10K_RIGHT_PROMPT_OFF='true'
         function pl10k_right_prompt_loader() {
             export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
-                rbenv      # ruby version from rbenv (https://github.com/rbenv/rbenv)
-                newline    # !! ============[ Line #1 ]============================
+                ''
                 custom_tsx #
                 custom_tsc
                 custom_tsx #
+                rbenv      # ruby version from rbenv (https://github.com/rbenv/rbenv)
+                newline    # !! ============[ Line #2 ]============================
+                anaconda   # conda environment (https://conda.io/)
                 newline    # !! ============[ Line #1 ]============================
                 custom_js  #
                 custom_npm #
@@ -255,28 +257,29 @@ function load_my_powerlevel10k() {
         if [ "${1}" = 'off' ]; then
             right_prompt_off
             return 0
-            elif [ "${1}" = 'on' ]; then
+        elif [ "${1}" = 'on' ]; then
             right_prompt_on
             return 0
-            elif [ $PL10K_RIGHT_PROMPT_ON = 'true' ]; then
+        elif [ $PL10K_RIGHT_PROMPT_ON = 'true' ]; then
             right_prompt_off
             return 0
-            elif [ $PL10K_RIGHT_PROMPT_OFF = 'true' ]; then
+        elif [ $PL10K_RIGHT_PROMPT_OFF = 'true' ]; then
             right_prompt_on
             return 0
         fi
         return 3
     }
-
+    #  $(print -P '%F{#dadada}red%f'.
     function load_pl10K() {
         export TS_ICON=$'\uf071'
         export JS_BG='yellow'
         export JS_FG='black'
-        export NODE_BG='green'
-        export NODE_FG='black'
-        export NPM_BG='green'
-        export NPM_FG='black'
+        export NODE_FG='green'
+        export NODE_BG='black'
+        export NPM_FG='red'
+        export NPM_BG='black'
         export TS_FG='black'
+        export THIS_WHITE='253'
 
         export TS_ICON='$TS_ICO'
         export TS_BG='blue'
@@ -301,12 +304,15 @@ function load_my_powerlevel10k() {
         export POWERLEVEL9K_RBENV_FOREGROUND='red'
         export POWERLEVEL9K_RBENV_BACKGROUND='black'
 
+        export POWERLEVEL9K_ANACONDA_FOREGROUND='yellow'
+        export POWERLEVEL9K_ANACONDA_BACKGROUND='black'
+
         export POWERLEVEL9K_COLOR_SCHEME='dark'
         export POWERLEVEL9K_BACKGROUND_JOBS_VERBOSE=false
         export POWERLEVEL9K_BACKGROUND_JOBS_VERBOSE_ALWAYS=false
 
         export POWERLEVEL9K_TIME_FORMAT='%D{%H:%M:%S}'
-        export POWERLEVEL9K_TIME_FOREGROUND='white'
+        export POWERLEVEL9K_TIME_FOREGROUND=$THIS_WHITE # !! THIS_WHITE
         export POWERLEVEL9K_TIME_BACKGROUND='black'
 
         export POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
@@ -338,16 +344,16 @@ function load_my_powerlevel10k() {
         export POWERLEVEL9K_DIR_ETC_ICON=$'\uf085'
         # dir - HOME
         export POWERLEVEL9K_DIR_HOME_BACKGROUND='blue'
-        export POWERLEVEL9K_DIR_HOME_FOREGROUND='black'
+        export POWERLEVEL9K_DIR_HOME_FOREGROUND=$THIS_WHITE # !! THIS_WHITE
         # dir - HOME_SUBFOLDER
         export POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='blue'
-        export POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='black'
+        export POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND=$THIS_WHITE # !! THIS_WHITE
         # dir - DEFAULT
         export POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='blue'
-        export POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='black'
+        export POWERLEVEL9K_DIR_DEFAULT_FOREGROUND=$THIS_WHITE # !! THIS_WHITE
         # dir - ETC
         export POWERLEVEL9K_DIR_ETC_BACKGROUND='blue'
-        export POWERLEVEL9K_DIR_ETC_FOREGROUND='black'
+        export POWERLEVEL9K_DIR_ETC_FOREGROUND=$THIS_WHITE # !! THIS_WHITE
 
         # Create prompt section
         # export POWERLEVEL9K_CUSTOM_PROMPT='echo -n '.''
@@ -383,14 +389,14 @@ function load_my_powerlevel10k() {
         export POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR="${LEFT_SEPRATOR}"
         export POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR="${RIGHT_SEPRATOR}"
 
-        export POWERLEVEL9K_CUSTOM_NODE_FOREGROUND='black'
+        export POWERLEVEL9K_CUSTOM_NODE_FOREGROUND=$NODE_FG
         export POWERLEVEL9K_CUSTOM_NODE_BACKGROUND=$NODE_BG
 
-        export POWERLEVEL9K_CUSTOM_NPMR_FOREGROUND='black'
+        export POWERLEVEL9K_CUSTOM_NPMR_FOREGROUND=$NPM_FG
         export POWERLEVEL9K_CUSTOM_NPMR_BACKGROUND=$NPM_BG
 
-        export POWERLEVEL9K_CUSTOM_NPM_FOREGROUND=$NPM_BG
-        export POWERLEVEL9K_CUSTOM_NPM_BACKGROUND='black'
+        export POWERLEVEL9K_CUSTOM_NPM_FOREGROUND=$NPM_FG
+        export POWERLEVEL9K_CUSTOM_NPM_BACKGROUND=$NPM_BG
 
         export POWERLEVEL9K_CUSTOM_TS_FOREGROUND='black'
         export POWERLEVEL9K_CUSTOM_TS_BACKGROUND=$TS_BG

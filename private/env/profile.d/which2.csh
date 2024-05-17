@@ -1,0 +1,1 @@
+/etc/profile.d/which2.csh

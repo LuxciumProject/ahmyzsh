@@ -1,6 +1,6 @@
-#!/bin/zsh
-source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
-# cat /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+#!/usr/bin/env bash
+source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
+# cat ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
 # sleep 1
 # echo "play_001"

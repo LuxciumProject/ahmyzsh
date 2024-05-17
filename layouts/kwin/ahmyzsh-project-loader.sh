@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # File name: "ahmyzsh-project-loader.sh"
-# File location "/home/luxcium/ahmyzsh/layouts/kwin/ahmyzsh-project-loader.sh"
+# File location "${AHMYZSH}/layouts/kwin/ahmyzsh-project-loader.sh"
 
 # Using KDE kstart5 to launch Visual Studio Code with a specific project
 
@@ -10,18 +10,11 @@
 # the mos important thing to consider whne usinc copilot is not oly yhe top_p but mor important is to consider top_k and the temperature setting
 # one other consideration is to make sure copilot can analyse all your codebase by setting the max codebase size to 0 as there is no limit to the size of codebase that can be used you can change this setting in the copilot settings menu or by editing the settings json file in your home directory. this is an example of how to do it: { "copilot": { "max_codebase_size": 0 } }
 
-
-
-
-
-
-
-
 true
 APP_PATH="/home/luxcium/main-vscode/bin/code"
 ICON_FILE="/home/luxcium/.local/share/icons/vscode-material-icon-theme/folder-vm-open.svg"
 WM_CLASS="°Ah! MYZSH°"
-VSCODE_PROJECT_PATH="/home/luxcium/ahmyzsh"
+VSCODE_PROJECT_PATH="/ahmyzsh"
 
 kstart5 --qwindowicon "${ICON_FILE}" --windowclass "${WM_CLASS}" --currentdesktop --activate "${APP_PATH}" "${VSCODE_PROJECT_PATH}"
 
@@ -57,8 +50,8 @@ kstart5 --qwindowicon "${ICON_FILE}" --windowclass "${WM_CLASS}" --currentdeskto
 # _NET_WM_BYPASS_COMPOSITOR(CARDINAL) = 2
 # _GTK_THEME_VARIANT(UTF8_STRING) = "dark"
 # _GTK_HIDE_TITLEBAR_WHEN_MAXIMIZED(CARDINAL) = 1
-# __WM_NAME(UTF8_STRING) = "°Ah! MYZSH° ✨Visual Studio Code✨ ~/ahmyzsh zsh"
-# _NET_WM_NAME(UTF8_STRING) = "°Ah! MYZSH° ✨Visual Studio Code✨ ~/ahmyzsh zsh"
+# __WM_NAME(UTF8_STRING) = "°Ah! MYZSH° ✨Visual Studio Code✨ /ahmyzsh zsh"
+# _NET_WM_NAME(UTF8_STRING) = "°Ah! MYZSH° ✨Visual Studio Code✨ /ahmyzsh zsh"
 # __WM_WINDOW_ROLE(STRING) = "browser-window"
 # __WM_CLASS(STRING) = "code", "Code"
 # _NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_NORMAL

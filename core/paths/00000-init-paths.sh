@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export AHMYZSH=${AHMYZSH:="${HOME}/ahmyzsh"}
+export AHMYZSH=${AHMYZSH:="/ahmyzsh"}
 export AHMYZSH_CACHE=${AHMYZSH_CACHE:="${HOME}/.cache/ahmyzsh"}
 export CACHED_PATH=${CACHED_PATH:="${AHMYZSH_CACHE}/path.env"}
 export MAIN_BOOTSTRAP=${MAIN_BOOTSTRAP:="${AHMYZSH}/MAIN.sh"}
@@ -35,6 +35,16 @@ export MY_MULTIMEDIA="${AHMYZSH}/multimedia"
   export MY_SOUNDS="${MY_MULTIMEDIA}/sounds"
 }
 
+function comfyui() {
+  cd /home/luxcium/seagate/stable-diffusion-models/ComfyUI/ || return 15
+  conda activate sdxl
+  return
+}
+function auto1111() {
+  cd /home/luxcium/seagate/stable-diffusion-models/stable-diffusion-webui || return 15
+  conda activate sdxl
+  return
+}
 export CUSTOM_TMUX="${AHMYZSH}/tmux"
 # . "${CUSTOM_TMUX}/paths.sh"
 # {
@@ -57,7 +67,7 @@ export CUSTOM_TMUX="${AHMYZSH}/tmux"
 #   }
 # }
 
-# # /home/luxcium/ahmyzsh/core
+# # ${AHMYZSH}/core
 
 # # export CORE_FUNCTIONS="${AHMYZSH_CORE}/functions.1"
 # # export CORE_FUNCTIONS="${AHMYZSH_CORE}/functions.2"

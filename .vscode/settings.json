@@ -8,9 +8,32 @@
   /*
   |-···――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――···-|
   */
+  "search.exclude": {
+    "**/*.zwc": true,
+    "powerlevel10k": false,
+    "ohmyzsh": false,
+    "powerline": false,
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true,
+    "plugins": true,
+    "archive": true,
+    "src": false,
+    "docs": true,
+    ".history": true,
+    ".cache": true,
+    "dist": true,
+    "build": true,
+    "out": true
+  },
   "files.exclude": {
-    /*     ".cache": true,
+    ".Trash-1000": true,
+    "ohmyzsh": true,
     ".directory": true,
+    "powerlevel10k": true,
+    "**/*.zwc": true,
+    "node_modules": true,
+    /*     ".cache": true,
     ".history": true,
     "assets": true,
     "build": true,
@@ -19,7 +42,7 @@
     "enums": true,
     "lib": true,
     "misc": true,
-    "out": true, */
+    "out": true,
     ".cache": true,
     ".editorconfig": false,
     ".env": false,
@@ -35,8 +58,6 @@
     ".prettierrc": false,
     ".travis.yml": true,
     ".vscode": false,
-    "**/.directory": true,
-    "**/*.zwc": true,
     "archive": true,
     "archives": true,
     "assets": true,
@@ -53,37 +74,19 @@
     "lib": true,
     "LICENSE": false,
     "misc": true,
-    "node_modules": true,
     "nohup.out": true,
-    "ohmyzsh": true,
     "out": true,
     "package.backup.json": false,
     "package.json": false,
-    "powerlevel10k": true,
-    "powerline": true,
+    "powerline": false,
     "README.md": false,
     "scripts": false,
     "src": false,
     "tsconfig.json": false,
     "yarn.lock": false,
-  },
-  "search.exclude": {
-    // "**/*.zwc": true,
-    "powerlevel10k": false,
-    "ohmyzsh": true,
-    "powerline": true,
-    "**/node_modules": true,
-    "**/bower_components": true,
-    "**/*.code-search": true,
-    "plugins": true,
-    "archive": true,
-    "src": false,
-    "docs": true,
-    ".history": true,
-    ".cache": true,
-    "dist": true,
-    "build": true,
-    "out": true
+    */
+    //  "**/.directory": true,
+    //  "**/*.zwc": true,
   },
   /*
   |-···――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――···-|
@@ -285,18 +288,12 @@
     "hideFromStatusBar": true,
     "hideFromTree": true,
     "icon": "alert",
-    "iconColour": "blue",
+    "iconColour": "#4AF",
     "rulerLane": "center",
     "type": "tag",
     // "opacity": 25,
     // "rulerColour":   ,
   },
-  "todo-tree.highlights.schemes": [
-    "file",
-    "untitled",
-    "vscode-userdata",
-    "output",
-  ],
   "todo-tree.general.tags": [
     "#region:",
     "-+",
@@ -2434,7 +2431,7 @@
     "output"
   ],
   "[shellscript]": {
-    "editor.defaultFormatter": "shakram02.bash-beautify"
+    "editor.defaultFormatter": "foxundermoon.shell-format"
   },
   "[properties]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"

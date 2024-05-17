@@ -30,5 +30,5 @@ function zsh_compile_all() {
 
 }
 
-# /home/luxcium/ahmyzsh/ohmyzsh/
-# /home/luxcium/ahmyzsh/powerlevel10k/
+# ${AHMYZSH}/ohmyzsh/
+# ${AHMYZSH}/powerlevel10k/

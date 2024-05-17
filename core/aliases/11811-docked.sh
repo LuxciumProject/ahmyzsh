@@ -2,6 +2,9 @@
 
 alias dps='docker ps'
 alias dpsa='docker ps --all'
+alias dpsa_stopped='docker ps -a --filter "status=exited"'
+alias dpsa_running='docker ps -a --filter "status=running"'
+
 alias dmi='docker images'
 alias dimg='docker images'
 alias dmia='docker images --all'
@@ -13,11 +16,14 @@ alias drmia='((docker rmi $(docker images -qa))2>/dev/null|| exit 5)'
 alias drmiaf='((docker rmi --force $(docker images -qa))2>/dev/null|| exit 5)'
 alias inspectbridge='docker network inspect bridge'
 
-alias dstart='sudo systemctl enable containerd.service docker.socket docker.service docker-distribution.service --now; sudo systemctl daemon-reload; sudo systemctl daemon-reexec'
+alias dstart='docker start'
+alias dstop='docker stop'
+
+alias startdckr='sudo systemctl enable containerd.service docker.socket docker.service docker-distribution.service --now; sudo systemctl daemon-reload; sudo systemctl daemon-reexec'
 
 alias dspxs='sudo docker run -it -v /home/luxcium/spx-data:/data --rm msftspeech/spx synthesize'
-alias dckr_start='sudo systemctl enable containerd.service docker.socket docker.service docker-distribution.service --now; sudo systemctl daemon-reload; sudo systemctl daemon-reexec'
 
+alias dckr_start='sudo systemctl enable containerd.service docker.socket docker.service docker-distribution.service --now; sudo systemctl daemon-reload; sudo systemctl daemon-reexec'
 alias dckr_stop='sudo systemctl disable containerd.service docker.socket docker.service docker-distribution.service --now; sudo systemctl daemon-reload; sudo systemctl daemon-reexec'
 
 alias dckr_ls_redis='docker container ls --filter label=redis'
@@ -44,10 +50,10 @@ function dckr_redis_start_6381() {
   (docker stop Redis_Main_6381 && docker rm Redis_Main_6381) 2>/dev/null
   docker container ls --no-trunc --filter id="$(docker run -d -p 6381:6379 -v "${REDIS_DATA}":/data --name=Redis_Main_6381 -l=redis redis:alpine redis-server --save 60 1 --loglevel warning 2>/dev/null)"
   ([[ $(redis-cli -p 6381 PING) == "PONG" ]] && (
-    play -qv 0.75 /home/luxcium/ahmyzsh/multimedia/sounds/dactylo-cloche.mp3 &
+    play -qv 0.75 ${AHMYZSH}/multimedia/sounds/dactylo-cloche.mp3 &
     (
       sleep 0.1875
-      play -qv 0.50 /home/luxcium/ahmyzsh/multimedia/sounds/pop-up.mp3
+      play -qv 0.50 ${AHMYZSH}/multimedia/sounds/pop-up.mp3
     ) &
   )) || (play -qv 1 /usr/share/sounds/Oxygen-Im-Cant-Connect.ogg)
   # docker ps --no-trunc
@@ -114,7 +120,7 @@ function isRedis_6382() {
 }
 
 alias notconnectsound="(play -qv 1 /usr/share/sounds/Oxygen-Im-Cant-Connect.ogg)"
-alias popsound="(play -qv 0.75 /home/luxcium/ahmyzsh/multimedia/sounds/dactylo-cloche.mp3 & sleep 0.375;play -qv 0.50 /home/luxcium/ahmyzsh/multimedia/sounds/pop-up.mp3 &)"
+alias popsound="(play -qv 0.75 ${AHMYZSH}/multimedia/sounds/dactylo-cloche.mp3 & sleep 0.375;play -qv 0.50 ${AHMYZSH}/multimedia/sounds/pop-up.mp3 &)"
 #
 # alias play_Im-Cant-Connect='(play -qv 1 /usr/share/sounds/Oxygen-Im-Cant-Connect.ogg)'
 #

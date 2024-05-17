@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+## go_to_first_lab
+
+function go_to_first_lab_() {
+    # conda init bash || exit
+    cd /projects/first_lab || exit
+    conda activate first_lab
+}
+
+## Extra code make it easy to copy paste only the function out to use elsewhere
+go_to_first_lab_ "${@}"
+
+__EXIT_STATUS="${?}"
+
+unset -f go_to_first_lab_
+
+exit $__EXIT_STATUS

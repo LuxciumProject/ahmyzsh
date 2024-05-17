@@ -4,10 +4,20 @@ alias DynamicDithering='DitheringDynamic'
 alias StaticDithering='DitheringStatic'
 alias TemporalDithering='DitheringTemporal'
 
+alias dynamic='DitheringDynamic'
+alias static='DitheringStatic'
+alias temporal='DitheringTemporal'
+
+alias imageperform='OpenGLImagePerform'
 alias imagePerformNormal='OpenGLImagePerform'
 alias imagePerformHigh='OpenGLImagePerformHigh'
 alias imageQualityNormal='OpenGLImageQuality'
 alias imageQualityHigh='OpenGLImageQualityHigh'
+alias imagequality='OpenGLImageQuality'
+
+
+
+
 
 # export XDG_RUNTIME_DIR='/home/luxcium/nvidia-tmp'
 # export NVIDIA_CONF='/home/luxcium/.nvidia-settings-rc'

@@ -17,13 +17,11 @@
 
 function load_all_config_and_settings_files() {
 
-  if [ "${VERBOSA}" -gt 10 ]; then
+  if [ "${VERBOSA}" -gt 15 ]; then
 
     export BEGIN_SOURCING_FILES="\u001b[0m\u001b[34m#   \u001b[0m\u001b[33m\uf085\u001b[0m\u001b[34m  >"
     export END_SOURCING_FILES="\u001b[0m\u001b[31;1m\u001b[1m"
-
     TIMER_THEN=$(/usr/bin/date +%s%N)
-
     Load_all_files_d_v "${AHMYZSH_CORE}/paths"
     Load_all_files_d_v "${AHMYZSH_CORE}/layouts"
     Load_all_files_d_v "${AHMYZSH_CORE}/compute-path"
@@ -45,7 +43,7 @@ function load_all_config_and_settings_files() {
 
 function load_config_or_settings_() {
 
-  if [ "${VERBOSA}" -gt 10 ]; then
+  if [ "${VERBOSA}" -gt 5 ]; then
     export BEGIN_SOURCING_FILES="\u001b[0m\u001b[34m#   \u001b[0m\u001b[33m\uf085\u001b[0m\u001b[34m  >"
     export END_SOURCING_FILES="\u001b[0m\u001b[31;1m\u001b[1m"
 
@@ -60,6 +58,7 @@ function Load_all_files_d() {
   local SD1="$1"
   if [ -d "${SD1}" ]; then
     for f in "${SD1}/"*.sh; do
+      # shellcheck disable=SC1090
       source "${f}"
     done
   else
@@ -72,16 +71,17 @@ function Load_all_files_d_v() {
   if [ -d "${SD1}" ]; then
     for f in "${SD1}/"*.sh; do
       if [ -r "${f}" ]; then
+        # shellcheck disable=SC1090
         source "${f}"
-        [ "${VERBOSA}" -gt 10 ] && echo "${BEGIN_SOURCING_FILES} $(timer_now) ${f} ${END_SOURCING_FILES}"
+        [ "${VERBOSA}" -gt 5 ] && echo "${BEGIN_SOURCING_FILES} $(timer_now) ${f} ${END_SOURCING_FILES}"
       else
-        [ "${VERBOSA}" -gt 3 ] && echo "Error sourcing '$1' file provided is not redable"
+        [ "${VERBOSA}" -gt 10 ] && echo "Error sourcing '$1' file provided is not redable"
         return 3
       fi
       TIMER_THEN=$(/usr/bin/date +%s%N)
     done
   else
-    [ "${VERBOSA}" -gt 2 ] && echo "Error loading files in '${SD1}'... Directory or path can not be resolved"
+    [ "${VERBOSA}" -gt 10 ] && echo "Error loading files in '${SD1}'... Directory or path can not be resolved"
     return 2
   fi
 }
@@ -134,27 +134,28 @@ function load_() {
 }
 
 function call_() {
-  if [ -z $1 ]; then
+  if [ -z "$1" ]; then
     [ "${VERBOSA}" -gt 4 ] && echo "Error sourcing ' $1 ' no function call provided"
     return 4
   else
     TIMER_THEN=$(/usr/bin/date +%s%N)
-    eval ${1}
+    eval "${1}"
 
     returnval=$?
-    [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_FUNCTION} $(timer_now) '${1}()' ${END_FUNCTION}"
+    [ "${VERBOSA}" -gt 1 ] && echo "${BEGIN_FUNCTION} $(timer_now) '${1}()' ${END_FUNCTION}"
     return "${returnval}"
   fi
 }
 
 function source_() {
-  if [ -z $1 ]; then
+  if [ -z "$1" ]; then
     [ "${VERBOSA}" -gt 4 ] && echo "Error sourcing ' $1 ' no file provided"
     return 4
   else
     TIMER_THEN=$(/usr/bin/date +%s%N)
     if [[ -f $1 ]]; then
       if [[ -r $1 ]]; then
+        # shellcheck disable=SC1090
         source "${1}"
         [ "${VERBOSA}" -gt 2 ] && echo "${BEGIN_SOURCING} $(timer_now) ${1} ${END_SOURCING}"
         return 0

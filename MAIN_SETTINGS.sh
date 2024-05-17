@@ -16,10 +16,10 @@
 #* AHMYZSH custom settings
 
 function MAIN_SETTINGS() {
-  my_envs
+  call_ my_envs
   bindkey -v
   # PKG_CONFIG_PTH=
-  # : ${VERBOSA=10000}
+  # : "${VERBOSA:=10000}"
   # : ${EDITOR:="nano"}
   # export arch=$(uname -p)
   # export basearch=$(uname -p)
@@ -27,7 +27,7 @@ function MAIN_SETTINGS() {
   # export VERBOSA=0000
   # echo $VERBOSA
   : "${VERBOSA:=0000}"
-  : "${AHMYZSH:="${HOME}/ahmyzsh"}"
+  : "${AHMYZSH:="/ahmyzsh"}"
   : "${AH_LIBRARIES:="${AHMYZSH}/libraries"}"
   : "${AHMYZSH_CORE:="${AHMYZSH}/core"}"
   : "${ZSH_CUSTOM:="${AHMYZSH}"}"
@@ -43,7 +43,7 @@ function MAIN_SETTINGS() {
   : "${SYSTEMD_PAGER:="less"}"
   : "${ZLE_RPROMPT_INDENT:=0}"
   export DOTNET_CLI_TELEMETRY_OPTOUT=1
-  __LOCALE__
+  call_ __LOCALE__
 
   export VERBOSA
   export PATH_FILE
@@ -174,6 +174,35 @@ function __LOCALE__() {
 
 }
 
+function _LOCALE_() {
+
+  local language=${1:-'fr'}
+  local region=${2:+_${2}}
+  local encodings=${3:+.${3}}
+  : "${encoding:-.'UTF-8'}"
+
+  local locale="${language}${region}${encodings}"
+
+  if [[ "${language}" == "fr" ]]; then
+    LC_TIME="fr_FR.UTF-8"
+  else
+    LC_TIME="${locale}"
+  fi
+  export LC_TIME
+  export LANG="${locale}"
+  export LC_CTYPE="${locale}"
+  export LC_NUMERIC="${locale}"
+  export LC_COLLATE="${locale}"
+  export LC_MONETARY="${locale}"
+  export LC_MESSAGES="${locale}"
+  export LC_PAPER="${locale}"
+  export LC_NAME="${locale}"
+  export LC_ADDRESS="${locale}"
+  export LC_TELEPHONE="${locale}"
+  export LC_MEASUREMENT="${locale}"
+  export LC_IDENTIFICATION="${locale}"
+
+}
 # ·――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――· #
 # !!―――――――――――――――――――――――――!!! SECURITY WARNING !!!―――――――――――――――――――――――――!! #
 # !!                                                                          !! #

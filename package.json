@@ -1,4 +1,13 @@
 {
+  "author": "Benjamin Vincent",
+  "name": "ah-my-zsh",
+  "version": "0.2.0",
+  "description": "A simple zsh configuration around oh-my-zsh",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LuxciumProject/ahmyzsh.git"
+  },
   "scripts": {
     "update": "yarn add -D prettier@latest prettier-plugin-sh@latest"
   },

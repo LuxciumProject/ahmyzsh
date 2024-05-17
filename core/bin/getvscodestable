@@ -3,7 +3,7 @@
 echo -en $(date +%Y%m%d)
 
 function uxid16() {
-    local fooZ="$(/home/luxcium/ahmyzsh/plugins/bin/uxid)"
+    local fooZ="$(${AHMYZSH}/plugins/bin/uxid)"
     echo -n "${fooZ:1:17}R"
 }
 uxid16

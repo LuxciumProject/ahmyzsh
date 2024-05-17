@@ -199,7 +199,7 @@ alias luxcium_io='chdir "${LUXCIUM_IO}";'
 # Note: pjo is an alias of pj open.
 
 # /home/luxcium/projects
-export AHMYZSH="${HOME}/ahmyzsh"
+export AHMYZSH="/ahmyzsh"
 alias ahmyzsh='cd ${AHMYZSH}'
 export CACHE_FOLDER_="${HOME}/envs/cache/p10k-${USER}"
 alias cache_folder='cd ${CACHE_FOLDER_}'

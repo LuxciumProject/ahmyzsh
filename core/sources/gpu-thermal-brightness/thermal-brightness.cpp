@@ -46,4 +46,4 @@ int main() {
 }
 
 
-// g++ -o thermal-brightness /home/luxcium/ahmyzsh/core/sources/gpu-thermal-brightness/thermal-brightness.cpp -I/home/luxcium/mystic-mercury/include/nvml.h -lnvidia-ml
+// g++ -o thermal-brightness ${AHMYZSH}/core/sources/gpu-thermal-brightness/thermal-brightness.cpp -I/home/luxcium/mystic-mercury/include/nvml.h -lnvidia-ml

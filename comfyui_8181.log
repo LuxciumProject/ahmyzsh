@@ -1,0 +1,79 @@
+** ComfyUI startup time: 2024-02-26 14:00:33.714485
+[2024-02-26 14:00] ** Platform: Linux
+[2024-02-26 14:00] ** Python version: 3.11.0 | packaged by conda-forge | (main, Jan 14 2023, 12:27:40) [GCC 11.3.0]
+[2024-02-26 14:00] ** Python executable: /home/luxcium/anaconda3/envs/ai_lab/bin/python
+[2024-02-26 14:00] ** Log path: /ahmyzsh/comfyui.log
+[2024-02-26 14:00] 
+Prestartup times for custom nodes:
+[2024-02-26 14:00]    0.4 seconds: /src/ComfyUI/custom_nodes/ComfyUI-Manager
+[2024-02-26 14:00] 
+[2024-02-26 14:00] Set cuda device to: 1
+[2024-02-26 14:00] Total VRAM 12187 MB, total RAM 128490 MB
+[2024-02-26 14:00] xformers version: 0.0.22
+[2024-02-26 14:00] Set vram state to: NORMAL_VRAM
+[2024-02-26 14:00] Device: cuda:0 NVIDIA TITAN Xp COLLECTORS EDITION : cudaMallocAsync
+[2024-02-26 14:00] VAE dtype: torch.float32
+[2024-02-26 14:00] Using pytorch cross attention
+[2024-02-26 14:00] Failed to auto update `Quality of Life Suit` 
+[2024-02-26 14:00] [33mQualityOfLifeSuit_Omar92_DIR:[0m /src/ComfyUI/custom_nodes/ComfyUI-QualityOfLifeSuit_Omar92
+[2024-02-26 14:00] NetDist: Set session ID to 'mxnbo'
+[2024-02-26 14:00] ### Loading: ComfyUI-Manager (V2.7.2)
+[2024-02-26 14:00] ### ComfyUI Revision: 1992 on 'luxcium' [dccca1da] | Released on '2024-02-18'
+[2024-02-26 14:00] 
+Import times for custom nodes:
+[2024-02-26 14:00]    0.0 seconds: /src/ComfyUI/custom_nodes/ComfyUI-QualityOfLifeSuit_Omar92
+[2024-02-26 14:00]    0.0 seconds: /src/ComfyUI/custom_nodes/ComfyUI_NetDist
+[2024-02-26 14:00]    0.0 seconds: /src/ComfyUI/custom_nodes/ComfyMath
+[2024-02-26 14:00]    0.3 seconds: /src/ComfyUI/custom_nodes/ComfyUI-Manager
+[2024-02-26 14:00] 
+[2024-02-26 14:00] Starting server
+[2024-02-26 14:00] 
+[2024-02-26 14:00] To see the GUI go to: http://127.0.0.1:8181
+[2024-02-26 14:00] [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/alter-list.json
+[2024-02-26 14:00] [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/custom-node-list.json
+[2024-02-26 14:00] [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/extension-node-map.json
+[2024-02-26 14:00] [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/model-list.json
+[2024-02-26 14:00] FETCH DATA from: /src/ComfyUI/custom_nodes/ComfyUI-Manager/extension-node-map.json
+[2024-02-26 14:00] Error: OpenAI API key is invalid OpenAI features wont work for you
+[2024-02-26 14:00] [33mQualityOfLifeSuit_Omar92:[0m:NSP ready
+[2024-02-26 14:02] got prompt
+[2024-02-26 14:03] model_type EPS
+[2024-02-26 14:03] adm 2816
+[2024-02-26 14:03] Using pytorch attention in VAE
+[2024-02-26 14:03] Working with z of shape (1, 4, 32, 32) = 4096 dimensions.
+[2024-02-26 14:03] Using pytorch attention in VAE
+[2024-02-26 14:03] missing {'cond_stage_model.clip_l.text_projection', 'cond_stage_model.clip_l.logit_scale'}
+[2024-02-26 14:03] left over keys: dict_keys(['cond_stage_model.clip_l.transformer.text_model.embeddings.position_ids'])
+[2024-02-26 14:03] lora key not loaded lora_te2_text_projection.lora_down.weight
+[2024-02-26 14:03] lora key not loaded lora_te2_text_projection.lora_up.weight
+[2024-02-26 14:03] lora key not loaded lora_te2_text_projection.alpha
+[2024-02-26 14:03] Requested to load SDXLClipModel
+[2024-02-26 14:03] Loading 1 new model
+[2024-02-26 14:03] Requested to load SDXL
+[2024-02-26 14:03] Loading 1 new model
+/home/luxcium/anaconda3/envs/ai_lab/lib/python3.11/site-packages/torchsde/_brownian/brownian_interval.py:608: UserWarning: Should have tb<=t1 but got tb=14.614644050598145 and t1=14.614643.
+  warnings.warn(f"Should have {tb_name}<=t1 but got {tb_name}={tb} and t1={self._end}.")
+[2024-02-26 14:03] /home/luxcium/anaconda3/envs/ai_lab/lib/python3.11/site-packages/torchsde/_brownian/brownian_interval.py:599: UserWarning: Should have ta>=t0 but got ta=0.39638984203338623 and t0=0.39639.
+  warnings.warn(f"Should have ta>=t0 but got ta={ta} and t0={self._start}.")
+[2024-02-26 14:03] 100%|█████████████████████████████████████████████| 13/13 [00:04<00:00,  3.30it/s]100%|█████████████████████████████████████████████| 13/13 [00:04<00:00,  2.91it/s]
+[2024-02-26 14:03] Using pytorch attention in VAE
+[2024-02-26 14:03] Working with z of shape (1, 4, 32, 32) = 4096 dimensions.
+[2024-02-26 14:03] Using pytorch attention in VAE
+[2024-02-26 14:03] Leftover VAE keys ['model_ema.decay', 'model_ema.num_updates']
+[2024-02-26 14:03] Requested to load AutoencoderKL
+[2024-02-26 14:03] Loading 1 new model
+[2024-02-26 14:05] model_type EPS
+[2024-02-26 14:05] adm 2560
+[2024-02-26 14:05] Using pytorch attention in VAE
+[2024-02-26 14:05] Working with z of shape (1, 4, 32, 32) = 4096 dimensions.
+[2024-02-26 14:05] Using pytorch attention in VAE
+[2024-02-26 14:05] Requested to load SDXLRefinerClipModel
+[2024-02-26 14:05] Loading 1 new model
+[2024-02-26 14:05] Requested to load SDXLRefiner
+[2024-02-26 14:05] Loading 1 new model
+[2024-02-26 14:05] 100%|███████████████████████████████████████████████| 7/7 [00:01<00:00,  4.28it/s]100%|███████████████████████████████████████████████| 7/7 [00:01<00:00,  3.84it/s]
+[2024-02-26 14:05] Requested to load AutoencoderKL
+[2024-02-26 14:05] Loading 1 new model
+[2024-02-26 14:05] Prompt executed in 180.27 seconds
+[2024-02-26 14:29] 
+Stopped server

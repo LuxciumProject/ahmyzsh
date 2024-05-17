@@ -64,7 +64,7 @@ function dnfxi() {
 }
 
 function _dnf_clean_all() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   echo "CLEAN ALL:"
   sudo nice -25 ionice -c 3 dnf clean all --refresh && play_osx1_0012_critical_chronicles || play_osx2_0002_assend_attention
   echo ""
@@ -132,7 +132,7 @@ function _dnf_makecache_quick_update() {
 }
 
 function _dnf_makecache_auto_update() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   _dnf_clean_all
   yumFedoraDeactivate
   yumFedoraTestingDeactivate
@@ -211,13 +211,13 @@ function _reset_all_repos() {
 
 # inatall updates
 function _dnfup() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   play_019
   sudo nice -n -15 ionice -c 1 -n 2 dnf distro-sync --setopt=keepcache=1 "$1" || play_etc-dialog
 }
 
 function yumFedoraActivate() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   # (play_001)
   echo "yumFedoraActivate"
   echo "+++"
@@ -269,7 +269,7 @@ function yumFedoraActivate() {
 }
 
 function yumFedoraDeactivate() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   # (play_001)
   echo "yumFedoraDeactivate"
   echo "+++"
@@ -321,7 +321,7 @@ function yumFedoraDeactivate() {
 }
 
 function yumFedoraTestingActivate() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   # (play_001)
   echo "yumFedoraTestingActivate"
   echo "+++"
@@ -351,7 +351,7 @@ function yumFedoraTestingActivate() {
 }
 
 function yumFedoraTestingDeactivate() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   # (play_001)
   echo "yumFedoraTestingDeactivate"
   echo "+++"
@@ -380,7 +380,7 @@ function yumFedoraTestingDeactivate() {
 }
 
 function yumOthersActivate() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   # (play_001)
   echo "yumOthersActivate"
   echo "+++"
@@ -439,7 +439,7 @@ function yumOthersActivate() {
 }
 
 function yumOthersDeactivate() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   # (play_001)
   echo "yumOthersDeactivate"
   echo "+++"
@@ -498,7 +498,7 @@ function yumOthersDeactivate() {
 }
 
 function yumMicrosoftActivate() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   # (play_001)
   echo "yumMicrosoftActivate"
   echo "+++"
@@ -527,7 +527,7 @@ function yumMicrosoftActivate() {
 }
 
 function yumMicrosoftDeactivate() {
-  source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
   # (play_001)
   echo "yumMicrosoftDeactivate"
   echo "+++"
@@ -557,7 +557,7 @@ function yumMicrosoftDeactivate() {
 }
 
 function exclude_azure-cli() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/azure-cli.repo /etc/yum.repos.d/azure-cli.repo.off) && echo 'exclude: azure-cli' || echo 'exclude: azure-cli → UNABLE TO COMPLETE TASK'
 
@@ -568,7 +568,7 @@ function exclude_azure-cli() {
 }
 
 function include_azure-cli() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/azure-cli.repo.off /etc/yum.repos.d/azure-cli.repo) && echo 'include: azure-cli' || echo 'include: azure-cli → UNABLE TO COMPLETE TASK'
 
@@ -578,7 +578,7 @@ function include_azure-cli() {
   #$%
 }
 function exclude_bintray-ookla-rhel() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/bintray-ookla-rhel.repo /etc/yum.repos.d/bintray-ookla-rhel.repo.off) && echo 'exclude: bintray-ookla-rhel' || echo 'exclude: bintray-ookla-rhel → UNABLE TO COMPLETE TASK'
 
@@ -589,7 +589,7 @@ function exclude_bintray-ookla-rhel() {
 }
 
 function include_bintray-ookla-rhel() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/bintray-ookla-rhel.repo.off /etc/yum.repos.d/bintray-ookla-rhel.repo) && echo 'include: bintray-ookla-rhel' || echo 'include: bintray-ookla-rhel → UNABLE TO COMPLETE TASK'
 
@@ -599,7 +599,7 @@ function include_bintray-ookla-rhel() {
   #$%
 }
 function exclude__copr_phracek-PyCharm() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/_copr_phracek-PyCharm.repo /etc/yum.repos.d/_copr_phracek-PyCharm.repo.off) && echo 'exclude: _copr_phracek-PyCharm' || echo 'exclude: _copr_phracek-PyCharm → UNABLE TO COMPLETE TASK'
 
@@ -610,7 +610,7 @@ function exclude__copr_phracek-PyCharm() {
 }
 
 function include__copr_phracek-PyCharm() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/_copr_phracek-PyCharm.repo.off /etc/yum.repos.d/_copr_phracek-PyCharm.repo) && echo 'include: _copr_phracek-PyCharm' || echo 'include: _copr_phracek-PyCharm → UNABLE TO COMPLETE TASK'
 
@@ -620,7 +620,7 @@ function include__copr_phracek-PyCharm() {
   #$%
 }
 function exclude_docker-ce() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/docker-ce.repo /etc/yum.repos.d/docker-ce.repo.off) && echo 'exclude: docker-ce' || echo 'exclude: docker-ce → UNABLE TO COMPLETE TASK'
 
@@ -631,7 +631,7 @@ function exclude_docker-ce() {
 }
 
 function include_docker-ce() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/docker-ce.repo.off /etc/yum.repos.d/docker-ce.repo) && echo 'include: docker-ce' || echo 'include: docker-ce → UNABLE TO COMPLETE TASK'
 
@@ -641,7 +641,7 @@ function include_docker-ce() {
   #$%
 }
 function exclude_fedora-cisco-openh264() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/fedora-cisco-openh264.repo /etc/yum.repos.d/fedora-cisco-openh264.repo.off) && echo 'exclude: fedora-cisco-openh264' || echo 'exclude: fedora-cisco-openh264 → UNABLE TO COMPLETE TASK'
 
@@ -652,7 +652,7 @@ function exclude_fedora-cisco-openh264() {
 }
 
 function include_fedora-cisco-openh264() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/fedora-cisco-openh264.repo.off /etc/yum.repos.d/fedora-cisco-openh264.repo) && echo 'include: fedora-cisco-openh264' || echo 'include: fedora-cisco-openh264 → UNABLE TO COMPLETE TASK'
 
@@ -662,7 +662,7 @@ function include_fedora-cisco-openh264() {
   #$%
 }
 function exclude_fedora-updates-testing-modular() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/fedora-updates-testing-modular.repo /etc/yum.repos.d/fedora-updates-testing-modular.repo.off) && echo 'exclude: fedora-updates-testing-modular' || echo 'exclude: fedora-updates-testing-modular → UNABLE TO COMPLETE TASK'
 
@@ -673,7 +673,7 @@ function exclude_fedora-updates-testing-modular() {
 }
 
 function include_fedora-updates-testing-modular() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/fedora-updates-testing-modular.repo.off /etc/yum.repos.d/fedora-updates-testing-modular.repo) && echo 'include: fedora-updates-testing-modular' || echo 'include: fedora-updates-testing-modular → UNABLE TO COMPLETE TASK'
 
@@ -683,7 +683,7 @@ function include_fedora-updates-testing-modular() {
   #$%
 }
 function exclude_fedora-updates-testing() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/fedora-updates-testing.repo /etc/yum.repos.d/fedora-updates-testing.repo.off) && echo 'exclude: fedora-updates-testing' || echo 'exclude: fedora-updates-testing → UNABLE TO COMPLETE TASK'
 
@@ -694,7 +694,7 @@ function exclude_fedora-updates-testing() {
 }
 
 function include_fedora-updates-testing() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/fedora-updates-testing.repo.off /etc/yum.repos.d/fedora-updates-testing.repo) && echo 'include: fedora-updates-testing' || echo 'include: fedora-updates-testing → UNABLE TO COMPLETE TASK'
 
@@ -704,7 +704,7 @@ function include_fedora-updates-testing() {
   #$%
 }
 function exclude_gh-cli() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/gh-cli.repo /etc/yum.repos.d/gh-cli.repo.off) && echo 'exclude: gh-cli' || echo 'exclude: gh-cli → UNABLE TO COMPLETE TASK'
 
@@ -715,7 +715,7 @@ function exclude_gh-cli() {
 }
 
 function include_gh-cli() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/gh-cli.repo.off /etc/yum.repos.d/gh-cli.repo) && echo 'include: gh-cli' || echo 'include: gh-cli → UNABLE TO COMPLETE TASK'
 
@@ -725,7 +725,7 @@ function include_gh-cli() {
   #$%
 }
 function exclude_google-chrome-beta() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/google-chrome-beta.repo /etc/yum.repos.d/google-chrome-beta.repo.off) && echo 'exclude: google-chrome-beta' || echo 'exclude: google-chrome-beta → UNABLE TO COMPLETE TASK'
 
@@ -736,7 +736,7 @@ function exclude_google-chrome-beta() {
 }
 
 function include_google-chrome-beta() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/google-chrome-beta.repo.off /etc/yum.repos.d/google-chrome-beta.repo) && echo 'include: google-chrome-beta' || echo 'include: google-chrome-beta → UNABLE TO COMPLETE TASK'
 
@@ -746,7 +746,7 @@ function include_google-chrome-beta() {
   #$%
 }
 function exclude_google-chrome() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/google-chrome.repo /etc/yum.repos.d/google-chrome.repo.off) && echo 'exclude: google-chrome' || echo 'exclude: google-chrome → UNABLE TO COMPLETE TASK'
 
@@ -757,7 +757,7 @@ function exclude_google-chrome() {
 }
 
 function include_google-chrome() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/google-chrome.repo.off /etc/yum.repos.d/google-chrome.repo) && echo 'include: google-chrome' || echo 'include: google-chrome → UNABLE TO COMPLETE TASK'
 
@@ -767,7 +767,7 @@ function include_google-chrome() {
   #$%
 }
 function exclude_google-chrome-unstable() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/google-chrome-unstable.repo /etc/yum.repos.d/google-chrome-unstable.repo.off) && echo 'exclude: google-chrome-unstable' || echo 'exclude: google-chrome-unstable → UNABLE TO COMPLETE TASK'
 
@@ -778,7 +778,7 @@ function exclude_google-chrome-unstable() {
 }
 
 function include_google-chrome-unstable() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/google-chrome-unstable.repo.off /etc/yum.repos.d/google-chrome-unstable.repo) && echo 'include: google-chrome-unstable' || echo 'include: google-chrome-unstable → UNABLE TO COMPLETE TASK'
 
@@ -788,7 +788,7 @@ function include_google-chrome-unstable() {
   #$%
 }
 function exclude_microsoft-insiders-fast() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/microsoft-insiders-fast.repo /etc/yum.repos.d/microsoft-insiders-fast.repo.off) && echo 'exclude: microsoft-insiders-fast' || echo 'exclude: microsoft-insiders-fast → UNABLE TO COMPLETE TASK'
 
@@ -799,7 +799,7 @@ function exclude_microsoft-insiders-fast() {
 }
 
 function include_microsoft-insiders-fast() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/microsoft-insiders-fast.repo.off /etc/yum.repos.d/microsoft-insiders-fast.repo) && echo 'include: microsoft-insiders-fast' || echo 'include: microsoft-insiders-fast → UNABLE TO COMPLETE TASK'
 
@@ -809,7 +809,7 @@ function include_microsoft-insiders-fast() {
   #$%
 }
 function exclude_microsoft-insiders-slow() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/microsoft-insiders-slow.repo /etc/yum.repos.d/microsoft-insiders-slow.repo.off) && echo 'exclude: microsoft-insiders-slow' || echo 'exclude: microsoft-insiders-slow → UNABLE TO COMPLETE TASK'
 
@@ -820,7 +820,7 @@ function exclude_microsoft-insiders-slow() {
 }
 
 function include_microsoft-insiders-slow() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/microsoft-insiders-slow.repo.off /etc/yum.repos.d/microsoft-insiders-slow.repo) && echo 'include: microsoft-insiders-slow' || echo 'include: microsoft-insiders-slow → UNABLE TO COMPLETE TASK'
 
@@ -830,7 +830,7 @@ function include_microsoft-insiders-slow() {
   #$%
 }
 function exclude_microsoft-prod() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/microsoft-prod.repo /etc/yum.repos.d/microsoft-prod.repo.off) && echo 'exclude: microsoft-prod' || echo 'exclude: microsoft-prod → UNABLE TO COMPLETE TASK'
 
@@ -841,7 +841,7 @@ function exclude_microsoft-prod() {
 }
 
 function include_microsoft-prod() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/microsoft-prod.repo.off /etc/yum.repos.d/microsoft-prod.repo) && echo 'include: microsoft-prod' || echo 'include: microsoft-prod → UNABLE TO COMPLETE TASK'
 
@@ -851,7 +851,7 @@ function include_microsoft-prod() {
   #$%
 }
 function exclude_mongodb-org-4-4() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/mongodb-org-4.4.repo /etc/yum.repos.d/mongodb-org-4.4.repo.off) && echo 'exclude: mongodb-org-4.4' || echo 'exclude: mongodb-org-4.4 → UNABLE TO COMPLETE TASK'
 
@@ -862,7 +862,7 @@ function exclude_mongodb-org-4-4() {
 }
 
 function include_mongodb-org-4-4() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/mongodb-org-4.4.repo.off /etc/yum.repos.d/mongodb-org-4.4.repo) && echo 'include: mongodb-org-4.4' || echo 'include: mongodb-org-4.4 → UNABLE TO COMPLETE TASK'
 
@@ -872,7 +872,7 @@ function include_mongodb-org-4-4() {
   #$%
 }
 function exclude_rpmfusion-free-updates-testing() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/rpmfusion-free-updates-testing.repo /etc/yum.repos.d/rpmfusion-free-updates-testing.repo.off) && echo 'exclude: rpmfusion-free-updates-testing' || echo 'exclude: rpmfusion-free-updates-testing → UNABLE TO COMPLETE TASK'
 
@@ -883,7 +883,7 @@ function exclude_rpmfusion-free-updates-testing() {
 }
 
 function include_rpmfusion-free-updates-testing() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/rpmfusion-free-updates-testing.repo.off /etc/yum.repos.d/rpmfusion-free-updates-testing.repo) && echo 'include: rpmfusion-free-updates-testing' || echo 'include: rpmfusion-free-updates-testing → UNABLE TO COMPLETE TASK'
 
@@ -893,7 +893,7 @@ function include_rpmfusion-free-updates-testing() {
   #$%
 }
 function exclude_rpmfusion-nonfree-nvidia-driver() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/rpmfusion-nonfree-nvidia-driver.repo /etc/yum.repos.d/rpmfusion-nonfree-nvidia-driver.repo.off) && echo 'exclude: rpmfusion-nonfree-nvidia-driver' || echo 'exclude: rpmfusion-nonfree-nvidia-driver → UNABLE TO COMPLETE TASK'
 
@@ -904,7 +904,7 @@ function exclude_rpmfusion-nonfree-nvidia-driver() {
 }
 
 function include_rpmfusion-nonfree-nvidia-driver() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/rpmfusion-nonfree-nvidia-driver.repo.off /etc/yum.repos.d/rpmfusion-nonfree-nvidia-driver.repo) && echo 'include: rpmfusion-nonfree-nvidia-driver' || echo 'include: rpmfusion-nonfree-nvidia-driver → UNABLE TO COMPLETE TASK'
 
@@ -914,7 +914,7 @@ function include_rpmfusion-nonfree-nvidia-driver() {
   #$%
 }
 function exclude_rpmfusion-nonfree-steam() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/rpmfusion-nonfree-steam.repo /etc/yum.repos.d/rpmfusion-nonfree-steam.repo.off) && echo 'exclude: rpmfusion-nonfree-steam' || echo 'exclude: rpmfusion-nonfree-steam → UNABLE TO COMPLETE TASK'
 
@@ -925,7 +925,7 @@ function exclude_rpmfusion-nonfree-steam() {
 }
 
 function include_rpmfusion-nonfree-steam() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/rpmfusion-nonfree-steam.repo.off /etc/yum.repos.d/rpmfusion-nonfree-steam.repo) && echo 'include: rpmfusion-nonfree-steam' || echo 'include: rpmfusion-nonfree-steam → UNABLE TO COMPLETE TASK'
 
@@ -935,7 +935,7 @@ function include_rpmfusion-nonfree-steam() {
   #$%
 }
 function exclude_rpmfusion-nonfree-updates-testing() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/rpmfusion-nonfree-updates-testing.repo /etc/yum.repos.d/rpmfusion-nonfree-updates-testing.repo.off) && echo 'exclude: rpmfusion-nonfree-updates-testing' || echo 'exclude: rpmfusion-nonfree-updates-testing → UNABLE TO COMPLETE TASK'
 
@@ -946,7 +946,7 @@ function exclude_rpmfusion-nonfree-updates-testing() {
 }
 
 function include_rpmfusion-nonfree-updates-testing() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/rpmfusion-nonfree-updates-testing.repo.off /etc/yum.repos.d/rpmfusion-nonfree-updates-testing.repo) && echo 'include: rpmfusion-nonfree-updates-testing' || echo 'include: rpmfusion-nonfree-updates-testing → UNABLE TO COMPLETE TASK'
 
@@ -956,7 +956,7 @@ function include_rpmfusion-nonfree-updates-testing() {
   #$%
 }
 function exclude_teamviewer() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/teamviewer.repo /etc/yum.repos.d/teamviewer.repo.off) && echo 'exclude: teamviewer' || echo 'exclude: teamviewer → UNABLE TO COMPLETE TASK'
 
@@ -967,7 +967,7 @@ function exclude_teamviewer() {
 }
 
 function include_teamviewer() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/teamviewer.repo.off /etc/yum.repos.d/teamviewer.repo) && echo 'include: teamviewer' || echo 'include: teamviewer → UNABLE TO COMPLETE TASK'
 
@@ -977,7 +977,7 @@ function include_teamviewer() {
   #$%
 }
 function exclude_vscode() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/vscode.repo /etc/yum.repos.d/vscode.repo.off) && echo 'exclude: vscode' || echo 'exclude: vscode → UNABLE TO COMPLETE TASK'
 
@@ -988,7 +988,7 @@ function exclude_vscode() {
 }
 
 function include_vscode() {
-  # source /home/luxcium/ahmyzsh/core/aliases/12012-ALS-sounds.sh
+  # source ${AHMYZSH}/core/aliases/12012-ALS-sounds.sh
 
   (sudo mv /etc/yum.repos.d/vscode.repo.off /etc/yum.repos.d/vscode.repo) && echo 'include: vscode' || echo 'include: vscode → UNABLE TO COMPLETE TASK'
 
