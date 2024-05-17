@@ -1,6 +1,6 @@
 # ahmyzsh
 
-![AH MY ZSH Initial Screen](images/Screenshot_20201212_080507.png)
+![AH MY ZSH Initial Screen](images/Screenshot_20240517_151315.png)
 
 ## Don't have any expectations
 
@@ -35,7 +35,7 @@ Some folder have been hiddens while I am not working with them now you may unhid
   },
 ```
 
-## SECURITY WARNING !!!
+## SECURITY WARNING
 
 AUDIT ANY FILES YOU IMPORT FROM THIS PROJECT PRIOR: DOWNLOAD / INSTALL / USE
 Please asses security risks by yourself befor to use the product and report
@@ -45,7 +45,7 @@ any security issues or vulnerability on the issues page of the main repo site:
 ## MIT License
 
 Copyright © 2019-2020 Benjamin Vincent Kasapoglu (Luxcium) and contributors
-(https://github.com/Luxcium/ahmyzsh/contributors)
+(<https://github.com/Luxcium/ahmyzsh/contributors>)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
