@@ -51,6 +51,7 @@ else
     [ -o interactive ] && echo "Error: Path to file: '${MAIN_BOOTSTRAP}' can not be resolved"
     unset -v MAIN_BOOTSTRAP
 fi
+
 # #!/usr/bin/env bash
 # echo -n -e '\u001b[0m\u001b[31;1m\u001b[1m'
 # # Initialize TIMER_ALL_THEN with the current time in nanoseconds or fallback to date
@@ -129,3 +130,4 @@ fi
 # }
 
 # load_main_bootstrap
+
