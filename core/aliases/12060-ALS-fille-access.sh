@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Total lines: 16
+
 alias wheelr='sudo chgrp -R wheel ./ && sudo chmod -c -R g+r ./'
 alias wheelw='sudo chgrp -R wheel ./ && sudo chmod -c -R g+w ./'
 alias wheelx='sudo chgrp -R wheel ./ && sudo chmod -c -R g+x ./'

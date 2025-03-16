@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Total lines: 256
+
 #+ CP(1)
 #+        cp - Copier des fichiers et des répertoires
 

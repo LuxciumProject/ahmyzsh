@@ -1,4 +1,6 @@
-#! /bin/bash
+#!/bin/bash
+
+# Total lines: 224
 
 #+ NAME
 #+        ls - list directory contents

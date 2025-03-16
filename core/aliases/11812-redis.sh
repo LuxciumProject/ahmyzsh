@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Total lines: 256
+
 function redisping() {
   redis-cli -p "$1" ping "PONG ${1}" 2>/dev/null
 }

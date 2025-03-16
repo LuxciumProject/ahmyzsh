@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Total lines: 256
+
 alias al='ls -alhSvF -X'
 alias alt='ls -alGhSvF -rt'
 alias alu='ls -alGhSvF -rut'

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Total lines: 153
+
 ########
 ## GNU GPL v2.0
 ## https://github.com/grml/zsh-lovers

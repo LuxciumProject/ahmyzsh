@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Total lines: 88
+
 alias obsp='(cd /home/luxcium/obs-studio-portable/bin/64bit && /home/luxcium/obs-studio-portable/bin/64bit/obs)'
 alias runobs='(cd /home/luxcium/obs-studio-portable/bin/64bit && sudo ionice -c 1 -n 1 nice -n -15 sudo -u luxcium /home/luxcium/obs-studio-portable/bin/64bit/obs)'
 alias reloadobs='(sudo killall obs; runobs)'

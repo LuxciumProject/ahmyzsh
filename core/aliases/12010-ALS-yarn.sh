@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Total lines: 64
+
 ################
 ## YARN ALIAS ##
 ################

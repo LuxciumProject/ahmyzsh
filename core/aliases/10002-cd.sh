@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Total lines: 94
+
 # gh repo clone openAVproductions/openAV-Ctlra
 
 alias cdtemp='cd /home/luxcium/src/temp'
