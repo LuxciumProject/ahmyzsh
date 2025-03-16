@@ -1,5 +1,45 @@
 # System Patterns
 
+## Core Functions Implementation Patterns
+
+### Function Documentation Pattern
+
+```mermaid
+graph TD
+    A[Function File] --> B[Purpose Section]
+    A --> C[Implementation Section]
+    A --> D[Dependencies Section]
+    A --> E[Examples Section]
+
+    B --> F[Status Tracking]
+    C --> F
+    D --> F
+    E --> F
+```
+
+### Implementation Priority Pattern
+
+```mermaid
+graph LR
+    A[Critical Path<br>System Init] --> B[Core System<br>Functions]
+    B --> C[Shell Config]
+    C --> D[Dev Tools]
+    D --> E[Custom Commands]
+    E --> F[Utilities]
+```
+
+### Function Completion Workflow
+
+```mermaid
+graph TD
+    A[Identify Function] --> B[Document Purpose]
+    B --> C[List Dependencies]
+    C --> D[Implement Logic]
+    D --> E[Add Examples]
+    E --> F[Test & Validate]
+    F --> G[Update Status]
+```
+
 ## High-Level Initialization Sequence
 
 ```mermaid
@@ -39,85 +79,152 @@ flowchart TB
     style D1 fill:#bfb,stroke:#333,stroke-width:2px
 ```
 
-## Branches to be Explored Later
+## Performance Optimization Patterns
 
-### Level 1 Branches
-1. Path Computation System
-   ```mermaid
-   graph LR
-       A[Path Check] --> B[Cached Path]
-       A --> C[New Path Computation]
-       C --> D[Cache Generation]
-   ```
-   - TO BE EXPLORED: core/compute-path/path.sh
-   - TO BE EXPLORED: Path caching mechanism
+```mermaid
+graph TD
+    subgraph "Path System"
+        P1[Path Check] -->|Cache Hit| P2[Load Cached Path]
+        P1 -->|Cache Miss| P3[Compute New Path]
+        P3 --> P4[Cache Generation]
+        P2 --> P5[Timer Recording]
+        P4 --> P5
+    end
 
-2. Core Component Loading
-   ```mermaid
-   graph LR
-       A[Core Loading] --> B[MAIN-FUNCTIONS]
-       A --> C[Compute Path]
-       A --> D[Conda Init]
-   ```
-   - TO BE EXPLORED: Function definitions in MAIN-FUNCTIONS.sh
-   - TO BE EXPLORED: Conda initialization process
+    subgraph "Timer System"
+        T1[Global Timer] --> T2[Function Timer]
+        T1 --> T3[Load Timer]
+        T2 --> T4[Performance Metrics]
+        T3 --> T4
+    end
 
-### Level 2 Branches
-1. Bootstrap Process
-   ```mermaid
-   graph LR
-       A[MAIN.sh] --> B[Environment States]
-       A --> C[Shell Validation]
-       A --> D[Interactive Setup]
-   ```
-   - TO BE EXPLORED: Interactive shell features
-   - TO BE EXPLORED: Environment state management
+    subgraph "Loading System"
+        L1[Smart Loading] -->|Conditional| L2[Verbose Mode]
+        L1 -->|Basic| L3[Silent Mode]
+        L2 --> L4[Performance Logging]
+        L3 --> L5[Basic Validation]
+    end
+```
 
-### Level 3 Branches
-1. Settings System
-   ```mermaid
-   graph LR
-       A[MAIN_SETTINGS] --> B[Node Environment]
-       A --> C[Development Tools]
-       A --> D[Locale Management]
-   ```
-   - TO BE EXPLORED: FNM integration
-   - TO BE EXPLORED: Development tool setup
+## Core Function Patterns
 
-## Primary Functions By Level
+### File Operation Patterns
 
-### Level 0 (Entry Point)
-- Environment exports
-- Path validation
-- Component sourcing
+```mermaid
+graph LR
+    subgraph "File Operations"
+        A[load_] -->|sources file| B[source_]
+        A -->|executes function| C[call_]
 
-### Level 1 (Initial Setup)
-- Path caching functions
-- Extended path computation
-- Core function loading
+        B -->|checks| D[File Exists]
+        B -->|verifies| E[File Readable]
 
-### Level 2 (Bootstrap)
-- SCIENTIA_ES_LUX_PRINCIPIUM
-- Shell validation
-- Interactive detection
+        C -->|evaluates| F[Function]
+        C -->|tracks| G[Execution Time]
+    end
+```
 
-### Level 3 (Configuration)
-- MAIN_SETTINGS
-- Development environment setup
-- Locale configuration
+### Configuration Loading Patterns
+
+```mermaid
+graph TD
+    subgraph "Configuration System"
+        A[load_all_config_and_settings_files] -->|master loader| B[load_config_or_settings_]
+        B -->|directory processor| C[Load_all_files_d]
+        B -->|verbose processor| D[Load_all_files_d_v]
+
+        C -->|loads| E[.sh files]
+        D -->|loads with logging| E
+    end
+```
+
+## Timing Patterns
+
+### Basic Timing Pattern
+
+```mermaid
+graph LR
+    A[Start Timer] --> B[Execute Operation]
+    B --> C[Calculate Duration]
+    C --> D[Format Output]
+```
+
+### Performance Monitoring Pattern
+
+```mermaid
+graph TD
+    A[Global Timer] --> B[Operation Timer]
+    B --> C[Sub-operation Timer]
+    C --> D[Metrics Collection]
+    D --> E[Performance Analysis]
+```
 
 ## Function Interaction Matrix
 
-| Level | Calls | Depends On | Future Investigation |
-|-------|-------|------------|---------------------|
-| 0 | source_, load_ | None | Path computation details |
-| 1 | call_, timer_ | Level 0 | Function implementations |
-| 2 | isinteractive | Level 1 | Interactive features |
-| 3 | my_envs, __LOCALE__ | Level 2 | Tool integration details |
+| Level | Calls | Depends On | Performance Impact |
+|-------|-------|------------|-------------------|
+| 0 | source_, load_ | None | Path caching performance |
+| 1 | call_, timer_ | Level 0 | Function timing overhead |
+| 2 | isinteractive | Level 1 | Shell state checks |
+| 3 | my_envs, __LOCALE__ | Level 2 | Environment loading |
 
-## Notes for Future Investigation
+## State Management Patterns
+
+### Environment State Pattern
+
+```mermaid
+graph TD
+    A[Not Loaded] -->|Initialize| B[Loading]
+    B -->|Success| C[Loaded]
+    B -->|Failure| D[Error]
+    C -->|Reset| A
+```
+
+### Interactive Detection Pattern
+
+```mermaid
+graph LR
+    A[Shell Start] -->|Check| B{Interactive?}
+    B -->|Yes| C[Load Interactive Features]
+    B -->|No| D[Basic Setup]
+```
+
+## Error Handling Patterns
+
+1. File Operation Errors
+   - Existence checking
+   - Permission validation
+   - Fallback mechanisms
+   - Error reporting
+
+2. Function Execution Errors
+   - Return value checking
+   - Error code propagation
+   - Verbose mode logging
+   - Recovery procedures
+
+## Notes for Investigation
+
 1. Path System Details
-2. Function Implementation Analysis
-3. Tool Integration Mechanisms
-4. Interactive Feature Setup
-5. Environment State Management
+   - Cache invalidation triggers
+   - Path computation optimization
+   - Cache storage format
+   - Performance metrics
+
+2. Timer System Implementation
+   - Granularity control
+   - Overhead measurement
+   - Format standardization
+   - Integration points
+
+3. Configuration System
+   - Load order dependencies
+   - Error handling strategies
+   - Performance impact
+   - Validation methods
+
+4. Interactive Features
+   - Feature dependencies
+   - Loading conditions
+   - Performance impact
+   - User experience

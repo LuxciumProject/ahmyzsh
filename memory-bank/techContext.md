@@ -1,118 +1,207 @@
 # Technical Context
 
-## Environment Variables
+## Core Systems
 
-Key environment variables used in the system:
-
-- AHMYZSH: Base directory for the shell configuration
-- AHMYZSH_CACHE: Cache directory for optimizations
-- CACHED_PATH: Location of cached path environment
-- TIMER_ALL_THEN: Timing reference for initialization
-
-## Core Components
-
-1. Path Computation System
-   - Uses caching mechanism for optimization
-   - Implements extended path computation
-   - Conda integration
-   - Performance timing metrics
-
-2. Bootstrap System
-   - MAIN.sh as primary bootstrap entry point
-   - Modular sourcing of components
-   - Error handling for missing files
-
-## Settings Management
-
-### Main Settings Structure
+### Path Management System
 
 ```mermaid
 graph TB
-    A[MAIN_SETTINGS] -->|calls| B[my_envs]
-    A -->|sets| C[Environment Variables]
-    A -->|configures| D[Locale Settings]
-
-    subgraph "Environment Configuration"
-        C1[Core Paths]
-        C2[Editor Settings]
-        C3[Cache Locations]
-        C4[System Preferences]
+    subgraph "Path Processing"
+        PC[Path Computation] -->|Cache Miss| NC[New Computation]
+        PC -->|Cache Hit| LC[Load Cache]
+        NC --> CG[Cache Generation]
+        LC --> PM[Performance Metrics]
+        CG --> PM
     end
 
-    subgraph "Node Version Management"
-        N1[FNM Aliases]
-        N2[Node Version Paths]
-        N3[Version Shortcuts]
-    end
-
-    subgraph "Locale Configuration"
-        L1[LC_* Variables]
-        L2[Regional Settings]
-        L3[Language Preferences]
+    subgraph "Environment Integration"
+        EV[Environment Variables] --> PC
+        CD[Conda Integration] --> PC
+        EP[Extended Path] --> PC
     end
 ```
 
-### Key Settings Components
+### Timer System
 
-1. Core Environment Variables
-   - AHMYZSH and related paths
-   - Editor and pager preferences
-   - Cache directory locations
-   - System-wide configurations
+```mermaid
+graph LR
+    subgraph "Timer Implementation"
+        GT[Global Timer] -->|Base| FT[Function Timer]
+        GT -->|Tracking| LT[Load Timer]
+        FT --> PM[Performance Metrics]
+        LT --> PM
+    end
+```
 
-2. Node.js Environment
-   - FNM (Fast Node Manager) configuration
-   - Version aliases and paths
-   - Default node version settings
+### Configuration Management
 
-3. Language and Locale
-   - Comprehensive locale settings
-   - Region-specific configurations
-   - Character encoding settings
+```mermaid
+graph TB
+    subgraph "Config System"
+        CL[Config Loader] -->|Basic| SL[Silent Load]
+        CL -->|Verbose| VL[Verbose Load]
+        SL --> VM[Validation]
+        VL --> PL[Performance Log]
+        VM --> CS[Completion Status]
+        PL --> CS
+    end
+```
 
-4. Development Tools
-   - Ruby environment setup
-   - Perl configuration
-   - Python/Anaconda settings
-   - GitHub credentials
+## Environment Variables
 
-## File Organization
+### Core Variables
 
-- Core configuration files in root directory
-- Specialized modules in core/ directory
-- Compute-path specific functionality isolated
-- Cache management system
+```bash
+AHMYZSH="/ahmyzsh"               # Base directory
+AHMYZSH_CACHE="~/.cache/ahmyzsh" # Cache directory
+CACHED_PATH="${AHMYZSH_CACHE}/path.env" # Path cache
+TIMER_ALL_THEN="$(date +%s%N)"   # Timing reference
+```
+
+### Additional Settings
+
+```bash
+VERBOSA="1"                      # Verbosity level
+MAIN_BOOTSTRAP="${AHMYZSH}/MAIN.sh" # Bootstrap path
+IS_ZSH_="$(ps -o comm= -p $$)"   # Shell verification
+```
+
+## Performance Components
+
+1. Path Caching System
+   - Location: ${AHMYZSH_CACHE}/path.env
+   - Invalidation: Manual or missing cache
+   - Format: Shell environment format
+   - Performance metrics tracked
+
+2. Timing System
+   - Global reference: TIMER_ALL_THEN
+   - Function-level timing
+   - Load time tracking
+   - Performance monitoring
+
+3. Loading Optimization
+   - Conditional loading
+   - Verbose/Silent modes
+   - Performance logging
+   - Cache utilization
+
+## Core Functions
+
+### File Operations
+
+```bash
+load_()      # Smart file loading with timing
+source_()    # Safe file sourcing with validation
+call_()      # Function execution with timing
+```
+
+### Timer Functions
+
+```bash
+timer_()           # Base timer function
+timer_now()        # Current execution timing
+timer_from_then()  # Custom interval timing
+timer_all()        # Global execution timing
+```
+
+### Configuration Functions
+
+```bash
+load_all_config_and_settings_files()  # Master loader
+load_config_or_settings_()            # Directory loader
+Load_all_files_d()                    # Basic file loader
+Load_all_files_d_v()                  # Verbose file loader
+```
+
+## System Requirements
+
+### Shell Environment
+
+- ZSH shell required
+- Interactive/non-interactive detection
+- Login shell support
+- Environment state tracking
+
+### File System
+
+- Write access to cache directory
+- Read access to configuration files
+- Directory structure preservation
+- Cache file management
+
+### Development Tools
+
+- Node.js with FNM (Fast Node Manager)
+- Conda environment support
+- Ruby/Perl environments
+- Git integration
+
+### Desktop Integration
+
+- KDE/QT environment support
+- Terminal compatibility
+- Path computation requirements
+- Shell integration features
 
 ## Technical Dependencies
 
-- bash/zsh shell environment
-- KDE/QT desktop environment support
-- Conda environment system
-- Core unix utilities (date, mkdir)
-- Node.js version manager (fnm)
-- Ruby/Perl/Python environments
+1. Core Dependencies
+   - ZSH shell environment
+   - Core Unix utilities
+   - File system access
+   - Process management
 
-## Configuration Functions
+2. Development Tools
+   - Node.js and FNM
+   - Conda for Python
+   - Ruby environment
+   - Perl modules
 
-1. MAIN_SETTINGS()
-   - Core environment setup
-   - Default values initialization
-   - System paths configuration
-   - Editor preferences setup
+3. Shell Integration
+   - Oh My Zsh framework
+   - Custom plugins support
+   - Theme compatibility
+   - Command completion
 
-2. my_envs()
-   - Node.js environment setup
-   - Development tool paths
-   - GitHub configuration
-   - Language-specific settings
+4. Performance Tools
+   - Timing utilities
+   - Cache management
+   - Performance monitoring
+   - Metrics collection
 
-3. __LOCALE__()
-   - Default locale initialization
-   - Language settings
-   - Regional preferences
-   - Character encoding
+## Configuration Structure
 
-4. _LOCALE_()
-   - Dynamic locale configuration
-   - Language/region customization
-   - Encoding management
+### Main Settings
+
+1. Core Environment
+   - Base paths
+   - Cache locations
+   - Environment variables
+   - Shell preferences
+
+2. Development Setup
+   - Node.js configuration
+   - Python environment
+   - Ruby settings
+   - Perl configuration
+
+3. Performance Settings
+   - Timer configuration
+   - Cache management
+   - Loading preferences
+   - Verbosity control
+
+### State Management
+
+1. Environment States
+   - LOAD_ENV_COMPLETED
+   - ENVIRONNEMENT_LOADED
+   - LOGIN_ENV_LOADED
+   - INTERACTIVE_ENV_LOADED
+
+2. State Tracking
+   - State transitions
+   - Once-only flags
+   - State validation
+   - Error handling

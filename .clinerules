@@ -1,0 +1,127 @@
+# AHMYZSH Project Guidelines
+
+## Project Understanding
+
+1. Initialization Flow
+   - Level 0: Entry point (source-me-in-etc-zshenv.sh)
+   - Level 1: Initial setup (environment, paths, core loading)
+   - Level 2: Bootstrap process (MAIN.sh)
+   - Level 3: Settings and configuration
+
+2. Memory Bank Structure
+   - Use memory bank for maintaining context between sessions
+   - Update files when discovering new patterns
+   - Document complex relationships and dependencies
+
+## Session Management Rules
+
+1. Start of Session:
+   - Read all memory bank files
+   - Check projectbrief.md for core objectives
+   - Review activeContext.md for current status
+   - Consult systemPatterns.md for architecture
+
+2. During Session:
+   - Document discoveries immediately
+   - Update progress.md with completed steps
+   - Note branches for future exploration
+
+3. End of Session:
+   - Update activeContext.md with latest status
+   - Document any unfinished investigations
+   - Update .clinerules with new learnings
+
+## Investigation Patterns
+
+1. File Analysis
+   - Start with high-level structure
+   - Document file references
+   - Note function dependencies
+   - Map initialization sequences
+
+2. Function Mapping
+   - Document primary purpose
+   - Note dependencies
+   - Track usage patterns
+   - Document timing implications
+
+3. Branch Management
+   - Note "TO BE EXPLORED" branches
+   - Document dependency chains
+   - Track investigation depth
+
+## Documentation Standards
+
+1. Memory Bank Files
+   - Keep files focused and organized
+   - Use mermaid diagrams for visualization
+   - Document relationships clearly
+   - Note investigation status
+
+2. Code Comments
+   - Include purpose and dependencies
+   - Note performance implications
+   - Document timing requirements
+   - Track related components
+
+## Project Behaviors
+
+1. Performance Focus
+   - Track execution timing
+   - Note caching mechanisms
+   - Document optimization patterns
+   - Monitor resource usage
+
+2. Shell Integration
+   - Note environment requirements
+   - Document shell-specific features
+   - Track initialization sequence
+   - Map function interactions
+
+## Current Discoveries
+
+1. Core Functions
+   - load_all_config_and_settings_files(): Configuration management
+   - timer_() family: Performance monitoring
+   - load_(), source_(), call_(): File operations
+
+2. File Dependencies
+   - MAIN.sh: Bootstrap and initialization
+   - MAIN_SETTINGS.sh: Environment configuration
+   - MAIN-FUNCTIONS.sh: Core functionality
+
+3. System Patterns
+   - Layered initialization
+   - Performance optimization
+   - Modular configuration
+   - Dynamic loading
+
+## Investigation Guidelines
+
+1. Depth Control
+   - Document but don't dive into branches
+   - Note relationships for later
+   - Maintain investigation focus
+   - Track dependency chains
+
+2. Progress Tracking
+   - Update progress.md regularly
+   - Note completed investigations
+   - Document remaining work
+   - Track branch status
+
+## Session Continuity
+
+1. Context Management
+   - Use memory bank for state
+   - Document current focus
+   - Note next steps
+   - Track branch points
+
+2. Investigation Flow
+   - Follow level hierarchy
+   - Document as you go
+   - Note new discoveries
+   - Update documentation
+
+Remember: Always "follow your custom instructions" at the start of a session to ensure proper context loading and continuity.
