@@ -2,29 +2,95 @@
 
 ![AH MY ZSH Initial Screen](images/Screenshot_20240517_151315.png)
 
-## Don't have any expectations
+## System Overview
 
-This project is for my personal use, it is not currently maintained in a way that is friendly for general use by others (this includes you), therefor _it is garanteed that this project will **NOT** be fit for any particular purpose_.
+AHMYZSH is a sophisticated shell configuration system providing:
 
-### Use what can be useful to you
+1. Performance-Optimized Shell Environment
+   - Smart path caching
+   - Timed execution monitoring
+   - Conditional component loading
 
-Regardless feel free to grab what can be useful to you for your personal projects or open source projects. Some parts of this work are under Mozilla Public License, v. 2.0. and other parts are under MIT the use of any part of code should be flexible for you and for people using the code you produce in all cases please state `Copyright © 2019-present Benjamin Vincent Kasapoglu (Luxcium)` and when possible please list the changes you made from this current work...
+2. Modular Configuration Management
+   - Hierarchical file loading
+   - Selective component initialization
+   - Extensive function library
 
-## Report bugs, problems and security issues
+3. Development Environment Integration
+   - Node.js version management (FNM)
+   - Python/Conda support
+   - Ruby/Perl configurations
+   - Development tool integration
 
-Please open a pull request to correct small bugs or any security issues or to fix compatibilities issues...
-If possible plesae first open an [issue](https://github.com/Luxcium/ahmyzsh/issues) to describe the probleme...
-Then open a pull request that fixes the issue...
+## System Architecture
 
-## Workflows and branch
+```mermaid
+graph TB
+    A[Entry Point: source-me-in-etc-zshenv.sh] --> B[Initial Setup]
+    B --> C[Bootstrap Process]
+    C --> D[Configuration]
 
-I use a different branch for each of my computers (or workflows). I am using the [luxcium](https://github.com/Luxcium/ahmyzsh/tree/luxcium) branch on my macOS and [pc-master-race](https://github.com/Luxcium/ahmyzsh/tree/pc-master-race) branch fo my WSL on windows and now my main computer is using fedora so I am using the [fedora-working-station](https://github.com/Luxcium/ahmyzsh/tree/fedora-working-station) as my main development branch...
+    subgraph "Core Components"
+        B1[Environment Setup]
+        B2[Path Management]
+        B3[Shell Features]
+    end
 
-### Hidden folders
+    subgraph "Development Tools"
+        D1[Node.js/FNM]
+        D2[Python/Conda]
+        D3[Ruby/Perl]
+    end
+```
 
-Some folder have been hiddens while I am not working with them now you may unhide them in `.vscode/settings.json`:
+## Key Components
+
+### 1. File Organization
+
+- `/core/`: Core system functionality
+  - `compute-path/`: Path computation and caching
+  - `functions/`: Shell function libraries
+  - `aliases/`: Command aliases
+  - `options/`: Shell options
+
+### 2. Configuration Files
+
+- `source-me-in-etc-zshenv.sh`: Main entry point
+- `MAIN.sh`: Bootstrap system
+- `MAIN-FUNCTIONS.sh`: Core functions
+- `MAIN_SETTINGS.sh`: System settings
+
+### 3. Primary Functions
+
+- Configuration Loading:
+  - `load_all_config_and_settings_files()`
+  - `load_config_or_settings_()`
+  - `Load_all_files_d()`
+
+- Performance Monitoring:
+  - `timer_()`: Base timing
+  - `timer_now()`: Current timing
+  - `timer_all()`: Global timing
+
+- File Operations:
+  - `load_()`: Smart loading
+  - `source_()`: Safe sourcing
+  - `call_()`: Timed execution
+
+## Usage Notes
+
+### Branch Organization
+
+- `luxcium`: macOS configuration
+- `pc-master-race`: WSL/Windows setup
+- `fedora-working-station`: Fedora development
+
+### Hidden Components
+
+Configuration for hidden folders in `.vscode/settings.json`:
 
 ```json
+{
   "files.exclude": {
     "**/*.zwc": true,
     "powerlevel10k": true,
@@ -32,17 +98,42 @@ Some folder have been hiddens while I am not working with them now you may unhid
     "powerline": true,
     "crt-profiles": true,
     "node_modules": true
-  },
+  }
+}
 ```
 
-## SECURITY WARNING
+## Important Notices
 
-AUDIT ANY FILES YOU IMPORT FROM THIS PROJECT PRIOR: DOWNLOAD / INSTALL / USE
-Please asses security risks by yourself befor to use the product and report
-any security issues or vulnerability on the issues page of the main repo site:
-[AHMYZSH project issues](https://github.com/Luxcium/ahmyzsh/issues)
+### Personal Use Notice
 
-## MIT License
+This project is maintained for personal use and may not be suitable for general purposes. While you're welcome to use and adapt it, it comes with no guarantees of fitness for any particular purpose.
+
+### Security Warning
+
+⚠️ **IMPORTANT**: Audit all files before use. Report security issues at [AHMYZSH Issues](https://github.com/Luxcium/ahmyzsh/issues)
+
+### Usage Rights
+
+Feel free to use components in personal or open source projects under these conditions:
+
+- Include notice: `Copyright © 2019-present Benjamin Vincent Kasapoglu (Luxcium)`
+- Document modifications from original work
+- Comply with MIT/Mozilla Public License v2.0 as applicable
+
+## Contributing
+
+1. Report Issues
+   - Open an [issue](https://github.com/Luxcium/ahmyzsh/issues) describing the problem
+   - Include relevant system information and steps to reproduce
+
+2. Submit Fixes
+   - Create pull requests for bug fixes
+   - Address compatibility issues
+   - Improve documentation
+
+## License
+
+MIT License
 
 Copyright © 2019-2020 Benjamin Vincent Kasapoglu (Luxcium) and contributors
 (<https://github.com/Luxcium/ahmyzsh/contributors>)
