@@ -1,6 +1,6 @@
 # Complete Alias Inventory
 
-Generated on: dim 16 mar 2025 19:00:19 EDT
+Generated on: dim 16 mar 2025 18:58:47 EDT
 
 ## Summary of Alias Files
 
@@ -52,12 +52,6 @@ Generated on: dim 16 mar 2025 19:00:19 EDT
 | k8s.sh | 3 | 31 | 1 |
 | tmux.sh | 41 | 1948 | 11 |
 | **TOTAL** | **7718** | **348325** | **2027** |
-
-## Changes Since Last Update
-
-| Filename | Previous Count | Current Count | Difference |
-|----------|---------------|--------------|------------|
-No changes detected since last update.
 
 ## Detailed Alias Listing
 
@@ -1556,8 +1550,8 @@ Lines: 279 | Size: 14137 bytes
 
 | Alias | Command |
 |-------|---------|
-| `latestohmyzsh` | `( builtin cd ${AHMYZSH}/ohmyzsh &&  git pull origin) ` |
-| `latestpowerlevel10k` | `( builtin cd ${AHMYZSH}/powerlevel10k &&  git pull origin) ` |
+| `latestohmyzsh` | `( builtin cd ${AHMYZSH}/ohmyzsh &&  git pull origin)` |
+| `latestpowerlevel10k` | `( builtin cd ${AHMYZSH}/powerlevel10k &&  git pull origin)` |
 | `upgradesubmodules` | `latestohmyzsh; latestpowerlevel10k` |
 | `qtbuilder` | `(cd /home/luxcium/dev/questrade-ts; tsc --build --watch)` |
 | `qtbuild` | `(cd /home/luxcium/dev/questrade-ts; tsc --build)` |
@@ -1567,7 +1561,7 @@ Lines: 279 | Size: 14137 bytes
 | `vs-iex-api` | `cd ${PATH_IEX_API}; code -n ${PATH_IEX_API}` |
 | `vsram` | `cd ${PATH_LXIO}/../ramda; code -n ${PATH_LXIO}/../ramda` |
 | `lxi` | `cd ${PATH_LXIO_PRJ}/luxcium.io` |
-| `lxicd` | ` mycode ${PATH_LXIO_PRJ}/luxcium.io; lxi;` |
+| `lxicd` | `mycode ${PATH_LXIO_PRJ}/luxcium.io; lxi;` |
 | `lxq` | `cd ${PATH_LXIO_PRJ}/questrade-ts` |
 | `lxqc` | `mycode ${PATH_LXIO_PRJ}/questrade-ts && cd ${PATH_LXIO_PRJ}/questrade-ts` |
 | `lux` | `open $PATH_LXIO_PRJ` |
