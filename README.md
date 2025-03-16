@@ -1,157 +1,187 @@
-# ahmyzsh
-
-![AH MY ZSH Initial Screen](images/Screenshot_20240517_151315.png)
-
-## System Overview
-
-AHMYZSH is a sophisticated shell configuration system providing:
-
-1. Performance-Optimized Shell Environment
-   - Smart path caching
-   - Timed execution monitoring
-   - Conditional component loading
-
-2. Modular Configuration Management
-   - Hierarchical file loading
-   - Selective component initialization
-   - Extensive function library
-
-3. Development Environment Integration
-   - Node.js version management (FNM)
-   - Python/Conda support
-   - Ruby/Perl configurations
-   - Development tool integration
+# AHMYZSH
 
 ## System Architecture
 
 ```mermaid
-graph TB
-    A[Entry Point: source-me-in-etc-zshenv.sh] --> B[Initial Setup]
-    B --> C[Bootstrap Process]
-    C --> D[Configuration]
-
-    subgraph "Core Components"
-        B1[Environment Setup]
-        B2[Path Management]
-        B3[Shell Features]
+graph TD
+    subgraph Initialization
+        L0[Level 0: Entry]
+        L1[Level 1: Setup]
+        L2[Level 2: Bootstrap]
+        L3[Level 3: Config]
     end
 
-    subgraph "Development Tools"
-        D1[Node.js/FNM]
-        D2[Python/Conda]
-        D3[Ruby/Perl]
+    subgraph Core Components
+        C1[Shell Integration]
+        C2[Function Library]
+        C3[Alias Management]
+        C4[Path Handling]
     end
+
+    subgraph Extensions
+        E1[Plugins]
+        E2[Themes]
+        E3[Custom Tools]
+    end
+
+    subgraph Documentation
+        D1[Memory Bank]
+        D2[Templates]
+        D3[Development Guides]
+    end
+
+    Initialization --> Core Components
+    Core Components --> Extensions
+    Documentation --> Core Components
+    Documentation --> Extensions
 ```
 
-## Key Components
+## Overview
 
-### 1. File Organization
+AHMYZSH is a comprehensive shell configuration framework designed for performance, extensibility, and maintainability.
 
-- `/core/`: Core system functionality
-  - `compute-path/`: Path computation and caching
-  - `functions/`: Shell function libraries
-  - `aliases/`: Command aliases
-  - `options/`: Shell options
+### Key Features
 
-### 2. Configuration Files
+- Layered initialization system
+- Performance-optimized shell integration
+- Comprehensive alias management
+- Dynamic path handling
+- Plugin architecture
+- Theme customization
 
-- `source-me-in-etc-zshenv.sh`: Main entry point
-- `MAIN.sh`: Bootstrap system
-- `MAIN-FUNCTIONS.sh`: Core functions
-- `MAIN_SETTINGS.sh`: System settings
+## Project Structure
 
-### 3. Primary Functions
+```mermaid
+graph LR
+    A[Core] --> B[Shell Integration]
+    A --> C[Function Library]
+    A --> D[Path Management]
 
-- Configuration Loading:
-  - `load_all_config_and_settings_files()`
-  - `load_config_or_settings_()`
-  - `Load_all_files_d()`
+    E[Extensions] --> F[Plugins]
+    E --> G[Themes]
+    E --> H[Tools]
 
-- Performance Monitoring:
-  - `timer_()`: Base timing
-  - `timer_now()`: Current timing
-  - `timer_all()`: Global timing
-
-- File Operations:
-  - `load_()`: Smart loading
-  - `source_()`: Safe sourcing
-  - `call_()`: Timed execution
-
-## Usage Notes
-
-### Branch Organization
-
-- `luxcium`: macOS configuration
-- `pc-master-race`: WSL/Windows setup
-- `fedora-working-station`: Fedora development
-
-### Hidden Components
-
-Configuration for hidden folders in `.vscode/settings.json`:
-
-```json
-{
-  "files.exclude": {
-    "**/*.zwc": true,
-    "powerlevel10k": true,
-    "ohmyzsh": true,
-    "powerline": true,
-    "crt-profiles": true,
-    "node_modules": true
-  }
-}
+    I[Documentation] --> J[Memory Bank]
+    I --> K[Templates]
+    I --> L[Guides]
 ```
 
-## Important Notices
+### Core Components
 
-### Personal Use Notice
+- `core/` - Essential shell functionality
+- `plugins/` - Extensible feature modules
+- `themes/` - Visual customization
+- `templates/` - Configuration templates
+- `memory-bank/` - Project documentation
+- `custom-tmux/` - Terminal multiplexer integration
+- `documentation/` - User and development guides
 
-This project is maintained for personal use and may not be suitable for general purposes. While you're welcome to use and adapt it, it comes with no guarantees of fitness for any particular purpose.
+## Documentation Strategy
 
-### Security Warning
+### 1. Memory Bank
 
-⚠️ **IMPORTANT**: Audit all files before use. Report security issues at [AHMYZSH Issues](https://github.com/Luxcium/ahmyzsh/issues)
+- `projectbrief.md` - Project overview and goals
+- `productContext.md` - Use cases and requirements
+- `systemPatterns.md` - Architecture and patterns
+- `techContext.md` - Technical specifications
+- `activeContext.md` - Current development state
+- `progress.md` - Implementation tracking
 
-### Usage Rights
+### 2. Templates
 
-Feel free to use components in personal or open source projects under these conditions:
+Located in `/templates`:
 
-- Include notice: `Copyright © 2019-present Benjamin Vincent Kasapoglu (Luxcium)`
-- Document modifications from original work
-- Comply with MIT/Mozilla Public License v2.0 as applicable
+- Analysis frameworks
+- Configuration templates
+- Development tools
+- Integration guides
 
-## Contributing
+### 3. Development Guidelines
 
-1. Report Issues
-   - Open an [issue](https://github.com/Luxcium/ahmyzsh/issues) describing the problem
-   - Include relevant system information and steps to reproduce
+Found in `/documentation`:
 
-2. Submit Fixes
-   - Create pull requests for bug fixes
-   - Address compatibility issues
-   - Improve documentation
+- Contribution workflow
+- Testing procedures
+- Performance standards
+- Style guidelines
 
-## License
+## Getting Started
 
-MIT License
+### 1. System Requirements
 
-Copyright © 2019-2020 Benjamin Vincent Kasapoglu (Luxcium) and contributors
-(<https://github.com/Luxcium/ahmyzsh/contributors>)
+- Zsh shell environment
+- Git for version control
+- Terminal with Unicode support
+- Optional: tmux for enhanced terminal capabilities
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+### 2. Installation
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. Clone the repository:
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+   ```bash
+   git clone [repository-url]
+   ```
+
+2. Run the installation script:
+
+   ```bash
+   ./source-me-in-etc-zshenv.sh
+   ```
+
+3. Configure your environment:
+   - Copy relevant templates
+   - Set up your preferences
+   - Choose your theme
+
+### 3. Configuration
+
+1. System-level setup:
+   - Environment variables
+   - Path configuration
+   - Security settings
+
+2. User customization:
+   - Personal aliases
+   - Custom functions
+   - Theme selection
+
+## Development
+
+### Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Follow coding standards
+4. Submit pull request
+
+### Testing
+
+- Unit tests for functions
+- Integration tests for components
+- Performance benchmarks
+- Documentation coverage
+
+## Performance
+
+AHMYZSH emphasizes performance through:
+
+### Optimization Strategies
+
+- Lazy loading of components
+- Efficient initialization
+- Minimal dependencies
+- Cached operations
+
+### Monitoring Tools
+
+- Built-in benchmarks
+- Performance profiling
+- Resource monitoring
+- Optimization templates
+
+## Support
+
+- Documentation: See `/documentation`
+- Templates: See `/templates`
+- Development: See `DEVELOPMENT.md`
+- User Guide: See `USER_GUIDE.md`
