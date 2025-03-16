@@ -2436,6 +2436,7 @@
   "[properties]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
+  "markdown.validate.enabled": true,
   // #endregion: EDITOR RULERS                                                  !
   // #region: RANDOM                                                            !
   /*
