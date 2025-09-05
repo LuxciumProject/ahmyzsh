@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 echo -n -e '\u001b[0m\u001b[31;1m\u001b[1m'
 export TIMER_ALL_THEN="${TIMER_ALL_THEN:="$(/usr/bin/date +%s%N)"}"
-export AHMYZSH="${AHMYZSH:="/ahmyzsh"}"
+export AHMYZSH="${AHMYZSH:="/projects/ahmyzsh"}"
 export AHMYZSH_CACHE="${AHMYZSH_CACHE:="${HOME}/.cache/ahmyzsh"}"
 export CACHED_PATH="${CACHED_PATH:="${AHMYZSH_CACHE}/path.env"}"
 export LANG=fr_CA.utf8
@@ -58,7 +58,7 @@ fi
 # export TIMER_ALL_THEN="${TIMER_ALL_THEN:="$(get_current_time_ns || /usr/bin/date +%s%N)"}"
 
 # # Set environment variables
-# export AHMYZSH="${AHMYZSH:="/ahmyzsh"}"
+# export AHMYZSH="${AHMYZSH:="/projects/ahmyzsh"}"
 # export AHMYZSH_CACHE="${AHMYZSH_CACHE:="${HOME}/.cache/ahmyzsh"}"
 # export CACHED_PATH="${CACHED_PATH:="${AHMYZSH_CACHE}/path.env"}"
 # export LANG=fr_CA.utf8
@@ -130,4 +130,3 @@ fi
 # }
 
 # load_main_bootstrap
-
