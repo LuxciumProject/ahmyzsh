@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Total lines: 108
+
 alias shtop="sudo ionice -c 3 nice -n -15 /usr/bin/shtop -d 5"
 
 alias renicecode='sudo renice -n -15 $(pidof code)'

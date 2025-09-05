@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Total lines: 256
+
 alias latestohmyzsh='( builtin cd ${AHMYZSH}/ohmyzsh &&  git pull origin) '
 alias latestpowerlevel10k='( builtin cd ${AHMYZSH}/powerlevel10k &&  git pull origin) '
 alias upgradesubmodules='latestohmyzsh; latestpowerlevel10k'

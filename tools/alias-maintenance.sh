@@ -1,0 +1,153 @@
+#!/bin/bash
+# Alias maintenance script - identifies potential issues with aliases
+
+ALIASES_DIR="/projects/templates/ahmyzsh/core/aliases"
+REPORT_FILE="/projects/templates/ahmyzsh/tools/alias-maintenance-report.md"
+
+# Create report header
+echo "# Alias Maintenance Report" > "$REPORT_FILE"
+echo "" >> "$REPORT_FILE"
+echo "Generated on: $(date)" >> "$REPORT_FILE"
+echo "" >> "$REPORT_FILE"
+
+# Check for duplicate aliases
+echo "## Duplicate Aliases" >> "$REPORT_FILE"
+echo "" >> "$REPORT_FILE"
+echo "The following aliases are defined in multiple files:" >> "$REPORT_FILE"
+echo "" >> "$REPORT_FILE"
+
+duplicates=$(grep -h "^alias " "$ALIASES_DIR"/*.sh | sed 's/^alias \([^=]*\)=.*/\1/' | sort | uniq -d)
+
+if [ -z "$duplicates" ]; then
+  echo "No duplicates found." >> "$REPORT_FILE"
+else
+  echo "| Alias | Files |" >> "$REPORT_FILE"
+  echo "|-------|-------|" >> "$REPORT_FILE"
+
+  for dup in $duplicates; do
+    files=$(grep -l "^alias $dup=" "$ALIASES_DIR"/*.sh | xargs -n1 basename | tr '\n' ',' | sed 's/,$//')
+    echo "| \`$dup\` | $files |" >> "$REPORT_FILE"
+  done
+fi
+
+echo "" >> "$REPORT_FILE"
+
+# Check for potentially conflicting commands (aliases that override system commands)
+echo "## System Command Overrides" >> "$REPORT_FILE"
+echo "" >> "$REPORT_FILE"
+echo "The following aliases might override system commands:" >> "$REPORT_FILE"
+echo "" >> "$REPORT_FILE"
+
+common_commands="ls cd cp mv rm mkdir rmdir cat grep find sed awk touch chmod chown kill ps top df du free"
+system_overrides=0
+
+echo "| Alias | Command |" >> "$REPORT_FILE"
+echo "|-------|---------|" >> "$REPORT_FILE"
+
+for cmd in $common_commands; do
+  aliases=$(grep -h "^alias $cmd=" "$ALIASES_DIR"/*.sh)
+  if [ -n "$aliases" ]; then
+    system_overrides=$((system_overrides + 1))
+    file=$(grep -l "^alias $cmd=" "$ALIASES_DIR"/*.sh | xargs -n1 basename | head -1)
+    command=$(echo "$aliases" | head -1 | sed 's/^alias [^=]*=.\(.*\).$/\1/')
+    echo "| \`$cmd\` | \`$command\` | $file |" >> "$REPORT_FILE"
+  fi
+done
+
+if [ "$system_overrides" -eq 0 ]; then
+  echo "No system commands are overridden by aliases." >> "$REPORT_FILE"
+fi
+
+echo "" >> "$REPORT_FILE"
+
+# Check for potentially unused or empty aliases
+echo "## Empty or Suspicious Aliases" >> "$REPORT_FILE"
+echo "" >> "$REPORT_FILE"
+echo "The following aliases might be empty or suspicious:" >> "$REPORT_FILE"
+echo "" >> "$REPORT_FILE"
+
+echo "| Alias | Command | File |" >> "$REPORT_FILE"
+echo "|-------|---------|------|" >> "$REPORT_FILE"
+
+suspicious_count=0
+
+grep -n "^alias " "$ALIASES_DIR"/*.sh | while read -r line; do
+  file=$(echo "$line" | cut -d: -f1 | xargs basename)
+  if [[ "$line" =~ ^.*:.*alias\ ([^=]+)=[\'\"](.*)[\'\"] ]]; then
+    alias_name="${BASH_REMATCH[1]}"
+    alias_command="${BASH_REMATCH[2]}"
+
+    # Check if command is empty or very short
+    if [ ${#alias_command} -lt 2 ]; then
+      echo "| \`$alias_name\` | \`$alias_command\` | $file |" >> "$REPORT_FILE"
+      suspicious_count=$((suspicious_count + 1))
+    fi
+  fi
+done
+
+if [ "$suspicious_count" -eq 0 ]; then
+  echo "No empty or suspicious aliases found." >> "$REPORT_FILE"
+fi
+
+echo "" >> "$REPORT_FILE"
+
+# Check for files with no aliases
+echo "## Files Without Aliases" >> "$REPORT_FILE"
+echo "" >> "$REPORT_FILE"
+echo "The following .sh files in the aliases directory don't contain any aliases:" >> "$REPORT_FILE"
+echo "" >> "$REPORT_FILE"
+
+no_aliases=0
+
+for file in "$ALIASES_DIR"/*.sh; do
+  if [ -f "$file" ]; then
+    filename=$(basename "$file")
+    count=$(grep -c "^alias " "$file")
+
+    if [ "$count" -eq 0 ]; then
+      echo "- $filename" >> "$REPORT_FILE"
+      no_aliases=$((no_aliases + 1))
+    fi
+  fi
+done
+
+if [ "$no_aliases" -eq 0 ]; then
+  echo "All .sh files contain at least one alias." >> "$REPORT_FILE"
+fi
+
+echo "" >> "$REPORT_FILE"
+
+# Check for potential naming convention issues
+echo "## Naming Convention Suggestions" >> "$REPORT_FILE"
+echo "" >> "$REPORT_FILE"
+echo "The following aliases might not follow common naming conventions:" >> "$REPORT_FILE"
+echo "" >> "$REPORT_FILE"
+
+echo "| Alias | Suggestion | File |" >> "$REPORT_FILE"
+echo "|-------|------------|------|" >> "$REPORT_FILE"
+
+naming_issues=0
+
+grep -n "^alias " "$ALIASES_DIR"/*.sh | while read -r line; do
+  file=$(echo "$line" | cut -d: -f1 | xargs basename)
+  if [[ "$line" =~ ^.*:.*alias\ ([^=]+)=[\'\"](.*)[\'\"] ]]; then
+    alias_name="${BASH_REMATCH[1]}"
+
+    # Check for non-standard naming patterns
+    if [[ "$alias_name" =~ [A-Z] && "$alias_name" != *"-"* ]]; then
+      suggestion="Consider using lowercase with hyphens"
+      echo "| \`$alias_name\` | $suggestion | $file |" >> "$REPORT_FILE"
+      naming_issues=$((naming_issues + 1))
+    fi
+  fi
+done
+
+if [ "$naming_issues" -eq 0 ]; then
+  echo "No naming convention issues found." >> "$REPORT_FILE"
+fi
+
+echo "" >> "$REPORT_FILE"
+echo "---" >> "$REPORT_FILE"
+echo "Generated by alias-maintenance.sh script" >> "$REPORT_FILE"
+
+echo "Alias maintenance report has been created at $REPORT_FILE"

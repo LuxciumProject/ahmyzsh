@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Total lines: 21
+
 alias get_tab='remotinator get_tab'
 alias get_tab_title='remotinator get_tab_title'
 alias get_terminals='remotinator get_terminals'
