@@ -30,10 +30,10 @@ graph TD
         D3[Development Guides]
     end
 
-    Initialization --> Core Components
-    Core Components --> Extensions
-    Documentation --> Core Components
-    Documentation --> Extensions
+    L3 --> C1
+    C4 --> E1
+    D1 --> C2
+    D2 --> E2
 ```
 
 ## Overview
