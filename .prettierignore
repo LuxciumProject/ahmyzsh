@@ -1,0 +1,3 @@
+# Preserve strict spacing/heading contracts for prompt and chatmode cards
+*.prompt.md
+*.chatmode.md

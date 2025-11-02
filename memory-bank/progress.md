@@ -193,7 +193,8 @@ graph TD
    - [ ] Study state management
 
 3. Documentation
-   - [ ] Complete all memory bank updates
-   - [ ] Finalize pattern documentation
-   - [ ] Update technical specifications
-   - [ ] Create system diagrams
+   - [x] Added Layer 2 verification script and triad integration
+   - [x] Added Layer 3A/3B instruction cards to `memory-bank/instructions/`
+   - [x] Created two chat modes under `memory-bank/chatmodes/`
+   - [x] Excluded `*.prompt.md` and `*.chatmode.md` via `.prettierignore`
+   - [x] Added `scripts/verify-layer3b.sh` and validated chat modes (PASS)
