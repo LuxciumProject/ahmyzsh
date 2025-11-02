@@ -29,11 +29,6 @@ graph TD
         D2[Templates]
         D3[Development Guides]
     end
-
-    L3 --> C1
-    C4 --> E1
-    D1 --> C2
-    D2 --> E2
 ```
 
 ## Overview

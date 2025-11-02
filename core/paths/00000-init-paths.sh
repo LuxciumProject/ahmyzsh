@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export AHMYZSH=${AHMYZSH:="/ahmyzsh"}
+export AHMYZSH=${AHMYZSH:="/projects/ahmyzsh"}
 export AHMYZSH_CACHE=${AHMYZSH_CACHE:="${HOME}/.cache/ahmyzsh"}
 export CACHED_PATH=${CACHED_PATH:="${AHMYZSH_CACHE}/path.env"}
 export MAIN_BOOTSTRAP=${MAIN_BOOTSTRAP:="${AHMYZSH}/MAIN.sh"}

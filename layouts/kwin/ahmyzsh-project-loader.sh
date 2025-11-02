@@ -14,7 +14,7 @@ true
 APP_PATH="/home/luxcium/main-vscode/bin/code"
 ICON_FILE="/home/luxcium/.local/share/icons/vscode-material-icon-theme/folder-vm-open.svg"
 WM_CLASS="°Ah! MYZSH°"
-VSCODE_PROJECT_PATH="/ahmyzsh"
+VSCODE_PROJECT_PATH="/projects/ahmyzsh"
 
 kstart5 --qwindowicon "${ICON_FILE}" --windowclass "${WM_CLASS}" --currentdesktop --activate "${APP_PATH}" "${VSCODE_PROJECT_PATH}"
 
