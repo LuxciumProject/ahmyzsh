@@ -55,14 +55,18 @@ bash scripts/tools_assemble-ahmyzsh-bundle.sh --commit "v0.0.0"
 ```
 snapshots/
 ├── README.md                                    # This documentation
-└── bundle/
-    ├── .gitkeep                                # Ensures directory is tracked
-    ├── .gitignore                              # Prevents bundle files from git tracking
-    ├── ahmyzsh-bundle-LATEST.sh               # Symlink to most recent snapshot
+├── IMPLEMENTATION.md                           # Technical details
+├── ahmyzsh-bundle-LATEST.sh                   # Latest snapshot (git-tracked, real file)
+└── bundle/                                      # (git-ignored)
+    ├── .gitignore                              # Ignores all timestamped files
     ├── ahmyzsh-bundle-20251102-065359.sh      # Timestamped snapshot (minimal)
     ├── ahmyzsh-bundle-20251102-065250.sh      # Full mode example
     └── ...                                      # Previous snapshots
 ```
+
+**Git Strategy:**
+- `LATEST.sh`: Tracked (allows versioning)
+- `bundle/`: Entirely ignored (prevents repository bloat)
 
 ### 4. Snapshot File Structure
 
