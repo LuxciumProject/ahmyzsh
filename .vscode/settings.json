@@ -832,6 +832,28 @@
   "todo-tree.tree.tagsOnly": true,
   "todo-tree.tree.tooltipFormat": "${filepath}, line ${line}",
   "todo-tree.tree.trackFile": true,
+  // === Memory-Bank Triad Integration (merge-append) ===
+  "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+  "chat.instructionsFilesLocations": {
+    "memory-bank/instructions": true
+  },
+  "chat.promptFiles": true,
+  "chat.promptFilesLocations": {
+    "memory-bank/prompts": true
+  },
+  // Legacy chat modes location (kept for triad discovery)
+  "chat.modeFilesLocations": {
+    "memory-bank/chatmodes": true
+  },
+  // New custom agents location (preferred by editor)
+  "chat.agentFilesLocations": {
+    ".github/agents": true
+  },
+  // === Workspace Chat Preferences ===
+  "chat.agent.enabled": true,
+  "chat.agent.thinkingStyle": "expanded",
+  "chat.math.enabled": true,
+  "chatgpt.openOnStartup": true,
   // "todo-tree.filtering.excludedWorkspaces": [],
   // "todo-tree.filtering.excludeGlobs": [],
   // "todo-tree.filtering.includedWorkspaces": [],
@@ -3029,16 +3051,6 @@
   |-···――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――···-|
   ―― COPILOT & MEMORY-BANK INTEGRATION
   */
-  "github.copilot.chat.codeGeneration.useInstructionFiles": true,
-  "chat.instructionsFilesLocations": {
-    "memory-bank/instructions": true
-  },
-  "chat.promptFiles": true,
-  "chat.promptFilesLocations": {
-    "memory-bank/prompts": true
-  },
-  "chat.modeFilesLocations": {
-    "memory-bank/chatmodes": true
-  },
+  // Triad keys are defined earlier to avoid duplicates.
   // #endregion: COPILOT & MEMORY-BANK TRIAD                                   !
 }

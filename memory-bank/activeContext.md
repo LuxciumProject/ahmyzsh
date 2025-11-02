@@ -1,13 +1,14 @@
 # Active Context
 
-## Current Focus: Core Functions Documentation and Completion
+## Current Focus: Memory-Bank Triad hardening (Layers 3C/4)
 
-We have completed a comprehensive documentation of all functions in the core/functions directory. This involved:
+We are consolidating the triad with prompt contracts, validators, and editor integration:
 
-1. Systematic audit of all 52 .sh files
-2. Documentation of function purpose, features, and dependencies
-3. Identification of incomplete functions and missing functionality
-4. Creation of a detailed README.md with implementation status
+1. Authored Layer 3C factory and two prompt cards
+2. Added validators for instructions, chatmodes, and prompts
+3. Introduced Triad Health and Slash Commands utilities
+4. Integrated triad and agents in VS Code settings; removed duplicate keys
+5. Added custom agents under `.github/agents/` to satisfy editor deprecations
 
 ### Implementation Tracking Structure
 

@@ -1,7 +1,7 @@
 ---
 description: Enforce repository guardrails and memory-bank usage while making small, safe edits.
-tools: ['codebase', 'editFiles', 'fetch']
-model: GPT-5 (Preview)
+tools: ['edit/createFile', 'edit/createDirectory', 'edit/editFiles', 'search', 'runCommands', 'runTasks', 'runSubagent', 'usages', 'vscodeAPI', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'extensions', 'todos']
+model: GPT-5
 ---
 <!-- memory-bank/chatmodes/repo-steward.chatmode.md -->
 

@@ -200,3 +200,9 @@ graph TD
    - [x] Added `scripts/verify-layer3b.sh` and validated chat modes (PASS)
    - [x] Created two prompt cards under `memory-bank/prompts/`
    - [x] Added `scripts/verify-layer3c.sh` and verified prompt files (PASS)
+   - [x] Authored `layer-3c-prompt-files-factory.instructions.md`
+   - [x] Added validators: `scripts/validate-memory-bank.sh`, `scripts/validate-chatmodes.sh`, `scripts/validate-prompts.sh`
+   - [x] Added `scripts/triad-health.sh` and `scripts/list-slash-commands.sh`
+   - [x] Created `.github/agents/` with `repo-steward.agent.md` and `research.agent.md`
+   - [x] Deduplicated VS Code triad keys in `.vscode/settings.json` and added `chat.agentFilesLocations`
+   - [x] Ran all validators and Triad Health twice — PASS
