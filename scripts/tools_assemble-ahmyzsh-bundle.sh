@@ -1,25 +1,75 @@
 #!/usr/bin/env bash
-# AI Context Extraction Tool: Flattened bundle of all ahmyzsh files for AI agent analysis
-# Usage: ./assemble-ahmyzsh-bundle.sh [/path/to/ahmyzsh] [/path/to/output/bundle.sh] [commit] [--minimal]
+# AI Context Extraction Tool: Create AI Agent Snapshot Bundle
+# Purpose: Single file containing complete ahmyzsh codebase for AI agent analysis
+# Usage: bash scripts/tools_assemble-ahmyzsh-bundle.sh [--minimal] [--commit HASH]
+#
+# Features:
+#  - Location agnostic: run from anywhere in the ahmyzsh tree
+#  - Outputs to: snapshots/bundle/ahmyzsh-bundle-TIMESTAMP.sh
+#  - Optional minimal mode: --minimal
+#  - Optional commit: --commit HASH
+#
+# Examples:
+#  bash scripts/tools_assemble-ahmyzsh-bundle.sh
+#  bash scripts/tools_assemble-ahmyzsh-bundle.sh --minimal
+#  bash scripts/tools_assemble-ahmyzsh-bundle.sh --commit abc123def
+#  cd /some/other/dir && bash /projects/ahmyzsh/scripts/tools_assemble-ahmyzsh-bundle.sh
+
 set -euo pipefail
 
-AHMYZSH="${1:-/projects/ahmyzsh}"
-OUTFILE="${2:-./ahmyzsh-bundle-$(date +%Y%m%d%H%M%S).sh}"
-COMMIT="${3:-unknown}"
-MINIMAL_MODE="${4:-}"
+# ============================================================================
+# Find project root (where this script is located's parent's parent)
+# ============================================================================
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(dirname "$(dirname "$SCRIPT_DIR")")"
+AHMYZSH="${PROJECT_ROOT}"
 
 # Normalize path (remove trailing slash)
 AHMYZSH="${AHMYZSH%/}"
 
+# Create snapshot directories
+SNAPSHOT_DIR="${AHMYZSH}/snapshots/bundle"
+mkdir -p "${SNAPSHOT_DIR}"
+
+# Parse arguments
+COMMIT="unknown"
+MINIMAL_MODE=""
+
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    --minimal)
+      MINIMAL_MODE="--minimal"
+      shift
+      ;;
+    --commit)
+      COMMIT="$2"
+      shift 2
+      ;;
+    *)
+      shift
+      ;;
+  esac
+done
+
+# Generate output filename with timestamp
+TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+OUTFILE="${SNAPSHOT_DIR}/ahmyzsh-bundle-${TIMESTAMP}.sh"
+
+# Create output file with header
 echo "# =============================================================================" > "${OUTFILE}"
-echo "# AHMYZSH FLATTENED BUNDLE - AI Agent Context Extraction" >> "${OUTFILE}"
+echo "# AHMYZSH SNAPSHOT - AI AGENT CONTEXT BUNDLE" >> "${OUTFILE}"
 echo "# =============================================================================" >> "${OUTFILE}"
-echo "# Source repo: ${AHMYZSH}" >> "${OUTFILE}"
+echo "# Project Root: ${AHMYZSH}" >> "${OUTFILE}"
 echo "# Generated: $(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> "${OUTFILE}"
 echo "# Commit: ${COMMIT}" >> "${OUTFILE}"
+echo "# Mode: $([ -n "$MINIMAL_MODE" ] && echo 'minimal' || echo 'full')" >> "${OUTFILE}"
 echo "#" >> "${OUTFILE}"
-echo "# Purpose: Complete context dump for AI agents to understand ahmyzsh structure" >> "${OUTFILE}"
-echo "# All code is commented out - this is documentation only, not executable" >> "${OUTFILE}"
+echo "# Purpose:" >> "${OUTFILE}"
+echo "#  - Complete context snapshot for AI agent analysis" >> "${OUTFILE}"
+echo "#  - Single-file reference of ahmyzsh architecture and boot sequence" >> "${OUTFILE}"
+echo "#  - Facilitates code understanding and troubleshooting by AI systems" >> "${OUTFILE}"
+echo "#" >> "${OUTFILE}"
+echo "# Location: ${OUTFILE}" >> "${OUTFILE}"
 echo "# =============================================================================" >> "${OUTFILE}"
 echo >> "${OUTFILE}"
 
@@ -57,21 +107,38 @@ append_file() {
 # Set AHMYZSH_CORE directly (we know it's always ${AHMYZSH}/core)
 AHMYZSH_CORE="${AHMYZSH}/core"
 
-echo "# Boot Sequence Documentation" >> "${OUTFILE}"
+echo "# =============================================================================" >> "${OUTFILE}"
+echo "# BOOT SEQUENCE" >> "${OUTFILE}"
+echo "# =============================================================================" >> "${OUTFILE}"
 echo "#" >> "${OUTFILE}"
-echo "# 1. source-me-in-etc-zshenv.sh - Entry point (sourced from /etc/zshenv)" >> "${OUTFILE}"
-echo "# 2. MAIN-FUNCTIONS.sh - Core utility functions" >> "${OUTFILE}"
-echo "# 3. core/compute-path/path.sh - PATH computation" >> "${OUTFILE}"
-echo "# 4. core/compute-path/conda-initialize.sh - Conda setup" >> "${OUTFILE}"
-echo "# 5. MAIN.sh - Bootstrap (calls SCIENTIA_ES_LUX_PRINCIPIUM)" >> "${OUTFILE}"
-echo "# 6. MAIN_SETTINGS.sh - Configuration and settings" >> "${OUTFILE}"
-echo "# 7. Core directories loaded in order via load_all_config_and_settings_files():" >> "${OUTFILE}"
-echo "#    - core/paths/*.sh" >> "${OUTFILE}"
-echo "#    - core/layouts/*.sh" >> "${OUTFILE}"
-echo "#    - core/compute-path/*.sh" >> "${OUTFILE}"
-echo "#    - core/functions/*.sh" >> "${OUTFILE}"
-echo "#    - core/aliases/*.sh" >> "${OUTFILE}"
-echo "#    - core/env/*.sh" >> "${OUTFILE}"
+echo "# 1. source-me-in-etc-zshenv.sh" >> "${OUTFILE}"
+echo "#    └─ Entry point (typically sourced from /etc/zshenv)" >> "${OUTFILE}"
+echo "#    └─ Sets up AHMYZSH paths and environment variables" >> "${OUTFILE}"
+echo "#" >> "${OUTFILE}"
+echo "# 2. MAIN-FUNCTIONS.sh" >> "${OUTFILE}"
+echo "#    └─ Core utility functions (load_, source_, call_, etc.)" >> "${OUTFILE}"
+echo "#" >> "${OUTFILE}"
+echo "# 3. core/compute-path/path.sh" >> "${OUTFILE}"
+echo "#    └─ PATH computation and caching" >> "${OUTFILE}"
+echo "#" >> "${OUTFILE}"
+echo "# 4. core/compute-path/conda-initialize.sh" >> "${OUTFILE}"
+echo "#    └─ Conda environment initialization" >> "${OUTFILE}"
+echo "#" >> "${OUTFILE}"
+echo "# 5. MAIN.sh" >> "${OUTFILE}"
+echo "#    └─ Bootstrap: calls SCIENTIA_ES_LUX_PRINCIPIUM" >> "${OUTFILE}"
+echo "#    └─ Orchestrates entire initialization" >> "${OUTFILE}"
+echo "#" >> "${OUTFILE}"
+echo "# 6. MAIN_SETTINGS.sh" >> "${OUTFILE}"
+echo "#    └─ Configuration and settings initialization" >> "${OUTFILE}"
+echo "#" >> "${OUTFILE}"
+echo "# 7. load_all_config_and_settings_files() loads in order:" >> "${OUTFILE}"
+echo "#    ├─ core/paths/*.sh" >> "${OUTFILE}"
+echo "#    ├─ core/layouts/*.sh" >> "${OUTFILE}"
+echo "#    ├─ core/compute-path/*.sh" >> "${OUTFILE}"
+echo "#    ├─ core/functions/*.sh" >> "${OUTFILE}"
+echo "#    ├─ core/aliases/*.sh" >> "${OUTFILE}"
+echo "#    └─ core/env/*.sh" >> "${OUTFILE}"
+echo "#" >> "${OUTFILE}"
 echo "# =============================================================================" >> "${OUTFILE}"
 echo >> "${OUTFILE}"
 
@@ -134,13 +201,27 @@ else
   done
 fi
 
-# Summary
+# Summary and completion message
 echo >> "${OUTFILE}"
 echo "# =============================================================================" >> "${OUTFILE}"
 echo "# EXTRACTION COMPLETE" >> "${OUTFILE}"
-echo "# Total files extracted: ${file_count}" >> "${OUTFILE}"
+echo "# =============================================================================" >> "${OUTFILE}"
+echo "# Total files: ${file_count}" >> "${OUTFILE}"
+echo "# Mode: $([ -n "$MINIMAL_MODE" ] && echo 'MINIMAL' || echo 'FULL')" >> "${OUTFILE}"
 echo "# Generated: $(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> "${OUTFILE}"
+echo "# Snapshot: ${OUTFILE}" >> "${OUTFILE}"
 echo "# =============================================================================" >> "${OUTFILE}"
 
-echo "✓ Bundle written to ${OUTFILE}"
-echo "✓ Extracted ${file_count} files"
+# Create symlink to latest snapshot (for convenience)
+LATEST_LINK="${SNAPSHOT_DIR}/ahmyzsh-bundle-LATEST.sh"
+rm -f "${LATEST_LINK}"
+ln -s "$(basename "$OUTFILE")" "${LATEST_LINK}"
+
+# Output summary
+echo ""
+echo "✓ Bundle snapshot created successfully"
+echo "  Files: ${file_count}"
+echo "  Mode: $([ -n "$MINIMAL_MODE" ] && echo 'MINIMAL' || echo 'FULL')"
+echo "  Output: ${OUTFILE}"
+echo "  Latest: ${LATEST_LINK}"
+echo ""
