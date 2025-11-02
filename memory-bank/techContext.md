@@ -52,7 +52,7 @@ graph TB
 ### Core Variables
 
 ```bash
-AHMYZSH="/projects/ahmyzsh"           # Base directory
+AHMYZSH="/projects/ahmyzsh"               # Base directory
 AHMYZSH_CACHE="~/.cache/ahmyzsh" # Cache directory
 CACHED_PATH="${AHMYZSH_CACHE}/path.env" # Path cache
 TIMER_ALL_THEN="$(date +%s%N)"   # Timing reference

@@ -29,11 +29,6 @@ graph TD
         D2[Templates]
         D3[Development Guides]
     end
-
-    Initialization --> Core Components
-    Core Components --> Extensions
-    Documentation --> Core Components
-    Documentation --> Extensions
 ```
 
 ## Overview
