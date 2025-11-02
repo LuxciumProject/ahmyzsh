@@ -196,9 +196,9 @@
   // "eslint.quiet": true,
   "eslint.format.enable": true,
   "eslint.lintTask.enable": true,
-  "eslint.alwaysShowStatus": true,
   "eslint.codeActionsOnSave.mode": "all",
-  "eslint.packageManager": "yarn",
+  // The setting is deprecated. The Package Manager is automatically detected now.
+  // "eslint.packageManager": "yarn",
   // #endregion: ESLINT                                                         !
   // #region: ERRORLENS                                                         !
   /*
@@ -216,10 +216,6 @@
     "warning", //  0- #CF3F
     "info", //     0- #FB0F
     "hint", //     0- #39CF
-  ],
-  "errorLens.exclude": [
-    "may be converted to an ES6 module",
-    "!is declared but its value is never read!"
   ],
   "errorLens.fontSize": "1.1rem",
   "errorLens.fontFamily": "'VictorMono Nerd Font',Victor Mono, Fira Code iScript",
@@ -826,7 +822,6 @@
   "todo-tree.tree.showBadges": true,
   "todo-tree.tree.showCountsInTree": true,
   "todo-tree.tree.showCurrentScanMode": true,
-  "todo-tree.tree.showScanModeButton": false,
   "todo-tree.tree.sort": true,
   "todo-tree.tree.sortTagsOnlyViewAlphabetically": false,
   "todo-tree.tree.tagsOnly": true,
@@ -837,7 +832,6 @@
   "chat.instructionsFilesLocations": {
     "memory-bank/instructions": true
   },
-  "chat.promptFiles": true,
   "chat.promptFilesLocations": {
     "memory-bank/prompts": true
   },
