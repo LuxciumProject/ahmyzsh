@@ -17,7 +17,7 @@ non-breaking, reversible edits grounded in the memory-bank and verification scri
 
 ### Context & Activation
 - **Scope:** Only files explicitly mentioned by the user or clearly implied by the task.
-- **State:** Use the Repo Steward mode: [repo-steward.chatmode.md](../chatmodes/repo-steward.chatmode.md). Honour
+ - **State:** Use the Repo Steward mode: [repo-steward.agent.md](../chatmodes/repo-steward.agent.md). Honour
   [Layer 3A](../instructions/layer-3a-custom-instructions-factory.instructions.md),
   [Layer 3B](../instructions/layer-3b-chatmodes-factory.instructions.md), and
   [Layer 1](../instructions/layer-1-verify-and-bootstrap.instructions.md)/[Layer 2](../instructions/layer-2-verify-and-bootstrap.instructions.md).

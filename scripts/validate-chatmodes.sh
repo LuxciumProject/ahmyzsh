@@ -7,7 +7,7 @@ cd "$ROOT"
 
 echo -e "${BLUE}==> Validating chat modes (*.chatmode.md)${NC}"
 shopt -s nullglob
-files=(memory-bank/chatmodes/*.chatmode.md)
+files=(memory-bank/chatmodes/*.agent.md)
 shopt -u nullglob
 if (( ${#files[@]} == 0 )); then echo -e "${RED}No chatmode files found${NC}"; exit 1; fi
 FAIL=0; PASS=0

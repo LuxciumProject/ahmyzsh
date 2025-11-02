@@ -841,14 +841,15 @@
   "chat.promptFilesLocations": {
     "memory-bank/prompts": true
   },
-  // Legacy chat modes location (kept for triad discovery)
-  "chat.modeFilesLocations": {
-    "memory-bank/chatmodes": true
-  },
-  // New custom agents location (preferred by editor)
-  "chat.agentFilesLocations": {
-    ".github/agents": true
-  },
+  // Chat agents discovery locations (memory-bank only)
+  "chat.modeFilesLocations": [
+    "memory-bank/chatmodes"
+  ],
+  // Recognize both legacy and new file extensions
+  "chat.modeFileExtensions": [
+    ".agent.md",
+    ".chatmode.md"
+  ],
   // === Workspace Chat Preferences ===
   "chat.agent.enabled": true,
   "chat.agent.thinkingStyle": "expanded",

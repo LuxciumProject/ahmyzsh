@@ -9,8 +9,8 @@ This index lists factories and assets in the triad.
 - Layer 4 — Automation and Health (see repository scripts and tasks)
 
 ## Chat Modes
-- [Repo Steward](./chatmodes/repo-steward.chatmode.md)
-- [Research](./chatmodes/research.chatmode.md)
+- [Repo Steward](./chatmodes/repo-steward.agent.md)
+- [Research](./chatmodes/research.agent.md)
 
 ## Prompt Cards
 - [Repo Steward](./prompts/repo-steward.prompt.md)

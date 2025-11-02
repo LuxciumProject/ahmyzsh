@@ -16,7 +16,7 @@ This command sets a read-only state focused on evidence gathering, link validati
 
 ### Context & Activation
 - **Scope:** Files and directories relevant to the question plus authoritative docs.
-- **State:** Use the Research mode: [research.chatmode.md](../chatmodes/research.chatmode.md). Follow
+- **State:** Use the Research mode: [research.agent.md](../chatmodes/research.agent.md). Follow
   [Layer 3A](../instructions/layer-3a-custom-instructions-factory.instructions.md) and
   [Layer 3B](../instructions/layer-3b-chatmodes-factory.instructions.md).
 - **Inputs:** `${input:topic}` (one line), `${input:paths}` (comma-separated, optional), `${selection}` optional.
