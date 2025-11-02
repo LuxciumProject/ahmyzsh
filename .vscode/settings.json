@@ -3024,4 +3024,21 @@
   */
   // #endregion: RANDOM                                                         !
   // =====2021=====Luxcium=====Author==Benjamin=Vincent=(Luxcium)=License==MIT====
+  // #region: COPILOT & MEMORY-BANK TRIAD                                      !
+  /*
+  |-···――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――···-|
+  ―― COPILOT & MEMORY-BANK INTEGRATION
+  */
+  "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+  "chat.instructionsFilesLocations": {
+    "memory-bank/instructions": true
+  },
+  "chat.promptFiles": true,
+  "chat.promptFilesLocations": {
+    "memory-bank/prompts": true
+  },
+  "chat.modeFilesLocations": {
+    "memory-bank/chatmodes": true
+  },
+  // #endregion: COPILOT & MEMORY-BANK TRIAD                                   !
 }
