@@ -2,8 +2,8 @@
 # AHMYZSH SNAPSHOT - AI AGENT CONTEXT BUNDLE
 # =============================================================================
 # Project Root: /projects/ahmyzsh
-# Generated: 2025-11-02T12:11:19Z
-# Commit: structure-update
+# Generated: 2025-11-02T12:51:32Z
+# Commit: test-enhanced
 # Mode: minimal
 #
 # Purpose:
@@ -11,7 +11,7 @@
 #  - Single-file reference of ahmyzsh architecture and boot sequence
 #  - Facilitates code understanding and troubleshooting by AI systems
 #
-# Location: /projects/ahmyzsh/snapshots/bundle/ahmyzsh-bundle-20251102-071119.sh
+# Location: /projects/ahmyzsh/snapshots/bundle/ahmyzsh-bundle-20251102-075132.sh
 # =============================================================================
 
 # =============================================================================
@@ -3165,6 +3165,6 @@ function brio-settings() {
 # =============================================================================
 # Total files: 20
 # Mode: MINIMAL
-# Generated: 2025-11-02T12:11:19Z
-# Snapshot: /projects/ahmyzsh/snapshots/bundle/ahmyzsh-bundle-20251102-071119.sh
+# Generated: 2025-11-02T12:51:32Z
+# Snapshot: /projects/ahmyzsh/snapshots/bundle/ahmyzsh-bundle-20251102-075132.sh
 # =============================================================================
