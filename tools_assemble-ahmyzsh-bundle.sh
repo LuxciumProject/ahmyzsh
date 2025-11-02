@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 # AI Context Extraction Tool: Flattened bundle of all ahmyzsh files for AI agent analysis
-# Usage: ./assemble-ahmyzsh-bundle.sh [/path/to/ahmyzsh] [/path/to/output/bundle.sh] [commit]
+# Usage: ./assemble-ahmyzsh-bundle.sh [/path/to/ahmyzsh] [/path/to/output/bundle.sh] [commit] [--minimal]
 set -euo pipefail
 
 AHMYZSH="${1:-/projects/ahmyzsh}"
 OUTFILE="${2:-./ahmyzsh-bundle-$(date +%Y%m%d%H%M%S).sh}"
 COMMIT="${3:-unknown}"
+MINIMAL_MODE="${4:-}"
 
 # Normalize path (remove trailing slash)
 AHMYZSH="${AHMYZSH%/}"
@@ -46,7 +47,7 @@ append_file() {
   echo "# FILE: ${rel_path}" >> "${OUTFILE}"
   echo "# FULL PATH: ${fpath}" >> "${OUTFILE}"
   echo "# =============================================================================" >> "${OUTFILE}"
-  sed 's/^/# /' "${fpath}" >> "${OUTFILE}"
+  cat "${fpath}" >> "${OUTFILE}"
   echo >> "${OUTFILE}"
   echo "# END FILE: ${rel_path}" >> "${OUTFILE}"
   echo "# =============================================================================" >> "${OUTFILE}"
@@ -84,29 +85,54 @@ append_file "${AHMYZSH}/MAIN.sh" "5-BOOTSTRAP"
 [ -f "${AHMYZSH}/MAIN_SETTINGS.sh" ] && append_file "${AHMYZSH}/MAIN_SETTINGS.sh" "6-SETTINGS"
 
 # Core directories in load order (from load_all_config_and_settings_files)
-order=7
-for d in paths layouts compute-path functions aliases env; do
-  dir="${AHMYZSH_CORE}/${d}"
-  if [ -d "${dir}" ]; then
-    echo "Extracting files from ${d}/..."
-    # Sort files to maintain deterministic order
-    for f in $(find "${dir}" -maxdepth 1 -name "*.sh" -type f | sort); do
-      [ -f "${f}" ] && append_file "${f}" "${order}-${d^^}"
-    done
-    order=$((order + 1))
-  fi
-done
+if [ "$MINIMAL_MODE" = "--minimal" ]; then
+  echo "Minimal mode: Extracting only core bootstrap and key utility files..."
 
-# Additional important directories
-for d in options scripts sources complete.d; do
-  dir="${AHMYZSH_CORE}/${d}"
-  if [ -d "${dir}" ]; then
-    echo "Extracting files from ${d}/..."
-    for f in $(find "${dir}" -maxdepth 1 -name "*.sh" -type f 2>/dev/null | sort); do
-      [ -f "${f}" ] && append_file "${f}" "EXTRA-${d^^}"
-    done
-  fi
-done
+  # Just the essential directories with file count limits
+  order=7
+  for d in paths layouts; do
+    dir="${AHMYZSH_CORE}/${d}"
+    if [ -d "${dir}" ]; then
+      echo "Extracting key files from ${d}/..."
+      for f in $(find "${dir}" -maxdepth 1 -name "*.sh" -type f | sort | head -5); do
+        [ -f "${f}" ] && append_file "${f}" "${order}-${d^^}"
+      done
+      order=$((order + 1))
+    fi
+  done
+
+  # Sample of functions/aliases (not all 50+)
+  echo "Extracting sample functions..."
+  for f in $(find "${AHMYZSH_CORE}/functions" -maxdepth 1 -name "*.sh" -type f | sort | head -10); do
+    [ -f "${f}" ] && append_file "${f}" "9-FUNCTIONS-SAMPLE"
+  done
+
+else
+  echo "Full mode: Extracting all files (use --minimal for compact version)..."
+  order=7
+  for d in paths layouts compute-path functions aliases env; do
+    dir="${AHMYZSH_CORE}/${d}"
+    if [ -d "${dir}" ]; then
+      echo "Extracting files from ${d}/..."
+      # Sort files to maintain deterministic order
+      for f in $(find "${dir}" -maxdepth 1 -name "*.sh" -type f | sort); do
+        [ -f "${f}" ] && append_file "${f}" "${order}-${d^^}"
+      done
+      order=$((order + 1))
+    fi
+  done
+
+  # Additional important directories (skip options - 200+ tiny files)
+  for d in scripts sources complete.d; do
+    dir="${AHMYZSH_CORE}/${d}"
+    if [ -d "${dir}" ]; then
+      echo "Extracting files from ${d}/..."
+      for f in $(find "${dir}" -maxdepth 1 -name "*.sh" -type f 2>/dev/null | sort); do
+        [ -f "${f}" ] && append_file "${f}" "EXTRA-${d^^}"
+      done
+    fi
+  done
+fi
 
 # Summary
 echo >> "${OUTFILE}"
