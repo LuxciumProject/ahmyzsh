@@ -15,13 +15,23 @@
 #  bash scripts/tools_assemble-ahmyzsh-bundle.sh --commit abc123def
 #  cd /some/other/dir && bash /projects/ahmyzsh/scripts/tools_assemble-ahmyzsh-bundle.sh
 
-set -euo pipefail
+set -uo pipefail  # Don't use -e, handle errors manually
 
 # ============================================================================
-# Find project root (where this script is located's parent's parent)
+# Find project root (scripts/ is in PROJECT_ROOT/scripts/)
 # ============================================================================
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(dirname "$(dirname "$SCRIPT_DIR")")"
+SCRIPT_PATH="${BASH_SOURCE[0]}"
+
+# Handle both absolute and relative paths
+if [[ ! "$SCRIPT_PATH" = /* ]]; then
+  SCRIPT_PATH="$(cd "$(dirname "$SCRIPT_PATH")" && pwd)/$(basename "$SCRIPT_PATH")"
+fi
+
+# SCRIPT_PATH: /projects/ahmyzsh/scripts/tools_assemble-ahmyzsh-bundle.sh
+# dirname -> /projects/ahmyzsh/scripts
+# dirname -> /projects/ahmyzsh (this is PROJECT_ROOT)
+SCRIPT_DIR="$(dirname "$SCRIPT_PATH")"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 AHMYZSH="${PROJECT_ROOT}"
 
 # Normalize path (remove trailing slash)
@@ -51,9 +61,10 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-# Generate output filename with timestamp
+# Generate output filenames
 TIMESTAMP=$(date +%Y%m%d-%H%M%S)
 OUTFILE="${SNAPSHOT_DIR}/ahmyzsh-bundle-${TIMESTAMP}.sh"
+LATEST_FILE="${AHMYZSH}/snapshots/ahmyzsh-bundle-LATEST.sh"
 
 # Create output file with header
 echo "# =============================================================================" > "${OUTFILE}"
@@ -82,8 +93,9 @@ append_file() {
   local order="${2:-}"
 
   if [ ! -f "$fpath" ]; then
-    echo "# WARNING: File not found: $fpath" >> "${OUTFILE}"
-    return 1
+    echo "# WARNING: File not found: $fpath" >> "${OUTFILE}" 2>/dev/null || true
+    echo "  ✗ Missing: $fpath" >&2
+    return 0
   fi
 
   file_count=$((file_count + 1))
@@ -144,12 +156,12 @@ echo >> "${OUTFILE}"
 
 # Core bootstrap files in actual load order
 echo "Extracting core bootstrap files..."
-append_file "${AHMYZSH}/source-me-in-etc-zshenv.sh" "1-ENTRY"
-append_file "${AHMYZSH}/MAIN-FUNCTIONS.sh" "2-FUNCTIONS"
-append_file "${AHMYZSH_CORE}/compute-path/path.sh" "3-PATH"
-[ -f "${AHMYZSH_CORE}/compute-path/conda-initialize.sh" ] && append_file "${AHMYZSH_CORE}/compute-path/conda-initialize.sh" "4-CONDA"
-append_file "${AHMYZSH}/MAIN.sh" "5-BOOTSTRAP"
-[ -f "${AHMYZSH}/MAIN_SETTINGS.sh" ] && append_file "${AHMYZSH}/MAIN_SETTINGS.sh" "6-SETTINGS"
+append_file "${AHMYZSH}/source-me-in-etc-zshenv.sh" "1-ENTRY" || true
+append_file "${AHMYZSH}/MAIN-FUNCTIONS.sh" "2-FUNCTIONS" || true
+append_file "${AHMYZSH_CORE}/compute-path/path.sh" "3-PATH" || true
+[ -f "${AHMYZSH_CORE}/compute-path/conda-initialize.sh" ] && append_file "${AHMYZSH_CORE}/compute-path/conda-initialize.sh" "4-CONDA" || true
+append_file "${AHMYZSH}/MAIN.sh" "5-BOOTSTRAP" || true
+[ -f "${AHMYZSH}/MAIN_SETTINGS.sh" ] && append_file "${AHMYZSH}/MAIN_SETTINGS.sh" "6-SETTINGS" || true
 
 # Core directories in load order (from load_all_config_and_settings_files)
 if [ "$MINIMAL_MODE" = "--minimal" ]; then
@@ -212,16 +224,16 @@ echo "# Generated: $(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> "${OUTFILE}"
 echo "# Snapshot: ${OUTFILE}" >> "${OUTFILE}"
 echo "# =============================================================================" >> "${OUTFILE}"
 
-# Create symlink to latest snapshot (for convenience)
-LATEST_LINK="${SNAPSHOT_DIR}/ahmyzsh-bundle-LATEST.sh"
-rm -f "${LATEST_LINK}"
-ln -s "$(basename "$OUTFILE")" "${LATEST_LINK}"
+# Copy/output to LATEST file (versioned, not symlinked)
+# Remove old LATEST (whether symlink or file) first
+rm -f "${LATEST_FILE}"
+cp "${OUTFILE}" "${LATEST_FILE}"
 
 # Output summary
 echo ""
 echo "✓ Bundle snapshot created successfully"
 echo "  Files: ${file_count}"
 echo "  Mode: $([ -n "$MINIMAL_MODE" ] && echo 'MINIMAL' || echo 'FULL')"
-echo "  Output: ${OUTFILE}"
-echo "  Latest: ${LATEST_LINK}"
+echo "  Output (timestamped): ${OUTFILE}"
+echo "  Output (latest):      ${LATEST_FILE}"
 echo ""
