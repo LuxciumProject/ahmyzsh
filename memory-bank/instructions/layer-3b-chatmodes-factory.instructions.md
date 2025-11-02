@@ -1,14 +1,14 @@
 ---
-description: Layer 3B — Chat Modes Factory. Rules for *.chatmode.md files. Minimal modes that bind model + tools + behavior. Store modes under memory-bank/chatmodes/.
+description: Layer 3B — Agents Factory. Rules for *.agent.md files. Minimal agents that bind model + tools + behavior. Store agents under memory-bank/chatmodes/.
 ---
 
 <!-- memory-bank/instructions/layer-3b-chatmodes-factory.instructions.md -->
 
-# Layer 3B — Chat Modes Factory
+# Layer 3B — Agents Factory
 
-Purpose. Modes are switches. They set model and tools, then defer to instructions. Keep mode text thin. Point to rules in `[Layer 3A](./layer-3a-custom-instructions-factory.instructions.md)` and reference prompts in `[Layer 3C](./layer-3c-prompt-files-factory.instructions.md)`.
+Purpose. Agents are configuration switches. They set model and tools, then defer to instructions. Keep agent text thin. Point to rules in `[Layer 3A](./layer-3a-custom-instructions-factory.instructions.md)` and reference prompts in `[Layer 3C](./layer-3c-prompt-files-factory.instructions.md)`.
 
-Storage. Place actual mode files in `memory-bank/chatmodes/`. The present document stays in `memory-bank/instructions/`.
+Storage. Place actual agent files in `memory-bank/chatmodes/` (note: directory name remains for now; files use `.agent.md` extension). The present document stays in `memory-bank/instructions/`.
 
 ## Process Summary
 
@@ -36,7 +36,7 @@ This factory follows five aligned stages that keep custom chat modes lean and co
 
 ### Stage E: Runtime Adoption Guidance
 - **Purpose:** Document formatting exclusions and VS Code operational usage.
-- **Actions:** Keep `.chatmode.md` files out of Prettier, explain built-in vs custom modes, and outline editor workflows.
+- **Actions:** Keep `.agent.md` files out of Prettier, explain built-in vs custom agents, and outline editor workflows.
 - **Outcome:** Smooth day-to-day usage with preserved structure and discoverability.
 
 ## Constraints
@@ -47,7 +47,7 @@ This factory follows five aligned stages that keep custom chat modes lean and co
 - One top-level H1 in the mode file body. Prefer relative links for internal references; external links allowed when authoritative.
 
 ## Mode Authoring Procedure
-- Path for mode file: `memory-bank/chatmodes/<name>.chatmode.md`
+- Path for agent file: `memory-bank/chatmodes/<name>.agent.md`
 - Body ≤ 200 words. State:
   - Purpose.
   - Inputs expected.
@@ -67,10 +67,10 @@ This factory follows five aligned stages that keep custom chat modes lean and co
 
 ## Exclusions
 
-Even if we do not plan to use prettier for the time being, we exclude the chatmode files from formatting to avoid any accidental reformatting that could alter the intended structure or readability of these files.
+Even if we do not plan to use prettier for the time being, we exclude the agent files from formatting to avoid any accidental reformatting that could alter the intended structure or readability of these files.
 
 ```ignore
-# Keep prompt and chatmode cards out of Prettier to preserve strict spacing/heading contracts, generate a .prettierignore file with the 2 files types below:
+# Keep prompt and agent cards out of Prettier to preserve strict spacing/heading contracts, generate a .prettierignore file with the 2 file types below:
 *.prompt.md
-*.chatmode.md
+*.agent.md
 ```

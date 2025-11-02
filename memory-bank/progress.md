@@ -196,7 +196,7 @@ graph TD
    - [x] Added Layer 2 verification script and triad integration
    - [x] Added Layer 3A/3B instruction cards to `memory-bank/instructions/`
    - [x] Created two chat modes under `memory-bank/chatmodes/`
-   - [x] Excluded `*.prompt.md` and `*.chatmode.md` via `.prettierignore`
+   - [x] Excluded `*.prompt.md` and `*.agent.md` via `.prettierignore`
    - [x] Added `scripts/verify-layer3b.sh` and validated chat modes (PASS)
    - [x] Created two prompt cards under `memory-bank/prompts/`
    - [x] Added `scripts/verify-layer3c.sh` and verified prompt files (PASS)

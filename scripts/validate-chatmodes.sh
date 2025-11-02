@@ -5,11 +5,11 @@ BLUE='\033[0;34m'; GREEN='\033[0;32m'; RED='\033[0;31m'; NC='\033[0m'
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
-echo -e "${BLUE}==> Validating chat modes (*.chatmode.md)${NC}"
+echo -e "${BLUE}==> Validating agents (*.agent.md, *.chatmode.md)${NC}"
 shopt -s nullglob
-files=(memory-bank/chatmodes/*.agent.md)
+files=(memory-bank/chatmodes/*.agent.md memory-bank/chatmodes/*.chatmode.md)
 shopt -u nullglob
-if (( ${#files[@]} == 0 )); then echo -e "${RED}No chatmode files found${NC}"; exit 1; fi
+if (( ${#files[@]} == 0 )); then echo -e "${RED}No agent files found${NC}"; exit 1; fi
 FAIL=0; PASS=0
 for f in "${files[@]}"; do
   echo " - $f"

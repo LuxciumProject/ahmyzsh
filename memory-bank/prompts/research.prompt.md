@@ -41,7 +41,7 @@ Return a Markdown block with:
 - Read relevant files and authoritative docs.
 - Extract facts; avoid conjecture.
 - If information is missing, state that clearly and propose how to obtain it.
-- Link mode and rules: [Research mode](../chatmodes/research.chatmode.md), [3A rules](../instructions/layer-3a-custom-instructions-factory.instructions.md).
+- Link mode and rules: [Research agent](../chatmodes/research.agent.md), [3A rules](../instructions/layer-3a-custom-instructions-factory.instructions.md).
 
 ### Examples
 **Input:** `${input:topic}=timer functions`, `${input:paths}=core/functions/`

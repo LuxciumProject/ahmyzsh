@@ -104,7 +104,7 @@ Brief: Constrain Copilot with explicit standards and valid chat mode metadata so
     - Node.js 22+ baseline.
     - ESLint flat config with `eslint-config-prettier` integration.
     - Instruction to treat memory-bank as canonical context.
-- Chat modes (`memory-bank/chatmodes/…*.chatmode.md`):
+- Agents (`memory-bank/chatmodes/…*.agent.md`):
   - IF introducing chat modes, enforce:
     - `model: GPT-5 (Preview)` or `model: GPT-5 mini (Preview)` only.
     - `tools: ['codebase', 'usages', 'fetch', 'editFiles', 'runCommands', 'todos']` exactly.

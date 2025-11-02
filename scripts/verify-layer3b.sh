@@ -11,7 +11,7 @@ PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$PROJECT_ROOT"
 
 echo -e "${BLUE}╔════════════════════════════════════════════════════════════════╗${NC}"
-echo -e "${BLUE}║${NC} Layer 3B — Chat Modes Verification                          ${BLUE}║${NC}"
+echo -e "${BLUE}║${NC} Layer 3B — Agents Verification                               ${BLUE}║${NC}"
 echo -e "${BLUE}║${NC} Execution Time: $(date '+%Y-%m-%d %H:%M:%S %Z')                ${BLUE}║${NC}"
 echo -e "${BLUE}╚════════════════════════════════════════════════════════════════╝${NC}\n"
 
@@ -33,15 +33,15 @@ if [[ ! -d "$MODES_DIR" ]]; then
 fi
 
 shopt -s nullglob
-mode_files=("$MODES_DIR"/*.chatmode.md)
+mode_files=("$MODES_DIR"/*.agent.md "$MODES_DIR"/*.chatmode.md)
 shopt -u nullglob
 
 if [[ ${#mode_files[@]} -eq 0 ]]; then
-  echo -e "${RED}✗${NC} No .chatmode.md files found in $MODES_DIR"
+  echo -e "${RED}✗${NC} No .agent.md or .chatmode.md files found in $MODES_DIR"
   exit 1
 fi
 
-echo -e "${YELLOW}Scanning ${#mode_files[@]} chat mode file(s)...${NC}\n"
+echo -e "${YELLOW}Scanning ${#mode_files[@]} agent file(s)...${NC}\n"
 
 for file in "${mode_files[@]}"; do
   echo -e "${BLUE}→${NC} $file"
