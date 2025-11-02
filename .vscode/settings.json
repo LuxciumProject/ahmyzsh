@@ -845,16 +845,11 @@
   "chat.modeFilesLocations": [
     "memory-bank/chatmodes"
   ],
-  // Recognize both legacy and new file extensions
-  "chat.modeFileExtensions": [
-    ".agent.md",
-    ".chatmode.md"
-  ],
   // === Workspace Chat Preferences ===
   "chat.agent.enabled": true,
   "chat.agent.thinkingStyle": "expanded",
   "chat.math.enabled": true,
-  "chatgpt.openOnStartup": true,
+  "chatgpt.openOnStartup": false,
   // "todo-tree.filtering.excludedWorkspaces": [],
   // "todo-tree.filtering.excludeGlobs": [],
   // "todo-tree.filtering.includedWorkspaces": [],
@@ -2460,6 +2455,11 @@
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
   "markdown.validate.enabled": true,
+  "chat.agent.thinking.collapsedTools": true,
+  "chat.useNestedAgentsMdFiles": true,
+  "inlineChat.notebookAgent": true,
+  "github.copilot.chat.agent.autoFix": true,
+  "accessibility.openChatEditedFiles": true,
   // #endregion: EDITOR RULERS                                                  !
   // #region: RANDOM                                                            !
   /*
