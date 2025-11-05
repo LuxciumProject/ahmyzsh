@@ -1,0 +1,52 @@
+{
+    // VS Code tasks to run validators and triad health
+    "$schema": "vscode://schemas/tasks",
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Validate 3A Instructions",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "scripts/validate-memory-bank.sh"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Validate 3B Chatmodes",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "scripts/validate-chatmodes.sh"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Validate 3C Prompts",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "scripts/validate-prompts.sh"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Triad Health Check",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "scripts/triad-health.sh"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "List Slash Commands",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "scripts/list-slash-commands.sh"
+            ],
+            "problemMatcher": []
+        }
+    ]
+}

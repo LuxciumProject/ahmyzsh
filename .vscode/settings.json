@@ -116,9 +116,9 @@
   /*
   |-···――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――···-|
   */
-  "[typescript]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-  },
+  // "[typescript]": {
+  //   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  // },
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features",
   },
@@ -196,9 +196,9 @@
   // "eslint.quiet": true,
   "eslint.format.enable": true,
   "eslint.lintTask.enable": true,
-  "eslint.alwaysShowStatus": true,
   "eslint.codeActionsOnSave.mode": "all",
-  "eslint.packageManager": "yarn",
+  // The setting is deprecated. The Package Manager is automatically detected now.
+  // "eslint.packageManager": "yarn",
   // #endregion: ESLINT                                                         !
   // #region: ERRORLENS                                                         !
   /*
@@ -216,10 +216,6 @@
     "warning", //  0- #CF3F
     "info", //     0- #FB0F
     "hint", //     0- #39CF
-  ],
-  "errorLens.exclude": [
-    "may be converted to an ES6 module",
-    "!is declared but its value is never read!"
   ],
   "errorLens.fontSize": "1.1rem",
   "errorLens.fontFamily": "'VictorMono Nerd Font',Victor Mono, Fira Code iScript",
@@ -275,8 +271,16 @@
     "activityBarBadge.background": "#3f8000",
     "activityBarBadge.foreground": "#e7e7e7",
     "sash.hoverBorder": "#77003baa",
-    "sideBar.border": "#77003baa",
-    "tab.activeBorder": "#77003baa"
+    "commandCenter.border": "#e7e7e799",
+    "statusBar.background": "#440022aa",
+    "statusBar.foreground": "#e7e7e7",
+    "statusBarItem.hoverBackground": "#77003baa",
+    "statusBarItem.remoteBackground": "#440022aa",
+    "statusBarItem.remoteForeground": "#e7e7e7",
+    "titleBar.activeBackground": "#440022aa",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveBackground": "#44002299",
+    "titleBar.inactiveForeground": "#e7e7e799"
   },
   // #endregion: ERRORLENS                                                      !
   // #region: TODO TREE                                                         !
@@ -826,12 +830,28 @@
   "todo-tree.tree.showBadges": true,
   "todo-tree.tree.showCountsInTree": true,
   "todo-tree.tree.showCurrentScanMode": true,
-  "todo-tree.tree.showScanModeButton": false,
   "todo-tree.tree.sort": true,
   "todo-tree.tree.sortTagsOnlyViewAlphabetically": false,
   "todo-tree.tree.tagsOnly": true,
   "todo-tree.tree.tooltipFormat": "${filepath}, line ${line}",
   "todo-tree.tree.trackFile": true,
+  // === Memory-Bank Triad Integration (merge-append) ===
+  "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+  "chat.instructionsFilesLocations": {
+    "memory-bank/instructions": true
+  },
+  "chat.promptFilesLocations": {
+    "memory-bank/prompts": true
+  },
+  // Chat agents discovery locations (memory-bank only)
+  "chat.modeFilesLocations": {
+    "memory-bank/chatmodes": true
+  },
+  // === Workspace Chat Preferences ===
+  "chat.agent.enabled": true,
+  "chat.agent.thinkingStyle": "expanded",
+  "chat.math.enabled": true,
+  "chatgpt.openOnStartup": false,
   // "todo-tree.filtering.excludedWorkspaces": [],
   // "todo-tree.filtering.excludeGlobs": [],
   // "todo-tree.filtering.includedWorkspaces": [],
@@ -2430,13 +2450,18 @@
     "vscode-userdata",
     "output"
   ],
-  "[shellscript]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format"
-  },
-  "[properties]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format"
-  },
+  // "[shellscript]": {
+  //   "editor.defaultFormatter": "foxundermoon.shell-format"
+  // },
+  // "[properties]": {
+  //   "editor.defaultFormatter": "foxundermoon.shell-format"
+  // },
   "markdown.validate.enabled": true,
+  "chat.agent.thinking.collapsedTools": true,
+  "chat.useNestedAgentsMdFiles": true,
+  "inlineChat.notebookAgent": true,
+  "github.copilot.chat.agent.autoFix": true,
+  "accessibility.openChatEditedFiles": true,
   // #endregion: EDITOR RULERS                                                  !
   // #region: RANDOM                                                            !
   /*
@@ -3024,4 +3049,11 @@
   */
   // #endregion: RANDOM                                                         !
   // =====2021=====Luxcium=====Author==Benjamin=Vincent=(Luxcium)=License==MIT====
+  // #region: COPILOT & MEMORY-BANK TRIAD                                      !
+  /*
+  |-···――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――···-|
+  ―― COPILOT & MEMORY-BANK INTEGRATION
+  */
+  // Triad keys are defined earlier to avoid duplicates.
+  // #endregion: COPILOT & MEMORY-BANK TRIAD                                   !
 }

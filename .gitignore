@@ -17,3 +17,6 @@ hello_world/
 hello-world/
 .Trash-1000
 .Trash*
+
+# Snapshots: ignore timestamped bundle artifacts, track LATEST
+snapshots/bundle/

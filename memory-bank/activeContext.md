@@ -1,13 +1,14 @@
 # Active Context
 
-## Current Focus: Core Functions Documentation and Completion
+## Current Focus: Memory-Bank Triad hardening (Layers 3C/4)
 
-We have completed a comprehensive documentation of all functions in the core/functions directory. This involved:
+We are consolidating the triad with prompt contracts, validators, and editor integration:
 
-1. Systematic audit of all 52 .sh files
-2. Documentation of function purpose, features, and dependencies
-3. Identification of incomplete functions and missing functionality
-4. Creation of a detailed README.md with implementation status
+1. Authored Layer 3C factory and two prompt cards
+2. Added validators for instructions, chatmodes, and prompts
+3. Introduced Triad Health and Slash Commands utilities
+4. Integrated triad and agents in VS Code settings; removed duplicate keys
+5. Added custom agents under `.github/agents/` to satisfy editor deprecations
 
 ### Implementation Tracking Structure
 
@@ -30,16 +31,16 @@ graph TD
 
 ### Function Implementation Status Board
 
-| Category | Total Files | Complete | Partially Complete | Incomplete | Notes |
-|----------|-------------|----------|-------------------|------------|-------|
-| System Init | 5 | 4 | 0 | 1 | Strong foundation, one incomplete file |
-| Dev Tools | 4 | 4 | 0 | 0 | All files complete with minor improvements needed |
-| Custom Commands | 9 | 6 | 2 | 1 | Good coverage, some partial implementations |
-| Profile Management | 2 | 1 | 0 | 1 | One file is just a placeholder |
-| Core System | 9 | 7 | 2 | 0 | Strong core system with minor gaps |
-| Shell Config | 7 | 6 | 1 | 0 | Comprehensive ZSH configuration |
-| Utility/Integration | 2 | 2 | 0 | 0 | Complete utility functions |
-| **TOTAL** | **38** | **30** | **5** | **3** | **78.9% complete, 13.2% partial, 7.9% incomplete** |
+| Category            | Total Files | Complete | Partially Complete | Incomplete | Notes                                              |
+| ------------------- | ----------- | -------- | ------------------ | ---------- | -------------------------------------------------- |
+| System Init         | 5           | 4        | 0                  | 1          | Strong foundation, one incomplete file             |
+| Dev Tools           | 4           | 4        | 0                  | 0          | All files complete with minor improvements needed  |
+| Custom Commands     | 9           | 6        | 2                  | 1          | Good coverage, some partial implementations        |
+| Profile Management  | 2           | 1        | 0                  | 1          | One file is just a placeholder                     |
+| Core System         | 9           | 7        | 2                  | 0          | Strong core system with minor gaps                 |
+| Shell Config        | 7           | 6        | 1                  | 0          | Comprehensive ZSH configuration                    |
+| Utility/Integration | 2           | 2        | 0                  | 0          | Complete utility functions                         |
+| **TOTAL**           | **38**      | **30**   | **5**              | **3**      | **78.9% complete, 13.2% partial, 7.9% incomplete** |
 
 ### Common Improvement Areas
 
