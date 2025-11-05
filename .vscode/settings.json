@@ -116,9 +116,9 @@
   /*
   |-···――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――···-|
   */
-  "[typescript]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-  },
+  // "[typescript]": {
+  //   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  // },
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features",
   },
@@ -271,8 +271,16 @@
     "activityBarBadge.background": "#3f8000",
     "activityBarBadge.foreground": "#e7e7e7",
     "sash.hoverBorder": "#77003baa",
-    "sideBar.border": "#77003baa",
-    "tab.activeBorder": "#77003baa"
+    "commandCenter.border": "#e7e7e799",
+    "statusBar.background": "#440022aa",
+    "statusBar.foreground": "#e7e7e7",
+    "statusBarItem.hoverBackground": "#77003baa",
+    "statusBarItem.remoteBackground": "#440022aa",
+    "statusBarItem.remoteForeground": "#e7e7e7",
+    "titleBar.activeBackground": "#440022aa",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveBackground": "#44002299",
+    "titleBar.inactiveForeground": "#e7e7e799"
   },
   // #endregion: ERRORLENS                                                      !
   // #region: TODO TREE                                                         !
@@ -836,9 +844,9 @@
     "memory-bank/prompts": true
   },
   // Chat agents discovery locations (memory-bank only)
-  "chat.modeFilesLocations": [
-    "memory-bank/chatmodes"
-  ],
+  "chat.modeFilesLocations": {
+    "memory-bank/chatmodes": true
+  },
   // === Workspace Chat Preferences ===
   "chat.agent.enabled": true,
   "chat.agent.thinkingStyle": "expanded",
@@ -2442,12 +2450,12 @@
     "vscode-userdata",
     "output"
   ],
-  "[shellscript]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format"
-  },
-  "[properties]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format"
-  },
+  // "[shellscript]": {
+  //   "editor.defaultFormatter": "foxundermoon.shell-format"
+  // },
+  // "[properties]": {
+  //   "editor.defaultFormatter": "foxundermoon.shell-format"
+  // },
   "markdown.validate.enabled": true,
   "chat.agent.thinking.collapsedTools": true,
   "chat.useNestedAgentsMdFiles": true,
