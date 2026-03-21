@@ -583,9 +583,11 @@ export GITHUB_PASSWORD="${GITHUB_TOKEN}"
 
 ## Additional Observations
 
-### Shebang Mismatch
+### Entry-Point Shebang Context
 
-`source-me-in-etc-zshenv.sh` has `#!/usr/bin/env bash` but is used in a Zsh context. While sourcing a bash-shebang file from Zsh works (the shebang is ignored when the file is sourced), it is misleading and should be changed to `#!/usr/bin/env zsh` or `#!/usr/bin/env sh`.
+`source-me-in-etc-zshenv.sh` currently uses `#!/usr/bin/env bash` while being sourced from Zsh. In the current implementation this is mostly harmless (the shebang is ignored when sourced), and the file intentionally stays Bash-compatible in several places.
+
+For the **current** chain, this is a compatibility choice and should not be changed blindly. For the **refactored** `lib/` orchestrator (which uses zsh-specific constructs like `[[ ]]`, `(N)` globs, `zmodload`, and `$EPOCHREALTIME`), the correct shebang is `#!/usr/bin/env zsh`.
 
 ### Hardcoded Paths
 
@@ -602,6 +604,10 @@ There is an extensive amount of commented-out code throughout the codebase — o
 ### `Load_all_files_d.sh` Contains System Journal Data
 
 The file `core/Load_all_files_d.sh` appears to contain systemd journal/service tree output embedded as comments, not actual shell function definitions. This seems like an accidental paste and should be investigated.
+
+### Loader Ordering Risk for Dash-Prefixed Files
+
+`Load_all_files_d()` loops with `for f in "${SD1}/"*.sh`. Under normal glob sorting, files prefixed with `-` are loaded before numerically prefixed files (example: `core/functions/-00000-openai_models.sh`). If `-` is being used as an informal “disabled/draft” marker, that assumption is unsafe — these files still source first unless explicitly excluded.
 
 ---
 

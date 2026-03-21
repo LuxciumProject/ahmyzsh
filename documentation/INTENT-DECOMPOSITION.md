@@ -604,6 +604,7 @@ Provide a generic mechanism to source files and call functions, with optional ti
 1. **`eval` in `call_()`**: if `$1` is a known function name, `"$1"` (direct call) is correct. `eval` is needed only if `$1` contains arguments or is a complex expression — which it never does in the boot chain.
 2. **Timer fork per file**: `Load_all_files_d_v` calls `date +%s%N` after every file source — 40+ forks just for verbose timing
 3. **`source_()` checks `-f` then `-r`**: one `[[ -r ]]` check suffices (readable implies exists)
+4. **Glob ordering hazard**: `Load_all_files_d()` uses `for f in "${SD1}/"*.sh`, so files prefixed with `-` load before numeric prefixes (for example `core/functions/-00000-openai_models.sh`). This can silently alter intended boot order.
 
 ### Proposed refactored implementation
 

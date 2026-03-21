@@ -161,6 +161,8 @@ bindkey -v                              # Key binding — once
 _ahmyzsh_timer_lap "total"
 ```
 
+> ⚠️ **Prompt safety note:** `ahmyzsh_init_prompt` runs before runtime initialization to preserve Powerlevel10k instant prompt behavior. Any runtime initializer (`conda`, `rbenv`, `rust`, `fnm`) must remain output-silent during startup (or explicitly redirect/suppress stdout/stderr), otherwise instant prompt rendering can be disrupted.
+
 **Total forks for non-interactive shell: 0**
 **Total forks for interactive shell: 4 (conda, rbenv, rust, fnm) — only the necessary ones**
 
