@@ -142,6 +142,7 @@ Measure how long each boot phase takes so the developer can see timing breakdown
 1. **6+ process forks per boot** just for timing that is never displayed (VERBOSA=1 by default)
 2. **`date +%s%N` forks** each cost 2–5ms — adding 12–30ms of timing overhead to measure timing
 3. **`TIMER_THEN` global state** — a single global variable tracks "when did the last thing start," making timing spaghetti when calls nest
+4. **`timer_from_then()` is broken** — `local TIME_THEN=TIME_NOW` assigns the string literal `"TIME_NOW"` instead of the value `$TIME_NOW`. The function has never worked.
 
 ### Proposed refactored implementation
 
@@ -157,6 +158,9 @@ _ahmyzsh_epoch_us() {
   # Returns microseconds since epoch — zero-fork if zsh/datetime is available
   if [[ "$_AHMYZSH_HAS_ZSHDT" == true ]]; then
     # $EPOCHREALTIME gives seconds.microseconds as float
+    # Guard: under LC_NUMERIC=fr_CA the decimal separator may be a comma,
+    # which would break ${...%.*} parsing. Force C locale for this operation.
+    local LC_NUMERIC=C
     local secs="${EPOCHREALTIME%.*}"
     local frac="${EPOCHREALTIME#*.}"
     printf '%s%s' "$secs" "${frac:0:6}"
@@ -248,16 +252,18 @@ Build the `PATH` environment variable with all required directories (system, CUD
 - **Runtime initializers** (conda, rbenv, rust) are called inside `__compute_extended_path()` — this tangles PATH construction with runtime setup
 - **Timing** is embedded (timer forks in the cache branch)
 - **Variable exports** (CUDA_HOME, FNM_PATH, etc.) are mixed in at file top-level — these are *registry* concerns, not PATH concerns
-- **The `add_to_path_()` bug** affects correctness: `[ -z "$1" ] || [ -d "$1" ] && ...` will prepend non-directory strings to PATH due to operator precedence
+- **The `add_to_path_()` bug** affects correctness and security: due to operator precedence, `[ -z "$1" ] || [ -d "$1" ] && ...` can still execute the `&&` branch when `$1` is empty, introducing an empty PATH element (`:`) that implicitly adds the current directory to PATH — a security footgun
 
 ### Problems
 
 1. **Sourced 3×**: cache-miss branch, unconditional line 39, `Load_all_files_d core/compute-path/*.sh`
-2. **`add_to_path_()` logic bug**: described above — `[ -z "$1" ] || [ -d "$1" ]` forms a group, and `&&` only binds to `[ -d "$1" ]`, so when `$1` is non-empty and not a directory, the `||` short-circuits the `[ -d ]` test and the `&&` still applies
+2. **`add_to_path_()` logic bug**: described above — because `[ -z "$1" ] || [ -d "$1" ] && ...` does not group the tests explicitly, shell operator precedence can allow the `&&` branch to run even when `$1` is empty, adding an empty element to `PATH` (i.e., `:`) and thereby implicitly including the current directory — a security risk
 3. **Duplicate definitions**: `add_to_path_()` is defined identically in `path.sh` and `z86667-path_operations.sh`
 4. **`set_path()` hardcodes paths**: `add_to_path_ '/home/luxcium/.local/share/fnm'` — not portable
-5. **`dedup_pathvar_()` forks perl**: could use zsh-native associative arrays
-6. **`seting_cache_path_()` has 10-generation rolling history**: massively overcomplicated for a PATH cache
+5. **`set_path()` passes "eval" as directory name**: `add_to_path_ eval "$(fnm env)"` — shell parsing gives `add_to_path_` the string `"eval"` as `$1`, silently losing the fnm environment setup
+6. **`cache_path()` writes unquoted PATH**: `echo "export PATH=$PATH"` — if PATH contains metacharacters (spaces, globs), the cache file will be malformed when sourced
+7. **`dedup_pathvar_()` forks perl**: could use zsh-native associative arrays
+8. **`seting_cache_path_()` has 10-generation rolling history**: massively overcomplicated for a PATH cache
 
 ### Proposed refactored implementation
 
@@ -478,6 +484,7 @@ The same variables are declared in 3–4 different files. Some are declared as `
 1. **Triple-declaration** of `AHMYZSH`, `AHMYZSH_CACHE`, `CACHED_PATH`
 2. **Mixed declaration styles** — some use export, some use `:=` default
 3. **CUDA/FNM/PNPM vars live in `path.sh`** — they're *registry* concerns placed in a *PATH* file, causing them to be re-exported on every source of `path.sh`
+4. **Credential variables in committed code** — `MAIN_SETTINGS.sh` exports `GITHUB_TOKEN=""` and `GITHUB_PASSWORD="${GITHUB_TOKEN}"`. While currently empty, this pattern in a public repo is a security anti-pattern; credentials should come from `~/.env` or a secrets manager, never from a committed file
 
 ### Proposed refactored implementation
 

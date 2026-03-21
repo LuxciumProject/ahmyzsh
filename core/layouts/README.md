@@ -171,7 +171,7 @@ This inconsistency makes the API confusing. A future cleanup should pick one sch
 
 ### String Format vs Escape Sequences
 
-The variables use `\u001b` unicode escape notation. In Zsh `echo`, use `echo -e` or `$'...'` syntax to interpret them. In `printf`, use `printf '%b'`. The double-quote expansion in `echo "${FRD}text${RSET}"` works because Zsh and modern bash handle `\u001b` in double-quoted strings when `$'...'` is not used.
+The variables use `\u001b` Unicode escape notation and therefore must be passed through a command that interprets escape sequences in order to render colors. In Zsh, use `echo -e` or `$'...'` syntax; in portable code, prefer `printf '%b'`. A plain `echo "${FRD}text${RSET}"` will not interpret `\u001b` in Bash and will typically print the backslash sequences literally, so always use one of the interpreting forms (`echo -e`, `$'...'`, or `printf '%b'`) when emitting these constants.
 
 ### Duplication with `core/env/00000.sh`
 

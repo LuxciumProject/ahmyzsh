@@ -19,6 +19,10 @@
 - [Issue 8: add_to_path_() Operator Precedence Bug](#issue-8-add_to_path_-operator-precedence-bug)
 - [Issue 9: Powerlevel10k Instant Prompt Disabled](#issue-9-powerlevel10k-instant-prompt-disabled)
 - [Issue 10: __LOCALE__() Sets Variables Twice](#issue-10-__locale__-sets-variables-twice)
+- [Issue 11: timer_from_then() Assigns String Literal](#issue-11-timer_from_then-assigns-string-literal)
+- [Issue 12: set_path() Passes "eval" as Directory Name](#issue-12-set_path-passes-eval-as-directory-name)
+- [Issue 13: cache_path() Writes Unquoted PATH](#issue-13-cache_path-writes-unquoted-path)
+- [Issue 14: GITHUB_TOKEN Credential Pattern in Public Repo](#issue-14-github_token-credential-pattern-in-public-repo)
 - [Additional Observations](#additional-observations)
 - [Priority Remediation Roadmap](#priority-remediation-roadmap)
 
@@ -32,6 +36,9 @@ The AHMYZSH boot chain executes on every shell invocation (including non-interac
 2. PATH file sourced 3× per boot
 3. `zsh_compile_all_R` running a filesystem `find` + `zcompile` on every interactive shell start
 4. `__compute_extended_path` calling conda/rbenv/rust on every boot even when the PATH cache is present
+5. `set_path()` silently losing fnm environment setup due to a quoting bug
+6. `cache_path()` writing an unquoted `$PATH`, risking breakage on metacharacters
+7. Credential variable pattern (`GITHUB_TOKEN`) in a committed public file
 
 A conservative estimate places the unnecessary overhead at **200–800ms per interactive shell start** and **100–400ms per non-interactive shell start**, depending on disk speed and which runtimes are installed.
 
@@ -449,6 +456,131 @@ function __LOCALE__() {
 
 ---
 
+## Issue 11: timer_from_then() Assigns String Literal
+
+**Severity:** Medium (broken function)
+**Location:** `MAIN-FUNCTIONS.sh`
+
+### Description
+
+`timer_from_then()` contains `local TIME_THEN=TIME_NOW`, which assigns the **string literal** `"TIME_NOW"` to `TIME_THEN`, not the **value** of the variable `$TIME_NOW`. The function has never worked as intended.
+
+### Current Code
+
+```shell
+function timer_from_then() {
+  # TIME_NOW=$(/usr/bin/date +%s%N)
+  local TIME_THEN=TIME_NOW       # ← BUG: assigns string "TIME_NOW"
+  timer_ "${TIME_THEN}"
+  return
+}
+```
+
+### Remediation
+
+```shell
+function timer_from_then() {
+  local TIME_THEN="${TIME_NOW}"   # ← Use $ to dereference the variable
+  timer_ "${TIME_THEN}"
+}
+```
+
+---
+
+## Issue 12: set_path() Passes "eval" as Directory Name
+
+**Severity:** High (silent PATH corruption)
+**Location:** `core/compute-path/path.sh`
+
+### Description
+
+`set_path()` calls `add_to_path_ eval "$(fnm env)"`. Shell parsing splits this into: `add_to_path_` receives `"eval"` as `$1` and `"$(fnm env)"` as `$2`. Since `add_to_path_()` only uses `$1`, it attempts to prepend the literal string `"eval"` to `PATH`. The fnm environment setup is silently lost.
+
+### Current Code
+
+```shell
+function set_path() {
+    __append_bin_to_path
+    add_to_path_ '/home/luxcium/.local/share/fnm'
+    add_to_path_ eval "$(fnm env)"    # ← BUG: "eval" passed as dir name
+    __compute_extended_path
+    __dedup_path
+    return
+}
+```
+
+### Remediation
+
+```shell
+function set_path() {
+    __append_bin_to_path
+    path_prepend "${FNM_PATH}"         # Use the variable, not hardcoded path
+    eval "$(fnm env)"                  # Separate call — eval is the command, not an argument
+    __compute_extended_path
+    __dedup_path
+    return
+}
+```
+
+---
+
+## Issue 13: cache_path() Writes Unquoted PATH
+
+**Severity:** Medium (correctness / potential breakage)
+**Location:** `core/compute-path/path.sh`
+
+### Description
+
+`cache_path()` writes the PATH cache with: `echo "export PATH=$PATH" >"$CACHED_PATH"`. Because `$PATH` is not quoted inside the `echo` string, any metacharacters in PATH entries (spaces, glob characters, etc.) could cause malformed output or even word splitting when the cache file is later sourced.
+
+### Current Code
+
+```shell
+function cache_path() {
+    set_path >/dev/null
+    echo "export PATH=$PATH" >"$CACHED_PATH"    # ← BUG: $PATH unquoted
+}
+```
+
+### Remediation
+
+```shell
+function cache_path() {
+    set_path >/dev/null
+    printf 'export PATH="%s"\n' "$PATH" >"$CACHED_PATH"
+}
+```
+
+---
+
+## Issue 14: GITHUB_TOKEN Credential Pattern in Public Repo
+
+**Severity:** High (security)
+**Location:** `MAIN_SETTINGS.sh`
+
+### Description
+
+`MAIN_SETTINGS.sh` contains `export GITHUB_TOKEN=""` and `export GITHUB_PASSWORD="${GITHUB_TOKEN}"`. While the value is currently empty, this pattern creates a credential variable in a public repo file that could accidentally receive a real token value. The variable is exported, meaning it would be visible to all child processes. This is a security anti-pattern — credentials should come from `~/.env` (which is gitignored) or a secrets manager, never from a committed file.
+
+### Current Code
+
+```shell
+export GITHUB_TOKEN=""
+export GITHUB_PASSWORD="${GITHUB_TOKEN}"
+```
+
+### Remediation
+
+Remove these lines from `MAIN_SETTINGS.sh`. If the variables are needed, load them from `~/.env`:
+
+```shell
+# In ~/.env (not committed):
+export GITHUB_TOKEN="ghp_..."
+export GITHUB_PASSWORD="${GITHUB_TOKEN}"
+```
+
+---
+
 ## Additional Observations
 
 ### Shebang Mismatch
@@ -479,7 +611,11 @@ The file `core/Load_all_files_d.sh` appears to contain systemd journal/service t
 
 | Task | Expected Benefit |
 |------|-----------------|
-| Fix `add_to_path_()` / `append_to_path_()` bug | Correctness |
+| Fix `add_to_path_()` / `append_to_path_()` bug | Correctness + security |
+| Fix `timer_from_then()` string literal assignment | Correctness |
+| Fix `set_path()` — separate `eval` from `add_to_path_` call | Correctness (fnm init) |
+| Fix `cache_path()` — quote `$PATH` in export line | Correctness |
+| Remove `GITHUB_TOKEN`/`GITHUB_PASSWORD` from `MAIN_SETTINGS.sh` | Security |
 | Remove duplicate `bindkey -v` calls | Cleanliness |
 | Remove redundant second source of `path.sh` in `source-me-in-etc-zshenv.sh` | Minor speedup |
 | Remove duplicate locale assignments in `__LOCALE__()` | Cleanliness |
@@ -489,7 +625,7 @@ The file `core/Load_all_files_d.sh` appears to contain systemd journal/service t
 
 | Task | Expected Benefit |
 |------|-----------------|
-| Replace `date +%s%N` forks with `$EPOCHREALTIME` | ~30–80ms saved |
+| Replace `date +%s%N` forks with `$EPOCHREALTIME` (with `LC_NUMERIC=C` guard) | ~30–80ms saved |
 | Guard `path.sh` against re-sourcing with `_PATH_SH_LOADED` | Minor speedup |
 | Skip `__compute_extended_path` when PATH cache is valid | ~100–200ms saved |
 | Enable Powerlevel10k instant prompt | Perceived startup near-zero |

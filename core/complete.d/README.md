@@ -159,7 +159,7 @@ _mycommand "$@"
 
 ### Interaction with Oh My Zsh Completion
 
-Oh My Zsh calls `compinit` during its initialization in `load_oh_my_zsh()`. The `fpath` additions made here must happen **before** `compinit` is called, or the completions won't be found. The current boot order ensures this: `load_autocomplete_()` is called before `load_oh_my_zsh()`.
+Oh My Zsh calls `compinit` during its initialization in `load_oh_my_zsh()`. In the current boot order, `load_oh_my_zsh()` runs **before** `load_autocomplete_()`, so any `fpath` additions made by `load_autocomplete_()` are **not** picked up by Oh My Zsh's `compinit` step.
 
 ---
 

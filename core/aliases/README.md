@@ -2,7 +2,7 @@
 
 ← Back to [core/README.md](../README.md) | [Repository README](../../README.md)
 
-This directory contains all shell aliases organized by domain. Files are sourced in numeric order by `load_all_config_and_settings_files()` during the interactive initialization phase.
+This directory contains all shell aliases organized by domain. Files are sourced in numeric order by `load_all_config_and_settings_files()` during shell startup. Note: at present this sourcing happens for both interactive and non-interactive shells, because `load_all_config_and_settings_files()` is invoked before the `isinteractive || return 0` guard in `MAIN.sh`, which may have performance implications for non-interactive use.
 
 An auto-generated inventory is maintained at [`00000-alias-inventory.md`](00000-alias-inventory.md).
 

@@ -211,14 +211,11 @@ ANSI escape code exports for colors (foreground/background, normal/bright), text
 
 ### Oh My Zsh
 
-Loaded by `load_oh_my_zsh()` in `core/functions/z88888-load_ohmyzsh.sh`. Active plugins:
+Loaded by `load_oh_my_zsh()` in `core/functions/z88888-load_ohmyzsh.sh`.
 
-```
-colorize docker git kubectl npm yarn zsh-completions zsh-z
-zsh-history-substring-search zsh-autosuggestions zsh-syntax-highlighting
-```
+Active plugins are configured via the `plugins=(...)` array in [`core/functions/z88888-load_ohmyzsh.sh`](core/functions/z88888-load_ohmyzsh.sh), which is the single source of truth.
 
-> ⚠️ **Warning:** Oh My Zsh is loaded only for interactive shells (after the `isinteractive` guard), which is correct. However, `bindkey -v` is set for the **third time** in `load_oh_my_zsh()` — redundant.
+> 📝 **Note:** Oh My Zsh is loaded only for interactive shells (after the `isinteractive` guard). `core/functions/z88888-load_ohmyzsh.sh` configures keybindings for `zsh-history-substring-search` but does not invoke `bindkey -v`.
 
 ### Powerlevel10k
 
@@ -236,12 +233,16 @@ See [documentation/OPTIMIZATION-PLAN.md](documentation/OPTIMIZATION-PLAN.md) for
 | 2 | `date +%s%N` forked 6+ times on every shell | Medium | `MAIN-FUNCTIONS.sh` timers |
 | 3 | `__compute_extended_path` runs on every boot (conda/rbenv/rust inits) | High | `core/compute-path/path.sh` |
 | 4 | `zsh_compile_all_R` runs on every interactive start (find + zcompile) | High | `core/functions/05000-zsh_compile.sh` |
-| 5 | `bindkey -v` set 3× | Low | `MAIN_SETTINGS.sh`, `MAIN.sh`, `z88888-load_ohmyzsh.sh` |
+| 5 | `bindkey -v` set 3× | Low | `MAIN_SETTINGS.sh`, `MAIN.sh` |
 | 6 | `call_()` uses `eval` | Medium | `MAIN-FUNCTIONS.sh` |
 | 7 | Non-interactive shells run expensive phases 1–5 | High | `source-me-in-etc-zshenv.sh` |
-| 8 | `add_to_path_()` operator precedence bug | High | `core/compute-path/path.sh` |
+| 8 | `add_to_path_()` operator precedence bug — empty `$1` adds current dir to PATH | High | `core/compute-path/path.sh` |
 | 9 | Powerlevel10k instant prompt is commented out | Medium | `core/functions/z86660-activate_instant_prompt.sh` |
 | 10 | `__LOCALE__()` sets locale variables twice | Low | `MAIN_SETTINGS.sh` |
+| 11 | `timer_from_then()` assigns string literal `"TIME_NOW"` instead of `$TIME_NOW` | Medium | `MAIN-FUNCTIONS.sh` |
+| 12 | `set_path()` passes `"eval"` as directory name to `add_to_path_` — fnm init silently lost | High | `core/compute-path/path.sh` |
+| 13 | `cache_path()` writes unquoted `$PATH` — metacharacters break cache | Medium | `core/compute-path/path.sh` |
+| 14 | `GITHUB_TOKEN=""` / `GITHUB_PASSWORD` exported in committed file | High | `MAIN_SETTINGS.sh` |
 
 ---
 
@@ -251,7 +252,7 @@ See [documentation/OPTIMIZATION-PLAN.md](documentation/OPTIMIZATION-PLAN.md) for
 
 | Document | Purpose |
 |----------|---------|
-| [Optimization Plan](documentation/OPTIMIZATION-PLAN.md) | Catalogs 10 identified issues with root cause, impact, and concrete before/after remediation |
+| [Optimization Plan](documentation/OPTIMIZATION-PLAN.md) | Catalogs 14 identified issues with root cause, impact, and concrete before/after remediation |
 | [Intent Decomposition](documentation/INTENT-DECOMPOSITION.md) | Decomposes the boot chain into 14 independent intents (detection, timing, PATH, runtimes, aesthetics, etc.) with decoupled implementations |
 | [Critical Path Refactored](documentation/CRITICAL-PATH-REFACTORED.md) | Blueprint for a rewritten boot chain — a `lib/` module architecture with zero-fork non-interactive shells and intent-separated modules |
 
