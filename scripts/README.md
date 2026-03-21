@@ -19,7 +19,7 @@ This directory contains installation, update, and testing scripts.
 These are convenience wrappers using the root `package.json`:
 
 ```sh
-npm run install     # Run install.sh
+npm run setup       # Run install.sh
 npm run update      # Run update.sh
 npm run test        # Run test.sh
 npm run test:docker # Build and run tests in Docker

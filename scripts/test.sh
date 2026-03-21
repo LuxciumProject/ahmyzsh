@@ -100,10 +100,10 @@ echo -e "${BLUE}── No Credentials ──${NC}"
 for f in "${BOOT_FILES[@]}"; do
   filepath="${AHMYZSH_DIR}/${f}"
   if [[ -f "${filepath}" ]]; then
-    # Check for GITHUB_TOKEN with actual value (not empty or reference)
-    if grep -qn 'GITHUB_TOKEN="[^"$]' "${filepath}" 2>/dev/null; then
+    # Check for GITHUB_TOKEN with actual value (not empty or variable reference)
+    if grep -qn 'GITHUB_TOKEN="[^"$][^"]*"' "${filepath}" 2>/dev/null; then
       fail "${f} may contain GITHUB_TOKEN credential"
-    elif grep -qn 'GITHUB_PASSWORD="[^"$]' "${filepath}" 2>/dev/null; then
+    elif grep -qn 'GITHUB_PASSWORD="[^"$][^"]*"' "${filepath}" 2>/dev/null; then
       fail "${f} may contain GITHUB_PASSWORD credential"
     else
       pass "${f} has no exposed credentials"

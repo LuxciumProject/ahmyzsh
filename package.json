@@ -4,7 +4,7 @@
   "description": "AHMYZSH — Custom Zsh Shell Environment Framework",
   "private": true,
   "scripts": {
-    "install": "bash scripts/install.sh",
+    "setup": "bash scripts/install.sh",
     "update": "bash scripts/update.sh",
     "test": "bash scripts/test.sh",
     "test:docker": "docker build -t ahmyzsh-test -f Dockerfile . && docker run --rm ahmyzsh-test",

@@ -160,7 +160,7 @@ echo ""
 # --- Optional steps ---
 if [[ "$(basename "${SHELL}")" != "zsh" ]]; then
   echo -e "${YELLOW}Optional: Make zsh your default shell:${NC}"
-  echo "  chsh -s \$(which zsh)"
+  echo "  chsh -s \$(command -v zsh)"
   echo ""
 fi
 

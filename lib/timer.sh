@@ -19,7 +19,8 @@ if zmodload zsh/datetime 2>/dev/null; then
     # Pad or truncate fraction to 6 digits
     frac="${frac}000000"
     frac="${frac:0:6}"
-    REPLY=$(( secs * 1000000 + ${frac#${frac%%[!0]*}} ))
+    # Safe leading-zero removal using base-10 arithmetic
+    REPLY=$(( secs * 1000000 + 10#${frac} ))
   }
 else
   # Fallback: use date command (1 fork per call)

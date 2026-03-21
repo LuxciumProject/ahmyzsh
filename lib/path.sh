@@ -62,13 +62,13 @@ dedup_pathvar_() {
 __build_base_path() {
   PATH="/usr/local/bin"
   for dir in /usr/bin /bin /usr/local/sbin /usr/sbin /sbin; do
-    [[ -d "${dir}" ]] && PATH="${PATH}:${dir}"
+    append_to_path "${dir}"
   done
   # Add user-level directories
-  [[ -d "${HOME}/.local/bin" ]] && PATH="${HOME}/.local/bin:${PATH}"
-  [[ -d "${HOME}/bin" ]] && PATH="${HOME}/bin:${PATH}"
+  prepend_to_path "${HOME}/.local/bin"
+  prepend_to_path "${HOME}/bin"
   # Add AHMYZSH core/bin
-  [[ -d "${AHMYZSH}/core/bin" ]] && PATH="${PATH}:${AHMYZSH}/core/bin"
+  append_to_path "${AHMYZSH}/core/bin"
   export PATH
 }
 

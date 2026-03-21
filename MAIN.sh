@@ -72,13 +72,19 @@ SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
   call_ load_autosuggest
   call_ load_autocomplete
 
-  # Fix completion permissions (background, non-blocking)
-  (compaudit 2>/dev/null | xargs chmod g-w,o-w 2>/dev/null) &
+  # Fix completion permissions (only run compaudit if available)
+  if typeset -f compaudit >/dev/null 2>&1; then
+    local -a insecure_dirs
+    insecure_dirs=($(compaudit 2>/dev/null))
+    if [[ ${#insecure_dirs[@]} -gt 0 ]]; then
+      chmod g-w,o-w "${insecure_dirs[@]}" 2>/dev/null
+    fi
+  fi
 
   # Compile zsh files only if needed (check sentinel)
   local sentinel="${AHMYZSH_CACHE}/.last_compile"
   if [[ ! -f "${sentinel}" ]] || \
-     [[ $(find "${AHMYZSH}" -name '*.sh' -newer "${sentinel}" 2>/dev/null | head -1) ]]; then
+     [[ $(find "${AHMYZSH}/lib" "${AHMYZSH}/core" -maxdepth 2 -name '*.sh' -newer "${sentinel}" 2>/dev/null | head -1) ]]; then
     (zsh_compile_all_R 2>/dev/null; touch "${sentinel}") &
   fi
 
