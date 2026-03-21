@@ -1,0 +1,24 @@
+{
+  "name": "ahmyzsh",
+  "version": "2.0.0",
+  "description": "AHMYZSH — Custom Zsh Shell Environment Framework",
+  "private": true,
+  "scripts": {
+    "setup": "bash scripts/install.sh",
+    "update": "bash scripts/update.sh",
+    "test": "bash scripts/test.sh",
+    "test:docker": "docker build -t ahmyzsh-test -f Dockerfile . && docker run --rm ahmyzsh-test",
+    "lint": "shellcheck scripts/*.sh && zsh -n source-me-in-etc-zshenv.sh MAIN.sh MAIN-FUNCTIONS.sh MAIN_SETTINGS.sh lib/*.sh",
+    "rebuild-path": "zsh -c 'source source-me-in-etc-zshenv.sh && ahmyzsh_rebuild_path'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LuxciumProject/ahmyzsh.git"
+  },
+  "author": "Benjamin Vincent Kasapoglu (Luxcium)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LuxciumProject/ahmyzsh/issues"
+  },
+  "homepage": "https://github.com/LuxciumProject/ahmyzsh#readme"
+}

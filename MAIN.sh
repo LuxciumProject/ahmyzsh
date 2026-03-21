@@ -1,10 +1,10 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 set +m
 
 #& Scientia es lux principium
 #+ =============================================================================≈
-#? MIT LICENSE ― *NOT* fit for any particular use or purpose ― PROVIDED "AS IS"
-#?!!! See the bottom of this file for *IMPORTANT INFORMATIONS* ― MIT LICENSE !!!
+#? MIT LICENSE — *NOT* fit for any particular use or purpose — PROVIDED "AS IS"
+#? See the bottom of this file for *IMPORTANT INFORMATION* — MIT LICENSE
 #? =============================================================================≈
 #? @author Benjamin Vincent Kasapoglu (LUXCIUM)
 #? @copyright (c) 2020 - LUXCIUM (Benjamin Vincent Kasapoglu)
@@ -15,73 +15,106 @@ set +m
 #+ =============================================================================≈
 #* AHMYZSH first entry point
 
-export VERBOSA="1"
+export VERBOSA="${VERBOSA:-1}"
 
-noop() {
-    true
-}
+noop() { true; }
+
 SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
-    export LOAD_ENV_COMPLETED='not yet'
-    export ENVIRONNEMENT_LOADED='not yet'
-    export LOGIN_ENV_LOADED='not yet'
-    export INTERACTIVE_ENV_LOADED='not yet'
+  export LOAD_ENV_COMPLETED='not yet'
+  export ENVIRONNEMENT_LOADED='not yet'
+  export LOGIN_ENV_LOADED='not yet'
+  export INTERACTIVE_ENV_LOADED='not yet'
 
-    : "${LOAD_ENV_COMPLETED_ONCE:='not yet'}"
-    : "${ENVIRONNEMENT_LOADED_ONCE:='not yet'}"
-    : "${LOGIN_ENV_LOADED_ONCE:= 'not yet'}"
-    : "${INTERACTIVE_ENV_LOADED_ONCE:='not yet'}"
+  # Shell detection using built-in variable (0 forks)
+  if [[ -z "${ZSH_VERSION}" ]]; then
+    return 1
+  fi
+  export IS_ZSH_=1
 
-    IS_ZSH_="$(ps -o comm= -p $$ | grep 'zsh')"
-    export IS_ZSH_
-    [ -z "${IS_ZSH_}" ] && return 1
-
-    [ -z "${MAIN_INIT}" ] || reload_alias_and_conf
-    [ -z "${MAIN_INIT}" ] || { prompt_ "Reloaded alias files functions and conf" && return; }
-    MAIN_INIT="start"
-
-    # S1="${AHMYZSH}/MAIN-FUNCTIONS.sh"
-    # shellcheck source=./MAIN-FUNCTIONS.sh
-    # shellcheck disable=SC2015
-    # { [ -f "${S1}" ] && . "${S1}"; } || load_error_ "${S1}"
-
-    load_ "${AHMYZSH}/MAIN_SETTINGS.sh" "MAIN_SETTINGS"
-
-    call_ load_all_config_and_settings_files
-
-    # call_ load_zshenv
-
-    # return 0
-    source_ "${HOME}/.env" || touch "${HOME}/.env"
-    call_ fnm_
-    echo -en '\u001b[0m'
-    isinteractive || return 0
-    call_ activate_prompt
-
-    call_ load_oh_my_zsh
-
-    call_ load_options_list
-    call_ load_options_main
-    call_ load_autosuggest
-    call_ load_autocomplete
-
-    compaudit | xargs chmod g-w,o-w 2>/dev/null
-    zsh_compile_all_R
-
-    bindkey -v
+  # Reload guard: if already initialized, just reload config
+  if [[ -n "${MAIN_INIT}" ]]; then
+    load_all_config_and_settings_files 2>/dev/null
+    is_interactive 2>/dev/null && echo "Reloaded alias files, functions, and configuration"
     return 0
+  fi
+  MAIN_INIT="start"
+
+  # Load settings (locale, env vars, framework paths)
+  load_ "${AHMYZSH}/MAIN_SETTINGS.sh" "MAIN_SETTINGS"
+
+  # Load all configuration files (paths, layouts, functions, aliases, env)
+  call_ load_all_config_and_settings_files
+
+  # Source user environment file
+  source_ "${HOME}/.env" || touch "${HOME}/.env"
+
+  # Initialize runtimes (conditional on feature flags)
+  call_ ahmyzsh_init_runtimes
+
+  # Reset terminal formatting
+  echo -en '\u001b[0m'
+
+  # ── Non-interactive gate ──────────────────────────────────────────────────
+  # Everything below here only runs for interactive shells.
+  is_interactive || return 0
+
+  # Activate prompt theme (Powerlevel10k)
+  call_ activate_prompt
+
+  # Load Oh My Zsh framework
+  call_ load_oh_my_zsh
+
+  # Load shell options
+  call_ load_options_list
+  call_ load_options_main
+
+  # Load autosuggestions and autocomplete
+  call_ load_autosuggest
+  call_ load_autocomplete
+
+  # Fix completion permissions (only run compaudit if available)
+  if typeset -f compaudit >/dev/null 2>&1; then
+    local -a insecure_dirs
+    insecure_dirs=($(compaudit 2>/dev/null))
+    if [[ ${#insecure_dirs[@]} -gt 0 ]]; then
+      chmod g-w,o-w "${insecure_dirs[@]}" 2>/dev/null
+    fi
+  fi
+
+  # Compile zsh files only if needed (check sentinel)
+  local sentinel="${AHMYZSH_CACHE}/.last_compile"
+  local compile_lock="${AHMYZSH_CACHE}/.compile_lock"
+  if [[ ! -f "${sentinel}" ]] || \
+     [[ $(find "${AHMYZSH}/lib" "${AHMYZSH}/core" -maxdepth 2 -name '*.sh' -newer "${sentinel}" 2>/dev/null | head -1) ]]; then
+    if mkdir "${compile_lock}" 2>/dev/null; then
+      (
+        trap 'rmdir "${compile_lock}" 2>/dev/null' EXIT
+        zsh_compile_all_R 2>/dev/null && touch "${sentinel}"
+      ) &
+    fi
+  fi
+
+  # Set vi-mode keybindings (once)
+  bindkey -v
+  ahmyzsh_timer_since_boot_ms
+  export TIME_TO_INTERACTIVE="${REPLY}"
+  return 0
 }
 
 prompt_() {
-    isinteractive && echo "${@}"
+  is_interactive && echo "${@}"
 }
 
 load_error_() {
-    prompt_ "Error: '${*}' path can not be resolved"
-    return 1
+  prompt_ "Error: '${*}' path can not be resolved"
+  return 1
 }
 
-my_term="$(ps -p "$PPID" -o comm= | awk '{print $1}')"
-export my_term
+# Detect parent terminal (for informational purposes)
+if command -v ps >/dev/null 2>&1; then
+  my_term="$(ps -p "$PPID" -o comm= 2>/dev/null | awk '{print $1}')"
+  export my_term
+fi
 
 # ·――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――· #
 # !!―――――――――――――――――――――――――!!! SECURITY WARNING !!!―――――――――――――――――――――――――!! #

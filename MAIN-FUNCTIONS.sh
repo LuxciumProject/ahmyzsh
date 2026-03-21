@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
 #& Scientia es lux principium
 
 #+ =============================================================================≈
-#? MIT LICENSE ― *NOT* fit for any particular use or purpose ― PROVIDED "AS IS"
-#?!!! See the bottom of this file for *IMPORTANT INFORMATIONS* ― MIT LICENSE !!!
+#? MIT LICENSE — *NOT* fit for any particular use or purpose — PROVIDED "AS IS"
+#? See the bottom of this file for *IMPORTANT INFORMATION* — MIT LICENSE
 #? =============================================================================≈
 #? @author Benjamin Vincent Kasapoglu (LUXCIUM)
 #? @copyright (c) 2020 - LUXCIUM (Benjamin Vincent Kasapoglu)
@@ -14,6 +14,11 @@
 #& (c) & tm Benjamin Vincent Kasapoglu (Luxcium) 2017-2020
 #+ =============================================================================≈
 #* AHMYZSH basic functions
+#* These are loaded from lib/loader.sh now but kept here for backward compatibility.
+#* If lib/loader.sh was already loaded (guard variable set), functions are not redefined.
+
+# Only define functions if lib/loader.sh was NOT already loaded
+if [[ -z "${_AHMYZSH_LOADER_LOADED}" ]]; then
 
 function load_all_config_and_settings_files() {
 
@@ -21,7 +26,12 @@ function load_all_config_and_settings_files() {
 
     export BEGIN_SOURCING_FILES="\u001b[0m\u001b[34m#   \u001b[0m\u001b[33m\uf085\u001b[0m\u001b[34m  >"
     export END_SOURCING_FILES="\u001b[0m\u001b[31;1m\u001b[1m"
-    TIMER_THEN=$(/usr/bin/date +%s%N)
+    _ahmyzsh_get_time_us 2>/dev/null
+    if [[ -n "${REPLY}" ]]; then
+      TIMER_THEN="${REPLY}"
+    else
+      TIMER_THEN="$(date +%s 2>/dev/null)000000"
+    fi
     Load_all_files_d_v "${AHMYZSH_CORE}/paths"
     Load_all_files_d_v "${AHMYZSH_CORE}/layouts"
     Load_all_files_d_v "${AHMYZSH_CORE}/compute-path"
@@ -37,8 +47,6 @@ function load_all_config_and_settings_files() {
     Load_all_files_d "${AHMYZSH_CORE}/env"
   fi
 
-  # Created by newuser for 5.8
-
 }
 
 function load_config_or_settings_() {
@@ -47,7 +55,12 @@ function load_config_or_settings_() {
     export BEGIN_SOURCING_FILES="\u001b[0m\u001b[34m#   \u001b[0m\u001b[33m\uf085\u001b[0m\u001b[34m  >"
     export END_SOURCING_FILES="\u001b[0m\u001b[31;1m\u001b[1m"
 
-    TIMER_THEN=$(/usr/bin/date +%s%N)
+    _ahmyzsh_get_time_us 2>/dev/null
+    if [[ -n "${REPLY}" ]]; then
+      TIMER_THEN="${REPLY}"
+    else
+      TIMER_THEN="$(date +%s 2>/dev/null)000000"
+    fi
     Load_all_files_d_v "${1}"
   else
     Load_all_files_d "${1}"
@@ -59,7 +72,7 @@ function Load_all_files_d() {
   if [ -d "${SD1}" ]; then
     for f in "${SD1}/"*.sh; do
       # shellcheck disable=SC1090
-      source "${f}"
+      [[ -r "${f}" ]] && source "${f}"
     done
   else
     return 2
@@ -75,10 +88,15 @@ function Load_all_files_d_v() {
         source "${f}"
         [ "${VERBOSA}" -gt 5 ] && echo "${BEGIN_SOURCING_FILES} $(timer_now) ${f} ${END_SOURCING_FILES}"
       else
-        [ "${VERBOSA}" -gt 10 ] && echo "Error sourcing '$1' file provided is not redable"
+        [ "${VERBOSA}" -gt 10 ] && echo "Error sourcing '$1' file provided is not readable"
         return 3
       fi
-      TIMER_THEN=$(/usr/bin/date +%s%N)
+      _ahmyzsh_get_time_us 2>/dev/null
+      if [[ -n "${REPLY}" ]]; then
+        TIMER_THEN="${REPLY}"
+      else
+        TIMER_THEN="$(date +%s 2>/dev/null)000000"
+      fi
     done
   else
     [ "${VERBOSA}" -gt 10 ] && echo "Error loading files in '${SD1}'... Directory or path can not be resolved"
@@ -86,64 +104,63 @@ function Load_all_files_d_v() {
   fi
 }
 
-function timer_() {
-  local MICROSEC='1000000'
-  local NOW_TIME
-  NOW_TIME=$(date +%s%N)
+# Timer functions — legacy fallbacks (lib/timer.sh provides better versions)
+if ! typeset -f timer_ >/dev/null 2>&1; then
+  function timer_() {
+    local MICROSEC='1000000'
+    local NOW_TIME
+    NOW_TIME=$(date +%s%N 2>/dev/null || echo $(( $(date +%s) * 1000000000 )))
 
-  local timecalc=$((NOW_TIME - ${1:=NOW_TIME}))
-  local TIMER_VALUE=$((timecalc / MICROSEC))
-  if [ ${#TIMER_VALUE} = 0 ]; then
-    local spacing_="    "
-  elif [ ${#TIMER_VALUE} = 1 ]; then
-    local spacing_="   "
-  elif [ ${#TIMER_VALUE} = 2 ]; then
-    local spacing_="  "
-  elif [ ${#TIMER_VALUE} = 3 ]; then
-    local spacing_=" "
-  else
-    local spacing_=""
-  fi
-  echo "${TIMER_VALUE}${spacing_}"
-  return 0
-}
+    local timecalc=$((NOW_TIME - ${1:=NOW_TIME}))
+    local TIMER_VALUE=$((timecalc / MICROSEC))
+    if [ ${#TIMER_VALUE} = 0 ]; then
+      local spacing_="    "
+    elif [ ${#TIMER_VALUE} = 1 ]; then
+      local spacing_="   "
+    elif [ ${#TIMER_VALUE} = 2 ]; then
+      local spacing_="  "
+    elif [ ${#TIMER_VALUE} = 3 ]; then
+      local spacing_=" "
+    else
+      local spacing_=""
+    fi
+    echo "${TIMER_VALUE}${spacing_}"
+    return 0
+  }
 
-function timer_now() {
-  timer_ "${TIMER_THEN}"
-  return
-}
+  function timer_now() {
+    timer_ "${TIMER_THEN}"
+    return
+  }
 
-function timer_from_then() {
-  # TIME_NOW=$(/usr/bin/date +%s%N)
-  local TIME_THEN=TIME_NOW
-  timer_ "${TIME_THEN}"
-  return
-}
+  function timer_from_then() {
+    _ahmyzsh_get_time_us 2>/dev/null
+    timer_ "${REPLY:-${TIMER_THEN}}"
+    return
+  }
 
-function timer_all() {
-  # local TIMER_NOW=$(/usr/bin/date +%s%N)
-  # local TIMER_VALUE=$(((${TIMER_NOW} - ${TIMER_ALL_THEN}) / 1000000))
-  timer_ "${TIMER_ALL_THEN}"
-  # echo -n "${TIMER_VALUE} "
-}
+  function timer_all() {
+    timer_ "${TIMER_ALL_THEN}"
+  }
+fi
 
 function load_() {
   source_ "${1}" &&
     call_ "${2}"
-
 }
 
+# call_() — Fixed: no eval, direct function invocation
 function call_() {
-  if [ -z "$1" ]; then
-    [ "${VERBOSA}" -gt 4 ] && echo "Error sourcing ' $1 ' no function call provided"
+  if [[ -z "$1" ]]; then
+    [[ "${VERBOSA:-0}" -gt 4 ]] && echo "Error: call_ invoked with no function name"
     return 4
+  fi
+  if typeset -f "$1" >/dev/null 2>&1; then
+    "$1"
+    return $?
   else
-    TIMER_THEN=$(/usr/bin/date +%s%N)
-    eval "${1}"
-
-    returnval=$?
-    [ "${VERBOSA}" -gt 1 ] && echo "${BEGIN_FUNCTION} $(timer_now) '${1}()' ${END_FUNCTION}"
-    return "${returnval}"
+    [[ "${VERBOSA:-0}" -gt 2 ]] && echo "Warning: function '$1' not found"
+    return 1
   fi
 }
 
@@ -152,15 +169,13 @@ function source_() {
     [ "${VERBOSA}" -gt 4 ] && echo "Error sourcing ' $1 ' no file provided"
     return 4
   else
-    TIMER_THEN=$(/usr/bin/date +%s%N)
     if [[ -f $1 ]]; then
       if [[ -r $1 ]]; then
         # shellcheck disable=SC1090
         source "${1}"
-        [ "${VERBOSA}" -gt 2 ] && echo "${BEGIN_SOURCING} $(timer_now) ${1} ${END_SOURCING}"
         return 0
       else
-        [ "${VERBOSA}" -gt 6 ] && echo "Error sourcing '$1' file provided is not redable"
+        [ "${VERBOSA}" -gt 6 ] && echo "Error sourcing '$1' file provided is not readable"
         return 6
       fi
     else
@@ -170,9 +185,11 @@ function source_() {
   fi
 }
 
+fi  # end of: if [[ -z "${_AHMYZSH_LOADER_LOADED}" ]]
+
 alias reload_alias_and_conf="load_all_config_and_settings_files"
-alias reloadpath="re_load_path"
-alias bye='load_zlogout;exit'
+alias reloadpath="ahmyzsh_rebuild_path 2>/dev/null || re_load_path"
+alias bye='load_zlogout 2>/dev/null; exit'
 
 # [[ $- == *i* ]] && echo 'Interactive' || echo 'Not interactive'
 # shopt -q login_shell && echo 'Login shell' || echo 'Not login shell'

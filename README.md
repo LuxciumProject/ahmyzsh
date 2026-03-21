@@ -2,67 +2,176 @@
 
 > 📝 **Note:** *† Scientia es lux principium✨ ™* — "Knowledge is the beginning of light" — the guiding motto of this project.
 
-**AHMYZSH** is a comprehensive, performance-aware Zsh shell configuration framework that wraps [Oh My Zsh](https://ohmyz.sh/) and [Powerlevel10k](https://github.com/romkatv/powerlevel10k) with a structured, layered initialization system, extended path management, alias libraries, custom functions, and tooling for a developer workstation running Fedora Linux with NVIDIA GPU, CUDA, Node.js (via FNM), Python (via Conda), Ruby (via rbenv), and Rust (via Cargo).
+**AHMYZSH** is a comprehensive, performance-aware Zsh shell configuration framework that wraps [Oh My Zsh](https://ohmyz.sh/) and [Powerlevel10k](https://github.com/romkatv/powerlevel10k) with a structured, layered initialization system, extended path management, alias libraries, custom functions, and developer tooling support.
+
+**Compatible with any zsh-capable computer** — Linux, macOS, BSD, and WSL.
 
 ---
 
 ## Table of Contents
 
+- [Installation](#installation)
+- [Quick Start](#quick-start)
 - [Boot Chain](#boot-chain)
+- [Configuration](#configuration)
 - [Repository Structure](#repository-structure)
-- [Key Entry Points](#key-entry-points)
+- [Directory READMEs](#directory-readmes)
 - [Core Subsystems](#core-subsystems)
-- [Plugin & Theme Integration](#plugin--theme-integration)
-- [Known Issues & Technical Debt](#known-issues--technical-debt)
-- [Documentation](#documentation)
-- [Getting Started](#getting-started)
 - [Environment Variables](#environment-variables)
+- [Testing](#testing)
+- [Uninstallation](#uninstallation)
+- [Known Issues & Technical Debt](#known-issues--technical-debt)
 - [Contributing](#contributing)
+
+---
+
+## Installation
+
+### Prerequisites
+
+- **zsh** ≥ 5.0 (required)
+- **git** (required)
+- Optional: Node.js/FNM, Python/Conda, Ruby/rbenv, Rust/Cargo, NVIDIA CUDA
+
+### Install
+
+```sh
+# 1. Clone the repository (anywhere you like)
+git clone https://github.com/LuxciumProject/ahmyzsh.git ~/ahmyzsh
+
+# 2. Run the idempotent installer
+bash ~/ahmyzsh/scripts/install.sh
+
+# 3. Start a new zsh session
+zsh
+```
+
+The installer:
+- Initializes git submodules (ohmyzsh, powerlevel10k, plugins)
+- Creates `~/.ahmyzshrc` with default settings (if not exists)
+- Adds a source line to `~/.zshenv` (if not already present)
+- Creates the cache directory at `~/.cache/ahmyzsh`
+- Creates `~/.env` for private environment variables (if not exists)
+
+> **Safe to run multiple times.** The installer is idempotent — it never overwrites existing configuration.
+
+### Update
+
+```sh
+bash ~/ahmyzsh/scripts/update.sh
+```
+
+Or using npm scripts:
+
+```sh
+cd ~/ahmyzsh && npm run update
+```
+
+### Uninstall
+
+AHMYZSH does not modify system files. To uninstall:
+
+1. Remove the source line from `~/.zshenv`
+2. Optionally remove `~/.ahmyzshrc` and `~/.cache/ahmyzsh`
+3. Remove the cloned repository
+
+Your existing `~/.zshrc`, `~/.env`, and other personal configs are never touched.
+
+---
+
+## Quick Start
+
+After installation, customize your setup by editing `~/.ahmyzshrc`:
+
+```sh
+# ~/.ahmyzshrc — AHMYZSH User Configuration
+
+# Locale (default: en_US.UTF-8)
+export AHMYZSH_LANG="fr_CA.UTF-8"
+
+# Runtime feature flags (1 = enable, 0 = disable)
+export AHMYZSH_ENABLE_FNM=1       # Fast Node Manager
+export AHMYZSH_ENABLE_CONDA=0     # Conda/Anaconda (heavy, off by default)
+export AHMYZSH_ENABLE_RBENV=0     # Ruby rbenv
+export AHMYZSH_ENABLE_RUST=1      # Rust/Cargo
+export AHMYZSH_ENABLE_DOTNET=0    # .NET SDK
+
+# Verbosity (0 = silent, 1 = normal, >15 = debug)
+export VERBOSA=1
+
+# Editor
+export EDITOR="code"
+```
 
 ---
 
 ## Boot Chain
 
-The initialization sequence is triggered on every shell start via `/etc/zshenv`:
+The initialization sequence is triggered on every shell start:
 
 ```
-/etc/zshenv
+~/.zshenv (or /etc/zshenv)
   └── source-me-in-etc-zshenv.sh
-        ├── Sets TIMER_ALL_THEN (date fork)
-        ├── Sets AHMYZSH, AHMYZSH_CACHE, LANG, KDE/Qt vars
-        ├── PATH cache: ~/.cache/ahmyzsh/path.env (fast) OR core/compute-path/path.sh (slow)
-        ├── Sources MAIN-FUNCTIONS.sh
-        ├── Sources core/compute-path/path.sh  ← sourced again (redundant)
-        ├── Sources core/compute-path/conda-initialize.sh
-        ├── Calls __compute_extended_path
+        ├── Auto-detects AHMYZSH path (0 forks)
+        ├── Loads lib/detect.sh      → Shell type detection (0 forks)
+        ├── Loads lib/timer.sh       → Portable timing (zsh/datetime)
+        ├── Loads lib/path.sh        → PATH manipulation
+        ├── Loads lib/locale.sh      → Locale configuration
+        ├── Loads lib/loader.sh      → File sourcing infrastructure
+        ├── Loads lib/runtimes.sh    → Conditional runtime init
+        ├── Loads ~/.ahmyzshrc       → User overrides (optional)
+        ├── Loads cached PATH        → ~/.cache/ahmyzsh/path.env
+        ├── Loads MAIN-FUNCTIONS.sh  → Legacy loader functions
         └── Sources MAIN.sh → calls SCIENTIA_ES_LUX_PRINCIPIUM()
 ```
 
 ```
 SCIENTIA_ES_LUX_PRINCIPIUM()  [MAIN.sh]
+  ├── Shell detection via $ZSH_VERSION (0 forks)
   ├── Loads MAIN_SETTINGS.sh → MAIN_SETTINGS()
-  ├── Calls load_all_config_and_settings_files()  [MAIN-FUNCTIONS.sh]
+  ├── Calls load_all_config_and_settings_files()
   │     ├── Sources core/paths/*.sh
   │     ├── Sources core/layouts/*.sh
-  │     ├── Sources core/compute-path/*.sh
+  │     ├── Sources core/compute-path/*.sh (guard prevents re-sourcing)
   │     ├── Sources core/functions/*.sh
   │     ├── Sources core/aliases/*.sh
   │     └── Sources core/env/*.sh
   ├── Sources ~/.env
-  ├── Calls fnm_()
-  ├── isinteractive || return 0   ← NON-INTERACTIVE SHELLS STOP HERE
-  ├── activate_prompt()           ← Powerlevel10k
+  ├── Calls ahmyzsh_init_runtimes() (conditional on feature flags)
+  ├── is_interactive || return 0   ← NON-INTERACTIVE SHELLS STOP HERE
+  ├── activate_prompt()            ← Powerlevel10k
   ├── load_oh_my_zsh()
   ├── load_options_list()
   ├── load_options_main()
   ├── load_autosuggest()
   ├── load_autocomplete()
-  ├── compaudit | xargs chmod g-w,o-w
-  ├── zsh_compile_all_R()
+  ├── Conditional zsh_compile_all_R() (only when files changed)
   └── bindkey -v
 ```
 
-> ⚠️ **Warning:** Non-interactive shells (scripts, SSH commands, cron jobs) still execute phases 1–5 of the boot chain, including expensive PATH computation and conda initialization, before the `isinteractive` guard fires. This is a significant performance concern.
+---
+
+## Configuration
+
+### User Configuration File: `~/.ahmyzshrc`
+
+This file is sourced early in the boot sequence (before locale and PATH).
+Use it to set feature flags, locale, editor, and any personal preferences.
+
+### Private Environment: `~/.env`
+
+Use this file for secrets and credentials (GITHUB_TOKEN, API keys, etc.).
+This file is never committed to the repository.
+
+### PATH Management
+
+PATH is cached to `~/.cache/ahmyzsh/path.env` for fast startup.
+To rebuild the PATH cache:
+
+```sh
+ahmyzsh_rebuild_path    # Rebuild and display new PATH
+reloadpath              # Alias for the same
+```
 
 ---
 
@@ -70,98 +179,61 @@ SCIENTIA_ES_LUX_PRINCIPIUM()  [MAIN.sh]
 
 ```
 ahmyzsh/
-├── MAIN.sh                        # Bootstrap entry point; defines SCIENTIA_ES_LUX_PRINCIPIUM()
-├── MAIN-FUNCTIONS.sh              # Core loader functions (load_, call_, Load_all_files_d, etc.)
-├── MAIN_SETTINGS.sh               # Environment defaults, locale, bindkey -v
-├── source-me-in-etc-zshenv.sh     # /etc/zshenv hook — first file executed
-├── core/                          # All shell configuration modules
-│   ├── aliases/                   # Alias definitions (navigation, tools, system, media)
+├── source-me-in-etc-zshenv.sh     # Entry point (sourced from ~/.zshenv)
+├── MAIN.sh                        # Bootstrap — defines SCIENTIA_ES_LUX_PRINCIPIUM()
+├── MAIN-FUNCTIONS.sh              # Legacy loader functions (backward compat)
+├── MAIN_SETTINGS.sh               # Environment defaults, locale
+├── package.json                   # npm scripts for install/update/test
+├── Dockerfile                     # Test container for isolated validation
+│
+├── lib/                           # ★ New modular core library
+│   ├── detect.sh                  # Shell type detection (0 forks)
+│   ├── timer.sh                   # Portable timing utilities
+│   ├── path.sh                    # PATH building and caching
+│   ├── locale.sh                  # Locale configuration
+│   ├── loader.sh                  # File sourcing infrastructure
+│   └── runtimes.sh                # Conditional runtime init (FNM/Conda/rbenv/Rust)
+│
+├── scripts/                       # Installation and testing scripts
+│   ├── install.sh                 # Idempotent installer
+│   ├── update.sh                  # Dependency updater
+│   └── test.sh                    # Boot validation test suite
+│
+├── core/                          # Shell configuration modules
+│   ├── aliases/                   # Alias definitions (~47 files)
 │   ├── bin/                       # Executable utility scripts (~170+)
 │   ├── complete.d/                # Zsh autocompletion setup
 │   ├── compute-path/              # PATH construction and caching
 │   ├── env/                       # Environment variable setup
-│   ├── functions/                 # Shell functions library
+│   ├── functions/                 # Shell functions library (~85 files)
 │   ├── layouts/                   # ANSI color/formatting exports
-│   ├── options/                   # Zsh setopt/unsetopt (one file per option)
-│   ├── paths/                     # Path variable exports (AHMYZSH_CORE, CORE_*, etc.)
+│   ├── options/                   # Zsh setopt/unsetopt (one per file)
+│   ├── paths/                     # Framework path variable exports
 │   ├── scripts/                   # One-off utility/admin scripts
-│   └── sources/                   # Files intended to be sourced (btop, gpu-thermal-brightness)
-├── ohmyzsh/                       # Oh My Zsh installation (submodule/clone)
+│   └── sources/                   # Source snippets (GPU, system tools)
+│
+├── ohmyzsh/                       # Oh My Zsh (git submodule)
+├── powerlevel10k/                 # Powerlevel10k theme (git submodule)
 ├── plugins/                       # Additional Zsh plugins
-├── powerlevel10k/                 # Powerlevel10k theme
-├── themes/                        # Custom/additional themes
-├── tmux/                          # Custom tmux configuration
-├── custom-tmux/                   # Additional tmux customizations
+├── themes/                        # Custom themes
+├── tmux/                          # Tmux configuration
 ├── documentation/                 # Developer guides and plans
-├── memory-bank/                   # Project context and progress tracking
-├── templates/                     # Configuration and analysis templates
-└── settings/                      # User-specific settings files
+└── memory-bank/                   # Project context tracking
 ```
-
-### Child README Index
-
-| Directory | README |
-|-----------|--------|
-| `core/` | [core/README.md](core/README.md) |
-| `core/aliases/` | [core/aliases/README.md](core/aliases/README.md) |
-| `core/bin/` | [core/bin/README.md](core/bin/README.md) |
-| `core/complete.d/` | [core/complete.d/README.md](core/complete.d/README.md) |
-| `core/compute-path/` | [core/compute-path/README.md](core/compute-path/README.md) |
-| `core/env/` | [core/env/README.md](core/env/README.md) |
-| `core/functions/` | [core/functions/README.md](core/functions/README.md) |
-| `core/layouts/` | [core/layouts/README.md](core/layouts/README.md) |
-| `core/options/` | [core/options/README.md](core/options/README.md) |
-| `core/paths/` | [core/paths/README.md](core/paths/README.md) |
-| `core/scripts/` | [core/scripts/README.md](core/scripts/README.md) |
-| `core/sources/` | [core/sources/README.md](core/sources/README.md) |
 
 ---
 
-## Key Entry Points
+## Directory READMEs
 
-### `source-me-in-etc-zshenv.sh`
-
-The system-level entry point. Add to `/etc/zshenv`:
-
-```shell
-source /projects/ahmyzsh/source-me-in-etc-zshenv.sh
-```
-
-This file runs on **every** zsh invocation (interactive, non-interactive, login, non-login), which makes its performance critical.
-
-### `MAIN.sh`
-
-Defines `SCIENTIA_ES_LUX_PRINCIPIUM()`, the main orchestrator. Also defines `noop()`, `prompt_()`, and `load_error_()`. Sets `VERBOSA=1` and `set +m` (disables job control notifications).
-
-### `MAIN-FUNCTIONS.sh`
-
-The loader infrastructure. Key functions:
-
-| Function | Purpose |
-|----------|---------|
-| `load_all_config_and_settings_files()` | Sources all `*.sh` files in core subdirectories |
-| `Load_all_files_d(dir)` | Sources all `*.sh` in a directory silently |
-| `Load_all_files_d_v(dir)` | Same as above but with verbose timer output |
-| `load_(file, fn)` | Sources a file then calls a function by name |
-| `call_(fn)` | Calls a function using `eval` (with timing) |
-| `source_(file)` | Sources a file with basic error handling |
-| `timer_now()` | Returns current epoch in nanoseconds (forks `date`) |
-| `timer_(start)` | Returns ms elapsed since `start` |
-| `timer_all()` | Returns ms elapsed since `TIMER_ALL_THEN` |
-
-> ⚠️ **Warning:** `call_()` uses `eval "${1}"` — this is both slower and less secure than direct invocation. Any untrusted string passed to `call_()` would execute arbitrary code.
-
-### `MAIN_SETTINGS.sh`
-
-Defines `MAIN_SETTINGS()`, called early in the boot chain:
-
-- Calls `my_envs()` — sets FNM/Node version aliases, Ruby/Perl/Conda env vars, GitHub username, port numbers
-- Sets `bindkey -v` ← **first of two redundant calls**
-- Sets defaults: `VERBOSA=1`, `AHMYZSH`, `EDITOR=nvim`, `PAGER=less`, `LESS`, `MANPAGER`
-- Calls `__LOCALE__()` — sets all `LC_*` to `fr_CA.UTF-8`
-- Exports all variables
-
-> ⚠️ **Warning:** `__LOCALE__()` sets locale variables twice — once explicitly and once using the `:` default-value syntax — which is redundant.
+| Directory | README | Description |
+|-----------|--------|-------------|
+| `lib/` | [lib/README.md](lib/README.md) | Core library modules, feature flags |
+| `scripts/` | [scripts/README.md](scripts/README.md) | Install/update/test scripts |
+| `core/` | [core/README.md](core/README.md) | Shell configuration modules overview |
+| `core/compute-path/` | [core/compute-path/README.md](core/compute-path/README.md) | PATH strategy and cache |
+| `core/functions/` | [core/functions/README.md](core/functions/README.md) | Function library index |
+| `core/aliases/` | [core/aliases/README.md](core/aliases/README.md) | Alias file catalog |
+| `documentation/` | [documentation/OPTIMIZATION-PLAN.md](documentation/OPTIMIZATION-PLAN.md) | Known issues |
 
 ---
 
@@ -169,145 +241,28 @@ Defines `MAIN_SETTINGS()`, called early in the boot chain:
 
 ### PATH Management — `core/compute-path/`
 
-See [core/compute-path/README.md](core/compute-path/README.md).
+PATH is built by `__compute_extended_path()` which adds directories that exist on the system.
+Results are cached to `~/.cache/ahmyzsh/path.env` for fast subsequent loads.
 
-The PATH is built by `__compute_extended_path()` which chains:
-1. Adds 25+ directories via `add_to_path_()`
-2. Initialises Conda via `conda_init_esoteric-argentum()`
-3. Initialises rbenv via `rbenv_()`
-4. Initialises Rust via `rust_up_()`
+Key functions (in `lib/path.sh` and `core/compute-path/path.sh`):
 
-Results are cached to `~/.cache/ahmyzsh/path.env` to avoid re-computation on subsequent shells.
-
-> ⚠️ **Warning:** `path.sh` is sourced **three times** per boot due to the cache-miss branch, unconditional sourcing, and `load_all_config_and_settings_files()`. This is wasteful even though the functions defined are idempotent.
+| Function | Purpose |
+|----------|---------|
+| `prepend_to_path dir` | Add dir to front of PATH (if exists) |
+| `append_to_path dir` | Add dir to end of PATH (if exists) |
+| `dedup_path` | Remove duplicate PATH entries |
+| `cache_path` | Save current PATH to cache file |
+| `ahmyzsh_rebuild_path` | Rebuild PATH from scratch and cache |
 
 ### Shell Functions — `core/functions/`
 
-See [core/functions/README.md](core/functions/README.md).
-
-~100 function files covering: shell type detection, Zsh compilation, prompt activation, Oh My Zsh loading, options management, OpenAI integration, Git helpers, Docker helpers, VSCode management, update utilities, and more.
+~85 function files covering: shell type detection, zsh compilation, prompt activation,
+Oh My Zsh loading, options management, Git helpers, Docker helpers, and more.
 
 ### Alias Library — `core/aliases/`
 
-See [core/aliases/README.md](core/aliases/README.md).
-
-~47 alias files covering: navigation (cd, ls, cp, mv), package management (dnf, npm, yarn), development tools (git, vscode, docker, k8s), media (sounds, images, camera), system admin (kill, systemctl, plasma), and AI tooling (ComfyUI, Stable Diffusion).
-
-### Options — `core/options/`
-
-See [core/options/README.md](core/options/README.md).
-
-One shell file per Zsh option (~140+ files). Each contains a `setopt` or `unsetopt` invocation (or is empty/commented to document the option exists).
-
-### Layouts — `core/layouts/`
-
-See [core/layouts/README.md](core/layouts/README.md).
-
-ANSI escape code exports for colors (foreground/background, normal/bright), text formatting (bold, underline, reverse), and cursor movement. Used throughout the codebase for colored output.
-
----
-
-## Plugin & Theme Integration
-
-### Oh My Zsh
-
-Loaded by `load_oh_my_zsh()` in `core/functions/z88888-load_ohmyzsh.sh`.
-
-Active plugins are configured via the `plugins=(...)` array in [`core/functions/z88888-load_ohmyzsh.sh`](core/functions/z88888-load_ohmyzsh.sh), which is the single source of truth.
-
-> 📝 **Note:** Oh My Zsh is loaded only for interactive shells (after the `isinteractive` guard). `core/functions/z88888-load_ohmyzsh.sh` configures keybindings for `zsh-history-substring-search` but does not invoke `bindkey -v`.
-
-### Powerlevel10k
-
-Activated by `activate_prompt()` / `activate_instant_prompt()`. The instant prompt feature is present but **commented out** — preventing the fast-startup benefit it provides.
-
----
-
-## Known Issues & Technical Debt
-
-See [documentation/OPTIMIZATION-PLAN.md](documentation/OPTIMIZATION-PLAN.md) for the full analysis and remediation plan.
-
-| # | Issue | Severity | Location |
-|---|-------|----------|----------|
-| 1 | `path.sh` sourced 3× per boot | Medium | `source-me-in-etc-zshenv.sh`, `MAIN-FUNCTIONS.sh` |
-| 2 | `date +%s%N` forked 6+ times on every shell | Medium | `MAIN-FUNCTIONS.sh` timers |
-| 3 | `__compute_extended_path` runs on every boot (conda/rbenv/rust inits) | High | `core/compute-path/path.sh` |
-| 4 | `zsh_compile_all_R` runs on every interactive start (find + zcompile) | High | `core/functions/05000-zsh_compile.sh` |
-| 5 | `bindkey -v` set 2× | Low | `MAIN_SETTINGS.sh`, `MAIN.sh` |
-| 6 | `call_()` uses `eval` | Medium | `MAIN-FUNCTIONS.sh` |
-| 7 | Non-interactive shells run expensive phases 1–5 | High | `source-me-in-etc-zshenv.sh` |
-| 8 | `add_to_path_()` operator precedence bug — empty `$1` adds current dir to PATH | High | `core/compute-path/path.sh` |
-| 9 | Powerlevel10k instant prompt is commented out | Medium | `core/functions/z86660-activate_instant_prompt.sh` |
-| 10 | `__LOCALE__()` sets locale variables twice | Low | `MAIN_SETTINGS.sh` |
-| 11 | `timer_from_then()` assigns string literal `"TIME_NOW"` instead of `$TIME_NOW` | Medium | `MAIN-FUNCTIONS.sh` |
-| 12 | `set_path()` passes `"eval"` as directory name to `add_to_path_` — fnm init silently lost | High | `core/compute-path/path.sh` |
-| 13 | `cache_path()` writes unquoted `$PATH` — metacharacters break cache | Medium | `core/compute-path/path.sh` |
-| 14 | `GITHUB_TOKEN=""` / `GITHUB_PASSWORD` exported in committed file | High | `MAIN_SETTINGS.sh` |
-
----
-
-## Documentation
-
-### Analysis and Optimization
-
-| Document | Purpose |
-|----------|---------|
-| [Optimization Plan](documentation/OPTIMIZATION-PLAN.md) | Catalogs 14 identified issues with root cause, impact, and concrete before/after remediation |
-| [Intent Decomposition](documentation/INTENT-DECOMPOSITION.md) | Decomposes the boot chain into 14 independent intents (detection, timing, PATH, runtimes, aesthetics, etc.) with decoupled implementations |
-| [Critical Path Refactored](documentation/CRITICAL-PATH-REFACTORED.md) | Blueprint for a rewritten boot chain — a `lib/` module architecture with zero-fork non-interactive shells and intent-separated modules |
-
-### Per-Directory READMEs
-
-Every `core/` subdirectory has its own README documenting all files, functions, and known issues:
-
-| Directory | README |
-|-----------|--------|
-| `core/` | [core/README.md](core/README.md) — overview, load order, top-level files |
-| `core/compute-path/` | [core/compute-path/README.md](core/compute-path/README.md) — PATH strategy, cache, bug docs |
-| `core/functions/` | [core/functions/README.md](core/functions/README.md) — full file index, naming conventions |
-| `core/aliases/` | [core/aliases/README.md](core/aliases/README.md) — all 47 alias files |
-| `core/bin/` | [core/bin/README.md](core/bin/README.md) — 170+ executable scripts |
-| `core/paths/` | [core/paths/README.md](core/paths/README.md) — framework path variables |
-| `core/layouts/` | [core/layouts/README.md](core/layouts/README.md) — ANSI escape constants |
-| `core/env/` | [core/env/README.md](core/env/README.md) — environment variables |
-| `core/options/` | [core/options/README.md](core/options/README.md) — Zsh option files |
-| `core/complete.d/` | [core/complete.d/README.md](core/complete.d/README.md) — completion setup |
-| `core/scripts/` | [core/scripts/README.md](core/scripts/README.md) — utility scripts |
-| `core/sources/` | [core/sources/README.md](core/sources/README.md) — source snippets |
-
----
-
-## Getting Started
-
-### Prerequisites
-
-- Fedora Linux (tested) or compatible RPM-based distribution
-- Zsh ≥ 5.8
-- Git
-- Optional: FNM, Conda/Anaconda, rbenv, Rust/Cargo, NVIDIA CUDA 12.4, Docker
-
-### Installation
-
-1. Clone the repository to `/projects/ahmyzsh`:
-
-   ```shell
-   git clone <repo-url> /projects/ahmyzsh
-   ```
-
-2. Add the hook to `/etc/zshenv` (requires root):
-
-   ```shell
-   echo 'source /projects/ahmyzsh/source-me-in-etc-zshenv.sh' | sudo tee -a /etc/zshenv
-   ```
-
-3. Start a new Zsh session. The framework will initialize and cache the PATH on first run.
-
-### Reload
-
-```shell
-reload_alias_and_conf   # Reload aliases and configuration
-reloadpath              # Recompute and cache PATH
-```
+~47 alias files covering: navigation (cd, ls, cp, mv), package management (dnf, npm, yarn),
+development tools (git, vscode, docker, k8s), and system admin (kill, systemctl).
 
 ---
 
@@ -317,34 +272,97 @@ Key variables exported by the framework:
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
-| `AHMYZSH` | `/projects/ahmyzsh` | Root of this repository |
+| `AHMYZSH` | Auto-detected | Root of this repository |
 | `AHMYZSH_CACHE` | `~/.cache/ahmyzsh` | Cache directory |
 | `CACHED_PATH` | `~/.cache/ahmyzsh/path.env` | Cached PATH file |
-| `AHMYZSH_CORE` | `$AHMYZSH/core` | Core modules directory |
-| `OHMYZSH` / `ZSH` | `$AHMYZSH/ohmyzsh` | Oh My Zsh location |
-| `POWERLEVEL10K` | `$AHMYZSH/powerlevel10k` | Theme location |
-| `ZSH_PLUGINS` | `$AHMYZSH/plugins` | Plugins directory |
-| `CORE_ALIASES` | `$AHMYZSH_CORE/aliases` | Aliases directory |
-| `CORE_BIN` | `$AHMYZSH_CORE/bin` | Bin scripts directory |
-| `CORE_FUNCTIONS` | `$AHMYZSH_CORE/functions` | Functions directory |
-| `CORE_COMPUTE` | `$AHMYZSH_CORE/compute-path` | Path computation directory |
-| `VERBOSA` | `1` | Verbosity level (>15 = verbose mode) |
-| `EDITOR` | `nvim` | Default text editor |
-| `PAGER` | `less` | Default pager |
-| `LANG` | `fr_CA.UTF-8` | System locale |
-| `CUDA_VERSION` | `cuda-12.4` | CUDA version |
-| `FNM_PATH` | `~/.local/share/fnm` | Fast Node Manager path |
+| `VERBOSA` | `1` | Verbosity level (>15 = verbose) |
+| `AHMYZSH_LANG` | `en_US.UTF-8` | Locale (set in ~/.ahmyzshrc) |
+| `AHMYZSH_ENABLE_FNM` | `1` | Enable Fast Node Manager |
+| `AHMYZSH_ENABLE_CONDA` | `0` | Enable Conda/Anaconda |
+| `AHMYZSH_ENABLE_RBENV` | `0` | Enable Ruby rbenv |
+| `AHMYZSH_ENABLE_RUST` | `1` | Enable Rust/Cargo |
+| `AHMYZSH_ENABLE_DOTNET` | `0` | Enable .NET SDK |
+
+---
+
+## Testing
+
+### Run the test suite locally
+
+```sh
+bash scripts/test.sh
+```
+
+### Run tests in Docker (isolated environment)
+
+```sh
+# Build and run
+docker build -t ahmyzsh-test .
+docker run --rm ahmyzsh-test
+
+# Interactive shell for debugging
+docker run --rm -it ahmyzsh-test zsh
+```
+
+### What the tests check
+
+1. All boot files exist
+2. No hardcoded user paths (e.g., `/home/luxcium`)
+3. No credentials in source files
+4. Guard variables prevent double-sourcing
+5. Zsh syntax validation
+6. Security: no `eval` in `call_()` function
+7. Bug fix verification for `add_to_path_()` operator precedence
+8. Non-interactive boot completion
+
+---
+
+## Known Issues & Technical Debt
+
+See [documentation/OPTIMIZATION-PLAN.md](documentation/OPTIMIZATION-PLAN.md) for full details.
+
+Key issues addressed in this refactoring:
+
+| Issue | Status | Fix |
+|-------|--------|-----|
+| `path.sh` sourced 3× per boot | ✅ Fixed | Guard variable prevents re-sourcing |
+| `call_()` uses `eval` | ✅ Fixed | Direct function invocation |
+| `add_to_path_()` operator precedence bug | ✅ Fixed | Correct `[[ -n ]] && [[ -d ]]` |
+| Hardcoded `/projects/ahmyzsh` | ✅ Fixed | Auto-detection via `${(%):-%x}` |
+| Hardcoded `/home/luxcium` paths | ✅ Fixed | Uses `$HOME` throughout |
+| `GITHUB_TOKEN` in source code | ✅ Fixed | Removed; use `~/.env` instead |
+| `cache_path()` unquoted `$PATH` | ✅ Fixed | Properly quoted |
+| `set_path()` passes eval as dir | ✅ Fixed | Direct `fnm env` call |
+| `date +%s%N` not portable (macOS) | ✅ Fixed | Uses `zsh/datetime` module |
+| Non-interactive shell overhead | ✅ Improved | Feature flags, guard variables |
+
+---
+
+## Uninstallation
+
+AHMYZSH is user-level only and never modifies system-critical files.
+
+```sh
+# Remove the source line from ~/.zshenv
+sed -i '/source-me-in-etc-zshenv.sh/d' ~/.zshenv
+
+# Remove cache and user config (optional)
+rm -rf ~/.cache/ahmyzsh ~/.ahmyzshrc
+
+# Remove the repository (optional)
+rm -rf ~/ahmyzsh
+```
 
 ---
 
 ## Contributing
 
-1. Follow the numerical naming convention for files in `core/` subdirectories (e.g., `10000-feature.sh`)
-2. Prefix interactive-only code with an `isinteractive || return 0` guard
+1. Follow the numerical naming convention for files in `core/` (e.g., `10000-feature.sh`)
+2. Prefix interactive-only code with `is_interactive || return 0`
 3. Use `source_()` rather than bare `source`/`.` for error handling
-4. Document functions with inline comments describing purpose, arguments, and side-effects
-5. Add new aliases to the appropriate `core/aliases/` file matching the tool or domain
-6. Run `zsh_compile_all_R` after adding new `.sh` files to update the compiled cache
+4. Add guard variables to prevent double-sourcing
+5. Do not hardcode user-specific paths — use `$HOME` and auto-detection
+6. Never commit credentials — use `~/.env` for secrets
 
 ---
 
