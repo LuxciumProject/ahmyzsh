@@ -2,7 +2,7 @@
 
 > 🔍 **Analysis:** This document catalogs all identified performance bottlenecks, bugs, and architectural issues in the AHMYZSH boot chain, along with concrete remediation strategies.
 
-← Back to [Repository README](../README.md)
+← Back to [Repository README](../README.md) | [Intent Decomposition](INTENT-DECOMPOSITION.md) | [Critical Path Refactored](CRITICAL-PATH-REFACTORED.md)
 
 ---
 

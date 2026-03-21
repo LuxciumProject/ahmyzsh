@@ -14,6 +14,7 @@
 - [Core Subsystems](#core-subsystems)
 - [Plugin & Theme Integration](#plugin--theme-integration)
 - [Known Issues & Technical Debt](#known-issues--technical-debt)
+- [Documentation](#documentation)
 - [Getting Started](#getting-started)
 - [Environment Variables](#environment-variables)
 - [Contributing](#contributing)
@@ -241,6 +242,37 @@ See [documentation/OPTIMIZATION-PLAN.md](documentation/OPTIMIZATION-PLAN.md) for
 | 8 | `add_to_path_()` operator precedence bug | High | `core/compute-path/path.sh` |
 | 9 | Powerlevel10k instant prompt is commented out | Medium | `core/functions/z86660-activate_instant_prompt.sh` |
 | 10 | `__LOCALE__()` sets locale variables twice | Low | `MAIN_SETTINGS.sh` |
+
+---
+
+## Documentation
+
+### Analysis and Optimization
+
+| Document | Purpose |
+|----------|---------|
+| [Optimization Plan](documentation/OPTIMIZATION-PLAN.md) | Catalogs 10 identified issues with root cause, impact, and concrete before/after remediation |
+| [Intent Decomposition](documentation/INTENT-DECOMPOSITION.md) | Decomposes the boot chain into 14 independent intents (detection, timing, PATH, runtimes, aesthetics, etc.) with decoupled implementations |
+| [Critical Path Refactored](documentation/CRITICAL-PATH-REFACTORED.md) | Blueprint for a rewritten boot chain — a `lib/` module architecture with zero-fork non-interactive shells and intent-separated modules |
+
+### Per-Directory READMEs
+
+Every `core/` subdirectory has its own README documenting all files, functions, and known issues:
+
+| Directory | README |
+|-----------|--------|
+| `core/` | [core/README.md](core/README.md) — overview, load order, top-level files |
+| `core/compute-path/` | [core/compute-path/README.md](core/compute-path/README.md) — PATH strategy, cache, bug docs |
+| `core/functions/` | [core/functions/README.md](core/functions/README.md) — full file index, naming conventions |
+| `core/aliases/` | [core/aliases/README.md](core/aliases/README.md) — all 47 alias files |
+| `core/bin/` | [core/bin/README.md](core/bin/README.md) — 170+ executable scripts |
+| `core/paths/` | [core/paths/README.md](core/paths/README.md) — framework path variables |
+| `core/layouts/` | [core/layouts/README.md](core/layouts/README.md) — ANSI escape constants |
+| `core/env/` | [core/env/README.md](core/env/README.md) — environment variables |
+| `core/options/` | [core/options/README.md](core/options/README.md) — Zsh option files |
+| `core/complete.d/` | [core/complete.d/README.md](core/complete.d/README.md) — completion setup |
+| `core/scripts/` | [core/scripts/README.md](core/scripts/README.md) — utility scripts |
+| `core/sources/` | [core/sources/README.md](core/sources/README.md) — source snippets |
 
 ---
 
