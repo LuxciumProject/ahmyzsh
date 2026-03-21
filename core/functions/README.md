@@ -1,25 +1,293 @@
-# Core Functions Implementation Status
+# core/functions/ — Shell Function Library
 
-## Summary
+← Back to [core/README.md](../README.md) | [Repository README](../../README.md)
 
-This document provides a comprehensive overview of the implementation status for all functions in the AHMYZSH core/functions directory. The functions are organized into logical groups based on their purpose and naming conventions.
+This directory contains the full shell function library for AHMYZSH. Functions are organized into files by domain and loaded in numeric/alphabetical order during the boot chain. Files prefixed with `z` are loaded last (after numerically-prefixed files), reserving them for initialization-phase orchestration functions.
 
-### Implementation Status Overview
+---
 
-- **Complete** ✅: 37 files (71.2%)
-- **Partially Complete** 🟡: 10 files (19.2%)
-- **Incomplete** ⚠️: 5 files (9.6%)
-- **Total Files**: 52
+## Table of Contents
 
-### Function Categories
+- [File Index](#file-index)
+- [Naming Conventions](#naming-conventions)
+- [Function Reference by Domain](#function-reference-by-domain)
+- [Boot-Phase Functions (z86660–z99999)](#boot-phase-functions-z86660z99999)
+- [Known Issues](#known-issues)
 
-1. **System Initialization (00000-00099)**: Core system startup and path management
-2. **Development Tools (00100-00999)**: Git, VSCode, network, and webcam utilities
-3. **Custom Commands (01000-04999)**: Enhanced shell commands and development tools
-4. **Profile Management (10000+)**: Shell profile detection and management
-5. **Core System Functions (z86660-z88888)**: Shell initialization and configuration
-6. **ZSH Configuration (z96660x-z96667x)**: ZSH-specific options and behavior
-7. **Miscellaneous Functions (z99999*)**: Utility functions and GitHub integrations
+---
+
+## File Index
+
+| File | Domain | Key Functions |
+|------|--------|---------------|
+| `-00000-openai_models.sh` | OpenAI API | `openai_models`, `openai_shell`, `davinci_shell`, `openai_translate_to_french`, `openai_define` |
+| `-00001-init-projects.sh` | Project init | Project environment setup |
+| `00010-upnboot.sh` | System lifecycle | `upnboot`, `upnbooty`, `boot`, `upnshutdown`, `_play_down_sound` |
+| `00021-update.sh` | Package updates | `cc_update`, `update_fnm`, `all_update`, `update_nboot` |
+| `00090-dedup_pathvarfn.sh` | PATH | `dedup_pathvar` function variant |
+| `00100-git.sh` | Git | `current_branch`, `work_in_progress`, `git_main_branch`, `_git_log_prettily` |
+| `00150-vscode.sh` | VS Code | VS Code management helpers |
+| `00299-iptables.sh` | Networking | iptables management helpers |
+| `00300-brio-web-cam.sh` | Webcam | Brio webcam (4K) configuration |
+| `01000-03000_saybye.sh` | System | `saybye` shutdown wrapper |
+| `01000-custom_cd.sh` | Navigation | `cd()` override, `_cd_()`, `activate_face_rec_env`, `deactivate_conda_env`, `is_in_face_rec_dir` |
+| `01000-custom_clear_local_screen.sh` | Terminal | Enhanced screen clearing |
+| `01000-dockerhelper.sh` | Docker | Docker management helpers |
+| `01000-eslint_global.sh` | Linting | Global ESLint configuration helpers |
+| `01000-get_latest_ms_vscode_sources.sh` | VS Code | VS Code source download helpers |
+| `01000-mkramdir.sh` | Memory | RAM disk creation |
+| `01000-vscodeportable.sh` | VS Code | Portable VS Code instance management |
+| `01000-zsh_version.sh` | Shell info | Zsh version display helpers |
+| `02000-load_my_powerlevel10k_now.sh` | Prompt | `load_my_powerlevel10k_now` — sources p10k config |
+| `02000-parse_options.sh` | Utilities | CLI option parsing helpers |
+| `02950-mkloopback.sh` | Networking | Loopback interface configuration |
+| `04000-shelltype.sh` | Shell detection | Full suite of shell-type testing functions |
+| `05000-az.sh` | Azure | Azure CLI helpers |
+| `05000-ddrandom.sh` | Media | Random `dd` audio utilities |
+| `05000-foreach.sh` | Iteration | `foreach_` loop helpers |
+| `05000-zsh_compile.sh` | Compilation | `zsh_compile_all_R`, `zsh_compile_all_M`, `zsh_compile_all` |
+| `10000-detectprofile.sh` | Shell | Shell profile detection |
+| `90001-load_bash.sh` | Compatibility | Bash compatibility loader |
+| `z86660-activate_instant_prompt.sh` | Prompt | `activate_instant_prompt` — P10k instant prompt |
+| `z86661-activate_prompt.sh` | Prompt | `activate_prompt` — P10k theme activation |
+| `z86662-compute_pl10k_now.sh` | Prompt | `compute_pl10k_now` — P10k computation |
+| `z86663-load_aliases.sh` | Aliases | `load_aliases` — triggers alias loading |
+| `z86664-load_autocomplete_now.sh` | Completion | `load_autocomplete` — triggers completion setup |
+| `z86665-load_intearctive_login_state.sh` | Shell state | Interactive/login state management |
+| `z86667-path_operations.sh` | PATH | Path operation wrappers |
+| `z86668-load_path.sh` | PATH | `load_path`, `re_load_path` — PATH loading with cache |
+| `z88888-load_ohmyzsh.sh` | Oh My Zsh | `load_oh_my_zsh` — full Oh My Zsh initialization |
+| `z96660x-load_options.sh` | Options | `load_options_main` wrapper |
+| `z96661x-load_options_list.sh` | Options | `load_options_list` — all `setopt` calls |
+| `z96662x-load_zshenv.sh` | Zsh hooks | `load_zshenv` hook |
+| `z96663x-load_zshrc.sh` | Zsh hooks | `load_zshrc` hook |
+| `z96664x-load_zlogout.sh` | Zsh hooks | `load_zlogout` hook |
+| `z96665x-precmd.sh` | Hooks | `precmd` hook setup |
+| `z96667x-load-autosuggest.sh` | Autosuggestions | `load_autosuggest` — zsh-autosuggestions + syntax highlighting |
+| `z99999-untitled.sh` | Misc | Unnamed/work-in-progress |
+| `z99999y-gh_copilot.sh` | GitHub | GitHub Copilot CLI integration |
+
+---
+
+## Naming Conventions
+
+### Numeric Prefix (00000–90001)
+
+Files loaded first, in ascending numeric order. Lower numbers = more foundational utilities.
+
+| Range | Domain |
+|-------|--------|
+| `-00000` to `-00001` | Files with leading dash — loaded first due to sort order |
+| `00000–00099` | System integration, path utilities |
+| `00100–00999` | Developer tools (git, vscode, networking) |
+| `01000–04999` | Custom commands and shell enhancements |
+| `05000–09999` | Utility functions |
+| `10000+` | Profile and compatibility |
+| `90001` | Bash compatibility |
+
+### `z` Prefix (z86660–z99999)
+
+Files loaded last (after all numeric files). These are orchestration/init functions that depend on the numerically-loaded functions being available first.
+
+| Range | Domain |
+|-------|--------|
+| `z86660–z86668` | Prompt initialization, alias loading, path loading, autocompletion |
+| `z88888` | Oh My Zsh loading |
+| `z96660x–z96667x` | Zsh option/hook loading |
+| `z99999*` | Miscellaneous, work-in-progress, GitHub integration |
+
+---
+
+## Function Reference by Domain
+
+### Shell Type Detection (`04000-shelltype.sh`)
+
+Complete suite of shell-type predicates:
+
+| Function | Returns true when... |
+|----------|---------------------|
+| `isbash()` | Running in Bash |
+| `iszsh()` | Running in Zsh |
+| `islogin_z()` | Zsh login shell (`$ZSH_EVAL_CONTEXT` check) |
+| `islogin_b()` | Bash login shell (`$0` starts with `-`) |
+| `isinteractive_z()` | Zsh interactive (`[[ -o interactive ]]`) |
+| `isinteractive_b()` | Bash interactive (`$-` contains `i`) |
+| `islogin()` | Login shell (either shell) |
+| `isinteractive()` | Interactive shell (either shell) |
+| `isnotinteractive()` | Non-interactive shell |
+| `isnotlogin()` | Non-login shell |
+| `isloginorinteractive()` | Login OR interactive |
+| `isloginandinteractive()` | Login AND interactive |
+
+### Zsh Compilation (`05000-zsh_compile.sh`)
+
+| Function | Behavior |
+|----------|---------|
+| `zsh_compile_all_R()` | `find` all `.sh` files in `$AHMYZSH`, run `zcompile -R` on each |
+| `zsh_compile_all_M()` | Same with `zcompile -M` |
+| `zsh_compile_all()` | Default `zcompile` (no flags) |
+
+> ⚠️ **Warning:** `zsh_compile_all_R()` is called on every interactive shell start, running a full filesystem traversal. This is a significant startup cost (200ms–2s). See [Optimization Plan — Issue 4](../../documentation/OPTIMIZATION-PLAN.md#issue-4-zsh_compile_all_r-on-every-interactive-start).
+
+### System Lifecycle (`00010-upnboot.sh`)
+
+| Function | Purpose |
+|----------|---------|
+| `upnboot([args])` | Play sound → `_get_updates` → DNF upgrade → play shutdown sound → reboot |
+| `upnbooty()` | Same as `upnboot` with `--assumeyes` |
+| `boot()` | Play sound → reboot (no update) |
+| `upnshutdown()` | Play sound → DNF upgrade → shutdown |
+| `_play_down_sound(mode)` | Background: play systemctl-enabled down sound + shutdown/reboot sound |
+
+### Package Updates (`00021-update.sh`)
+
+| Function | Purpose |
+|----------|---------|
+| `cc_update()` | `conda update -n base` + `conda update --all` |
+| `update_fnm()` | Install FNM versions 14, 16, 18, 21, 20; set default to 20 |
+| `all_update()` | `update_fnm` + pnpm + global npm packages + conda + dnf distro-sync |
+| `update_nboot()` | `all_update` then reboot |
+
+### Custom `cd` (`01000-custom_cd.sh`)
+
+Overrides the built-in `cd` command with two implementations:
+
+**`cd()` override:**
+- Calls `builtin cd`, then if the directory changed and contains ≤30 files, shows `ls -halF` output
+- Includes Conda environment activation for the face-recognition project directory
+
+**`_cd_()` function:**
+- More elaborate version with error messages, colorized `pwd | lolcat`, and `colorls` output
+- Falls back gracefully if `lolcat` or `colorls` are not installed
+
+### OpenAI Integration (`-00000-openai_models.sh`)
+
+| Function | Purpose |
+|----------|---------|
+| `openai_models()` | List all available OpenAI models via API |
+| `openai_models_ids([filter])` | List model IDs with optional name filter |
+| `openai_text_edit(inst, input)` | Use OpenAI edit endpoint to modify text |
+| `openai_translate_to_french(text)` | Translate text to Canadian French |
+| `openai_define(word)` | Get definition and synonyms for a word |
+| `openai_shell(cmd)` | Get an explanation of a shell command |
+| `davinci_shell(cmd)` | Shell explanation using davinci model |
+| `help_shell(topic)` | Advanced shell help with solutions |
+| `typescript_help(topic)` | TypeScript assistance |
+
+**Dependencies:** `~/.toks/open-ai.env` (API key file), `curl`, `jq`
+
+### PATH Loading (`z86668-load_path.sh`)
+
+```shell
+load_path() {
+  if [ -f "${CACHED_PATH}" ]; then
+    source_ "${CACHED_PATH}"
+    (compute_path &) >/dev/null  # Refresh cache in background
+  else
+    compute_path
+  fi
+  __compute_extended_path
+}
+```
+
+> ⚠️ **Warning:** Even when the cache exists, `__compute_extended_path()` is called unconditionally after loading the cache. This negates the performance benefit of caching. See [Optimization Plan — Issue 3](../../documentation/OPTIMIZATION-PLAN.md#issue-3-heavy-__compute_extended_path-on-every-boot).
+
+---
+
+## Boot-Phase Functions (z86660–z99999)
+
+These functions are called in sequence by `SCIENTIA_ES_LUX_PRINCIPIUM()` in `MAIN.sh`:
+
+### `activate_instant_prompt()` — `z86660`
+
+Sets `POWERLEVEL9K_INSTANT_PROMPT=quiet` and sources the P10k instant prompt cache. Currently the actual instant prompt sourcing is **commented out**. See [Optimization Plan — Issue 9](../../documentation/OPTIMIZATION-PLAN.md#issue-9-powerlevel10k-instant-prompt-disabled).
+
+### `activate_prompt()` — `z86661`
+
+Sets `ZSH_THEME`, sources `powerlevel10k.zsh-theme`, calls `load_my_powerlevel10k_now`.
+
+### `load_aliases()` — `z86663`
+
+```shell
+load_aliases() { call_ Load_all_files_d "${AHMYZSH_CORE}/aliases"; }
+```
+
+Triggers loading of all `core/aliases/*.sh` files.
+
+### `load_autocomplete()` — `z86664`
+
+Calls `load_autocomplete_()` from `core/complete.d/autocomplete.sh`.
+
+### `load_oh_my_zsh()` — `z88888`
+
+Full Oh My Zsh initialization:
+
+1. Sets `DISABLE_AUTO_UPDATE=true`, `DISABLE_AUTO_TITLE=true`
+2. Defines `plugins` array:
+   ```shell
+   plugins=(
+     colorize docker git kubectl npm yarn
+     zsh-completions zsh-z zsh-history-substring-search
+     zsh-autosuggestions zsh-syntax-highlighting
+     # ... ~20 total
+   )
+   ```
+3. Sources `oh-my-zsh.sh`
+4. Unaliases `ll` (Oh My Zsh sets it; custom `ls` aliases take precedence)
+5. Sets `bindkey` mappings for history-substring-search
+
+### `load_options_list()` — `z96661x`
+
+Consolidated `setopt` function with inline documentation for every option. Sets:
+- `AUTO_CD`, `AUTO_PUSHD`, `CDABLE_VARS` (directory navigation)
+- `EXTENDED_HISTORY`, `HIST_IGNORE_DUPS`, `HIST_REDUCE_BLANKS` (history)
+- `COMPLETE_IN_WORD`, `AUTO_LIST`, `AUTO_MENU` (completion)
+- `EXTENDED_GLOB`, `MULTIBYTE`, `INTERACTIVE_COMMENTS` (globbing/I-O)
+- Many others — see the file for full annotated list
+
+### `load_autosuggest()` — `z96667x`
+
+```shell
+load_autosuggest() {
+  export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#677787"
+  export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+  source_ "/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+  source_ "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+}
+```
+
+Sources system-installed autosuggestions and syntax highlighting packages.
+
+> ⚠️ **Warning:** Hardcodes `/usr/share/` paths. On macOS or non-Fedora systems, these paths differ. Should use `command -v` detection or `${ZSH_PLUGINS}/` locations.
+
+---
+
+## Known Issues
+
+1. **`zsh_compile_all_R` runs on every interactive start** — very slow; needs change-detection guard
+2. **`load_path` calls `__compute_extended_path` after cache load** — redundant heavy init
+3. **Instant prompt is commented out** in `z86660-activate_instant_prompt.sh`
+4. **`Untitled-1`** — a file with no extension in this directory is suspicious; likely an editor artifact
+5. **`z99999-untitled.sh`** — should be named or removed
+6. **Hardcoded `/usr/share/` in `load_autosuggest`** — not portable
+
+---
+
+*← Back to [core/README.md](../README.md) | [Repository README](../../README.md)*
+
+---
+
+## Function Categories by Prefix Range
+
+| Prefix Range | Domain |
+|---|---|
+| `00000–00099` | System Initialization: core system startup and path management |
+| `00100–00999` | Development Tools: Git, VSCode, network, and webcam utilities |
+| `01000–04999` | Custom Commands: enhanced shell commands and development tools |
+| `10000+` | Profile Management: shell profile detection and management |
+| `z86660–z88888` | Core System Functions: shell initialization and configuration |
+| `z96660x–z96667x` | ZSH Configuration: ZSH-specific options and behaviour |
+| `z99999*` | Miscellaneous Functions: utility functions and GitHub integrations |
 
 ### Common Improvement Areas
 
