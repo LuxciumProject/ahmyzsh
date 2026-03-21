@@ -44,7 +44,7 @@ See the [top-level README](../README.md#installation) for full instructions.
 1. Pulls latest changes from git
 2. Updates git submodules
 3. Clears compiled bytecode (.zwc files)
-4. Rebuilds PATH cache
+4. Clears PATH cache
 
 ## What test.sh Checks
 

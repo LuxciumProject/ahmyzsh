@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # scripts/update.sh — Update AHMYZSH and its dependencies
-# Safe to run at any time. Updates git submodules and rebuilds caches.
+# Safe to run at any time. Updates git submodules and clears caches.
 #
 # Usage:
 #   bash scripts/update.sh

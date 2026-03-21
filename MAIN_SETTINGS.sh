@@ -37,8 +37,6 @@ function MAIN_SETTINGS() {
   : "${ZLE_RPROMPT_INDENT:=0}"
   export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
-  call_ __LOCALE__
-
   export VERBOSA PATH_FILE EDITOR ENV_LOADED ZLE_RPROMPT_INDENT
   export SHOW_LOAD_CUTLS AHMYZSH ZSH_CUSTOM AHMYZSH_CORE
   export AH_LIBRARIES PAGER AHMYZSH_CACHE CACHED_PATH
@@ -86,28 +84,6 @@ function my_envs() {
   : "${PORT:=3006}"
   : "${SERVER:="dev-server"}"
   export LOCALPORT PORT SERVER
-}
-
-function __LOCALE__() {
-  local locale="${AHMYZSH_LANG:-en_US.UTF-8}"
-
-  : "${LANG:="${locale}"}"
-  : "${LC_CTYPE:="${LANG}"}"
-  : "${LC_NUMERIC:="${LANG}"}"
-  : "${LC_TIME:="${LANG}"}"
-  : "${LC_COLLATE:="${LANG}"}"
-  : "${LC_MONETARY:="${LANG}"}"
-  : "${LC_MESSAGES:="${LANG}"}"
-  : "${LC_PAPER:="${LANG}"}"
-  : "${LC_NAME:="${LANG}"}"
-  : "${LC_ADDRESS:="${LANG}"}"
-  : "${LC_TELEPHONE:="${LANG}"}"
-  : "${LC_MEASUREMENT:="${LANG}"}"
-  : "${LC_IDENTIFICATION:="${LANG}"}"
-
-  export LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY
-  export LC_MESSAGES LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE
-  export LC_MEASUREMENT LC_IDENTIFICATION
 }
 
 function _LOCALE_() {

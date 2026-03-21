@@ -4,7 +4,6 @@
 #
 # Usage:
 #   bash scripts/test.sh         # Run all tests
-#   bash scripts/test.sh --quick # Run quick syntax checks only
 
 set -euo pipefail
 

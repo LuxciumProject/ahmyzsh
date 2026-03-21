@@ -14,7 +14,7 @@ loaded early in the boot sequence.
 |---|--------|---------|-------|
 | 1 | [`detect.sh`](detect.sh) | Shell type detection (zsh/bash, interactive/login) | 0 |
 | 2 | [`timer.sh`](timer.sh) | Portable timing utilities (uses zsh/datetime when available) | 0–1 |
-| 3 | [`path.sh`](path.sh) | PATH building, caching, and deduplication | 0 |
+| 3 | [`path.sh`](path.sh) | PATH building, caching, and deduplication | 0 on cache hit; forks on rebuild |
 | 4 | [`locale.sh`](locale.sh) | Locale configuration with safe defaults | 0 |
 | 5 | [`loader.sh`](loader.sh) | File/directory sourcing infrastructure | 0 |
 | 6 | [`runtimes.sh`](runtimes.sh) | Conditional runtime init (Node/Python/Ruby/Rust) | 0–4 |

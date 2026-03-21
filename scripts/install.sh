@@ -12,7 +12,7 @@
 #   3. Creates ~/.ahmyzshrc with user defaults (if not exists)
 #   4. Adds source line to ~/.zshenv (if not already present)
 #   5. Creates cache directory
-#   6. Optionally installs system dependencies
+#   6. Creates ~/.env for private environment variables (if not exists)
 #
 # What this script does NOT do:
 #   - Modify /etc/zshenv (requires sudo — printed as manual step)

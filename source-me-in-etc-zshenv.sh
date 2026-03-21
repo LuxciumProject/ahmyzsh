@@ -44,8 +44,8 @@ ahmyzsh_timer_init
 __LOCALE__
 
 # ── 5) Load or rebuild PATH ─────────────────────────────────────────────────
-load_cached_path
 ahmyzsh_timer_checkpoint PATH
+load_cached_path
 ahmyzsh_timer_since PATH
 export TIME_TO_PATH="${REPLY}"
 

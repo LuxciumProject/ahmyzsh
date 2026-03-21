@@ -156,7 +156,6 @@ function __compute_extended_path() {
   add_to_path_ "${HOME}/.yarn/bin"
   add_to_path_ "/src/webcamoid/bin"
   add_to_path_ "${HOME}/.cargo/bin"
-  add_to_path_ '/usr/local/go/bin'
   add_to_path_ "${HOME}/.rbenv/shims"
   add_to_path_ "${HOME}/.rbenv/bin"
 
@@ -187,8 +186,8 @@ function __dedup_path() {
 function set_path() {
   __append_bin_to_path
   [[ -n "${FNM_PATH}" ]] && add_to_path_ "${FNM_PATH}"
-  # Initialize fnm if available (don't pass eval as a directory!)
-  if command -v fnm >/dev/null 2>&1; then
+  # Initialize fnm if available and enabled
+  if command -v fnm >/dev/null 2>&1 && [[ "${AHMYZSH_ENABLE_FNM:-1}" == "1" || "${AHMYZSH_ENABLE_FNM}" == "true" ]]; then
     eval "$(fnm env 2>/dev/null)"
   fi
   __compute_extended_path

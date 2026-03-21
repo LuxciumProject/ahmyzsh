@@ -26,7 +26,12 @@ function load_all_config_and_settings_files() {
 
     export BEGIN_SOURCING_FILES="\u001b[0m\u001b[34m#   \u001b[0m\u001b[33m\uf085\u001b[0m\u001b[34m  >"
     export END_SOURCING_FILES="\u001b[0m\u001b[31;1m\u001b[1m"
-    TIMER_THEN=$(/usr/bin/date +%s%N)
+    _ahmyzsh_get_time_us 2>/dev/null
+    if [[ -n "${REPLY}" ]]; then
+      TIMER_THEN="${REPLY}"
+    else
+      TIMER_THEN="$(date +%s 2>/dev/null)000000"
+    fi
     Load_all_files_d_v "${AHMYZSH_CORE}/paths"
     Load_all_files_d_v "${AHMYZSH_CORE}/layouts"
     Load_all_files_d_v "${AHMYZSH_CORE}/compute-path"
@@ -50,7 +55,12 @@ function load_config_or_settings_() {
     export BEGIN_SOURCING_FILES="\u001b[0m\u001b[34m#   \u001b[0m\u001b[33m\uf085\u001b[0m\u001b[34m  >"
     export END_SOURCING_FILES="\u001b[0m\u001b[31;1m\u001b[1m"
 
-    TIMER_THEN=$(/usr/bin/date +%s%N)
+    _ahmyzsh_get_time_us 2>/dev/null
+    if [[ -n "${REPLY}" ]]; then
+      TIMER_THEN="${REPLY}"
+    else
+      TIMER_THEN="$(date +%s 2>/dev/null)000000"
+    fi
     Load_all_files_d_v "${1}"
   else
     Load_all_files_d "${1}"
@@ -81,7 +91,12 @@ function Load_all_files_d_v() {
         [ "${VERBOSA}" -gt 10 ] && echo "Error sourcing '$1' file provided is not readable"
         return 3
       fi
-      TIMER_THEN=$(/usr/bin/date +%s%N)
+      _ahmyzsh_get_time_us 2>/dev/null
+      if [[ -n "${REPLY}" ]]; then
+        TIMER_THEN="${REPLY}"
+      else
+        TIMER_THEN="$(date +%s 2>/dev/null)000000"
+      fi
     done
   else
     [ "${VERBOSA}" -gt 10 ] && echo "Error loading files in '${SD1}'... Directory or path can not be resolved"

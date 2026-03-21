@@ -24,13 +24,21 @@ if zmodload zsh/datetime 2>/dev/null; then
   }
 else
   # Fallback: use date command (1 fork per call)
+  if (( $+commands[date] )); then
+    _AHMYZSH_DATE_CMD="date"
+  elif [[ -x /usr/bin/date ]]; then
+    _AHMYZSH_DATE_CMD="/usr/bin/date"
+  else
+    _AHMYZSH_DATE_CMD="date"
+  fi
+
   _ahmyzsh_get_time_us() {
-    if /usr/bin/date +%s%N >/dev/null 2>&1; then
+    if "${_AHMYZSH_DATE_CMD}" +%s%N >/dev/null 2>&1; then
       # GNU date supports %N (nanoseconds) — convert to microseconds
-      REPLY=$(( $(/usr/bin/date +%s%N) / 1000 ))
+      REPLY=$(( $("${_AHMYZSH_DATE_CMD}" +%s%N) / 1000 ))
     else
       # macOS/BSD date — only seconds precision
-      REPLY=$(( $(/usr/bin/date +%s) * 1000000 ))
+      REPLY=$(( $("${_AHMYZSH_DATE_CMD}" +%s) * 1000000 ))
     fi
   }
 fi
@@ -69,8 +77,9 @@ ahmyzsh_time_since_boot() {
 # Record a named checkpoint
 ahmyzsh_timer_checkpoint() {
   local name="${1:?checkpoint name required}"
+  [[ "${name}" == [A-Za-z0-9_]## ]] || return 1
   _ahmyzsh_get_time_us
-  eval "AHMYZSH_TIMER_${name}=${REPLY}"
+  typeset -g "AHMYZSH_TIMER_${name}=${REPLY}"
 }
 
 # Get milliseconds since a named checkpoint

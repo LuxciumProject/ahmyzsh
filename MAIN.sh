@@ -83,9 +83,15 @@ SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
 
   # Compile zsh files only if needed (check sentinel)
   local sentinel="${AHMYZSH_CACHE}/.last_compile"
+  local compile_lock="${AHMYZSH_CACHE}/.compile_lock"
   if [[ ! -f "${sentinel}" ]] || \
      [[ $(find "${AHMYZSH}/lib" "${AHMYZSH}/core" -maxdepth 2 -name '*.sh' -newer "${sentinel}" 2>/dev/null | head -1) ]]; then
-    (zsh_compile_all_R 2>/dev/null; touch "${sentinel}") &
+    if mkdir "${compile_lock}" 2>/dev/null; then
+      (
+        trap 'rmdir "${compile_lock}" 2>/dev/null' EXIT
+        zsh_compile_all_R 2>/dev/null && touch "${sentinel}"
+      ) &
+    fi
   fi
 
   # Set vi-mode keybindings (once)
