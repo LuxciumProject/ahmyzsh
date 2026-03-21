@@ -56,3 +56,6 @@ See the [top-level README](../README.md#installation) for full instructions.
 6. Security: no eval in call_() function
 7. Bug fix verification for add_to_path_
 8. Non-interactive boot completion test
+9. Boot timing metrics (`TIME_TO_PATH`, `TIME_TO_INTERACTIVE`)
+
+If `zsh` is not installed locally, `scripts/test.sh` automatically reruns the suite in the repository Docker image when Docker is available.

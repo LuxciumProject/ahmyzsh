@@ -25,6 +25,17 @@ skip() { echo -e "  ${YELLOW}○${NC} $*"; SKIP=$((SKIP + 1)); }
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 AHMYZSH_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
+if ! command -v zsh >/dev/null 2>&1; then
+  if command -v docker >/dev/null 2>&1; then
+    echo "zsh not available locally — running the test suite in Docker instead"
+    docker build -t ahmyzsh-test -f "${AHMYZSH_DIR}/Dockerfile" "${AHMYZSH_DIR}"
+    exec docker run --rm ahmyzsh-test
+  fi
+
+  echo "zsh is required to validate AHMYZSH boot behavior; install zsh or run on a Docker-capable host"
+  exit 1
+fi
+
 echo ""
 echo -e "${BLUE}╔══════════════════════════════════════════╗${NC}"
 echo -e "${BLUE}║       AHMYZSH Test Suite v2.0.0          ║${NC}"
@@ -141,20 +152,16 @@ fi
 echo ""
 echo -e "${BLUE}── Zsh Syntax Check ──${NC}"
 
-if command -v zsh >/dev/null 2>&1; then
-  for f in "${BOOT_FILES[@]}"; do
-    filepath="${AHMYZSH_DIR}/${f}"
-    if [[ -f "${filepath}" ]]; then
-      if zsh -n "${filepath}" 2>/dev/null; then
-        pass "${f} syntax OK"
-      else
-        fail "${f} syntax ERROR"
-      fi
+for f in "${BOOT_FILES[@]}"; do
+  filepath="${AHMYZSH_DIR}/${f}"
+  if [[ -f "${filepath}" ]]; then
+    if zsh -n "${filepath}" 2>/dev/null; then
+      pass "${f} syntax OK"
+    else
+      fail "${f} syntax ERROR"
     fi
-  done
-else
-  skip "zsh not available — skipping syntax checks"
-fi
+  fi
+done
 
 # ═══════════════════════════════════════════════
 # Test 6: No eval in call_() function (security fix)
@@ -206,17 +213,45 @@ fi
 echo ""
 echo -e "${BLUE}── Non-Interactive Boot Test ──${NC}"
 
-if command -v zsh >/dev/null 2>&1; then
-  # Run zsh non-interactively with AHMYZSH sourced
-  BOOT_OUTPUT=$(AHMYZSH="${AHMYZSH_DIR}" zsh -c "source '${AHMYZSH_DIR}/source-me-in-etc-zshenv.sh' 2>&1; echo BOOT_OK" 2>&1) || true
-  if echo "${BOOT_OUTPUT}" | grep -q "BOOT_OK"; then
-    pass "Non-interactive boot completes without fatal errors"
-  else
-    fail "Non-interactive boot failed"
-    echo "    Output: ${BOOT_OUTPUT}"
-  fi
+BOOT_OUTPUT=$(AHMYZSH="${AHMYZSH_DIR}" zsh -c "source '${AHMYZSH_DIR}/source-me-in-etc-zshenv.sh' 2>&1; echo BOOT_OK" 2>&1) || true
+if echo "${BOOT_OUTPUT}" | grep -q "BOOT_OK"; then
+  pass "Non-interactive boot completes without fatal errors"
 else
-  skip "zsh not available — skipping boot test"
+  fail "Non-interactive boot failed"
+  echo "    Output: ${BOOT_OUTPUT}"
+fi
+
+# ═══════════════════════════════════════════════
+# Test 9: Boot timing metrics
+# ═══════════════════════════════════════════════
+echo ""
+echo -e "${BLUE}── Boot Timing Metrics ──${NC}"
+
+read -r -d '' ZSH_METRICS_CMD <<'EOF' || true
+[[ -n "${TIME_TO_PATH:-}" && -n "${TIME_TO_INTERACTIVE:-}" ]] || source "${AHMYZSH}/source-me-in-etc-zshenv.sh" >/dev/null 2>&1
+print -r -- "METRICS:${TIME_TO_PATH:-}:${TIME_TO_INTERACTIVE:-}"
+EOF
+METRICS_OUTPUT="$(
+  TMP_HOME="$(mktemp -d)"
+  trap 'rm -rf "${TMP_HOME}"' EXIT
+  HOME="${TMP_HOME}" AHMYZSH="${AHMYZSH_DIR}" VERBOSA=0 zsh -ic "${ZSH_METRICS_CMD}" 2>/dev/null
+)" || true
+METRICS_LINE="$(printf '%s\n' "${METRICS_OUTPUT}" | grep '^METRICS:' | tail -1 || true)"
+METRICS_VALUES="${METRICS_LINE#METRICS:}"
+TIME_TO_PATH_VALUE="${METRICS_VALUES%%:*}"
+TIME_TO_INTERACTIVE_VALUE="${METRICS_VALUES#*:}"
+
+# Interactive boot necessarily includes PATH setup, so it should not complete faster.
+# Equal timing is acceptable when both complete within the same millisecond bucket.
+if [[ "${TIME_TO_PATH_VALUE}" =~ ^[0-9]+$ ]] && \
+   [[ "${TIME_TO_INTERACTIVE_VALUE}" =~ ^[0-9]+$ ]] && \
+   [[ "${TIME_TO_INTERACTIVE_VALUE}" -ge "${TIME_TO_PATH_VALUE}" ]]; then
+  pass "Boot timing metrics exported"
+  echo "    TIME_TO_PATH=${TIME_TO_PATH_VALUE}ms"
+  echo "    TIME_TO_INTERACTIVE=${TIME_TO_INTERACTIVE_VALUE}ms"
+else
+  fail "Boot timing metrics missing"
+  echo "    Output: ${METRICS_OUTPUT}"
 fi
 
 # ═══════════════════════════════════════════════

@@ -96,6 +96,8 @@ SCIENTIA_ES_LUX_PRINCIPIUM() { #+ - M A I N - B O O T S T R A P - +#
 
   # Set vi-mode keybindings (once)
   bindkey -v
+  ahmyzsh_timer_since_boot_ms
+  export TIME_TO_INTERACTIVE="${REPLY}"
   return 0
 }
 
