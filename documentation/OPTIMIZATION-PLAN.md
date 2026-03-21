@@ -1,6 +1,6 @@
 # AHMYZSH Optimization Plan
 
-> 🔍 **Analysis:** This document catalogues all identified performance bottlenecks, bugs, and architectural issues in the AHMYZSH boot chain, along with concrete remediation strategies.
+> 🔍 **Analysis:** This document catalogs all identified performance bottlenecks, bugs, and architectural issues in the AHMYZSH boot chain, along with concrete remediation strategies.
 
 ← Back to [Repository README](../README.md)
 

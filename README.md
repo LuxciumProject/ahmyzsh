@@ -298,7 +298,7 @@ Key variables exported by the framework:
 | `VERBOSA` | `1` | Verbosity level (>15 = verbose mode) |
 | `EDITOR` | `nvim` | Default text editor |
 | `PAGER` | `less` | Default pager |
-| `LANG` | `fr_CA.utf8` | System locale |
+| `LANG` | `fr_CA.UTF-8` | System locale |
 | `CUDA_VERSION` | `cuda-12.4` | CUDA version |
 | `FNM_PATH` | `~/.local/share/fnm` | Fast Node Manager path |
 

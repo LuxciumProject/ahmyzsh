@@ -43,6 +43,7 @@ btop
 
 ### `gpu-thermal-brightness`
 
+
 **Tool:** NVIDIA GPU management + display brightness control.
 
 **Purpose:** Configures GPU fan speed, thermal targets, and display brightness settings for the NVIDIA GPU. This is related to the scripts in `core/bin/` such as `GPUTargetFanSpeed`, `DitheringDynamic`, and the NVIDIA aliases in `core/aliases/78000-nvidia.sh`.
