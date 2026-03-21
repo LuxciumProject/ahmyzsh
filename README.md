@@ -233,7 +233,7 @@ See [documentation/OPTIMIZATION-PLAN.md](documentation/OPTIMIZATION-PLAN.md) for
 | 2 | `date +%s%N` forked 6+ times on every shell | Medium | `MAIN-FUNCTIONS.sh` timers |
 | 3 | `__compute_extended_path` runs on every boot (conda/rbenv/rust inits) | High | `core/compute-path/path.sh` |
 | 4 | `zsh_compile_all_R` runs on every interactive start (find + zcompile) | High | `core/functions/05000-zsh_compile.sh` |
-| 5 | `bindkey -v` set 3× | Low | `MAIN_SETTINGS.sh`, `MAIN.sh` |
+| 5 | `bindkey -v` set 2× | Low | `MAIN_SETTINGS.sh`, `MAIN.sh` |
 | 6 | `call_()` uses `eval` | Medium | `MAIN-FUNCTIONS.sh` |
 | 7 | Non-interactive shells run expensive phases 1–5 | High | `source-me-in-etc-zshenv.sh` |
 | 8 | `add_to_path_()` operator precedence bug — empty `$1` adds current dir to PATH | High | `core/compute-path/path.sh` |

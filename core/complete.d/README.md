@@ -159,7 +159,7 @@ _mycommand "$@"
 
 ### Interaction with Oh My Zsh Completion
 
-Oh My Zsh calls `compinit` during its initialization in `load_oh_my_zsh()`. In the current boot order, `load_oh_my_zsh()` runs **before** `load_autocomplete_()`, so any `fpath` additions made by `load_autocomplete_()` are **not** picked up by Oh My Zsh's `compinit` step.
+Oh My Zsh calls `compinit` during its initialization in `load_oh_my_zsh()`. In the current boot order, `load_oh_my_zsh()` runs **before** `load_autocomplete_()`, so any `fpath` additions made by `load_autocomplete_()` are **not** picked up by Oh My Zsh's `compinit` step. This means custom completions registered here may not be available. To fix this, either reorder the calls so `load_autocomplete_()` runs before `load_oh_my_zsh()`, or call `compinit` again after `load_autocomplete_()`.
 
 ---
 

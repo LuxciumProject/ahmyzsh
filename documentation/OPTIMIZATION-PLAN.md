@@ -13,7 +13,7 @@
 - [Issue 2: Excessive date +%s%N Forks](#issue-2-excessive-date-sn-forks)
 - [Issue 3: Heavy __compute_extended_path on Every Boot](#issue-3-heavy-__compute_extended_path-on-every-boot)
 - [Issue 4: zsh_compile_all_R on Every Interactive Start](#issue-4-zsh_compile_all_r-on-every-interactive-start)
-- [Issue 5: bindkey -v Set Three Times](#issue-5-bindkey--v-set-three-times)
+- [Issue 5: bindkey -v Set Twice](#issue-5-bindkey--v-set-twice)
 - [Issue 6: call_() Uses eval](#issue-6-call_-uses-eval)
 - [Issue 7: Non-Interactive Shells Run Expensive Phases](#issue-7-non-interactive-shells-run-expensive-phases)
 - [Issue 8: add_to_path_() Operator Precedence Bug](#issue-8-add_to_path_-operator-precedence-bug)
@@ -240,18 +240,19 @@ Alternatively, move compilation to a background process:
 
 ---
 
-## Issue 5: bindkey -v Set Three Times
+## Issue 5: bindkey -v Set Twice
 
 **Severity:** Low  
-**Location:** `MAIN_SETTINGS.sh`, `MAIN.sh` (direct), `core/functions/z88888-load_ohmyzsh.sh`
+**Location:** `MAIN_SETTINGS.sh`, `MAIN.sh`
 
 ### Description
 
-`bindkey -v` (activate vi-mode key bindings) is executed three separate times during a single interactive boot:
+`bindkey -v` (activate vi-mode key bindings) is executed twice during a single interactive boot:
 
 1. Inside `MAIN_SETTINGS()` in `MAIN_SETTINGS.sh`
 2. At the end of `SCIENTIA_ES_LUX_PRINCIPIUM()` in `MAIN.sh`
-3. Inside `load_oh_my_zsh()` in `core/functions/z88888-load_ohmyzsh.sh`
+
+> 📝 **Note:** `core/functions/z88888-load_ohmyzsh.sh` configures keybindings for `zsh-history-substring-search` but does **not** invoke `bindkey -v`.
 
 ### Impact
 
@@ -259,7 +260,7 @@ Alternatively, move compilation to a background process:
 
 ### Remediation
 
-Remove the two redundant calls. Keep the one in `MAIN_SETTINGS.sh` (called earliest) and remove the calls in `MAIN.sh` and `load_oh_my_zsh()`.
+Remove the redundant call. Keep the one in `MAIN.sh` at the end of `SCIENTIA_ES_LUX_PRINCIPIUM()` (runs after Oh My Zsh, ensuring vi-mode isn't overridden) and remove the earlier call in `MAIN_SETTINGS.sh`.
 
 ---
 
@@ -480,8 +481,7 @@ function timer_from_then() {
 
 ```shell
 function timer_from_then() {
-  local TIME_THEN="${TIME_NOW}"   # ← Use $ to dereference the variable
-  timer_ "${TIME_THEN}"
+  timer_ "${TIME_NOW}"   # ← Directly pass the dereferenced variable
 }
 ```
 
