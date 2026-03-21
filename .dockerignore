@@ -1,0 +1,13 @@
+.git
+.gitmodules
+node_modules
+.cache
+.history
+.Trash-*
+*.zwc
+*.ZWC
+private/
+memory-bank/
+documentation/
+playground/
+images/

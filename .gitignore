@@ -17,3 +17,8 @@ hello_world/
 hello-world/
 .Trash-1000
 .Trash*
+
+# User-specific files (never commit)
+.env
+.ahmyzshrc
+package-lock.json
