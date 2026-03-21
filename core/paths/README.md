@@ -92,6 +92,8 @@ Navigates to the ComfyUI directory and activates the `sdxl` Conda environment. U
 
 > ⚠️ **Warning:** Hardcodes the path `/home/luxcium/seagate/...`. Should use a variable or `$HOME`.
 
+> 📝 **Note:** Uses non-standard exit code `15` on `cd` failure. A conventional error exit code (`1`) would be more portable and interoperable with calling code.
+
 #### `auto1111()`
 
 ```shell
@@ -104,6 +106,8 @@ auto1111() {
 Navigates to the AUTOMATIC1111 Stable Diffusion WebUI directory and activates the `sdxl` Conda environment.
 
 > ⚠️ **Warning:** Same hardcoded path issue as `comfyui()`.
+
+> 📝 **Note:** Uses non-standard exit code `15` on `cd` failure. A conventional error exit code (`1`) would be more portable.
 
 ---
 
