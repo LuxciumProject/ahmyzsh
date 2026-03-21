@@ -234,7 +234,7 @@ Full Oh My Zsh initialization:
    ```
 3. Sources `oh-my-zsh.sh`
 4. Unaliases `ll` (Oh My Zsh sets it; custom `ls` aliases take precedence)
-5. Sets `bindkey` for history-substring-search (third `bindkey -v` call)
+5. Sets `bindkey` mappings for history-substring-search
 
 ### `load_options_list()` — `z96661x`
 

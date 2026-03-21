@@ -156,7 +156,7 @@ The loader infrastructure. Key functions:
 Defines `MAIN_SETTINGS()`, called early in the boot chain:
 
 - Calls `my_envs()` — sets FNM/Node version aliases, Ruby/Perl/Conda env vars, GitHub username, port numbers
-- Sets `bindkey -v` ← **first of three redundant calls**
+- Sets `bindkey -v` ← **first of two redundant calls**
 - Sets defaults: `VERBOSA=1`, `AHMYZSH`, `EDITOR=nvim`, `PAGER=less`, `LESS`, `MANPAGER`
 - Calls `__LOCALE__()` — sets all `LC_*` to `fr_CA.UTF-8`
 - Exports all variables

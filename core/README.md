@@ -54,7 +54,7 @@ core/
 5. `core/aliases/` — Alias definitions
 6. `core/env/` — Additional environment variables
 
-Files within each directory are sourced in glob sort order (numeric prefix → alphabetical).
+Files within each directory are sourced in shell glob (lexicographic) order based on full filenames (for example, dash-prefixed files like `-00000-*.sh` may load before `00000-*.sh`).
 
 ---
 

@@ -119,6 +119,9 @@ Builds the full PATH via `set_path()` then writes `export PATH=...` to `~/.cache
 ```shell
 cache_path() {
   set_path
+  # Current code in path.sh:
+  # echo "export PATH=$PATH" > "${CACHED_PATH}"   # unquoted, see Issue 13
+  # Proposed safe form:
   echo "export PATH=\"${PATH}\"" > "${CACHED_PATH}"
 }
 ```

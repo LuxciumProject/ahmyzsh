@@ -661,7 +661,7 @@ When the shell is interactive, load Oh My Zsh with plugins, set Zsh options (`se
 
 ### What's tangled with it
 
-- `bindkey -v` set here AND in `MAIN_SETTINGS()` AND as the last line of `SCIENTIA_ES_LUX_PRINCIPIUM()` — 3 times
+- `bindkey -v` set here AND in `MAIN_SETTINGS()` — 2 times
 - `compaudit | xargs chmod g-w,o-w` runs on every interactive start — should be a one-time fix
 - `zsh_compile_all_R` is a *maintenance* concern but runs every interactive boot
 

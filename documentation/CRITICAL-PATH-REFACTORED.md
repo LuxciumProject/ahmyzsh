@@ -65,7 +65,7 @@
 | Color constant exports | Loaded for all shells | Interactive only |
 | Alias loading | All shells | Interactive only |
 | zsh_compile_all_R | Every interactive start | Only when files have changed |
-| `bindkey -v` | 3 times | 1 time |
+| `bindkey -v` | 2 times | 1 time |
 
 ---
 

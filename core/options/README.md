@@ -92,7 +92,7 @@ Zsh options are grouped into the following categories (per `man zshoptions`):
 |------|--------|
 | `VI.sh` | Enable vi-style command-line editing |
 
-> 📝 **Note:** Vi mode is also activated via `bindkey -v` in `MAIN_SETTINGS.sh` (set three times total). The `VI.sh` option file and `bindkey -v` are complementary but serve slightly different purposes — `setopt VI` affects Zsh's internal vi mode flag, while `bindkey -v` applies vi keymap bindings to ZLE (Zsh Line Editor).
+> 📝 **Note:** Vi mode is also activated via `bindkey -v` in `MAIN_SETTINGS.sh` and `MAIN.sh` (set twice total). The `VI.sh` option file and `bindkey -v` are complementary but serve slightly different purposes — `setopt VI` affects Zsh's internal vi mode flag, while `bindkey -v` applies vi keymap bindings to ZLE (Zsh Line Editor).
 
 ### Job Control
 
