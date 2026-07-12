@@ -70,3 +70,19 @@ outside every commit in this branch.
 
 Remote branch equality is checked immediately after publication. The GitHub
 branch and draft pull request are reported in the final handoff.
+
+## Remote publication
+
+- branch: [`feat/modular-boot-spine`](https://github.com/LuxciumProject/ahmyzsh/tree/feat/modular-boot-spine);
+- draft pull request: [#24 — establish modular resilient AhMyZSH boot spine](https://github.com/LuxciumProject/ahmyzsh/pull/24);
+- initial server-side tip: `df72eb99e035a84a70852790e81a5cdf10a5ddec`;
+- server-side commit count over `main`: three;
+- changed files: 47; additions: 2,733; deletions: 461;
+- local and server-side source tree before this metadata-only update:
+  `c8599ffd8d3049ee6938e855b9df80c72dcdc1fc` on both sides;
+- local-to-remote tree diff: empty.
+
+HTTPS Git credentials and the `gh` CLI were unavailable in the execution
+environment. The authenticated GitHub connector reconstructed the same three
+trees and commits from `origin/main`; their tree hashes matched the three local
+commits exactly. This report update is a fourth, documentation-only commit.
