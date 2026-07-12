@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+# zsh/bin/ahm-path
+# Prints one PATH entry per line without modifying the environment.
+
+typeset -gU path PATH
+print -l -- $path
