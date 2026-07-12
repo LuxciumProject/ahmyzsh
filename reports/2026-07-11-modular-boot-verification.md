@@ -55,7 +55,9 @@ measurements must also run on the target Kubuntu machine.
 All four MesloLGS NF files were fetched from the Powerlevel10k-maintained media
 repository and their SHA-256 values captured in `scripts/install.sh`. Downloads
 are written to temporary files, checked before publication, retried for transient
-network errors, and skipped on later runs when the installed checksum matches.
+network errors, and fetched concurrently. A full temporary-home installation
+produced four verified font files; the second installer run verified and skipped
+all four.
 
 ## Deliberate non-tests
 

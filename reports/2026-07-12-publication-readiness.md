@@ -5,6 +5,7 @@
 **Branch:** `feat/modular-boot-spine`
 **Base:** `origin/main` at `ca0111a7`
 **Primary implementation commit:** `81830be2ba34`
+**Hardening and reports commit:** `62a2a49`
 
 ## Intended publication scope
 
@@ -33,8 +34,28 @@ must not be staged or published with the branch.
 | installer lifecycle | install twice, warm cache, clear cache, uninstall |
 | benchmark isolation | temporary homes only; cold and warm results reported |
 | real terminal | P10k function defined; options persistent; zero failures |
-| clean reconstruction | tests pass from committed files without unstaged artifacts |
+| active-scope reconstruction | tests pass from committed active files; active-scope diff is empty |
 | remote publication | remote branch resolves to final local commit |
+
+## Completed local results
+
+- behavioral suite: **45 passed, 0 failed**;
+- reconstructed-worktree behavioral suite: **45 passed, 0 failed**;
+- reconstructed active-scope diff: clean;
+- reconstructed benchmark: 7.087 ms base cold, 4.294 ms base warm median,
+  278.292 ms OMZ cold, 33.836 ms OMZ warm median;
+- prewarmed real pseudo-terminal: 36.510 ms, P10k active, persistent options,
+  zero failed modules;
+- full font lifecycle: four checksum-verified files installed; four detected and
+  skipped on the second run;
+- patch/whitespace check: clean;
+- sensitive-addition scan: no personal diagnosis/name, credential assignment,
+  private key marker, or absolute personal home path added.
+
+The container's filesystem converts 52 historical symlinks into transport type
+changes. A fresh worktree reproduced the same condition, but all active paths
+were identical to the commit and passed independently. Those 52 paths remain
+outside every commit in this branch.
 
 ## Known limitations retained intentionally
 
@@ -47,5 +68,5 @@ must not be staged or published with the branch.
 - Legacy aliases, functions, administrative commands, PATH runtimes, tmux and
   REPLs remain inactive until their individual migrations.
 
-The final commit, remote ref and validation values are recorded before the
-branch is pushed.
+Remote branch equality is checked immediately after publication. The GitHub
+branch and draft pull request are reported in the final handoff.
