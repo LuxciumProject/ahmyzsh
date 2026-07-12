@@ -6,13 +6,14 @@
 
 - syntax of every new Zsh/Bash source;
 - absence of `eval` in the active implementation;
-- installer idempotency and ownership boundaries;
+- installer idempotency, dotfile preservation, alternate-home context safety,
+  cache prewarming, and ownership boundaries;
 - silent non-interactive behavior;
 - independent base boot;
 - OMZ integration;
 - repeated-source guarding;
 - continuation after an absent optional module;
-- versioned cache clearing;
+- versioned cache warming and clearing;
 - non-destructive uninstallation.
 
 The suite does not touch the real home directory, download fonts, invoke

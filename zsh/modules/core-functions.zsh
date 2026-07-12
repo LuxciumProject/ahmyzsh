@@ -28,9 +28,10 @@ ahm() {
     cache)
       case ${1:-status} in
         status) ahm_cache_status ;;
+        warm) ahm_cache_warm ;;
         clear) ahm_cache_clear ;;
         invalidate) ahm_cache_invalidate_all ;;
-        *) print -u2 -- 'usage: ahm cache [status|clear|invalidate]'; return 2 ;;
+        *) print -u2 -- 'usage: ahm cache [status|warm|clear|invalidate]'; return 2 ;;
       esac
       ;;
     help|-h|--help)

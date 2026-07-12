@@ -47,3 +47,14 @@ ahm_cache_status() {
     print -- 'state:  cold'
   fi
 }
+
+ahm_cache_warm() {
+  emulate -L zsh
+  local root_q=${(q)AHMYZSH_ROOT}
+  AHMYZSH_NO_INSTANT_PROMPT=1 AHMYZSH_PROMPT=basic \
+    zsh -dfic "source $root_q/zsh/env.zsh; source $root_q/zsh/boot.zsh; exit" || {
+      print -u2 -- 'AhMyZSH cache warm-up failed.'
+      return 1
+    }
+  print -- 'Warmed AhMyZSH completion and framework caches.'
+}

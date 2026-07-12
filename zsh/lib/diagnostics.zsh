@@ -31,10 +31,28 @@ ahm_doctor() {
     fi
   done
 
-  [[ -r $AHMYZSH_ROOT/ohmyzsh/oh-my-zsh.sh ]] ||
-    print -P -- '%F{yellow}optional:%f vendored Oh My Zsh is unavailable'
-  [[ -r $AHMYZSH_ROOT/powerlevel10k/powerlevel10k.zsh-theme ]] ||
-    print -P -- '%F{yellow}optional:%f vendored Powerlevel10k is unavailable'
+  if [[ $AHMYZSH_USE_OMZ == 1 && ! -r $AHMYZSH_OMZ_DIR/oh-my-zsh.sh ]]; then
+    print -P -- '%F{red}missing:%f  configured Oh My Zsh integration'
+    failures=1
+  fi
+  if [[ $AHMYZSH_PROMPT == powerlevel10k &&
+        ! -r $AHMYZSH_P10K_DIR/powerlevel10k.zsh-theme ]]; then
+    print -P -- '%F{red}missing:%f  configured Powerlevel10k prompt'
+    failures=1
+  fi
+
+  if [[ $AHMYZSH_PROMPT == powerlevel10k && $+commands[fc-match] -eq 1 ]]; then
+    local font_family=$(fc-match -f '%{family}' 'MesloLGS NF' 2>/dev/null)
+    if [[ $font_family != *'MesloLGS NF'* ]]; then
+      print -P -- '%F{yellow}font:%f     MesloLGS NF is not available to fontconfig'
+      failures=1
+    fi
+  fi
+
+  if [[ -n ${MAIN_INIT:-} || $+functions[SCIENTIA_ES_LUX_PRINCIPIUM] -eq 1 ]]; then
+    print -P -- '%F{red}legacy:%f   the historical boot spine is also loaded'
+    failures=1
+  fi
 
   if [[ -o interactive ]]; then
     print -- "boot:     ${AHMYZSH_BOOT_TOTAL_MS:-0} ms"

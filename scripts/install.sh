@@ -15,6 +15,7 @@ TARGET_HOME=${HOME}
 REPO_DIR=${DEFAULT_REPO_DIR}
 INSTALL_FONTS=1
 INSTALL_PACKAGES=0
+WARM_CACHE=1
 DRY_RUN=0
 CHECK_ONLY=0
 UNINSTALL=0
@@ -32,6 +33,9 @@ Options:
   --with-fonts        Download verified MesloLGS NF fonts (default)
   --without-fonts     Skip font download
   --with-packages     On apt systems, install zsh/git/curl/fontconfig with sudo
+  --warm-cache        Prebuild completion/framework caches (default)
+  --without-cache-warm
+                      Leave the first interactive shell responsible for caches
   --check             Read-only prerequisite and installation report
   --dry-run           Print intended writes without performing them
   --uninstall         Remove managed hooks and repository link; keep user data
@@ -78,6 +82,8 @@ while (( $# )); do
     --with-fonts) INSTALL_FONTS=1; shift ;;
     --without-fonts) INSTALL_FONTS=0; shift ;;
     --with-packages) INSTALL_PACKAGES=1; shift ;;
+    --warm-cache) WARM_CACHE=1; shift ;;
+    --without-cache-warm) WARM_CACHE=0; shift ;;
     --check) CHECK_ONLY=1; shift ;;
     --dry-run) DRY_RUN=1; shift ;;
     --uninstall) UNINSTALL=1; shift ;;
@@ -90,12 +96,21 @@ done
 
 [[ -d $TARGET_HOME ]] || die "target home does not exist: $TARGET_HOME"
 [[ -r $REPO_DIR/zsh/env.zsh ]] || die "not an AhMyZSH repository: $REPO_DIR"
+TARGET_HOME="$(cd -- "$TARGET_HOME" && pwd -P)"
 REPO_DIR="$(cd -- "$REPO_DIR" && pwd -P)"
 
-XDG_CONFIG_DIR=${XDG_CONFIG_HOME:-$TARGET_HOME/.config}
-XDG_CACHE_DIR=${XDG_CACHE_HOME:-$TARGET_HOME/.cache}
-XDG_DATA_DIR=${XDG_DATA_HOME:-$TARGET_HOME/.local/share}
-XDG_STATE_DIR=${XDG_STATE_HOME:-$TARGET_HOME/.local/state}
+CURRENT_HOME=$(cd -- "$HOME" && pwd -P)
+if [[ $TARGET_HOME == "$CURRENT_HOME" ]]; then
+  XDG_CONFIG_DIR=${XDG_CONFIG_HOME:-$TARGET_HOME/.config}
+  XDG_CACHE_DIR=${XDG_CACHE_HOME:-$TARGET_HOME/.cache}
+  XDG_DATA_DIR=${XDG_DATA_HOME:-$TARGET_HOME/.local/share}
+  XDG_STATE_DIR=${XDG_STATE_HOME:-$TARGET_HOME/.local/state}
+else
+  XDG_CONFIG_DIR=$TARGET_HOME/.config
+  XDG_CACHE_DIR=$TARGET_HOME/.cache
+  XDG_DATA_DIR=$TARGET_HOME/.local/share
+  XDG_STATE_DIR=$TARGET_HOME/.local/state
+fi
 AHM_CONFIG_DIR=$XDG_CONFIG_DIR/ahmyzsh
 REPO_LINK=$AHM_CONFIG_DIR/repo
 FONT_DIR=$XDG_DATA_DIR/fonts/MesloLGS-NF
@@ -229,16 +244,47 @@ download_font() {
 }
 
 install_fonts() {
+  local -a download_pids=()
+  local download_failed=0 pid
   command -v curl >/dev/null 2>&1 || die 'curl is required to download fonts'
   command -v sha256sum >/dev/null 2>&1 || die 'sha256sum is required to verify fonts'
-  download_font 'MesloLGS NF Regular.ttf' 'd97946186e97f8d7c0139e8983abf40a1d2d086924f2c5dbf1c29bd8f2c6e57d'
-  download_font 'MesloLGS NF Bold.ttf' 'b6c0199cf7c7483c8343ea020658925e6de0aeb318b89908152fcb4d19226003'
-  download_font 'MesloLGS NF Italic.ttf' '6f357bcbe2597704e157a915625928bca38364a89c22a4ac36e7a116dcd392ef'
-  download_font 'MesloLGS NF Bold Italic.ttf' '56b4131adecec052c4b324efb818dd326d586dbc316fc68f98f1cae2eb8d1220'
+  download_font 'MesloLGS NF Regular.ttf' 'd97946186e97f8d7c0139e8983abf40a1d2d086924f2c5dbf1c29bd8f2c6e57d' &
+  download_pids+=($!)
+  download_font 'MesloLGS NF Bold.ttf' 'b6c0199cf7c7483c8343ea020658925e6de0aeb318b89908152fcb4d19226003' &
+  download_pids+=($!)
+  download_font 'MesloLGS NF Italic.ttf' '6f357bcbe2597704e157a915625928bca38364a89c22a4ac36e7a116dcd392ef' &
+  download_pids+=($!)
+  download_font 'MesloLGS NF Bold Italic.ttf' '56b4131adecec052c4b324efb818dd326d586dbc316fc68f98f1cae2eb8d1220' &
+  download_pids+=($!)
+
+  for pid in "${download_pids[@]}"; do
+    wait "$pid" || download_failed=1
+  done
+  (( download_failed == 0 )) || die 'one or more font downloads failed'
+
   if command -v fc-cache >/dev/null 2>&1; then
     run fc-cache -f "$FONT_DIR"
   else
     log 'fontconfig is absent; run fc-cache after installing it'
+  fi
+}
+
+warm_cache() {
+  if (( DRY_RUN )); then
+    log 'would warm completion and framework caches in an isolated Zsh'
+    return 0
+  fi
+
+  if env \
+    HOME="$TARGET_HOME" \
+    XDG_CONFIG_HOME="$XDG_CONFIG_DIR" \
+    XDG_CACHE_HOME="$XDG_CACHE_DIR" \
+    XDG_DATA_HOME="$XDG_DATA_DIR" \
+    XDG_STATE_HOME="$XDG_STATE_DIR" \
+    "$REPO_DIR/zsh/bin/ahm-cache" warm >/dev/null; then
+    log 'warmed completion and framework caches'
+  else
+    log 'warning: cache warm-up failed; the shell can build caches on first use'
   fi
 }
 
@@ -277,6 +323,8 @@ write_managed_block "$TARGET_HOME/.zshenv" \
   'source "${XDG_CONFIG_HOME:-$HOME/.config}/ahmyzsh/repo/zsh/env.zsh"'
 write_managed_block "$TARGET_HOME/.zshrc" \
   'source "${XDG_CONFIG_HOME:-$HOME/.config}/ahmyzsh/repo/zsh/boot.zsh"'
+
+(( WARM_CACHE == 0 )) || warm_cache
 
 log 'installation complete'
 log 'Konsole: select “MesloLGS NF” in Settings → Edit Current Profile → Appearance'

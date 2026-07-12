@@ -9,6 +9,8 @@ readonly REPO_DIR="$(cd -- "$SCRIPT_DIR/.." && pwd -P)"
 TEST_ROOT=$(mktemp -d "${TMPDIR:-/tmp}/ahmyzsh-test.XXXXXX")
 readonly TEST_ROOT
 readonly TEST_HOME=$TEST_ROOT/home
+readonly ALT_HOME=$TEST_ROOT/alternate-home
+readonly FOREIGN_XDG=$TEST_ROOT/foreign-config
 readonly STDERR_FILE=$TEST_ROOT/stderr
 
 PASSED=0
@@ -60,7 +62,9 @@ run_in_home() {
     "$@"
 }
 
-mkdir -p -- "$TEST_HOME"
+mkdir -p -- "$TEST_HOME" "$ALT_HOME"
+printf '%s\n' '# existing zshenv content' >"$TEST_HOME/.zshenv"
+printf '%s\n' '# existing zshrc content' >"$TEST_HOME/.zshrc"
 
 syntax_failed=0
 while IFS= read -r -d '' file; do
@@ -95,6 +99,29 @@ assert_eq 'installer owns one .zshrc block' '1' \
   "$(grep -c '^# >>> ahmyzsh modular boot >>>$' "$TEST_HOME/.zshrc")"
 assert_eq 'installer repository link is correct' "$REPO_DIR" \
   "$(readlink -f -- "$TEST_HOME/.config/ahmyzsh/repo")"
+assert_contains 'installer preserves existing .zshenv content' "$(<"$TEST_HOME/.zshenv")" '# existing zshenv content'
+assert_contains 'installer preserves existing .zshrc content' "$(<"$TEST_HOME/.zshrc")" '# existing zshrc content'
+[[ -f $TEST_HOME/.zshenv.pre-ahmyzsh && -f $TEST_HOME/.zshrc.pre-ahmyzsh ]] &&
+  pass 'installer creates one pre-AhMyZSH backup per existing dotfile' ||
+  fail 'installer creates one pre-AhMyZSH backup per existing dotfile'
+compdump_count=$(find "$TEST_HOME/.cache/ahmyzsh/v1" -maxdepth 1 -type f -name 'zcompdump-*' | wc -l)
+[[ $compdump_count -ge 1 ]] && pass 'installer prewarms OMZ completion cache' || fail 'installer prewarms OMZ completion cache'
+
+env \
+  HOME="$TEST_HOME" \
+  XDG_CONFIG_HOME="$FOREIGN_XDG" \
+  XDG_CACHE_HOME="$TEST_ROOT/foreign-cache" \
+  XDG_DATA_HOME="$TEST_ROOT/foreign-data" \
+  XDG_STATE_HOME="$TEST_ROOT/foreign-state" \
+  "$REPO_DIR/scripts/install.sh" \
+    --home "$ALT_HOME" --repo "$REPO_DIR" --without-fonts --without-cache-warm >/dev/null
+assert_eq 'alternate-home install ignores caller XDG paths' "$REPO_DIR" \
+  "$(readlink -f -- "$ALT_HOME/.config/ahmyzsh/repo")"
+[[ ! -e $FOREIGN_XDG/ahmyzsh/repo ]] &&
+  pass 'wrong-context guard leaves caller configuration untouched' ||
+  fail 'wrong-context guard leaves caller configuration untouched'
+env HOME="$ALT_HOME" "$REPO_DIR/scripts/install.sh" \
+  --home "$ALT_HOME" --repo "$REPO_DIR" --without-fonts --uninstall >/dev/null
 
 : >"$STDERR_FILE"
 noninteractive_output=$(run_in_home zsh -d -c 'print -r -- payload' 2>"$STDERR_FILE")
@@ -126,6 +153,14 @@ assert_eq 'base interactive stderr is empty' '' "$(<"$STDERR_FILE")"
 
 profile_output=$(run_in_home zsh -dic 'ahm profile; exit' 2>"$STDERR_FILE")
 assert_contains 'profile reports the complete boot' "$profile_output" 'AhMyZSH boot profile'
+
+legacy_doctor_output=$(run_in_home zsh -dic '
+  typeset -g MAIN_INIT=start
+  ahm_doctor >/dev/null
+  print -r -- "doctor-status=$?"
+  exit
+' 2>"$STDERR_FILE")
+assert_contains 'doctor rejects a simultaneously loaded legacy spine' "$legacy_doctor_output" 'doctor-status=1'
 
 : >"$STDERR_FILE"
 idempotent_output=$(run_in_home zsh -dic '
@@ -167,12 +202,15 @@ fallback_output=$(run_in_home zsh -dic '
   print -r -- "failures=${#AHMYZSH_FAILED_MODULES}"
   print -r -- "prompt-note=$AHMYZSH_MODULE_NOTES[prompt]"
   print -r -- "omz-note=$AHMYZSH_MODULE_NOTES[oh-my-zsh]"
+  ahm_doctor >/dev/null
+  print -r -- "doctor-status=$?"
   exit
 ' 2>"$STDERR_FILE")
 assert_contains 'missing frameworks retain a loaded shell' "$fallback_output" 'state=loaded'
 assert_contains 'missing frameworks use prompt fallback' "$fallback_output" 'using native prompt'
 assert_contains 'missing frameworks are diagnostic notes' "$fallback_output" 'unavailable at /definitely/missing/ohmyzsh'
 assert_contains 'missing frameworks are not module failures' "$fallback_output" 'failures=0'
+assert_contains 'doctor reports configured frameworks as unhealthy' "$fallback_output" 'doctor-status=1'
 
 cat >"$TEST_HOME/.config/ahmyzsh/config.zsh" <<'EOF'
 # generated test configuration
@@ -194,6 +232,8 @@ assert_contains 'later independent module still loads' "$degraded_output" 'funct
 
 cache_dir=$TEST_HOME/.cache/ahmyzsh/v1
 [[ -d $cache_dir ]] && pass 'versioned cache is initialized' || fail 'versioned cache is initialized'
+warm_output=$(run_in_home zsh -dic 'ahm cache warm; exit' 2>"$STDERR_FILE")
+assert_contains 'cache warm reports completion' "$warm_output" 'Warmed AhMyZSH completion and framework caches.'
 cache_output=$(run_in_home zsh -dic 'ahm cache clear; exit' 2>"$STDERR_FILE")
 assert_contains 'cache clear reports owned schema' "$cache_output" 'Cleared AhMyZSH cache schema v1.'
 [[ ! -e $cache_dir ]] && pass 'cache clear removes only active schema' || fail 'cache clear removes only active schema'
@@ -204,6 +244,8 @@ assert_eq 'uninstall removes .zshenv managed block' '0' \
   "$(grep -c '^# >>> ahmyzsh modular boot >>>$' "$TEST_HOME/.zshenv" || true)"
 assert_eq 'uninstall removes .zshrc managed block' '0' \
   "$(grep -c '^# >>> ahmyzsh modular boot >>>$' "$TEST_HOME/.zshrc" || true)"
+assert_contains 'uninstall retains original .zshenv content' "$(<"$TEST_HOME/.zshenv")" '# existing zshenv content'
+assert_contains 'uninstall retains original .zshrc content' "$(<"$TEST_HOME/.zshrc")" '# existing zshrc content'
 [[ ! -e $TEST_HOME/.config/ahmyzsh/repo ]] &&
   pass 'uninstall removes repository link' || fail 'uninstall removes repository link'
 

@@ -76,6 +76,7 @@ ahm doctor
 | `ahm doctor` | Report boot, dependency, module, cache, and prompt health |
 | `ahm profile` | Start an isolated profiled shell and show stage timings |
 | `ahm cache status` | Report current versioned cache |
+| `ahm cache warm` | Prebuild completion/framework caches in an isolated shell |
 | `ahm cache clear` | Remove only the active cache schema and instant prompt |
 | `ahm cache invalidate` | Remove all AhMyZSH-owned cache generations |
 | `ahm reload` | Replace the process with a fresh login Zsh; never double-source |
@@ -108,8 +109,9 @@ shell rather than a broken boot.
 - Runtime managers, tmux and REPLs are postponed until their boundaries are
   characterized and tested.
 
-Measure locally with `./scripts/benchmark.zsh`. A cache or compiled-source layer
-will be added only if a measured bottleneck justifies its complexity.
+Measure cold and warm isolated shells locally with `./scripts/benchmark.zsh`.
+A compiled-source layer will be added only if a measured bottleneck justifies
+its complexity.
 
 ## Repository map
 
@@ -118,11 +120,22 @@ will be added only if a measured bottleneck justifies its complexity.
 | [`zsh/`](zsh/) | active boot and interactive modules |
 | [`scripts/`](scripts/) | installation and benchmarking lifecycle |
 | [`tests/`](tests/) | isolated behavior, degradation and performance checks |
+| [`reports/`](reports/) | dated audit, traceability, verification, and publication evidence |
 | [`extensions/`](extensions/) | documented future capability boundaries |
 | [`legacy/`](legacy/) | disposition map for historical surfaces |
 | `core/`, `MAIN*.sh` | dormant historical implementation; salvage source only |
 | `ohmyzsh/`, `powerlevel10k/` | currently vendored optional dependencies |
-| [`documentation/`](documentation/) | audit, decisions and migration design |
+| [`documentation/`](documentation/) | historical design analysis and active migration design |
+
+## Reports
+
+- [Repository archaeology and recovery audit](reports/2026-07-10-repository-audit.md)
+- [Modular boot verification](reports/2026-07-11-modular-boot-verification.md)
+- [Requirements traceability](reports/2026-07-12-requirements-traceability.md)
+- [Publication readiness](reports/2026-07-12-publication-readiness.md)
+
+The [reports index](reports/README.md) explains the scope and authority of each
+report.
 
 ## Design references
 

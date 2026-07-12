@@ -1,4 +1,4 @@
-<!-- documentation/MODULAR-BOOT-VERIFICATION.md -->
+<!-- reports/2026-07-11-modular-boot-verification.md -->
 
 # Modular boot verification record
 
@@ -8,7 +8,7 @@
 
 ## Automated suite
 
-`tests/run.sh` completed with **34 passed, 0 failed**. It verified syntax,
+`tests/run.sh` completed with **45 passed, 0 failed**. It verified syntax,
 installer idempotency, managed-block ownership, silent non-interactive startup,
 independent base startup, OMZ integration, module fallback, repeated-source
 guarding, profiling output, cache lifecycle and uninstall behavior in temporary
@@ -29,20 +29,26 @@ In a pseudo-terminal with the vendored dependencies enabled, Powerlevel10k
 defined its `p10k` function, the shell reached `loaded`, and no module failed.
 Five consecutive boots using one temporary home measured 347.474 ms cold, then
 41.087–51.386 ms warm after OMZ completion/P10k caches existed.
+After adding installer cache prewarming, the first real pseudo-terminal boot in
+a newly installed temporary home measured 36.510 ms with P10k active.
 
 ## Performance sample
 
-Thirty isolated child shells produced these medians in the audit container:
+Thirty isolated warm child shells plus one cold run per configuration produced
+these results in temporary homes in the audit container:
 
-| Configuration | Median |
+| Configuration | Time |
 |---|---:|
-| independent base, native prompt, no OMZ | 7.744 ms |
-| OMZ integration, native prompt | 185.485 ms |
+| independent base, cold | 7.729 ms |
+| independent base, warm median | 4.212 ms |
+| OMZ integration, cold | 284.953 ms |
+| OMZ integration, warm median | 33.823 ms |
 
 These numbers are comparison evidence, not a universal machine budget. The
 base/OMZ difference demonstrates that the dependency boundary is measurable and
-useful. Real acceptance measurements must also run on the target Kubuntu
-machine, including a warm Powerlevel10k terminal.
+useful. The installer now warms framework/completion caches by default so the
+first real terminal does not also pay the OMZ cold-cache cost. Real acceptance
+measurements must also run on the target Kubuntu machine.
 
 ## Font installation
 
