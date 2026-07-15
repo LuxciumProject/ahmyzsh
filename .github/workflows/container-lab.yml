@@ -58,4 +58,11 @@ jobs:
             --user=10001:10001 \
             --entrypoint=zsh \
             ahmyzsh-lab:ci \
-            -lic '[[ $AHMYZSH_BOOT_STATE == loaded && ${#AHMYZSH_FAILED_MODULES} -eq 0 && $(grep "^CapEff:" /proc/self/status | tr -s " " | cut -d" " -f2) == 0000000000000000 ]] && ahm doctor'
+            -lic '
+              cap_eff=$(sed -n "s/^CapEff:[[:space:]]*//p" /proc/self/status)
+              print -r -- "boot=$AHMYZSH_BOOT_STATE failures=${#AHMYZSH_FAILED_MODULES} capabilities=$cap_eff"
+              [[ $AHMYZSH_BOOT_STATE == loaded ]]
+              [[ ${#AHMYZSH_FAILED_MODULES} -eq 0 ]]
+              [[ $cap_eff == 0000000000000000 ]]
+              ahm doctor
+            '
