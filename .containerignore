@@ -1,0 +1,14 @@
+# .containerignore
+# Keep host-only metadata and generated state out of the laboratory image.
+
+.git
+.git/**
+myenv
+myenv/**
+**/*.zwc
+**/*.ZWC
+**/.cache
+**/.cache/**
+**/node_modules
+**/node_modules/**
+nohup.out

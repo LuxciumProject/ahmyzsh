@@ -34,6 +34,25 @@ salvage, but it is no longer the active boot path.
 No module-directory glob is used. The order in `zsh/config/defaults.zsh` is the
 reviewable dependency and precedence order.
 
+## 🟠🧱 Try it safely before installing
+
+The [`sandbox/`](sandbox/) laboratory opens this installed branch in a
+disposable rootless Podman container. It does not mount the real home or
+checkout, is offline by default, and deletes all session changes on exit. It can
+open in Konsole or remain in the current terminal.
+
+After installing Podman from Kubuntu's package repository, inspect and launch:
+
+```bash
+cd /projects/ahmyzsh
+./sandbox/ahm-lab doctor
+./sandbox/ahm-lab konsole
+```
+
+The first launch builds the image. See the [laboratory lifecycle and protection
+model](sandbox/README.md) before using its explicit online or container-root
+modes.
+
 ## Install on Kubuntu
 
 Inspect without writing:
@@ -119,6 +138,7 @@ its complexity.
 |---|---|
 | [`zsh/`](zsh/) | active boot and interactive modules |
 | [`scripts/`](scripts/) | installation and benchmarking lifecycle |
+| [`sandbox/`](sandbox/) | disposable rootless-Podman and Konsole laboratory |
 | [`tests/`](tests/) | isolated behavior, degradation and performance checks |
 | [`reports/`](reports/) | dated audit, traceability, verification, and publication evidence |
 | [`extensions/`](extensions/) | documented future capability boundaries |
@@ -133,6 +153,7 @@ its complexity.
 - [Modular boot verification](reports/2026-07-11-modular-boot-verification.md)
 - [Requirements traceability](reports/2026-07-12-requirements-traceability.md)
 - [Publication readiness](reports/2026-07-12-publication-readiness.md)
+- [Disposable container laboratory](reports/2026-07-14-container-laboratory.md)
 
 The [reports index](reports/README.md) explains the scope and authority of each
 report.

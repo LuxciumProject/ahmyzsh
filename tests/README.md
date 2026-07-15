@@ -14,10 +14,15 @@
 - repeated-source guarding;
 - continuation after an absent optional module;
 - versioned cache warming and clearing;
+- rootless laboratory launch policy, default offline mode, explicit online
+  relaxation, automatic image build, and Konsole forwarding;
 - non-destructive uninstallation.
 
 The suite does not touch the real home directory, download fonts, invoke
-`sudo`, start tmux, initialize language runtimes, or source legacy `core/`.
+`sudo`, start a real container, start tmux, initialize language runtimes, or
+source legacy `core/`. The Podman launcher is exercised through a recording
+test double; pull-request CI performs the complementary real image build and
+boot smoke test.
 
 Run it with:
 

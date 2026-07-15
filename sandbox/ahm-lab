@@ -1,0 +1,323 @@
+#!/usr/bin/env bash
+# sandbox/ahm-lab
+# Build and launch disposable rootless-Podman AhMyZSH laboratories.
+
+set -Eeuo pipefail
+
+readonly PROGRAM_NAME='ahm-lab'
+readonly PROGRAM_VERSION='0.1.0'
+readonly SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
+readonly REPO_DIR="$(cd -- "$SCRIPT_DIR/.." && pwd -P)"
+readonly CONTAINERFILE="$SCRIPT_DIR/Containerfile"
+
+ENGINE=${AHMYZSH_LAB_ENGINE:-podman}
+IMAGE=${AHMYZSH_LAB_IMAGE:-localhost/ahmyzsh-lab:dev}
+UBUNTU_VERSION=${AHMYZSH_LAB_UBUNTU_VERSION:-24.04}
+ONLINE=0
+REBUILD=0
+REFRESH=0
+
+usage() {
+  cat <<'EOF'
+Usage: sandbox/ahm-lab COMMAND [OPTIONS]
+
+Build and enter a disposable AhMyZSH shell laboratory. No host directory,
+socket, or device is mounted into a session.
+
+Commands:
+  doctor          Check Podman, rootless operation, Konsole, and image state
+  build           Build the laboratory image from the current checkout
+  shell           Enter an unprivileged laboratory in the current terminal
+  admin           Enter as container root for disposable package experiments
+  konsole         Open the unprivileged laboratory in a new Konsole window
+  konsole-admin   Open the admin laboratory in a new Konsole window
+  clean           Remove only the AhMyZSH laboratory image
+  version         Print the launcher version
+  help            Show this help
+
+Session options:
+  --online        Permit the container's isolated outbound network
+  --rebuild       Rebuild from the current checkout before entering
+  --refresh       Rebuild without cache and refresh the Ubuntu base image
+
+Build options:
+  --refresh       Build without cache and refresh the Ubuntu base image
+
+Environment overrides:
+  AHMYZSH_LAB_ENGINE   Container engine command (default: podman)
+  AHMYZSH_LAB_IMAGE    Local image name (default: localhost/ahmyzsh-lab:dev)
+  AHMYZSH_LAB_UBUNTU_VERSION
+                        Ubuntu image tag (default: 24.04)
+
+The default session is offline. Exit the shell to delete its complete writable
+container layer; launch again to return to the image's clean installed state.
+EOF
+}
+
+log() {
+  printf '[ahm-lab] %s\n' "$*"
+}
+
+die() {
+  printf '[ahm-lab] error: %s\n' "$*" >&2
+  exit 1
+}
+
+need_command() {
+  command -v "$1" >/dev/null 2>&1 || die "required command is missing: $1"
+}
+
+rootless_state() {
+  "$ENGINE" info --format '{{.Host.Security.Rootless}}' 2>/dev/null || true
+}
+
+require_rootless_engine() {
+  local state
+  need_command "$ENGINE"
+  state=$(rootless_state)
+  [[ $state == true ]] || die \
+    "$ENGINE is not operating rootless; run this launcher as your normal user"
+}
+
+effective_mounts_file() {
+  local user_file=${XDG_CONFIG_HOME:-$HOME/.config}/containers/mounts.conf
+  local candidate
+
+  for candidate in \
+    "$user_file" \
+    /etc/containers/mounts.conf \
+    /usr/share/containers/mounts.conf; do
+    if [[ -e $candidate ]]; then
+      printf '%s\n' "$candidate"
+      return 0
+    fi
+  done
+  return 1
+}
+
+active_default_mounts_file() {
+  local file
+  file=$(effective_mounts_file) || return 1
+  grep -Eq '^[[:space:]]*[^#[:space:]]' "$file" 2>/dev/null || return 1
+  printf '%s\n' "$file"
+}
+
+require_no_default_mounts() {
+  local file
+  file=$(active_default_mounts_file) || return 0
+  die "Podman automatic mounts are active in $file; refusing an isolated session"
+}
+
+image_exists() {
+  "$ENGINE" image exists "$IMAGE" >/dev/null 2>&1
+}
+
+source_revision() {
+  git -C "$REPO_DIR" rev-parse --verify HEAD 2>/dev/null || printf 'unknown\n'
+}
+
+parse_build_options() {
+  REFRESH=0
+  while (( $# )); do
+    case $1 in
+      --refresh) REFRESH=1 ;;
+      -h|--help) usage; exit 0 ;;
+      *) die "unknown build option: $1" ;;
+    esac
+    shift
+  done
+}
+
+parse_session_options() {
+  ONLINE=0
+  REBUILD=0
+  REFRESH=0
+  while (( $# )); do
+    case $1 in
+      --online) ONLINE=1 ;;
+      --rebuild) REBUILD=1 ;;
+      --refresh) REBUILD=1; REFRESH=1 ;;
+      -h|--help) usage; exit 0 ;;
+      *) die "unknown session option: $1" ;;
+    esac
+    shift
+  done
+}
+
+build_image() {
+  local revision
+  local -a build_args=(build --pull=missing)
+
+  require_rootless_engine
+  [[ $UBUNTU_VERSION =~ ^[0-9]{2}\.[0-9]{2}$ ]] || die \
+    "invalid Ubuntu version tag: $UBUNTU_VERSION"
+  revision=$(source_revision)
+  if (( REFRESH )); then
+    build_args=(build --pull=always --no-cache)
+  fi
+
+  log "building $IMAGE from revision ${revision:0:12}"
+  "$ENGINE" "${build_args[@]}" \
+    --build-arg "AHMYZSH_REVISION=$revision" \
+    --build-arg "UBUNTU_VERSION=$UBUNTU_VERSION" \
+    --tag "$IMAGE" \
+    --file "$CONTAINERFILE" \
+    "$REPO_DIR"
+}
+
+ensure_image() {
+  if ! image_exists; then
+    log 'laboratory image is absent; building it now'
+    build_image
+  fi
+}
+
+run_session() {
+  local mode=$1
+  local status=0
+  local name="ahmyzsh-lab-${UID:-user}-${RANDOM}-$$"
+  local term_value=${TERM:-xterm-256color}
+  local color_term_value=${COLORTERM:-truecolor}
+  local -a run_args=(
+    run
+    --rm
+    --interactive
+    --tty
+    --name "$name"
+    --hostname ahmyzsh-lab
+    --label io.ahmyzsh.lab=ephemeral
+    --privileged=false
+    --pid=private
+    --ipc=private
+    --cgroupns=private
+    --systemd=false
+    --security-opt=no-new-privileges
+    --pids-limit=512
+  )
+
+  (( ONLINE )) || run_args+=(--network=none)
+
+  if [[ $mode == admin ]]; then
+    run_args+=(
+      --user=0:0
+      --env HOME=/root
+      --env USER=root
+      --env LOGNAME=root
+      --workdir /root
+    )
+  else
+    run_args+=(
+      --user=1000:1000
+      --cap-drop=all
+      --env HOME=/home/ahm
+      --env USER=ahm
+      --env LOGNAME=ahm
+      --workdir /home/ahm
+    )
+  fi
+
+  run_args+=(
+    --env "TERM=$term_value"
+    --env "COLORTERM=$color_term_value"
+    --env AHMYZSH_LAB=1
+    "$IMAGE"
+    zsh -l
+  )
+
+  (( REBUILD == 0 )) || build_image
+  ensure_image
+  require_no_default_mounts
+
+  log "starting disposable $mode session; no host path is mounted"
+  (( ONLINE == 0 )) || log 'outbound container network is enabled for this session'
+  "$ENGINE" "${run_args[@]}" || status=$?
+  log 'session ended; Podman removed its writable container layer'
+  return "$status"
+}
+
+launch_konsole() {
+  local mode=$1
+  shift
+  need_command konsole
+  parse_session_options "$@"
+
+  local -a forwarded=()
+  (( ONLINE == 0 )) || forwarded+=(--online)
+  (( REBUILD == 0 )) || forwarded+=(--rebuild)
+  if (( REFRESH )); then
+    forwarded=(--refresh)
+  fi
+
+  exec konsole --workdir "$REPO_DIR" -e \
+    "$SCRIPT_DIR/ahm-lab" "$mode" "${forwarded[@]}"
+}
+
+doctor() {
+  local status=0
+  local state=missing
+  local mounts_file
+
+  printf 'AhMyZSH laboratory check\n'
+  printf '  repository: %s\n' "$REPO_DIR"
+  printf '  image:      %s\n' "$IMAGE"
+  printf '  Ubuntu:     %s\n' "$UBUNTU_VERSION"
+
+  if command -v "$ENGINE" >/dev/null 2>&1; then
+    printf '  engine:     %s\n' "$("$ENGINE" --version 2>/dev/null || printf '%s' "$ENGINE available")"
+    state=$(rootless_state)
+    if [[ $state == true ]]; then
+      printf '  isolation:  rootless\n'
+    else
+      printf '  isolation:  NOT rootless\n'
+      status=1
+    fi
+    if image_exists; then
+      printf '  lab image:  built\n'
+    else
+      printf '  lab image:  absent (the first launch will build it)\n'
+    fi
+    if mounts_file=$(active_default_mounts_file); then
+      printf '  host mounts: REFUSED (%s)\n' "$mounts_file"
+      status=1
+    else
+      printf '  host mounts: no automatic mounts detected\n'
+    fi
+  else
+    printf '  engine:     missing (%s)\n' "$ENGINE"
+    status=1
+  fi
+
+  if command -v konsole >/dev/null 2>&1; then
+    printf '  Konsole:    available\n'
+  else
+    printf '  Konsole:    absent (the current-terminal shell still works)\n'
+  fi
+
+  return "$status"
+}
+
+clean_image() {
+  require_rootless_engine
+  "$ENGINE" image rm --ignore "$IMAGE"
+  log "removed laboratory image if it existed: $IMAGE"
+}
+
+main() {
+  local command=${1:-help}
+  (( $# == 0 )) || shift
+
+  case $command in
+    doctor) (( $# == 0 )) || die 'doctor takes no options'; doctor ;;
+    build) parse_build_options "$@"; build_image ;;
+    shell) parse_session_options "$@"; run_session user ;;
+    admin) parse_session_options "$@"; run_session admin ;;
+    konsole) launch_konsole shell "$@" ;;
+    konsole-admin) launch_konsole admin "$@" ;;
+    clean) (( $# == 0 )) || die 'clean takes no options'; clean_image ;;
+    version|--version) printf '%s %s\n' "$PROGRAM_NAME" "$PROGRAM_VERSION" ;;
+    help|-h|--help) usage ;;
+    *) die "unknown command: $command" ;;
+  esac
+}
+
+main "$@"

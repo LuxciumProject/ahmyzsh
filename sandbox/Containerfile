@@ -1,0 +1,65 @@
+# sandbox/Containerfile
+# Reproducible Ubuntu userland for disposable AhMyZSH experiments.
+
+ARG UBUNTU_VERSION=24.04
+FROM docker.io/library/ubuntu:${UBUNTU_VERSION}
+
+ARG DEBIAN_FRONTEND=noninteractive
+ARG AHMYZSH_REVISION=unknown
+
+LABEL org.opencontainers.image.title="AhMyZSH disposable shell laboratory" \
+      org.opencontainers.image.description="Isolated user-level AhMyZSH development environment" \
+      org.opencontainers.image.source="https://github.com/LuxciumProject/ahmyzsh" \
+      org.opencontainers.image.revision="${AHMYZSH_REVISION}"
+
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+RUN apt-get update \
+    && apt-get install --yes --no-install-recommends \
+      bash \
+      ca-certificates \
+      curl \
+      file \
+      fontconfig \
+      git \
+      less \
+      nano \
+      procps \
+      ripgrep \
+      tree \
+      vim-tiny \
+      zsh \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN groupadd --gid 1000 ahm \
+    && useradd --uid 1000 --gid 1000 --create-home --shell /usr/bin/zsh ahm
+
+COPY --chown=1000:1000 . /opt/ahmyzsh
+
+# The admin home exists only for explicit root-in-container experiments.
+RUN /opt/ahmyzsh/scripts/install.sh \
+      --home /root \
+      --repo /opt/ahmyzsh \
+      --without-fonts \
+      --without-cache-warm
+
+USER 1000:1000
+ENV HOME=/home/ahm \
+    USER=ahm \
+    LOGNAME=ahm \
+    SHELL=/usr/bin/zsh \
+    LANG=C.UTF-8 \
+    LC_ALL=C.UTF-8 \
+    TERM=xterm-256color \
+    COLORTERM=truecolor \
+    AHMYZSH_LAB=1
+WORKDIR /home/ahm
+
+RUN /opt/ahmyzsh/scripts/install.sh \
+      --home /home/ahm \
+      --repo /opt/ahmyzsh \
+      --without-fonts \
+    && zsh -lic \
+      '[[ $AHMYZSH_BOOT_STATE == loaded && ${#AHMYZSH_FAILED_MODULES} -eq 0 ]]'
+
+CMD ["zsh", "-l"]

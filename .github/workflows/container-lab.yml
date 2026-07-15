@@ -1,0 +1,51 @@
+# .github/workflows/container-lab.yml
+# Build and smoke-test the disposable shell laboratory on pull requests.
+
+name: Container laboratory
+
+on:
+  pull_request:
+    paths:
+      - '.containerignore'
+      - '.github/workflows/container-lab.yml'
+      - 'sandbox/**'
+      - 'scripts/**'
+      - 'tests/**'
+      - 'zsh/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out source
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+
+      - name: Install host test dependency
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes zsh
+
+      - name: Run isolated shell tests
+        run: ./tests/run.sh
+
+      - name: Build laboratory image
+        run: docker build --file sandbox/Containerfile --tag ahmyzsh-lab:ci .
+
+      - name: Smoke-test installed boot and confinement
+        run: |
+          docker run --rm \
+            --network=none \
+            --cap-drop=all \
+            --security-opt=no-new-privileges:true \
+            --pids-limit=512 \
+            --user=1000:1000 \
+            --entrypoint=zsh \
+            ahmyzsh-lab:ci \
+            -lic '[[ $AHMYZSH_BOOT_STATE == loaded && ${#AHMYZSH_FAILED_MODULES} -eq 0 && $(grep "^CapEff:" /proc/self/status | tr -s " " | cut -d" " -f2) == 0000000000000000 ]] && ahm doctor'

@@ -41,12 +41,18 @@ ahm_doctor() {
     failures=1
   fi
 
-  if [[ $AHMYZSH_PROMPT == powerlevel10k && $+commands[fc-match] -eq 1 ]]; then
+  if [[ $AHMYZSH_PROMPT == powerlevel10k &&
+        ${AHMYZSH_LAB:-0} != 1 &&
+        $+commands[fc-match] -eq 1 ]]; then
     local font_family=$(fc-match -f '%{family}' 'MesloLGS NF' 2>/dev/null)
     if [[ $font_family != *'MesloLGS NF'* ]]; then
       print -P -- '%F{yellow}font:%f     MesloLGS NF is not available to fontconfig'
       failures=1
     fi
+  fi
+
+  if [[ ${AHMYZSH_LAB:-0} == 1 ]]; then
+    print -- 'lab:      disposable container; terminal font is host-rendered'
   fi
 
   if [[ -n ${MAIN_INIT:-} || $+functions[SCIENTIA_ES_LUX_PRINCIPIUM] -eq 1 ]]; then

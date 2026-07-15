@@ -12,6 +12,10 @@ readonly TEST_HOME=$TEST_ROOT/home
 readonly ALT_HOME=$TEST_ROOT/alternate-home
 readonly FOREIGN_XDG=$TEST_ROOT/foreign-config
 readonly STDERR_FILE=$TEST_ROOT/stderr
+readonly FAKE_BIN=$TEST_ROOT/fake-bin
+readonly FAKE_PODMAN_LOG=$TEST_ROOT/fake-podman.log
+readonly FAKE_KONSOLE_LOG=$TEST_ROOT/fake-konsole.log
+readonly FAKE_CONTAINERS_CONFIG=$TEST_ROOT/containers-config
 
 PASSED=0
 FAILED=0
@@ -51,6 +55,16 @@ assert_contains() {
   fi
 }
 
+assert_not_contains() {
+  local name=$1 haystack=$2 needle=$3
+  if [[ $haystack != *"$needle"* ]]; then
+    pass "$name"
+  else
+    fail "$name"
+    printf '  unexpected: %q\n' "$needle"
+  fi
+}
+
 run_in_home() {
   env \
     HOME="$TEST_HOME" \
@@ -75,14 +89,137 @@ while IFS= read -r -d '' file; do
 done < <(find "$REPO_DIR/zsh" -type f \( -name '*.zsh' -o -perm -u+x \) -print0)
 if (( syntax_failed == 0 )); then pass 'new Zsh sources parse'; else fail 'new Zsh sources parse'; fi
 
-if bash -n "$REPO_DIR/scripts/install.sh" "$REPO_DIR/tests/run.sh"; then
+if bash -n \
+  "$REPO_DIR/scripts/install.sh" \
+  "$REPO_DIR/sandbox/ahm-lab" \
+  "$REPO_DIR/tests/run.sh"; then
   pass 'Bash lifecycle scripts parse'
 else
   fail 'Bash lifecycle scripts parse'
 fi
 
+if grep -q '^FROM docker.io/library/ubuntu:' "$REPO_DIR/sandbox/Containerfile" \
+  && grep -q '^USER 1000:1000$' "$REPO_DIR/sandbox/Containerfile" \
+  && grep -q '^CMD \["zsh", "-l"\]$' "$REPO_DIR/sandbox/Containerfile"; then
+  pass 'laboratory image declares a non-root login shell'
+else
+  fail 'laboratory image declares a non-root login shell'
+fi
+
+mkdir -p -- "$FAKE_BIN"
+cat >"$FAKE_BIN/podman" <<'EOF'
+#!/usr/bin/env bash
+set -u
+command=${1:-}
+printf '%q' "$command" >>"$FAKE_PODMAN_LOG"
+(( $# == 0 )) || shift
+printf ' %q' "$@" >>"$FAKE_PODMAN_LOG"
+printf '\n' >>"$FAKE_PODMAN_LOG"
+
+case $command in
+  --version) printf 'podman version test-double\n' ;;
+  info) printf 'true\n' ;;
+  image)
+    if [[ ${1:-} == exists ]]; then
+      [[ ${FAKE_PODMAN_IMAGE_EXISTS:-1} == 1 ]]
+    fi
+    ;;
+  run) printf 'fake disposable session\n' ;;
+esac
+EOF
+cat >"$FAKE_BIN/konsole" <<'EOF'
+#!/usr/bin/env bash
+set -u
+printf '%q' "$1" >"$FAKE_KONSOLE_LOG"
+shift
+printf ' %q' "$@" >>"$FAKE_KONSOLE_LOG"
+printf '\n' >>"$FAKE_KONSOLE_LOG"
+EOF
+chmod +x "$FAKE_BIN/podman" "$FAKE_BIN/konsole"
+
+lab_env=(
+  env
+  PATH="$FAKE_BIN:$PATH"
+  FAKE_PODMAN_LOG="$FAKE_PODMAN_LOG"
+  FAKE_KONSOLE_LOG="$FAKE_KONSOLE_LOG"
+  AHMYZSH_LAB_ENGINE=podman
+  AHMYZSH_LAB_IMAGE=localhost/ahmyzsh-lab:test
+)
+
+: >"$FAKE_PODMAN_LOG"
+"${lab_env[@]}" "$REPO_DIR/sandbox/ahm-lab" shell >/dev/null
+lab_run=$(grep '^run ' "$FAKE_PODMAN_LOG")
+assert_contains 'lab sessions are automatically removed' "$lab_run" '--rm'
+assert_contains 'normal lab session has no network' "$lab_run" '--network=none'
+assert_contains 'normal lab drops every capability' "$lab_run" '--cap-drop=all'
+assert_contains 'normal lab prevents privilege gain' "$lab_run" '--security-opt=no-new-privileges'
+assert_contains 'normal lab uses the unprivileged image account' "$lab_run" '--user=1000:1000'
+assert_contains 'lab explicitly disables privileged mode' "$lab_run" '--privileged=false'
+assert_contains 'lab explicitly uses a private PID namespace' "$lab_run" '--pid=private'
+assert_contains 'lab explicitly uses a private IPC namespace' "$lab_run" '--ipc=private'
+assert_contains 'lab explicitly uses a private cgroup namespace' "$lab_run" '--cgroupns=private'
+assert_not_contains 'lab does not bind-mount a host path' "$lab_run" '--volume'
+assert_not_contains 'lab does not use a general mount' "$lab_run" '--mount'
+assert_not_contains 'lab never shares the host network' "$lab_run" '--network=host'
+assert_not_contains 'lab never shares the host process namespace' "$lab_run" '--pid=host'
+assert_not_contains 'lab never shares the host IPC namespace' "$lab_run" '--ipc=host'
+
+mkdir -p -- "$FAKE_CONTAINERS_CONFIG/containers"
+printf '%s\n' '/tmp:/injected-host-tmp' \
+  >"$FAKE_CONTAINERS_CONFIG/containers/mounts.conf"
+if XDG_CONFIG_HOME="$FAKE_CONTAINERS_CONFIG" "${lab_env[@]}" \
+  "$REPO_DIR/sandbox/ahm-lab" shell >/dev/null 2>"$STDERR_FILE"; then
+  fail 'lab refuses Podman-configured automatic host mounts'
+else
+  pass 'lab refuses Podman-configured automatic host mounts'
+fi
+rm -rf -- "$FAKE_CONTAINERS_CONFIG"
+
+: >"$FAKE_PODMAN_LOG"
+"${lab_env[@]}" "$REPO_DIR/sandbox/ahm-lab" shell --online >/dev/null
+online_run=$(grep '^run ' "$FAKE_PODMAN_LOG")
+assert_not_contains 'online mode relaxes only the network-none setting' "$online_run" '--network=none'
+assert_contains 'online mode retains capability confinement' "$online_run" '--cap-drop=all'
+assert_contains 'online mode retains privilege confinement' "$online_run" '--security-opt=no-new-privileges'
+
+: >"$FAKE_PODMAN_LOG"
+"${lab_env[@]}" "$REPO_DIR/sandbox/ahm-lab" admin >/dev/null
+admin_run=$(grep '^run ' "$FAKE_PODMAN_LOG")
+assert_contains 'admin lab is root only inside the container' "$admin_run" '--user=0:0'
+assert_contains 'admin lab remains offline by default' "$admin_run" '--network=none'
+assert_not_contains 'admin lab receives no host volume' "$admin_run" '--volume'
+
+: >"$FAKE_PODMAN_LOG"
+FAKE_PODMAN_IMAGE_EXISTS=0 "${lab_env[@]}" \
+  "$REPO_DIR/sandbox/ahm-lab" shell >/dev/null
+assert_contains 'missing lab image triggers a build' \
+  "$(<"$FAKE_PODMAN_LOG")" 'build --pull=missing'
+
+: >"$FAKE_PODMAN_LOG"
+"${lab_env[@]}" "$REPO_DIR/sandbox/ahm-lab" build --refresh >/dev/null
+refresh_build=$(grep '^build ' "$FAKE_PODMAN_LOG")
+assert_contains 'refresh requests a current base image' "$refresh_build" '--pull=always'
+assert_contains 'refresh bypasses stale build cache' "$refresh_build" '--no-cache'
+assert_contains 'build pins the selected Ubuntu series' "$refresh_build" \
+  '--build-arg UBUNTU_VERSION=24.04'
+
+: >"$FAKE_KONSOLE_LOG"
+"${lab_env[@]}" "$REPO_DIR/sandbox/ahm-lab" konsole --online >/dev/null
+konsole_run=$(<"$FAKE_KONSOLE_LOG")
+assert_contains 'Konsole places execute-command after its options' "$konsole_run" '-e'
+assert_contains 'Konsole launches the audited wrapper' \
+  "$konsole_run" "$REPO_DIR/sandbox/ahm-lab shell --online"
+
+if "${lab_env[@]}" "$REPO_DIR/sandbox/ahm-lab" shell --unknown \
+  >/dev/null 2>"$STDERR_FILE"; then
+  fail 'lab rejects unknown session options'
+else
+  pass 'lab rejects unknown session options'
+fi
+
 if ! grep -R -n -E '(^|[^[:alnum:]_])eval([[:space:](]|$)' \
-    "$REPO_DIR/zsh" "$REPO_DIR/scripts" --include='*.zsh' --include='*.sh' >/dev/null; then
+    "$REPO_DIR/zsh" "$REPO_DIR/scripts" "$REPO_DIR/sandbox" \
+    --include='*.zsh' --include='*.sh' --include='ahm-lab' >/dev/null; then
   pass 'active implementation contains no eval'
 else
   fail 'active implementation contains no eval'
@@ -189,6 +326,14 @@ assert_contains 'OMZ integration boot reaches loaded state' "$omz_output" 'state
 assert_contains 'OMZ integration resolves vendored framework' "$omz_output" "omz=$REPO_DIR/ohmyzsh"
 assert_contains 'OMZ integration has no failed modules' "$omz_output" 'failures=0'
 assert_eq 'OMZ integration stderr is empty' '' "$(<"$STDERR_FILE")"
+
+lab_doctor_output=$(run_in_home env AHMYZSH_LAB=1 zsh -dic '
+  ahm_doctor >/dev/null
+  print -r -- "doctor-status=$?"
+  exit
+' 2>"$STDERR_FILE")
+assert_contains 'container doctor ignores host-rendered font state' \
+  "$lab_doctor_output" 'doctor-status=0'
 
 cat >"$TEST_HOME/.config/ahmyzsh/config.zsh" <<'EOF'
 # generated test configuration
