@@ -1,0 +1,76 @@
+# .github/workflows/container-lab.yml
+# Build and smoke-test the disposable shell laboratory on pull requests.
+
+name: Container laboratory
+
+on:
+  pull_request:
+    paths:
+      - '.containerignore'
+      - '.dockerignore'
+      - '.github/workflows/container-lab.yml'
+      - 'sandbox/**'
+      - 'scripts/**'
+      - 'tests/**'
+      - 'zsh/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Download source archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          curl --fail --location --silent --show-error \
+            --retry 3 --retry-all-errors \
+            --header "Authorization: Bearer $GH_TOKEN" \
+            --header "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/tarball/$GITHUB_SHA" \
+            --output "$RUNNER_TEMP/ahmyzsh-source.tar.gz"
+          tar --extract --gzip \
+            --strip-components=1 \
+            --file "$RUNNER_TEMP/ahmyzsh-source.tar.gz"
+          rm -- "$RUNNER_TEMP/ahmyzsh-source.tar.gz"
+
+      - name: Install host test and rootless engine dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes podman zsh
+
+      - name: Run isolated shell tests
+        run: ./tests/run.sh
+
+      - name: Build laboratory image through the real launcher
+        run: |
+          ./sandbox/ahm-lab doctor
+          ./sandbox/ahm-lab build
+
+      - name: Smoke-test installed boot and confinement
+        run: |
+          podman run --rm \
+            --network=none \
+            --cap-drop=all \
+            --privileged=false \
+            --pid=private \
+            --ipc=private \
+            --cgroupns=private \
+            --systemd=false \
+            --security-opt=no-new-privileges \
+            --pids-limit=512 \
+            --user=10001:10001 \
+            --entrypoint=zsh \
+            localhost/ahmyzsh-lab:dev \
+            -lic '
+              cap_eff=$(sed -n "s/^CapEff:[[:space:]]*//p" /proc/self/status)
+              print -r -- "boot=$AHMYZSH_BOOT_STATE failures=${#AHMYZSH_FAILED_MODULES} capabilities=$cap_eff"
+              [[ $AHMYZSH_BOOT_STATE == loaded ]]
+              [[ ${#AHMYZSH_FAILED_MODULES} -eq 0 ]]
+              [[ $cap_eff == 0000000000000000 ]]
+              ahm doctor
+            '

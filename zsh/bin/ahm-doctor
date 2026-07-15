@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+# zsh/bin/ahm-doctor
+# Standalone entry for the interactive doctor without requiring an existing shell.
+
+typeset -gr AHMYZSH_ROOT=${${(%):-%N}:A:h:h:h}
+typeset -gr ROOT_Q=${(q)AHMYZSH_ROOT}
+exec env AHMYZSH_ROOT=$AHMYZSH_ROOT AHMYZSH_PROMPT=basic AHMYZSH_NO_INSTANT_PROMPT=1 \
+  zsh -dfic "source $ROOT_Q/zsh/env.zsh; source $ROOT_Q/zsh/boot.zsh; ahm_doctor"

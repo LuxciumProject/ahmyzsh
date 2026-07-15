@@ -1,0 +1,16 @@
+#!/usr/bin/env zsh
+# zsh/bin/ahm-cache
+# Standalone cache lifecycle command.
+
+typeset -g AHMYZSH_ROOT=${${(%):-%N}:A:h:h:h}
+source $AHMYZSH_ROOT/zsh/env.zsh || exit 1
+source $AHMYZSH_ROOT/zsh/lib/cache.zsh || exit 1
+
+case ${1:-status} in
+  status) ahm_cache_status ;;
+  warm) ahm_cache_warm ;;
+  clear) ahm_cache_clear ;;
+  invalidate) ahm_cache_invalidate_all ;;
+  -h|--help) print -- 'usage: ahm-cache [status|warm|clear|invalidate]' ;;
+  *) print -u2 -- 'usage: ahm-cache [status|warm|clear|invalidate]'; exit 2 ;;
+esac
