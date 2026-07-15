@@ -38,27 +38,34 @@ jobs:
             --file "$RUNNER_TEMP/ahmyzsh-source.tar.gz"
           rm -- "$RUNNER_TEMP/ahmyzsh-source.tar.gz"
 
-      - name: Install host test dependency
+      - name: Install host test and rootless engine dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install --yes zsh
+          sudo apt-get install --yes podman zsh
 
       - name: Run isolated shell tests
         run: ./tests/run.sh
 
-      - name: Build laboratory image
-        run: docker build --file sandbox/Containerfile --tag ahmyzsh-lab:ci .
+      - name: Build laboratory image through the real launcher
+        run: |
+          ./sandbox/ahm-lab doctor
+          ./sandbox/ahm-lab build
 
       - name: Smoke-test installed boot and confinement
         run: |
-          docker run --rm \
+          podman run --rm \
             --network=none \
             --cap-drop=all \
-            --security-opt=no-new-privileges:true \
+            --privileged=false \
+            --pid=private \
+            --ipc=private \
+            --cgroupns=private \
+            --systemd=false \
+            --security-opt=no-new-privileges \
             --pids-limit=512 \
             --user=10001:10001 \
             --entrypoint=zsh \
-            ahmyzsh-lab:ci \
+            localhost/ahmyzsh-lab:dev \
             -lic '
               cap_eff=$(sed -n "s/^CapEff:[[:space:]]*//p" /proc/self/status)
               print -r -- "boot=$AHMYZSH_BOOT_STATE failures=${#AHMYZSH_FAILED_MODULES} capabilities=$cap_eff"
