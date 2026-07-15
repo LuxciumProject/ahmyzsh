@@ -121,7 +121,7 @@ capabilities, confirms a zero effective capability mask, and runs `ahm doctor`.
 | automatic rebuild lifecycle | missing image and refresh paths verified |
 | full regression suite | 76 passed, 0 failed |
 | whitespace validation | clean |
-| real OCI image build and boot | passed in GitHub Actions run 29379101045 |
+| real OCI image build and boot | passed in GitHub Actions run 29379270135 |
 
 The implementation workspace did not provide Podman or Docker, so the local
 suite intentionally uses a recording engine double. This is not presented as a
@@ -130,23 +130,24 @@ and started the image.
 
 ## Remote OCI verification evidence
 
-[GitHub Actions run 29379101045](https://github.com/LuxciumProject/ahmyzsh/actions/runs/29379101045)
+[GitHub Actions run 29379270135](https://github.com/LuxciumProject/ahmyzsh/actions/runs/29379270135)
 completed successfully against remote commit
-`7c9b5798d87339bcaba5bf74bee115e00b1a7b7b` on 2026-07-15 UTC. Its source tree
+`f6314978096ddba256d77f30de3effda06910702` on 2026-07-15 UTC. Its source tree
 is byte-for-byte identical to local implementation tree
-`69c8bd84b2fcaa1580976fa0a5b8c864fb1af9d5`.
+`7361c8f73eda5f5980fd933bba51db619a6077bc`.
 
 | Remote gate | Observed result |
 |---|---|
 | source acquisition | read-only GitHub source archive extracted successfully |
-| isolated regression suite | 75 passed, 0 failed in the cited run; 76-test context policy update pending the final run |
+| isolated regression suite | 76 passed, 0 failed |
 | real image build | official Ubuntu 24.04 base built successfully |
+| minimized Docker context | 25.7 MB, reduced from 48.4 MB without omitting the explorable source snapshot |
 | installed boot | `boot=loaded`; all eight active modules loaded |
 | degradation state | zero failed modules; native prompt fallback expected without a TTY |
 | runtime confinement | effective capability mask `0000000000000000` |
 | diagnostics | `ahm doctor` completed successfully inside the offline container |
 
-Three validation discoveries were corrected before the green run:
+Four validation discoveries were corrected before the final green run:
 
 1. The dormant `plugins/tmux/.tmux` gitlink has no matching `.gitmodules` URL,
    so normal checkout cleanup fails even when submodule checkout is disabled.
@@ -158,6 +159,9 @@ Three validation discoveries were corrected before the green run:
 3. `/proc/*/status` separates `CapEff:` with general whitespace. The smoke check
    now parses that format safely and prints each independent assertion before
    enforcing it.
+4. Podman reads `.containerignore`, while the CI Docker builder reads
+   `.dockerignore`. Matching and regression-tested policies now minimize both
+   build paths instead of optimizing only the workstation path.
 
 ## Limits and future boundary
 
