@@ -106,6 +106,12 @@ else
   fail 'laboratory image declares a non-root login shell'
 fi
 
+if cmp -s "$REPO_DIR/.containerignore" "$REPO_DIR/.dockerignore"; then
+  pass 'Podman and Docker exclude the same build-context surfaces'
+else
+  fail 'Podman and Docker exclude the same build-context surfaces'
+fi
+
 mkdir -p -- "$FAKE_BIN"
 cat >"$FAKE_BIN/podman" <<'EOF'
 #!/usr/bin/env bash

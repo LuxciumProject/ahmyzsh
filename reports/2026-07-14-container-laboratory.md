@@ -81,8 +81,9 @@ explicit.
   copy, avoiding accounts already reserved by the Ubuntu base image.
 - The real installer creates both disposable homes. The image build then boots
   the normal shell and rejects a failed module state.
-- `.containerignore` excludes Git internals, the historical virtual environment,
-  generated caches, compiled Zsh files and Node dependency trees.
+- Matching `.containerignore` and `.dockerignore` policies exclude Git
+  internals, the historical virtual environment, generated caches, compiled
+  Zsh files and Node dependency trees for both supported builders.
 - Fonts are not duplicated into the image because Konsole renders on the host;
   a container-local font cannot configure the host terminal. Lab diagnostics
   therefore report the host-rendered boundary without failing container health.
@@ -118,15 +119,45 @@ capabilities, confirms a zero effective capability mask, and runs `ahm doctor`.
 | configured default mounts | active `mounts.conf` causes a pre-session refusal |
 | explicit relaxations | online changes only network policy; admin changes only account/capability policy |
 | automatic rebuild lifecycle | missing image and refresh paths verified |
-| full regression suite | 75 passed, 0 failed |
+| full regression suite | 76 passed, 0 failed |
 | whitespace validation | clean |
-| real OCI image build and boot | enforced by `.github/workflows/container-lab.yml` |
+| real OCI image build and boot | passed in GitHub Actions run 29379101045 |
 
 The implementation workspace did not provide Podman or Docker, so the local
 suite intentionally uses a recording engine double. This is not presented as a
-substitute for a real image boot: the draft pull request's smoke workflow is the
-second independent gate and this report will record its remote result after
-publication.
+substitute for a real image boot; the remote OCI gate below independently built
+and started the image.
+
+## Remote OCI verification evidence
+
+[GitHub Actions run 29379101045](https://github.com/LuxciumProject/ahmyzsh/actions/runs/29379101045)
+completed successfully against remote commit
+`7c9b5798d87339bcaba5bf74bee115e00b1a7b7b` on 2026-07-15 UTC. Its source tree
+is byte-for-byte identical to local implementation tree
+`69c8bd84b2fcaa1580976fa0a5b8c864fb1af9d5`.
+
+| Remote gate | Observed result |
+|---|---|
+| source acquisition | read-only GitHub source archive extracted successfully |
+| isolated regression suite | 75 passed, 0 failed in the cited run; 76-test context policy update pending the final run |
+| real image build | official Ubuntu 24.04 base built successfully |
+| installed boot | `boot=loaded`; all eight active modules loaded |
+| degradation state | zero failed modules; native prompt fallback expected without a TTY |
+| runtime confinement | effective capability mask `0000000000000000` |
+| diagnostics | `ahm doctor` completed successfully inside the offline container |
+
+Three validation discoveries were corrected before the green run:
+
+1. The dormant `plugins/tmux/.tmux` gitlink has no matching `.gitmodules` URL,
+   so normal checkout cleanup fails even when submodule checkout is disabled.
+   CI now consumes a read-only source archive and leaves this legacy repair for
+   its own migration stage.
+2. The current official Ubuntu 24.04 image reserves GID 1000. The laboratory
+   account now uses dedicated UID/GID 10001 instead of assuming a base-image
+   account range.
+3. `/proc/*/status` separates `CapEff:` with general whitespace. The smoke check
+   now parses that format safely and prints each independent assertion before
+   enforcing it.
 
 ## Limits and future boundary
 
