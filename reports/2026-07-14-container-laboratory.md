@@ -100,10 +100,11 @@ with `-e` after all Konsole options because it consumes the remaining command
 arguments. The base lifecycle is supported by Canonical's [Ubuntu release-cycle
 table](https://ubuntu.com/about/release-cycle).
 
-Pull-request CI pins `actions/checkout` to the complete v7 commit SHA, grants
-only read access to repository contents, disables persisted Git credentials,
-builds the real image, starts it without network or capabilities, confirms a
-zero effective capability mask, and runs `ahm doctor`.
+Pull-request CI grants only read access to repository contents and uses the
+GitHub source-archive API rather than a checkout action, so no Git credentials
+are persisted and the repository's dormant malformed gitlink cannot disrupt
+checkout cleanup. It builds the real image, starts it without network or
+capabilities, confirms a zero effective capability mask, and runs `ahm doctor`.
 
 ## Local verification evidence
 
