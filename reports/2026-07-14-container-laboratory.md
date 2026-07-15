@@ -121,7 +121,7 @@ capabilities, confirms a zero effective capability mask, and runs `ahm doctor`.
 | automatic rebuild lifecycle | missing image and refresh paths verified |
 | full regression suite | 76 passed, 0 failed |
 | whitespace validation | clean |
-| real OCI image build and boot | passed in GitHub Actions run 29379270135 |
+| real rootless-Podman image build and boot | passed in GitHub Actions run 29379476560 |
 
 The implementation workspace did not provide Podman or Docker, so the local
 suite intentionally uses a recording engine double. This is not presented as a
@@ -130,22 +130,29 @@ and started the image.
 
 ## Remote OCI verification evidence
 
-[GitHub Actions run 29379270135](https://github.com/LuxciumProject/ahmyzsh/actions/runs/29379270135)
+[GitHub Actions run 29379476560](https://github.com/LuxciumProject/ahmyzsh/actions/runs/29379476560)
 completed successfully against remote commit
-`f6314978096ddba256d77f30de3effda06910702` on 2026-07-15 UTC. Its source tree
+`ac1b884ce6eb325437f36bab290be8ff55bb566d` on 2026-07-15 UTC. Its source tree
 is byte-for-byte identical to local implementation tree
-`7361c8f73eda5f5980fd933bba51db619a6077bc`.
+`6e08864188d828b7a17002a279a2dd3d3945b431`.
 
 | Remote gate | Observed result |
 |---|---|
 | source acquisition | read-only GitHub source archive extracted successfully |
 | isolated regression suite | 76 passed, 0 failed |
-| real image build | official Ubuntu 24.04 base built successfully |
-| minimized Docker context | 25.7 MB, reduced from 48.4 MB without omitting the explorable source snapshot |
+| real target engine | Podman 4.9.3 reported rootless operation |
+| automatic mount guard | no configured host mounts detected |
+| real launcher build | `ahm-lab build` built the official Ubuntu 24.04 image successfully |
 | installed boot | `boot=loaded`; all eight active modules loaded |
 | degradation state | zero failed modules; native prompt fallback expected without a TTY |
 | runtime confinement | effective capability mask `0000000000000000` |
 | diagnostics | `ahm doctor` completed successfully inside the offline container |
+
+The preceding [Docker interoperability run](https://github.com/LuxciumProject/ahmyzsh/actions/runs/29379270135)
+also passed and measured the matching `.dockerignore` policy: 25.7 MB of build
+context, reduced from 48.4 MB without omitting the explorable source snapshot.
+Konsole is unavailable on the headless runner as expected; its exact argument
+ordering and launcher forwarding are covered by the recording integration test.
 
 Four validation discoveries were corrected before the final green run:
 
