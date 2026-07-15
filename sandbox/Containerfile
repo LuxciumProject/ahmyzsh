@@ -31,10 +31,10 @@ RUN apt-get update \
       zsh \
     && rm -rf /var/lib/apt/lists/*
 
-RUN groupadd --gid 1000 ahm \
-    && useradd --uid 1000 --gid 1000 --create-home --shell /usr/bin/zsh ahm
+RUN groupadd --gid 10001 ahm \
+    && useradd --uid 10001 --gid 10001 --create-home --shell /usr/bin/zsh ahm
 
-COPY --chown=1000:1000 . /opt/ahmyzsh
+COPY --chown=10001:10001 . /opt/ahmyzsh
 
 # The admin home exists only for explicit root-in-container experiments.
 RUN /opt/ahmyzsh/scripts/install.sh \
@@ -43,7 +43,7 @@ RUN /opt/ahmyzsh/scripts/install.sh \
       --without-fonts \
       --without-cache-warm
 
-USER 1000:1000
+USER 10001:10001
 ENV HOME=/home/ahm \
     USER=ahm \
     LOGNAME=ahm \

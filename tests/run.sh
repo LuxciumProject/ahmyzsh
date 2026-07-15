@@ -99,7 +99,7 @@ else
 fi
 
 if grep -q '^FROM docker.io/library/ubuntu:' "$REPO_DIR/sandbox/Containerfile" \
-  && grep -q '^USER 1000:1000$' "$REPO_DIR/sandbox/Containerfile" \
+  && grep -q '^USER 10001:10001$' "$REPO_DIR/sandbox/Containerfile" \
   && grep -q '^CMD \["zsh", "-l"\]$' "$REPO_DIR/sandbox/Containerfile"; then
   pass 'laboratory image declares a non-root login shell'
 else
@@ -153,7 +153,7 @@ assert_contains 'lab sessions are automatically removed' "$lab_run" '--rm'
 assert_contains 'normal lab session has no network' "$lab_run" '--network=none'
 assert_contains 'normal lab drops every capability' "$lab_run" '--cap-drop=all'
 assert_contains 'normal lab prevents privilege gain' "$lab_run" '--security-opt=no-new-privileges'
-assert_contains 'normal lab uses the unprivileged image account' "$lab_run" '--user=1000:1000'
+assert_contains 'normal lab uses the unprivileged image account' "$lab_run" '--user=10001:10001'
 assert_contains 'lab explicitly disables privileged mode' "$lab_run" '--privileged=false'
 assert_contains 'lab explicitly uses a private PID namespace' "$lab_run" '--pid=private'
 assert_contains 'lab explicitly uses a private IPC namespace' "$lab_run" '--ipc=private'

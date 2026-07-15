@@ -54,7 +54,7 @@ build cache. `clean` removes only the named AhMyZSH laboratory image.
 | host mounts | none | none | none |
 | container removal | `--rm` | `--rm` | unchanged |
 | network | `none` | `none` | isolated default Podman network |
-| account | UID/GID 1000 | UID/GID 0 inside user namespace | unchanged |
+| account | UID/GID 10001 | UID/GID 0 inside user namespace | unchanged |
 | capabilities | all dropped | rootless defaults retained for `apt` | unchanged |
 | privilege gain | disabled | disabled | disabled |
 | PID budget | 512 | 512 | unchanged |
@@ -77,7 +77,8 @@ explicit.
   migration does not require redesign.
 - Apt uses `--no-install-recommends`; package indexes are removed in the same
   layer.
-- A fixed non-root UID/GID owns the active home and source copy.
+- A dedicated high non-root UID/GID (10001) owns the active home and source
+  copy, avoiding accounts already reserved by the Ubuntu base image.
 - The real installer creates both disposable homes. The image build then boots
   the normal shell and rejects a failed module state.
 - `.containerignore` excludes Git internals, the historical virtual environment,

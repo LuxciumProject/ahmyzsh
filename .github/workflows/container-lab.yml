@@ -55,7 +55,7 @@ jobs:
             --cap-drop=all \
             --security-opt=no-new-privileges:true \
             --pids-limit=512 \
-            --user=1000:1000 \
+            --user=10001:10001 \
             --entrypoint=zsh \
             ahmyzsh-lab:ci \
             -lic '[[ $AHMYZSH_BOOT_STATE == loaded && ${#AHMYZSH_FAILED_MODULES} -eq 0 && $(grep "^CapEff:" /proc/self/status | tr -s " " | cut -d" " -f2) == 0000000000000000 ]] && ahm doctor'

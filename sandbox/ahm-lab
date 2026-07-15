@@ -207,7 +207,7 @@ run_session() {
     )
   else
     run_args+=(
-      --user=1000:1000
+      --user=10001:10001
       --cap-drop=all
       --env HOME=/home/ahm
       --env USER=ahm
