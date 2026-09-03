@@ -1,22 +1,58 @@
+# Preserve repository fixtures/assets that are intentionally tracked.
 !*.png
 !*.j*
 !*.t*
+!templates/vscode-material-icon-testDirs/node_modules/
+!vscode-material-icon-testDirs/**/*
+
+# Zsh compiled completion files.
 *.zwc
 *.ZWC
-node_modules
-!templates/vscode-material-icon-testDirs/node_modules
-core/env/aliases/Untitled-1.js
 
-!vscode-material-icon-testDirs/**/*.*
+# Dependencies and package-manager diagnostics.
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Generated build, coverage, and tool caches.
+dist/
+build/
+coverage/
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+.svelte-kit/
+*.tsbuildinfo
+
+# Local environment, logs, temporary files, and accidental scratch content.
+.env
+.env.*
+!.env.example
+*.log
+logs/
+*.tmp
+*.temp
+tmp/
+temp/
 nohup.out
-
-.cache
-.directory
-.history
+core/env/aliases/Untitled-1.js
 hello_world/
 hello-world/
-.Trash-1000
-.Trash*
 
-# Snapshots: ignore timestamped bundle artifacts, track LATEST
+# OS, desktop, editor, and shell-history artifacts.
+.DS_Store
+Thumbs.db
+.directory
+.history
+.Trash-1000/
+.Trash*/
+.vscode/
+.idea/
+*.swp
+*~
+
+# Snapshots: ignore timestamped bundle artifacts, track LATEST.
 snapshots/bundle/
