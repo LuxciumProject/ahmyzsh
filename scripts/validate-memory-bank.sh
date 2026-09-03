@@ -15,8 +15,10 @@ for f in "${files[@]}"; do
   echo " - $f"
   bad=0
   # front-matter boundaries
-  if ! head -n 5 "$f" | grep -q '^---$'; then echo "   ! missing front-matter start"; bad=1; fi
-  if ! awk '/^---$/{n++; next} n==1{print}' "$f" | grep -q '^description: '; then echo "   ! missing description"; bad=1; fi
+  if ! awk 'NR == 1 && $0 != "---" { exit 1 } NR > 1 && /^---$/ && !description { exit 1 } /^description: / { description=1 } description && NR > 1 && /^---$/ { end=1; exit } END { exit !(description && end) }' "$f"; then
+    echo "   ! front matter must start with ---, include a description, and end with ---"
+    bad=1
+  fi
   # forbid http links
   if grep -Eq 'https?://' "$f"; then echo "   ! external URLs found; prefer relative links"; bad=1; fi
   # ensure path marker comment is present

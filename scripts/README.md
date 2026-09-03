@@ -10,7 +10,7 @@ This directory contains language-agnostic scripts for project management, initia
 - **Purpose**: Create AI-friendly snapshots of the complete ahmyzsh codebase
 - **Usage**: `bash scripts/tools_assemble-ahmyzsh-bundle.sh [--minimal] [--commit HASH]`
 - **Location Agnostic**: Works from any directory
-- **Output**: Snapshots go to `snapshots/bundle/ahmyzsh-bundle-LATEST.sh`
+- **Output**: The latest snapshot is `snapshots/ahmyzsh-bundle-LATEST.sh`; timestamped snapshots go to `snapshots/bundle/`
 
 **Quick Start:**
 

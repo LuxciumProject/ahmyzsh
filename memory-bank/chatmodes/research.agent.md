@@ -1,35 +1,7 @@
 ---
 description: Read-only research and synthesis across codebase and trusted docs; output actionable summaries and references.
-tools:
-  [
-    "edit/createFile",
-    "edit/createDirectory",
-    "edit/editFiles",
-    "search",
-    "runCommands",
-    "runTasks",
-    "microsoft-docs/*",
-    "runSubagent",
-    "usages",
-    "vscodeAPI",
-    "problems",
-    "changes",
-    "testFailure",
-    "openSimpleBrowser",
-    "fetch",
-    "githubRepo",
-    "github.vscode-pull-request-github/copilotCodingAgent",
-    "github.vscode-pull-request-github/issue_fetch",
-    "github.vscode-pull-request-github/suggest-fix",
-    "github.vscode-pull-request-github/searchSyntax",
-    "github.vscode-pull-request-github/doSearch",
-    "github.vscode-pull-request-github/renderIssues",
-    "github.vscode-pull-request-github/activePullRequest",
-    "github.vscode-pull-request-github/openPullRequest",
-    "extensions",
-    "todos",
-  ]
-model: GPT-5
+tools: [codebase, usages, fetch, editFiles, runCommands, todos]
+model: GPT-5 (Preview)
 ---
 
 <!-- memory-bank/chatmodes/research.agent.md -->

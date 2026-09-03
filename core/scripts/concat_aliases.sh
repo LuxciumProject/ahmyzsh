@@ -15,9 +15,10 @@ if [[ -d "$output_path" ]]; then
   exit 1
 fi
 
-# Collect all .sh files, excluding compiled .zwc files and this script.
+# Collect all .sh files, excluding compiled .zwc files, this script, and output files.
 mapfile -d '' alias_files < <(
-  find "$script_dir" -maxdepth 1 -type f -name '*.sh' ! -name '*.zwc' -print0 |
+  find "$script_dir" -maxdepth 1 -type f -name '*.sh' ! -name '*.zwc' \
+    ! -path "$script_path" ! -path "$output_path" ! -path "$default_output" -print0 |
     sort -z
 )
 
@@ -32,10 +33,6 @@ fi
   printf '# Do not edit manually; rerun %s instead.\n\n' "$(basename "$0")"
 
   for alias_file in "${alias_files[@]}"; do
-    if [[ "$alias_file" == "$script_path" ]]; then
-      continue
-    fi
-
     printf '# ---- %s ----\n' "$(basename "$alias_file")"
     cat "$alias_file"
     printf '\n'

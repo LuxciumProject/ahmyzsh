@@ -31,6 +31,10 @@ coverage/
 .env
 .env.*
 !.env.example
+myenv/
+.venv/
+venv/
+**/site-packages/
 *.log
 logs/
 *.tmp

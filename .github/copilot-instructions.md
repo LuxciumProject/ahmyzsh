@@ -15,8 +15,10 @@
 - All Copilot and agent runs must reference the triad: `instructions/`, `prompts/`, and `chatmodes/`.
 
 ## Chat Mode Constraints
-- Only approved models: `model: GPT-5 (Preview)` or `model: GPT-5 mini (Preview)`.
-- Only approved tools: `[ 'codebase', 'usages', 'fetch', 'editFiles', 'runCommands', 'todos' ]`.
+- Chat mode models and tools **must** match the authoritative configuration defined in
+  `memory-bank/instructions/layer-3b-chatmodes-factory.instructions.md`.
+- Do not duplicate or override the approved model or tools lists here; update the canonical
+  `memory-bank` instructions instead if constraints change.
 
 ## Additional Notes
 - Do not overwrite or remove existing files unless explicitly instructed.

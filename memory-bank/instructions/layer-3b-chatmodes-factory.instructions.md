@@ -42,7 +42,7 @@ This factory follows five aligned stages that keep custom chat modes lean and co
 ## Constraints
 - Front-matter must include:
   - `description: <short>`
-  - `tools: ['codebase', 'editFiles', 'fetch']`  ← exact
+  - `tools: [codebase, usages, fetch, editFiles, runCommands, todos]`  ← exact
   - `model: GPT-5 (Preview)` **or** `model: GPT-5 mini (Preview)`  ← only these
 - One top-level H1 in the mode file body. Prefer relative links for internal references; external links allowed when authoritative.
 
